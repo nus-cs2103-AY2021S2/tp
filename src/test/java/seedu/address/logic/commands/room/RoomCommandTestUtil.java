@@ -15,7 +15,7 @@ import seedu.address.model.room.RoomNumberOrTagsContainsKeywordsPredicate;
 import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 
 /**
- * A utility to assist in testing of {@code Room} and {@code UniqueRoomList}
+ * A utility to assist in testing of {@code Room} and {@code UniqueRoomList}.
  */
 public class RoomCommandTestUtil {
     public static final String VALID_ROOM_NUMBER_ONE = "05-123";

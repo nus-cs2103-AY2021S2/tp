@@ -293,7 +293,7 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code versionedAddressBook}.
      *
-     * @return
+     * @return The unmodifiable {@ObservableList} containing the {@code Room}s in the {@code Model}.
      */
     @Override
     public ObservableList<Room> getFilteredRoomList() {

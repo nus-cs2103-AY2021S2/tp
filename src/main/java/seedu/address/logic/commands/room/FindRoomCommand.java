@@ -43,6 +43,7 @@ public class FindRoomCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with the number of {@code Room} objects that will be listed.
+     * @throws NullPointerException If {@code model} is null.
      */
     @Override
     public CommandResult execute(Model model) {

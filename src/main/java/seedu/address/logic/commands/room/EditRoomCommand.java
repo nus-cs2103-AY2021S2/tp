@@ -77,11 +77,12 @@ public class EditRoomCommand extends Command {
     /**
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with the {@code Room} that was edited.
-     * @throws CommandException If the room being edited at the specified {@code Index} does not exist.
-     * @throws CommandException If the {@code Room} being edited is being at the specified {@code Index} will have its
-     *                          {@code RoomNumber} edited but the {@code Room} has been allocated to a {@code Resident}.
-     * @throws CommandException If the {@code Room} being edited is being at the specified {@code Index} will have its
-     *                          {@code RoomNumber} edited but the {@code Room} has an associated {@code Issue}.
+     * @throws CommandException     If the room being edited at the specified {@code Index} does not exist.
+     * @throws CommandException     If the {@code Room} being edited is being at the specified {@code Index}
+     *                              will have its {@code RoomNumber} edited but the {@code Room} has been allocated to
+     *                              a {@code Resident}.
+     * @throws CommandException     If the {@code Room} being edited is being at the specified {@code Index} will have
+     *                              its {@code RoomNumber} edited but the {@code Room} has an associated {@code Issue}.
      * @throws NullPointerException If {@code model} is null.
      */
     @Override

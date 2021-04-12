@@ -23,6 +23,7 @@ public class ListRoomCommand extends Command {
 
     /**
      * Executes the ListRoomCommand on the provided {@code Model} list all the rooms.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with the number of {@code Room} objects that will be listed.
      * @throws NullPointerException If {@code model} is null.

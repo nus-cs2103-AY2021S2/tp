@@ -49,11 +49,11 @@ public class DeleteRoomCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with the {@code Room} that was deleted.
-     * @throws CommandException If the room being deleted at the specified {@code Index} does not exist.
-     * @throws CommandException If the room being deleted at the specified {@code Index} has been allocated to a
-     *                          {@code Resident}.
-     * @throws CommandException If the room being deleted at the specified {@code Index} has any {@code Issue}
-     *                          associated with it.
+     * @throws CommandException     If the room being deleted at the specified {@code Index} does not exist.
+     * @throws CommandException     If the room being deleted at the specified {@code Index} has been allocated to a
+     *                              {@code Resident}.
+     * @throws CommandException     If the room being deleted at the specified {@code Index} has any {@code Issue}
+     *                              associated with it.
      * @throws NullPointerException If {@code model} is null.
      */
     @Override
