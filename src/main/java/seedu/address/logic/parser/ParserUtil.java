@@ -199,13 +199,17 @@ public class ParserUtil {
 
     /**
      * Validates {@code Collection<String> tags} except the last tag in tags.
+     * If the last tag contains value, the value will still be checked.
      *
-     * @throws ParseException if any given {@code tags}, except the last tag, is invalid.
+     * @throws ParseException if any given {@code tags} is invalid.
      */
     public static void validateAllButLastTag(List<String> tags) throws ParseException {
         requireNonNull(tags);
         for (int i = 0; i < tags.size() - 1; i++) {
             parseTag(tags.get(i));
+        }
+        if (!tags.get(tags.size() - 1).isEmpty()) {
+            parseTag(tags.get(tags.size() - 1));
         }
     }
 
@@ -220,22 +224,28 @@ public class ParserUtil {
      */
     public static boolean validatePersonAliasArgs(ArgumentMultimap argMultimap, Prefix lastPrefix) {
         try {
-            if (argMultimap.getValue(PREFIX_NAME).isPresent() && lastPrefix != PREFIX_NAME) {
+            if (argMultimap.getValue(PREFIX_NAME).isPresent()
+                    && !(lastPrefix == PREFIX_NAME && argMultimap.getValue(PREFIX_NAME).get().isEmpty())) {
                 ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             }
-            if (argMultimap.getValue(PREFIX_PHONE).isPresent() && lastPrefix != PREFIX_PHONE) {
+            if (argMultimap.getValue(PREFIX_PHONE).isPresent()
+                    && !(lastPrefix == PREFIX_PHONE && argMultimap.getValue(PREFIX_PHONE).get().isEmpty())) {
                 ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             }
-            if (argMultimap.getValue(PREFIX_EMAIL).isPresent() && lastPrefix != PREFIX_EMAIL) {
+            if (argMultimap.getValue(PREFIX_EMAIL).isPresent()
+                    && !(lastPrefix == PREFIX_EMAIL && argMultimap.getValue(PREFIX_EMAIL).get().isEmpty())) {
                 ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             }
-            if (argMultimap.getValue(PREFIX_COMPANY).isPresent() && lastPrefix != PREFIX_COMPANY) {
+            if (argMultimap.getValue(PREFIX_COMPANY).isPresent()
+                    && !(lastPrefix == PREFIX_COMPANY && argMultimap.getValue(PREFIX_COMPANY).get().isEmpty())) {
                 ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
             }
-            if (argMultimap.getValue(PREFIX_JOB_TITLE).isPresent() && lastPrefix != PREFIX_JOB_TITLE) {
+            if (argMultimap.getValue(PREFIX_JOB_TITLE).isPresent()
+                    && !(lastPrefix == PREFIX_JOB_TITLE && argMultimap.getValue(PREFIX_JOB_TITLE).get().isEmpty())) {
                 ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOB_TITLE).get());
             }
-            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent() && lastPrefix != PREFIX_ADDRESS) {
+            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+                    && !(lastPrefix == PREFIX_ADDRESS && argMultimap.getValue(PREFIX_ADDRESS).get().isEmpty())) {
                 ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
             }
             if (lastPrefix != PREFIX_TAG) {
@@ -243,13 +253,36 @@ public class ParserUtil {
             } else {
                 ParserUtil.validateAllButLastTag(argMultimap.getAllValues(PREFIX_TAG));
             }
-            if (argMultimap.getValue(PREFIX_REMARK).isPresent() && lastPrefix != PREFIX_REMARK) {
+            if (argMultimap.getValue(PREFIX_REMARK).isPresent()
+                    && !(lastPrefix == PREFIX_REMARK && argMultimap.getValue(PREFIX_REMARK).get().isEmpty())) {
                 ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
             }
             return true;
         } catch (ParseException pe) {
             return false;
         }
+    }
+
+    /**
+     * Validates prefix arguments {@code ArgumentMultiMap}. All arguments must be a valid prefix and must be empty.
+     *
+     * @param prefix Prefix to validate.
+     * @param argMultimap Arguments of to validate.
+     * @return true if prefix exists and is valid. false if prefix does not exist.
+     * @throws ParseException if a prefix contains values.
+     */
+    public static boolean validatePrefixEmpty(Prefix prefix, ArgumentMultimap argMultimap)
+            throws ParseException {
+        if (argMultimap.getValue(prefix).isEmpty()) {
+            return false;
+        }
+        for (String value: argMultimap.getAllValues(prefix)) {
+            if (value.isEmpty()) {
+                continue;
+            }
+            throw new ParseException(prefix.getPrefix());
+        }
+        return true;
     }
 
     /**

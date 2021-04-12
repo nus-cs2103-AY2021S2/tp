@@ -294,6 +294,14 @@ after all an attribute of a `Person`. No other such attribute has its own dedica
 ultimately implemented as a field to the `add`/`edit` commands, which is consistent with all the other Person 
 attributes.
 
+### Find
+
+The current implementation of the `find` command only searches the name, email, remark and tag fields. Potential
+improvements of the feature is to search all fields including phone number, address, company, and job title.
+
+To search each field, a predicate for the relevant fields need to be created and the master 
+`FieldsContainsKeywordPredicate` should also be updated to include the new field for general search.
+
 ### Fuzzy Find
 
 The current implementation of `find` command uses the Java port of Python's 

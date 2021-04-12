@@ -3,9 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,6 +65,19 @@ class FilterCommandTest {
 
         // same predicate, address -> returns true
         assertEquals(addressPredicateCommand, dupeAddressPredicateCommand);
+
+        final List<String> prefixes = Arrays
+                .asList(PREFIX_ADDRESS.getPrefix(), PREFIX_REMARK.getPrefix(),
+                        PREFIX_EMAIL.getPrefix());
+        final List<String> prefixesReversed = new ArrayList<>(prefixes);
+        Collections.reverse(prefixesReversed);
+        // same prefixes -> returns true
+        assertEquals(new FilterCommand(new DisplayFilterPredicate(), prefixes),
+                new FilterCommand(new DisplayFilterPredicate(), prefixesReversed));
+
+        // different prefixes -> returns false
+        assertNotEquals(new FilterCommand(new DisplayFilterPredicate(), prefixes),
+                new FilterCommand(new DisplayFilterPredicate(), new ArrayList<>()));
 
         // same object -> returns true
         assertEquals(standardCommand, standardCommand);
