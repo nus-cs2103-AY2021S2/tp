@@ -37,8 +37,8 @@ public class DeleteTagCommand extends TagCommand {
             + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 3 -t Photoshop -t Illustrator";
 
     public static final String MESSAGE_SUCCESS = "Tag(s) deleted from %1$d person(s): %2$s\n"
-            + "Note: Duplicated tag(s) will not be deleted from any person(s).\n"
-            + "Even if any person(s) does not have any of the tag(s), the number shown will still account for them.";
+            + "Note: The total number of persons shown is the number of persons the command have executed on.\n"
+            + "However, no tags will not be deleted from the persons without the tags.";
 
     private final Set<Tag> tags;
     private final List<Index> targetIndexes;
