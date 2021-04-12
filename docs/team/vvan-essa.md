@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to find venues by any of their attributes.
   * What it does: allows the user to filter any previously added venues by their attributes.
   * Justification: This feature improves the product significantly because a user can efficiently search for a venue with the specified field.
-    
+
 * **Project management**:
   * Managed releases `v1.3.trial` - `v1.3` (2 releases) on GitHub
 

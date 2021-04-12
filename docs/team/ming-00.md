@@ -30,8 +30,8 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide: formatted and polished user guide for better readability, added app constraints and design justifications, wrote and revised commands listed in user guide alongside testing of the app.
-    * Code documentation: refactored existing AB3 documentation, added, checked and edited existing documentation by other members
-    * Developer Guide: 
+    * Code documentation: refactored existing AB3 documentation, added, checked and edited existing documentation by other members.
+    * Developer Guide: created sequence and activity diagrams, updated instructions for manual testing, added notable implementation features, edited appendix and added new section on effort.
 
 * **Others**:
     * Designed UI mockup

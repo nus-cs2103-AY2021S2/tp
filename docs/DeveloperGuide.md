@@ -11,12 +11,9 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 ## **1. Introduction to BookCoin**
 
-Welcome! This is BookCoin, a compact application for booking management for administrative personnel. This developer guide is created to give a quick introduction of BookCoin to interested developers on its structure and implementation. 
-All are welcome to contribute!
+Welcome! This is BookCoin, a compact application for booking management for administrative personnel. This developer guide is created to give a quick introduction of BookCoin to interested developers on its structure and implementation. All are welcome to contribute!
 
-This guide covers several aspects of BookCoin, starting from its high-level design implementation and following with an overview of the implementation behind key features and  
-rationale behind certain design decisions. Links are also provided to various guides on the tools used in Documentation, Testing, and DevOps. 
-Finally, the appendices specify the product scope, requirements, a glossary, and instructions for manual testing.
+This guide covers several aspects of BookCoin, starting from its high-level design implementation and following with an overview of the implementation behind key features and rationale behind certain design decisions. Links are also provided to various guides on the tools used in Documentation, Testing, and DevOps. Finally, the appendices specify the product scope, requirements, a glossary, and instructions for manual testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -152,13 +149,12 @@ This section describes some noteworthy details on how certain features are imple
 BookCoin allows users to narrow down the search of persons, venues and bookings through filters. 
 
 #### 4.1.1 Implementation details
-The find functionality is implemented through an FindCommand and FindCommandParser for Person, Venue and Booking. Corner cases such as searching for non-existent entries are also handled properly with suitable notifications displayed to the user. For example, if a search returns with no results, the corresponding notice that there are no persons/ venues/ bookings is displayed.
-The find feature is implemented with FindPersonCommand/ FindVenueCommand/ FindBookingCommand and their respective parsers FindPersonCommandParser/ FindVenueCommandParser/ FindBookingCommandParser.
+The find functionality is implemented through an FindCommand and FindCommandParser for Person, Venue and Booking. Corner cases such as searching for non-existent entries are also handled properly with suitable notifications displayed to the user. For example, if a search returns with no results, the corresponding notice that there are no persons/ venues/ bookings is displayed. The find feature is implemented with FindPersonCommand/ FindVenueCommand/ FindBookingCommand and their respective parsers FindPersonCommandParser/ FindVenueCommandParser/ FindBookingCommandParser.
 <br>
 ![Class Diagram of Find Command](images/FindCommandClassDiagram.png)
 
 Since the functionality for all three classes are similar, we can focus our discussion here on the Person class here without loss of generality. The `find_person` command has the following format:
-`find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`, where at least one field must be provided. 
+`find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`, where at least one field must be provided.
 
 Given below is a sequence diagram how the `find_person` command behaves in BookCoin after user input is parsed if a user wishes to find all persons by the name of "Anna" and inputs `find_person n/Anna`.
 ![Sequence Diagram of Find Command](images/FindCommandSequenceDiagram.png)
