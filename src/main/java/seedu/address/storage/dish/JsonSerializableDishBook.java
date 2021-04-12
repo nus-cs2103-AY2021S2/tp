@@ -21,17 +21,25 @@ public class JsonSerializableDishBook {
 
     private final List<Dish> dishes = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonSerializableDishBook} with the given persons.
+     */
     @JsonCreator
     public JsonSerializableDishBook(@JsonProperty("dishes") List<Dish> dishes) {
         this.dishes.addAll(dishes);
     }
 
+    /**
+     * Converts a given {@code ReadOnlyBook<Dish>} into this class for Jackson use.
+     *
+     * @param source future changes to this will not affect the created {@code JsonSerializableDishBook}.
+     */
     public JsonSerializableDishBook(ReadOnlyBook<Dish> source) {
         dishes.addAll(source.getItemList());
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this dish book into the model's {@code DishBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
