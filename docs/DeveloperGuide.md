@@ -1237,6 +1237,29 @@ Given below are instructions to test the app manually.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
        
+### Viewing a tutor
+
+1. Viewing a tutor 
+
+   1. Prerequisites: 
+      1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+      2. Arguments are valid and compulsory parameters are provided.
+      3. The index provided must be a positive integer must be smaller or equal to the largest index seen on the current window.
+    
+   2. Test Case: `view_tutor 1` <br>
+      Expected: The Tutor List Panel updates and displays the tutor at index 1.
+      
+   3. Test Case: `view_tutor -1` <br>
+      Expected: The Tutor List Panel does not update. An error message of invalid command format is shown.
+      
+### Listing all tutors
+
+1. List all tutors
+    1. Test Case: `list_tutors` <br>
+       Expected: The Tutor List Panel displays the all the existing tutors. <br><br>
+    2. Test Case: `list_tutors abcdefg` <br>
+       Expected: The Tutor List Panel displays the all the existing tutors. <br><br>
+       
 ### Adding a Schedule
 
 1. Adding a schedule
@@ -1278,48 +1301,48 @@ Given below are instructions to test the app manually.
 1. Editing a schedule
     1. Prerequisites:
         1. Arguments are valid and compulsory parameters are provided.
-        1. The schedule to be edited must not be in the past.
-        1. The date must be in the form `yyyy-mm-dd`.
-        1. The time must be in the form ` hh:mm a`.
-        1. The edited schedule date and time must be a future datetime.
-        1. If any of the following parameter: `DATE`, `TIME_FROM` or `TIME_TO` are edited, all three parameters **must be** provided.
-        1. TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
-        1. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
-        1. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
-        1. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
-        1. The schedule's timeslot must not clash with existing appointments & schedules.
-        1. The index provided must be a task index seen on the current window.<br><br>
-    1. Test Case: `edit_schedule 1 t/New Schedule Name` <br>
+        2. The schedule to be edited must not be in the past.
+        3. The date must be in the form `yyyy-mm-dd`.
+        4. The time must be in the form ` hh:mm a`.
+        5. The edited schedule date and time must be a future datetime.
+        6. If any of the following parameter: `DATE`, `TIME_FROM` or `TIME_TO` are edited, all three parameters **must be** provided.
+        7. TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+        8. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
+        9. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
+        10. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
+        11. The schedule's timeslot must not clash with existing appointments & schedules.
+        12. The index provided must be a task index seen on the current window.<br><br>
+    2. Test Case: `edit_schedule 1 t/New Schedule Name` <br>
        Expected: The schedule's title changes to `New Schedule Name` <br><br>
-    1. Test Case: `edit_schedule 1 ds/New Schedule Description` <br>
+    3. Test Case: `edit_schedule 1 ds/New Schedule Description` <br>
        Expected: The schedule's description changes to `New Schedule Description` <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-2 fr/5:00pm to/7:00pm` <br>
+    4. Test Case: `edit_schedule 1 d/2021-6-2 fr/5:00pm to/7:00pm` <br>
        Expected: The schedule's time_from changes to `Jun 02 2021 05:00 PM` and time_to changes to `Jun 02 2021 07:00 PM`. <br><br>
-    1. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
+    5. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
        Assuming the schedule to be edited is in the past,  
        Expected: The schedule is not updated. An error message saying that past schedules cannot be edited. <br><br>
-    1. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
+    6. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
        Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
-    1. Test Case: `edit_schedule 1 to/7:00pm` <br>
+    7. Test Case: `edit_schedule 1 to/7:00pm` <br>
       Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-2` <br>
+    8. Test Case: `edit_schedule 1 d/2021-6-2` <br>
       Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
-    1. Test Case: `edit_schedule 1 d/2/5/2021 fr/5:00pm to/7:00pm` <br>
+    9. Test Case: `edit_schedule 1 d/2/5/2021 fr/5:00pm to/7:00pm` <br>
        Expected: The schedule is not updated. An error message saying that the date is in the wrong format is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/15:00pm to/7:00pm` <br>
+    10. Test Case: `edit_schedule 1 d/2021-6-10 fr/15:00pm to/7:00pm` <br>
        Expected: The schedule is not updated. An error message saying that the time is in the wrong format is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/7:00pm to/5:00pm` <br>
+    11. Test Case: `edit_schedule 1 d/2021-6-10 fr/7:00pm to/5:00pm` <br>
        Expected: The schedule is not updated. An error message saying that the time range is invalid is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:00am to/10:00am` <br>
+    12. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:00am to/10:00am` <br>
        Expected: The schedule is not updated. An error message saying that the start time is invalid is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/10:00pm to/1:00am` <br>
+    13. Test Case: `edit_schedule 1 d/2021-6-10 fr/10:00pm to/1:00am` <br>
        Expected: The schedule is not updated. An error message saying that the end time is invalid is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:31pm to/8:46pm` <br>
+    14. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:31pm to/8:46pm` <br>
         Expected: The schedule is not updated. An error message saying that the time minutes are not in blocks of 30 or 60 minutes is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-2 fr/4:00pm to/8:00pm` <br>
+    15. Test Case: `edit_schedule 1 d/2021-6-2 fr/4:00pm to/8:00pm` <br>
         Expected: The schedule is not updated. An error message saying that the schedule clashes with another appointment or schedule (assuming you did the first
         test case) is shown <br><br>
-    1. Test Case: `edit_schedule -1 t/New Schedule Name` <br>
+    16. Test Case: `edit_schedule -1 t/New Schedule Name` <br>
         Expected: The schedule is not updated. An error message about the invalid index is shown. <br><br>
 
 ### Viewing Schedules
@@ -1360,8 +1383,8 @@ Given below are instructions to test the app manually.
 1. Adding a reminder
     1. Prerequisites:
         1. Arguments are valid and compulsory parameters are provided
-        1. The date must be in the form `yyyy-mm-dd`.
-        1. The new reminder date must be a future date. <br><br>
+        2. The date must be in the form `yyyy-mm-dd`.
+        3. The new reminder date must be a future date. <br><br>
     2. Test Case: `add_reminder ds/Science Tuition Payment Due d/2021-6-2` <br>
        Expected: Adds a reminder by the name `Science Tuition Payment Due`, to be reminded on `Jun 02 2021` <br><br>
     3. Test Case: `add_reminder ds/Maths Tuition Payment Due d/2021-6-21` <br>
@@ -1377,18 +1400,18 @@ Given below are instructions to test the app manually.
 1. Editing a reminder
     1. Prerequisites:
         1. Arguments are valid and compulsory parameters are provided.
-        1. The reminder to be edited must not be in the past.
-        1. The date must be in the form `yyyy-mm-dd`.
-        1. The edited reminder date must be a future date.
-        1. The index provided must be a positive integer index seen on the current window. <br><br>
-    1. Test Case: `edit_reminder 1 ds/New Reminder Description` <br>
+        2. The reminder to be edited must not be in the past.
+        3. The date must be in the form `yyyy-mm-dd`.
+        4. The edited reminder date must be a future date.
+        5. The index provided must be a positive integer index seen on the current window. <br><br>
+    2. Test Case: `edit_reminder 1 ds/New Reminder Description` <br>
        Expected: The reminder's description changes to `New Reminder Description` <br><br>
-    1. Test Case: `edit_reminder 1 d/2021-6-5` <br>
+    3. Test Case: `edit_reminder 1 d/2021-6-5` <br>
        Expected: The schedule's date changes to `Jun 05 2021` <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-1-5` <br>
+    4. Test Case: `edit_schedule 1 d/2021-1-5` <br>
        Assuming the reminder to be edited is in the past,  
        Expected: The reminder is not updated. An error message saying that past reminders cannot be edited. <br><br>
-    1. Test Case: `edit_reminder -1 ds/New Reminder Description` <br>
+    5. Test Case: `edit_reminder -1 ds/New Reminder Description` <br>
        Expected: The reminder is not updated. An error message about the invalid index is shown. <br><br>
 
 ### Listing All Reminders
@@ -1403,7 +1426,7 @@ Given below are instructions to test the app manually.
 
 1. Deleting a Reminder
     1. Prerequisites:
-        1. List all reminder(s) using the `list_reminders` command. Multiple reminders in the list.
+        1. List all reminder(s) using the `list_reminders` command. Multiple grades in the list.
         2. The reminder to be deleted must exist.
         3. The index provided must be a positive integer index seen on the current window. <br><br>
     2. Test Case: `delete_reminder 1` <br>
@@ -1417,34 +1440,66 @@ Given below are instructions to test the app manually.
 
 1. Adding a grade
     1. Prerequisites:
-        1. Arguments are valid and compulsory parameters are provided
-        2. There should not be any duplicate grade (equal `subject` and equal `graded item`) existing in the list.
+        1. Arguments are valid and compulsory parameters are provided.
+        2. There should not be any duplicate grade (same `subject` and same `graded item`) existing in the list.
         3. `grade letter` must follow the [Singapore-GCE O'Level grading system](#Glossary).
     2. Test Case: `add_grade s/Geography gi/CA1 gr/A1` <br>
        Expected: Adds a grade with subject `Geography`, graded item `CA1` and a grade `A1` <br><br>
     3. Test Case: `add_grade s/Geography gi/CA1 gr/A1`  <br>
        Expected: The grade is not added. An error message saying that the grade already exists (assuming you did the previous
        test case) is shown <br><br>
-    3. Test Case: `add_grade s/Geography gi/CA1 gr/A2`  <br>
+    4. Test Case: `add_grade s/Geography gi/CA1 gr/A2`  <br>
        Expected: The grade is not added. An error message saying that the grade already exists (assuming you did the first
        test case) is shown <br><br>
     5. Test Case: `add_grade s/Geography gi/Final Exam gr/A3` <br>
        Expected: The grade is not added. An error message saying that the grade letter is in the wrong format is shown <br><br>
-
+   5. Test Case: `add_grade s/Secondary 4 Geography gi/Final Exam gr/B3` <br>
+      Expected: The grade is not added. An error message saying that the graded item is in the wrong format is shown <br><br>
+      
 ### Deleting a Grade
 
-1. Deleting a Reminder
+1. Deleting a grade
     1. Prerequisites:
         1. List all grade(s) using the `list_grades` command. Multiple grades in the list.
         2. The grade to be deleted must exist.
-        3. Index must be a positive integer and must be smaller or equal to the largest index of the list.
+        3. Index must be a positive integer and must be smaller or equal to the largest index seen on the current window.
     2. Test Case: `delete_grade 1` <br>
        Expected: The first grade displayed in the list is deleted. <br><br>
     3. Test Case: `delete_grade` <br>
        Expected: An error message about the invalid command format is shown. <br><br>
     4. Test Case: `delete_grade -1` <br>
        Expected: An error message about the invalid command format is shown. <br><br>
+
+### Editing a Grade
+
+1. Editing a grade
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided.
+        2. The grade to be edited must not be in the past.
+        3. The index provided must be a positive integer must be smaller or equal to the largest index seen on the current window.
+        4. There should not be any duplicate grade (same `subject` and same `graded item`) existing in the list.
+        5. `grade letter` must follow the [Singapore-GCE O'Level grading system](#Glossary).  <br><br>
+    2. Test Case: `edit_grade 1 s/New Subject` <br>
+       Expected: The grade's subject changes to `New Subject` <br><br>
+    3. Test Case: `edit_grade 1 gi/New Graded Item` <br>
+       Expected: The grade's graded item changes to `New Graded Item` <br><br>
+    4. Test Case: `edit_grade 1 gr/C5` <br>
+       Expected: The grade's grade letter changes to `C5` <br><br>
+    5. Test Case: `edit_grade 2 s/New Subject gi/New Graded Item` <br>
+       Assuming there are at least 2 grades in the list and you did the previous two test cases.
+       Expected: The grade is not updated. An error message saying that duplicate grade exists in the list. <br><br>
+    6. Test case: `edit_grade -1 s/New Subject` <br>
+       Expected: The grade is not updated. An error message of invalid command format is shown. <br><br>
+
+### Listing All Grades
+
+1. List all grades
+    1. Test Case: `list_grades` <br>
+       Expected: The Grade List Panel displays the all the existing grades. <br><br>
+    2. Test Case: `list_grades abcdefg` <br>
+       Expected: The Grade List Panel displays the all the existing grades. <br><br>
        
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
