@@ -48,7 +48,18 @@ deactivate AddressBookParser
 LogicManager -> SortCommand : execute()
 activate SortCommand
 
-ref over SortCommand, Model : execute method of SortCommand
+SortCommand -> Model : filterThenSortPersonList(new HasNamePredicate(), new PersonNameComparator())
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand
+deactivate CommandResult
 
 SortCommand --> LogicManager : result
 deactivate SortCommand
