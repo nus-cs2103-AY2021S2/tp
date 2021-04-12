@@ -37,20 +37,17 @@ A full list of code contribution can be found here:
 
 ### Feature enhancements
 
-- Refactor Date class:
+- Refactor Date class + Add sort by upcoming birthdays (dates) in `list` (`elist`):
   [\#180](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/180)
   * A noticeably big PR, to minimize duplicate functionality using inheritance, and change internal date types
-    to better fit subclassing requirements
-- Add option to sort by upcoming birthdays (dates) in `list` (`elist`):
-  [\#180](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/180)
+    to better fit subclassing requirements.
 - Add option to sort by birthday month in chronological order, and decoupled ordering option from sorting option:
   [\#126](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/126)
 - Add alternative date formats (ISO, DMY, YMD) with and without years:
   [\#119](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/119)
   * Justification for chosen formats is partially detailed [here](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/91#issuecomment-797487476)
 - Update email regex to be more permissive:
-  [\#286](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/286)
-  * This PR as well as issue [\#247](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/247)
+  [\#286](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/286), issue [\#247](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/247)
 - Change prefix syntax to dash form, and add long form alternatives:
   [\#73](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/73),
   [\#111](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/111)
@@ -62,13 +59,13 @@ A full list of code contribution can be found here:
   * Builds upon initial `theme` implementation by `garyljj` in [\#176](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/176)
 - Add initial GUI skeleton to display event list:
   commit [`02452dd`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/02452dd58c89a77c79a7f3b2597eb2580a845a65)
-  * Implemented in favor of initial GUI tag list proposed in [\#99] due to limited horizontal real estate.
+  * Implemented in favor of tag list proposed in [\#99](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/99) due to limited horizontal space.
 - Add unit tests:
-  `ParserUtil`, `Date` [`7b886b5`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7b886b5b6b9e27971cde42b06a325cb14e64a063),
-  `Birthday` [`1f059df`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/1f059df0e26bac1f2d0629810367bb86b6c38795)
-  `ListCommand` [`bf68113`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/bf68113f18067d72a8da7b5d7a72966f80e3180b)
-  `ListCommandUtil` [`7ef9fb2`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7ef9fb209f4f19cb7cc65e2eb9ad44ee9163114d)
-  `Prefix` [`d2b9a8c`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/d2b9a8c9372f1f6f43892ff55322e95e7781d1cb)
+  `ParserUtil`, `Date` (commit [`7b886b5`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7b886b5b6b9e27971cde42b06a325cb14e64a063)),
+  `Birthday` (commit [`1f059df`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/1f059df0e26bac1f2d0629810367bb86b6c38795)),
+  `ListCommand` (commit [`bf68113`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/bf68113f18067d72a8da7b5d7a72966f80e3180b)),
+  `ListCommandUtil` (commit [`7ef9fb2`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7ef9fb209f4f19cb7cc65e2eb9ad44ee9163114d)),
+  `Prefix` (commit [`d2b9a8c`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/d2b9a8c9372f1f6f43892ff55322e95e7781d1cb))
 
 ### Documentation
 
