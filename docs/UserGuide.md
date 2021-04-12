@@ -409,6 +409,7 @@ the existing client information.
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
     * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
+    * All input before the first valid identifier will be considered as `INDEX`.
 * At least one of the optional fields must be provided.
 * Meetings of a client cannot be modified with this command.
 * If a field (e.g. `n/NAME`) is expected only once in the command, but you specified it multiple times, only the last occurrence of the field will be taken.
@@ -451,6 +452,7 @@ a client, by typing `-MODE` to specify an editing mode after a policy number.
 * Deletes the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
+* Any 
 
 **Examples**:
 * `delete 2` deletes the 2nd client in the currently displayed list.
