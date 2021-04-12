@@ -28,7 +28,8 @@ public class AddTodoCommand extends Command {
     private final Todo toAdd;
 
     /**
-     * Creates an AddTodoCommand to add the specified {@code Task}
+     * Creates an AddTodoCommand to add the specified {@code Task}.
+     *
      * @param index index of {@code Project} to add event in the list.
      * @param todo {@code Todo} to add.
      */

@@ -20,6 +20,7 @@ public class DeleteDeadlineCommandParser implements Parser<DeleteDeadlineCommand
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteDeadlineCommand
      * and returns a DeleteDeadlineCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteDeadlineCommand parse(String args) throws ParseException {
