@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR_T4
+participant ":AliasCommandParser" as AliasCommandParser LOGIC_COLOR_T4
+participant ":AddAliasCommandParser" as AddAliasCommandParser LOGIC_COLOR_T4
+participant ":DeleteAliasCommandParser" as DeleteAliasCommandParser LOGIC_COLOR_T4
+participant ":ListAliasCommand" as ListAliasCommand LOGIC_COLOR
+
+[-> AddressBookParser : parse(arguments)
+AddressBookParser -> AliasCommandParser : parse(arguments)
+
+'[-> AliasCommandParser : parse(arguments)
+
+alt alias add ALIAS COMMAND
+  AliasCommandParser -> AddAliasCommandParser : parse(arguments)
+  ref over AddAliasCommandParser
+    AddAliasCommandParser parse logic
+  end ref
+  AddAliasCommandParser --> AliasCommandParser : addAliasCommand
+else alias delete ALIAS
+  AliasCommandParser -> DeleteAliasCommandParser : parse(arguments)
+  ref over DeleteAliasCommandParser
+    DeleteAliasCommandParser parse logic
+  end ref
+  DeleteAliasCommandParser --> AliasCommandParser : deleteAliasCommand
+else alias list
+  AliasCommandParser -> ListAliasCommand : new ListAliasCommand()
+  ListAliasCommand --> AliasCommandParser
+end
+
+'[<--AliasCommandParser : aliasCommand
+
+AliasCommandParser --> AddressBookParser : aliasCommand
+[<--AddressBookParser : aliasCommand
+
+@enduml
+
+@startuml
+!include style.puml
+
+participant ":AddAliasCommandParser" as AddAliasCommandParser LOGIC_COLOR_T4
+participant "<<class>>\nParserUtil" as ParserUtil USER_COLOR
+participant ":CommandAlias" as CommandAlias LOGIC_COLOR
+participant ":AddAliasCommand" as AddAliasCommand LOGIC_COLOR
+
+group sd AddAliasCommandParser parse logic
+    AddAliasCommandParser -> ParserUtil : parseAlias(args)
+    ParserUtil --> AddAliasCommandParser : alias
+    AddAliasCommandParser -> ParserUtil : parseCommand(args)
+    ParserUtil --> AddAliasCommandParser : command
+    AddAliasCommandParser -> CommandAlias : new CommandAlias(alias, command)
+    CommandAlias --> AddAliasCommandParser : commandAlias
+    AddAliasCommandParser -> AddAliasCommand : new AddAliasCommand(commandAlias)
+    AddAliasCommand --> AddAliasCommandParser : addAliasCommand
+end
+@enduml
+
+@startuml
+!include style.puml
+
+participant ":DeleteAliasCommandParser" as DeleteAliasCommandParser LOGIC_COLOR_T4
+participant "<<class>>\nParserUtil" as ParserUtil USER_COLOR
+participant ":DeleteAliasCommand" as DeleteAliasCommand LOGIC_COLOR
+
+group sd DeleteAliasCommandParser parse logic
+    DeleteAliasCommandParser -> ParserUtil : parseAlias(args)
+    ParserUtil --> DeleteAliasCommandParser : alias
+    DeleteAliasCommandParser -> DeleteAliasCommand : new DeleteAliasCommand(alias)
+    DeleteAliasCommand --> DeleteAliasCommandParser : deleteAliasCommand
+end
+@enduml
