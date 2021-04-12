@@ -182,7 +182,7 @@ returned respectively.
 ![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
 
 The `NoteCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. The `Prefix` 
-that the user called the command with (`/r` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
+that the user called the command with (`r/` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
 additional parameter in the `NoteCommand`.
 
 
@@ -199,6 +199,15 @@ is then created and returned.
 Viewing notes will simply create and return a `CommandResult`. This `CommandResult` contains the `Person` object
 representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
 `Person` in the `NotesWindow`.
+
+### Listing, Finding and filtering clients
+
+Upon executing a `ListCommand`, `FindCommand` or `FilterCommand`, a sequence of action is performed by the 
+corresponding commands. All 3 commands work similarly: while `ListCommand` does not require any additional user
+inputs, additional users inputs for `FindCommand` and `FilterCommand` are required and will be parsed to create
+Predicate objects. As for the `ListCommand`, the Predicate object will simply return true. These predicates will then
+be used to determine which `Person` in the `UniquePersonList` found in the `AddressBook` will be added to the
+`FilteredList`, which will then be iteratively displayed to the user.
 
 ### Scheduling meetings and Meeting List Display
 
@@ -368,7 +377,7 @@ otherwise)
     * Use case resumes at step 2
 
 * 3c. The user input is invalid
-    * 3a1. Link.me shows an error message
+    * 3c1. Link.me shows an error message
     * Use case resumes at step 2
 
 **Use case: Delete a client**
