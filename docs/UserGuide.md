@@ -54,7 +54,7 @@ and customise your experience with Focuris!
 
 <!-- AUTO-GENERATED TOC - END -->
 <!-- prettier-ignore-end -->
-i
+
 ---
 
 <div class="page-break-before"></div>
