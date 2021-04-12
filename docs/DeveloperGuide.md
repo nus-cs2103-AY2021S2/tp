@@ -158,10 +158,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
-### Sort feature
+### Sort feature (author: ToTo Tokaeo)
 It can be helpful to sort the list of contacts and the list of meetings by a certain criteria.
 For example, sorting contacts by their names could complement the user experience.
-However, there were a few implementations details to consider.
+However, there were a few implementations details to consider. The implementations for sorting of the contacts and meetings are very similar, so I will only
+discuss the one for contacts.
 
 Currently, an essential attribute in the model are the filtered lists, 
 which shows the results of searches and finds. 
@@ -170,15 +171,34 @@ These filtered lists, however, are backed by immutable observable lists,
 which helps update the JavaFX GUI. I initially tried to make copies of these observable lists,
 so that I can mutate them through sorting and filtering. However, this would not work,
 since commands like "edit" would be making changes to a copy of the data, 
-not the data itself.
+not the data itself. So, initially, this filtered list was the access point for many other components, 
+like the UI. 
+
+![The original filter list diagram](images/FilterDiagram.png)
 
 The implementation I went with uses another subclass of observable lists called sorted lists.
-It goes between the link between the original immutable observable list and the filtered lists.
+It goes in as the link between the original immutable observable list and the filtered lists.
 Sorting would occur in the sorted list layer, and the filtering will be applied on top.
 This has the benefit of still sharing the references with the original observable list, 
 so modifications will still be reflected in the correct data structures.
 
-###Timetable feature (author : Maurice)
+![After implementation](images/SortDiagram.png)
+
+
+### Unsort (author: ToTo Tokaeo)
+To unsort, I simply remove the sorting comparator in the sorted list subclass. The list would become
+the original observable list.
+
+### Find meeting (author: ToTo Tokaeo)
+The command `findm` leverages the filtering capabilities of the FilteredList for meetings. 
+Hence,
+the only tricky part is to compute the predicate used to filter this FilteredList.
+The predicate is computed by the logical `AND` of all input predicates. For instance,
+suppose we want to search for a meeting with name "lecture" and with priority 1. 
+The predicate to filter the meeting list is simply: meeting contains "lecture" in its name `AND`
+meeting has priority 1.
+
+### Timetable feature (author : Maurice)
 
 The timetable feature will be help the user visualise the free times, as well as his/her 
 meetings schedule for the following week. 
