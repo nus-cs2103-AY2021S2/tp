@@ -28,7 +28,7 @@ It describes both the design and architecture of Pawbook.
 ## **Target User Profile**
 
 The target user profile are dog school managers that own and manage the daily operations of the dog schools. They
-handle a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care
+handle a wide range of operations such as keeping track of the dogs under their care, arranging programs and taking care
 of the dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school
 at all times.
 
@@ -36,10 +36,10 @@ at all times.
 
 In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training,
 grooming and workshops. With many moving parts daily, managing operations  can get overwhelming.
-PawBook is an all-in-one management system to help dog school managers to bookkeep and maintain organisation. 
-At present, there is no such application to help dog school owners to organise and
-manage their dog school currently. This application serves to increase the effectiveness and efficacy of dog schools
-managers. 
+PawBook is an all-in-one management system to help dog school managers to maintain organisation of their dog schools. 
+Besides keeping track of all the dogs under their care, it also allows users to plan their schedule and manage programs 
+and classes. At present, there is no such application to help dog school owners to organise and manage their dog school 
+currently. This application serves to increase the effectiveness and efficacy of dog schools managers. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png){: .center-image}
 
-The sections below give more details of each component.
+The sections below give more details of each component. 
 
 ### UI component
 
@@ -160,7 +160,7 @@ This necessitates that an unique ID number is assigned to every entity during it
 
 The ID system replaces the original implementation that uses the index of every Person in the visible list. This gives the advantage of being able to reference to any entity on any screen, which can be useful since different entities are not displayed together.
 
-The `UniqueentityList` contains pairs of ID and entity. This attempts to mimic a map/dictionary while keeping possible to continue using the original UI components with minimal changes to the code. Every entity does not store its ID as an internal attribute due to the fact that ID is dynamically generated, usually after the instantiation of the entity itself. The ability to set or change the ID during the lifetime of the entity will violate the immutability of the entities. Furthermore, there is no need for the any entity to be aware of its ID.
+The `UniqueEntityList` contains pairs of ID and entity. This attempts to mimic a map/dictionary while keeping possible to continue using the original UI components with minimal changes to the code. Every entity does not store its ID as an internal attribute due to the fact that ID is dynamically generated, usually after the instantiation of the entity itself. The ability to set or change the ID during the lifetime of the entity will violate the immutability of the entities. Furthermore, there is no need for the any entity to be aware of its ID.
 
 #### Alternative Implementation: Using a Hashmap as container for unique entities
 
@@ -176,8 +176,6 @@ Drawbacks:
 This current implementation though not ideal, avoid many potential rewrites since there is no `ListView` equivalent for maps in JavaFX. Switching to using a hashmap as underlying data structure will mean that a table will need to be used to display all the entries, adding unnecessary complication to the code as filtering and sorting will no longer as be simple. Most of these changes are under-the-hood and does not improve user experience significantly.
 
 ### Adding/Deleting feature
-
-#### What it is
 
 ![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png){: .center-image}
 
@@ -239,11 +237,13 @@ Pawbook allows the users to `find` an entity based on keyword searches. The `fin
 searches and reveals the entire list of commands that match one or more of the results.
 
 When the user enters a valid command with the keyword searches, the arguments are parsed by the `FindCommmandParser` that
-converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` instance
-that uses the list of keywords to find the search results based on the supplied keywords.
+converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` object
+that uses the list of keywords to find the search results based on the supplied keywords. Take note that Find Command supports 
+substring searching, so for example if there is an Alice in the program, searching "Ali" will also return Alice as result. 
 
-This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the
-CommandResult instance that is then passed on in the LogicManager.
+Below is an example activity diagram for a valid find command from the user.
+
+![FindActivityDiagram](images/FindActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid find command from the user.
 
@@ -259,13 +259,9 @@ Here is a more specific breakdown of the command's execute method.
 
 ![ViewSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png) 
 
-1. Upon calling the `execute()` method, the find command updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter. 
-2. It then sorts the entity using the `sortEntities()` in increasing order. 
-3. From here, Find Command creates a command result and returns it to the `LogicManager`. 
-
-Below is an example activity diagram for a valid find command from the user.
-
-![FindActivityDiagram](images/FindActivityDiagram.png){: .center-image}
+1. Upon calling the `execute()` method, the `FindCommand` updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter. 
+2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
+3. From here, Find Command creates a command result and returns it to the `LogicManager`.
 
 ### View feature
 
@@ -279,7 +275,16 @@ Based on the class type of the target entity, we will reveal the search results 
 
 This list is subsequently passed on to the `RelatedEntityPredicate` that will later be used in the ModelManager's `updatefilteredEntityList())` method to finally reveal the search results.
 
-Below is an example sequence diagram for a valid view command from the user. 
+Take note that this is the order in which results will be displayed, based on target entity searched:
+* **View Dog**: Dog > Owner > Programs enrolled in
+* **View Owner**: Owner > Dogs owned 
+* **View Program**: Program > Dogs enrolled
+
+Below is an example activity diagram for a valid view command from the user.
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png){: .center-image}
+
+Below is an example sequence diagram for a valid view command from the user.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png){: .center-image}
 
@@ -296,11 +301,7 @@ Here is a more specific breakdown of the command's execute method.
 1. In the execute method of `ViewCommand`, it first generates a list of related entity IDs by calling the `generateRelatedIdList()`which accesses the data in the model. 
 2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model. 
 3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list. 
-4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial. 
-
-Below is an example activity diagram for a valid view command from the user.
-
-![ViewActivityDiagram](images/ViewActivityDiagram.png){: .center-image}
+4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
 
 ### Enrol feature
 
@@ -427,7 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes.  |
 | `* *`    | Advanced user        | Edit in bulk quickly                                                       | Minimize chance of someone else seeing them by accident |
 | `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command. |
-| `* * `   | User                 | Exit the application                                                       |           |
+| `* `     | User                 | Exit the application                                                       |           |
 
 *{More to be added}*
 
@@ -453,7 +454,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Steps 1a1-1a2 are repeated until the command entered is correct.
       
     Use case resumes at step 2.
-
+* 1b. Entity already exists in the program. 
+    * 1b1. Pawbook shows an error message. 
+    * 1b2. User supplies an entity with different details. <br>
+      Steps 1b1-1b2 are repeated until the command entered is correct.
+      
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
 **Use case: UC02 - Delete a dog/owner profile or program**
@@ -582,7 +587,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
 
-**Use case: UC05 - Drop dog from program**
+**Use case: UC08 - Drop dog from program**
 
 **MSS**
 
@@ -608,7 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
-**Use case: UC06 - View schedule**
+**Use case: UC09 - View schedule**
 
 **MSS**
 
@@ -628,7 +633,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 2.
 
 
-**Use case: UC07 - View Help Window**
+**Use case: UC10 - View Help Window**
 
 **MSS**
 
@@ -647,7 +652,7 @@ and also a command summary for the user.
     Use case resumes at step 2.
       
 
-**Use case: UC08 - Exit Pawbook**
+**Use case: UC11 - Exit Pawbook**
 
 **MSS**
 
