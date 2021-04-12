@@ -76,7 +76,15 @@ public class EditNoteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_NOTE_DISPLAYED_INDEX);
         }
 
+        boolean isShownNote = false;
         Note noteToEdit = lastShownList.get(index.getZeroBased());
+
+        if (model.hasNoteShown()) {
+            if (noteToEdit.equals(model.getNoteShown())) {
+                isShownNote = true;
+            }
+        }
+
         if (editNoteDescriptor.getNote().get().getNote().equals("")) {
             editNoteDescriptor.setNote(noteToEdit);
         }
@@ -89,6 +97,10 @@ public class EditNoteCommand extends Command {
 
         model.setNote(noteToEdit, editedNote);
         model.updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+
+        if (isShownNote) {
+            model.showNote(editedNote);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_NOTE_SUCCESS, editedNote),
             UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
