@@ -524,6 +524,7 @@ data given before you proceed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can still safely exit Teaching Assistant by clicking the close button on the top right of Teaching Assistant, so no worries!
+</div>
 
 Exits the program.
 
