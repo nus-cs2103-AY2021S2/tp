@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_FREE;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_FREE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEntries.CLASS_MEETING;
 import static seedu.address.testutil.TypicalEntries.CONSULTATION;
@@ -61,7 +59,7 @@ public class FreeCommandTest {
 
     @Test
     public void execute_intervalNotOccupied_freeMessageShown() {
-        String expectedMessage = MESSAGE_FREE;
+        String expectedMessage = FreeCommand.MESSAGE_FREE;
         ListOccupyingEntryPredicate predicate = preparePredicate("2022-02-03 13:00", "2022-02-03 15:30");
         FreeCommand command = new FreeCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);
@@ -71,7 +69,7 @@ public class FreeCommandTest {
 
     @Test
     public void execute_intervalOccupied_notFreeMessageShown() {
-        String expectedMessage = MESSAGE_NOT_FREE;
+        String expectedMessage = FreeCommand.MESSAGE_NOT_FREE;
         ListOccupyingEntryPredicate predicate = preparePredicate("2022-02-01 13:00", "2022-02-01 15:30");
         FreeCommand command = new FreeCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);

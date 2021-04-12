@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_CONTACT;
-import static seedu.address.commons.core.Messages.MESSAGE_EDIT_CONTACT_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_BOB;
@@ -43,7 +42,7 @@ public class EditContactCommandTest {
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder(editedContact).build();
         EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
         Model expectedModel = new ModelManager(new TeachingAssistant(model.getTeachingAssistant()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
@@ -64,7 +63,7 @@ public class EditContactCommandTest {
                 .withContactPhone(VALID_PHONE_BOB).withContactTags(VALID_TAG_HUSBAND).build();
         EditContactCommand editContactCommand = new EditContactCommand(indexLastContact, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
         Model expectedModel = new ModelManager(new TeachingAssistant(model.getTeachingAssistant()), new UserPrefs());
         expectedModel.setContact(lastContact, editedContact);
@@ -78,7 +77,7 @@ public class EditContactCommandTest {
                 new EditContactCommand(INDEX_FIRST, new EditContactDescriptor());
         Contact editedContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
         Model expectedModel = new ModelManager(new TeachingAssistant(model.getTeachingAssistant()), new UserPrefs());
 
@@ -94,7 +93,7 @@ public class EditContactCommandTest {
         EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST,
                 new EditContactDescriptorBuilder().withContactName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
         Model expectedModel = new ModelManager(new TeachingAssistant(model.getTeachingAssistant()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);

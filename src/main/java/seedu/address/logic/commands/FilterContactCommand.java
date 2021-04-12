@@ -6,7 +6,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.contact.ContactTagsContainKeywordsPredicate;
 
+/**
+ * Filters and lists all contacts in Teaching Assistant whose tags contain all of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class FilterContactCommand extends Command {
+
     public static final String COMMAND_WORD = "cfilter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all contacts that have the tags of "
@@ -16,6 +21,9 @@ public class FilterContactCommand extends Command {
 
     private final ContactTagsContainKeywordsPredicate predicate;
 
+    /**
+     * Creates a FilterContactCommand to filter the relevant contacts according to the specified {@code predicate}.
+     */
     public FilterContactCommand(ContactTagsContainKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

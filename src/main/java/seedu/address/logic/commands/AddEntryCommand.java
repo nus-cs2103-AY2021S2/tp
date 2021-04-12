@@ -18,8 +18,6 @@ public class AddEntryCommand extends Command {
 
     public static final String COMMAND_WORD = "eadd";
 
-    public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to Teaching Assistant. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -27,16 +25,18 @@ public class AddEntryCommand extends Command {
             + PREFIX_END_DATE + "END DATE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "consultation 1 "
-            + PREFIX_START_DATE + "2021-04-01 17:00 "
-            + PREFIX_END_DATE + "2021-04-01 19:00 "
-            + PREFIX_TAG + "CS2100";
+            + PREFIX_NAME + "meeting "
+            + PREFIX_START_DATE + "2021-06-06 21:00 "
+            + PREFIX_END_DATE + "2021-06-06 23:00 "
+            + PREFIX_TAG + "meeting "
+            + PREFIX_TAG + "needprep";
+
+    public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
 
     private final Entry toAdd;
 
     /**
      * Creates an AddEntryCommand to add the specified {@code Entry}.
-     * @param entry
      */
     public AddEntryCommand(Entry entry) {
         requireNonNull(entry);

@@ -18,8 +18,6 @@ public class AddContactCommand extends Command {
 
     public static final String COMMAND_WORD = "cadd";
 
-    public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to Teaching Assistant. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -27,11 +25,14 @@ public class AddContactCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Bob Choo "
-            + PREFIX_PHONE + "22222222 "
-            + PREFIX_EMAIL + "bob@example.com "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Danny Tan "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "danny@email.com "
+            + PREFIX_TAG + "student "
+            + PREFIX_TAG + "english "
+            + PREFIX_TAG + "consultation 1";
+
+    public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
 
     private final Contact toAdd;
 

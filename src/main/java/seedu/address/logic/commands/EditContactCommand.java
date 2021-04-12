@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_CONTACT;
-import static seedu.address.commons.core.Messages.MESSAGE_EDIT_CONTACT_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -44,20 +43,23 @@ public class EditContactCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "alexyeoh@example.com";
 
-    private final Index index;
+    public static final String MESSAGE_EDIT_CONTACT_SUCCESS = "Edited Contact: %1$s";
+
+    private final Index targetIndex;
+
     private final EditContactDescriptor editContactDescriptor;
 
     /**
-     * @param index of the contact in the filtered contact list to edit
-     * @param editContactDescriptor details to edit the contact with
+     * Creates an EditContactCommand to edit the contact corresponding to the specified {@code Index}
+     * with the details as specified by the {@code editContactDescriptor}.
      */
-    public EditContactCommand(Index index, EditContactDescriptor editContactDescriptor) {
-        requireNonNull(index);
+    public EditContactCommand(Index targetIndex, EditContactDescriptor editContactDescriptor) {
+        requireNonNull(targetIndex);
         requireNonNull(editContactDescriptor);
 
-        this.index = index;
+        this.targetIndex = targetIndex;
         this.editContactDescriptor = new EditContactDescriptor(editContactDescriptor);
     }
 
@@ -66,11 +68,11 @@ public class EditContactCommand extends Command {
         requireNonNull(model);
         List<Contact> lastShownList = model.getFilteredContactList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        Contact contactToEdit = lastShownList.get(index.getZeroBased());
+        Contact contactToEdit = lastShownList.get(targetIndex.getZeroBased());
         Contact editedContact = createEditedContact(contactToEdit, editContactDescriptor);
 
         if (!contactToEdit.isSameContact(editedContact) && model.hasContact(editedContact)) {
@@ -110,13 +112,13 @@ public class EditContactCommand extends Command {
         }
 
         // state check
-        EditContactCommand e = (EditContactCommand) other;
-        return index.equals(e.index)
-                && editContactDescriptor.equals(e.editContactDescriptor);
+        EditContactCommand otherEditContactCommand = (EditContactCommand) other;
+        return targetIndex.equals(otherEditContactCommand.targetIndex)
+                && editContactDescriptor.equals(otherEditContactCommand.editContactDescriptor);
     }
 
     /**
-     * Stores the details to edit the contact with. Each non-empty field value will replace the
+     * Stores the details needed to edit the contact. Each non-empty field value will replace the
      * corresponding field value of the contact.
      */
     public static class EditContactDescriptor {
@@ -199,12 +201,11 @@ public class EditContactCommand extends Command {
             }
 
             // state check
-            EditContactDescriptor e = (EditContactDescriptor) other;
-
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getTags().equals(e.getTags());
+            EditContactDescriptor otherEditContactDescriptor = (EditContactDescriptor) other;
+            return getName().equals(otherEditContactDescriptor.getName())
+                    && getPhone().equals(otherEditContactDescriptor.getPhone())
+                    && getEmail().equals(otherEditContactDescriptor.getEmail())
+                    && getTags().equals(otherEditContactDescriptor.getTags());
         }
     }
 }

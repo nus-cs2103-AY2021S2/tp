@@ -27,7 +27,7 @@ public class DeleteEntryCommandTest {
         Entry entryToDelete = model.getFilteredEntryList().get(INDEX_FIRST.getZeroBased());
         DeleteEntryCommand deleteEntryCommand = new DeleteEntryCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(Messages.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete);
+        String expectedMessage = String.format(DeleteEntryCommand.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTeachingAssistant(), new UserPrefs());
         expectedModel.deleteEntry(entryToDelete);
@@ -50,7 +50,7 @@ public class DeleteEntryCommandTest {
         Entry entryToDelete = model.getFilteredEntryList().get(INDEX_FIRST.getZeroBased());
         DeleteEntryCommand deleteEntryCommand = new DeleteEntryCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(Messages.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete);
+        String expectedMessage = String.format(DeleteEntryCommand.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete);
 
         Model expectedModel = new ModelManager(model.getTeachingAssistant(), new UserPrefs());
         expectedModel.deleteEntry(entryToDelete);
