@@ -23,6 +23,7 @@ public class FindPersonCommand extends Command {
     public static final String COMMAND_WORD = "find_person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who match the given fields.\n"
+            + "At least one word must be fully matched for NAME and TAG.\n"
             + "At least one field must be provided.\n"
             + "Parameters: " + COMMAND_WORD + " "
             + "[" + PREFIX_NAME + "NAME] "
