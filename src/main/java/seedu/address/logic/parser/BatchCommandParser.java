@@ -45,10 +45,13 @@ public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOp
      *      conform to the expected format.
      */
     public BatchCommand<? extends BatchOperation> parse(String args) throws ParseException {
-        try {
-            String[] splitCommandAndIndicesAndArgs = args.trim().split(" ", 2);
-            String inputCommand = splitCommandAndIndicesAndArgs[0].trim();
+        String[] splitCommandAndIndicesAndArgs = args.trim().split(" ", 2);
+        String inputCommand = splitCommandAndIndicesAndArgs[0].trim();
+        if (inputCommand.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
+        }
 
+        try {
             // Checks the validity of the Command that the user passed as input to the BatchCommand
             switch (inputCommand) {
             case EditCommand.COMMAND_WORD:

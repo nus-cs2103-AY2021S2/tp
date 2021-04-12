@@ -25,7 +25,7 @@ public class BatchCommand<T extends BatchOperation> extends Command {
             + "ARGUMENTS (for the chosen command)\n"
             + "Example: " + COMMAND_WORD + " edit 1, 2 t/colleagues";
     public static final String SUCCESS_MESSAGE = "Batch operation successful!";
-    public static final String ERROR_MESSAGE = "Batch operation halted. Error message from batch command: \n%s";
+    public static final String ERROR_MESSAGE = "Batch operation halted. Error message from command: \n%s";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final List<T> listOfCommands;
