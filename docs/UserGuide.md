@@ -14,7 +14,7 @@ If there are any issues, please feel free to contact the team via the emails pro
 --------------------------------------------------------------------------------------------------------------------
 # Application Layout
 
-![img_1.png](img_1.png)
+<img width="1035" alt="layout" src="https://user-images.githubusercontent.com/59093518/114415214-0e507480-9be2-11eb-9b06-ad796d8ebf1c.png">
 
 DocBob's interface comprises of 4 main parts.
 * The **command box** is where you would enter the commands to be executed.
