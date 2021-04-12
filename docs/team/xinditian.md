@@ -62,11 +62,12 @@ Given below are my contributions to the project.
         * Added documentation for the features `listcontent`, `listddef` and `copytonote` [\#248](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/248)
         * Did cosmetic tweaks to existing documentation of features by editing or adding images `findcontent`, `finddef`, `listcontent`, `listdef` and `copytonote`: [\#248](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/248), [\#251](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/251), [\#264](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/264)
     * Developer Guide:
-        * Added implementation details of the `copytonote` feature.
+        * Added implementation details of the `copytonote` feature. [\#300](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/300)
         * Added 'setting up, getting started' section in the Developer's Guide. [\#30](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/30)
         * Added Introduction to Dictionote in the Developer's Guide. [\#135](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/135)  
         * Edited Table of Contents and User Stories. [\#136](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/136)
-        * Added Use Cases for Dictionary Features. [\#](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/)
+        * Added Use Cases for Dictionary Features. [\#291](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/291)
+        * Add Manual Testing instructions for the Dictionary features [\#306](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/306)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#2](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/2), [\#3](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/3), [\#5](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/5),
