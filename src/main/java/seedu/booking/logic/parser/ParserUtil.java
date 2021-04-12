@@ -46,7 +46,6 @@ import seedu.booking.model.venue.VenueTagContainsKeywordsPredicate;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String DEFAULT_DESCRIPTION = "No description provided.";
     private static final Capacity DEFAULT_CAPACITY = new Capacity(10);
 
@@ -323,30 +322,44 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tagKeyword} is invalid.
      */
-    public static PersonTagContainsKeywordsPredicate parsePersonTagContainsKeywordsPredicate(String tagKeyword)
+    public static PersonTagContainsKeywordsPredicate parsePersonTagContainsKeywordsPredicate(String tagKeywords)
             throws ParseException {
-        requireNonNull(tagKeyword);
-        String trimmedTagKeyword = tagKeyword.trim();
-        if (!Tag.isValidTagName(trimmedTagKeyword)) {
-            throw new ParseException(Tag.ONE_TAG_CONSTRAINTS);
+        requireNonNull(tagKeywords);
+        final Set<Tag> tagSet = new HashSet<>();
+        if (tagKeywords.equals("")) {
+            throw new ParseException(Tag.TAG_NON_EMPTY);
         }
-        return new PersonTagContainsKeywordsPredicate(trimmedTagKeyword);
+        String[] tags = tagKeywords.split(",");
+        for (String tag : tags) {
+            if (!Tag.isValidTagName(tag.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(tag.trim()));
+        }
+        return new PersonTagContainsKeywordsPredicate(tagSet);
     }
 
     /**
-     * Parses a {@code String tagKeyword} into a {@code VenueTagContainsKeywordsPredicate}.
+     * Parses a {@code String tagKeywords} into a {@code VenueTagContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tagKeyword} is invalid.
+     * @throws ParseException if the given {@code tagKeywords} is invalid.
      */
-    public static VenueTagContainsKeywordsPredicate parseVenueTagContainsKeywordsPredicate(String tagKeyword)
+    public static VenueTagContainsKeywordsPredicate parseVenueTagContainsKeywordsPredicate(String tagKeywords)
             throws ParseException {
-        requireNonNull(tagKeyword);
-        String trimmedTagKeyword = tagKeyword.trim();
-        if (!Tag.isValidTagName(trimmedTagKeyword)) {
-            throw new ParseException(Tag.ONE_TAG_CONSTRAINTS);
+        requireNonNull(tagKeywords);
+        final Set<Tag> tagSet = new HashSet<>();
+        if (tagKeywords.equals("")) {
+            throw new ParseException(Tag.TAG_NON_EMPTY);
         }
-        return new VenueTagContainsKeywordsPredicate(trimmedTagKeyword);
+        String[] tags = tagKeywords.split(",");
+        for (String tag : tags) {
+            if (!Tag.isValidTagName(tag.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(tag.trim()));
+        }
+        return new VenueTagContainsKeywordsPredicate(tagSet);
     }
 
     /**
@@ -468,19 +481,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tagKeyword} into a {@code BookingTagContainsKeywordsPredicate}.
+     * Parses a {@code String tagKeywords} into a {@code BookingTagContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tagKeyword} is invalid.
+     * @throws ParseException if the given {@code tagKeywords} is invalid.
      */
-    public static BookingTagContainsKeywordsPredicate parseBookingTagContainsKeywordsPredicate(String tagKeyword)
+    public static BookingTagContainsKeywordsPredicate parseBookingTagContainsKeywordsPredicate(String tagKeywords)
             throws ParseException {
-        requireNonNull(tagKeyword);
-        String trimmedTagKeyword = tagKeyword.trim();
-        if (!Tag.isValidTagName(trimmedTagKeyword)) {
-            throw new ParseException(Tag.ONE_TAG_CONSTRAINTS);
+        requireNonNull(tagKeywords);
+        final Set<Tag> tagSet = new HashSet<>();
+        if (tagKeywords.equals("")) {
+            throw new ParseException(Tag.TAG_NON_EMPTY);
         }
-        return new BookingTagContainsKeywordsPredicate(trimmedTagKeyword);
+        String[] tags = tagKeywords.split(",");
+        for (String tag : tags) {
+            if (!Tag.isValidTagName(tag.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(tag.trim()));
+        }
+        return new BookingTagContainsKeywordsPredicate(tagSet);
     }
 
     /**

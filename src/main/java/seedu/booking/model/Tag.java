@@ -3,8 +3,6 @@ package seedu.booking.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
-import seedu.booking.commons.util.StringUtil;
-
 /**
  * Represents a venueTag in the booking system.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
@@ -12,10 +10,10 @@ import seedu.booking.commons.util.StringUtil;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tag names should be alphanumeric without spaces. \n "
-            + "Consecutive commas are not allowed without tags in between. \n";
-    public static final String ONE_TAG_CONSTRAINTS = "Only one tag should be provided at a time. \n"
-            + "Tag name should be alphanumeric without spaces and should not be empty.";
+            "Tag names should be alphanumeric without spaces.\n"
+            + "Consecutive commas are not allowed without tags in between.\n";
+    public static final String TAG_NON_EMPTY = "Tag field should not be empty.\n"
+            + "To search for multiple tags, separate them with commas.\n";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -48,24 +46,6 @@ public class Tag {
     @Override
     public int hashCode() {
         return tagName.hashCode();
-    }
-
-    public String getTagName() {
-        return tagName;
-    }
-
-    /**
-     * Returns true if both tags are the same (case-insensitive).
-     * This notion of equality between two tags.
-     */
-    public boolean isSameTag(Tag tag) {
-        return tag != null
-                && StringUtil.containsWordIgnoreCase(this.removeSpacesWithinTag(),
-                tag.removeSpacesWithinTag());
-    }
-
-    public String removeSpacesWithinTag() {
-        return this.tagName.replace(" ", "");
     }
 
     /**

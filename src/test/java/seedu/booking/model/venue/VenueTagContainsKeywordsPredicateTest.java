@@ -1,31 +1,37 @@
 package seedu.booking.model.venue;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.model.Tag;
 import seedu.booking.testutil.VenueBuilder;
 
 class VenueTagContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        String firstPredicateKeywordList = "tag1";
-        String secondPredicateKeywordList = "tag2";
+        Set<Tag> firstPredicateTagSet = new HashSet<>();
+        firstPredicateTagSet.add(new Tag("tag1"));
+
+        Set<Tag> secondPredicateTagSet = new HashSet<>();
+        secondPredicateTagSet.add(new Tag("tag2"));
 
         VenueTagContainsKeywordsPredicate firstPredicate =
-                new VenueTagContainsKeywordsPredicate(firstPredicateKeywordList);
+                new VenueTagContainsKeywordsPredicate(firstPredicateTagSet);
         VenueTagContainsKeywordsPredicate secondPredicate =
-                new VenueTagContainsKeywordsPredicate(secondPredicateKeywordList);
+                new VenueTagContainsKeywordsPredicate(secondPredicateTagSet);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
         VenueTagContainsKeywordsPredicate firstPredicateCopy =
-                new VenueTagContainsKeywordsPredicate(firstPredicateKeywordList);
+                new VenueTagContainsKeywordsPredicate(firstPredicateTagSet);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -39,27 +45,29 @@ class VenueTagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void getTagName_returnsCorrectTagName_sameTagName() {
-        // Same keyword
-        VenueTagContainsKeywordsPredicate predicate = new VenueTagContainsKeywordsPredicate("student");
-        assertEquals(predicate.getTagName(), "student");
-    }
-
-    @Test
     public void test_venueTagContainsKeyword_returnsTrue() {
         // One keyword
-        VenueTagContainsKeywordsPredicate predicate = new VenueTagContainsKeywordsPredicate("student");
+        Set<Tag> firstPredicateTagSet = new HashSet<>();
+        firstPredicateTagSet.add(new Tag("student"));
+
+        VenueTagContainsKeywordsPredicate predicate = new VenueTagContainsKeywordsPredicate(firstPredicateTagSet);
         assertTrue(predicate.test(new VenueBuilder().withTags("student").build()));
 
         // Mixed-case keywords
-        predicate = new VenueTagContainsKeywordsPredicate("stuDEnt");
+        Set<Tag> secondPredicateTagSet = new HashSet<>();
+        secondPredicateTagSet.add(new Tag("stuDEnt"));
+
+        predicate = new VenueTagContainsKeywordsPredicate(secondPredicateTagSet);
         assertTrue(predicate.test(new VenueBuilder().withTags("student").build()));
     }
 
     @Test
     public void test_venueTagDoesNotContainKeyword_returnsFalse() {
         // Non-matching keyword
-        VenueTagContainsKeywordsPredicate predicate = new VenueTagContainsKeywordsPredicate("Carol");
+        Set<Tag> firstPredicateTagSet = new HashSet<>();
+        firstPredicateTagSet.add(new Tag("Carol"));
+
+        VenueTagContainsKeywordsPredicate predicate = new VenueTagContainsKeywordsPredicate(firstPredicateTagSet);
         assertFalse(predicate.test(new VenueBuilder().withTags("Alice").build()));
 
     }
