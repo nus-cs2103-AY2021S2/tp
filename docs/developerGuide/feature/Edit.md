@@ -1,6 +1,6 @@
 ### [Feature] Editing Persons
 
-Information about a person can change overtime, and user can edit contacts without having to delete and add a new replacement.
+Information about a person can change over time, and the user can edit contacts without having to delete and add a new replacement.
 
 Edit allows modification of any target field and thus requires just one input parameter to work.
 The updated contact is then displayed in-place of the old one.
