@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+JsonFile -right-> "*" Passenger
+JsonFile -right-> "*" Pool
+Passenger -right-> "*" Tag
+Pool -right-> "1" Driver
+Pool -up-> "1..*" Passenger
+Pool -up-> "*" Tag
+
+Pool -[hidden]up- Passenger
+Passenger -[hidden]down- Pool
+@enduml
