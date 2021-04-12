@@ -233,7 +233,7 @@ Format: `help`
 
 To access the help page, do one of the following:
 1. type `help` in the command box 
-2. press <kbd>f1</kbd>
+2. press <kbd>F1</kbd>
 3. click the 'Help' button on the top left and click on the dropdown
 ![help message](images/helpMessage.png)
 
@@ -262,7 +262,6 @@ Format: `clear`
 Example:
 1. Type in the command `clear` and press <kbd>Enter</kbd>.
 2. All data in TutorBuddy will be wiped clean.
-![clear_command](images/clear_command.png)
 
 ##### Exit the program: `exit`
 
