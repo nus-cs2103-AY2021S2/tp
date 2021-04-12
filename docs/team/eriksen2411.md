@@ -56,7 +56,7 @@ Given below are my contributions to the project.
   * Testing
     * Added tests for add event command and its respective parsers.
     * Added tests for project command and its respective parsers.
-    * Update project/deadline/event/todo command and their respective parsers.
+    * Added tests for update project/deadline/event/todo command and their respective parsers.
 
 
 * **Documentation**:
@@ -73,10 +73,10 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#70](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/70#discussion_r592522775), [\#89](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/89#discussion_r594836780), [\#92](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/92#discussion_r593797414), [\#136](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/136#discussion_r600474816)
-  * Reviewed to close duplicate and redundant issues.
+  * Closed duplicate and redundant issues after reviewing.
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/23), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/260), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/108)
 
 * **Contribution to Other Projects**
-  * I helped to find bugs for Team CS2103-W10-4 during the PE dry run, during which I found and reported 25 errors and gave the team clear description on how to regenerate the bugs.
-  * I helped Team CS2103-W10-4 during the PE dry run to find out the root of the bugs and when these bugs occur.
-  * I gave my suggestions regarding design and documentation for Team CS2103-W10-4 in my bug reports.
+  * Helped Team CS2103-W10-4 find bugs during the PE dry run, during which I found and reported 25 errors and gave the team clear description on how to regenerate the bugs.
+  * Helped Team CS2103-W10-4 find the root of the bugs and when these bugs occur.
+  * Gave my suggestions regarding design and documentation for Team CS2103-W10-4 in my bug reports.
