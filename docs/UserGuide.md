@@ -447,7 +447,7 @@ enter any command that updates data.
 
 ### 5.17 Editing the data file
 
-Data is saved as a JSON file at the following location [JAR file location](/data/budgetbaby.json). Advanced users are
+Data is saved as a JSON file at the following location JAR file location`/data/budgetbaby.json`. Advanced users are
 welcome to make changes to the data directly by making edits to the data file.
 
 **:exclamation: Caution:**
