@@ -548,15 +548,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `schedule 1 m/Insurance Plan Talk 2032-01-02 16:30`<br>
        Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
 
-<<<<<<< HEAD
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-      
-
-=======
     1. Test case: `schedule 1 m/Insurance Plan Talk `<br>
        Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
->>>>>>> master
 
     1. Other incorrect schedule commands to try: `schedule`, `schedule x m/ DESCRIPTION @ DATETIME ` (where x is larger than the list size), `...`<br>
        Expected: Similar to previous.
@@ -605,7 +598,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Recording a note for a client
 
-1. Recording a note for a client when all clients are shown.
+* Recording a note for a client when all clients are shown.
 
     1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
     
@@ -620,7 +613,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing notes for a client
 
-1. Viewing notes for a client when all clients are shown.
+* Viewing notes for a client when all clients are shown.
 
     1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
@@ -635,7 +628,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Clearing notes for a client
 
-1. Clearing notes for a client when all clients are shown.
+* Clearing notes for a client when all clients are shown.
 
     1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
@@ -650,46 +643,47 @@ testers are expected to do more *exploratory* testing.
        
 ### Listing all clients
 
-1. Get a list of all clients
+* Get a list of all clients
 
-1. Test case: `list`, `list alex`, `list 123` <br>
-   Expected: All clients will be displayed in the list, additional parameters are ignored
+    1. Test case: `list`, `list alex`, `list 123` <br>
+       Expected: All clients will be displayed in the list, additional parameters are ignored
 
 ### Finding clients by name
 
-1. Finding clients using (a) name(s) as keyword
+* Finding clients using (a) name(s) as keyword
 
-1. Test case: `find Alex` <br>
-   Expected: All clients with that has "Alex" in their name will be displayed in the list
+    1. Test case: `find Alex` <br>
+       Expected: All clients with that has "Alex" in their name will be displayed in the list
+    
+    1. Test case: `find Alex Bernice` <br>
+       Expected: All clients with that has "Alex" OR "Bernice" in their name will be displayed in the list
+    
+    1. Test case: `find` <br>
+       Expected: Error message "Invalid command format!" followed by instructions on how to properly use the find
+       command
 
-1. Test case: `find Alex Bernice` <br>
-   Expected: All clients with that has "Alex" OR "Bernice" in their name will be displayed in the list
+## Filtering clients using attributes. 
 
-1. Test case: `find` <br>
-   Expected: Error message "Invalid command format!" followed by instructions on how to properly use the find
-   command
+* Attributes include a/ADDRESS, g/GENDER, t/TAG, age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
 
-## Filtering clients using attributes. Attributes include a/ADDRESS, g/GENDER, t/TAG, age/[AGE] or
-age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
+    1. Test case: `filter a/Clementi g/M t/medical i/Protecc age/23-30` <br>
+       Expected: Returns a list of clients who have "Clementi" in their address, and <br>
+       clients who are Male, and <br>
+       clients with the "medical" tag, and <br>
+       clients with the insurance plan "Protecc", and <br>
+       clients aged between 23 and 30 years old, inclusive
 
-1. Test case: `filter a/Clementi g/M t/medical i/Protecc age/23-30` <br>
-   Expected: Returns a list of clients who have "Clementi" in their address, and <br>
-   clients who are Male, and <br>
-   clients with the "medical" tag, and <br>
-   clients with the insurance plan "Protecc", and <br>
-   clients aged between 23 and 30 years old, inclusive
+    1. Test case: `filter`, `filter 20`, `filter Clementi` <br>
+       Expected: Error message "Invalid command format!" followed by instructions on how to properly use the filter
+       command
+    
+    1. Test case: `filter age/abc`, `filter age/-1`, `filter age/30-20`, `filter age/ab-20`, `filter age/-1-20` <br>
+       Expected: Error message "Invalid age (range) input!" followed by instructions on how to properly use the filter
+       command <br>
 
-1. Test case: `filter`, `filter 20`, `filter Clementi` <br>
-   Expected: Error message "Invalid command format!" followed by instructions on how to properly use the filter
-   command
-   
-1. Test case: `filter age/abc`, `filter age/-1`, `filter age/30-20`, `filter age/ab-20`, `filter age/-1-20` <br>
-   Expected: Error message "Invalid age (range) input!" followed by instructions on how to properly use the filter
-   command <br>
-   
 ### Adding or removing an insurance plan of a client
 
-1. Adding a new insurance plan to a client while all clients are being shown
+* Adding a new insurance plan to a client while all clients are being shown
 
     1. Prerequisites: List all clients using the `list` command. At least 1 client in the list.
 
@@ -702,7 +696,7 @@ age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
     1. Other incorrect plan commands to try: `plan 0 i/Investment $1000`, `plan 1 i/`<br>
        Expected: Similar to previous.
 
-2. Removing an existing insurance plan from a client while all clients are being shown
+* Removing an existing insurance plan from a client while all clients are being shown
 
     1. Prerequisites: List all clients using the `list` command. At least 1 client in the list and the 1st client has at least 1 insurance plan.
 
@@ -717,22 +711,18 @@ age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
 
 ### Saving data
 
-1. Editing linkme.json
+* Editing linkme.json
 
-1. Prerequisites: Link.me is not started while data files are edited
-
-<<<<<<< HEAD
-   1. Other incorrect plan commands to try: `plan 0 c/1`, `plan 1 c/`<br>
-      Expected: Similar to previous.
-=======
-1. Test case: delete the `linkme.json` file
-   Expected: Link.me will load sample data upon initialization the next time it starts
-
-1. Test case: valid edits are made in the `linkme.json` file
-   Expected: Link.me will the data in from the json file correctly
-
-1. Test case: invalid edits are made in the `linkme.json` file
-   Expected: Link.me will start with an empty data set upon initialization the next time it starts
+    1. Prerequisites: Link.me is not started while data files are edited
+    
+    1. Test case: delete the `linkme.json` file
+       Expected: Link.me will load sample data upon initialization the next time it starts
+    
+    1. Test case: valid edits are made in the `linkme.json` file
+       Expected: Link.me will the data in from the json file correctly
+    
+    1. Test case: invalid edits are made in the `linkme.json` file
+       Expected: Link.me will start with an empty data set upon initialization the next time it starts
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
@@ -770,4 +760,3 @@ The UI tinkering for the MainWindow proved to be a major hurdle as we wanted the
 extreme inputs, which we allowed in order to give our users the greatest flexibility. The GUI also had to stay intact
 when the window is restarted. Furthermore, GUI behaviors could be different on different OSes, so we had to test the GUI
 under different environments.
->>>>>>> master
