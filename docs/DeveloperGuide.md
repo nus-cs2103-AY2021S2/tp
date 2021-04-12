@@ -304,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 |*       |HR Executive  |indicate the price willing to pay                                |drivers are more likely to choose these passengers                                              |
 
 
-## Use Cases
+### Use Cases
 
 **Use case: Allocate drivers to passengers to be picked up**
 
@@ -549,7 +549,24 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find tag/marketing sales`.<br>
        Expected: Passengers are shown are same as previous. Status message shows tag provided is invalid.
 
+### Finding a pool
 
+1. Finding a pool while all pools are being shown.
+
+    1. Prerequisites: Multiple pools in the list. List all pools using the `list` command.
+
+    1. Test case: `findPool n/lenny`.<br>
+       Expected: Details of only the pool with `Alan Poh`, `Lenny Hoon`, and `Turner Peck` is shown. Status message shows 1 pool listed.
+
+    1. Test case: `findPool n/michael`.<br>
+       Expected: No pools are listed. Status message shows 0 pool listed.
+
+    1. Test case: `findPool n/...`.<br>
+       Expected: Pool list on right pane shows no change. Error details shown in the status message.
+       
+    1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
+       Expected: Similar to previous.
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files.
