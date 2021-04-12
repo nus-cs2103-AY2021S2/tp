@@ -943,7 +943,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. <ins>User lists clients (Use case 1).</ins>
 
-2. User <ins>views insurance policies of selected client (Use case 16)</ins>.
+2. <ins>User views insurance policies of selected client (Use case 16)</ins>.
 
 3. User retrieves URL from ClientBook.
 
