@@ -4,7 +4,9 @@ title: Joel Ho's Project Portfolio Page
 ---
 ## Project: GreenMileageEfforts
 
-GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any IT company quickly arrange carpooling in order to lower their carbon footprint. The platform follows that of a command-line interface (CLI) such that power users that are familiar can efficiently navigate the program.
+Green Mileage Efforts (GME) is an efficient carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These pools of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
+
+GME is a platform that follows a Command-Line Interface (CLI) such that power users that are familiar can efficiently navigate the program.
 
 Given below are my contributions to the project.
 * **New Feature**: Added the ability to `drive` passengers.
@@ -39,6 +41,8 @@ Given below are my contributions to the project.
   * Patched security vulnerabilities in nokogiri and kramdown versions
   * Added [Codacy](https://app.codacy.com/gh/AY2021S2-CS2103T-W10-1/tp/dashboard) static analysis to repo
   * Setup Codecov check to PRs to ensure we attempt to maintain coverage
+
+<div style="page-break-after: always;"></div>
 
 ## **Excerpts from UG/DG**
 
@@ -79,6 +83,7 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 **Format:** <code>pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [<a title="These extra parameters are optional.">c/INDEX c/INDEX ...</a>] [tag/TAG]</code>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Developer Guide
 
