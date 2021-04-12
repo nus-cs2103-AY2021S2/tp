@@ -43,7 +43,7 @@ Given below are my contributions to the project.
      * Added UML diagrams (Activity and Sequence) of Add, Clear and Sort features to the Developer Guide (PR [\#142](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/142))
   
 * **Community**:
-  * 
+  * Gave advice for problems encountered by team members (PR [\#44](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/44))
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=cheunggalen&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
 
