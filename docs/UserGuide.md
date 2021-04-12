@@ -11,7 +11,7 @@ Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficie
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. Introduction
 
@@ -37,6 +37,8 @@ This user guide uses various formatting styles to facilitate reading and to comm
 | UPPER_CASE                | Parameters of a command to be supplied by the user           |
 | ...                       | Parameters of a command that can be used multiple times      |
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick start
 
 ### 2.1 Download and Launch
@@ -50,6 +52,8 @@ This user guide uses various formatting styles to facilitate reading and to comm
 1. **Double-click** the file to start the app. A Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
 
    ![Ui](images/AnnotatedUi.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 2.2 Trying out
 
@@ -73,7 +77,8 @@ This user guide uses various formatting styles to facilitate reading and to comm
 For a quick reference of the available commands and their syntax, refer to the [Command Summary](#7-command-summary) section.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 3. User Interface
 
 ### 3.1 Design
@@ -81,6 +86,8 @@ For a quick reference of the available commands and their syntax, refer to the [
 PocketEstate boasts a minimalist design with alternating steel blue and light blue colours for regular properties/ appointments as its main design scheme. We also feature a grey background for property and appointment listings with an expired deadline to allow users to better focus on current properties/ appointments.
 
 ![uiColorScheme](images/UiColorscheme.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Property Icons
 
@@ -116,6 +123,8 @@ We also use the following symbols for easier identification of different propert
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 4.1 General
 
 #### 4.1.1 Viewing help : `help`
@@ -131,6 +140,8 @@ Format: `help`
 Exits the program.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 ### 4.2 Adding
 
