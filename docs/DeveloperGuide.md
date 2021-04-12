@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -881,6 +881,7 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
        Expected: Similar to previous.
 
 ### Finding Content
+
 1. Finding a specific Content in the Dictionary.
 
   1. Prerequisites: List all contents using the `listcontent` command. Multiple contents in the list.
@@ -895,6 +896,7 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
      Expected: Error message should be shown, stating that there is an 'invalid command format'.
 
 ### Showing content/definition
+
 1. Showing a specific content/definition
 
   1. Prerequisites: Have some contents available in the Dictionary List Panel, commands to facilitate that will be `listcontent`, `findcontent programming`, `listdef`, etc.
