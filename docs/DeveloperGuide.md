@@ -573,6 +573,10 @@ The progress calculator will first calculate the required calories and macronutr
    * For weight maintenance plans, the daily amount of calories required is the **maintenance calories**
 3. The *macronutrients' percentages* for the diet plan is applied to the calculated calories to determine how much of each macronutrient is required (in grams).
 
+The diagram below summarises the process above:
+
+<img src="images/ProgressCalculatorSequenceDiagram.png" width="1000" />
+
 The progress calculator then uses the *macronutrients' percentages* to decide whether the user has fulfiled the diet plan's requirements. This information is displayed via 3 main sections of the report:
 * Active diet plan details
 * Daily report
