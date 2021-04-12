@@ -424,7 +424,7 @@ Format: `converttxtnote INDEX`
 Examples:
 * `converttxtnote 2` Converts the second note in the list into a text file. 
 
-
+<div style="page-break-after: always;"></div>
 ### Contact Features
 
 For the following contact features, irrelevant panels of the user interface were closed (see [Closing UI Panel](./UserGuide.md#closing-ui-panel-close) below). <br>
