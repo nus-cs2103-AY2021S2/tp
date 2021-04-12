@@ -5,10 +5,10 @@ title: Developer Guide
 
 <p align="center">
   <img src="./images/budget_baby.png" width="200px" />
-  <h1 align="center">BudgetBaby :baby: :money_with_wings: Developer Guide</h1>
+  <h1 align="center" style="margin-top:15px;">BudgetBaby :baby: :money_with_wings: Developer Guide</h1>
 </p>
 
-<br><br>
+<br>
 
 **BudgetBaby** is a **budget and expenses tracking desktop app for University students and/or those who are looking to
 better manage their finances**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and

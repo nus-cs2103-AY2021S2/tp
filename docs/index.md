@@ -4,8 +4,8 @@ title: BudgetBaby
 ---
 
 <p align="center">
-  <img src="docs/images/budget_baby.png" width="200px" />
-  <h1 align="center">BudgetBaby :baby: :money_with_wings:</h1>
+  <img src="./images/budget_baby.png" width="200px" />
+  <h1 align="center" style="margin-top:15px;">BudgetBaby :baby: :money_with_wings:</h1>
 </p>
 
 <p align="center">
@@ -13,7 +13,7 @@ title: BudgetBaby
   <!-- <a href="https://codecov.io/gh/AY2021S2-CS2103T-T14-2/tp"> <img src="https://codecov.io/gh/AY2021S2-CS2103T-T14-2/tp/branch/master/graph/badge.svg" /> </a> -->
 </p>
 
-<br><br>
+<br>
 
 BudgetBaby is a **desktop app for setting monthly budgets and tracking expenses**. It is optimized for use via a Command Line Interface (CLI) so that entering and editing financial records and budgets can be done faster by typing in commands while still having the benefits of a Graphical User Interface (GUI).
 

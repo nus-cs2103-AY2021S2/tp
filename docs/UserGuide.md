@@ -99,7 +99,7 @@ The `Menu Bar` contains drop-down menus which provides you access to common usef
 These functions include:
 
 - [Exit](#exiting-the-program-:-`exit`) - Exits the program
-- `Toggling CLI's visibility` - Shows/Hides the [Command Box](#command-box) and [Result Display](#result-display)
+- `Toggling CLI's visibility` - Shows/Hides the [Command Box](#44-command-box) and [Result Display](#45-result-display)
 - [Category Statistics](#viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
 - [Month Statistics](#viewing-budget-for-the-current-month) - Opens the Month statistics window
 - [Help](#viewing-help-:-`help`) - Opens the Help window
@@ -416,7 +416,7 @@ empty data file at the next run.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**:
 
-1. You can follow the [quick start](#quick-start) guide to install the app to your other computer.
+1. You can follow the [quick start](#3-quick-start) guide to install the app to your other computer.
 2. On your current computer send the data file located at `[JAR file location]/data/budgetbaby.json` to your other
    computer.
 3. Overwrite the empty data file on your other computer with the data file you sent over.

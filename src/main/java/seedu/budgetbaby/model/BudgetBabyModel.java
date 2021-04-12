@@ -70,6 +70,8 @@ public interface BudgetBabyModel {
      */
     void addMonth(Month month);
 
+    void findMonth(YearMonth month);
+
     /**
      * Deletes the given month.
      * The month must exist in the address book.
