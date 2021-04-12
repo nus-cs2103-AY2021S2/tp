@@ -289,7 +289,7 @@ Adds a student to TutorBuddy with their respective guardian and study informatio
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
 <div markdown="block" class="alert alert-info">
-:information_source: <code>STUDENT_PHONE_NUMBER</code>, <code>GUARDIAN_PHONE_NUMBER</code> should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits).
+:information_source: <code>STUDENT_PHONE_NUMBER</code>, <code>GUARDIAN_PHONE_NUMBER</code> should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits).<br>
 :information_source: TutorBuddy automatically shows the full list of students and sessions after a successful <code>add_student</code> command.
 </div>
 <div markdown="block" class="alert alert-primary">
