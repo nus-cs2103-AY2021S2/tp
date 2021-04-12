@@ -361,16 +361,14 @@ Supporting these classes are the `AliasCommandParser`, `AddAliasCommandParser`, 
 Step 1. The user input will be parsed through the `AddressBookParser` which will then pass the user input to the
 `AliasCommandParser` when it checks that the user input is trying to execute an alias command.
 
-Step 2. The user input will be parsed through the `AliasCommandParser` which will then pass the user input to either the
+Step 2. The user input will be parsed through the `AliasCommandParser` which will then pass the user input to either 
 `AddAliasCommandParser`, `DeleteAliasCommandParser` or `ListAliasCommandParser` after it checks which alias sub-command 
 the user input is trying to execute.
 
 Step 3. The user input will be parsed through the `AddAliasCommandParser`, `DeleteAliasCommandParser` or 
 `ListAliasCommandParser` and the respective `Parser` will check if the user input is valid.
-* `AddAliasCommandParser` will check if `ALIAS` is one word and not an existing command, and `COMMAND` is a valid 
-  existing command.
-* `DeleteAliasCommandParser` will check if `ALIAS` exists in the address book.
-* `ListAliasCommandParser` does not check for any arguments.
+* `ALIAS` must be one word and not an existing command
+* `COMMAND` must be a valid existing command.
 
 Step 4. Once the user input is successfully parsed, a `AddAliasCommand`, `DeleteAliasCommand` or `ListAliasCommand`
 will be initialised and returned from their respective `Parser` classes and executed subsequently.
@@ -381,14 +379,18 @@ will be initialised and returned from their respective `Parser` classes and exec
 
 ![DeleteAliasCommandParserSequenceDiagram](images/DeleteAliasCommandParserSequenceDiagram.png)
 
+Notes: 
+* `AddAliasCommand` will check if alias exists in `model` before adding as duplicate alias is not allowed.
+* `DeleteAliasCommand` will check if alias exists in `model` before deleting as alias must exist for it to be deleted.
+
 #### Design Considerations
 
 ##### Aspect: Implementation for `alias` command
 
-* Alternative 1 (current choice): Create a separate `AliasCommand` with sub-commands
+* **Alternative 1 (current choice)**: Create a separate `AliasCommand` with sub-commands
     * Pros: `AliasCommand` will be independent from `AddCommand`. Easier to implement, test and debug.
     * Cons: `alias add` compared to `add alias` might be less intuitive for users.
-* Alternative 2: Implement in `AddCommand` with `alias` as a sub-command of `add`. e.g. `add alias`.
+* **Alternative 2**: Implement in `AddCommand` with `alias` as a sub-command of `add`. e.g. `add alias`.
     * Pros: `add alias` compared to `alias add` might be more intuitive for users.
     * Cons: Will require huge changes to `AddCommand`. `AddCommand` will require more testing and debugging.
 

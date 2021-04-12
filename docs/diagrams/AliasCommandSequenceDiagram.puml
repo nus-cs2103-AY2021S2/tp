@@ -7,19 +7,19 @@ participant ":AddAliasCommandParser" as AddAliasCommandParser LOGIC_COLOR_T4
 participant ":DeleteAliasCommandParser" as DeleteAliasCommandParser LOGIC_COLOR_T4
 participant ":ListAliasCommand" as ListAliasCommand LOGIC_COLOR
 
-[-> AddressBookParser : parse(arguments)
-AddressBookParser -> AliasCommandParser : parse(arguments)
+[-> AddressBookParser : parse(args)
+AddressBookParser -> AliasCommandParser : parse(args)
 
-'[-> AliasCommandParser : parse(arguments)
+'[-> AliasCommandParser : parse(args)
 
 alt alias add ALIAS COMMAND
-  AliasCommandParser -> AddAliasCommandParser : parse(arguments)
+  AliasCommandParser -> AddAliasCommandParser : parse(args)
   ref over AddAliasCommandParser
     AddAliasCommandParser parse logic
   end ref
   AddAliasCommandParser --> AliasCommandParser : addAliasCommand
 else alias delete ALIAS
-  AliasCommandParser -> DeleteAliasCommandParser : parse(arguments)
+  AliasCommandParser -> DeleteAliasCommandParser : parse(args)
   ref over DeleteAliasCommandParser
     DeleteAliasCommandParser parse logic
   end ref
@@ -46,13 +46,13 @@ participant ":AddAliasCommand" as AddAliasCommand LOGIC_COLOR
 
 group sd AddAliasCommandParser parse logic
     AddAliasCommandParser -> ParserUtil : parseAlias(args)
-    ParserUtil --> AddAliasCommandParser : alias
+    ParserUtil --> AddAliasCommandParser
     AddAliasCommandParser -> ParserUtil : parseCommand(args)
-    ParserUtil --> AddAliasCommandParser : command
+    ParserUtil --> AddAliasCommandParser
     AddAliasCommandParser -> CommandAlias : new CommandAlias(alias, command)
-    CommandAlias --> AddAliasCommandParser : commandAlias
+    CommandAlias --> AddAliasCommandParser
     AddAliasCommandParser -> AddAliasCommand : new AddAliasCommand(commandAlias)
-    AddAliasCommand --> AddAliasCommandParser : addAliasCommand
+    AddAliasCommand --> AddAliasCommandParser
 end
 @enduml
 
@@ -65,8 +65,8 @@ participant ":DeleteAliasCommand" as DeleteAliasCommand LOGIC_COLOR
 
 group sd DeleteAliasCommandParser parse logic
     DeleteAliasCommandParser -> ParserUtil : parseAlias(args)
-    ParserUtil --> DeleteAliasCommandParser : alias
+    ParserUtil --> DeleteAliasCommandParser
     DeleteAliasCommandParser -> DeleteAliasCommand : new DeleteAliasCommand(alias)
-    DeleteAliasCommand --> DeleteAliasCommandParser : deleteAliasCommand
+    DeleteAliasCommand --> DeleteAliasCommandParser
 end
 @enduml
