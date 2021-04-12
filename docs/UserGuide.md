@@ -123,6 +123,8 @@ Some example commands you can try:
 
 - **`exit`** : Exits the app.
 
+You can cycle through the previously entered commands by using the `up` and `down` arrow keys.
+
 You may refer to the [NuFash Features](#nufash-features) below for details of each command.
 
 
@@ -176,7 +178,7 @@ garment (either formal, casual or active-wear), its type (either upper, lower or
   be used as `add n/striped shirt`.
 * The different inputs that the user can input are the following:
   * `n/NAME`, the name of the garment, limited to 40 characters
-  * `s/SIZE`, the size of the garment, which is a positive integer less than 200
+  * `s/SIZE`, the size of the garment, which is a positive integer less or equal to 200
   * `c/COLOUR`, the colour of the garment
   * `r/DRESSCODE`, the dresscode of the garment
   * `t/TYPE`, the type of the garment
@@ -222,6 +224,7 @@ Format: `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br>
 * `SIZE` is a positive integer.
 * `DRESSCODE` is either 'formal', 'casual' or 'active'.
 * `TYPE` is either 'lower', 'upper' or 'footwear'.
+*  Press `Ctrl` + `a` as a shorthand command to pre-fill the `add` command format in the command box.
 </div>
 
 Example:<br>
@@ -257,6 +260,7 @@ Format: `delete INDEX`
 * Deletes the article of clothing at the specified `INDEX`
 * The `INDEX` refers to the index number shown in the list command
 * The `INDEX` must be a positive integer 1, 2, 3, …<br>
+* Press `Ctrl` + `d` as a shorthand command to pre-fill the `delete` command format in the command box.
 </div>
 
 Example:<br>
@@ -285,7 +289,8 @@ Format: `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCR
 * Edits the garment at the specified `INDEX`.<br>
 * The `INDEX` refers to the index number shown in the list command. The index must be a positive integer 1, 2, 3, …
 * At least one of the optional bracketed fields must be provided.
-* Existing values will be updated to the input values.<br>
+* Existing values will be updated to the input values.
+* Press `Ctrl` + `e` as a shorthand command to pre-fill the `edit` command format in the command box.<br>
 </div>
 
 Example:
@@ -305,7 +310,7 @@ Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRI
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:** <br>
-* At least one of the optional bracketed fields must be provided.
+* At least one of the optional bracketed fields must be provided and non-empty.
 * A set of keywords (search phrase) can be used for finding.
 * At least one keyword in a search phrase should be present in the garments to get results.
 * Keywords are not case-sensitive.
@@ -431,9 +436,9 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 
 | Action                              | Format, Examples                                                                                                                |
 | ----------------------------------- | -----------------------------------------------------------------------                                                         |
-| **Adding a Garment**                | `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br> Eg. `add n/sleek tux s/32 c/white r/formal t/upper`      |
-| **Deleting a Garment**              | `delete INDEX`<br> Eg. `delete 4`                                                                                               |
-| **Editing a Garment**               | `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`<br>                                         |
+| **Adding a Garment**                | `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br> Eg. `add n/sleek tux s/32 c/white r/formal t/upper`<br>Shortcut: `Ctrl` + `a`|
+| **Deleting a Garment**              | `delete INDEX`<br> Eg. `delete 4` <br>Shortcut: `Ctrl` + `d`                                                                                              |
+| **Editing a Garment**               | `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`<br>Shortcut: `Ctrl` + `e`                                         |
 | **Listing all Garments**            | `list`                                                                                                                          |
 | **Finding Garments**                | `find t/TYPE`<br> Eg. find `t/upper`                                                                                           |
 | **Matching a Garment**              | `match INDEX` <br> Eg. `match 1`                                                                                               |
