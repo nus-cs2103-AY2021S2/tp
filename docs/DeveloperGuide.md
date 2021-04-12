@@ -16,15 +16,16 @@ Please refer to the guide [_Setting up and getting started_](SettingUp.md) to se
 
 ## **2. Introduction**
 
-Welcome to our Developer Guide! CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:
+Welcome to our Developer Guide! CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
+1. Order management
+2. Order Item management
+3. Quick search function for your orders
+4. Reminder for undelivered orders that have delivery dates approaching the current date
+5. Checking the delivery status of your orders
 
-* Order management
-* Order Item management
-* Reminders for undelivered orders that have delivery dates approaching the current date
-* Checking the delivery status of your orders
-<br>
-  
-It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you’re a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI applications.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **3. Design**
 
@@ -152,11 +153,16 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Command Feature
 
-A key functionality of CakeCollate is the ability to add cake items into an order (better known as order items or order descriptions for this app). The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
+A key functionality of CakeCollate is the ability to add cake order items into an order. The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
 
-However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and map one input to the other. 
+However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and the other input had to be mapped. We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model so that the `Order` object is complete and does not rely on indexes or the model. 
 
-We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model. Prior to this feature, the `AddCommand` was initialised using an `Order` object created by the `AddCommandParser`, the `AddCommand::execute` method took in a model, and the `AddCommandParser::parse` method did not take in a model. Given this, there were two main options to implement the mapping:
+Prior to this feature, there were three relevant implementation details
+* the `AddCommand` was initialised using an `Order` object created by the `AddCommandParser`
+* the `AddCommand::execute` method took in a model, 
+* and the `AddCommandParser::parse` method did not take in a model.
+
+Given this, there were two main options to implement the mapping:
 
 1. Refactor `AddCommandParser::parse` to have access to the Model. 
 
@@ -179,17 +185,6 @@ Hence, based on this implementation, here is the sequence diagram containing the
 **Sequence diagram depicting the `AddCommand::execute` method:**
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
-
-
-[comment]: <> (### Sorting displayed list by delivery date)
-
-[comment]: <> (The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date)
-
-[comment]: <> (&#40;insert sequence diagram&#41;)
-
-[comment]: <> (To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList&#40;&#41; command.)
-
-[comment]: <> (&#40;explain with more code later&#41;)
 
 
 ### Find feature
@@ -229,7 +224,7 @@ The following sequence diagram shows how this works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of diagram.
 
 </div>
 
@@ -290,7 +285,7 @@ The following sequence diagram shows how this works:
 
 ![RemindSequenceDiagram](images/RemindSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of diagram.
 
 </div>
 
@@ -363,148 +358,9 @@ The following sequence diagram shows how this works:
     * Cons:
       * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
 
-### Delete Order Item Feature
-The `deleteItem` command enables users to delete predefined order items (also known as cake items or order descriptions). The user can choose to delete a single order item or multiple order items at the same time.
-
-The `deleteItem` command utilises the `IndexList` class to enable the deletion of multiple items at once. The `IndexList` parser takes in a string of multiple indexes separated by spaces, parses them to `Index` and stores them in an `ArrayList<Index>`.
-
-The underlying functionality for the `deleteItem` command utilises the `DeleteOrderItemCommand::execute` method which sorts the provided `Index List` in descending order. All the `OrderItem`s pertaining to the indexes input by the user are removed from the `UniqueOrderItemList` using the `Model::deleteOrderItem` method.
-
-If the user wants to delete an order items at index `1` and `2` in the order items table, they can use the command `deleteItem 1 2`.
-
-Given below is an example usage scenario and how the `deleteItem` mechanism works.
-
-*Step 1.* The user keys in and executes the command `deleteItem 1 2` to delete the order items located at index 1 and 2 in the order items table.
-
-*Step 2.* The command is parsed by `DeleteOrderItemCommandParser`.
-
-*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, a `DeleteOrderItemCommand` will be created.
-
-*Step 4.* `DeleteOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
-
-The following sequence diagram shows how the `DeleteOrderItemCommandParser` works:
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates DeleteOrderItemCommandParser and calls parse("1 2"). 
-
-</div>
-
-![DeleteOrderItemParserSequenceDiagram](images/DeleteOrderItemParserSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The following sequence diagram shows how the `DeleteOrderItemCommand` works:
-
-![DeleteOrderItemSequenceDiagram](images/DeleteOrderItemSequenceDiagram.png)
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
-
-</div>
-
-#### Design considerations:
-
-##### Aspect: Parsing multiple indexes
-* **Alternative 1 (current choice):** Create an IndexList class which can be used to store and parse multiple Indexes.
-    * Pros:
-        * Other commands which accept multiple indexes can also use methods from the IndexList class.
-    * Cons:
-        * Different commands have different requirements for index lists. For e.g. `DeleteOrderItemCommand` and `DeleteCommand` require that there should be no duplicate `Indexes` in the `IndexList` after parsing. However, the `AddOrderCommand` requires duplicate `Indexes` to also be stored. Each command has to implement additional checks when using `IndexList` due to differing requirements.
-* **Alternative 2:** Simply use an `ArrayList` of `Index` without creating a new class.
-    * Pros:
-        * Each command can have its own implementation of `ArrayList` which suits its needs.
-    * Cons:
-        * Not extensible to other commands as they will have to implement their own `List` if they want to accept multiple indexes.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedCakeCollate`. It extends `CakeCollate` with an undo/redo history, stored internally as an `cakeCollateStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedCakeCollate#commit()` — Saves the current cakecollate state in its history.
-* `VersionedCakeCollate#undo()` — Restores the previous cakecollate state from its history.
-* `VersionedCakeCollate#redo()` — Restores a previously undone cakecollate state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitCakeCollate()`, `Model#undoCakeCollate()` and `Model#redoCakeCollate()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedCakeCollate` will be initialized with the initial cakecollate state, and the `currentStatePointer` pointing to that single cakecollate state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th order in the cakecollate. The `delete` command calls `Model#commitCakeCollate()`, causing the modified state of the cakecollate after the `delete 5` command executes to be saved in the `cakeCollateStateList`, and the `currentStatePointer` is shifted to the newly inserted cakecollate state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new order. The `add` command also calls `Model#commitCakeCollate()`, causing another modified cakecollate state to be saved into the `cakeCollateStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCakeCollate()`, so the cakecollate state will not be saved into the `cakeCollateStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the order was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCakeCollate()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous cakecollate state, and restores the cakecollate to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CakeCollate state, then there are no previous CakeCollate states to restore. The `undo` command uses `Model#canUndoCakeCollate()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoCakeCollate()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the cakecollate to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `cakeCollateStateList.size() - 1`, pointing to the latest cakecollate state, then there are no undone CakeCollate states to restore. The `redo` command uses `Model#canRedoCakeCollate()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the cakecollate, such as `list`, will usually not call `Model#commitCakeCollate()`, `Model#undoCakeCollate()` or `Model#redoCakeCollate()`. Thus, the `cakeCollateStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitCakeCollate()`. Since the `currentStatePointer` is not pointing at the end of the `cakeCollateStateList`, all cakecollate states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design considerations:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire cakecollate.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the order being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -514,7 +370,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **6. Appendix: Requirements**
+## **5. Appendix: Requirements**
 
 ### Product scope
 
@@ -811,8 +667,12 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+      
+### Adding orders 
+1. Add an order to the database 
+    1. Prerequisites: none
+    1. Test case: `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2022 o/Chocolate Cake o/chocolate cake o/Mochi Cake t/friend t/daughter` <br>
+    Expected: A new entry corresponding to the details of this order is added to the Order Box. Details of the successful input is shown in the status box. If `Mochi Cake` and `Chocolate Cake` are not in the Order Items table previously, they should be added to it now.
 
 ### Deleting multiple orders
 
@@ -828,8 +688,43 @@ testers are expected to do more *exploratory* testing.
        
     1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+       
+### Finding orders
+Prerequisites: Use the sample data provided on first start up. You can delete the `cakecollate.json` file in `/data` to reset CakeCollate.
 
-1. _{ more test cases …​ }
+1. Finding all orders using a generic `OR` search
+    1. Test case: `find serangoon vanilla`<br>
+      Expected: 3 orders are listed.
+        * Bernice with address containing `serangoon` and order description containing `vanilla`.
+        * David with address containing `serangoon`.
+        * Irfan with order description containing `vanilla`.
+    1. Test case: `find n/Alex Bernice`<br>
+      Expected: 2 orders are listed.
+        * Alex with name containing `Alex`.
+        * Bernice with name containing `Bernice`.
+    1. Test case: `find durian`<br>
+      Expected: 0 order listed.
+    1. Test case: `find`<br>
+      Expected: Error message shown.
+    1. Test case: `find o/`<br>
+      Expected: Error message shown.
+
+1. Finding all orders using a specific `AND` search
+    1. Test case: `find a/serangoon o/vanilla`<br>
+      Expected: 1 order are listed.
+        * Bernice with address containing `serangoon` and order description containing `vanilla`.
+    1. Test case: `find p/durian o/singapore`<br>
+      Expected: 0 order listed.    
+    1. Test case: `find o/ a/ d/`<br>
+      Expected: Error message shown.
+
+1. Finding all orders using both generic `OR` and specific `AND` search
+    1. Test case: `find n/Alex Charlotte o/Chocolate`<br>
+       Expected: 2 orders are listed.
+         * Alex with name containing `Alex` and order description containing `Chocolate`.
+         * Charlotte with name containing `Charlotte` and order description containing `Chocolate`.
+    1. Test case: `find p/durian 100 o/singapore`<br>
+       Expected: 0 order listed.
 
 ### Receiving reminders for orders
 
@@ -860,9 +755,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`undelivered x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
-
-1. _{ more test cases …​ }
-
+       
 ### Delivering multiple orders
 
 1. Delivering multiple orders while all orders are being shown
@@ -877,9 +770,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`delivered x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
-
-1. _{ more test cases …​ }
-
+       
 ### Cancelling multiple orders
 
 1. Cancelling multiple orders while all orders are being shown
@@ -894,17 +785,17 @@ testers are expected to do more *exploratory* testing.
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`cancelled x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
-
-1. _{ more test cases …​ }
-
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
+   1. How to simulate a corrupted file:
+      * Open the `cakecollate.json` file in the `/data` folder with Intellij or Notepad.
+      * Change the `deliveryDate` of the first order to an invalid format.<br>
+      I.e. `yyyy-dd-mm`
+   1. Now run the application. Since the data file is not in the correct format, CakeCollate should start without any data.<br>
+    I.e. all the previously stored data is lost.
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **8. Effort**
@@ -927,10 +818,8 @@ Challenges faced:
 * As two different models were implemented in CakeCollate, differentiating the commands used for
   both the models and implementing the interactions between the two models took time to work out.
   
-* Although the individual project used JavaFx, we were not very familiar with the it. Hence, it took some
-  trial and error was required to understand the JavaFx components and how they work.
-
-Effort required: ??
+* Although the individual project used JavaFX, we were not very familiar with it. Hence, it took some
+  trial and error was required to understand the JavaFX components and how they work.
 
 Achievements of the project: 
 
@@ -939,13 +828,3 @@ Achievements of the project:
   this developer guide.
   
 * Extensive testing has been done to ensure minimum possible bugs in CakeCollate.
-
-
-
-
-
-
-
-
-
- 

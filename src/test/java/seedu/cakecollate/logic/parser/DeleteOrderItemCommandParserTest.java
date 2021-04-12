@@ -11,22 +11,23 @@ import org.junit.jupiter.api.Test;
 
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
-import seedu.cakecollate.logic.commands.DeleteCommand;
+import seedu.cakecollate.logic.commands.DeleteOrderItemCommand;
 
-public class DeleteCommandParserTest {
+public class DeleteOrderItemCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private DeleteOrderItemCommandParser parser = new DeleteOrderItemCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteOrderItemCommand() {
         ArrayList<Index> arrayFirstOrder = new ArrayList<Index>();
         arrayFirstOrder.add(INDEX_FIRST_ORDER);
         IndexList indexList = new IndexList(arrayFirstOrder);
-        assertParseSuccess(parser, "1", new DeleteCommand(indexList));
+        assertParseSuccess(parser, "1", new DeleteOrderItemCommand(indexList));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteOrderItemCommand.MESSAGE_USAGE));
     }
 }

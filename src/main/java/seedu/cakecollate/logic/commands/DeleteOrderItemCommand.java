@@ -13,7 +13,7 @@ import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
- * Deletes a order item identified using it's displayed index from the list of order items.
+ * Deletes a order item identified using the index displayed in the order items table.
  */
 public class DeleteOrderItemCommand extends Command {
 
@@ -24,25 +24,30 @@ public class DeleteOrderItemCommand extends Command {
             + "Parameters: ORDER_ITEM_INDEXES (must be positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order Item: %1$s";
+    public static final String MESSAGE_DELETE_ORDER_ITEM_SUCCESS = "Deleted Order Item: %1$s";
 
-    public static final String MESSAGE_DELETE_ORDERS_SUCCESS = "Deleted Order Items: %1$s";
+    public static final String MESSAGE_DELETE_ORDER_ITEMS_SUCCESS = "Deleted Order Items: %1$s";
 
     private final IndexList targetIndexList;
 
+    /**
+     * Creates a DeleteOrderItemCommand object with an IndexList containing the indexes passed in by user.
+     *
+     * @param targetIndexList Index list consisting of one or more indexes passed by the user
+     */
     public DeleteOrderItemCommand(IndexList targetIndexList) {
         this.targetIndexList = targetIndexList;
     }
 
     public static String getResultString(List<OrderItem> orderItemsToDelete) {
         if (orderItemsToDelete.size() == 1) {
-            return String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderItemsToDelete.get(0));
+            return String.format(MESSAGE_DELETE_ORDER_ITEM_SUCCESS, orderItemsToDelete.get(0));
         }
         String convertedToString = "";
         for (OrderItem orderItem : orderItemsToDelete) {
             convertedToString = convertedToString + String.format("\n%1$s", orderItem);
         }
-        return String.format(MESSAGE_DELETE_ORDERS_SUCCESS, convertedToString);
+        return String.format(MESSAGE_DELETE_ORDER_ITEMS_SUCCESS, convertedToString);
     }
 
     @Override

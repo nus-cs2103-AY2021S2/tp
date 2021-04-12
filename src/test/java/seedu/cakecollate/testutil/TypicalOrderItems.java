@@ -48,6 +48,10 @@ public class TypicalOrderItems {
             .withType("Chendol")
             .build();
 
+    public static final OrderItem ATYPICAL_ORDER_ITEM = new OrderItemBuilder()
+            .withType("Unicorn")
+            .build();
+
     private TypicalOrderItems() {
     } //prevents instantiation
 
