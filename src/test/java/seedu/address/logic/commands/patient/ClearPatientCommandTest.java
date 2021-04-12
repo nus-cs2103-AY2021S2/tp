@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.patient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED;
+import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_PATIENT_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppObjects.getEmptyAppointmentSchedule;
@@ -12,7 +13,6 @@ import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,9 +31,9 @@ public class ClearPatientCommandTest {
         expectedNonEmptyDoctorRecordsModel.setDoctorRecords(getTypicalDoctorRecords());
 
         assertCommandSuccess(new ClearPatientCommand(), emptyDoctorRecordsModel,
-                Messages.MESSAGE_CLEAR_PATIENT_SUCCESS, expectedEmptyDoctorRecordsModel);
+                MESSAGE_CLEAR_PATIENT_SUCCESS, expectedEmptyDoctorRecordsModel);
         assertCommandSuccess(new ClearPatientCommand(), nonEmptyDoctorRecordsModel,
-                Messages.MESSAGE_CLEAR_PATIENT_SUCCESS, expectedNonEmptyDoctorRecordsModel);
+                MESSAGE_CLEAR_PATIENT_SUCCESS, expectedNonEmptyDoctorRecordsModel);
     }
 
     @Test
@@ -53,9 +53,9 @@ public class ClearPatientCommandTest {
         expectedNonEmptyDoctorRecordsModel.setPatientRecords(getEmptyPatientRecords());
 
         assertCommandSuccess(new ClearPatientCommand(), emptyDoctorRecordsModel,
-                Messages.MESSAGE_CLEAR_PATIENT_SUCCESS, expectedEmptyDoctorRecordsModel);
+                MESSAGE_CLEAR_PATIENT_SUCCESS, expectedEmptyDoctorRecordsModel);
         assertCommandSuccess(new ClearPatientCommand(), nonEmptyDoctorRecordsModel,
-                Messages.MESSAGE_CLEAR_PATIENT_SUCCESS, expectedNonEmptyDoctorRecordsModel);
+                MESSAGE_CLEAR_PATIENT_SUCCESS, expectedNonEmptyDoctorRecordsModel);
     }
 
     @Test

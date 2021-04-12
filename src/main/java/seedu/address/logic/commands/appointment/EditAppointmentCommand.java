@@ -1,6 +1,9 @@
 package seedu.address.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -18,7 +21,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -85,7 +87,7 @@ public class EditAppointmentCommand extends Command {
 
         // check index
         if (index.getZeroBased() >= appointmentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
         //get appointment to be edited
@@ -97,7 +99,7 @@ public class EditAppointmentCommand extends Command {
         if (editAppointmentDescriptor.getPatientIndex().isPresent()) {
             //check if patient index is valid
             if (editAppointmentDescriptor.patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+                throw new CommandException(MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
             }
             // assign patient
             patientUuid = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased()).getUuid();
@@ -110,7 +112,7 @@ public class EditAppointmentCommand extends Command {
         if (editAppointmentDescriptor.getDoctorIndex().isPresent()) {
             //check if doctor index is valid
             if (editAppointmentDescriptor.doctorIndex.getZeroBased() >= displayedDoctorRecords.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+                throw new CommandException(MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
             }
             // assign doctor
             doctorUuid = displayedDoctorRecords.get(editAppointmentDescriptor.doctorIndex.getZeroBased()).getUuid();

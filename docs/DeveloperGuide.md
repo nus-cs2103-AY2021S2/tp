@@ -129,7 +129,9 @@ The `Appointment`,
 
 * stores a `Appointment` class, which access `Patient` object and `Doctor` object via the `PatientMap` class and `DoctorMap` class.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) Person model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. Similar design can be applied to the Appointment model.<br>
+
 ![BetterPersonModelClassDiagram](images/BetterPersonModelClassDiagram.png)
+
 ![BetterAppointmentModelClassDiagram](images/BetterAppointmentModelClassDiagram.png)
 
 </div>
@@ -143,7 +145,9 @@ The `Appointment`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the `PatientRecords` data in json format and read it back.
+* can save the `DoctorRecords` data in json format and read it back.
+* can save the `AppointmentSchedule` data in json format and read it back.
 
 ### Common classes
 
@@ -195,33 +199,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                      | I want to …​                              | So that I can…​                                                      |
 | -------- | ------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------- |
 | `* * *`  | new user                                    | see usage instructions                   | refer to instructions when I forget how to use the App              |
-| `* * *`  | user                                        | add a new appointment                    |                                                                     |
-| `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
-| `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
-| `* * *`  | user                                        | edit an appointment by specific fields   | update the appointment information without having to delete and add a new appointment |
 | `* * *`  | user                                        | add a new patient                        |                                                                     |
-| `* * *`  | user                                        | delete a patient                         | remove patients who on longer have appointments                     |
-| `* * *`  | user                                        | find a patient  by specific fields       | locate details of relevant patients without having to go through the entire list |
-| `* * *`  | user                                        | edit a patient  by specific fields       | update the patient information without having to delete and add a new patient |
 | `* * *`  | user                                        | add a new doctor                         |                                                                     |
+| `* * *`  | user                                        | add a new appointment                    |                                                                     |
+| `* * *`  | user                                        | delete a patient                         | remove patients who on longer have appointments                     |
 | `* * *`  | user                                        | delete a doctor                          | remove doctors who on longer work for the clinic                    |
+| `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
+| `* * *`  | user                                        | edit a patient by specific fields        | update the patient information without having to delete and add a new patient |
+| `* * *`  | user                                        | edit a doctor by specific fields         | update the doctor information without having to delete and add a new doctor |
+| `* * *`  | user                                        | edit an appointment by specific fields   | update the appointment information without having to delete and add a new appointment |
+| `* * *`  | user                                        | find a patient by specific fields        | locate details of relevant patients without having to go through the entire list |
 | `* * *`  | user                                        | find a doctor by specific fields         |  locate details of relevant doctors without having to go through the entire list |
-| `* * *`  | user                                        | edit a doctor  by specific fields        | update the doctor information without having to delete and add a new doctor |
-| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
+| `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
 | `* * *`  | user                                        | list all patients                        | see all the patients or reset the patient filters                   |
 | `* * *`  | user                                        | list all doctors                         | see all the doctors or reset the doctors filters                    |
-| `* *`    | user                                        | clear all appointments                   | clear the appointment list without having to delete appointments one by one |
-| `* *`    | user                                        | clear all patients                       | clear the patient list without having to delete appointments one by one     |
-| `* *`    | user                                        | clear all doctors                        | clear the doctor list without having to delete appointments one by one     |
-| `* *`    | user                                        | lookup previous records of an appointment| fill in missing information where ommitted by the appointment       |
-| `* *`    | user                                        | lookup previous records of a patient     | fill in missing information where ommitted by the patient           |
-| `* *`    | user                                        | lookup previous records of a doctor      | fill in missing information where ommitted by the doctor            |
-| `* *`    | user with many appointments in the schedule | be reminded of overdue appointments      | take the appropriate action to resolve the issues                   |
-| `* *`    | user with many appointments in the schedule | tag appointments with urgency categories | more urgent appointments can take priority                          |
+| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
+| `* *`    | user                                        | clear the patient records                | clear the patient records without having to delete patients one by one |
+| `* *`    | user                                        | clear the doctor records                 | clear the doctor records without having to delete doctors one by one |
+| `* *`    | user                                        | clear the appointment schedule           | clear the appointment schedule without having to delete appointments one by one |
+| `* *`    | user                                        | look up previous records of a patient    | fill in missing information where omitted by the patient            |
+| `* *`    | user                                        | look up previous records of an appointment | fill in missing information where omitted by the appointment      |
+| `* *`    | user                                        | look up previous records of a doctor     | fill in missing information where omitted by the doctor             |
+| `*`      | user with many appointments in the schedule | be reminded of overdue appointments      | take the appropriate action to resolve the issues                   |
+| `*`      | user with many appointments in the schedule | tag appointments with urgency categories | more urgent appointments can take priority                          |
 | `*`      | user with many appointments in the schedule | sort appointments by specific fields     | locate a category of appointments easily                            |
 | `*`      | user with many appointments in the schedule | automatically recommended available timings and doctors for new appointments | create appointments without manually checking availability in the schedule |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -488,6 +490,7 @@ Use case ends.
 1. User enters the `list-appt` command.
 2. App-Ointment displays all appointments in the appointment schedule.
 
+
 ### Non-Functional Requirements
 _Non-functional requirements specify the constraints under which App-Ointment is developed and operated._
 
@@ -507,7 +510,6 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 
 #### Notes about project scope:
 * The App-Ointment data file is private and local to the user.
-*{More to be added}*
 
 ### Glossary
 
@@ -521,8 +523,6 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 * **Subcommand**: The prefixes and parameters that follow behind a Command Word entered by the user. eg. `n/Some Name`
 * **System**: The App-Ointment App
 * **User**: The Receptionist, not the patient or doctor
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -664,6 +664,85 @@ Note: This set of test cases can be similarly performed for doctor records by re
 
 Note: This set of test cases can be similarly performed for doctors in the doctor records by replacing mentions of `delete-patient` with `delete-doctor`.
 
+### Editing a patient
+
+1. Editing a patient
+
+    1. Prerequisites: The patient to edited must already exist in the patient records.
+
+    1. Test case: `edit-patient 1 p/98432567`<br>
+       Expected: The phone number of the first patient in the patient list is changed to 98432567, and the details of the patients are displayed in the status message.
+
+    1. Test case: `edit-patient 2 e/`<br>
+       Expected: The email address of the second patient in the patient list is not changed. Error details are shown in the status message. Status bar remains the same.
+
+    1. Other incorrect `edit-patient` commands to try: `edit-patient 1 e/John*example.com`, `...` (where the `Email` address is invalid)<br>
+       Expected: Similar to previous.
+
+1. Editing results in duplicated patients
+
+    1. Prerequisites: The edited name of the patient has the same `Name` as an existing patient in the patient records.
+
+    1. Test case: `edit-patient 1 n/Dong`<br>
+       Expected: The name of patient 1 is not edited. Error details are shown in the status message. Status bar remains the same.
+
+### Editing a doctor
+
+1. Editing a doctor
+
+    1. Prerequisites: The doctor to edited must already exist in the doctor records.
+
+    1. Test case: `edit-doctor 1 t/medicine`<br>
+       Expected: The tag of the first doctor in the doctor list is changed to medicine, and the details of the doctors are displayed in the status message.
+
+    1. Test case: `edit-patient 2 t/`<br>
+       Expected: All the tags of the second doctor in the doctor list are cleared, and the details of the doctors are displayed in the status message.
+
+    1. Other incorrect `edit-doctor` commands to try: `edit-doctor 1`, `...` (where no field to edit is provided)<br>
+       Expected: An error message informing that at least one field to edit must be provided.
+
+1. Editing results in duplicated doctors
+
+    1. Prerequisites: The edited name of the doctor has the same `Name` as an existing doctor in the doctor records.
+
+    1. Test case: `edit-doctor 1 n/Dr Who`<br>
+       Expected: The name of doctor 1 is not edited. Error details are shown in the status message. Status bar remains the same.
+
+### Edit an appointment
+
+1. Editing an appointment
+
+    1. Prerequisites: The appointment to edited must already exist in the appointment schedule.
+
+    1. Test case: `edit-appt 1 pt/2`<br>
+       Expected: The patient of the first appointment in the appointment schedule is changed to the second patient in the patient list, and the details of the appointments are displayed in the status message.
+
+    1. Test case: `edit-appt 2 at/2021-05-08 09:00`<br>
+       Expected: The starting time of the second appointment in the appointment schedule is changed to 2021-05-08 09:00. If the starting time is the same or after the end time of the appointment, and error message will be shown indicating the timeslot end date and time must be strictly after the start date and time.
+
+    1. Other incorrect `edit-appt` commands to try: `edit-appt 1 at/2021-*-08 09:00 `, `...` (where the starting time format provided is invalid)<br>
+       Expected: An error message informing 'Invalid Date Time Format!' is shown.
+
+1. Editing results in conflicting appointments
+
+    1. Prerequisites: The edited appointment has conflicting patient or doctor timeslots with an existing appointment in the appointment schedule.
+    1. Test case: `edit-appt 1 to/2022-06-08 09:00`<br>
+       Expected: The end time of the first appointment in the appointment schedule is not changed. Error details are shown in the status message. Status bar remains the same.
+
+### Find patients by search fields
+
+1. Finding a patient
+
+    1. Prerequisites: The patient to be found must exits in the patient list.
+
+    1. Test case: `find-patient John`<br>
+       Expected: The patient with name John is found and listed.
+
+    1. Test case: `find-patient 84511556`<br>
+       Expected: 0 patient is found. This is because `find-patient` command only search for keywords in the patient's name field.
+
+Note: This test case can be similarly performed for doctors in the doctor records by replacing `find-patient` with `find-doctor`.
+
 ### Listing patient records (or doctor records, or appointment schedule)
 
 1. Listing of all patients in the patient records when a predicate has been applied.
@@ -726,6 +805,8 @@ Note: this set of test cases can be similarly performed for the doctor record js
     * Handled UI display of Patient, Doctor, Appointment to not display the UUID and to show the appropriate names instead, and performed the translation with high efficiency with Java Maps.
 
 * Handled dependency issues regarding deleting of patient/doctors and clearing of patient/doctor records.
+    * Added exceptions when patient/ doctor has existing appointments in the appointment schedule
+    * Added force delete functionality for delete commands so that users can conveniently delete patients/ doctors with their associated appointments
 
 * Modified `Model`, `Storage`, and `Logic` to be generic, to accept extensions of the `Person` class.
 * Added Timeslot Parser, and related enums, so that user is able to be more flexible in entering date and time for their appointments.

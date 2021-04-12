@@ -438,13 +438,6 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous App-Ointment home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Acceptable DateTime Formats
 Must be any of:
 ### Date:
@@ -476,6 +469,13 @@ Must be any of:
 * Dates that have occurred in the past will be allowed to parse. This is to allow users to keep a stringent record of past appointments, should patients wish to make required changes to them.
 
 </div><br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous App-Ointment home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
