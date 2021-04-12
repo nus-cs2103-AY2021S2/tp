@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("food_add n/grape c/10 f/10 p/10")
 activate LogicManager
 
-LogicManager -> DietLahParser : parseCommand("food_add n/grape c/10 f/10 p/10")")
+LogicManager -> DietLahParser : parseCommand("food_add n/grape c/10 f/10 p/10")
 activate DietLahParser
 
 create AddFoodItemCommandParser
@@ -26,7 +26,7 @@ activate AddFoodItemCommandParser
 AddFoodItemCommandParser --> DietLahParser
 deactivate AddFoodItemCommandParser
 
-DietLahParser -> AddFoodItemCommandParser : parse(n/grape c/10 f/10 p/10)
+DietLahParser -> AddFoodItemCommandParser : parse("n/grape c/10 f/10 p/10")
 activate AddFoodItemCommandParser
 
 create AddFoodItemCommand
