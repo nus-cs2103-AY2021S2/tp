@@ -156,7 +156,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findp KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -275,6 +275,20 @@ Format: `deletem INDEX`
 Examples:
 * `listm` followed by `delete 2` deletes the 2nd meeting in MeetBuddy.
 
+### Locating meetings: `findm`
+
+Finds meetings whose information contain any of the given keywords.
+
+Format: `findm [n/NAME] [time/TIME] [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]...[p/INDEX OF PERSON RELATED]...`
+
+* The search is case-sensitive in name searching. e.g `CS2103` will not match `cs2103`
+* The order of the searching filed does not matter. e.g. `findm n/CS pr/3` will be the same as `findm pr/3 n/CS`.
+* Time field refers to a point of time, as long as this point of time is in between of a meeting's start time and ending time, the search will return this specific meeting.
+* Time field must follow YYYY-MM-DD HH:MM format.
+* For other fields, the requirement is the same as addm (Adding a meeting). You can refer to the previous UG instruction.
+
+Examples:
+* `findm n/CS pr/3 time/2021-03-12 19:00` will try to find a meeting whose name contains `CS` and with priority level `3` and contains the time point `March 12th, 2021 19:00`.
 
 ### Showing of persons in a meeting : `showm`
 
