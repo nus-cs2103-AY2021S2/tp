@@ -141,7 +141,7 @@ public class Person {
         }
         if (!Remark.isEmptyRemark(getRemark())) {
             builder.append("; Remark: ")
-                .append(getRemark());
+                    .append(getRemark());
         }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
