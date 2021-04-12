@@ -4,11 +4,11 @@ start
 
 repeat
   :Model checks entry;
-    if (Is the end date of entry passed?) then (yes)
+    if () then ([Entry End date has passed])
         :Delete the entry;
-    else (no)
+    else ([else])
     endif
-repeat while (Has next entry?) is (yes)
-->no;
+repeat while () is ([else])
+->[No entries left];
 stop
 @enduml
