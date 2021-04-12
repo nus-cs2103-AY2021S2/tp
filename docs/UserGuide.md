@@ -57,17 +57,11 @@ We have designed a beautiful user interface (UI) that is pleasing yet engaging. 
 
 We look forward to you building financial literacy and positive habits while using our app. If you find any issues with the application or have any new features you would like implement, feel free to contact us on our [GitHub page](https://github.com/AY2021S2-CS2103T-W14-2/tp).
 
-Now what are you waiting for? Head on over to the [quick start]() section now.
+Now what are you waiting for? Head on over to the [quick start](#3-quick-start) section now.
 
 ## 2 About
 
-This document aims to guide new users like you in learning how to use BudgetBaby. It provides a reference of all features and their intended usage within our application. More experienced users may wish to head to the [command summary]() section to refresh their memory of commands.
-
-This section aims to help you understand the structure and content of the user guide better. We hope it improves your experience when learning how to use our application with this user guide.
-
-### 2.1 Structure of the User Guide
-
-### 2.2 Understanding the User Guide
+This document aims to guide new users like you in learning how to use BudgetBaby. It provides a reference of all features and their intended usage within our application. More experienced users may wish to head to the [command summary](#7-command-summary)section to refresh their memory of commands.
 
 ## 3 Quick start
 
