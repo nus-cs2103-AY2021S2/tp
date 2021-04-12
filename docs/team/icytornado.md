@@ -9,30 +9,28 @@ App-Ointment is a patient appointment management software adapted from AddressBo
 
 Given below are my contributions to the project.
 
-**Code contributed**: [RepoSense] (https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=icytornado)
+* **Code contributed**: [RepoSense] (https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=icytornado)
 
-**Features Implemented**:
-1. Implementation of the `edit-appt` feature:
+* **Features Implemented**:
+  * Implementation of the `edit-appt` feature:
     - *Description*:
-        - `edit-appt` command allow the user to edit an existing appointment by changing the fields for the appointment.
-   
-
-2. Implementation of the `Doctor` feature
-   - *Description*:
+        - `edit-appt` command allow the user to edit an existing appointment by changing the fields for the appointment. 
+    
+  * Implementation of the `Doctor` feature
+    - *Description*:
         - Created the `Doctor` class and implemented its related command features including
           `delete-doctor`, `edit-doctor`, `add-doctor`, `clear-doctor`, `list-doctor`.
-          
-          
-3. Added some relevant test classes for `Doctor`.
+            
+  * Added some relevant test classes for `Doctor`.
 
 
 * **Documentation**:
   * User Guide:
-    * Added documentation on `edit-appt` feature.
+    - Added documentation on `edit-appt` feature.
   * Developer Guide:
-    * Updated the UMLs and description for the Model component under the Design section.
-    * Added user stories.
-    * Added documentation on `edit-patient`, `find-patient`, `delete-doctor`, `edit-doctor`, `find-doctor`, `edit-appt` features.
+    - Updated the UMLs and description for the Model component under the Design section.
+    - Added user stories.
+    - Added documentation on `edit-patient`, `find-patient`, `delete-doctor`, `edit-doctor`, `find-doctor`, `edit-appt` features.
 
 
 * **Project management**:
