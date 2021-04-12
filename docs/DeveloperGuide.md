@@ -239,7 +239,7 @@ This automated data link ensures that the restaurant owner will be notified when
 
 To increase the efficiency of adding food orders, the GUI has been improved to display two lists at the same time. The customer list will always be shown on the left column whereas the right column will display one of the other components.
  
-Which component list is shown on the right will depend on the component of the last command input. For example, using a `menu add` command will cause the right side to display the menu list, whereas `order add` will show the right side to display the order list. However, using a command on the `customer` component will only update the left list and not affect the right list.
+Which component list is shown on the right will depend on the component of the last command input; the component of the `CommandResult` will cause `MainWindow` to display the corresponding component's item list. For example, using a `menu add` command will cause the right side to display the menu list, whereas `order add` will show the right side to display the order list. However, using a command on the `customer` component will only update the left list and not affect the right list.
 
 #### Data archiving
 
@@ -290,6 +290,8 @@ Unlike the other commands, the `list` command has no specific parsers beyond the
 The following sequence diagram shows how the GUI is updated from `MainWindow` after a `menu list` command is called by the user.
 ![Sequence diagram showing GUI update caused by a MenuListCommand](images/MenuListGUI.png)
 
+In the case of the `order` component, the `list` command will update the `FilteredOrderedList` object to only contain orders that are marked as `UNCOMPLETED` and return a `CommandResult` object to update the GUI.
+
 #### Find command
 
 The `find` command will be implemented for all four components and can be called from the CLI input with the general form
@@ -332,6 +334,7 @@ The `order history`  command can be called from the CLI input with the general f
 	order history
 
 There are no arguments for the `order history` command. The command is implemented similarly to the list command [List Command description](#list-command).
+In command will update the `FilteredOrderedList` object to only contain orders that are marked as `COMPLETED` and `CANCELLED` and return a `CommandResult` object to update the GUI such that all orders that are completed and canelled are displayed. Notably, `FilteredOrderedList` contains only `UNCOMPLETED` orders for all other component `order` commands. Further elaboration on how the GUI is updated can be found in the [concurrent list display description](#concurrent-list-display).
 
 --------------------------------------------------------------------------------------------------------------------
 
