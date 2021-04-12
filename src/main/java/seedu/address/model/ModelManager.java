@@ -18,6 +18,7 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
+import seedu.address.model.user.Age;
 import seedu.address.model.user.Bmi;
 import seedu.address.model.user.User;
 
@@ -181,9 +182,11 @@ public class ModelManager implements Model {
     public String listUser() {
         User user = dietLah.getUser();
         Bmi bmi = user.getBmi();
+        Age age = user.getAge();
         String details = "Here is your current information:\nLast Updated on: "
                 + user.getLastUpdated() + "\nWeight: " + bmi.getWeight()
                 + " kg\nHeight: " + bmi.getHeight() + " cm\nGender: " + user.getGender()
+                + "\nAge: " + age.getAge()
                 + "\nIdeal Weight: " + user.getIdealWeight()
                 + "kg\n\nYour current BMI: ";
         if (bmi.getWeight() <= bmi.getLowerBoundWeight()) {

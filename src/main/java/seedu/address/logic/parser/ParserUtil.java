@@ -155,6 +155,9 @@ public class ParserUtil {
         requireNonNull(ageString);
         String trimmedAge = ageString.trim();
         if (!Age.isValidAge(trimmedAge)) {
+            if (trimmedAge.contains("/")) {
+                throw new ParseException(MESSAGE_INVALID_PARAMS);
+            }
             throw new ParseException(Age.MESSAGE_CONSTRAINTS);
         }
 
@@ -172,6 +175,9 @@ public class ParserUtil {
         String trimmedWeightHeight = weightHeightString.trim();
         int dotIndex = trimmedWeightHeight.indexOf(".");
         if (!Bmi.isValidWeightOrHeight(trimmedWeightHeight)) {
+            if (trimmedWeightHeight.contains("/")) {
+                throw new ParseException(MESSAGE_INVALID_PARAMS);
+            }
             throw new ParseException(Bmi.MESSAGE_CONSTRAINTS);
         }
         if (trimmedWeightHeight.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
@@ -191,6 +197,9 @@ public class ParserUtil {
         requireNonNull(gender);
         String trimmedGender = gender.trim();
         if (!Gender.isValidGender(trimmedGender)) {
+            if (trimmedGender.contains("/")) {
+                throw new ParseException(MESSAGE_INVALID_PARAMS);
+            }
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
 
@@ -208,6 +217,9 @@ public class ParserUtil {
         String trimmedWeight = idealWeightString.trim();
         int dotIndex = trimmedWeight.indexOf(".");
         if (!IdealWeight.isValidIdealWeight(trimmedWeight)) {
+            if (trimmedWeight.contains("/")) {
+                throw new ParseException(MESSAGE_INVALID_PARAMS);
+            }
             throw new ParseException(IdealWeight.MESSAGE_CONSTRAINTS);
         }
         if (trimmedWeight.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
@@ -226,6 +238,9 @@ public class ParserUtil {
         requireNonNull(indexString);
         String trimmedIndex = indexString.trim();
         if (!DietPlanList.isValidIndex(trimmedIndex)) {
+            if (trimmedIndex.contains("/")) {
+                throw new ParseException(MESSAGE_INVALID_PARAMS);
+            }
             throw new ParseException(DietPlanList.MESSAGE_CONSTRAINTS);
         }
 

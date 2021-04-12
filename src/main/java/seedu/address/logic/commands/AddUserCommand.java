@@ -24,7 +24,7 @@ public class AddUserCommand extends Command {
             + "using the bmi update command."
             + "\nIf you have not set your particulars before, maybe you have not cleared\n"
             + "the sample data yet? Simply type \n\n"
-            + "reset /t blank\n\nto clear the sample data!";
+            + "reset t/ blank\n\nto clear the sample data!";
 
     private final User temporaryUser;
 
