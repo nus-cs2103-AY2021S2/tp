@@ -287,32 +287,60 @@ The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 * `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList`
   and updating the `model` accordingly.
 
-Sorting by name is done by comparing `Contact` objects, which implement `Comparable<Contact>`.
+Sorting by name is done using the `NameComparator`,by comparing `Contact` objects, which implement `Comparable<Contact>`.
 
 Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Contact` objects.
 
+The comparator is saved in `AddressBookSettings` so that the list stays sorted in the chosen order.
+
 Given below are some example usage scenario and how the sort mechanism behaves at each step.
 
-Scenario 1: The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
-The user then executes `sort o/name`.
+Scenario 1: The user executes `sort o/name` after executing `list`.
 
-The `Contact` objects created will be timestamped with the `TimeAdded` attribute.
+Note: The `Contact` objects have been timestamped with the `TimeAdded` attribute.
 By default, they will be displayed on in the order in which they were added.
 
-1.
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `o/name`.
+`o/name` is passed to `SortCommandParser#parse(o/name)`.
 
-Scenario 2: The user executes `find john` followed by `sort o/date`.
-1.
+Step 2. `SortCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The option field `name` is parsed out. A new `SortCommand("name")` is returned.
+
+Step 3. `LogicManager#execute()` calls `SortCommand#execute()`.
+The `model` is sorted accordingly using the `sortContactList` method,
+which will use the `NameComparator` on `setAddressBookComparator`.
+
+Step 4. The success message is returned to `LogicManager` via a `CommandResult`.
+The displayed list would be sorted in alphabetical order.
 
 The following sequence diagram shows how the sort operation works:
-Note: to be updated
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+Scenario 2: The user executes `sort o/date` after executing `find john`, followed by `list`.
+
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `o/date`.
+`o/date` is passed to `SortCommandParser#parse(o/date)`.
+
+Step 2. `SortCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The option field `date` is parsed out. A new `SortCommand("date")` is returned.
+
+Step 3. `LogicManager#execute()` calls `SortCommand#execute()`.
+The `model` is sorted accordingly using the `sortContactList` method, 
+which will use the `DateComparator` on `setAddressBookComparator`.
+
+Step 4. The success message is returned to `LogicManager` via a `CommandResult`.
+The displayed found list would be sorted in chronological order.
+
+Step 5. When the user executes `list`, the displayed list will still be in chronological order as the `DateComparator` 
+is stored in `AddressBookSettings`.
 
 ### Favourite feature
 
 #### Implementation
 
-The sort mechanism is facilitated by `FavouriteCommand` and `FavouriteCommandParser`.
+The favourite mechanism is facilitated by `FavouriteCommand` and `FavouriteCommandParser`.
 
 `FavouriteCommandParser` implements the following operation:
 * `FavouriteCommandParser#parse(String args)` — Parses the arguments using `ArgumentTokenizer#tokenize`
@@ -331,7 +359,7 @@ Scenario 1: User enters `fav 3` after entering the `list` command.
 
 Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`, 
    which then parses the input into the command word and arguments, `3`. 
-   `2` is passed to `FavouriteCommandParser#parse(3)`.
+   `3` is passed to `FavouriteCommandParser#parse(3)`.
 
 Step 2. `FavouriteCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
    The `index` of `3` and option fields are parsed out. Since no option is used in this scenario,
