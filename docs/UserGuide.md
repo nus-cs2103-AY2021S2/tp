@@ -851,6 +851,8 @@ This feature allows tutees to track and manage reminders daily. This is exceptio
 * Description
 * Reminder Date
 
+* Minimum length for description is 1 character, maximum is 50 characters.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
