@@ -6,19 +6,33 @@ skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniquePassengerList
 AddressBook *-right-> "1" UniqueTagList
+AddressBook *-up-> "1" UniquePoolList
 UniqueTagList -[hidden]down- UniquePassengerList
-UniqueTagList -[hidden]down- UniquePassengerList
+UniqueTagList -[hidden]up- UniquePassengerList
+UniquePoolList -[hidden]up- UniqueTagList
+UniquePoolList -[hidden]up- UniqueTagList
 
 UniqueTagList *-right-> "*" Tag
 UniquePassengerList o-right-> Passenger
 
+UniquePoolList -[hidden]right-> Pool
+UniquePoolList -[hidden]right-> Pool
+UniquePoolList o-right-> Pool
+UniquePoolList -[hidden]right-> Pool
+UniquePoolList -[hidden]right-> Pool
+
 Passenger -up-> "*" Tag
 
-Passenger *--> Name
-Passenger *--> Phone
-Passenger *--> Address
-Passenger *--> TripDay
-Passenger *--> TripTime
+Pool -right-> "*" Tag
+Pool -right-> "*" Passenger
+Pool *-right-> "1" TripDay
+Pool *-right-> "1" TripTime
+
+Passenger *--> "1" Name
+Passenger *--> "1" Phone
+Passenger *--> "1" Address
+Passenger *--> "1" TripDay
+Passenger *--> "1" TripTime
 Passenger *--> "0..1" Price
-Passenger *--> "0..1" Driver
+
 @enduml
