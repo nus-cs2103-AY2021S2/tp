@@ -507,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Precondition: The task does not have a recurring schedule.
 
 **MSS**
-1. User enters command to add task with a date.
+1. User enters command to add a date to a task.
 2. PlanIT shows task with updated date and updates list.
 3. This task can be viewed in the Calendar User Interface on the day of the date.
 
@@ -528,7 +528,7 @@ Precondition: The task has a title and has a deadline date or recurring schedule
 
 **MSS**
 
-1. User enters command to add a task with duration.
+1. User enters command to add a duration to a task.
 2. PlanIT shows task with updated duration and updates list.
 3. The duration details can be viewed in the Calendar User Interface on the day of the task.
 
@@ -549,7 +549,7 @@ Precondition: The task has a title and has a deadline date or recurring schedule
 Precondition: The task has a title, does not have a deadline date and only repeats in weekly or biweekly basis.
 
 **MSS**
-1. User enters command to add a task with recurring schedule consisting of end date, 
+1. User enters command to add a recurring schedule to a task, consisting of end date, 
    day of week and week frequency to the list.
 2. PlanIT shows task with the recurring dates based on the conditions specified by the user.
 
@@ -602,8 +602,6 @@ Precondition: The task has a title, does not have a deadline date and only repea
     
     
 #### **Use case: Remove a field from a task**
-
-Precondition: The task has removable fields.
 
 **MSS**
 1. User enters command to remove the field from the task.
@@ -1107,27 +1105,27 @@ testers are expected to do more *exploratory* testing.
 ### Viewing a date
 
 1. Viewing tasks that have dates or recurring schedule on the given date
-    1. Test case: `view 12/12/2021`
+    1. Test case: `view 12/12/2021`<br>
     Expected: If there are tasks that have their dates or recurring schedule on 12/12/2021, they will appear on the filtered list.
        
-    1. Test case: `view 0/0/0`
+    1. Test case: `view 0/0/0`<br>
     Expected: Date format error thrown.
        
-    1. Test case: `view a`
+    1. Test case: `view a`<br>
     Expected: View command format error thrown.
        
 ### Navigating the calendar
 
 1. Using `next`
-    1. Test case: `next aaa`
+    1. Test case: `next aaa`<br>
     Expected: Calendar displays the next relative month.
 
 1. Using `prev`
-    1. Test case: `prev 111`
+    1. Test case: `prev 111`<br>
        Expected: Calendar displays the previous relative month.
        
 1. Using the next and prev buttons
-    1. Test case: Calendar displays the next or previous month accordingly.
+    1. Expected: Calendar displays the next or previous month accordingly.
     
 ### Saving data
 
