@@ -80,7 +80,9 @@ Given below are my contributions to the project.
    PR: [#139](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/139),
    [#153](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/153))
 6. Refactor existing UML diagrams to make them more in line with TimesForWheels.(
-   PR: [#138](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/138))   
+   PR: [#138](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/138))  
+7. Update DG to provide manual testing information for find command.(
+   PR: [#154](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/154))   
 
 * **Community**:
 
