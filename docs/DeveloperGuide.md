@@ -294,15 +294,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new CS-coded module task                               | refer to the task in the App |
 | `* * *`  | user                                       | delete a task                                                | remove entries that I no longer need                         |
 | `* * *`  | user                                       | find a task by its moduleName                                      | locate a particular task in order to view its deadline and relevant details |
-| `* * *`  | user                                       | add priority tags (low, medium, high)                        | categorise my tasks and know which ones I should work on first |
+| `* * *`  | user                                       | add priority tags (LOW, MEDIUM, HIGH)                        | categorise my tasks and know which ones I should work on first |
+| `* * *` | user | be able to sort the tasks based on different categories | see which tasks requires more attention and know which are the tasks that I should work on first |
 | `* * *`  | user who has just finished a task | mark a task as done                                          | know which tasks I have completed                            |
+| ` * * * ` | user | have a separate list of daily tasks that I have to do | set achievable goal to clear a selection of tasks for that day to remain productive
 | `* *` | user | add notes to a particular task | jot down quick ideas or notes that I have for a particular task |
 | `* *` | user with many tasks in the App | sort tasks either by deadlines, module codes, or their priority tags | have different views of the App when I require them |
 | `* *` | user | edit task attributes | change the details of a task if the task requirements or details have changed |
+| `* * ` | user | be able to see every tasks | know what tasks I have on hand and start to work on the tasks |
+| ` * * ` | user | undo/redo a mistake when using semester.config | save time from deleting the wrong tasks, input a new tasks and checking whether the new task is correct |
 | `*` | user with many upcoming deadlines | be reminded of deadlines that are approaching | remember when my tasks are due and work on them |
 | `*` | user who just finished their semester | clear the application of all tasks | prepare for the next upcoming semester |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -410,23 +412,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  The source code should be open source.
 6.  An application should be able to have up to 1000 deadlines.
 7.  The user interface should be intuitive enough for users who are not IT-savvy.
-8.  The product is free.
-9.  The system should work on both `32-bit` and `64-bit` environments.
-10. The deadline should not contain tasks deemed offensive (terrorism, bombing, etc).
-11. The application can be used **without** internet.
+8.  The system should work on both `32-bit` and `64-bit` environments.
+9. The deadline should not contain tasks deemed offensive (terrorism, bombing, etc).
+10. The application can be used **without** internet.
 
 ### Glossary
 
 * **CS:** Computer Science
 * **CS-coded module tasks:** Assignments, Quizzes, Projects, and other tasks related to CS-coded modules provided by NUS School of Computing that have deadlines for submission
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
+You can follow the guide line by line for to get use to the command and features of the application.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -448,29 +449,259 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Commands to try out before starting manual testing
+    1. Making sure the data is saved correctly by using the `add` command `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`.<br>
+        Expected: A new task will be added to the task list.
+    1. Close to application using the command `exit`.<br>
+        Expected: The window will be closed.
+    1. Re-launch the app by double clicking on the jar file.<br>
+        Expected: The application will be launch and the previously added task will be displayed
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+### Using command `list`
+
+1. Add some dummy tasks 
+    1. Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`
+    2. Use `add mc/CS2105 n/Assignment 2 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
+    3. Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH`
+    4. use command `list`.<br>
+        Expected: Task list will show all available tasks
+
+
+### Using command `clear` 
+
+1. Clearing tasks
+    1. Use command `clear` to clear all the tasks on the list.<br>
+      Expected: The task list is now empty.
+      
+      
+### Adding a task
+
+1. Adding a task to daily task list using command `add`
+    1. Prerequisites: list do not have the same identical task(s) that are used in example. 
+    1. Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` to attempt to add a new task to the list.<br>
+        Expected: A new task will be added to the task list, and will be displayed on the Ui. Status bar shows success message 
+        
+1. Adding a task with tag(s) using command `add`
+    1. Prerequisites: list do not have the same identical task(s) that are used in example. 
+    1. Use `add mc/CS2102 n/Assignment 1 d/10-06-2021 t/10:00 w/8% pt/URGENT` to attempt to add a new task to the list.<br>
+        Expected: A new task will be added to the task list, and will be displayed on the Ui with the tag `URGENT`. Status bar shows success message
+    1. Use `add mc/CS2105 n/Assignment 2 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE` to attemp to add a new task with multiple tags to the list.<br>
+        Expected: A new task will be added to the task list, and will be displayed on the Ui with the tag `URGENT`, `CORE`. Status bar shows success message
+        
+ 1. Adding a task with priority tag using command `add`
+    1. Prerequisites: list do not have the same identical task(s) that are used in example. 
+    1. By default, if there are no user input to specify a task priority tag on `add`, priority tag will be set to default `LOW`.
+    1. Use `add mc/CS2103 n/Finals d/10-03-2021 t/12:00 w/35% ptag/MEDIUM` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
+        Expected: Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `MEDIUM`. Status bar shows success message
+    1. Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
+        Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `HIGH`, tag `URGENT`. Status bar shows success message
+        
+ 1. Adding a task with notes using command `add`
+      1. Prerequisites: list do not have the same identical task(s) that are used in example.
+      1. Use `add mc/CS2103 n/Finals d/10-03-2021 t/12:00 w/35% pt/CORE ptag/MEDIUM, notes/IMPORTANT` to attempt to add a new task with notes to the list.<br>
+          Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `MEDIUM`, tag `CORE` and notes `IMPORTANT`. Status bar shows success message.
+        
+        
+### Editing a task 
+
+1. Use the command `clear` to empty the task list. 
+1. Add dummy tasks to test `edit` feature. 
+    1.  Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`
+    2.  Use `add mc/CS2105 n/Assignment 2 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
+    3.  Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
+    4.  After addition of 3 tasks, there will be a list of tasks on the task list.<br>
+          Expected: Task list will display 3 tasks with correct input values.    
+1. Use command `list` to show all available tasks.
+1. Use command `edit` to change module code and name attribute. 
+    1. Use `edit 1 mc/CS1010J n/Finals` to attempt to change the first task on the task list.<br>
+        Expected: First task on the task list will be change to module code: CS1010J and name: Finals
+1. Use command `edit` to change deadline, time and weightage attribute. 
+    1. Use `edit 2 d/18-11-2021 t/21:00 w/25%` to attempt to change the second task on the task list.<br>
+        Expected: Second task on the task list will be change to deadline: 18-11-2021, time: 21:00 and weightage: 25%
+1. Use command `edit` to change tag, priority tag and remarks attribute.
+    1. use `edit 3 pt/CORE ptag/MEDIUM notes/not so soon` to attempt to change the third task on the task list.<br>
+        Expected: Third tasks on the task list will be changed to tag: CORE, priority tag: MEDIUM and notes: not so soon.
+1. (Addtional) Feel free to test `edit` command on one single attribute (weightage alone etc). Reason for not including it in appendix: We hope to allow the user to go through the guide quickly and therefore truncated the some of the single `edit` commands. 
+1. Other incorrect `edit` commands to try: `edit x ...` (where x is large than the list size and ... is any attribute you wish to edit), `edit`, `edit 1 XXXX/YYYY` (where XXXX is any of the mc/, n/, pt/, w/, ptag/ and notes/ that can be edited. YYYY is the input that user wishes to put but is similar to the exisiting input. Eg: `edit 1 mc/CS2103` onto the first task on the task list with module code: CS2103 will throw an error). <br>
+    Expected: Error will be thrown.
+
+
+### Deleting a task
+
+1. Using the existing tasks after the `edit` command to ensure that you have a list of tasks on the tasks list.
+
+1. Deleting a task while all tasks are being shown using command `delete`
+   1. Prerequisites: List all task(s) using the `list` command. Have at least 1 task(s) in the list.
+   1. Deleting the first task on the task list: `delete 1`<br>
+      Expected: First task is deleted from the task list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
+   1. Attempting to delete a task on index 0: `delete 0`<br>
+      Expected: No task is deleted. Error details shown in the status message.
+   1. Other incorrect `delete` commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Error will be thrown.
+
+### Finding a task 
+
+1. Recommended to use the `clear` command at this point to input a new set of diversed tasks to be used for test cases
+1. Inputting fresh set of diverse tasks into the task list.
+    1.  Use `add mc/CS2103 n/Practical d/11-02-2021 t/08:00 w/10%`
+    1.  Use `add mc/CS2105 n/Assignment 1 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
+    1.  Use `add mc/CS3240 n/Finals d/16-08-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
+    1.  Use `add mc/CS4101 n/Project 1 d/08-07-2021 t/23:00 w/5%`
+    1.  Use `add mc/CS1231 n/practical d/13-06-2021 t/12:00 w/40% pt/URGENT pt/NONCORE ptag/MEDIUM`
+    1.  Use `add mc/CS1010J n/Finals d/12-09-2021 t/21:00 w/15% pt/CORE ptag/HIGH notes/Must do soon`.<br>
+          Expected: 6 newly added tasks into the task list
+1. Using `find` command to find a list of similar task
+    1. Test case: `find practical`.<br>
+        Expected: task list will now show 2 tasks: module code: CS1231 and CS2103
+    1. Test case: `find URGENT`
+        Expected: task list will now show 3 tasks: module code: CS2131, CS2103, CS3240
+    1. Test case: `find must do soon`.<br>
+        Expected: task list will now show 2 tasks: module code: CS1010J and CS3240 
+    1. Test case: `find`.<br>
+        Expected: Error details will be shown in the status message
+        
+### Sorting a task 
+
+1. Recommended to use the tasks from the previous command `find` to be used here for `sort` command. Following instructions will be based off the tasks provided previously.
+1. Use `sort` command to Sort tasks in task list.
+    1. Test case: `sort dateTime`.<br>
+        Expected: All the tasks on the task list will be sorted accordingly to the dataTime in ascending calendar order.
+    1. Test case: `sort moduleCode`.<br>
+        Expected: All the tasks on the task list will be sorted accordinngly to ascending lexicographical order.
+    1. Test case: `sort priorityTag`.<br>
+        Expected: All the tasks on the task list will be sorted in decreasing priority levels (LOW>MEDIUM>HIGH). Highest priority will be shown at the top of the task list.
+    1. Test case: `sort weightage`.<br>
+        Expected: All the tasks on the task list will be sorted in decreasing weightage order, with the heaviest weightage at the top of the task list.
+    1. Test case: `sort taskName`.<br>
+        Expected: All the tasks on the task list will be sorted in the lexicographical order.
+    1. Invalid test cases to try: `sort datetime`, `sort prioritytag`, `sort`, `sort weight`, `sort weight PriorityTag`.<br>
+        Expected: Error will be thrown for all these test cases.
+        
+### Using command `done`
+
+1. Complete a task on the task list using command `done`.
+    1. Prerequisites: List all task(s) using the `list` command. Have at least 1 task(s) in the list. Task status to be tested must not be completed
+    1. use command `done INDEX` where index is an Integer that is not longer than the length of the task list.
+    1. Test case: `done 1`.<br>
+        Expected: The first task on the task list will be marked as done. Ui will reflect this change by checking the box to indicate a done status
+    1. Invalid use cases to try: `done`, `done X` (where X is an Integer bigger than the length of the task list), `done 0`, `done Y` (where Y is a negative Integer).<br>
+         Expected: Error will be thrown.
+
+### Using command `dueIn`
+
+1. Recommended to use the `clear` command to start with a fresh set of tasks in the tasks list. Instructions below will be based on new set of tasks.
+1. Adding new tasks onto the task list.
+    1.  Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`
+    1.  Use `add mc/CS2105 n/Assignment 1 d/24-04-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
+    1.  Use `add mc/CS3240 n/Finals d/23-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
+
+1. Using the `dueIn` command
+    1. Test case: `dueIn day/7`.<br>
+        Expected: tasks with module code: CS2103 and CS3240 will be shown on the task list.
+    1. Test case:`dueIn week/1`.<br>
+        Expected: tasks with module code: CS2103 and CS3240 will be shown on the task list.
+    1. Test case: `dueIn day/14`.<br>
+        Expected: tasks with module code: CS2103, CS2105 and CS3240 will be shown on the task list.
+    1. Test case: `dueIn week/2`.<br>
+        Expected: tasks with module code: CS2103, CS2105 and CS3240 will be shown on the task list.
+    1. Invalid test cases to try: `dueIn day/`, `dueIn week/`, `dueIn day/XXX` (Where XXX is the number of days that exceeded 31-12-2099, the limit for this feature), `dueIn week/YYY` (where YYY is the number of weeks that will exceed 31-12-2099, the limit for this feature).
+         
+
+### Using command `doToday`
+
+1. Recommended to use the tasks provided in `dueIn` command for this feature. Instructions below will be based on that particular set of tasks.
+1. Add a task from the task list to the daily task list
+    1. Test case: `doToday -a 1`.<br>
+        Expected: First task on the task list will be added to the daily task list.
+    1. Test case: `doToday -r 1`.<br>
+        Expected: First task on the daily task list will be removed.
+    1. Test case: `doToday -a 3`.<br>
+        Expected: Third task on the task list will be added on the daily task list.
+    1. Invalid test cases to try: `dotoday -a 1`, `doToday -a x` (where x is an integer larger than the length of the task list), `doToday -r Y` (where Y is an integer larger than the length of the daily task list), `doToday -a 0`, `doToday -r 0`. 
+
+
+### Undo a command
+
+1. undo a command 
+  1. Test case: `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
+      1. New task will be added to the task list.
+      1. Use command `undo` to undo the `add` command.<br>
+          Expected: The newly added tasks will now be deleted from the task list.
+  1. Test case: `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`
+      1. New task will be added to the task list.
+      1. Use `delete` command to delete the newly added task.
+      1. The added task will now be deleted from the task list.
+      1. Use command`undo` to undo the `delete` command.<br>
+          Expected: The deleted task will now be added to the task list.
+  1. Test case: `clear` command
+      1. Add 1-3 tasks to the task list
+      1. Use command `clear` to clear the tasks on the task list.
+      1. Use `undo` command.<br>
+          Expected: All the deleted tasks will now be in the task list.
+  1. Invalid test cases to try: `Undo`, undo commands that are not `add`. `delete` or `clear`
+  1. Other invalid test cases to try: 
+      1. Re-launch the application.
+      1. Use the `undo` command.<br>
+          Expected: An error will be thrown because there are no previous states.
+
+
+### Redo a command 
+
+1. Test case: `redo` a add command.
+    1. Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
+    2. Use the `undo` command to delete this newly added task.
+    3. Use the `redo` command to bring back the undo task.<br>
+        Expected: The task now be on the task list
+        
+1. Test case: `redo` a delete command.
+    1. Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
+    2. Use `delete` command to delete this newly added task. 
+    3. Use the `undo` command to restore this newly added task.
+    4. Use the `redo` command to delete the task.<br>
+        Expected: The task will not be on the task list. 
+1. Test case: `redo` a clear command.
+    1. Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
+    2. Use `clear` command to clear all task(s) on the task list. 
+    3. Use the `undo` command to restore all the task(s) on the task list.
+    4. Use the `redo` command to clear all the task(s).<br>
+        Expected: The task(s) will not be on the task list. 
+
+1. Invalid test cases to try: `Redo`, `redo` commands that are not `add`, `delete` or `clear`
+1. Other invalid test cases to try:
+    1. Re-launch the application
+    2. Use the `redo` command.<br>
+        Expected: An error will be thrown because there are no previous states.
+   
+
+## **Appendix: Effort**
+
+Given below are the difficulty level, challenges faced, effort required, and achievements of the project.
+
+### Difficulties 
+1. Implementing `Daily task list` feature
+    * This feature proved challenging to implement, as it required an additional UniqueTaskList to be added to the TaskTracker, along with the relevant methods required to update it. Furthermore, we needed to take into account the modification of tasks on the All tasks list, and propagate any updates to the dailyTaskList.
+2. Implementing the color coded feature for `Priority Tag` feature
+    * Despite being a seemingly simple feature, colour coding the priority tags proved to be more complicated than we initially assumed it to be. It required the styleProperty of the priority tag component in the UI to be bound to its State, and to be dynamically updated when the priority tag values were updated by the user. Nonetheless, it was an interesting feature that allowed me to learn how to dynamically bind and generate elements using JavaFX.
+3. Implementing `undo` feature
+    * It was difficult to implment the functionality where only commands which altered the application could be undone as there was no way to differentiate between state modifying commands and non-state modifying commands. This was overcome by creating a NonModifyingCommand Enum to differentiate between the commands as well as overriding the toString() methods of each Command such that they could be checked against the NonModifyingCommand Enum.
+4. Implementing `Priority Tag` feature 
+    * It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. We introduced states as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature this way. 
+5. 4-man team instead of 5-man 
+    * While other groups have an additional group member, our team has only 1 group members due to unforseeable reasons. This caused us to be behind from most groups initially. However, we did not let the set back affect us and we actively helped each other in our components, we achieved all the deliverables since the first week of submission for the tP and did not receive any complains from the Professor or the TA. 
+
+### Effort required
+1. While the Professor and tutor recommended one meeting per week for all the deliverables for the tP, our team went beyond the recommendation and usually meet up 2-3 times a week with an average of 1.5hrs to 2hrs session each. 
+2. During the meeting, we vetted each other's work line by line and recommend the best practice to each other in a professional manner. 
+3. We also go beyond our own components and reach out to each other if the other team mate require assistance. 
+4. Despite being 1 man down, the team managed to submit all the deliverables since the first version and met all the requirements. 
+
+### Achievements of the Project 
+1. Successfully allowed semester.config to be used by CS students (our target group) for planning of their CS coded modules.
+2. Allowed up to at least 1000 tasks to be stored in semester.config, with all the features working.
+3. Successfully implemented two tasks list - a general tasks list and a daily task list for students to better organise their schedule and workload.
+4. Successfully implemented a working Ui that allows CS students to easily organise their tasks.
+5. Successfully implemented a sorting feature that can sort tasks according to most of their attributes.
