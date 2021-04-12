@@ -121,8 +121,8 @@ An entry's name can be tagged to a contact to easily filter for contacts related
 
 Example(s):
 
-* `cadd n/Danny p/98765432 e/danny@email.com t/consultation 1`
-* `cadd n/Amy p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
+* `cadd n/Danny Tan p/98765432 e/danny@email.com t/student t/english t/consultation 1`
+* `cadd n/Amy Yeoh p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
 
 Scenario:
 You want to save the contact details of your students so that you can easily obtain their details when you want to
@@ -147,8 +147,8 @@ Finds all contacts whose name contain all of the specified keywords and displays
 
 Example(s):
 
-* `cfind John` returns `john` and `John Doe`
-* `cfind alex yeoh` returns only `Alex Yeoh`
+* `cfind Danny` returns `danny` and `Danny Tan`
+* `cfind amy yeoh` returns only `Amy Yeoh`
 
 Scenario:
 Your student had booked a consultation with you and you want to find his/her contact details by name without scrolling 
@@ -177,7 +177,7 @@ Filters all contacts that have the tags of the specified keywords and displays t
 Example(s):
 
 * `cfilter student english`
-* `cfilter colleagues`
+* `cfilter colleague`
 
 Scenario:
 Your students have decided on the roles and responsibilities they will be taking up in your class (e.g. chairperson, 
@@ -201,7 +201,7 @@ Edits an existing contact with the specified index in Teaching Assistant.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing t/ without specifying any tags after it.
+* You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
 
 Example(s):
 
@@ -236,7 +236,7 @@ Deletes an existing contact with the specified index in Teaching Assistant.
 * Parameters - `INDEX`
 
 
-* `INDEX` refers to the index number shown in the displayed person list.
+* `INDEX` refers to the index number shown in the displayed contact list.
 * `INDEX` must be a positive integer 1, 2, 3, ...
 
 Example(s):
@@ -266,8 +266,8 @@ Adds a new entry into Teaching Assistant.
 
 Example(s):
 
-* `eadd n/meeting sd/2021-02-15 21:00 ed/2021-02-15 23:00`
-* `eadd n/consultation sd/2021-02-15 22:00 ed/2021-02-15 23:00 t/consultation`
+* `eadd n/meeting sd/2021-02-15 21:00 ed/2021-02-15 23:00 t/meeting t/needprep`
+* `eadd n/consultation 1 sd/2021-02-15 22:00 ed/2021-02-15 23:00 t/consultation`
 
 Scenario: You want to add entries into Teaching Assistant to keep track of your schedule.
 
@@ -318,8 +318,8 @@ Filters all entries that have the tags of the specified keywords and displays th
 
 Example(s):
 
-* `efilter CS2103T`
-* `efilter CS2100 Meeting`
+* `efilter meeting`
+* `efilter meeting needprep`
 
 Scenario: You want to filter your entries via the consultation tag you have added to your entries in the past, so that
 you can plan ahead and prepare for your upcoming consultations.
@@ -379,7 +379,7 @@ Scenario: You want to see what is in store for you today so that you can mentall
 ### Checking if time interval is free: `free`
 
 Indicates if an interval is free. If free, a message indicating that will be shown. If not, entries occupying that
-interval will be shown in the entries list.
+interval will be shown in the entry list.
 
 **Format**: `free sd/START_DATE ed/END_DATE`
 
@@ -394,7 +394,7 @@ interval will be shown in the entries list.
 
 Example(s):
 
-* `free sd/ 2021-12-20 12:00 ed/ 2021-12-20 13:00` if the time interval is free, entries list will be empty and _"You're
+* `free sd/ 2021-12-20 12:00 ed/ 2021-12-20 13:00` if the time interval is free, entry list will be empty and _"You're
   free!"_ message is shown. If not, a message _"Sorry, you're not free. Entries occupying that time interval listed
   below!"_ will be shown, accompanied by occupying entries in the entry list.
   
@@ -411,7 +411,7 @@ Deletes an existing entry with the specified index in Teaching Assistant.
 * Parameters - `INDEX`
 
 
-* `INDEX` refers to the index number shown in the displayed person list.
+* `INDEX` refers to the index number shown in the displayed contact list.
 * `INDEX` must be a positive integer 1, 2, 3, ...
 
 Example(s):
@@ -431,7 +431,7 @@ Clears all entries that have dates before today's date.
 * Command word - `eclear`
 
 Scenario: You still have entries from the past that you no longer need, and want to remove those outdated entries
-to not clutter the entries list.
+to not clutter the entry list.
 
 ---
 
