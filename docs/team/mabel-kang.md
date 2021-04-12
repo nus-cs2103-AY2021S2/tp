@@ -28,7 +28,6 @@ Given below are my contributions to the project.
 
 
 * **Project management**:
-    * Helped with modifying existing AddressBook code to fit TutorsPet's context. (Pull request [\#46](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/46))
     * Managed and added milestones, labels and assignees to github issues and pull requests for team, where necessary. 
     * Updated index.md so that the website displays information relevant to TutorsPet instead of AddressBook. (Pull request [\#238](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/238))
 
