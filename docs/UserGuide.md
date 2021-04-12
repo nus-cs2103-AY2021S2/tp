@@ -460,8 +460,8 @@ Can be invoked repeatedly until there are no more previously executed actions fr
 Format: `redo`
 
 Shortcut:
-PC: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd> or <kbd>CTRL + Y</kbd>
-Mac: <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd> or <kbd>CMD + Y</kbd>
+PC: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd> or <kbd>CTRL</kbd> + <kbd>Y</kbd>
+Mac: <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd> or <kbd>CMD</kbd> + <kbd>Y</kbd>
 
 #### Toggle theme : `theme`
 
