@@ -5,9 +5,9 @@ import static seedu.booking.commons.core.Messages.MESSAGE_NON_EXISTENT_VENUE_NAM
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 import seedu.booking.model.venue.VenueName;
 
 public class PromptBookingVenueCommand extends Command {
@@ -26,8 +26,16 @@ public class PromptBookingVenueCommand extends Command {
             throw new CommandException(MESSAGE_NON_EXISTENT_VENUE_NAME + PROMPT_MESSAGE_TRY_AGAIN);
         }
 
-        ModelManager.processStateInput(venueName);
-        ModelManager.setNextState();
-        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
+        StatefulLogicManager.processStateInput(venueName);
+        StatefulLogicManager.setNextState();
+        return new CommandResult(StatefulLogicManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PromptBookingVenueCommand // instanceof handles nulls
+                && venueName.equals(((PromptBookingVenueCommand) other).venueName));
     }
 }

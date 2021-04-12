@@ -5,9 +5,9 @@ import static seedu.booking.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_DISPL
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 import seedu.booking.model.person.Phone;
 
 public class PromptPersonPhoneCommand extends Command {
@@ -26,9 +26,9 @@ public class PromptPersonPhoneCommand extends Command {
                     + PROMPT_MESSAGE_TRY_AGAIN);
         }
 
-        ModelManager.processStateInput(phone);
-        ModelManager.setNextState();
-        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
+        StatefulLogicManager.processStateInput(phone);
+        StatefulLogicManager.setNextState();
+        return new CommandResult(StatefulLogicManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
     }
 
     @Override

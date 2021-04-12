@@ -1,6 +1,7 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_EMAIL_FORMAT;
 import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -40,14 +41,16 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no email specified
-        assertParseFailure(parser, " " + PREFIX_NAME + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " " + PREFIX_NAME + VALID_NAME_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
 
         // no field specified
         assertParseFailure(parser, ORIGINAL_EMAIL_DESC_AMY,
-                EditPersonCommand.MESSAGE_NOT_EDITED + EditPersonCommand.MESSAGE_FIELDS);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
 
         // no email and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -72,7 +75,7 @@ public class EditPersonCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_EMAIL_DESC,
-                Email.MESSAGE_CONSTRAINTS); // invalid email
+                MESSAGE_INVALID_EMAIL_FORMAT + Email.MESSAGE_CONSTRAINTS); // invalid email
 
         // invalid phone followed by valid email
         assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_PHONE_DESC + EMAIL_DESC_AMY,

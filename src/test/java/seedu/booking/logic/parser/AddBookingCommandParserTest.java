@@ -25,6 +25,7 @@ import static seedu.booking.testutil.TypicalBookings.BOOKING_HALL;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.commons.core.Messages;
 import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.person.Email;
@@ -123,7 +124,7 @@ class AddBookingCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Messages.MESSAGE_INVALID_EMAIL_FORMAT + Email.MESSAGE_CONSTRAINTS;
 
         // invalid email, missing booker email prefix
         assertParseFailure(parser, INVALID_BOOKER_EMAIL + BOOKING_VENUE_NAME_DESC_HALL
