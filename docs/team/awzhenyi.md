@@ -24,6 +24,9 @@ Given below are my contributions to the project.
   * Opening of Github issues and assignment.
   * Practice of forking workflow.
 
+* **Enhancements**:
+    * wrote tests for EditBookingCommand and EditBookingCommandParser, increasing coverage from 54.50% to 62.83% [\#170](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/170)
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `editb` [\#163](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/163)
@@ -31,7 +34,8 @@ Given below are my contributions to the project.
     * Minor refinements to user guide for existing features [\#233](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/233)
   * Developer Guide:
     * Added implementation details with corresponding sequence and activity diagrams of the `editb` feature. [\#242](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/242)
-
+    * Provided some manual testing instructions in appendix. [\#246](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/246)
+    
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#161](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/161)
   * Reported bugs and suggestions for other teams in the class as part of practical dry run [(Link)](https://github.com/awzhenyi/ped/issues).
