@@ -14,7 +14,7 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 *Enhancement 1*
 * It allows the user to classify tasks into 3 different category, `LOW/MEDIUM/HIGH`, with `HIGH` having the most priority
 * Justification : User can view the different priority on the Ui and each priority levels are color coded distinctively from one another
-* Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature that was handled by another of my team mate.
+* Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature.
 * Worked on the following files: `PriorityTag`, `State`, `Tag`, `AddCommandParser`, `EditCommandParser`, `CliSyntax`, `TaskTrackerParser`, `AddCommand`, `EditCommand`, `ArguementMutliMap`, `ParserUtil`, `Prefix`.
   
 *Enhancement 2*
@@ -40,14 +40,10 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * I also helped to standardize the team's UG formatting and language and vetted the UG before every submission to ensure quality. 
 
 #### Contributions to the DG
-* I was in charge of the Storage component.
-    1. Drew up all the UML diagrams related to storage.
-    2. Edited all the contents of DG: Storage component. 
+* I was in charge of the Storage component where I drew up all the UML diagrams related to storage and edited all the contents of DG: Storage component. 
 * I also helped to standardize the teams's DG formatting and language and I vetted the DG before every submission to ensure quality.
 * Contributed to the DG, they include but are not restricted to:
-    1. Manual Testing component. I wrote every feature for the user who will be using the DG for testings, these includes but are not restricted to:
-        * All the feature, commands, test cases and invalid test cases.
-        * Ensuring a step-by-step guide that user can use as they read through the DG appendix
+    1. Manual Testing component. I wrote every feature for the user who will be using the DG for testings, these includes but are not restricted to: All the feature, commands, test cases and invalid test cases and ensuring a step-by-step guide that user can use as they read through the DG appendix
     1. Appendix: Effort. I wrote all the difficulties, challenges and achievements for the DG. 
 
 #### Contributions to team-based tasks
