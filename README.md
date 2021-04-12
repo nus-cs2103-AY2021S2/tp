@@ -11,7 +11,7 @@ with NuFash, organising your clothes becomes a breeze!<br>
 With our easy to use GUI, all you have to do is to enter in your clothes once into NuFash, and you will be able to
 look up your clothes as and when you need it!<br>
 
-Head on to our [User Guide](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/docs/UserGuide.md) and [Developer Guide](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/docs/DeveloperGuide.md) to find out more!
+Head on to the [NuFash website](https://ay2021s2-cs2103t-t12-1.github.io/tp/) to find out more!
 
 ### Contributors
 - [Visnu S/O Ravindran](https://github.com/VisnuRavi/)
