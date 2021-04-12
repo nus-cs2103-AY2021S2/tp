@@ -2,7 +2,6 @@
 layout: page
 title: Friscilia Sultan's Project Portfolio Page
 ---
-
 ## Project: insurance Sure Can Arrange Meeting (iScam)
 
 iScam is a desktop location book application used for teaching Software Engineering principles.
@@ -64,4 +63,4 @@ Given below are my contributions to the project.
     * Update the description of iScam to fit the final product and functionality of iScam. ([\#83](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/83))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#179](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/179), [\#187](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/187), [\#195](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/195), [\#240](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/240),
+  * PRs reviewed (with non-trivial review comments): [\#179](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/179), [\#187](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/187), [\#195](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/195), [\#240](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/240)
