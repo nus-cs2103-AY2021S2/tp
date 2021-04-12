@@ -14,8 +14,7 @@ public class CarsPreferredFilter extends CarFilter {
      * @param filterString the filterString against which to match the customers
      */
     public CarsPreferredFilter(String filterString) {
-        super(filterString.trim());
-        requireNonNull(filterString);
+        super(filterString);
     }
 
     /**

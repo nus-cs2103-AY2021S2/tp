@@ -16,8 +16,7 @@ public class AddressFilter extends Filter {
      * @param filterString the given filter string against which to match customers
      */
     public AddressFilter(String filterString) {
-        super(filterString.trim());
-        Objects.requireNonNull(filterString);
+        super(filterString);
     }
 
     /**
@@ -30,6 +29,6 @@ public class AddressFilter extends Filter {
     @Override
     public boolean test(Customer customer) {
         Objects.requireNonNull(customer);
-        return customer.getAddress().value.trim().contains(filterString.trim());
+        return customer.getAddress().value.trim().toLowerCase().contains(filterString.trim().toLowerCase());
     }
 }
