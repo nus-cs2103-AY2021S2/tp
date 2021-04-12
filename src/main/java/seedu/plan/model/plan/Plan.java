@@ -118,14 +118,17 @@ public class Plan {
     }
 
     public boolean getIsValid() {
+        /*
         if (isMasterPlan) {
             setIsValid(true);
         }
+        */
         return isValid;
     }
 
-    public void setIsValid(boolean isValid) {
+    public Plan setIsValid(boolean isValid) {
         this.isValid = isValid;
+        return this;
     }
 
     /**
@@ -162,9 +165,9 @@ public class Plan {
      * Returns semester by sem number rather than index
      * @return semester
      */
-    public Semester getSemesterBySemNumber(int semnumber) {
+    public Semester getSemesterBySemNumber(int semNumber) {
         for (Semester s : this.semesters) {
-            if (s.getSemNumber() == semnumber) {
+            if (s.getSemNumber() == semNumber) {
                 return s;
             }
         }
