@@ -254,11 +254,7 @@ The following activity diagram summarizes what happens when a user executes `set
 
 ![](images/SetBgActivityDiagram.png)
 
-<<<<<<< HEAD
 ### 4.4 Find Financial Record Feature
-=======
-### Find Financial Record Feature : `find-fr`
->>>>>>> c2bf5c72127ebe51487d5ba5d00e03e35168c3d3
 
 #### `find-fr` command
 
@@ -318,11 +314,7 @@ The following activity diagram summarizes what happens when a user executes `fin
   - Cons: Additional implementation and commands. More steps required for user
     when filtering multiple fields
 
-<<<<<<< HEAD
 ### 4.5 Reset Filter Feature
-=======
-### Reset Filter Feature : `reset-filter`
->>>>>>> c2bf5c72127ebe51487d5ba5d00e03e35168c3d3
 
 #### `reset-filter` command
 
@@ -409,9 +401,10 @@ A `currentStatePointer` is used internally to access the different states of the
 
 <br><br>
 The additional methods that were implemented are:
-* `VersionedBudgetTracker#commit()` -- Saves the current budget tracker state.
-* `VersionedBudgetTracker#undo()` -- Restores to the previous budget tracker state.
-* `VersionedBudgetTracker#redo()` -- Restores to the next budget tracker state.
+
+- `VersionedBudgetTracker#commit()` -- Saves the current budget tracker state.
+- `VersionedBudgetTracker#undo()` -- Restores to the previous budget tracker state.
+- `VersionedBudgetTracker#redo()` -- Restores to the next budget tracker state.
 
 These additional methods are exposed in the `BudgetBabyModel` interface as `BudgetBabyModel#commitBudgetTracker()`,
 `BudgetBabyModel#undoBudgetTracker()` and `BudgetBabyModel#redoBudgetTracker()` respectively.
@@ -441,7 +434,7 @@ If a command fails its execution, it will not call `BudgetBabyModel#commitBudget
 will not be saved into the `budgetTrackerStateList`.
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the
-`undo` command. The `undo` command will call `BudgetBabyModel#undoBudgetTracker()`, which will shift the 
+`undo` command. The `undo` command will call `BudgetBabyModel#undoBudgetTracker()`, which will shift the
 `currentStatePointer` once to the left, pointing it to the previous budget tracker state, and restores the
 budget tracker to that state.
 
@@ -526,7 +519,6 @@ students as they adjust themselves, easing into adulthood.
 
 ### 5.2 User stories
 
-<<<<<<< HEAD
 [comment]: <> (Priorities: High &#40;must have&#41; - `* * *`, Medium &#40;nice to have&#41; - `* *`, Low &#40;unlikely to have&#41; - `*`)
 
 **v1.2**
@@ -559,8 +551,6 @@ students as they adjust themselves, easing into adulthood.
 
 **v1.4**
 
-=======
->>>>>>> c2bf5c72127ebe51487d5ba5d00e03e35168c3d3
 | As a …​                                                                    | I want to …​                                          | So that I can…​                                                                       |
 | -------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | university student who wants to manage my finances                         | add an FR                                             | track my spending history easily                                                      |
