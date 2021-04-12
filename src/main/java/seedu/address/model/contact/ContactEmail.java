@@ -5,11 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Contact's email in Teaching Assistant.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class ContactEmail {
 
     private static final String PRINTABLE_CHARACTERS = ".!#$%&'*+-/=?^_`{|}~";
+
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "The local-part must:\n"
@@ -34,9 +34,7 @@ public class ContactEmail {
     public final String value;
 
     /**
-     * Constructs a {@code ContactEmail}.
-     *
-     * @param email A valid email address.
+     * Creates a ContactEmail with a valid email address.
      */
     public ContactEmail(String email) {
         requireNonNull(email);
@@ -67,6 +65,5 @@ public class ContactEmail {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
 

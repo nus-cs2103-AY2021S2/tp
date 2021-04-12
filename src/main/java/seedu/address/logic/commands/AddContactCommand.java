@@ -30,7 +30,7 @@ public class AddContactCommand extends Command {
             + PREFIX_EMAIL + "danny@email.com "
             + PREFIX_TAG + "student "
             + PREFIX_TAG + "english "
-            + PREFIX_TAG + "consultation 1";
+            + PREFIX_TAG + "consultation1";
 
     public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
 

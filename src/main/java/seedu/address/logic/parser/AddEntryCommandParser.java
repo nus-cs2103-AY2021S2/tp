@@ -18,14 +18,14 @@ import seedu.address.model.entry.EntryName;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddEntryCommand Object
+ * Parses input arguments and creates a new AddEntryCommand Object.
  */
 public class AddEntryCommandParser implements Parser<AddEntryCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of AddEntryCommand
      * and returns an AddEntryCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddEntryCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -39,14 +39,13 @@ public class AddEntryCommandParser implements Parser<AddEntryCommand> {
         EntryName entryName = ParserUtil.parseEntryName(argMultimap.getValue(PREFIX_NAME).get());
         EntryDate startDate = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get());
         EntryDate endDate = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_END_DATE).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         if (!startDate.isBefore(endDate)) {
             throw new ParseException(MESSAGE_INVALID_DATE_RANGE);
         }
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Entry entry = new Entry(entryName, startDate, endDate, tagList);
-
         return new AddEntryCommand(entry);
     }
 

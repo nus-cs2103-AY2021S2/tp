@@ -20,7 +20,7 @@ public class Entry {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null
+     * Creates an Entry where every field is present and not null
      */
     public Entry(EntryName entryName, EntryDate startDate,
                  EntryDate endDate, Set<Tag> tags) {
@@ -60,7 +60,7 @@ public class Entry {
     }
 
     /**
-     * Returns true if both entries have the same fields
+     * Returns true if both entries have the same fields.
      */
     @Override
     public boolean equals(Object other) {
@@ -78,6 +78,7 @@ public class Entry {
                 && otherEntry.getOriginalEndDate().equals(getOriginalEndDate())
                 && otherEntry.getTags().equals(getTags());
     }
+
     /**
      * Returns true if both entries are the same objects.
      */
@@ -97,7 +98,6 @@ public class Entry {
         LocalDateTime firstEnd = this.getEndDate();
         LocalDateTime secondStart = otherEntry.getStartDate();
         LocalDateTime secondEnd = otherEntry.getEndDate();
-
 
         return (firstStart.isBefore(secondEnd) && secondStart.isBefore(firstEnd));
     }
@@ -148,5 +148,4 @@ public class Entry {
         }
         return builder.toString();
     }
-
 }

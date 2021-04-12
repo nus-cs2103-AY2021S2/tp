@@ -1,9 +1,8 @@
 package seedu.address.model.contact.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Contacts
- * (Contacts are considered duplicates if they have the same
- * identity).
+ * Represents an error that occurs when an operation results in the creation of duplicate
+ * contacts (contacts are considered duplicates if they have the same identity).
  */
 public class DuplicateContactException extends RuntimeException {
     public DuplicateContactException() {

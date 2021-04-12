@@ -5,20 +5,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Contact's phone number in Teaching Assistant.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class ContactPhone {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers are 8 digits long, must not start with a 0 and should not have symbols.";
+
     public static final String VALIDATION_REGEX = "^[1-9]\\d{7}$";
+
     public final String value;
 
     /**
-     * Constructs a {@code ContactPhone}.
-     *
-     * @param phone A valid phone number.
+     * Creates a ContactPhone with a valid phone number.
      */
     public ContactPhone(String phone) {
         requireNonNull(phone);
@@ -49,6 +47,5 @@ public class ContactPhone {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
 

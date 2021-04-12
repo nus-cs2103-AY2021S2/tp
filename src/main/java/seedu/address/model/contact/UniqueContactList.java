@@ -15,12 +15,13 @@ import seedu.address.model.contact.exceptions.DuplicateContactException;
 /**
  * A list of contacts that enforces uniqueness between its elements and does not allow nulls.
  * A contact is considered unique by comparing using {@code Contact#isSameContact(Contact)}.
- * As such, adding and updating of
- * contacts uses Contact#isSameContact(Contact) for equality so as to ensure
- * that the contact being added or updated is
- * unique in terms of identity in the UniqueContactList. However, the removal of
- * a contact uses Contact#equals(Object) so
- * as to ensure that the contact with exactly the same fields will be removed.
+ *
+ * As such, adding and updating of contacts uses Contact#isSameContact(Contact) for equality
+ * so as to ensure that the contact being added or updated is unique in terms of identity
+ * in the UniqueContactList.
+ *
+ * However, the removal of a contact uses Contact#equals(Object) so as to
+ * ensure that the contact with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -55,12 +56,14 @@ public class UniqueContactList implements Iterable<Contact> {
     /**
      * Replaces the contact {@code target} in the list with {@code editedContact}.
      * {@code target} must exist in the list.
-     * The contact identity of {@code editedContact} must not be the same as another existing contact in the list.
+     * The contact identity of {@code editedContact} must not be the same as another
+     * existing contact in the list.
      */
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
         int index = internalList.indexOf(target);
+
         if (index == -1) {
             throw new ContactNotFoundException();
         }
@@ -83,6 +86,10 @@ public class UniqueContactList implements Iterable<Contact> {
         }
     }
 
+    /**
+     * Replaces the contents of this lisst with {@replacement}.
+     * All contacts in {@replacement} are unique.
+     */
     public void setContacts(UniqueContactList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -94,6 +101,7 @@ public class UniqueContactList implements Iterable<Contact> {
      */
     public void setContacts(List<Contact> contacts) {
         requireAllNonNull(contacts);
+
         if (!contactsAreUnique(contacts)) {
             throw new DuplicateContactException();
         }
@@ -126,7 +134,7 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
-     * Returns true if {@code contacts} contains only unique contact.
+     * Returns true if {@code contacts} contains only unique contacts.
      */
     private boolean contactsAreUnique(List<Contact> contacts) {
         for (int i = 0; i < contacts.size() - 1; i++) {

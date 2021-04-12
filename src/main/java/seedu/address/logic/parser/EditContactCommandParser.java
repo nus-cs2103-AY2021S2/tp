@@ -20,17 +20,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditContactCommand object
+ * Parses input arguments and creates a new EditContactCommand object.
  */
 public class EditContactCommandParser implements Parser<EditContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditContactCommand
      * and returns an EditContactCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EditContactCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
@@ -44,6 +45,7 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
         }
 
         EditContactDescriptor editContactDescriptor = new EditContactDescriptor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editContactDescriptor.setName(ParserUtil.parseContactName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -73,8 +75,8 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
         if (tags.isEmpty()) {
             return Optional.empty();
         }
+
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }

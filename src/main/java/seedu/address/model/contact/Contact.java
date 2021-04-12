@@ -11,20 +11,16 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Contact in Teaching Assistant.
- * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Contact {
 
-    // Identity fields
     private final ContactName name;
     private final ContactPhone phone;
     private final ContactEmail email;
-
-    // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Creates a Contact where every field is present and not null.
      */
     public Contact(ContactName name, ContactPhone phone, ContactEmail email, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
