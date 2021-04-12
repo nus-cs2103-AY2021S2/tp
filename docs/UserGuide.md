@@ -730,13 +730,13 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        inventory find n/[KEYWORD] (MORE KEYWORDS) q/[LESS THAN QUANTITY]
+        inventory find n/[KEYWORD] (MORE KEYWORDS) q/[LESS THAN EQUALS TO QUANTITY]
         ```
 
         At least one prefix must be specified. If both are specified, both conditions will be checked.
 
         - `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `q/` - Finds all ingredients with less than specified quantity. Must be a non-negative whole number (>= 0).
+        - `q/` - Finds all ingredients with less than or equals to specified quantity. Must be a non-negative whole number (>= 0).
 
         Example:
         ```
