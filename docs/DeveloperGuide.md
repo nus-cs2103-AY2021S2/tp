@@ -192,6 +192,15 @@ Viewing notes will simply create and return a `CommandResult`. This `CommandResu
 representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
 `Person` in the `NotesWindow`.
 
+### Listing, Finding and filtering clients
+
+Upon executing a `ListCommand`, `FindCommand` or `FilterCommand`, a sequence of action is performed by the 
+corresponding commands. All 3 commands work similarly: while `ListCommand` does not require any additional user
+inputs, additional users inputs for `FindCommand` and `FilterCommand` are required and will be parsed to create
+Predicate objects. As for the `ListCommand`, the Predicate object will simply return true. These predicates will then
+be used to determine which `Person` in the `UniquePersonList` found in the `AddressBook` will be added to the
+`FilteredList`, which will then be iteratively displayed to the user.
+
 ### Scheduling meetings and Meeting List Display
 
 ![ScheduleSequenceDiagramLogic](images/ScheduleSequenceDiagramLogic.png)
