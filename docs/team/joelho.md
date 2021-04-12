@@ -2,13 +2,11 @@
 layout: page
 title: Joel Ho's Project Portfolio Page
 ---
-
-# Project: GreenMileageEfforts
+## Project: GreenMileageEfforts
 
 GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any IT company quickly arrange carpooling in order to lower their carbon footprint. The platform follows that of a command-line interface (CLI) such that power users that are familiar can efficiently navigate the program.
 
 Given below are my contributions to the project.
-
 * **New Feature**: Added the ability to `drive` passengers.
   * What it does: allows the user to select passengers to be driven by a driver.
   * Justification: This is a core feature of the product whereby we assign drivers to passengers
@@ -41,17 +39,8 @@ Given below are my contributions to the project.
   * Patched security vulnerabilities in nokogiri and kramdown versions
   * Added [Codacy](https://app.codacy.com/gh/AY2021S2-CS2103T-W10-1/tp/dashboard) static analysis to repo
   * Setup Codecov check to PRs to ensure we attempt to maintain coverage
-  
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `drive` (PR [\#62](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/62) [\#32](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/32))
-    * Did cosmetic tweaks to existing documentation examples: (PR [\#62](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/62))
-    * Change layout to use Github pages functionality (PR [\#32](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/32))
-    * General cosmetic and formatting issues
-  
 
-## **Excerpts**
-
+## **Excerpts from UG/DG**
 
 ### User Guide
 
@@ -177,46 +166,5 @@ From the diagram illustrated above:
 1. After checking that it is indeed safe to delete all the `Passengers` in `lastShownList`, each `Passenger` is then deleted in `Model` via passing it to the `deletePassenger()` method.
 1. A `CommandResult` object is then created with a message which includes the names of the `Passengers` deleted, in `lastShownList`
 1. Finally, the `CommandResult` object is returned to `LogicManager`.
-
---------------------------------------------------------------------------------------------------------------------
-
-### Editing a passenger
-
-1. Editing passengers with 1 parameter while all passengers shown.
-
-  1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`.
-
-  1. Test case: `edit 1 n/Alice`.<br>
-     Expected: Name of passenger previously named `Alex Yeoh` is changed to `Alice`. Status message shows all the details of `Alice`.
-
-  1. Test Case: `edit 0 n/Alice`. <br>
-     Expected: No passenger is edited. Result box shows error: `One of the passenger indexes provided is invalid`. Command box text turns red.
-
-  1. Other incorrect edit commands to try: `edit n/Alice`, `edit x n/Alice`, ... (where x is larger than the list size).
-     Expected: Similar to previous.
-
-1. Editing passengers with multiple parameters while all passengers shown.
-  1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`.
-
-  1. Test case: `edit 1 p/12345678 a/Floor Street tag/abcd`.<br>
-     Expected: Phone number, address, and tag of passenger named `Alice` is changed to `12345678`, `Floor Street`, and `abcd` respectively. Status message shows all the new details of `Alice`
-
-1. Editing passenger to match an existing passenger's identity.
-  1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
-
-  1. Test case: `edit 1 n/Bernice Yu p/99272758`.<br>
-     Expected: No passenger is edited. Result box shows error: `This passenger already exists in the GME Terminal.`. Command box text turns red.
-
-1. Editing passenger that is in a Pool.
-  1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`. All pools listed using `listPool`.
-
-  1. Test case: `edit 7 n/Kelly`.<br>
-     Expected: Name of passenger previously named `Kristen Woo` is changed to `Kelly`. Status message shows all the details of `Kelly`. `Trip by Irfan Ibrahim` in Pool list updates to `Roy Balakrishnan, Kelly`.
-
-  1. Test case: `edit 7 d/TUESDAY`.<br>
-     Expected: No passenger is edited. Result box shows error: `TThe Passenger to be edited exists in a pool. Day cannot be edited.`. Command box text turns red.
-
-  1. Test case: `edit 7 t/1400`.<br>
-     Expected: Time of passenger named `Kelly` is changed to `1400`. Status message shows all the details of `Kelly`, and `NOTE: The passenger edited exists in a pool and has had their preferred trip time edited. This might result in a time difference of more than 15 minutes with the pool time.`
 
 --------------------------------------------------------------------------------------------------------------------
