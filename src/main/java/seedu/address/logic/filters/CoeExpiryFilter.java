@@ -38,7 +38,10 @@ public class CoeExpiryFilter extends Filter {
         this.coeExpiryThreshold = currentDate.plusYears(years);
     }
     /**
-     * Returns true if a given string is a valid filter.
+     * Checks whether the string is a valid filter for {@code CoeExpiryFilter}
+     *
+     * @param filterString The string to be checked.
+     * @return True if a given string is a valid filter.
      */
     public static boolean isValidFilter(String filterString) {
         if (filterString.equals("exp")) {
