@@ -17,6 +17,9 @@ public class DeadlineTest {
     private static final Deadline TEST_DEADLINE = new DeadlineBuilder().build();
     private static final Deadline DIFFERENT_DEADLINE = new DeadlineBuilder().withDescription("DIFFERENT").build();
 
+    private final String INVALID_DESCRIPTION_1 = "";
+    private final String INVALID_DESCRIPTION_2 = " ";
+    
     @Test
     public void constructor_null_throwsNullPointerException() {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
@@ -30,12 +33,12 @@ public class DeadlineTest {
     @Test
     public void constructor_invalidDescription_throwsIllegalArgumentException() {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
-        String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, validDate, false));
-        String invalidDescription2 = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, validDate, false));
+
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(INVALID_DESCRIPTION_1, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(INVALID_DESCRIPTION_1, validDate, false));
+
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(INVALID_DESCRIPTION_2, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(INVALID_DESCRIPTION_2, validDate, false));
     }
 
     @Test
@@ -44,8 +47,8 @@ public class DeadlineTest {
         assertThrows(NullPointerException.class, () -> Deadline.isValidDescription(null));
 
         // invalid description
-        assertFalse(Deadline.isValidDescription("")); // empty string
-        assertFalse(Deadline.isValidDescription(" ")); // spaces only
+        assertFalse(Deadline.isValidDescription(INVALID_DESCRIPTION_1)); // empty string
+        assertFalse(Deadline.isValidDescription(INVALID_DESCRIPTION_2)); // spaces only
 
         // valid description
         assertTrue(Deadline.isValidDescription("Blk 456, Den Road, #01-355"));
