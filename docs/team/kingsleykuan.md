@@ -52,4 +52,28 @@ Given below are my contributions to the project.
         GUI was also updated to display the active appointment filters to the user.
     * Links: [#165](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/165), [#170](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/170), [#316](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/316), [#318](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/318)
 
-* **Code contributed**: [RepoSense link]()
+* **GUI Enhancement**: Implemented a Filters Pannel in GUI
+    * What it does: Displays the active tutor and appointment filters.
+    * Justification: Allows users to view their currently used filters easily
+    * Highlights: Required careful design due to the limited space available taken up by other GUI components as well as requirement of not conflicting with other GUI components.
+    * Links: [#170](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/170)
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&tabOpen=true&tabType=authorship&tabAuthor=kingsleykuan&tabRepo=AY2021S2-CS2103-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+
+* **Documentation**:
+    * User Guide:
+        * Added documentation for add_tutor and list_tutor commands [#13](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/13)
+        * Added documentation for Tutor and Appointment Filter features [#200](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/200)
+        * Fixed bugs and inconsistencies in user guide [#205](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/205)
+    * Developer Guide:
+        * Added documentation for Target User Profile, Value Proposition, User Stories, as well as use cases for adding and listing tutors [#14](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/14)
+        * Added documentation for Filter Feature User Stories, Use Cases, Implementation Details, Diagrams, as well as manual tests [#347](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/347)
+
+* **Project Management**
+    * Set up and manage Github organisation and team repository
+    * Manage releases
+
+* **Community**
+    * Set up team meetings and goal setting
+    * Dedicated PR reviewer for 2 team members as well as adhoc review of other PRs
+    * Reported bugs for other teams in the cohort
