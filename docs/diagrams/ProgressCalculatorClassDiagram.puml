@@ -37,7 +37,7 @@ proteins : double
 }
 
 class ProgressCalculator {
-calculateProgress(FoodIntakeList, DietPlan, User)
+{static}calculateProgress(FoodIntakeList, DietPlan, User)
 }
 
 ProgressCalculator ..> FoodIntakeList
