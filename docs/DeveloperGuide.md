@@ -140,6 +140,8 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
