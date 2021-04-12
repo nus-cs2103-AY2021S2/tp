@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,13 +50,20 @@ public class OrderEditCommandParser {
             editOrderDescriptor.setCustomerId(ParserUtil.parseNonNegativeInt(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            editOrderDescriptor.setDateTime(
-                    LocalDateTime.parse(argMultimap.getValue(PREFIX_DATETIME).get(), dateTimeFormatter));
+            String strDateTime = argMultimap.getValue(PREFIX_DATETIME).get();
+            ParserUtil.validateDateTime(strDateTime);
+            try {
+                editOrderDescriptor.setDateTime(
+                        LocalDateTime.parse(strDateTime, dateTimeFormatter));
+            } catch (DateTimeParseException e) {
+                throw new ParseException(ParserUtil.MESSAGE_INVALID_DATETIME);
+            }
         }
         if (argMultimap.getValue(PREFIX_DISH).isPresent()
                 && argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
             List<String> editedDishNumbers = argMultimap.getAllValues(PREFIX_DISH);
             List<String> editedDishQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
+            ParserUtil.validateListLengths(editedDishNumbers, editedDishQuantities);
 
             List<Pair<Index, Integer>> editedDishIdsQuantityList = new ArrayList<>();
             for (int i = 0; i < editedDishNumbers.size(); i++) {
