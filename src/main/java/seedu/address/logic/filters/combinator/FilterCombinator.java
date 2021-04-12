@@ -105,14 +105,14 @@ public class FilterCombinator implements Predicate<Customer> {
 
     private void checkIfStringIsWellBracketed(String text) throws ParseException {
         int counter = 0;
-        for(char c : text.toCharArray()) {
+        for (char c : text.toCharArray()) {
             if (c == '[') {
                 counter++;
-            } else if(c == ']') {
+            } else if (c == ']') {
                 counter--;
             }
 
-            if(counter < 0) {
+            if (counter < 0) {
                 throw new ParseException(MESSAGE_INVALID_BRACKETING);
             }
         }
@@ -123,8 +123,9 @@ public class FilterCombinator implements Predicate<Customer> {
     }
 
     /**
-     * This function is at the heart of this class. It parses the user string and creates a tree from it. It also
-     * calls itself recursively on seeing a pair of matching brackets.
+     * This function is at the heart of this class. It parses the user string and creates a tree from it. It also calls
+     * itself recursively on seeing a pair of matching brackets.
+     *
      * @param description the filtering expression
      * @return the root node of the filter tree
      * @throws ParseException if the expression is not well formed
