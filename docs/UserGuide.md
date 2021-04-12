@@ -483,6 +483,9 @@ if you have multiple children. ChildTags will always appear at the front of the 
 for each contact and are displayed in a different color to differentiate them. Any command
 that works with regular Tags such as `find` will also work with ChildTags.
 
+**Q**: Why is your application named *ParentPal*? <br>
+**A**: It is named *ParentPal* because it aims to be a 'pal' to the busy parents who need help managing their kids' schedules and important contacts.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
