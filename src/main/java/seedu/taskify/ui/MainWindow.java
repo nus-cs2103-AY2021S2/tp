@@ -187,7 +187,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Tab switching ideas adapted from
+     * Tab switching idea adapted from
      * https://github.com/AY2021S1-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java
      */
 
