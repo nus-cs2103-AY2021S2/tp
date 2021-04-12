@@ -967,16 +967,16 @@ Prerequisites: Must have at least one person in the list to view the changes.
 
 Our team has put in significant effort in enhancing the usability of AB-3 into a more CLI centric address book.
 Much effort has been put in to replicate common controls and conventions seen in the popular terminal _Bash_. Our project
-has over 13k lines of code and over 500 automated tests. We detail some challenges faced and achievements made while 
+has over 13k lines of code and over 500 automated tests. We detailed some challenges faced and achievements made while 
 implementing A-Bash Book in the subsequent sections.
 
 ### Challenges faced
 
 - **Conversion to _Bash_ style arguments**
-  - We note that _Bash_ uses the convention of `-` flags as well as enforcing a space after your arguments.
+  - We note that _Bash_ uses the convention of `-` flags as well as enforcing a space after the arguments.
   - Much of the existing AB-3 command inputs are not following such conventions in _Bash_. To make such a change,
-    we had to change `ArgumentMultimap` class which is the core of the program. Much time was put into validating the
-    commands still work properly after such a change as the modification affects every single command that parses arguments.
+    we had to change `ArgumentMultimap` class which is the core of the program. Much time was put into validating that the
+    commands are still work properly after such a change as the modification affects every single command that parses arguments.
 - **Addition of command aliasing**
   - In order for us to implement one of our quality of life changes available in _Bash_, namely command aliasing, a deep
     understanding of the command flow is required. The addition of command aliasing requires a loop back of commands back
@@ -996,7 +996,7 @@ implementing A-Bash Book in the subsequent sections.
     together with the existing link to our user guide.
 - **Keyboard overrides**
   - To implement quality of life changes to be more keyboard centric, we implemented keyboard overrides to aid in selecting
-    of contacts as well as to facilitate our autocomplete feature. Doing so required a big degree of understand of JavaFX's
+    of contacts as well as to facilitate our autocomplete feature. Doing so required a big degree of understanding of JavaFX's
     UI event system. This is especially the case when we had to override the tab key for auto-complete which already had a 
     pre-existing function of navigating between UI elements.
 - **Addition of special indices**
@@ -1008,3 +1008,4 @@ implementing A-Bash Book in the subsequent sections.
 
 - Streamlined and intuitive user experience for existing _Bash_ users.
 - Improved the feature set and usability while still managing to maintain code coverage.
+
