@@ -174,12 +174,12 @@ The following activity diagram summaries the flow of events when a user executes
 
 ##### Aspect: Whether entry class should have a list of Reviews or a single Review as an attribute (for adding on reviews to an existing entry)
 * **Alternative 1 (current choice):** Entry containing a list of Reviews as an attribute
-    * Pros: Looks neater from a design perspective, as additional reviews added on will just be appended to the list of reviews.
+    * Pro: Looks neater from a design perspective, as additional reviews added on will just be appended to the list of reviews.
       Easily extendable in the future (e.g. deleting a specific review in an entry).
-    * Cons: A lot of refactoring will be needed. Time-consuming.
+    * Con: A lot of refactoring will be needed. Time-consuming.
 * **Alternative 2:** Entry containing a single Review attribute 
-    * Pros: Easy to implement, as additional reviews can be concatenated as a string to the current review
-    * Cons: This cannot be easily extended in the future (e.g. the capability to delete a specific
+    * Pro: Easy to implement, as additional reviews can be concatenated as a string to the current review
+    * Con: This cannot be easily extended in the future (e.g. the capability to delete a specific
     review in an entry without deleting other reviews).
 
 ### List Feature
@@ -195,7 +195,7 @@ Each Entry contains the `Name`, `Address`, `Price`, `Rating`,  `Review`, `TagCat
 
 This feature was brought over to The Food Diary from AB3. 
 There were not many changes apart from modifying it to list
-entries instead. Similar to other commands, `MainWindow#executeCommand()` runs and `Logic#execute()`
+entries instead. Similar to other commands, `MainWindow#executeCommand()` runs and `LogicManager#execute()`
 will be called to parse the user input in `FoodDiaryParser#parseCommand()`. 
 The parsed command will be identified as a list command.
 
@@ -232,23 +232,23 @@ implementation is largely the same.
 ##### Aspect: Whether the syntax used for the find command should be similar to the add command.
 * **Alternative 1 (current choice):** Implement the `find` command without using similar syntax to the `add`
   command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`)
-    * Pros: Less syntax required, making the command more user-friendly (**Important as the `find` command
+    * Pro: Less syntax required, making the command more user-friendly (**Important as the `find` command
       will likely be executed by the user many more times as compared to the `add` command**).
-    * Cons: Makes the implementation less standardised across different commands.
+    * Con: Makes the implementation less standardised across different commands.
 * **Alternative 2:** Implement the `find` command by using similar syntax as the `add` command.
-    * Pros: Makes the implementation more standardised across different commands.
-    * Cons: Greatly slows down the efficiency of performing searches on the FoodDiary, which will negatively
+    * Pro: Makes the implementation more standardised across different commands.
+    * Con: Greatly slows down the efficiency of performing searches on the FoodDiary, which will negatively
     impact the user experience.
 
 ##### Aspect: How the user-input keywords for the Rating and Price fields should be implemented
 * **Alternative 1 (current choice):** Implement the Rating and Price fields with additional syntax (eg. Rating
   implemented as `RATING/5` instead of `RATING`, and price implemented as `$PRICE` or `$PRICE-PRICE` instead
   of `PRICE` or `PRICE-PRICE`).
-    * Pros: More intuitive keywords for the user to type out when performing their search.
-    * Cons: More typing is required, with additional syntax that needs to be strictly followed.
+    * Pro: More intuitive keywords for the user to type out when performing their search.
+    * Con: More typing is required, with additional syntax that needs to be strictly followed.
 * **Alternative 2:** Implement the Rating and Price fields without additional syntax.
-    * Pros: Keywords can be typed out faster, makes performing searches more efficient.
-    * Cons: Possibility of user getting back results for Rating when finding for Price, or getting back results
+    * Pro: Keywords can be typed out faster, makes performing searches more efficient.
+    * Con: Possibility of user getting back results for Rating when finding for Price, or getting back results
     for Price when finding for Rating, which are both unintended consequences.
 
 ### FindAll Feature
@@ -294,12 +294,12 @@ command:
 
 ##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature.
 * **Alternative 1 (current choice):** Implement the FindAll feature as a separate command.
-    * Pros: Easier to implement, and more user-friendly as less syntax is required.
-    * Cons: User has to utilise 2 different commands despite them both performing a similar search function.
+    * Pro: Easier to implement, and more user-friendly as less syntax is required.
+    * Con: User has to utilise 2 different commands despite them both performing a similar search function.
 * **Alternative 2:** Implement the FindAll feature using the same command as the Find feature.
-    * Pros: User can carry out all searches using only one command, which makes the features fit together better
+    * Pro: User can carry out all searches using only one command, which makes the features fit together better
       than the first alternative.
-    * Cons: Much harder to implement, and less user-friendly as more syntax is required due to the user needing to
+    * Con: Much harder to implement, and less user-friendly as more syntax is required due to the user needing to
       specify the method of search between the Find and FindAll features that they would like to use to perform
       their search.
 
@@ -310,7 +310,7 @@ while also adding into multiple sections in an entry. The Edit and AddOn feature
 quick and small chanegs to an entry.
 
 The command opens an additional window when a user enters the command in the Ui, the command will be passed into 
-`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
+`MainWindow#executeCommand()`, in which `LogicManager#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
 The user input will be parsed as a 'Revise' command and executed to retrieve all the details related to the specified entry.
 With a separate window for revision of the entry, a user can easily make changes to the sections all at once. 
 
@@ -328,11 +328,11 @@ The following activity diagram summarises the events that take place when a user
 
 ##### Aspect: Whether to revise entry in command line or in a new Ui window.
 * **Alternative 1 (current choice):** Revise entry in a new Ui window.
-    * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
-    * Cons: Revise is not done purely in command line, but rather in a separate Ui window.
+    * Pro: View all details of an entry and easily revise them with keyboard shortcuts.
+    * Con: Revise is not done purely in command line, but rather in a separate Ui window.
 * **Alternative 2:** Revise entry in command line.
-  * Pros: Revise is purely done in the command line.
-  * Cons: For entry with lengthy details, typing in the full command will flood the command line text field
+    * Pro: Revise is purely done in the command line.
+    * Con: For entry with lengthy details, typing in the full command will flood the command line text field
    and pose a major inconvenience for users to revise the entry specified.
 
 ### Edit Feature
@@ -344,7 +344,7 @@ At its core, the `edit` feature allows a user to edit multiple fields pertaining
  the `revise` feature, builds upon the implementation of the `edit` feature. See more above.
  
 When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which
- `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
+ `LogicManager#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
  The user input will be parsed as an `edit` command and executed to edit the entry specified by
  the index of the command.
  
@@ -364,12 +364,12 @@ command:
 
 ##### Aspect: Whether to edit a command in the command line or in a new Ui window.
 * **Alternative 1 (current choice):** Edit entry in command line. 
-  * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
-  * Cons: For entries with lengthy details, typing long commands in the command line fills up the text field space
+  * Pro: View all details of an entry and easily revise them with keyboard shortcuts.
+  * Con: For entries with lengthy details, typing long commands in the command line fills up the text field space
   and makes it difficult for editing.
 * **Alternative 2:** Edit the entry in a new Ui window. 
-  * Pros: Edit is purely done in the command line, which might be convenient for minor changes a user want s to make.
-  * Cons: Edit is not done purely in command line, but rather in a Ui window. This might pose an inconvenience
+  * Pro: Edit is purely done in the command line, which might be convenient for minor changes a user want s to make.
+  * Con: Edit is not done purely in command line, but rather in a Ui window. This might pose an inconvenience
   for the user given the added step to edit a field of an entry.
   
   As such, we decided to implement a new feature named `revise` for users to achieve the cons of the current choice
@@ -388,7 +388,7 @@ The `help` feature primarily helps the user by showing a help guide whenever a u
  and visit for more information.
 
 An additional `HelpWindow` is opened when a user enters the `help` command in the Ui. 
-The command will be passed into `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the
+The command will be passed into `MainWindow#executeCommand()`, in which `LogicManager#execute()` will be called to parse the
 user input in `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
 At the end, a `HelpWindow` is returned.
 
@@ -415,7 +415,7 @@ Step 3. If the user input is invalid, an error message will be displayed in the 
 not exist, the filteredEntryList will be empty and no entry will be displayed on the Main Window.  
 
 The mechanism works in such a way where after the user enters a command in the Ui, the command will be passed into
-`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
+`MainWindow#executeCommand()`, in which `LogicManager#execute()` will be called to parse the user input in
 `FoodDiaryParser#parseCommand()`. The parsed command will be recognised as a `view` command and executed to 
 retrieve all the details related to the specified entry. The result of this execution will be passed back to the Ui and 
 shown in a new window.
@@ -435,11 +435,11 @@ will show the correct syntax to use for the `view` command.
 #### Design Consideration
 ##### Aspect: Whether to view entry with lengthy reviews in the Main Ui or in a new window.
 * **Alternative 1 (current choice):** View entry with lengthy reviews in a new window.
-    * Pros: Easier to implement, do not need to deal with complex Ui codes. Entry information looks neater.
-    * Cons: User has to close/minimize the window to return to Main Window.
+    * Pro: Easier to implement, do not need to deal with complex Ui codes. Entry information looks neater.
+    * Con: User has to close/minimize the window to return to Main Window.
 * **Alternative 2:** View entry with lengthy reviews in the Main Ui.
-    * Pros: Design is integrated within Main Ui, which gives it a cleaner look.
-    * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
+    * Pro: Design is integrated within Main Ui, which gives it a cleaner look.
+    * Con: Difficult to implement, lesser time for testability given the project deadline duration.
 
 ### Clear Feature
 `clear`: Allows the user to clear entries in The Food Diary.
@@ -453,7 +453,7 @@ The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`,
 Step 2. The user executes `clear` to clear all entries in The Food Diary.
 
 This feature was brought over to The Food Diary from AB3. There were not many changes apart from modifying it to clear
-entries instead. Similar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()` 
+entries instead. Similar to other commands,`MainWindow#executeCommand()` runs and `LogicManager#execute()` 
 will be called to parse the user input in `FoodDiaryParser#parseCommand()`. The parsed command will be identified
 as a `clear` command.
 
@@ -467,8 +467,8 @@ Step 1. The user is the midst of using The Food Diary application. The user has 
 Step 2. The user executes `exit` and closes the application.
 
 This feature was brought over to The Food Diary from AB3. 
-There were no changes. Similar to other commands,MainWindow#executeCommand() runs and Logic#execute()
-will be called to parse the user input in FoodDiaryParser#parseCommand().
+There were no changes. Similar to other commands, `MainWindow#executeCommand()` runs and `LogicManager#execute()`
+will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
 The parsed command will be identified as the exit command.
 
 
