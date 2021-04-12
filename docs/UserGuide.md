@@ -295,14 +295,14 @@ Format: `add_booking`
 
 Edits an existing booking in the booking system.
 
-Format: `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
+Format: `edit_booking INDEX [e/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
 * Edits the booking at the specified `INDEX`.
 * At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified booking.
 * It is allowed that the provided field(s) match the data in the corresponding existing field(s) of the specified booking.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
-* `edit_booking 1 b/janetan@gmail.com` edits the booking that currently has an index of `1`. The email of the booker belonging to this booking is edited to `janetan@gmail.com`.
+* `edit_booking 1 e/janetan@gmail.com` edits the booking that currently has an index of `1`. The email of the booker belonging to this booking is edited to `janetan@gmail.com`.
 
 #### 3.5.3. Deleting a booking : `delete_booking`
 
@@ -372,7 +372,7 @@ Action | Format, Example
 **list venue** | `list_venue`
 **add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
 **delete booking** | `delete_booking INDEX` <br> e.g. `delete_booking 1`
-**edit booking** | `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking 1 e/doe@gmail.com`
+**edit booking** | `edit_booking INDEX [e/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking 1 e/doe@gmail.com`
 **find booking** | `find_booking [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `find_booking b/jane@example.com`
 **list booking** | `list_booking`
 **help** | `help`
