@@ -7,13 +7,14 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 
 ### Purpose
 
 The purpose of this document is to provide a brief overview of the multi-level design architecture of SmartLib,
-so that you as the developer would be able to gain a better understanding of the relationship between
+so that you would be able to gain a better understanding of the relationship between
 the various components that SmartLib is made up from.
 
 ### Audience
@@ -43,6 +44,9 @@ and borrowers' information, as compared to the traditional GUI apps currently av
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
