@@ -46,7 +46,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -58,7 +58,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing JJIMY ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -66,7 +66,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        BookStorage<Person> addressBookStorage =
+        BookStorage<Person> personBookStorage =
                 new JsonPersonBookStorage(userPrefs.getPersonBookFilePath());
         BookStorage<Dish> dishBookStorage =
                 new JsonDishBookStorage(userPrefs.getDishBookFilePath());
@@ -74,7 +74,7 @@ public class MainApp extends Application {
                 new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
         BookStorage<Order> orderBookStorage =
                 new JsonOrderBookStorage(userPrefs.getOrderBookFilePath());
-        storage = new StorageManager(addressBookStorage, dishBookStorage,
+        storage = new StorageManager(personBookStorage, dishBookStorage,
                 ingredientBookStorage, orderBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -87,9 +87,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s books and {@code userPrefs}. <br>
+     * The data from the sample books will be used instead if {@code storage}'s books is not found,
+     * or an empty books will be used instead if errors occur when reading {@code storage}'s books.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         ReadOnlyBook<Person> initialPersonBook;
@@ -187,7 +187,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty JJIMY");
             initializedPrefs = new UserPrefs();
         }
 
@@ -203,13 +203,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting JJIMY " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping JJIMY ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
