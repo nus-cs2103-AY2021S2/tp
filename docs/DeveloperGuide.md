@@ -25,7 +25,7 @@ each component.
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
 the [diagrams](https://github.com/AY2021S2-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the 
-[PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
+[PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
 and edit diagrams.
 
 </div>

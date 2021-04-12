@@ -1,11 +1,13 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.parser.exceptions.InvalidIntegerException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 
@@ -24,23 +26,30 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_MEETING);
         Index index;
+        Meeting meeting;
+
+        if (argMultimap.getValue(PREFIX_MEETING).isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
+        }
+
+        try {
+            meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).get());
+        } catch (ParseException ex) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
+        }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
+        } catch (InvalidIntegerException pe) {
             throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_MEETING).isEmpty()) {
-            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
-        }
-
-        try {
-            Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).get());
-            return new ScheduleCommand(index, meeting);
-        } catch (IllegalArgumentException ex) {
-            throw new ParseException(ex.getMessage());
-        }
+        return new ScheduleCommand(index, meeting);
     }
 
 }

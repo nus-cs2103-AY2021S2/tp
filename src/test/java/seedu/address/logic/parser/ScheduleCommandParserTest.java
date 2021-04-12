@@ -28,13 +28,13 @@ class ScheduleCommandParserTest {
     public void parse_invalidPreamble_failure() {
         assertParseFailure(parser, "-5 " + MEETING_DESC_PRANK, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         assertParseFailure(parser, "0" + MEETING_DESC_PRANK, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        assertParseFailure(parser, "a" + MEETING_DESC_PRANK, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertParseFailure(parser, "a" + MEETING_DESC_PRANK, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_MEETING_DESC, Meeting.MESSAGE_CONSTRAINTS); // invalid meeting
+        assertParseFailure(parser, "1" + INVALID_MEETING_DESC, MESSAGE_INVALID_FORMAT); // invalid meeting
     }
 }
