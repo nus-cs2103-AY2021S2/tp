@@ -3,17 +3,17 @@ layout: page
 title: Liu Shuyang's Project Portfolio Page
 ---
 
-# Project: Link.me
+## Project: Link.me
 
-## Project Overview
+### Project Overview
 
 Link.me is a desktop client management application for insurance agents to manage their contacts. The basic
 Link.me codebase is adapted from AddressBook Level 3, an address book app created under the Seedu Initiative. The user
 interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 14 kLoC.
 
-## Summary of contributions
+### Summary of contributions
 
-### Features
+#### Features
 
 * **New Feature**: Add notes feature.
   [PR](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/49)
@@ -29,12 +29,12 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
   * Highlights: For gender and birthdate, it is very important to ensure the validity of user input, as we don't want users to enter an invalid gender or invalid birthdate (e.g. 1990-02-31). This cannot be performed using regex like the other commands, and requires robust checks.
 
 
-### Code contributed
+#### Code contributed
 [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Shuyang0&tabRepo=AY2021S2-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 [Pull requests](https://github.com/AY2021S2-CS2103T-W12-3/tp/pulls?q=is%3Apr+author%3AShuyang0+)
 
-### Project management
+#### Project management
 * Managed milestones `v1.1`, `v1.2`, `v1.3`, `v1.3b` and `v1.4` (5 milestones) on GitHub
 * Managed releases `v1.2`, `v1.3b` and `v1.4` (3 releases) on GitHub
 * Setup and maintain issue tracker on Github
@@ -42,7 +42,7 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
 * Create product demo for `v1.2` and `v1.3` on project notes document
 
 
-### Documentation:
+#### Documentation
 * **User Guide:**
   * Added documentation for the `note` feature: [\#46](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/46)
   * Added functionalities overview table: [\#46](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/46)
@@ -59,6 +59,7 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
 * **Others:**
   * Added initial UI mockup: [\#12](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/12)
 
-### Community
-  * Contributed to forum discussions (example: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/281))
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/207), [2](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/208), [3](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/210), [4](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/212), [5](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/213))
+#### Community
+* Assist teammates with technical issues regarding Git and GitHub.
+* Contributed to forum discussions (example: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/281))
+* Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/207), [2](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/208), [3](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/210), [4](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/212), [5](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/213))
