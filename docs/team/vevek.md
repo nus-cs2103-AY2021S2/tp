@@ -69,7 +69,7 @@ Given below are my contributions to the project.
   * Set up tools.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#338](), [\#270](), [\#252](), [\#227]()
+  * PRs reviewed (with non-trivial review comments): [\#338](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/338), [\#270](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/270), [\#252](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/252), [\#227](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/227)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/175), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/178), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/186), [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/161))
   * Reviewed issues to close duplicates.
 
