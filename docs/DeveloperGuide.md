@@ -435,6 +435,7 @@ The following is the sequence diagram for executing the `execute()` command in c
 
 ![CopyToNote](images/CopyToNoteDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration
 
@@ -483,6 +484,7 @@ The following is the sequence diagram for executing the `execute()` command in c
     * Unable to provide students with thorough materials/all the answers.
     * Unable to play videos from lectures.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -703,6 +705,8 @@ The following is the sequence diagram for executing the `execute()` command in c
 
   Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC08 -  Find Content in the Dictionary**
 
 **MSS**
@@ -719,9 +723,6 @@ The following is the sequence diagram for executing the `execute()` command in c
 * 1a. The list is empty.
 
   Use case ends.
-
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC09 -  Copy Content to Note**
 
