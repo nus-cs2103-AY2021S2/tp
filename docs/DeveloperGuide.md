@@ -692,11 +692,11 @@ person on the list is born before 12-12-2020.
         * `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230` <br><br>
 
     1. Adding a meeting for today <br>
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`. <br>
+       Test case: `add-meeting 1 d/TODAY_DATE t/0000 desc/sample desc`. <br>
        Expected: Meeting is added to the first contact. A success message is shown in the status message.
 
     2. Adding a meeting for today but has not occurred yet <br>
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc` <br>
+       Test case: `add-meeting 1 d/TODAY_DATE t/TIME_AFTER_NOW desc/sample desc` <br>
        Expected: No meetings added. Error details shown in the status message.
 
     3. Adding a meeting that happens in the future <br>
@@ -716,7 +716,7 @@ List all persons using the `list` command. There is at least a person present in
         * `FILE_PATH_WITH_WRONG_FILE_EXTENSION` - a valid file path that points to an actual file but is not an image (Refer to UG `add-picture` command [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#adding-a-profile-picture--add-picture) 
           for a list of valid file extensions) <br><br>
        
-    1. Test case: `add-picture 1 {PICTURE_FILE_PATH}` <br>
+    1. Test case: `add-picture 1 PICTURE_FILE_PATH` <br>
        Expected: A picture is attached to the first contact and a success message is shown in the status message. The picture added is shown in the results display beside the details of the first contact.
 
     2. Test case: `add-picture 0` <br>
@@ -724,8 +724,8 @@ List all persons using the `list` command. There is at least a person present in
 
     3. Other incorrect `add-picture` commands to try: 
        * `add-picture x` (where x is larger than the list size).
-       * `add-picture 1 {INVALID_FILE_PATH}`
-       * `add-picture 1 {FILE_PATH_WITH_WRONG_FILE_EXTENSION}`
+       * `add-picture 1 INVALID_FILE_PATH`
+       * `add-picture 1 FILE_PATH_WITH_WRONG_FILE_EXTENSION`
      
        Expected: Similar to previous
          
