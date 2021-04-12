@@ -75,11 +75,8 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithSelectedIndex(tags);
 
-        String singularOrPlural = selectedPersonList.size() > 1 ? "s" : "";
         int updateCount = selectedPersonList.size();
-
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -97,11 +94,8 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithShownIndex(tags);
 
-        String singularOrPlural = personList.size() > 1 ? "s" : "";
         int updateCount = personList.size();
-
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -122,11 +116,8 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithTargetIndexes(indexes, tags);
 
-        String singularOrPlural = indexes.size() > 1 ? "s" : "";
         int updateCount = indexes.size();
-
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 

@@ -30,7 +30,6 @@ public class AutocompleteListPanel extends UiPart<Region> {
         super(FXML);
         autocompleteListView.setItems(new ImmutableObservableList<>());
         autocompleteListView.setCellFactory(listView -> new AutocompleteListViewCell());
-        autocompleteListView.setMouseTransparent(true);
     }
 
     public void updateList(ObservableList<String> list) {
@@ -70,6 +69,8 @@ public class AutocompleteListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new AutocompleteListCell(value).getRoot());
             }
+
+            this.setMouseTransparent(true);
         }
     }
 }

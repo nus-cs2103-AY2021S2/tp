@@ -10,3 +10,11 @@
     height: 21px;
     width: 21px
 }
+
+img[alt$="><"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  float: none!important;
+}

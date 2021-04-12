@@ -27,7 +27,8 @@ public class EmailCommand extends Command {
     public static final String COMMAND_WORD = "email";
     public static final String MESSAGE_SUCCESS = "Opened email client";
     public static final String MESSAGE_FAILURE = "URL Exception occurred";
-    public static final String MESSAGE_NO_SELECTED = "No selected person to email.";
+    public static final String MESSAGE_NO_PERSON = "No person(s) to email";
+    public static final String MESSAGE_NO_SELECTED = "No selected person(s) to email";
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Open email client, with email subjects.\n"
                     + "Parameters: { shown | selected | INDEX… }\n"
@@ -70,6 +71,10 @@ public class EmailCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getFilteredPersonList().size() == 0) {
+            throw new CommandException(MESSAGE_NO_PERSON);
+        }
 
         if (isSpecialIndex) {
             return emailAll(model);
