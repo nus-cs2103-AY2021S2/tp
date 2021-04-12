@@ -27,22 +27,32 @@ Given below are my contributions to the project.
     * Justification: This feature acts as a shortcut for the user as they can quickly specify a Task that is due today without typing out the entire Date.
   
 * **Other Enhancements**:
-  * Refactored elements of `addressbook` to `taskify` [\#176](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/176) 
+  * Refactored instances of `addressbook` to `taskify` [\#176](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/176) 
   * Refactored original `Email` field to `Status` field [\#34](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/34)
   * Updated default values of previous addressbook to sample tasks for Taskify [\#95](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/95)
   * Add multiple exceptions to handle unique invalid Date inputs such as Feb 29 on non-leap years [\#153](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/153)
-  * Wrote tests for the multiple classes ([\#177](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/177, [\#169](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/169)))
+  * Wrote tests for the multiple classes [\#177](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/177), [\#169](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/169)
   
   
 * **Project Management**:
-  * Team Lead - Responsible for communication between Team and teaching staff.
+  * Team Lead - Responsible for communication between team and teaching staff.
   * Scheduling - Responsible for allocating deadlines and ensuring the team meets deadlines
-  * Renamed majority of the product to Taskify.
+  * Managed issues and pull requests within the team's Github page
+  * Created `v1.4` of `taskify.jar` and created a release on the team's Github page.
   
 * **Documentation**:
-  * User Guide:
+  * User Guide
+    * Added the `UI Layout` section in the UG, including all the screenshots in that section. [\#197](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/197)
+    * Added documentation for the `view` command.
+    * Did quality check for UG [\#206](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/206)
+    
   * Developer Guide:
-  
+    * Added the `Introduction` section in the DG. [\#197](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/197)
+    * Added `Implementation` documentation and diagrams for `add`, `edit` and `view` commands. [\#202](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/202) 
+      [\#195](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/195)
+    * Did quality check for DG [\#206](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/206)
+    * Added some use cases. [\#77](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/77)
+    * Added `Appendix: Effort` section. [\#206](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/206)
 * **Community**:
   * Reported bugs and provided suggestions for other teams in the cohort. (Examples: [1](https://github.com/khiaxeng/ped/issues/2), [2](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/259), [3](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/261))
   
