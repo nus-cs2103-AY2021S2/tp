@@ -92,11 +92,11 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PASSENGER);
         }
 
-        if (model.hasPassenger(passengerToEdit) && editPassengerDescriptor.getTripDay().isPresent()) {
+        if (model.hasPoolWithPassenger(passengerToEdit) && editPassengerDescriptor.getTripDay().isPresent()) {
             throw new CommandException(MESSAGE_NOT_EDITED_DAY_ERROR);
         }
 
-        if (model.hasPassenger(passengerToEdit) && editPassengerDescriptor.getTripTime().isPresent()) {
+        if (model.hasPoolWithPassenger(passengerToEdit) && editPassengerDescriptor.getTripTime().isPresent()) {
             outputMessage = MESSAGE_EDIT_PASSENGER_WARNING;
         }
 
