@@ -352,20 +352,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 ### Use cases
-(For all use cases below, the System is the `nufash` and the Actor is the `user`, unless specified otherwise)
+(For all use cases below, the System is the `NuFash` and the Actor is the `user`, unless specified otherwise)
 
 **Use case: Add a clothing item**
 
 **MSS**
 
 1. User requests to add a clothing item with specified attributes
-2. nufash adds the specified clothing item to list of existing clothing items
+2. NuFash adds the specified clothing item to list of existing clothing items
 
    Use case ends.
 
 **Extensions**
 * 1a. The specified attributes are in an invalid format.
-    * 1a1. nufash shows an error message with the valid format.
+    * 1a1. NuFash shows an error message with the valid format.
 
     * 1a2. User enters new data.
     
@@ -379,9 +379,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all clothing items
-2. nufash shows a list of clothing items
+2. NuFash shows a list of clothing items
 3. User requests to delete a specific clothing item in the list
-4. nufash deletes the specified clothing item 
+4. NuFash deletes the specified clothing item 
    
     Use case ends.
 
@@ -391,7 +391,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. nufash shows an error message.
+    * 3a1. NuFash shows an error message.
       
         Use case resumes at step 2.
 <br><br>
