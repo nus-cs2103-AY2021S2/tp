@@ -931,17 +931,41 @@ testers are expected to do more *exploratory* testing.
 
 #### Delete a contact
 1. Deleting a contact while all contacts are being shown
-    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
-    1. Test case: `delete 1` \
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list, with some contacts tagged in appointments.
+     1. Test case: `delete 1` (where the first contact is not tagged in any appointment) \
        Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message.
     1. Test case: `delete 0` \
        Expected: No contact is deleted. Error details shown in the status message.
     1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size). \
        Expected: Similar to the previous.
+    1. Test case: `delete y` (where the contact at index y is tagged in an appointment) \
+       Expected: Contact is not deleted. Error message is shown in status message.
 
 #### Delete multiple contacts
     
 #### Edit a contact
+1. Editing optional fields of a contact while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list.
+       Some contacts have optional fields not yet filled in (e.g. `phone`, `email`, `address`),
+       and some have optional fields already filled in.
+    1. Test case: `edit x e/johndoe@example.com` 
+       (where contact at index x does not have optional email filled in yet) \
+       Expected: Contact at index x is edited to have email `johndoe@example.com`. 
+       Details of edited contact is shown in status message.
+    1. Test case: `edit y p/`
+       (where contact at index y already has optional phone filled in) \
+       Expected: Contact at index x is edited to have its optional phone field removed.
+       Details of edited contact is shown in status message.
+
+2. Editing name of a contact involved in an appointment.
+    1. Prerequisites: List all contacts using the `list` command.
+       Second contact is tagged in at least one appointment.
+    1. Test case: `edit 2 n/Annie` \
+       Expected: Second contact in the list is edited to have name `Annie`.
+       Details of edited contact is shown in status message.
+       Appointments that have been tagged with the second contact will have their respective contact tags updated to `Annie`.
 
 #### Find a contact
 
@@ -1009,7 +1033,20 @@ testers are expected to do more *exploratory* testing.
        The star next to the first contact's name becomes empty.
 
 #### List all contacts
-
+1. List all contacts
+    1. Prerequisites: Multiple contacts in the list.
+    1. Test case: `list`
+       Expected: Full list of contacts will be displayed.
+       Success message is shown in the status message.
+    1. Test case: `list ajkndskjn`
+       Expected: Invalid command format error details shown in the status message.
+2. List favourited contacts
+    1. Prerequisites: Multiple contacts in the list, some being favourited contacts.
+    1. Test case: `list o/fav`
+       Expected: List of favourited contacts will be displayed.
+       Success message is shown in the status message.
+    1. Test case: `list o/random`
+       Expected: Invalid option error details shown in the status message.
 
 ### Testing Appointment Book Features
 
