@@ -33,7 +33,7 @@ public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
 
-        return keywords.stream().anyMatch(keyword -> {
+        return keywords.stream().allMatch(keyword -> {
             FilterKeywordChecker input = new FilterKeywordChecker(keyword);
             if (input.isTag()) {
                 return new TagsContainsKeywordsPredicate(input.value()).test(person);

@@ -164,6 +164,7 @@ You can add a client to Link.me, by specifying each of the fields below:
 
 * Name 
   * should only contain alphanumeric characters, spaces and these special characters: (),-
+    * :bulb: **Tip:** Use `-` in place of `/` if your name has it. e.g. `Ravi s/o Veegan` --> `Ravi s-o Veegan`
   * should not be blank
   * should not be the same as an existing client
     * :bulb: **Tip:** Link.me does not allow identical names to help you avoid confusion. If more than one of your
@@ -415,17 +416,17 @@ All of your clients that have at least one of their attributes matching your sea
 
 * The search is case-insensitive. e.g. for gender, `male` will match `Male`
 * Only attributes that are identical will be matched. e.g. for insurance plan, `Protect` will not match `Protect Plan`
-* Clients matching at least one attribute will be returned (i.e. `OR` search). e.g. `g/F age/40` will return any
-female clients and clients aged 40.
+* Clients with matching attribute to all the keyword attributes will be returned (i.e. `OR` search). e.g. `g/F age/40` will return all
+female clients aged 40.
 
 Example:
 
 * `filter a/Clementi g/M t/medical i/Protecc age/23-30` returns:
 
-  * clients who have "Clementi" in their address, or
-  * clients who are Male, or
-  * clients with the "medical" tag, or
-  * clients with the insurance plan "Protecc", or
+  * clients who have "Clementi" in their address, and
+  * clients who are Male, and
+  * clients with the "medical" tag, and
+  * clients with the insurance plan "Protecc", and
   * clients aged between 23 and 30 years old, inclusive
 
 ### Displaying notifications : `notif`

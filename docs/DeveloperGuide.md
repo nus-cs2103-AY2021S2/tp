@@ -441,7 +441,7 @@ otherwise)
     * tag: t/TAG
     * age: age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]
     * insurance plan name: i/PLAN_NAME
-2.  Link.me shows the list of clients which has at least one attribute matching the user's search keywords
+2.  Link.me shows the list of clients with matching attributes that match the user's search keywords
 3.  Use case ends
 
 **Extensions**
@@ -595,7 +595,73 @@ testers are expected to do more *exploratory* testing.
 
   1. Other correct notif commands to try: `notif x`(where x is any string appended)<br>
      Expected: Similar to previous.
-     
+
+### Listing all clients
+
+1. Get a list of all clients
+
+  1. Test case: `list`, `list alex`, `list 123` <br>
+    Expected: All clients will be displayed in the list, additional parameters are ignored
+
+### Finding clients by name
+
+1. Finding clients using (a) name(s) as keyword
+
+  1. Test case: `find Alex` <br>
+    Expected: All clients with that has "Alex" in their name will be displayed in the list
+
+  1. Test case: `find Alex Bernice` <br>
+    Expected: All clients with that has "Alex" OR "Bernice" in their name will be displayed in the list
+
+  1. Test case: `find` <br>
+    Expected: Error message "Invalid command format!" followed by instructions on how to properly use the find 
+command
+
+## Filtering clients using attributes. Attributes include a/ADDRESS, g/GENDER, t/TAG, age/[AGE] or 
+age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
+
+  1. Test case: `filter a/Clementi g/M t/medical i/Protecc age/23-30` <br>
+    Expected: Returns a list of clients who have "Clementi" in their address, and <br>
+      clients who are Male, and <br>
+      clients with the "medical" tag, and <br>
+      clients with the insurance plan "Protecc", and <br>
+      clients aged between 23 and 30 years old, inclusive
+
+  1. Test case: `filter`, `filter 20`, `filter Clementi` <br>
+    Expected: Error message "Invalid command format!" followed by instructions on how to properly use the filter 
+command
+
+  1. Test case: `filter age/abc`, `filter age/-1`, `filter age/30-20`, `filter age/ab-20`, `filter age/-1-20` <br>
+    Expected: Error message "Invalid age (range) input!" followed by instructions on how to properly use the filter 
+command <br>
+
+### Adding or removing an insurance plan of a client
+
+1. Adding a new insurance plan to a client while all clients are being shown
+
+   1. Prerequisites: List all clients using the `list` command. At least 1 client in the list.
+
+   1. Test case: `plan 1 i/Investment $1000`<br>
+      Expected: A new insurance plan is added to the 1st client in the list. Details are shown in the result display.
+
+   1. Test case: `plan 1 i/Investment $0`<br>
+      Expected: No insurance plan is added. Error details are shown in the result display.
+
+   1. Other incorrect plan commands to try: `plan 0 i/Investment $1000`, `plan 1 i/`<br>
+      Expected: Similar to previous.
+      
+2. Removing an existing insurance plan from a client while all clients are being shown
+
+   1. Prerequisites: List all clients using the `list` command. At least 1 client in the list and the 1st client has at least 1 insurance plan.
+
+   1. Test case: `plan 1 c/1`<br>
+      Expected: The 1st insurance plan of the 1st client in the list is removed. Details are shown in the result display.
+
+   1. Test case: `plan 1 c/0`<br>
+      Expected: No insurance plan is removed. Error details are shown in the result display.
+
+   1. Other incorrect plan commands to try: `plan 0 c/1`, `plan 1 c/`<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
@@ -605,7 +671,7 @@ testers are expected to do more *exploratory* testing.
      
   1. Test case: delete the `linkme.json` file 
       Expected: Link.me will load sample data upon initialization the next time it starts
-
+      
   1. Test case: valid edits are made in the `linkme.json` file
      Expected: Link.me will the data in from the json file correctly
 
