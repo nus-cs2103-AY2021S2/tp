@@ -31,7 +31,7 @@ A full list of code contribution can be found here:
 - Add ToggleThemeCommand: [\#176](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/176)
   * What it does: Allows user to toggle between dark theme and pastel theme.
   * Justification: Allow the user to customize the PartyPlanet based on which theme they prefer visually.
-  * Was further improve by pyuxiang in [\#184](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/184) to add theme to userpref so that chosen theme persists through sessions.
+  * Was further improved by pyuxiang in [\#184](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/184) to add theme to userpref so that chosen theme persists through sessions.
 
 ### Feature enhancements
 
