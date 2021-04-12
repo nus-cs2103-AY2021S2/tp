@@ -26,7 +26,7 @@ activate ViewCommandParser
 ViewCommandParser --> WardrobeParser
 deactivate ViewCommandParser
 
-WardrobeParser -> ViewCommandParser : parse("view 1 2 3")
+WardrobeParser -> ViewCommandParser : parse("1 2 3")
 activate ViewCommandParser
 
 create ViewCommand
