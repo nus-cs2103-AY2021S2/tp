@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
@@ -36,7 +37,7 @@ public class DeleteVenueCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getBookingSystem(), new UserPrefs());
         expectedModel.deleteVenue(venueToDelete);
-        assertCommandSuccess(deleteVenueCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteVenueCommand, model, expectedMessage, COMMAND_SHOW_VENUES, expectedModel);
     }
 
     @Test

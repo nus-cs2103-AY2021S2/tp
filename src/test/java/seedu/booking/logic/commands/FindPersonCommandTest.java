@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.MESSAGE_NO_PERSONS_FOUND;
 import static seedu.booking.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.commands.CommandTestUtil.NON_EXISTENT_EMAIL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -72,7 +73,7 @@ public class FindPersonCommandTest {
 
         FindPersonCommand command = new FindPersonCommand(predicate);
         expectedModel.updateFilteredPersonList(combinePersonPredicates(predicate));
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, COMMAND_SHOW_PERSONS, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -85,7 +86,7 @@ public class FindPersonCommandTest {
 
         FindPersonCommand command = new FindPersonCommand(predicate);
         expectedModel.updateFilteredPersonList(combinePersonPredicates(predicate));
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, COMMAND_SHOW_PERSONS, expectedModel);
     }
 
     /**

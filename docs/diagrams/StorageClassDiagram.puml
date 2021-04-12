@@ -19,6 +19,10 @@ StorageManager o--> BookingSystemStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonBookingSystemStorage .left.|> BookingSystemStorage
 JsonBookingSystemStorage .down.> JsonSerializableBookingSystemStorage
-JsonSerializableBookingSystemStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonSerializableBookingSystemStorage .right.> JsonAdaptedPerson
+JsonSerializableBookingSystemStorage .right.> JsonAdaptedBooking
+JsonSerializableBookingSystemStorage .right.> JsonAdaptedVenue
+JsonAdaptedPerson .right.> JsonAdaptedTag
+JsonAdaptedBooking .right.> JsonAdaptedTag
+JsonAdaptedVenue .right.> JsonAdaptedTag
 @enduml

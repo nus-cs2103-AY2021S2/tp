@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -35,7 +36,7 @@ public class AddBookingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
     public static final String MESSAGE_INVALID_TIME =
-            "Invalid timing: The booking's starting time cannot be later than its ending time";
+            "Invalid timing: The booking's starting time cannot be later than its ending time. ";
     public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
     public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
     public static final String MESSAGE_OVERLAPPING_BOOKING = "This time slot has been booked.";
@@ -75,7 +76,7 @@ public class AddBookingCommand extends Command {
         }
 
         model.addBooking(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), COMMAND_SHOW_BOOKINGS);
     }
 
 

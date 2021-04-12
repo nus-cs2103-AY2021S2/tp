@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.PROMPT_END_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_END;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
 import static seedu.booking.testutil.TypicalBookings.BOOKING1;
@@ -33,7 +34,8 @@ public class PromptBookingStartCommandTest {
     @Test
     void execute() {
         PromptBookingStartCommand command = new PromptBookingStartCommand(BOOKING1.getBookingStart());
-        CommandResult expectedResult = new CommandResult(PROMPT_END_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+        CommandResult expectedResult = new CommandResult(PROMPT_END_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                COMMAND_SHOW_BOOKINGS);
         CommandResult result;
         try {
             result = command.execute(model);

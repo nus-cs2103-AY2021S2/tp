@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.PROMPT_CAPACITY_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_DUPLICATE_VENUE_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.commands.states.AddVenueCommandState.STATE_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
@@ -39,10 +40,11 @@ public class PromptAddVenueCommand extends Command {
         }
 
         CommandState commandState = new AddVenueCommandState(venueName);
+
         StatefulLogicManager.setCommandState(commandState);
         StatefulLogicManager.setStateActive();
         StatefulLogicManager.setState(STATE_CAPACITY);
-        return new CommandResult(PROMPT_CAPACITY_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+        return new CommandResult(PROMPT_CAPACITY_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT, COMMAND_SHOW_VENUES);
     }
 
     @Override

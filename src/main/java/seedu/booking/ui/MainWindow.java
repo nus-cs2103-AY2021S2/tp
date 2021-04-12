@@ -1,5 +1,7 @@
 package seedu.booking.ui;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PREVIOUS;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.logic.Logic;
 import seedu.booking.logic.commands.CommandResult;
+import seedu.booking.logic.commands.CommandShowType;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.parser.exceptions.ParseException;
 
@@ -195,26 +198,29 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
-    private String getCommandType(String commandText) {
-        String command = commandText.split(" ")[0];
-        if (command.contains("_")) {
-            return command.split("_")[1];
-        } else {
-            return "";
+    /**
+     * Based on the command result, decide on which list to show.
+     */
+    private void displayList(CommandResult commandResult) {
+        CommandShowType commandType = commandResult.getShowType();
+        if (commandType == COMMAND_SHOW_PREVIOUS) {
+            return;
         }
-    }
-
-    private void displayList(String commandType) {
         resultListPanelPlaceholder.getChildren().clear();
-        if (commandType.equals("booking")) {
+        switch(commandType) {
+        case COMMAND_SHOW_BOOKINGS:
             resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
-            currentListName.setText("Bookings:");
-        } else if (commandType.equals("venue")) {
+            break;
+        case COMMAND_SHOW_VENUES:
             resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
-            currentListName.setText("Venues:");
-        } else {
+            break;
+        case COMMAND_SHOW_PERSONS:
             resultListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-            currentListName.setText("Persons:");
+            break;
+        case COMMAND_SHOW_NONE:
+            break;
+        default:
+            assert false;
         }
     }
 
@@ -229,7 +235,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            displayList(getCommandType(commandText));
+            displayList(commandResult);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
