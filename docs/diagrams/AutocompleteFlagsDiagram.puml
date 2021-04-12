@@ -1,0 +1,19 @@
+@startuml
+-> MainWindow : TAB KeyPress
+MainWindow -> LogicManager : getAvailableFlags
+LogicManager --> MainWindow
+LogicManager -> LogicManager : filterExistingFlags
+
+alt if availableFlags exist
+
+    MainWindow -> CommandBox: setAndAppendFlag
+    CommandBox --> MainWindow
+
+else else
+
+    MainWindow -> LogicManager : getAutocompleteFlags
+    LogicManager --> MainWindow
+    MainWindow -> CommandBox : setTextValue
+    CommandBox --> MainWindow
+    end
+@enduml
