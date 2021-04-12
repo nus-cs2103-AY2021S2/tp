@@ -18,18 +18,17 @@ public class ExpiryDate {
     private static final String SPECIAL_CHARACTERS = "-";
     public static final String MESSAGE_CONSTRAINTS = "Expiry dates should be of the format YYYY-MM-DD "
         + "and adhere to the following constraints:\n"
-        + "1. YYYY, MM and DD should only contain numeric characters and must be separated by a "
+        + "1. YYYY, MM and DD should only contain numeric characters and must be separated by a \""
         + SPECIAL_CHARACTERS
-        + " character.\n"
+        + "\" character.\n"
         + "2. YYYY must:\n"
         + "    - be exactly 4 digits long\n"
-        + "    - be a valid year\n"
         + "3. MM must:\n"
         + "    - be exactly 2 digits long\n"
-        + "    - be within the range [01, 12]\n"
+        + "    - be any number from 01 to 12\n"
         + "4. DD must:\n"
         + "    - be exactly 2 digits long\n"
-        + "    - be a valid expiry date\n";
+        + "    - be a valid day in the given month\n";
 
     public final String value;
     public final LocalDate expiryDate;

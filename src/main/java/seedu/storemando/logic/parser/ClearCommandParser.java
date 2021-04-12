@@ -32,7 +32,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
 
         if (argMultimap.getPreamble().isEmpty() && argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             String location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()).toString();
-            return new ClearLocationCommand(new LocationContainsPredicate(location));
+            return new ClearLocationCommand(new LocationContainsPredicate(location), location);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }

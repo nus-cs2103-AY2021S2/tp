@@ -44,7 +44,8 @@ public class ClearAllCommandTest {
 
         // different types -> returns false
         assertFalse(standardCommand.equals(new SortAscendingQuantityCommand()));
-        assertFalse(standardCommand.equals(new ClearLocationCommand(new LocationContainsPredicate("Kitchen"))));
+        assertFalse(standardCommand.equals(new ClearLocationCommand(new LocationContainsPredicate("Kitchen"),
+            "Kitchen")));
 
     }
 
