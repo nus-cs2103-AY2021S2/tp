@@ -710,6 +710,61 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Find commands
+
+1. Find
+
+    1. Test case: `find`<br>
+        Expected: Both lists are not updated, error message showing the two types of `find` commands is shown. 
+        
+1. Finding properties
+    
+    1. Prerequisites: Using default example data (or make sure when `list property` is entered, you can see the property `Woodlands Crescent` that has type `hdb` and price at `$800,000`). 
+    
+    1. Test case: `find property n/woodlands`<br>
+        Expected: `Woodlands Crescent` property is shown in the list, properties that do not contain the word `woodlands` in the name are not shown. 
+       
+    1. Test case: `find property pm/$700000 t/hdb`<br>
+        Expected: `Woodlands Crescent` property is shown in the list, properties with price less than $700,000 or are not HDB are not shown. 
+        
+    1. Test case: `find property n/`<br>
+        Expected: Property list is not updated. Error details shown in the status message. 
+        
+    1. Test case: `find property pm/abc`<br>
+        Expected: Property list is not updated. Error details shown in the status message. 
+        
+    1. Other incorrect find property commands to try: `find property x/ `, where x is any of the permissible options. 
+        Expected: Similar to previous. 
+        
+1. Finding appointments
+    
+    1. Prerequisites: Using default example data (or make sure when `list appointment` is entered, you can see the appointment `Meet Emily` that has remarks `At Mayfair Gardens`, date at `Jun 15 2021`, and time at `11:00AM`). 
+    
+    1. Test case: `find appointment n/emily`<br>
+        Expected: `Meet Emily` appointment is shown in the list, appointments that do not contain the word `emily` in the name are not shown. 
+        
+    1. Test case: `find appointment d/15-06-2021 t/1100`<br>
+        Expected: `Meet Emily` appointment is shown in the list, appointments whose date is not `Jun 15, 2021` and time is not `11:00AM` are not shown. 
+        
+    1. Test case: `find appointment n/ `<br>
+        Expected: Appointment list is not updated. Error details shown in the status message. 
+        
+    1. Test case: `find appointment d/abc` <br>
+        Expected: Appointment list is not updated. Error details shown in the status message. 
+
+    1. Other incorrect find property commands to try: `find appointment x/ `, where x is any of the permissible options. 
+        Expected: Similar to previous. 
+
+1. Finding clients
+
+    1. Prerequisite: Using default example data (or make sure when `list all` is entered, you can see the appointment `Meet Alice` and the property with `Alice` as client name). 
+    
+    1. Test case: `find client alice`
+        Expected: `Meet Alice` appointment is shown in appointment list, and properties with `Alice` in `Client Name` field are shown in property list. 
+        
+    1. Test case: `find client`
+        Expected: Both lists are not updated. Error details shown in the status message. 
+
 ### Editing a property
 
 1. Editing a property.
