@@ -263,12 +263,10 @@ Here is a more specific breakdown of the command's execute method.
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
 3. From here, Find Command creates a command result and returns it to the `LogicManager`.
 
-
-### List Feature
-
 ### View feature
 
-Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
+Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or 
+all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
 
 When the user enters a valid command with the target entity ID, the ViewCommandParser will firstly parse the command and store the ID as an integer that is then passed on to as a parameter into the constructor method of a new ViewCommand instance.
 
@@ -305,6 +303,30 @@ Here is a more specific breakdown of the command's execute method.
 2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model. 
 3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list. 
 4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
+
+#### Schedule feature
+
+Pawbook allows the user to display the `schedule` of all programs.
+For instance, the user may want to view the `schedule` of all programs on a specific date.
+By entering the correct schedule command with the correct date, the entire list of programs on the specific date will be generated.
+
+When the user enters a valid command with the date, the arguments are parsed by the `ScheduleCommandParser` that converts 
+the argument string into a Date that is subsequently passed on to a `ProgramOccursOnDatePredicate` object. 
+
+Using the `IsEntityPredicate` for program and the `ProgramOccursOnDatePredicate`, the list of programs is retrieved via 
+the `ModelManager` using the `updateFilteredEntityList()` method.
+
+Below is an example activity diagram for a valid schedule command from the user.
+
+![ScheduleActivityDiagram](images/ScheduleActivityDiagram.png){: .center-image}
+
+Below is an example sequence diagram for a valid schedule command from the user.
+
+![ScheduleSequenceDiagram](images/ScheduleSequenceDiagram.png){: .center-image}
+
+Here is a more specific breakdown of the command's execute method.
+
+![ScheduleSequenceDiagramSpecific](images/ScheduleSequenceDiagramSpecific.png)
 
 ### Enrol feature
 
