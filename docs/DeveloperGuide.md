@@ -516,6 +516,8 @@ Use case ends
 
     Use case ends.
 
+**Extensions**
+
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
@@ -530,8 +532,9 @@ Use case ends
 
 * 1c. System detects that the given parameter is invalid.
 
-    * 1c1. System shows an error message.
-      <br> Use case ends.
+    * 1c1. System shows an error message. 
+      
+        Use case ends.
 
 **Use case: Filter all student records**
 
@@ -541,6 +544,8 @@ Use case ends
 2.  System displays a list of filtered records.
 
     Use case ends.
+
+**Extensions**
 
 * 1a. System detects that the given parameter is invalid.
 
