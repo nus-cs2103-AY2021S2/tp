@@ -49,7 +49,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        String errorMessage = ParserUtil.MESSAGE_INVALID_INDEX + "\n" + MESSAGE_INVALID_PREFIX_DETECTED;
+        String errorMessage = ParserUtil.MESSAGE_INVALID_INDEX + "\n\n" + MESSAGE_INVALID_PREFIX_DETECTED;
 
         // no index specified
         assertParseFailure(parser, VALID_TITLE_AMY, errorMessage);
@@ -63,7 +63,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidPreamble_failure() {
-        String errorMessage = ParserUtil.MESSAGE_INVALID_INDEX + "\n" + MESSAGE_INVALID_PREFIX_DETECTED;
+        String errorMessage = ParserUtil.MESSAGE_INVALID_INDEX + "\n\n" + MESSAGE_INVALID_PREFIX_DETECTED;
         // negative index
         assertParseFailure(parser, "-5" + TITLE_DESC_AMY, errorMessage);
 
