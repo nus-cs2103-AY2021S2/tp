@@ -720,7 +720,30 @@ _{Explain here how the data archiving feature will be implemented}_
 * 2a. The list is empty.
 
   Use case ends.
-    
+
+**Use case: UC08 -  List all notes**
+
+**MSS**
+
+1.  User requests to list notes.
+2.  Dictionote shows a list of notes which might or might not be empty.
+
+    Use case ends.
+
+**Use case: UC09 -  Show a specific note**
+
+**MSS**
+
+1.  User requests to show a specific note.
+2.  Dictionote shows note requested by the user in the rightmost panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The requested index is out of bounds. Then an index invalid exception will arise.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
