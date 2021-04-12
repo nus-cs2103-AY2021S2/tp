@@ -62,7 +62,7 @@ In this section, you will learn about CakeCollate's User Interface (UI), the for
 
 3. The **Orders Box** is where all the orders that you have added to CakeCollate are displayed.
 
-4. The **Order Items Table** is where all the different types of order items you have already entered into CakeCollate are displayed. You can think of it as a product catalogue. //todo
+4. The **Order Items Box** is where all the different types of order items you have already entered into CakeCollate are displayed in an order items table. You can think of it as a product catalogue. //todo
 
 #### **2.2.2 Formatting of the commands**
 
@@ -171,7 +171,7 @@ Prefix: `o/`
 ##### `ORDER_ITEM_INDEXES`
 The order item index in the order items table.<br>
 Prefix: `oi/`
-* This refers to indexes of the order items in the [order items table](#221-sections-of-the-ui).
+* This refers to indexes of the order items in the [order items box](#221-sections-of-the-ui).
 * This can be used with or as a replacement for `ORDER_DESCRIPTION`, given the order item in the table matches the order description you want to add/edit.
 
 ##### `PHONE_NUMBER`
@@ -186,7 +186,7 @@ Prefix: `p/`
 The special request or notes you can add to an order. What makes it different from tags is that it can contain a
 large amount of information.<br>
 Prefix: `r/`
-* It can contain any type of character.
+* It can contain all types of characters.
 * It can be empty.
   * An empty request is used to clear/reset the `REQUEST` field of the order.
 
@@ -270,9 +270,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_IT
 
 * The difference here compared to the previous format is that you can omit the `ORDER_DESCRIPTION` parameter, but you need to include an `ORDER_ITEM_INDEXES` parameter.
 
-* This alternative format is aimed at saving you some typing. If an order description you want to specify already exists in the [order items table](#221-sections-of-the-ui), you can specify its index instead of typing its entire name out.
+* This alternative format is aimed at saving you some typing. If an order description you want to specify already exists in the [order items box](#221-sections-of-the-ui), you can specify its index instead of typing its entire name out.
 
-* For example, for an order that involves Chocolate Cake, if `Chocolate Cake` exists in the [order items table](#221-sections-of-the-ui) as shown, instead of typing `o/Chocolate Cake`, you can type `oi/4`.
+* For example, for an order that involves Chocolate Cake, if `Chocolate Cake` exists in the [order items box](#221-sections-of-the-ui) as shown, instead of typing `o/Chocolate Cake`, you can type `oi/4`.
 
 * As such, you can interpret the order items table of the GUI as being a shortcut table.
 
