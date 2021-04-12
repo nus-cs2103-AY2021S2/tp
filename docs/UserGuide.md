@@ -170,6 +170,7 @@ Examples:
 * `finddef programming` returns `Programming Language` and `Object-Oriented Programming` <br>
   ![finddef](images/Diagram-finddef.png)
 
+<div style="page-break-after: always;"></div>
 #### Showing a dictionary content : `showdc`
 
 Showcases a dictionary content.
