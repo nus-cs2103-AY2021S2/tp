@@ -4,9 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 class DateOfBirthTest {
+    private LocalDate currentDate = LocalDate.now();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy LL dd");
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -33,12 +38,12 @@ class DateOfBirthTest {
         assertFalse(DateOfBirth.isValidDateOfBirth("19980505")); // missing spaces in between yyyy mm dd
 
         // invalid DateOfBirth
-        assertFalse(DateOfBirth.isValidDateOfBirth("2050 10 10")); // invalid year, cannot be born in the future
+        assertFalse(DateOfBirth.isValidDateOfBirth(currentDate.plusYears(50).format(formatter))); // invalid future year
         assertFalse(DateOfBirth.isValidDateOfBirth("2030 13 01")); // invalid month
         assertFalse(DateOfBirth.isValidDateOfBirth("2030 10 32")); // invalid date
 
         // valid DateOfBirth
-        assertTrue(DateOfBirth.isValidDateOfBirth("1965 01 10"));
-        assertTrue(DateOfBirth.isValidDateOfBirth("1998 05 05"));
+        assertTrue(DateOfBirth.isValidDateOfBirth(currentDate.minusYears(99).format(formatter))); //99 years ago
+        assertTrue(DateOfBirth.isValidDateOfBirth(currentDate.minusYears(21).format(formatter))); //21 years ago
     }
 }
