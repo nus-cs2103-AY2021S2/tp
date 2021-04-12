@@ -206,8 +206,6 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
     @Override
     public void resetFilter() {
-        assert true;
-        setCurrentDisplayMonth(YearMonth.now());
         updateFilteredFinancialRecordList(fr -> true);
     }
 

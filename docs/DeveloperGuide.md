@@ -229,7 +229,7 @@ The following activity diagram summarizes what happens when a user executes `set
 
 ![](images/SetBgActivityDiagram.png)
 
-### [Completed] Find Financial Record Feature : `find-fr`
+### Find Financial Record Feature : `find-fr`
 
 #### Proposed Implementation
 
@@ -289,7 +289,7 @@ The following activity diagram summarizes what happens when a user executes `fin
   - Cons: Additional implementation and commands. More steps required for user
     when filtering multiple fields
 
-### [Completed] Reset Filter Feature : `reset-filter`
+### Reset Filter Feature : `reset-filter`
 
 #### Actual Implementation
 
@@ -319,7 +319,7 @@ available financial records.
 The following sequence diagram shows how the find operation works:
 ![](images/ResetSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes `reset-filter`: </br>
+The following activity diagram summarizes what happens when a user executes `reset-filter`:
 ![](images/ResetActivityDiagram.png)
 
 ### All Categories Statistics Feature

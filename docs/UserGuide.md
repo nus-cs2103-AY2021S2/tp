@@ -20,7 +20,7 @@ title: User Guide
   - [4.4 Command Box](#44-command-box)
   - [4.5 Result Display](#45-result-display)
   - [4.6 Status Bar](#46-status-bar)
-- [5 Features](#5-features) TODO
+- [5 Features](#5-features)
   - [5.1 Viewing help : `help`](#51-viewing-help--help)
   - [5.2 Adding a financial record : `add-fr`](#52-adding-a-financial-record--add-fr)
   - [5.3 Deleting a financial record : `delete-fr`](#53-deleting-a-financial-record--delete-fr)
@@ -348,6 +348,10 @@ If you currently have a filter set, such as a particular month or category, and 
 <img src="images/features/reset-filter.png" width="1200px">
 
 Format: `reset-filter`
+
+**:bulb: Tips:**
+
+- This command only resets filters set by `find-fr` on the currently viewed month.
 
 ### 5.9 Undoing commands : `undo`
 
