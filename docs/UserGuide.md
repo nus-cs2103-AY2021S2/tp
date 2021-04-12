@@ -9,8 +9,8 @@ Thank you for downloading **Focuris**! As a busy University student, Focuris hel
 work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making
 your student life a little easier! <br/>
 
-Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
-**displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
+Focuris is a **desktop application** for **managing events** with a [KanBan](#kanban) board. The KanBan board is a board which
+**displays events according to the level of completion**: [Backlog](#backlog), [Todo](#todo), [In-Progress](#in-progress) and [Done](#done). <br/>
 
 Focuris aims to help **university students** like you to keep track of your tasks or events in order to help improve time management
 and organisation.
@@ -55,8 +55,6 @@ and customise your experience with Focuris!
 <!-- AUTO-GENERATED TOC - END -->
 <!-- prettier-ignore-end -->
 
----
-
 <div class="page-break-before"></div>
 
 # 1. Quick start
@@ -86,7 +84,7 @@ Start improving your productivity by following these simple steps:
 
    - **`prog`**`n/CS2100 Lab 3 d/Lab homework` : Adds an event named `CS2100 Lab 3` to the application with status `IN PROGRESS`.
 
-   - **`delete`**`3` : Deletes the event with the identifier of 3 shown on the KanBan board.
+   - **`delete`**`3` : Deletes the event with the identifier of 3 shown on the [KanBan](#kanban) board.
 
    - **`exit`** : Exits the application.
 
@@ -120,6 +118,7 @@ Continue reading for more ways to improve your productivity with Focuris!
 
 - Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will be result in an error message.<br>
   e.g. if you type `help 123`, Focuris will show an error that says `Please remove extra irrelevant arguments!`.
+
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
@@ -165,10 +164,9 @@ and [2.3](#23-event-commands).
 - Events of the same name are treated as case-insensitive. <br>
   e.g. `CS2030` is the same name as `cs2030`.
 - Note that commands are case sensitive, so you must follow the format given closely! <br>
-  e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work. 
-- Also note that for the commands where square brackets `[ ]` appear, it indicates that those a optional fields, which means that you do not 
-necessarily have to type them in if you do not want to, as shown in the table above under <b>Format, Examples</b>.
-
+  e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work.
+- Also note that for the commands where square brackets `[ ]` appear, it indicates that those a optional fields, which means that you do not
+  necessarily have to type them in if you do not want to, as shown in the table above under <b>Format, Examples</b>.
 
 </div>
 
@@ -214,10 +212,13 @@ There are two views in Focuris, which can be toggled with the [`switch` command]
 
 2. `List` view<br/>
    ![Ui List](images/user-guide/Annotated/UiListWithReferenceAnnotated.png)
-This is how your events are displayed:
-![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
+   This is how your events are displayed:
+   ![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
 
-**:information_source: Please take note that Events are not sorted by their Priority in Focuris (Coming soon!)** <br/>
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br/>
+Please take note that Events are not sorted by their Priority in Focuris (Coming soon!) <br/>
+</div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -294,12 +295,12 @@ For the majority of event commands, you can simply execute them via these simple
 
 1. Type the command you desire in the command box with the specified format detailed below.
 2. Hit `enter` on your keyboard!
-3. The result of your command should be visible on the Result Box, while the outcome of your command should be 
-visible on the `KanBan` or `List` view (depending on your view) above the Result Box.
+3. The result of your command should be visible on the Result Box, while the outcome of your command should be
+   visible on the `KanBan` or `List` view (depending on your view) above the Result Box.
 
 Start discovering and using the Commands now by going to the Command Summary!
 
-<a class="md-btn md-btn-raised" href="#211-command-summary">Bring me to the Command Summary</a>
+<a class="md-btn" href="#211-command-summary">Bring me to the Command Summary</a>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -307,7 +308,7 @@ Start discovering and using the Commands now by going to the Command Summary!
 
 ### 2.3.1 `todo` Command
 
-Adds an event with status `TODO` to Focuris.
+Adds an event with status `TODO` to Focuris. You can find out more about the `TODO` event status [here](#todo).
 
 **What you should type into the Command Box:**
 
@@ -325,12 +326,12 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                                                        | Expected Command Result                                                                                                          |
-| --- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO                               |
-| 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
-| 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Todo added: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
-| 4   | `todo n/Run d/Exercise p/h`                                                            | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
+| No  | Example Command                                                                        | Expected Command Result                                                                                                                                 |
+| --- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Event added with a status of TODO: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 May 2021; Status: TODO                               |
+| 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Event added with a status of TODO: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
+| 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Event added with a status of TODO: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
+| 4   | `todo n/Run d/Exercise p/h`                                                            | New Event added with a status of TODO: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -338,7 +339,7 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 ### 2.3.2 `log` Command
 
-Adds an event with status `BACKLOG` to Focuris.
+Adds an event with status `BACKLOG` to Focuris. You can find out more about the `BACKLOG` event status [here](#backlog).
 
 **What you should type into the Command Box:**
 
@@ -355,12 +356,12 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                          | Expected Command Result                                                                                    |
-| --- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
-| 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New BackLog added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
-| 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
-| 4   | `log n/Run d/Exercise p/high`                            | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                             |
+| No  | Example Command                                          | Expected Command Result                                                                                                           |
+| --- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New Event added with a status of BACKLOG: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
+| 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New Event added with a status of BACKLOG: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
+| 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New Event added with a status of BACKLOG: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
+| 4   | `log n/Run d/Exercise p/high`                            | New Event added with a status of BACKLOG: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                             |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -368,7 +369,7 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 ### 2.3.3 `prog` Command
 
-Adds an event with status `IN PROGRESS` to Focuris.
+Adds an event with status `IN PROGRESS` to Focuris. You can find out more about the `IN PROGRESS` event status [here](#in-progress).
 
 **What you should type into the Command Box:**
 
@@ -385,12 +386,12 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                                                     |
-| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
-| 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
-| 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
-| 4   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
+| No  | Example Command                                                               | Expected Command Result                                                                                                                                            |
+| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Event added with a status of IN-PROGRESS: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
+| 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New Event added with a status of IN-PROGRESS: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
+| 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Event added with a status of IN-PROGRESS: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
+| 4   | `prog n/Run d/Exercise p/h`                                                   | New Event added with a status of IN-PROGRESS: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -460,10 +461,10 @@ delete IDENTIFIER
 
 **More Sample Commands:**
 
-| No  | Example Command | Expected Command Result                                                                  |
-| --- | --------------- | ---------------------------------------------------------------------------------------- |
-| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Status: TODO; Description: Lab 1 to complete                |
-| 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Status: IN_PROGRESS; Description: Due on 28 Mar 2021 |
+| No  | Example Command | Expected Command Result                                                                                   |
+| --- | --------------- | --------------------------------------------------------------------------------------------------------- |
+| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Priority: LOW; Description: Lab 1 to complete; Status: TODO;                 |
+| 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Priority: HIGH; Description: Due on 28 Mar 2021; Status: IN_PROGRESS; |
 
 <div markdown="block" class="alert alert-info">
 
@@ -575,7 +576,7 @@ list
 
 ### 2.3.9 `done` Command
 
-Set the status of an Event to `DONE`.
+Set the status of an Event to `DONE`. You can find out more about the `DONE` status [here](#done).
 
 **What you should type into the Command Box:**
 
@@ -672,10 +673,22 @@ As a new user to Focuris, you might encounter have certain queries regarding how
 
 # 4. Glossary
 
-<a name="case-insensitive" class="do-not-decorate"><bold>Case Insensitive</bold>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
+As a new user to Focuris, you may encounter certain keywords that you may not be familiar with in the user guide or in Focuris. The glossary will help you get started with understanding what each keyword means.
 
-<a name="parameters" class="do-not-decorate"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
+<a name="backlog" class="do-not-decorate"><strong>Backlog</strong>: Describes an Event that is currently not being worked on, but needs to be worked on in the future. When an Event is about to be worked on, a status of `Todo` should be allocated to it.</a>
 
-<a name="special-characters" class="do-not-decorate"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
+<a name="case-insensitive" class="do-not-decorate"><strong>Case Insensitive</strong>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
+
+<a name="done" class="do-not-decorate"><strong>Done</strong>: Describes an Event where progress is completed. Once a record of the Event is no longer needed, the Event can be deleted from the `KanBan` board.</a>
+
+<a name="in-progress" class="do-not-decorate"><strong>In Progress</strong>: Describes an Event where progress is currently being made for the task and it will be completed soon. When an Event is completed, a status of `Done` should be allocated to it.</a>
+
+<a name="kanban" class="do-not-decorate"><strong>KanBan</strong>: KanBan is inspired by the Japanese words '看板', meaning signboard. In workflow management, a kanban board aims to help you visualise your workflow, often through including a board with cards and columns, where each card represents a work item and each column represents the current status of a work item, in Focuris, these columns are `Backlog`, `Todo`, `In Progress` and `Done`.</a>
+
+<a name="parameters" class="do-not-decorate"><strong>Parameters</strong>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
+
+<a name="special-characters" class="do-not-decorate"><strong>Special Characters</strong>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
+
+<a name="todo" class="do-not-decorate"><strong>Todo</strong>: Describes an Event that is currently about to be worked on in the near future. When work on an Event is underway, a status of `In Progress` should be allocated to it.</a>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
