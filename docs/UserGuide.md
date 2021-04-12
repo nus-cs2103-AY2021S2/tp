@@ -173,7 +173,7 @@ You can view your information and associated health risks (if any), at any time 
 
 ### 1.3 Update user information
 
-From time to time, we may have lost or gained weight following our diet plan. This allows you to update your information to reflect those changes.
+From time to time, you may have lost or gained weight following your diet plan. This allows you to update your information to reflect those changes.
 
 **Command Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`  
 **Example:** `bmi_update g/M a/43 h/170 w/70 i/80`  
@@ -182,6 +182,8 @@ From time to time, we may have lost or gained weight following our diet plan. Th
 <p align="center">
   <img src="images/user-guide/update-bmi-result.png">
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ## 2. Diet Plan Selector
 
@@ -242,6 +244,8 @@ Interested in trying out a diet plan? Find out more about its daily nutritional 
   <img src="images/user-guide/plan-info-result.png">
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Macronutrients Tracker
 
 ### 3.1 Add food item
@@ -281,6 +285,8 @@ Update food items in your food list with new nutrition values.
 <p align="center">
   <img src="images/user-guide/update-food-item-result.png">
 </p>
+
+
 
 ### 3.3 List food item
 
@@ -439,6 +445,8 @@ View the list of food intakes over a period of days (both inclusive).
   <img src="images/user-guide/query-food-intake-period.png">
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ## 4. Progress report
 
 ### 4.1 Generate progress report
@@ -456,6 +464,8 @@ Generates a progress report based on your current active diet plan. Your food in
 <p align="center">
   <img src="images/user-guide/progress-report.png">
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Miscellaneous
 
