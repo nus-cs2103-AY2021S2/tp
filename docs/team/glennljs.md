@@ -40,11 +40,11 @@ Given below are my contributions to the project.
 
 ### Documentation
 * User Guide
-  * Added User Stories: [\#26](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/26)
   * Added Coming Soon Features: [\#49](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/49)
   * Add Autocomplete Documentation: [\#299](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/299)
 
 * Developer Guide
+  * Added User Stories: [\#26](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/26)
   * Add Autocomplete Documentation: [\#171](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/171)
   * Assist with Refactoring: [\#220](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/220)
 
