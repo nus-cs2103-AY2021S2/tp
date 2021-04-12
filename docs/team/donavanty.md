@@ -55,7 +55,7 @@ Given below are my contributions to the project.
   * Refactored the code base to fit a Food Diary. [\#69](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/69)
   * Enhanced the Help Window. [\#83](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/83)
   * Updated the GUI colour scheme (Pull requests [\#102](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/102),
-  [\#12](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/112))
+  [\#112](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/112))
 
 * **Documentation**:
   * User Guide:
@@ -73,7 +73,7 @@ Given below are my contributions to the project.
     * Cleaned up the entire DG. [\#224](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/224)
 
 * **Community**:
-  * PRs reviewed (with review comments): [\#83](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/83)
+  * PRs reviewed (with review comments): [\#83](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/83),
   [\#187](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/187),
   [\#32](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/183)
   * Notable PRs with explanations: [\#185](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/185),
