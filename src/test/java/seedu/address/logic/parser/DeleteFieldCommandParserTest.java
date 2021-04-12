@@ -21,13 +21,9 @@ public class DeleteFieldCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, " a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_TOO_LITTLE_ARGUMENTS));
-        assertParseFailure(parser, "1 t/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteFieldCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "1 d/ d/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, " 1 d/ d/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_TOO_MANY_ARGUMENTS));
-        assertParseFailure(parser, "1 pp/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteFieldCommand.MESSAGE_USAGE));
     }
 }
