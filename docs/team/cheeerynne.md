@@ -12,11 +12,9 @@ that are typed into the input box as commands and it has a GUI created with Java
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to assign members to a task. (Pull Requests: [\#161](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/161), [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163))
-    * What it does: Allows the user to assign multiple members to a task and edit assignees to a task. 
-
+    * What it does: Allows the user to assign multiple members to a task and edit assignees to a task.
     * Justification: This feature improves the product significantly because a user can conveniently track which members are assigned to a task.
-      Also, users can easily modify the assignees to a task should there be any changes in the assignment of a task. 
-    
+      Also, users can easily modify the assignees to a task should there be any changes in the assignment of a task.
     * Highlights: The implementation was challenging as I had to check whether the specified member's name exists in the 
       members' list before allowing assignment to a task. I decided to implement an Assignee class, along with a checkAssignees 
       method within the ModelManager class. The checkAssignees method checks the validity of the specified member's name by 
@@ -24,11 +22,9 @@ Given below are my contributions to the project.
       the validity of the specified names while not creating any unnecessary dependency between the Task and Person classes.
 
 * **New Feature**: Added the ability to find tasks with specified keywords. (Pull Requests: [\#133](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/133))
-    * What it does: Allows the user to find all tasks which contain any of the specified keywords in its title or description. 
-    
+    * What it does: Allows the user to find all tasks which contain any of the specified keywords in its title or description.
     * Justification: This feature improves the product significantly because a user can easily filter and find tasks based on specific 
-      keywords. With this easy filtering, there is no need for users to scroll through the entire list just to find a specific task. 
-    
+      keywords. With this easy filtering, there is no need for users to scroll through the entire list just to find a specific task.
     * Highlights: The implementation was challenging as I had to check through the title and description fields of all the tasks 
       in the task list. I decided to implement a predicate, TaskContainsKeywordPredicate, which compares the title and description of
       a task to the list of keywords specified. The task list is then updated with the predicate, displaying tasks whose title or 
@@ -37,10 +33,8 @@ Given below are my contributions to the project.
       
 * **New Feature**: Added the ability to find members with specified keywords. (Pull Requests: [\#130](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/130))
     * What it does: Allows the user to find all members whose name, phone number, email or role contain any of the specified keywords.
-    
     * Justification: This feature improves the product significantly because a user can easily filter and find members based on specific 
       keywords. With this easy filtering, there is no need for users to scroll through the entire list just to find a specific member.
-    
     * Highlights: The implementation was challenging as I had to check through all the fields of the members in the list. 
       I decided to implement a predicate, DetailsContainsKeywordsPredicate, which compares all the fields of a member to the list of keywords specified.
       The members list is then updated with the predicate, displaying members whose details contain any of the specified keywords. 
@@ -48,10 +42,8 @@ Given below are my contributions to the project.
       
 * **New Feature**: Added the ability to clear all members assigned to a task. (Pull Requests: [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163), [\#174](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/174))
     * What it does: Allows the user to clear all members assigned to a task with a single command.
-    
     * Justification: This feature improves the product significantly because should the user accidentally assigned a task to 
       the wrong group of members, the user can easily clear all members assigned to the task instead of removing one member at a time.
-    
     * Highlights: The implementation was challenging as I had to create a copy of the task at the given index and update 
       the assignees field accordingly, before updating the task list with the updated task copy. Furthermore, integration and unit testing 
       had to be implemented thoroughly to ensure that the various scenarios of usage were accounted for.
