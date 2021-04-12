@@ -704,8 +704,8 @@ However, if you want to personalise your window size, the optimal display resolu
 **Q**: What is the maximum length for a student's name? <br>
 **A**: TutorsPet allows names of up to 60 characters. See [6.1 Field Format Summary](#61-field-format-summary) for more details on the specifications of the other fields.
 
-**Q**: Why is all my data cleared? <br>
-**A**: You could have edited the data files accidentally and corrupted the data.
+**Q**: Why is there such a length limit for the fields of a student, i.e. name has a character limit of 60, address has a character limit of 254, and so on? <br>
+**A**: Limits are set so that users can view each student detail more effectively and have a better experience with TutorsPet.
 
 **Q**: Why is all my data cleared? <br>
 **A**: You could have edited the data files accidentally and corrupted the data.
@@ -771,5 +771,7 @@ Action | Format, Examples
 
 **Case sensivitity**: Case-insensitive means that a word input in upper case or lower case will be treated the same way.
 Case-sensitive means the opposite.
+
+**Character limit**: The maximum length of characters a field of a student can take in
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
