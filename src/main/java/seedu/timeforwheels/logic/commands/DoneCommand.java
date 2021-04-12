@@ -21,8 +21,8 @@ public class DoneCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a task as done with a tick "
-            + "by the index number used in the listing. \n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the task number used in the listing. \n"
+            + "Parameters: TASK_NUMBER "
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_DONE_CUSTOMER_SUCCESS =

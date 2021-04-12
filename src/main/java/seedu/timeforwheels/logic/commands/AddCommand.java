@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@gmail.com "
             + PREFIX_ADDRESS + "Blk 311, Clementi Ave 2, #01-12 "
-            + PREFIX_DATE + "2021-10-10"
+            + PREFIX_DATE + "2021-10-10 "
             + PREFIX_TAG + "urgent";
 
     public static final String MESSAGE_SUCCESS = "The following new customer has been added: %1$s";

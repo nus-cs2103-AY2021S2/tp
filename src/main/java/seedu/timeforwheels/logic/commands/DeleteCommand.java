@@ -19,8 +19,8 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the customer identified by the index number used in the displayed customer list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the customer identified by the task number used in the displayed customer list.\n"
+            + "Parameters: TASK_NUMBER\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_CUSTOMER_SUCCESS = "The following Customer has been deleted: %1$s";
