@@ -460,7 +460,7 @@ You can use this command in 3 different ways.
 
   Example:
   
-    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
+    * `sort expirydate` sorts the items in the displayed list from the earliest expiry date to the latest.
       
     <br>
 
@@ -590,4 +590,5 @@ Action | Format, Examples
 * **Similar Items**: Items that have the same spelling for name and location but differ by letter case.
 * **Identical Items**: Items that have the same name and location in terms of spelling and letter case, as well as the same expiry date if it exists for both.
 * **Alphanumeric**: Alphanumeric characters are those comprised of the combined set of the 26 alphabetic characters, A to Z, and the 10 Arabic numerals, 0 to 9.
+
 ----
