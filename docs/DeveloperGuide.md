@@ -66,7 +66,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 A similar *Sequence Diagram* exists for meeting related commands like `editm 1`.
 
-<img src="images/ArchitectureSequenceMeetingDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagramMeeting.png" width="574" />
 
 The sections below give more details of each component.
 
