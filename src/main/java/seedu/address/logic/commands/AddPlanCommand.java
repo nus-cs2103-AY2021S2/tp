@@ -39,11 +39,11 @@ public class AddPlanCommand extends PlanCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToSchedule = lastShownList.get(targetIndex.getZeroBased());
-        Person updatedPerson = personToSchedule.addPlan(plan);
-        model.setPerson(personToSchedule, updatedPerson);
+        Person original = lastShownList.get(targetIndex.getZeroBased());
+        Person updated = original.addPlan(plan);
+        model.setPerson(original, updated);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        String result = String.format(MESSAGE_ADD_PLAN_SUCCESS, plan.toString(), updatedPerson.getName());
+        String result = String.format(MESSAGE_ADD_PLAN_SUCCESS, plan.toString(), updated.getName());
         return new CommandResult(result);
     }
 

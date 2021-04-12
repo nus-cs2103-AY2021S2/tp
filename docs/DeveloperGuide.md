@@ -1,8 +1,10 @@
 ---
-layout: page title: Developer Guide
+layout: page
+title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -82,9 +84,9 @@ All other classes, including `MainWindow`, inherit from the abstract `UiPart` cl
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -129,8 +131,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**
-API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
@@ -151,7 +152,7 @@ This section describes some noteworthy details on how features added in this ite
 ### Representing gender of clients
 
 The gender of each client is represented as a `String` with the full gender (Male/ Female/ Non-binary). However, the
-parse will accept any of {M, F, N, Male, Female, Non-binary} in any combination of upper and lower cases, and then
+parse will accept any of `M`, `F`, `N`, `Male`, `Female`, `Non-binary` in any combination of upper and lower cases, and then
 convert it to the full gender. For example, `NoN-binARy` will be successfully recognized as non-binary.
 
 ### Representing birthdate of clients
@@ -159,7 +160,7 @@ convert it to the full gender. For example, `NoN-binARy` will be successfully re
 The birthdate of each client is currently represented as a `LocalDate` object instead of a `String`. This allows us to
 use `LocalDate.parse()` to check for the validity of dates, as well as restricting the range of input dates from
 `1900-01-01` to `LocalDate.now()`. Link.me supports only strict parsing, which means all invalid dates will not be
-recognized and common mistakes like inputting non-existent dates like the 31st of September will not be automatically 
+recognized and common mistakes like inputting non-existent dates such as the 31st of September will not be automatically 
 round down to the 30th of September.
 
 
@@ -169,6 +170,13 @@ The premium of a client's insurance plan is represented and stored as a `String`
 risk of overflow. This is to support all currency values, including those that have a much lower value than SGD.
 The validity of the user's input amount is checked using regular expressions. Unnecessary leading zeroes in the input 
 string are trimmed, and the input string is padded with zeroes as necessary to format it to 2 decimal places.
+
+### Adding or removing insurance plans of clients
+![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
+
+The `PlanCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. Depending
+on the `Prefix` the user inputs (`i/` or `c/`), an `AddPlanCommand` or a `RemovePlanCommand` will be created and 
+returned respectively. 
 
 ### Recording, viewing and clearing notes for clients
 ![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
@@ -203,46 +211,50 @@ be used to determine which `Person` in the `UniquePersonList` found in the `Addr
 
 ### Scheduling meetings and Meeting List Display
 
+The implementation of scheduling a meeting is as showcased below:
+
 ![ScheduleSequenceDiagramLogic](images/ScheduleSequenceDiagramLogic.png)
 ![ScheduleSequenceDiagramModel](images/ScheduleSequenceDiagramModel.png)
 
-Currently, the implementation of the `Meeting` class is placing the `Meeting` as an attribute of `Person`. While it
+The current implementation of the `Meeting` class places `Meeting` as an attribute of `Person`. While it
 certainly makes more sense to adopt an implementation where `Person` is an attribute of `Meeting` in order to better
-support extensions and many-to-many relations, it would cause an
-issue where we would have to examine and update every meeting object to edit the person if we were to update and change
-a `Person` as the current implementation does not give the `Person` object an immutable unique identifier upon
-construction. As a result, the current implementation of the Meeting list takes in the `Person` class as the element of
-the list, and accesses the meeting attribute within the `Person` object when needed.
+support extensions and many-to-many relations, we would have to examine and update every `Meeting` object to edit the 
+`Person` if we were to update and change a `Person` as the current implementation of `Person` does not contain an 
+immutable and unique identifier. 
 
-In regard to the editing of the `UniqueMeetingList`, we implemented it in such a way that the meeting list is edited
-every time the `UniquePersonList` is edited. Hence, the impact of the alteration only remains on the `Model` component and
-the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
+As a result, the current implementation of `UniqueMeetingList` takes in `Person` as the element of the list, and 
+accesses the meeting attribute within the `Person` object when needed. `UniqueMeetingList` contains both a `TreeMap` 
+with `Meeting` as the key and the owner `Person` as the value, as well as an internal `List`. Regarding the editing of 
+the `UniqueMeetingList`, every time the `UniquePersonList` is edited, `UniqueMeetingList` is edited as well. Hence, 
+alteration only remains on the `Model` and `Ui` components.
 
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
-as the wrapper for the `Person` class, or an implementation where `Person` and `Meeting` are completely separate entities,
+as the wrapper for the `Person` class, or an implementation where `Person` and `Meeting` are separate entities,
 but for the sake of functionality and simplicity, we shall keep the current implementation as is.
 
 ### Unscheduling meetings
 
 The implementation of unscheduling meetings is very similar to scheduling meetings, so we skip the details of the
-implementations here and ask you to refer to the implementation of scheduling meetings as reference.
+implementations here and would like to ask the reader to refer to the implementation of scheduling meetings as reference.
 
 The behavior of the unscheduling command and its options are shown as below.
 ![UnscheduleActivityDiagram](images/UnscheduleActivityDiagram.png)
 
-The internal operation of removing a meeting involves locating the meeting owner on the internal list first, then use
-the meeting (the key) to remove the owner (the value) from the treemap, then exporting the values in the treemap back
-into the internal list.
+The internal operation of removing a `Meeting` involves locating the owner `Person` on the internal `List` stored in
+`UniqueMeetingList`, then use the `Meeting` (the key) to remove the owner `Person` (the value) from the internal 
+`TreeMap`, then exporting the values in the `TreeMap` back into the internal `List`.
 
 ### Displaying Notifications
 
 ![NotifSequenceDiagram](images/NotifSequenceDiagram.png)
 
-The implementation of showing notifications is separated into two parts. First part handles the input command and
-returns the result to see whether the command is a notification command and returns it back to the main window. For the
-second part of the implementation, the `MainWindow` handles the notification command and requests the notifications from
-`Logic`, which in turn requests from model. The `MainWindow` then sends the notification string to the `NotifWindow` to
+The implementation of showing notifications is separated into two parts. The first part handles the input `Command` and
+returns a `CommandResult` indicating whether the `Command` is a `NotifCommand` and returns it to the `MainWindow`. For the
+second part of the implementation, the `MainWindow` handles the `CommandResult` and requests the notifications from
+`Logic`, which in turn requests from `Model`. The `MainWindow` then sends the notification string to the `NotifWindow` to
 be displayed.
+
+<!--
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -256,6 +268,8 @@ be displayed.
 
 --------------------------------------------------------------------------------------------------------------------
 
+-->
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -265,7 +279,7 @@ be displayed.
 * is an insurance agent
 * has a need to manage a significant number of contacts
 * has a need to maintain close relations with clients over a long time period (usually 10+ years)
-* prefer desktop apps over other types
+* prefers desktop apps over other application types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -328,47 +342,43 @@ otherwise)
 **Use case: Add a client**
 
 **MSS**
-1.  User adds a client with corresponding information.
-2.  Link.me shows the list of clients.
-3.  Use case ends.
+1.  User adds a client with corresponding information
+2.  Link.me shows the list of clients
+3.  Use case ends
 
 **Extensions**
 
-* 1a. The user's input format is invalid.
-    * 1a1. Link.me shows an error message.
-    * Use case resumes at step 1.
-
-* 1b. The given tag is invalid/nonexistent.
-    * 1b1. Link.me shows an error message.
-    * Use case ends.
+* 1a. The user's input format is invalid
+    * 1a1. Link.me shows an error message
+    * Use case resumes at step 1
 
 
 **Use case: Edit a client**
 
 **MSS**
-1.  User requests to list clients
+1.  User requests a list of clients
 2.  Link.me shows the list of clients
 3.  User requests to edit a specific client in the list
 4.  Link.me edits the client
-5.  Use case ends.
+5.  Use case ends
 
 
 **Extensions**
 
-* 2a. The list is empty.
-    * Use case ends.
+* 2a. The list is empty
+    * Use case ends
 
-* 3a. The given index is invalid.
-    * 3a1. Link.me shows an error message.
-    * Use case resumes at step 2.
+* 3a. The given index is invalid
+    * 3a1. Link.me shows an error message
+    * Use case resumes at step 2
 
-* 3b. No optional fields are given.
-    * 3b1. Link.me shows an error message.
-    * Use case resumes at step 2.
+* 3b. No optional fields are given
+    * 3b1. Link.me shows an error message
+    * Use case resumes at step 2
 
-* 3c. The user input is invalid.
-    * 3c1. Link.me shows an error message.
-    * Use case resumes at step 2.
+* 3c. The user input is invalid
+    * 3c1. Link.me shows an error message
+    * Use case resumes at step 2
 
 **Use case: Delete a client**
 
@@ -377,17 +387,17 @@ otherwise)
 2.  Link.me shows a list of clients
 3.  User requests to delete a specific client in the list
 4.  Link.me deletes the client
-5.  Use case ends.
+5.  Use case ends
 
 
 **Extensions**
 
-* 2a. The list is empty.
-    * Use case ends.
+* 2a. The list is empty
+    * Use case ends
 
-* 3a. The given index is invalid.
-    * 3a1. Link.me shows an error message.
-    * Use case resumes at step 2.
+* 3a. The given index is invalid
+    * 3a1. Link.me shows an error message
+    * Use case resumes at step 2
 
 **Use case: Scheduling a meetup with a client**
 
@@ -395,32 +405,31 @@ otherwise)
 
 1. User requests to list clients
 2. Link.me shows a list of clients
-3. User requests to schedule a meeting a specific client in the list at a specified date and time
-4. Link.me adds the specified client, as well as the specified date and time of the meeting, to the schedule list
-5. Use case ends.
+3. User requests to schedule a meeting a specific client in the list at a specified date and time, alond with a description of the meeting
+4. Link.me adds the specified client, as well as the specifics of the meeting, to the meeting list
+5. Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
-    * Use case ends.
+* 2a. The list is empty
+    * Use case ends
 
-* 3a. The given index is invalid.
-    * 3a1. Link.me shows an error message.
-    * Use case resumes at step 2.
+* 3a. The given index is invalid
+    * 3a1. Link.me shows an error message
+    * Use case resumes at step 2
 
-* 3b. The given date-and-time has an invalid syntax (user input not formatted as yyyy-mm-dd HH:MM)
-    * 3b1. Link.me shows an error message and reminds the user of the correct format.
-    * Use case resumes at step 2.
+* 3b. The given meeting input is invalid (user input not formatted as DESCRIPTION @ yyyy-mm-dd HH:MM)
+    * 3b1. Link.me shows an error message and reminds the user of the correct format
+    * Use case resumes at step 2
 
 * 3c. The given date-and-time is invalid (eg. user input 2020-02-31 14:30)
     * 3c1. Link.me shows an error message
-    * Use case resumes at step 2.
+    * Use case resumes at step 2
 
 * 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting 2 different clients at
   the same date and time)
-    * 3d1. Link.me alerts the user that the meeting coincides with another meeting with a specified client and asks
-      the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
-    * If Y, use case continues to step 4. If N, user case resumes at step 2.
+    * 3d1. Link.me shows an error message alerting the user that the meeting coincides with another meeting with another client
+    * Use case resumes at step 2
 
 **Use case: Filter according to attributes**
 
@@ -432,25 +441,25 @@ otherwise)
     * age: age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]
     * insurance plan name: i/PLAN_NAME
 2.  Link.me shows the list of clients which has at least one attribute matching the user's search keywords
-3.  Use case ends.
+3.  Use case ends
 
 **Extensions**
 
 * 1a. The user inputs an invalid prefix.
-  * 1a1. Link.me shows an error message.
-  * Use case resumes at step 1.
+    * 1a1. Link.me shows an error message.
+    * Use case resumes at step 1
     
 * 1b. The user inputs an invalid age parameter or age range as an attribute to filter
     * 1b1. Link.me shows an error message
-    * Use case resumes at step 1.
+    * Use case resumes at step 1
     
 * 1c. The user inputs an invalid gender parameter (must be 'M', 'F' or 'N')
     * 1c1. Link.me shows an error message
-    * Use case resumes at step 1.
+    * Use case resumes at step 1
     
 * 1d. The user does not input any filter parameters (eg. `filter ` instead of `filter age/25`)
     * 1d1. Link.me shows an error message
-    * Use case resumes at step 1.
+    * Use case resumes at step 1
 
 * 2a. The filtered list is empty.
     * Use case ends.
@@ -460,13 +469,13 @@ otherwise)
 **MSS**
 1.  User requests to search for clients by name
 2.  Link.me shows the list of clients whose name matches the user's search keywords
-3.  Use case ends.
+3.  Use case ends
 
 **Extensions**
 
 * 1a. The user does not input any parameter (eg. `find ` instead of `find Alex`)
     * 1d1. Link.me shows an error message
-    * Use case resumes at step 1.
+    * Use case resumes at step 1
 
 * 2a. The search result list is empty.
     * Use case ends.
@@ -476,7 +485,8 @@ otherwise)
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The software should not use any OS-dependent libraries and OS-specific features.
 3.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
-4.  A user with average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A user with average typing speed for regular English text (i.e. not code, not system admin commands) should be able 
+    to accomplish most of the tasks faster using commands than using the mouse.
 5.  The software should work without requiring an installer.
 6.  The software should not depend on a remote server.
 7.  The data should be stored locally and should be in a human editable text file.
@@ -490,11 +500,15 @@ otherwise)
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Tag**: ...
+* **CLI**: Command Line Interface, an interface that processes commands to a computer program in the form of lines of text
+* **GUI**: Graphic User Interface, an interface that allows users to interact with programs through graphical icons instead of text
+* **Tag**: Small and simple labels that can serve as an indicator of the client
+* **Note** : Longer and complex remarks that gives details about the client
+* **JAR** : Java Archive File, the deployment format of the Link.me application
+
+<!--
 
 --------------------------------------------------------------------------------------------------------------------
-<!--
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.

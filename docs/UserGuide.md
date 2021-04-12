@@ -30,7 +30,8 @@ You may navigate this document using the Table of Contents provided below.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -106,6 +107,7 @@ Action                            | Format
 **Schedule meetings**             | `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 **Show notifications**            | `notif`
 **View Help**                     | `help`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -174,7 +176,7 @@ You can add a client to Link.me, by specifying each of the fields below:
 
 * Email
   * should be in the format `local-part@domain`
-  * `local-part` should not be blank and should contain alphanumeric characters and the following characters within parenthesis (!#$%&'*+/=?`{|}~^.-) 
+  * `local-part` should not be blank and should contain alphanumeric characters and the following characters within parenthesis (!#$%&'*+/=?`{\|}~^.-) 
   * `domain` should be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, periods and hyphens
 
 * Address
@@ -193,7 +195,7 @@ You can add a client to Link.me, by specifying each of the fields below:
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**A client can have any number of tags (including 0).
+:bulb: **Tip:** A client can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -297,7 +299,7 @@ Example:
 * `note 3 r/Wants to upgrade insurance coverage` adds the note "Wants to upgrade insurance coverage" to the 3rd client.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**New notes will not replace old notes. Instead, they will be added to the existing list of notes.
+:bulb: **Tip:** New notes will not replace old notes. Instead, they will be added to the existing list of notes.
 </div>
 
 #### Viewing notes
@@ -344,7 +346,7 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 * `DATE_TIME` should be provided in the specific datetime format `YYYY-MM-DD HH:MM`.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**`* Scheduling a new meeting will replace any existing meeting with that client.
+:bulb: **Tip:** Scheduling a new meeting will replace any existing meeting with that client.
 </div>
 
 <div markdown="span" class="alert alert-primary">
@@ -397,8 +399,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find alex david` returns `Alex Yeoh`, `Jeff Liu`<br>
+  ![result for 'find alex jeff'](images/findAlexJeffResult.png)
 
 #### Filtering clients by attributes : `filter`
 
@@ -441,7 +443,7 @@ You can view a notification window containing:
 These timeframes were chosen to give you ample time to prepare for upcoming meetings, or prepare gifts for upcoming client birthdays.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**This notification window is also shown when starting up Link.me.
+:bulb: **Tip:** This notification window is also shown when starting up Link.me.
 </div>
 
 ![notif message](images/notifMessage.png)
@@ -489,4 +491,5 @@ current Link.me home folder.
 
 **Q**: What operating systems can I install Link.me on?<br>
 **A**: You can install Link.me on most modern desktop operating systems, including Linux, MacOS and Windows.
+
 --------------------------------------------------------------------------------------------------------------------
