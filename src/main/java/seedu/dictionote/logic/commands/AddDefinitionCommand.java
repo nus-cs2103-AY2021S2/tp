@@ -9,7 +9,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.dictionary.Definition;
 
 /**
- * Adds a definition to the dictionote book.
+ * Adds a definition to the definition book.
  */
 public class AddDefinitionCommand extends Command {
     public static final String COMMAND_WORD = "adddef";
@@ -27,7 +27,8 @@ public class AddDefinitionCommand extends Command {
 
     private final Definition toAdd;
 
-    /** Initializes a command to add the given definition
+    /**
+     * Initializes a command to add the given definition.
      *
      * @param definition
      */

@@ -9,8 +9,8 @@ import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.dictionary.UniqueDefinitionList;
 
 /**
- * Wraps all data at the definitionbook level
- * Duplicates are not allowed (by .isSameDefinition comparison)
+ * Wraps all data at the definitionbook level.
+ * Duplicates are not allowed (by .isSameDefinition comparison).
  */
 public class DefinitionBook implements ReadOnlyDefinitionBook {
     private final UniqueDefinitionList definitions;
@@ -21,7 +21,8 @@ public class DefinitionBook implements ReadOnlyDefinitionBook {
 
     public DefinitionBook() {}
 
-    /** Make a Definitionbook
+    /**
+     * Makes a DefinitionBook
      *
      * @param toBeCopied ReadOnlyDefinitionBook
      */

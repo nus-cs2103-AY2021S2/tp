@@ -14,6 +14,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 
+//Todo
 public class CopyContentToNoteCommand extends Command {
     public static final String COMMAND_WORD = "copytonote";
 
@@ -28,6 +29,7 @@ public class CopyContentToNoteCommand extends Command {
 
     private final Index targetIndex;
 
+    //Todo
     public CopyContentToNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

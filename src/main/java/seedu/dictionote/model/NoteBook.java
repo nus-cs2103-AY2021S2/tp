@@ -9,8 +9,8 @@ import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.note.UniqueNoteList;
 
 /**
- * Wraps all data at the notebook level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the notebook level.
+ * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class NoteBook implements ReadOnlyNoteBook {
     private final UniqueNoteList notes;
@@ -21,7 +21,8 @@ public class NoteBook implements ReadOnlyNoteBook {
 
     public NoteBook() {}
 
-    /** Make a notebook
+    /**
+     * Makes a NoteBook.
      *
      * @param toBeCopied ReadOnlyNotebook
      */

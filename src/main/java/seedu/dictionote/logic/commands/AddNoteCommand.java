@@ -12,7 +12,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
 /**
- * Adds a note to the dictionote book.
+ * Adds a note to the note book.
  */
 public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "addnote";

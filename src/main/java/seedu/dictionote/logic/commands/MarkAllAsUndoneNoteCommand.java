@@ -11,7 +11,7 @@ import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
-
+//Todo
 public class MarkAllAsUndoneNoteCommand extends Command {
     public static final String COMMAND_WORD = "markallasundonenote";
 
@@ -20,7 +20,7 @@ public class MarkAllAsUndoneNoteCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_MARK_ALL_AS_UNDONE_NOTE_SUCCESS = "Mark all notes as not done.";
-
+    //Todo
     public MarkAllAsUndoneNoteCommand() {}
 
     @Override

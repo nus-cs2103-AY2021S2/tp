@@ -7,7 +7,7 @@ import seedu.dictionote.logic.commands.CopyContentToNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ShowDictionaryContentCommand object
+ * Parses input arguments and creates a new ShowDictionaryContentCommand object.
  */
 public class CopyContentToNoteCommandParser implements Parser<CopyContentToNoteCommand> {
     /**
