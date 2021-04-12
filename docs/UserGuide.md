@@ -13,6 +13,7 @@ TutorsPet is a **desktop app designed for private tutors in Singapore to manage 
 * To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-faq).
 * To learn about the field formats of a student contact, head to [6.1 Field Format Summary](#61-field-format-summary).
 * To get an overview of all our commands, head to [6.2 Command summary](#62-command-summary).
+* To understand some terms we use, head to [7 Glossary](#7-glossary). 
 
 Feel free to check out our [Table of Contents](#table-of-contents), to get familiar with TutorsPet step by step. 
 
@@ -638,13 +639,14 @@ TutorsPet data are saved into three different JSON files: <br>
 2. **\[JAR file location]/data/datesbook.json** for storing important exam dates.
 3. **\[JAR file location]/data/lessonbook.json** for storing student lesson dates.
 
-Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 
 * You are strongly discouraged from editing the files due to syncing of information between the three files.
+  
 * If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
+
 </div>
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -666,7 +668,21 @@ by providing the file path to the picture._
 ## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsPet home folder.
+**A**: Install the app in the other computer and overwrite the three empty data files named `addressbook.json`, `datesbook.json`, `lessonbook.json`
+it creates with the corresponding files that contains the data of your previous TutorsPet home folder.
+
+**Q**: Do I have to connect the internet to use this application? <br>
+**A**: No, TutorsPet is an offline application. No internet connection is needed.
+
+**Q**: What is the optimal display setting for this application? <br>
+**A**: The default settings of almost all desktops support our application perfectly. 
+However, if you want to personalise your window size, the optimal display resolution is 1920 * 1080 and scaled to 150%.
+
+**Q**: What is the maximum length for a student's name? <br>
+**A**: TutorsPet allows names of up to 60 characters. See [6.1 Field Format Summary](#61-field-format-summary) for more details on the specifications of the other fields.
+
+**Q**: Why is all my data cleared? <br>
+**A**: You could have edited the data files accidentally and corrupted the data.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -710,8 +726,8 @@ Action | Format, Examples
 **[Search](#325-searching-for-a-contact--search)** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/eng`
 **[Sort](#326-sorting-contacts--sort)** | `sort PREFIX` <br> e.g., `sort [n/]`, `sort [s/]`
 **[List](#327-listing-all-contacts--list)** | `list`
-**[Level Up](#328-advancing-all-students--levelup)** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/3 4`
-**[Level Down](#329-demoting-all-students--leveldown)** | `leveldown [ex/INDEX]` <br> e.g., `leveldown`, `leveldown ex/1 2`
+**[Level Up](#328-increasing-level-of-all-students--levelup)** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/3 4`
+**[Level Down](#329-decreasing-level-of-all-students--leveldown)** | `leveldown [ex/INDEX]` <br> e.g., `leveldown`, `leveldown ex/1 2`
 **[Add dates](#331-adding-an-important-date--add-date)** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
 **[Delete dates](#333-deleting-an-important-date--delete-date)** | `delete-date INDEX`<br> e.g., `delete-date 3`
 **[List dates](#332-listing-all-important-dates--list-date)** | `list-date`
@@ -719,11 +735,13 @@ Action | Format, Examples
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### 7. Glossary 
+## 7. Glossary 
 
 **Parameters:** Inputs keyed in after the command word that specify the behaviour of the command
 
-**Prefix**: Expressions that signal a certain field HELP e.g. n/, dt/ 
+**Prefix**: Expressions that signal inputs of a certain field e.g. n/ signals name field, gp/ signals guardian's phone.
 
+**Case sensivitity**: Case-insensitive means that a word input in upper case or lower case will be treated the same way.
+Case-sensitive is the opposite.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
