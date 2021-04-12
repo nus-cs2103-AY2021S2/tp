@@ -84,7 +84,7 @@ public class BudgetDisplay extends UiPart<Region> {
         String monthStr = month.toString();
         String totalBudgetStr = String.format("%.2f", totalBudget);
         String totalExpensesStr = String.format("%.2f", totalExpenses);
-        String expensesPercentageStr = String.format("%.1f%%", expensesPercentage);
+        String expensesPercentageStr = String.format("%.2f%%", expensesPercentage);
 
         this.budgetMonth.setText(monthStr);
         this.budgetAmount.setText("Budget($): " + totalExpensesStr + "/" + totalBudgetStr);
