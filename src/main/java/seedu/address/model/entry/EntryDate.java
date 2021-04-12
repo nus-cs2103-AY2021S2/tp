@@ -14,7 +14,7 @@ import java.time.format.DateTimeParseException;
 public class EntryDate {
 
     public static final String DATE_CONSTRAINTS =
-            "Dates should be valid and in the format YYYY-MM-DD hh:mm. Time must be in the 24-hour clock notation.";
+            "Dates should be valid and in the format yyyy-mm-dd HH:MM. Time must be in the 24-hour clock notation.";
 
     public static final DateTimeFormatter DEFAULT_FORMATTER =
             DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm").withResolverStyle(STRICT);
