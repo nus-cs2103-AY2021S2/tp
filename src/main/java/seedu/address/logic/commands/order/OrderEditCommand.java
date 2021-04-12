@@ -42,7 +42,6 @@ public class OrderEditCommand extends Command {
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order.";
-    public static final String MESSAGE_NOT_UNCOMPLETED_ORDER = "This order is not uncompleted. It cannot be modified";
 
     private final Index index;
     private final OrderEditCommand.EditOrderDescriptor editOrderDescriptor;

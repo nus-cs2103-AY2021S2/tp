@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +17,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.order.OrderCommandUtil;
 import seedu.address.model.Model;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.order.Order;
 
 public class MenuEditCommand extends Command {
 
@@ -73,7 +76,40 @@ public class MenuEditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DISH);
         }
 
+        // Get all orders that contain the item
+        List<Order> ordersToEdit = model.getIncompleteOrdersContainingDish(dishToEdit);
+
+        // Remove all these orders from the database
+        model.deleteOrders(ordersToEdit);
+        for (Order o : ordersToEdit) {
+            model.deleteOrder(o);
+            model.increaseIngredientByOrder(o);
+        }
+
+        // Set editedDish
         model.setDish(dishToEdit, editedDish);
+
+        // Make new orders with editedDish
+        List<Order> editedOrders = new ArrayList<>();
+        for (Order orderToEdit : ordersToEdit) {
+            editedOrders.add(orderToEdit.updateDish(dishToEdit, editedDish));
+        }
+
+        // Create fake order with all ingredients
+        if (!model.canFulfilOrders(editedOrders)) {
+            model.setDish(editedDish, dishToEdit);
+            for (Order o : ordersToEdit) {
+                model.addOrder(o);
+                model.decreaseIngredientByOrder(o);
+            }
+            throw new CommandException(OrderCommandUtil.MESSAGE_NOT_ENOUGH_INGREDIENTS_ORDER);
+        }
+
+        for (Order o : editedOrders) {
+            model.addOrder(o);
+            model.decreaseIngredientByOrder(o);
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_DISH_SUCCESS, editedDish),
                 CommandResult.CRtype.PERSON);
     }

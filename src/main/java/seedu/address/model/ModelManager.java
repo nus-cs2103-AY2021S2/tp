@@ -453,10 +453,7 @@ public class ModelManager implements Model {
         orderBook.removeOrder(target);
     }
 
-    /**
-     * Deletes orders
-     * @param orders
-     */
+
     public void deleteOrders(List<Order> orders) {
         for (Order o : orders) {
             deleteOrder(o);
@@ -475,7 +472,8 @@ public class ModelManager implements Model {
 
     @Override
     public void cancelOrder(Order target) {
-        orderBook.cancelOrder(target);
+        Order cancelledOrder = orderBook.cancelOrder(target);
+        setOrder(target, cancelledOrder);
     }
 
     @Override
@@ -488,14 +486,24 @@ public class ModelManager implements Model {
     //@@ author kangtinglee
     @Override
     public boolean canFulfilOrder(Order target) {
-        List<Pair<Dish, Integer>> dishesList = target.getDishQuantityList();
+        List<Order> temp = new ArrayList<>();
+        temp.add(target);
+        return canFulfilOrders(temp);
+    }
+
+    //@@ author kangtinglee
+    @Override
+    public boolean canFulfilOrders(List<Order> orders) {
         HashMap<Ingredient, Integer> ingredientsTable = new HashMap<>();
-        for (Pair<Dish, Integer> p : dishesList) {
-            for (Pair<Ingredient, Integer> d : p.getKey().getIngredientQuantityList()) {
-                if (!ingredientsTable.containsKey(d.getKey())) {
-                    ingredientsTable.put(d.getKey(), 0);
+        for (Order target : orders) {
+            List<Pair<Dish, Integer>> dishesList = target.getDishQuantityList();
+            for (Pair<Dish, Integer> p : dishesList) {
+                for (Pair<Ingredient, Integer> d : p.getKey().getIngredientQuantityList()) {
+                    if (!ingredientsTable.containsKey(d.getKey())) {
+                        ingredientsTable.put(d.getKey(), 0);
+                    }
+                    ingredientsTable.put(d.getKey(), ingredientsTable.get(d.getKey()) + d.getValue() * p.getValue());
                 }
-                ingredientsTable.put(d.getKey(), ingredientsTable.get(d.getKey()) + d.getValue() * p.getValue());
             }
         }
         for (Ingredient i : ingredientsTable.keySet()) {
