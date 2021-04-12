@@ -477,6 +477,7 @@ enter the same command multiple times.
     * For more information on how these commands work and their parameters, refer to the
       [`edit`](#edit-edit-client-contact) and [`delete`](#delete-delete-client-contact) sections accordingly.
 * `INDICES` are comma-separated e.g. `1,2,3` or `1, 2, 3` and they refer to the index number shown in the displayed client list.
+  * Extra commas or spaces will be ignored.
 * Each index in `INDICES` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 * There must be no repeat index in `INDICES`.
 * The optional `ARGUMENTS` input is only applicable if the `COMMAND` is `edit`.

@@ -76,10 +76,10 @@ public class InsurancePolicy {
 
         InsurancePolicy otherPolicy = (InsurancePolicy) other;
 
-        try {
-            return policyId.equals(otherPolicy.policyId) && policyUrl.equals(otherPolicy.policyUrl);
-        } catch (NullPointerException e) {
+        if (otherPolicy.policyUrl == null || policyUrl == null) {
             return policyId.equals(otherPolicy.policyId);
+        } else {
+            return policyId.equals(otherPolicy.policyId) && policyUrl.equals(otherPolicy.policyUrl);
         }
     }
 

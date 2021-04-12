@@ -69,6 +69,15 @@ public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOp
                             .tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                             PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING,
                             PREFIX_SHORTCUT_COMMAND, PREFIX_SHORTCUT_NAME);
+            boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(argMultimap.getPreamble());
+
+            if (doIndicesContainWords && inputCommand.equals(EditCommand.COMMAND_WORD)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        EditCommand.MESSAGE_USAGE_BATCH));
+            } else if (doIndicesContainWords && inputCommand.equals(DeleteCommand.COMMAND_WORD)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteCommand.MESSAGE_USAGE_BATCH));
+            }
 
             boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(argMultimap.getPreamble());
 
