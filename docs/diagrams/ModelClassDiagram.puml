@@ -6,6 +6,7 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyMeetingBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
@@ -14,18 +15,31 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class MeetingBook
+Class TimetablePrefs
+Class PersonMeetingConnection
 
 Package Person {
 Class Person
 Class Address
 Class Email
-Class Name
+Class PersonName
 Class Phone
 Class UniquePersonList
+Class ProfilePicture
 }
 
-Package Tag {
-Class Tag
+Package Meeting {
+Class Meeting
+Class DateTime
+Class Description
+Class MeetingName
+Class Priority
+Class UniqueMeetingList
+}
+
+Package Group {
+Class Group
 }
 }
 
@@ -33,24 +47,39 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
+MeetingBook .up.|> ReadOnlyMeetingBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" AddressBook
+ModelManager o--> "1" MeetingBook
 ModelManager o-left-> "1" UserPrefs
+ModelManager o-down-> "1" PersonMeetingConnection
+ModelManager o-down-> "1" TimetablePrefs
+
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
-Person *--> Name
+Person *--> PersonName
+Person *--> ProfilePicture
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> "*" Group
 
-Name -[hidden]right-> Phone
+MeetingBook *--> "1" UniqueMeetingList
+UniqueMeetingList o--> "*" Meeting
+Meeting *--> MeetingName
+Meeting *--> DateTime
+Meeting *--> Priority
+Meeting *--> Description
+Meeting *--> "*" Group
+
+
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Meeting
 @enduml

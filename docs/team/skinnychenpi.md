@@ -5,7 +5,7 @@ title: Chen Yuheng's Project Portfolio Page
 
 ## Project: MeetBuddy
 
-MeetBuddy is your handy desktop app, optimized for NUS students to manage their social connections and daily tasks who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! I have added the functionality for tasks scheduling and the connections between tasks and contacts! The GUI of MeetBuddy was created with JavaFX and written in Java, and I have written about 4 kLoC.
+MeetBuddy is your handy desktop app, optimized for NUS students to manage their social connections and daily tasks who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! I have added the functionality for tasks scheduling and the connections between tasks and contacts! The GUI of MeetBuddy was created with JavaFX and written in Java, and I have written about 5 kLoC.
 
 Given below are my contributions to the project.
 
@@ -24,16 +24,15 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Created the meeting in MeetBuddy model, which is one of two major parts in MeetBuddy. (Pull requests [\#42](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/42))
+    * Created the AddMeetingCommand and AddMeetingParser in MeetBuddy and also modifies the GUI. (Pull requests [\#52](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/52))
     * Created Person Meeting Connection APIs for model development, which allows user to interact with both contacts management and meeting management together (Pull requests [\#70](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/70), [\#73](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/73))
-    * Add AddMeetingCommand into MeetBuddy so that the user can add meetings. (Pull requests [\#103](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/103))
+    * Add AddPersonToMeetingConnectionCommand and DeletePersonToMeetingConnectionCommand into MeetBuddy so that the user can add and delete the persons related to a meeting. (Pull requests [\#103](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/103))
 
 * **Documentation**:
-    * Updated User Guide and Developer Guide for Person Meeting Connection and relevant Meeting features, including adding relevant PlantUML diagrams in the Developer Guide to enhance comprehensibility of the codebase and the structure of the feature. (Pull requests [\#186](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/186))
+    * Updated User Guide and Developer Guide for Person Meeting Connection and relevant Meeting features, including adding relevant PlantUML diagrams in the Developer Guide to enhance comprehensibility of the codebase and the structure of the feature. (Pull requests [\#186](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/186) [\#200](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/200))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#193](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/193), [\#197](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/197), [\#188](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/188)
   
 * **Summary of Contributions**:
     * Created about 25 PRs on the team repo. [\#Link](https://github.com/AY2021S2-CS2103-T16-2/tp/pulls?q=is%3Apr+author%3Askinnychenpi)
-
-* _{you can add/remove categories in the list above}_

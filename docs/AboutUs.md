@@ -16,8 +16,6 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/hengyiqun.md)]
 
 * Role: Developer
-* Responsibilities: Features
-
 
 ### ToTo Tokaeo
 
@@ -27,7 +25,6 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/totoyoyo.md)]
 
 * Role: Developer
-* Responsibilities: Dates and Time Management
 
 ### Maurice Mok
 
@@ -48,6 +45,3 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/skinnychenpi.md)]
 
 * Role: Developer
-* Responsibilities: Undecided
-
-

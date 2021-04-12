@@ -1,4 +1,8 @@
 ---
+layout: page
+title: Developer Guide
+
+---
 * Table of Contents
 {:toc}
 
@@ -116,19 +120,21 @@ Given below is another Sequence Diagram for interactions within the `Logic` comp
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagramNew.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the MeetBuddy data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the meeting book data.
 * exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the connection between the person in the address book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
 * does not depend on any of the other three components.
+* (Some details are omitted)
+
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -158,10 +164,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
-### Sort feature
+### Sort feature (author: ToTo Tokaeo)
 It can be helpful to sort the list of contacts and the list of meetings by a certain criteria.
 For example, sorting contacts by their names could complement the user experience.
-However, there were a few implementations details to consider.
+However, there were a few implementations details to consider. The implementations for sorting of the contacts and meetings are very similar, so I will only
+discuss the one for contacts.
 
 Currently, an essential attribute in the model are the filtered lists, 
 which shows the results of searches and finds. 
@@ -170,15 +177,34 @@ These filtered lists, however, are backed by immutable observable lists,
 which helps update the JavaFX GUI. I initially tried to make copies of these observable lists,
 so that I can mutate them through sorting and filtering. However, this would not work,
 since commands like "edit" would be making changes to a copy of the data, 
-not the data itself.
+not the data itself. So, initially, this filtered list was the access point for many other components, 
+like the UI. 
+
+![The original filter list diagram](images/FilterDiagram.png)
 
 The implementation I went with uses another subclass of observable lists called sorted lists.
-It goes between the link between the original immutable observable list and the filtered lists.
+It goes in as the link between the original immutable observable list and the filtered lists.
 Sorting would occur in the sorted list layer, and the filtering will be applied on top.
 This has the benefit of still sharing the references with the original observable list, 
 so modifications will still be reflected in the correct data structures.
 
-###Timetable feature (author : Maurice)
+![After implementation](images/SortDiagram.png)
+
+
+### Unsort (author: ToTo Tokaeo)
+To unsort, I simply remove the sorting comparator in the sorted list subclass. The list would become
+the original observable list.
+
+### Find meeting (author: ToTo Tokaeo)
+The command `findm` leverages the filtering capabilities of the FilteredList for meetings. 
+Hence,
+the only tricky part is to compute the predicate used to filter this FilteredList.
+The predicate is computed by the logical `AND` of all input predicates. For instance,
+suppose we want to search for a meeting with name "lecture" and with priority 1. 
+The predicate to filter the meeting list is simply: meeting contains "lecture" in its name `AND`
+meeting has priority 1.
+
+### Timetable feature (author : Maurice)
 
 The timetable feature will be help the user visualise the free times, as well as his/her 
 meetings schedule for the following week. 
@@ -333,15 +359,12 @@ the result as a CommandResult object for passing back to the Model. The Ui compo
 the results (e.g. the notes) to the user.
 
 
-### \[Proposed\] Undo/redo feature
-=======
 ### Person Meeting Connection feature (Written by: Chen Yuheng (Github: skinnychenpi))
 MeetBuddy allows users to track and record the contacts related with their meetings.
 #### Implementation
 A PersonMeetingConnection class stores all of the relevant information of persons in the contact related to certain meetings. The class diagram below shows how all the different components interact to allow the person meeting connection feature to function. Note that the XYZConnectionCommand and XYZConnectionCommandParser refers to all Connection related commands like add, delete etc.
 ![UndoRedoState0](images/PersonMeetingConnectionCommandClassDiagram.png)
 A PersonMeetingConnection(PMC) slot is represented by the PMC class which contains 2 key attributes, personsInMeeting and meetingsInPerson. Both of them are HashMaps. The attribute personsInMeeting is a hashmap whose key is a Meeting object and its value is a UniquePersonList. Another attribute meetingsInPerson is reversed, whose key is a Person object and its value is a UniqueMeetingList.
->>>>>>> master
 
 The XYZPMCCommand class represent classes that extend the abstract class Command and allows the users to add and delete the PMC to MeetBuddy. These XYZPMCCommands are created by the respective XYZPMCCommandParsers.
 
@@ -352,6 +375,8 @@ Given the class diagram and the understanding of how the PMC class interacts wit
 ![UndoRedoState0](images/AddPersonMeetingConnectionActivityDiagram.png)
 
 The workflow above shows how a connection is added and the various checks that occurs at the different points throughout the workflow.
+
+The workflow for deleting connection is similar as above, except that it has one more step to check whether the person the user wants to delete exist in the meeting.
 
 To summarize the above activity diagram, there are several key checks which MeetBuddy checks for when the user is adding a connection. Firstly, MeetBuddy checks if the index for the meeting and the prefix for person (p/) are presented in the command. Also, MeetBuddy checks if all prefixes present are formatted correctly. Then, it checks if the Meeting index provided is within the range of the Meeting list. Following which, MeetBuddy will check if the persons' indices passed for the prefixes are within the range.
 
@@ -405,31 +430,29 @@ Users would be better able to manage their social and academic commitments by to
 
 
 
-### User stories
+## Appendix: User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+| Priority | As a                           | I can                             | so that                                                     |
+|----------|--------------------------------|-----------------------------------|-------------------------------------------------------------|
+| high     | typing guy                     | use command line interface        | I don't have to click around                                |
+| high     | student                        | give meeting priorities           | I can prioritize my time                                    |
+| high     | busy student                   | Look up my old contacts quickly   | I can reach out to them for a catch up                      |
+| high     | visual person                  | Add picture to a contact or group | I can remember who they are                                 |
+| medium   | person trying to back up data  | store information in a file       | I can clear and move my data to a different machine         |
+| medium   | student with a lot of groups | assign contacts to groups         | I can organise my contacts into the groups                  |
+| high     | user                           | close the app                     | I can clear up my memory and store the data into text files |
+| high     | student                        | add meetings                      | I can keep track of my meetings                             |
+| medium   | student                        | look up meeting by time           | I can tell if I'm busy during a time                        |
+| medium   | student                        | sort contacts                     | I can organize the contact list in a convenient way         |
+| medium   | student                        | sort meetings                     | I can organize the meeting list in a convenient way         |
+| high     | student                        | view all contacts                 | I can see all the contacts I added                          |
+| high     | student                        | view all meetings                 | I can see all the meetings I added                          |
+| high     | student                        | delete meetings                   | I can remove the meetings that already happened             |
+| high     | student                        | delete contacts                   | I can remove the unimportant contacts                       |
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                  |     delete a meeting                       clear our old meetings that I dont need   |                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by personName          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | add a meeting with start date and end date                       |      keep track of meeting details of when it is happening          |
-| `* *`    | user                                       | assign priorities for meetings | arrange my contacts and future tasks better                            |
-| `*`      | user with many persons in the MeetBuddy address book | sort persons by personName           | locate a person easily                                                 |
-| `* * `   | user with 8-5 schedule | See the current week's timetable of my scheduled meetings |  I can quickly estimate how packed my schedule is   |
-| `* *`    | user with packed meetings | Easily find free slots to schedule my meetings | I can quickly find a slot to schedule my meeting|
-| `*` | user with friends who have online gravatar profiles| I want to have my friends photos of my contacts without having the hassle of updating the photos manually | So that I can easily remmember them|
-| `* * *` | meeting coordinator | I want to know who is coming to my meetings | I can keep note of who is coming to prepare for my meetings|
-|`* *`| user with lots of meetings| I want to note a description to the meeting| Store info  like location, any things to take note or tasks to do before the meeting|
-|`* * *`| user | I want to note down a contact even if I dont have some fields | I may not know a person's address, or email, or phone number |
+## Appendix: Use cases
 
-*{More to be added}*
-
-### Use cases
-
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MeetBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -454,24 +477,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. MeetBuddy shows an error message.
 
       Use case resumes at step 2.
-
-**Use case: Assigning priorities to contacts**
-
-**MSS**
-
-1.  User requests to add a contact with priority
-2.  MeetBuddy shows the list of persons after adding.
-
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The priority is out of range.
-
-    * 1a1. AddressBook shows an error message.
-
-  Use case ends.
+    
 
 **Use case: Assigning priorities to meetings**
 
@@ -492,29 +498,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-
-
 New features on V1.2
 5.  Assign priorities to contacts
 6.  Notes about the contact.
 7.  Sort contacts by (priorities/personName/groups)
 8.  Last meetup date for each contact
 
-### Non-Functional Requirements
+## Appendix: Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The response to any use action should become visible within 2 seconds.
 5.  The source code should be open source.
-*{More to be added}*
 
-### Glossary
+## Appendix: Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **User**: the person using the MeetBuddy application
+* **Contact**: a person that the user wants to keep track of, especially by adding the person
+into the app
+* **Person**: used interchangeably with contact
+* **Contact List**: a list of people that the user have added into the app
+* **Meeting**: any event with a time that the user wants to keep track of, 
+especially by adding the event into the app.
+* **Meeting List** : a list of meetings that the user have added into the app
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix: Instructions for manual testing**
 
@@ -540,7 +551,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -557,12 +567,92 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
-### Saving data
+### Adding a person
 
-1. Dealing with missing/corrupted data files
+1. Add a person using the command `addp` following instructions from the [User Guide](UserGuide.html).
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. Add a person using an invalid command like `addp nonsense` should yield an error,
+   and an error message.
 
-1. _{ more test cases …​ }_
+1. Add a person using an invalid field type like `addp n/name ph/crazy` should yield 
+   an error, and an error message. Here, the phone number is invalid.
+
+   
+### Finding a person by name
+
+1. Find a person by name using the command `findp` following instructions from the [User Guide](UserGuide.html).
+
+2. If no such person is found, the contact list should be empty. Do `listp` to get back a contact list.
+
+
+### Finding a person by group
+
+1. Find a person by group using the command `findpg` following instructions from the [User Guide](UserGuide.html).
+
+2. If no such person is found, the contact list should be empty. Do `listp` to get back a contact list.
+
+
+### Sort the contact list
+
+1. Sort the contact list by using the command `sortp` following instructions from the [User Guide](UserGuide.html).
+
+2. If the instructions are followed correctly, the contact list should be updated.
+
+
+
+### Unsort the contact list
+
+1. Sort the contact list by using the command`unsortp` following instructions from the [User Guide](UserGuide.html).
+
+2. The contact list should return to the original ordering, that is the order the contacts
+were added in.
+   
+
+### Perform sort, unsort, add, delete for meeting
+
+1. Follow the instructions for the sort, unsort, add, delete commands for meetings from the
+   [User Guide](UserGuide.html). Usually, the command involves a trailing `m` instead of `p`.
+   
+
+### Find a meeting
+
+1. Find  meeting by using the command `findm` following instructions from the [User Guide](UserGuide.html).
+Note that this `findm` does much more than its contact list counterparts.
+
+2. An error should appear for invalid inputs, such as `findm n/name time/sometime`, which has an
+invalid time input.
+   
+3. If the command goes through, the meeting list will be filtered to show only the meetings
+that fulfill all the search criteria. If no meetings are shown, then no meetings 
+   fulfill all the search criteria
+
+
+### Adding a person to a meeting
+
+1. Add a person to a meeting by using the command `addptm` following instructions from the [User Guide](UserGuide.html).
+Note that this person must be part of the contact list.
+
+2. If the command goes through, this person's name should appear in the meeting card.
+
+### Deleting a person from a meeting
+
+1. Delete a person from a meeting by using the command `deletepfm` following instructions from the 
+   [User Guide](UserGuide.html).
+
+2. If the command goes through, the person's name should no longer appear on the meeting.
+
+
+### Show people in a meeting
+
+1. Show people in a meeting by using the command `showm` following instructions from the
+   [User Guide](UserGuide.html).
+   
+2. If the command goes through, only the people in the specified meeting will be shown in
+   the contact list. The command `listp` will bring the entire contact list back.
+   
+
+### Inspect timetable
+
+1. Click the Timetable tab in the GUI. More details can be found in the
+   [User Guide](UserGuide.html).
