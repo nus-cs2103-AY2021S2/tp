@@ -109,7 +109,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Returns true if the deadline of a task is already over.
      */
-    public boolean dateOver(Task task) {
+    public boolean isDateOver(Task task) {
         requireNonNull(task);
         return new AttributeManager(task).dateOver();
     }
