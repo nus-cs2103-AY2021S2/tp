@@ -350,6 +350,12 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 :bulb: **Tip:**`DESCRIPTION` can contain any character, including "@".
 </div>
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Meetings with clashes will not be scheduled, but Link.me only detects clashes when the scheduled time 
+is exactly the same. Even with a minute difference, Link.me will schedule a new meeting. This is to ensure that our 
+users have the largest flexibility when using Link.me.
+</div>
+
 Example:
 
 * `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client 
