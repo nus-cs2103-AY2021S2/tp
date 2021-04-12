@@ -21,16 +21,17 @@ public class ParserUtil {
 
     // ========== ERROR MESSAGES ==========
 
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_NONNEGATIVE_INT = "Non-negative integer must be specified.";
+
     public static final String MESSAGE_INVALID_NAME = "Invalid name specified.";
     public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified.";
     public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
     public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
     public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
     public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
-
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_NONNEGATIVE_INT = "Non-negative integer must be specified.";
     public static final String MESSAGE_INVALID_PRICE = "Price must be a non-negative double.";
+    public static final String MESSAGE_INVALID_DATETIME = "Invalid datetime format specified.";
 
     public static final String MESSAGE_NO_KEYWORD = "No keyword specified.";
     public static final String MESSAGE_NO_KEYWORDS = "No keywords specified.";
@@ -52,6 +53,9 @@ public class ParserUtil {
 
     // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
     public static final String VALID_DISH_REGEX = "[^ ].*";
+
+    // DateTime validation: must be of the form DD-MM-YYYY HH:MM
+    public static final String VALID_DATETIME_REGEX = "\\d\\d-\\d\\d-\\d\\d\\d\\d \\d\\d:\\d\\d";
 
     // Email address validation: must conform to the form local-part@domain
     // Assumes IP addresses are not used as domain portion
@@ -262,7 +266,6 @@ public class ParserUtil {
         return trimmedDishName;
     }
 
-
     /**
      * Parse non-negative double from String.
      * @throws ParseException if specified string is not a positive double.
@@ -275,5 +278,22 @@ public class ParserUtil {
         return Double.valueOf(trimmedToParse);
     }
 
+    // ========== ORDER ==========
+
+    /**
+     * Parses a {@code String dateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid (does not match
+     * DD-MM-YYYY HH:MM).
+     */
+    public static String validateDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!trimmedDateTime.matches(VALID_DATETIME_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_DATETIME);
+        }
+        return trimmedDateTime;
+    }
 
 }
