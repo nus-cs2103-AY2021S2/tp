@@ -3,8 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant "s:ScheduleCommand" as Schedule LOGIC_COLOR
-participant "imp:IdMatchPredicate" as IdMatchPredicate LOGIC_COLOR
-participant "vcc:ViewCommandComparator" as ViewCommandComparator LOGIC_COLOR
+participant "iep:IsEntityPredicate" as IsEntityPredicate LOGIC_COLOR
 participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -12,45 +11,39 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-mainframe **sd** view entity with ID 1
+mainframe **sd** show schedule of programs on current date
 
-[-> ViewCommand : execute()
+[-> ScheduleCommand : execute()
 
-activate ViewCommand
+activate ScheduleCommand
 
-ViewCommand -> Model : Generate related entity list
+ScheduleCommand -> Model : Generate filtered entity list
 activate Model
-Model --> ViewCommand
+Model --> ScheduleCommand
 deactivate Model
 
-create IdMatchPredicate
-ViewCommand -> IdMatchPredicate
-activate IdMatchPredicate
-IdMatchPredicate --> ViewCommand
-deactivate IdMatchPredicate
+create IsEntityPredicate
+ScheduleCommand -> IsEntityPredicate
+activate IsEntityPredicate
+IsEntityPredicate --> ScheduleCommand
+deactivate IsEntityPredicate
 
-ViewCommand -> Model : updateFilteredEntityList(imp)
+ScheduleCommand -> Model : updateFilteredEntityList(iep)
 activate Model
-Model --> ViewCommand
+Model --> ScheduleCommand
 deactivate Model
 
-create ViewCommandComparator
-ViewCommand -> ViewCommandComparator
-activate ViewCommandComparator
-ViewCommandComparator --> ViewCommand
-deactivate ViewCommandComparator
-
-ViewCommand -> Model : sortEntities(vcc)
+ScheduleCommand -> Model : getFilteredEntityList.size()
 activate Model
-Model --> ViewCommand
+Model --> ScheduleCommand
 deactivate Model
 
 create CommandResult
-ViewCommand -> CommandResult
+ScheduleCommand -> CommandResult
 activate CommandResult
-CommandResult --> ViewCommand
+CommandResult --> ScheduleCommand
 deactivate CommandResult
 
-[<-- ViewCommand : cr
-deactivate ViewCommand
+[<-- ScheduleCommand : cr
+deactivate ScheduleCommand
 @enduml
