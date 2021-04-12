@@ -89,22 +89,22 @@ LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> "<<Interface>>\nParser"
 
-AbstractFilter .down.--> HiddenModel
+AbstractFilter .down.-->Model
 
-CommandHistory  .-> HiddenUi
+CommandHistory  .->Ui
 
 FilterCombinator .right.-> ArgumentTokenizer
 FilterCombinator .-> AbstractFilter
 FilterCombinator .down.-> CliSyntax
 FilterCombinator .-> Filters
-FilterCombinator .->HiddenModel
+FilterCombinator .->Model
 FilterCombinator .down.->Node
 FilterCombinator .-> Prefix
 
 Filters .->CliSyntax
 Filters .->ArgumentMultimap
 Filters .->ArgumentTokenizer
-Filters .->HiddenModel
+Filters .->Model
 
 XYZFilter -|> AbstractFilter
 
