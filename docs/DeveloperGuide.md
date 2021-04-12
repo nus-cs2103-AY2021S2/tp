@@ -626,8 +626,56 @@ testers are expected to do more *exploratory* testing.
 
 ### Undo a command
 
+1. undo a command 
+  1. Test case: `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
+      1. New task will be added to the task list.
+      1. Use command `undo` to undo the `add` command.<br>
+          Expected: The newly added tasks will now be deleted from the task list.
+  1. Test case: `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`
+      1. New task will be added to the task list.
+      1. Use `delete` command to delete the newly added task.
+      1. The added task will now be deleted from the task list.
+      1. Use command`undo` to undo the `delete` command.<br>
+          Expected: The deleted task will now be added to the task list.
+  1. Test case: `clear` command
+      1. Add 1-3 tasks to the task list
+      1. Use command `clear` to clear the tasks on the task list.
+      1. Use `undo` command.<br>
+          Expected: All the deleted tasks will now be in the task list.
+  1. Invalid test cases to try: `Undo`, undo commands that are not `add`. `delete` or `clear`
+  1. Other invalid test cases to try: 
+      1. Re-launch the application.
+      1. Use the `undo` command.<br>
+          Expected: An error will be thrown because there are no previous states.
+
+
 ### Redo a command 
 
+1. Test case: `redo` a add command.
+    1. Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
+    2. Use the `undo` command to delete this newly added task.
+    3. Use the `redo` command to bring back the undo task.<br>
+        Expected: The task now be on the task list
+        
+1. Test case: `redo` a delete command.
+    1. Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
+    2. Use `delete` command to delete this newly added task. 
+    3. Use the `undo` command to restore this newly added task.
+    4. Use the `redo` command to delete the task.<br>
+        Expected: The task will not be on the task list. 
+1. Test case: `redo` a clear command.
+    1. Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
+    2. Use `clear` command to clear all task(s) on the task list. 
+    3. Use the `undo` command to restore all the task(s) on the task list.
+    4. Use the `redo` command to clear all the task(s).<br>
+        Expected: The task(s) will not be on the task list. 
+
+1. Invalid test cases to try: `Redo`, `redo` commands that are not `add`, `delete` or `clear`
+1. Other invalid test cases to try:
+    1. Re-launch the application
+    2. Use the `redo` command.<br>
+        Expected: An error will be thrown because there are no previous states.
+   
 
 ## **Appendix: Effort**
 
