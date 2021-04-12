@@ -741,7 +741,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Extensions**
 
-* 2a. The requested index is out of bounds. Then an index invalid exception will arise.
+* 1a. The requested index is out of bounds. Then an index invalid exception will arise.
 
   Use case ends.
 
