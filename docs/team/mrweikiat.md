@@ -1,12 +1,12 @@
-## Introduction
+### Introduction
 
 **semester.config is a desktop application for managing your tasks.**
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-## Code Contributed
+#### Code Contributed
 You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=)
 
-## Enhancements implemented.
+#### Enhancements implemented.
 1) Implemented the PriorityTag feature for semesterconfig
 2) Assist in creating sorting comparator to sort the tasks according to Priority levels
 3) Reconfigure Storage component to ensure data are correctly stored
@@ -28,20 +28,20 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Justification : Help to identify possible bugs in newly written features.
 * Highlights: Worked on the Storage component files, they are mainly but no restricted to: `JsonAdaptedTag`, `JsonAdaptedTask`, `JsonSerializableTaskTracker`, `JsonUserPrefsStorage`, `Storage`, `StoreManager`, `TaskTrackerStorage`, `UserPrefsStorage`.
 
-## Testing
+#### Testing
 * I was the IC for testing component. I have to vet the test cases of my team mates and occasionally edit and configure the test cases to ensure that the test cases are well written. 
 * I was in charge of testing for the Storage component. I wrote test cases for storage classes they are: `JsonAdaptedTagTest`, `JsonAdaptedTaskTest`, `JsonSerializableTaskTrackerTest`, `JsonTackTrackerStorageTest`, `JsonUserPrefsStorageTest`, `StorageManagerTest`.
 * I also edit and vetted the data component to ensure that the data under data folder used for testing are up-to-date they are mainly but not restricted to: `data\ConfigUtilTest`, `data\JsonSerializableTaskTrackerTest`, `data\JsonTaskTrackerStorageTest`, `data\sandbox`.
 * I wrote test cases for Model component correctly they are mainly but not restricted to: `PriorityTagTest`, `TagTest`, `SortingFlagTest`
 * Maintained the `testUtil` folder so that the data stored and used for testing are correct. 
 
-## Contributions to the UG
+#### Contributions to the UG
 * Was one of the initial team member to start editing and ensuring UG quality.
 * I added the UG component for Priority Tag, the feature that I was in-charge of. 
 * I also helped to standardize the team's UG formatting and language. 
 * I vetted the UG before every submission to ensure quality. 
 
-## Contributions to the DG
+#### Contributions to the DG
 * I was in charge of the Storage component.
     1. Drew up all the UML diagrams related to storage.
     2. Edited all the contents of DG: Storage component. 
@@ -56,7 +56,7 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
         * Ensuring that our team's effort gets recognised by the evaluators.
         * Ensuring that we document our challenges and diffculties properly. 
 
-## Contributions to team-based tasks
+#### Contributions to team-based tasks
 * Refactored person classes in the Person package, refactored storage classes, refactor tag classes.
 * Worked on Comparator class, sorting class, Tag class, Command class, Parser class
 * Worked on resolving Ui bugs after practical dry runs
