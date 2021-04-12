@@ -1,8 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_FILTER_KEYWORD_NOTATION;
-import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_RANGE_NOTATION;
-import static seedu.address.commons.core.Messages.MESSAGE_BAD_LOWER_UPPER_AGE_RANGE_NOTATION;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -56,7 +53,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                             String.format(MESSAGE_INVALID_AGE_INPUT, FilterCommand.MESSAGE_USAGE));
                 } else if (input.value().split("-").length >= 3) {
                     throw new ParseException(
-                            String.format(MESSAGE_BAD_AGE_RANGE_NOTATION, FilterCommand.MESSAGE_USAGE));
+                            String.format(MESSAGE_INVALID_AGE_INPUT, FilterCommand.MESSAGE_USAGE));
                 } else if (input.value().split("-").length == 2) {
                     String[] ageBoundsArgs = input.value().split("-");
                     try {
@@ -64,12 +61,12 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                         int upperBound = Integer.parseInt(ageBoundsArgs[1]);
                         if (lowerBound > upperBound) {
                             throw new ParseException(
-                                    String.format(MESSAGE_BAD_LOWER_UPPER_AGE_RANGE_NOTATION,
+                                    String.format(MESSAGE_INVALID_AGE_INPUT,
                                             FilterCommand.MESSAGE_USAGE));
                         }
                     } catch (NumberFormatException e) {
                         throw new ParseException(
-                                String.format(MESSAGE_BAD_AGE_FILTER_KEYWORD_NOTATION, FilterCommand.MESSAGE_USAGE));
+                                String.format(MESSAGE_INVALID_AGE_INPUT, FilterCommand.MESSAGE_USAGE));
                     }
 
                 }
