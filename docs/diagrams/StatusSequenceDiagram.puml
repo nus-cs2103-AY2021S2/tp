@@ -49,9 +49,9 @@ StatusCommand -> Model : updateFilteredResidenceList(predicate)
 activate Model
 
 ref over Model
-    automatic sorting
-    of residence by
-    clean status
+    Automatic Sorting
+    of Residences by
+    Clean Status
 end ref
 
 Model --> StatusCommand

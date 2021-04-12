@@ -254,11 +254,11 @@ And the activity diagram:
 
 Implementation of edit booking creates a `editedBooking` before calling `BookingList#setBooking` to replace `bookingToEdit` with `editedBooking`. There is a need to ensure that `editedBooking` has no overlap dates with other bookings. However, if `BookingList#contains` (method that checks if a booking overlaps with other bookings in the `bookingList`) is called, it is likely that it returns `true` because `editedBooking` has overlapping dates with `bookingToEdit` since at this point, `bookingToEdit`still exists in the `bookingList`.
 
-* **Alternative 1: After creating `editedBooking`, use `DeleteBookingCommand` on `bookingToEdit` and `AddBookingCommand` to add `editedBooking` back to the `bookingList`**
+* **Alternative 1:** After creating `editedBooking`, use `DeleteBookingCommand` on `bookingToEdit` and `AddBookingCommand` to add `editedBooking` back to the `bookingList`
     * Pros: `AddBookingCommand` handles the check for overlapping dates for `editedBooking`. Previous issue of `bookingToEdit`existing in the `bookingList` is solved by deletion.
     * Cons: ties the implementation of `EditBookingCommand` to `AddBookingCommand` and `DeleteBookingCommand`.
 
-* **Alternative 2: Verify the validity of `BookingList#setBooking` by simulating the deletion of `bookingToEdit` and addition of `editedBooking` through a method in `BookingList`**
+* **Alternative 2:** Verify the validity of `BookingList#setBooking` by simulating the deletion of `bookingToEdit` and addition of `editedBooking` through a method in `BookingList`
     * Pros: allows the use of `BookingList#setBooking`, separating `EditBookingCommand` from `AddingBookingCommand` and `DeleteBookingCommand`.
     * Cons: creating a method that is similar to `BookingList#contains`.
 
