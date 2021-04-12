@@ -142,7 +142,7 @@ Commands discussed in this user guide follow these rules:
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in a command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Commands that do not take in extra parameters (such as `help` and `exit`) will ignore the additional parameters that are appended to it.<br>
@@ -178,7 +178,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 * Date should be a valid date (dd/MM/yyyy) where:
     * The Year Field (yyyy) should be a non-negative number between 0000 and 9999.
     * The Month Field (MM) should be a non-negative number between 01 and 12.
-    * The Day Field (dd) should be a non-negative number between 00 and 31 (may be less than 31 depending on the number of days in the month).
+    * The Day Field (dd) should be a non-negative number between 00 and 31 (might be less than 31 depending on the number of days in the month).
 
 ##### `DESCRIPTION`
 
@@ -619,7 +619,7 @@ Adds an event to a project in CoLAB.
 Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
 * Adds an event to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` as well as the `DATE` and `TIME` of the event.
-* `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
+* `REPEAT_WEEKLY` accepts value `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
 
 Parameters:
 
@@ -646,7 +646,7 @@ Format: `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME]
 
 * Updates the `DESCRIPTION`, `DATE`, `TIME` or `REPEAT_WEEKLY` status of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`.
 * Existing values will be updated to the input values.
-* `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
+* `REPEAT_WEEKLY` accepts value `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 At least one of the optional fields must be provided.
@@ -694,7 +694,7 @@ Groupmates contain a name and zero or more roles. The role serves to indicate th
 Groupmates are sorted alphabetically by name.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use the contacts feature in CoLAB to store more information about a groupmate. Once the contact has been added, you can then easily find the contact by using the `fincC` command to search for their name.
+You can use the contacts feature in CoLAB to store more information about a groupmate. Once the contact has been added, you can then easily find the contact by using the `findC` command to search for their name.
 </div>
 
 ##### Adding a Groupmate to a Project: `addG`
