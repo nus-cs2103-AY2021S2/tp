@@ -65,13 +65,16 @@ loop schedulable in processedSchedulables
         activate TimetableSlot
         TimetableSlot --> TimetableView : slotToAdd
         deactivate TimetableSlot
+
     TimetableView --> TimetableView : slotToAdd
     deactivate TimetableView
-
    TimetableView -> TimetableView : putIntoSlot(slotToAdd, col, position)
+   TimetableView -[HIDDEN]> TimetableView
    deactivate TimetableView
    end
    TimetableView -> TimetableView : refreshDayLabels(newDate)
+   TimetableView -[HIDDEN]> TimetableView
+   deactivate TimetableView
 
 
 
