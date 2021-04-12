@@ -29,6 +29,7 @@ public class DeleteNoteCommand extends Command {
 
     private final Index targetIndex;
 
+    //Todo
     public DeleteNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import seedu.dictionote.MainApp;
 
 /**
- * A container for App specific utility functions
+ * A container for App specific utility functions.
  */
 public class AppUtil {
 

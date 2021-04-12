@@ -463,7 +463,7 @@ Examples:
 *  `editcontact 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `editcontact 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-#### Locating contacts: `findcontact`
+#### Finding contacts: `findcontact`
 
 Finds contacts whose names and emails contain any of—or tags contain all of—the given keywords.
 

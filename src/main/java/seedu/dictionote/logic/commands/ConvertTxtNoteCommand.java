@@ -35,6 +35,11 @@ public class ConvertTxtNoteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an ConvertTxtNoteCommand of at a index.
+     *
+     * @param targetIndex note index to be converted.
+     */
     public ConvertTxtNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

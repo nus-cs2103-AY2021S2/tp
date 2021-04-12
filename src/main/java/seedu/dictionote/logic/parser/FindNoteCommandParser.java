@@ -13,14 +13,14 @@ import seedu.dictionote.model.note.NoteContainsKeywordsPredicate;
 import seedu.dictionote.model.note.TagNoteContainKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindNoteCommandParser implements Parser<FindNoteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindContactCommand
      * and returns a FindNoteCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public FindNoteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
