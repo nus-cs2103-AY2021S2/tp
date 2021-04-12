@@ -36,25 +36,19 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Maintained the `testUtil` folder so that the data stored and used for testing are correct. 
 
 #### Contributions to the UG
-* Was one of the initial team member to start editing and ensuring UG quality.
 * I added the UG component for Priority Tag, the feature that I was in-charge of. 
-* I also helped to standardize the team's UG formatting and language. 
-* I vetted the UG before every submission to ensure quality. 
+* I also helped to standardize the team's UG formatting and language and vetted the UG before every submission to ensure quality. 
 
 #### Contributions to the DG
 * I was in charge of the Storage component.
     1. Drew up all the UML diagrams related to storage.
     2. Edited all the contents of DG: Storage component. 
-* Was one of the inital team member to start editing and ensuring DG quality
-* I also helped to standardize the teams's DG formatting and language.
-* I vetted the DG before every submission to ensure quality.
+* I also helped to standardize the teams's DG formatting and language and I vetted the DG before every submission to ensure quality.
 * Contributed to the DG, they include but are not restricted to:
     1. Manual Testing component. I wrote every feature for the user who will be using the DG for testings, these includes but are not restricted to:
         * All the feature, commands, test cases and invalid test cases.
         * Ensuring a step-by-step guide that user can use as they read through the DG appendix
     1. Appendix: Effort. I wrote all the difficulties, challenges and achievements for the DG. 
-        * Ensuring that our team's effort gets recognised by the evaluators.
-        * Ensuring that we document our challenges and diffculties properly. 
 
 #### Contributions to team-based tasks
 * Refactored person classes in the Person package, refactored storage classes, refactor tag classes.
