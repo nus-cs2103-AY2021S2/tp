@@ -14,8 +14,8 @@ Given below are my contributions to the project.
 
 **Enhancements implemented**
 
-* **Add Guardian's name and Guardian's phone for a Student** [\#41](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/41)
-  * Justification: The guardian's contacts are essential information for our target users.
+* **Add School, Guardian's name and Guardian's phone for a Student** [\#41](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/41)
+  * Justification: The school and guardian's contacts are essential information for our target users.
   * Highlights: This enhancement affects the formatting of Person's list, and existing Add, Edit command.
     It requires an in-depth analysis of storage design, as well as the command and command parser structures and checks.
     
@@ -24,19 +24,18 @@ Given below are my contributions to the project.
     The subject field restrict the input content that can be tagged on students stored in TutorsPet
     The Tag in AB3 shares a similar design with Subject, but has no content restriction. It did not address any needs of our target users.  
   * Highlights: This enhancement affects the existing Add, Edit and Search command.
-    It requires an in-depth analysis of the command and command parser structures and checks.
+    It requires an in-depth analysis of the command structures and checks.
     
 * **Make some personal details of a Student optional** [\#99](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/99)
   * Justification:
     When a user first added in a student's contact, some details may not be available. Thus, TutorsPet allows all fields except name and phone being empty initially, and being added in
     later with Edit command.
   * Highlights: This enhancement affects the constructor of a Student and Student List for storage.
-    It requires an in-depth analysis of storage design, as well as the command and command parser structures and checks.
+    It requires an in-depth analysis of storage design, as well as the command parsers.
 
 * **Enhancements to existing features**:
   * Allow students with duplicate name to be added, while make the phone number a unique identifier of a Student [\#219](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/219)
-  * Updated error messages displayed in the message box of GUI
-  * Wrote additional tests for existing features 
+  * Updated error messages displayed in the message box
 
 **Project management**:
 * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub

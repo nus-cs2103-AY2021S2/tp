@@ -78,6 +78,7 @@ public class Lesson implements Comparable<Lesson> {
 
     /**
      * Adds a person to the lesson.
+     *
      * @param person person to be added.
      */
     public void addPerson(Person person) {
@@ -88,6 +89,7 @@ public class Lesson implements Comparable<Lesson> {
 
     /**
      * Removes a person from the lesson.
+     *
      * @param person person to be removed.
      */
     public void removePerson(Person person) {
@@ -107,6 +109,7 @@ public class Lesson implements Comparable<Lesson> {
 
     /**
      * Returns true if the lesson already stores the given person.
+     *
      * @param person Person to be checked if it already exists.
      * @return a boolean value indicating if the lesson already stores the given person.
      */

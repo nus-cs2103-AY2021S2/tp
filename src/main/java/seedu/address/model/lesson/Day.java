@@ -8,6 +8,7 @@ public class Day implements Comparable<Day> {
     public static final String VALIDATION_REGEX = "(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
     public static final String MESSAGE_CONSTRAINTS = "Days should take on one of the following: "
         + "monday, tuesday, wednesday, thursday, friday, saturday, sunday. ";
+
     public final String dayOfTuition;
 
     /**

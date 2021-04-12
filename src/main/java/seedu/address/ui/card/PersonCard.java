@@ -1,4 +1,4 @@
-package seedu.address.ui.Card;
+package seedu.address.ui.card;
 
 import java.util.Comparator;
 

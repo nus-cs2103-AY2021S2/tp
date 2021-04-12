@@ -1,19 +1,19 @@
-package seedu.address.ui.Card;
+package seedu.address.ui.card;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.ui.UiPart;
 
 
 /**
  * An UI component that displays information of an {@code Important Date}.
  */
-public class DateCard extends UiPart<Region> {
+public class LessonListCard extends UiPart<Region> {
 
-    private static final String FXML = "DateListCard.fxml";
+    private static final String FXML = "LessonListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -23,26 +23,23 @@ public class DateCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final ImportantDate importantDate;
+    public final Lesson lesson;
 
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label description;
+    private Label lessonDetails;
     @FXML
-    private Label details;
-    @FXML
-    private Label id;
+    private Label personNames;
 
     /**
-     * Creates a {@code DateCard} with the given {@code Important Date} and index to display.
+     * Creates a {@code LessonListCard} with the given {@code Lesson} and index to display.
      */
-    public DateCard(ImportantDate importantDate, int displayedIndex) {
+    public LessonListCard(Lesson lesson) {
         super(FXML);
-        this.importantDate = importantDate;
-        id.setText(displayedIndex + ". ");
-        description.setText(importantDate.getDescription().description);
-        details.setText(importantDate.getDetails().toString());
+        this.lesson = lesson;
+        lessonDetails.setText(lesson.getTimeInString());
+        personNames.setText(lesson.getPersonInString());
     }
 
     @Override
@@ -53,14 +50,14 @@ public class DateCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DateCard)) {
+        if (!(other instanceof LessonListCard)) {
             return false;
         }
 
         // state check
-        DateCard card = (DateCard) other;
-        return id.getText().equals(card.id.getText())
-                && importantDate.equals(card.importantDate);
+        LessonListCard card = (LessonListCard) other;
+        return lessonDetails.getText().equals(card.lessonDetails.getText())
+                && personNames.getText().equals(card.personNames.getText());
     }
 
 }

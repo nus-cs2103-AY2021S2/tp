@@ -67,6 +67,7 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         DatesBookStorage datesBookStorage = new JsonDatesBookStorage(userPrefs.getDatesBookFilePath());
         LessonBookStorage lessonBookStorage = new JsonLessonBookStorage(userPrefs.getLessonBookFilePath());
+
         storage = new StorageManager(addressBookStorage, userPrefsStorage, datesBookStorage, lessonBookStorage);
 
         initLogging(config);
@@ -138,9 +139,12 @@ public class MainApp extends Application {
         return initialLessonData;
     }
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book, dates book, lesson book and
+     * {@code userPrefs}. <br>
+     * The data from the sample address book will be used instead if {@code storage}'s address book, dates book or
+     * lesson book is not found,
+     * or an empty address book, dates book or lesson book will be used instead if errors occur when reading {@code
+     * storage}'s address book, dates book or lesson book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         ReadOnlyAddressBook initialData = initReadOnlyAddressBook(storage, userPrefs);

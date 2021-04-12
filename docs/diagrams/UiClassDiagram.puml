@@ -17,19 +17,9 @@ Class CommandBox
 Class ImportantDatesWindow
 Class ScheduleWindow
 
-package PanelList <<Rectangle>> {
-Class DateListPanel
-Class DetailLessonListPanel
-Class LessonListPanel
-Class PersonListPanel
-}
+Class XYZListPanel
 
-package Card <<Rectangle>> {
-class DateCard
-class DetailLessonListCard
-class LessonListCard
-Class PersonCard
-}
+Class XYZCard
 }
 
 package Model <<Rectangle>> {
@@ -49,19 +39,16 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> XYZListPanel
 MainWindow *-down-> PersonDetails
 MainWindow *-down-> StatusBarFooter
 MainWindow --> ImportantDatesWindow
 MainWindow --> ScheduleWindow
-ImportantDatesWindow *-down-> DateListPanel
-PersonDetails *-down-> DetailLessonListPanel
-ScheduleWindow *-down-> LessonListPanel
+ImportantDatesWindow *-down-> XYZListPanel
+PersonDetails *-down-> XYZListPanel
+ScheduleWindow *-down-> XYZListPanel
 
-PersonListPanel -down-> PersonCard
-DateListPanel -down-> DateCard
-DetailLessonListPanel -down-> DetailLessonListCard
-LessonListPanel -down-> LessonListCard
+XYZListPanel -down-> XYZCard
 
 MainWindow -down-|> UiPart
 
@@ -72,28 +59,25 @@ StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 ImportantDatesWindow -down-|> UiPart
 ScheduleWindow -down-|> UiPart
-PanelList --|> UiPart
-Card --|> UiPart
+XYZListPanel--|> UiPart
+XYZCard --|> UiPart
 
 
-Card ..> Model
+XYZCard ..> Model
 PersonDetails ..> Model
 UiManager -right-> Logic
 MainWindow -right-> Logic
 ImportantDatesWindow -right-> Logic
 ScheduleWindow -up-> Logic
 
-PersonDetails -[hidden]left- ScheduleWindow
 ScheduleWindow -[hidden]left- ImportantDatesWindow
-ImportantDatesWindow -[hidden]left- PersonListPanel
-PersonListPanel -[hidden]left- HelpWindow
+ImportantDatesWindow -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+note right of XYZListPanel: XYZListPanel = PersonListPanel, \nDateListPanel, etc
+note right of XYZCard: XYZCard = PersonCard, \nDateCard, etc
 
-PersonCard -[hidden]right- DateCard
-DateCard -[hidden]right- LessonListCard
-DateListPanel -[hidden]right- LessonListPanel
 
 MainWindow -[hidden]-|> UiPart
 @enduml

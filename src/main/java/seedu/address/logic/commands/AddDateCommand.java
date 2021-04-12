@@ -51,8 +51,4 @@ public class AddDateCommand extends Command {
                 && toAdd.equals(((AddDateCommand) other).toAdd));
     }
 
-
-
-
-
 }

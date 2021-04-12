@@ -25,7 +25,7 @@ import seedu.address.model.person.level.Level;
 import seedu.address.model.subject.Subject;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating TutorsPet with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {

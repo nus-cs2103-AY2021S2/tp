@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Label fx:id="commandName" minHeight="-Infinity" prefWidth="110.0" styleClass="cell_big_label">
+ <minWidth>
+   <!-- Ensures that the label text is never truncated -->
+   <Region fx:constant="USE_PREF_SIZE" />
+ </minWidth>
+</Label>
+   <Label fx:id="commandFormat" minHeight="-Infinity" minWidth="-Infinity" prefWidth="525.0" styleClass="cell_big_label" wrapText="true" />
+</HBox>

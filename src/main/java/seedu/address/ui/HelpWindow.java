@@ -2,9 +2,13 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -27,6 +31,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private ListView<String> commandList;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +42,27 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        ObservableList<String> commands = FXCollections.observableArrayList(
+                " Clear: `clear`\n",
+                " Exit: `exit`\n",
+                " Help: `help`\n",
+                " Add: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] "
+                        + "[gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]… [le/LESSON]…`",
+                " Edit: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] "
+                        + "[gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]… [le/LESSON]…`",
+                " Detail: `detail INDEX`\n",
+                " Delete: `delete INDEX`\n",
+                " Search: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`\n",
+                " Sort: `sort PREFIX`\n",
+                " List: `list`\n",
+                " LevelUp: `levelup [ex/INDEX]`\n",
+                " LevelDown: `leveldown [ex/INDEX]`\n",
+                " Add dates: `add-date d/DESCRIPTION dt/DETAILS`\n",
+                " Delete dates: `delete-date INDEX`\n",
+                " List dates: `list-date`\n",
+                " Schedule: `schedule`");
+        commandList.setItems(commands);
+        commandList.setCellFactory(listView -> new CommandListViewCell());
     }
 
     /**
@@ -98,5 +126,22 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code command} using a {@code String}.
+     */
+    class CommandListViewCell extends ListCell<String> {
+        @Override
+        protected void updateItem(String command, boolean empty) {
+            super.updateItem(command, empty);
+
+            if (empty || command == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new CommandCard(command).getRoot());
+            }
+        }
     }
 }

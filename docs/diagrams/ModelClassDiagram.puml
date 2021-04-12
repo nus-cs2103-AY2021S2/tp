@@ -26,11 +26,12 @@ Class Email
 Class Name
 Class Phone
 Class School
+Class Level
 Class UniquePersonList
 }
 
-Package Tag {
-Class Tag
+Package Subject {
+Class Subject
 }
 
 Package Lesson {
@@ -70,7 +71,8 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> School
-Person *--> "*" Tag
+Person *--> Level
+Person *--> "*" Subject
 Person *--> "*" Lesson
 
 Name -[hidden]right-> Phone
@@ -90,4 +92,5 @@ Lesson *--> "*" Person
 
 ModelManager ----->" ~* filtered and observable list" Person
 ModelManager ----->" ~* filtered and observable list" Lesson
+
 @enduml

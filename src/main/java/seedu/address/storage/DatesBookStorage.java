@@ -32,6 +32,7 @@ public interface DatesBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyDatesBook} to the storage.
+     *
      * @param datesBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

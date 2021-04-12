@@ -2,6 +2,12 @@
 layout: page
 title: Developer Guide
 ---
+
+TutorsPet is a desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via 
+a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the 
+efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson 
+schedules and important dates.
+
 ## Table of Contents
 * Table of Contents
 {:toc}
@@ -96,6 +102,7 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -111,8 +118,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* stores a Person object.
+* stores the TutorsPet data.
+* stores a Person object that represents a student 
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed'.
   * UI bounded to this list and Person object will be automatically updated when the data in the list change.
 * does not depend on any of the other three components.
@@ -134,6 +141,8 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* can save the dates book data in json format and read it back.
+* can save the lesson book data in json format and read it back.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -188,15 +197,13 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the add command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the add feature works:
+The sequence diagram below shows how the `add` feature works:
 ![Sequence Diagram for Add Command](images/AddSequenceDiagram.png)
 ![Sequence Diagram for Ref Add Command](images/AddCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when an add command is executed:
+The activity diagram shows the workflow when an `add` command is executed:
 ![Activity Diagram for Add Command](images/AddActivityDiagram.png)
 
 #### Design consideration:
@@ -252,15 +259,13 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the edit command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the edit feature works:
+The sequence diagram below shows how the `edit` feature works:
 ![Sequence Diagram for Edit Command](images/EditSequenceDiagram.png)
 ![Sequence Diagram for Ref Edit Command](images/EditCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when an edit command is executed:
+The activity diagram shows the workflow when a `edit` command is executed:
 ![Activity Diagram for Edit Command](images/EditActivityDiagram.png)
 
 #### Design consideration:
@@ -314,15 +319,13 @@ a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
 
 Step 6. If the delete command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the delete feature works:
+The sequence diagram below shows how the `delete` feature works:
 ![Sequence Diagram for Delete Command](images/DeleteSequenceDiagram.png)
 ![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a `delete` command is executed:
 ![Activity Diagram for Delete Command](images/DeleteActivityDiagram.png)
 
 #### Design consideration:
@@ -369,14 +372,12 @@ get displayed and a new `CommandResult` is returned. Otherwise, a `CommandExcept
 
 Step 6. If the detail command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the detail feature works:
+The sequence diagram below shows how the `detail` feature works:
 ![Sequence Diagram for Delete Command](images/DetailSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a detail command is executed:
+The activity diagram shows the workflow when a `detail` command is executed:
 ![Activity Diagram for Delete Command](images/DetailActivityDiagram.png)
 
 #### Design consideration:
@@ -409,7 +410,7 @@ The search mechanism is facilitated by `SearchCommand`, `SearchCommandParser` an
 * `SearchCommandParser#parse()`  —  parses the user's input and returns a new `SearchCommand` with a new `NameSchoolAndSubjectContainsKeywordsPredicate` as argument if the command format is valid.
 * `SearchCommandParser#extractKeywordsAsArray()`  —  extracts the keywords following a prefix that is passed as parameter into an array.
 
-`NameSchoolAndTagContainsKeywordsPredicate` implements the `Predicate` interface and contains 3 `List` of keywords: name, school and subject. It implements the following operations:
+`NameSchoolAndSubjectContainsKeywordsPredicate` implements the `Predicate` interface and contains 3 `List` of keywords: name, school and subject. It implements the following operations:
 
 * `NameSchoolAndSubjectContainsKeywordsPredicate#test()`  —  tests if the name, school and tag keywords matches the name, school and subjects of the student contacts respectively, and returns true if matches.
 * `NameSchoolAndSubjectContainsKeywordsPredicate#testBySubject()`  —  tests if the subject keywords matches the subjects of the student.
@@ -433,12 +434,10 @@ The updated filtered person list with the search results will then be displayed.
 
 Step 6. If the `search` command has been successfully executed, a message will be displayed indicating the number of person listed.
 
-#### Sequence Diagram
 The sequence diagram below shows how the `search` feature works:
 
 ![Sequence Diagram for Search Command](images/SearchSequenceDiagram.png)
 
-#### Activity Diagram
 The activity diagram shows the workflow when a `search` command is executed:
 
 ![Activity Diagram for Search Command](images/SearchActivityDiagram.png)
@@ -491,15 +490,14 @@ a new `CommandResult` is returned.
 
 Step 7. If the sort command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 The sequence diagram below shows how the `sort` feature works:
 
 ![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
 
-#### Activity Diagram
 The activity diagram shows the workflow when a `sort` command is executed:
 
 ![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
+![Activity Diagram for Execute Sort Command](images/ExecuteSortActivityDiagram.png)
 
 #### Design consideration:
 
@@ -546,14 +544,11 @@ are advanced by one education level. Otherwise, a `CommandException` is thrown.
 
 Step 6. If the advancing command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the levelup feature works:
+The sequence diagram below shows how the `levelup` feature works:
 ![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
+![Activity Diagram for Execute LevelUp Command](images/ExecuteLevelUpActivityDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a levelup command is executed:
+The activity diagram shows the workflow when a `levelup` command is executed:
 ![Activity Diagram for LevelUp Command](images/LevelUpActivityDiagram.png)
 
 #### Design consideration:
@@ -604,15 +599,14 @@ are advanced by one education level. Otherwise, a `CommandException` is thrown.
 
 Step 6. If the advancing command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the leveldown feature works:
+The sequence diagram below shows how the `leveldown` feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a leveldown command is executed:
+The activity diagram shows the workflow when a `leveldown` command is executed:
 ![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
+![Activity Diagram for Execute LevelDown Command](images/ExecuteLevelDownActivityDiagram.png)
 
 #### Design consideration:
 
@@ -667,15 +661,11 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the add important date command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the add important date feature works:
+The sequence diagram below shows how the `add-date` feature works:
 ![Sequence Diagram for Add Important Date Command](images/AddImportantDateSequenceDiagram.png)
 ![Sequence Diagram for ref CreateAddDateCommand](images/CreateAddDateCommandSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when an add important date command is executed:
+The activity diagram shows the workflow when an `add-date` command is executed:
 ![Activity Diagram for Add Important Date Command](images/AddImportantDateActivityDiagram.png)
 
 #### Design consideration:
@@ -723,27 +713,24 @@ a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
 
 Step 6. If the delete important date command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the delete important date feature works:
+The sequence diagram below shows how the `delete-date` feature works:
 ![Sequence Diagram for Delete Important Date Command](images/DeleteImportantDateSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a delete important date command is executed:
+The activity diagram shows the workflow when a `delete-date` command is executed:
 ![Activity Diagram for Delete Important Date Command](images/DeleteImportantDateActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: 
+##### Aspect: Whether to implement deleting of an important date by entering the index or details of the date
 
-* **Alternative 1 (current choice):** 
-    * Pros: 
-    * Cons:  
+* **Alternative 1 (current choice):** Implement deleting of an important date by having the user enter the index of the important date
+    * Pros: This keeps the command short, user does not have to spend too much time typing out the details.
+    * Cons: User will have to delete the important dates one by one even if they have the same details and are no longer needed since the dates have passed.
   
-* **Alternative 2:** 
-    * Pros: 
-    * Cons: 
+* **Alternative 2:** Implement deleting of an important date by having the user enter the details of the important date
+    * Pros: User can delete all important dates with the same details at once, this can be useful in deleting important dates that have passed. 
+    * Cons: User might have several important dates with the same details, yet only want to delete one of it. By deleting all those with the same details,
+  the user will then have to manually add back all the other important dates that he/she wants. 
       
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -794,16 +781,12 @@ create a `dateListPanel`, containing the `ObservableList` of important dates.
 
 Step 7. If the list important dates command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the list important dates feature works:
+The sequence diagram below shows how the `list-date` feature works:
 ![Sequence Diagram for List Important Dates Command](images/ListImportantDatesSequenceDiagram.png)
 ![Sequence Diagram for ref List Important Dates](images/ListImportantDatesCommandSequenceDiagram.png)
 ![Sequence Diagram for ref Execute Important Dates Command](images/ExecuteImportantDatesCommandSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a list important dates command is executed:
+The activity diagram shows the workflow when a `list-date` command is executed:
 ![Activity Diagram for List Important Dates Command](images/ListImportantDatesActivityDiagram.png)
 
 #### Design consideration:
@@ -867,7 +850,6 @@ The sequence diagram below shows how the `schedule` feature works:
 
 ![Sequence Diagram for Ref Schedule Command](images/ScheduleCommandSequenceDiagram.png)
 
-
 Step 5. The user then executes `detail 1` command that does not modify the `internalList` or the seven separate `ObservableList`
 of lessons for each day of the week. The `detail` command instead modifies another `ObservableList`. Thus, the schedule
 window continues to display the correct list of lessons for each day.
@@ -917,20 +899,23 @@ window continues to display the correct list of lessons for each day.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        
+| Priority | As a …​                                    | I want to …​                     | So that …​                                                        
 | -------- | ------------------------------------------ | ------------------------------- | ---------------------------------------------------------------------- 
-| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 
+| `* * *`  | new user                                   | see usage instructions          | I can refer to instructions when I forget how to use the App                 
 | `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   
-| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering                                  
-| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed.    
-| `* *`    | user                                       | find a student by name          | locate details of students without having to go through the entire list
-| `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        
-| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     
+| `* * *`  | user                                       | delete a student's contact      | I can remove entries that I no longer need and reduce cluttering                                  
+| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed
+| `* *`    | user                                       | keep track of dates relevant to my students | I can plan my lessons according to their examination dates
+| `* *`    | user                                       | find a student by name          | I can locate details of students without having to go through the entire list
+| `* *`    | user                                       | find a student by school        | I can plan my lesson/schedules according to their school’s curriculum   
+| `* *`    | user                                       | find a student by subject       | I can distinguish my students if I am teaching more than 1 subject
+| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week     
+| `* *`    | user                                       | easily check the current education level of my students | I can prepare the correct lesson material for them
 | `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes
 | `*`      | user                                       | mass update all student levels  | I can keep my contacts up to date at the start of a new year
-| `*`      | expert user                                | add customized subjects to contacts | I will be able to access each group of students more easily
-| `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program
-| `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                
+| `*`      | expert user                                | add customized subjects to contacts | I can be able to access each group of students more easily
+| `*`      | expert user                                | attach remarks to contacts      | I can remember details that might not be covered in the original program
+| `*`      | user                                       | hide private contact details    | I can minimize chance of someone else seeing them by accident                
 
 *{More to be added}*
 
@@ -938,47 +923,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TutorsPet` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new contact**
+**Use case: Add a new student contact**
 
 **MSS**
 
-1.  User keys in the contact to be added
-2.  TutorsPet shows the added contact into the list
+1.  User keys in the student's contact to be added
+2.  TutorsPet shows the added student into the list
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given details is in an incorrect format.
+* 1a. The given details are in an incorrect format.
 
     * 1a1. TutorsPet shows an error message.
 
       Use case ends.
+  
+* 1b. Details are in correct format, but the name already exists in TutorsPet.
 
-**Use case: Delete a student contact**
+    * 1b1. TutorsPet displays a message to notify the duplicate name and ask user whether to proceed with `y` or `n`.
+  
+    * 1b2. User enters `y`.<br>
+      Use case resumes from step 2.
 
-**MSS**
+* 1c. Details are in correct format, but the phone already exists in TutorsPet.
 
-1.  User requests to list contacts
-2.  TutorsPet shows a list of students’ contact
-3.  User requests to delete a specific contact from the list
-4.  TutorsPet deletes the person
+     * 1c1. TutorsPet shows an error message. <br>
+       Use case ends.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. TutorsPet shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Editing an existing contact**
+**Use case: Editing an existing student contact**
 
 **MSS**
 
@@ -993,9 +967,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorsPet shows an error message.
+  * 1a1. TutorsPet shows an error message.
 
-      Use case ends.
+    Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes at step 2.
+       
+**Use case: Delete a student contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  TutorsPet shows a list of students’ contact
+3.  User requests to delete a specific contact from the list
+4.  TutorsPet deletes the student
+
+    Use case ends.
+
+**Extensions**
 
 * 2a. The list is empty.
 
@@ -1006,6 +1003,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Display a student contact details**
+
+**MSS**
+
+1.  User requests to list student contacts.
+2.  TutorsPet shows a list of student contacts.
+3.  User requests to display a specific student contact from the list.
+4.  TutorsPet display the specified student contact in the details panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index of the student contact in the list is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
 
 **Use case: Search for a student contact**
 
@@ -1162,30 +1182,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Display a student contact details**
-
-**MSS**
-
-1.  User requests to list student contacts.
-2.  TutorsPet shows a list of student contacts.
-3.  User requests to display a specific student contact from the list.
-4.  TutorsPet display the specified student contact in the details panel.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty
-
-  Use case ends.
-
-* 3a. The given index of the student contact in the list is invalid.
-
-  * 3a1. TutorsPet shows an error message.
-
-    Use case resumes from step 2.
-
-
 **Use case: Opens schedule window**
 
 **MSS**
@@ -1303,6 +1299,71 @@ testers are expected to do more *exploratory* testing.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+### Adding a student
+Add a student with his/her details
+
+   1. Test case: `add n/John`<br>
+      Expected: The student cannot be added. 
+     
+      A student's name and phone are compulsory details that must be provided.
+      Here, the phone number is missing.
+
+   1. Test case: `add n/John p/aaaaa`<br>
+      Expected: The student cannot be added.
+     
+      Phone number has the invalid format.
+
+   1. Test case: `add n/John Doe p/87438807`<br>
+      Expected: Assume that phone number is already owned by another student in TutorsPet.
+     
+      The new student cannot be added because each student must have a unique phone number.
+
+   1. Test case: `add n/Alex Yeoh p/12345678`<br>
+      Expected: Assume that the name is the same as another student in TutorsPet.
+     
+      There will be a message notifying the user about the duplicate name. 
+     
+      If the user proceeds to type`y`, the student can be added. If the user proceeds to type`n`, the student will not be added.
+
+   1. Test case: `add n/John Doe p/98765432 s/Clementi Secondary School e/johnd@example.com a/311, Clementi Ave 2, #02-25 gn/Helen Doe gp/98765431 lv/sec3 t/math t/chem le/monday 1300`<br>
+      Expected: Assume that both the name and the phone are unique.
+     
+      The student can be successfully added with all the details stored in TutorsPet.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Editing a student
+1. Edit details of an existing student listed the first in TutorsPet
+    1. Prerequisites: List all students using the `list` command. There is at least 1 student in the list.
+
+    1. Test case: `edit s/ABC Secondary School gn/John Lee`<br>
+       Expected: No student can be edited.<br> 
+       There is an error message to notify the incorrect command format.
+
+    1. Test case: `edit 0 s/ABC Secondary School gn/John Lee`<br>
+       Expected: No student can be edited.<br>
+       There is an error message to notify the invalid index.
+   
+    1. Test case: `edit 1 n/John Doe`<br>
+       Expected: Assume there is another student named John Doe.<br>
+       There will be a message notifying the user about the duplicate name.<br>
+       If the user proceeds to type`y`, the name of the first studnet in the list is edited. If the user proceeds to type`n`, the student will not be edited.
+
+    1. Test case: `edit 1 s/`<br>
+       Expected: The edit command is invalid. <br>
+       The student's school cannot be edited with an empty name.
+
+    1. Test case: `edit 1 t/`<br>
+       Expected: The subjects of the first student is removed.
+
+    1. Test case: `edit 1 s/ABC Secondary School gn/John Lee`<br>
+       Expected: The school name and guardian's name of the first student is edited.
+
+    1. Test case: `edit 1 t/bio t/lit` <br>
+       Expected: The subjects of the student are edited to biology and literature.
+   
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -1318,26 +1379,22 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Viewing a student contact details
 
 1. Viewing a student contact details while all students are being shown
 
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-  1. Test case: `detail 1`<br>
+   1. Test case: `detail 1`<br>
      Expected: Details of the first contact from the list is displayed on the Contact Detail panel.
 
-  1. Test case: `detail 0`<br>
+   1. Test case: `detail 0`<br>
      Expected: No student detail is displayed. Error details shown in the status message. Status bar remains the same.
 
-  1. Other incorrect delete commands to try: `detail`, `detail x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `detail`, `detail x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -1360,41 +1417,6 @@ testers are expected to do more *exploratory* testing.
       Expected: Displays a list of students with subject `phy`.
    1. Test case: `search s/xyz`<br>
       Expected: Displays a list of students with school names with `xyz` (case insensitive),
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-### Viewing the Schedule
-
-1. Viewing the schedule while all students are being shown.
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-  1. Test case: `schedule`<br>
-     Expected: Opens up the schedule window.
-  1. Test case: `schedulexyz`<br>
-     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
-  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
-     Expected: Similar to previous.
-1. Viewing the schedule window while adding or editing student contact.
-  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
-  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
-     Then enter `schedule`.<br>
-     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
-  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact) 
-     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
-     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
-1. Viewing the schedule window while schedule window is already opened.
-   1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
-   1. Test case: `schedule` <br>
-   1. Expected: Focuses back on the schedule window.
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -1446,5 +1468,40 @@ testers are expected to do more *exploratory* testing.
        Expected: Opens window with a list of important dates. Success details is shown in the status message.
     
     1. Incorrect list important date commands include cases where the command entered is not `list-date`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Viewing the schedule
+
+1. Viewing the schedule while all students are being shown.
+  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+  1. Test case: `schedule`<br>
+     Expected: Opens up the schedule window.
+  1. Test case: `schedulexyz`<br>
+     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
+  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
+     Expected: Similar to previous.
+1. Viewing the schedule window while adding or editing student contact.
+  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
+  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800.
+     Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
+  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact)
+     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
+1. Viewing the schedule window while schedule window is already opened.
+  1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
+  1. Test case: `schedule` <br>
+  1. Expected: Focuses back on the schedule window.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>

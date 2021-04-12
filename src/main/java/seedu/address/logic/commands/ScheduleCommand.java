@@ -14,11 +14,11 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows weekly lesson schedule.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String SHOWING_HELP_MESSAGE = "Opened schedule window.";
+    public static final String SHOWING_SCHEDULE_MESSAGE = "Opened schedule window.";
 
     @Override
     public CommandResult execute(Model model) {
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false, false, false);
+        return new CommandResult(SHOWING_SCHEDULE_MESSAGE, true, false, false, false);
     }
 }

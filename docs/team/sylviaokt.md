@@ -41,7 +41,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Set up GitHub team repo
-  * Managed releases `v1.1` - `v1.3` (3 releases) on GitHub
+  * Managed releases `v1.1` - `v1.2` (2 releases) on GitHub
   * Updated documents not specific to a feature: about us page: [\#24](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/24),
     site-wide settings: [\#14](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/14), 
     glossary for DG: [\#22](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/22)
@@ -50,6 +50,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Changed the search feature to search using prefixes instead, so that users can search by more specific fields such as name and subject.
     (Pull Requests: [\#43](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/43), [\#61](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/61))
+  * Updated help command to include a list of commands. (Pull Request: [\#376](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/376))
 
 * **Documentation**:
   * User Guide:

@@ -13,6 +13,7 @@ TutorsPet is a **desktop app designed for private tutors in Singapore to manage 
 * To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-faq).
 * To learn about the field formats of a student contact, head to [6.1 Field Format Summary](#61-field-format-summary).
 * To get an overview of all our commands, head to [6.2 Command summary](#62-command-summary).
+* To understand some terms we use, head to [7 Glossary](#7-glossary). 
 
 Feel free to check out our [Table of Contents](#table-of-contents), to get familiar with TutorsPet step by step. 
 
@@ -69,7 +70,7 @@ Note the following symbols and formatting used in this document:
 1. Double-click the file to start the app. If that does not work, open command prompt and type in 
    `java -jar /path/to/jar/file`, replacing the path with the absolute or relative file paths.
    The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![TutorsPet Interface](images/TutorsPetDiagram1.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -158,26 +159,17 @@ Adds a student’s contact to TutorsPet.
 
 Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`
 
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * `n/NAME p/PHONE` are compulsory fields that must be provided. **Phone can uniquely identify a student.** i.e. Students cannot share the same phone number, while duplicate names are allowed. 
   Note that names are **case-insensitive** in TutorsPet,  e.g. `john`, `JOHN`, `John` are read as the same name.
   
 * `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional which can be added now with `add` command or later with `edit` command.
 
-* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`, 
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`, which are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
-  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tuition, 
-  as well as graduated students who are less likely to need private tuition.
+* Education levels are represented abbreviated names. Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`, 
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
-
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Literature, Malay, Mathematics, Physics, Science and Tamil respectively, which are
-  subjects which students are more likely to need private tuition.
+* Subjects are represented by abbreviated names. Valid names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`, 
+  which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
 * A student’s contact can have any number of subjects (including 0). 
@@ -190,23 +182,26 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 * Lesson time must be in **HHmm** format e.g. **1300**
 
-* If the student name to be added already exists in TutorsPet, a warning
-`This student name Alex Yeoh already exists with a different phone number. Do you wish to proceed? y/n` will be shown.
-  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
-  If `n` is entered, the contact would not be added.
-  
-* If the lesson day and time to be added already exists in TutorsPet, a warning 
-  `You have a lesson at [lesson day and time] with [student(s)]. Do you wish to proceed? y/n` will be shown
-  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
+* If the student **name** or **lesson** to be added already exists in TutorsPet, a warning prompting user's input will be shown.
+  If `y` is entered, the contact will be added.
   If `n` is entered, the contact would not be added.
   
 * Student's phone number is allowed to be the same as the guardian's number.
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+Education levels and subjects available cover the usual students who are more likely to need private tuition. More options 
+will explored in [Coming Soon](4-coming-soon).
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** If TutorsPet detects a conflicting lesson being added, a confirmation message will be shown. You
+:exclamation: **Caution:** 
+If TutorsPet detects a conflicting lesson being added, a confirmation message will be shown. You
 will need to type in either y/n for confirmation to add conflicted schedule.
+
+TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
+input in the app. For more details, see the [Field Format Summary](#61-field-format-summary) below.
 </div>
 
 Example:
@@ -237,10 +232,6 @@ Edits an existing student in TutorsPet.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`
 
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * Edits the student at the specified `INDEX`.
   
 * The index refers to the index number shown in the displayed student list.
@@ -253,10 +244,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 
 * Optional fields which were not available when a student's contact was initially saved in TutorsPet can be added in.
 
-* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`, 
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`, which are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
-  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution,
-  as well as graduated students who are less likely to need private tuition.
+* Education levels are represented abbreviated names. Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
@@ -264,28 +253,25 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
   
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
-  
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Literature, Malay, Mathematics, Physics, Science, Tamil respectively, which are
-  subjects which students are more likely to need private tuition.
+* Subjects are represented by abbreviated names. Valid names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`,
+  which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
-* If the student name to be edited already exists in TutorsPet, a warning
-  `This student name Alex Yeoh already exists with a different phone number. Do you wish to proceed? y/n` will be shown.
-  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
-  If `n` is entered, the contact would not be added.
+* If the student **name** or **lesson** to be edited already exists in TutorsPet, a warning prompting user's input will be shown.
+  If `y` is entered, the contact will be edited.
+  If `n` is entered, the contact would not be edited.
 
-* If the lesson day and time to be edited already exists in TutorsPet, a warning
-  `You have a lesson at [lesson day and time] with [student(s)]. Do you wish to proceed? y/n` will be shown
-  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
-  If `n` is entered, the contact would not be added.
-
+<div markdown="block" class="alert alert-primary">
+:bulb:**Tips:** <br>
+Edited information can be displayed on the Contact details panel by retyping
+`detail INDEX` command.
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** Edited information can be displayed on the Contact details panel by retyping
-`detail INDEX` command.
+:exclamation: **Caution:**
+TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
+input in the app. For more details, see the [Field Format Summary](#61-field-format-summary) below.
 </div>
 
 Example:
@@ -313,18 +299,19 @@ Command     | Result
 #### 3.2.3 Viewing a contact details : `detail`
 
 View the full details of the specified student's contact from TutorsPet.
-The specified student's name, school, phone number, email, address, guardian name and guardian's phone number will
-be displayed.
+The specified student's name, phone number, school, email, address, guardian name, guardian's phone number, 
+education level and lessons will be displayed.
 
 Format: `detail INDEX`
 
-<div markdown="block" class="alert alert-primary">
+* Student details of a searched list can be displayed using this command.
+* Contains a lesson panel on the right to view your schedule with the specified student.
 
+<div markdown="block" class="alert alert-primary">
 :bulb:**Tips:** <br>
 
-* Student details of a searched list can be displayed using this command.
-* Contains a lesson panel to view your schedule with the specified student.
-
+If student details are cut off, the windows can be resized to view more. Otherwise, the student's complete details
+will also be in the results display.
 </div>
 
 Example: <br>
@@ -382,10 +369,6 @@ Prefix | Searching Criteria
 `s/`   | School
 `t/`   | Subject
 
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * **At least one** prefix must be used.
    
 * All 3 types of prefix can be used **concurrently**.
@@ -394,11 +377,16 @@ Prefix | Searching Criteria
   
 * The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
    
-* Only full words will be matched e.g. `Ta` will not match `Tan`.
+* Only full words will be matched. E.g. `Ta` will not match `Tan`.
   
 * Contacts matching at least one keyword will be returned. 
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
+* Available **subject** names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
   
@@ -447,11 +435,17 @@ Prefix | Sorting Criteria | Details
 
 </div>
 
-Examples:
-* `sort le/` sorts students based on the chronological order of their respective earliest lesson 
-  of the week.
-* `sort n/ s/` sorts students by the alphabetical orders of their schools, and ignores the name prefix.
-* `sort t/` sorts students based on the alphabetical order of their first subject 
+Example:
+`sort t/` sorts students based on the alphabetical order of their first subject.
+
+![Sort Command](images/DemoSortCommand.png)
+
+Other examples:
+
+Command     | Result
+----------- |---------------------------------------------------
+`sort le/`  | sorts students based on the chronological order of their respective earliest lesson of the week
+`sort n/ s/`| sorts students by the alphabetical orders of their schools, ignoring the name prefix
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -463,7 +457,7 @@ Format: `list`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-#### 3.2.8 Advancing all students : `levelup`
+#### 3.2.8 Increasing level of all students : `levelup`
 
 Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass update all the student's levels at the start of the school year.
@@ -494,14 +488,22 @@ Once `ex/` prefix is used, the index field cannot be left blank.
 
 </div>
 
-Examples:
-* `levelup` advances all students except `grad` students by one level.
-* `levelup ex/3 4` advances all students by one level, excluding the 3rd and 4th student
-  in the list, as well as any students who have `grad`.
+Example:
+`levelup ex/1` advances all students by one level, excluding the 1st student in the list 
+(and `grad` students).
+
+![LevelUp Command](images/DemoLevelUpCommand.png)
+
+Other examples:
+
+Command     | Result
+----------- |---------------------------------------------------
+`levelup`   | advances all students (except `grad` students) by one level
+`levelup ex/3 4`| advances all students by one level, excluding the 3rd and 4th student in the list (and `grad` students)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-#### 3.2.9 Demoting all students : `leveldown`
+#### 3.2.9 Decreasing level of all students : `leveldown`
 
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass undo of `levelup` or indicate retainees. 
@@ -531,10 +533,18 @@ Format: `leveldown ex/[INDEX]...`
 
 </div>
 
-Examples:
-* `leveldown` demotes all students except `pri1` students by one level.
-* `levelup ex/2 5` demotes all students by one level, excluding the 3rd and 4th student
-  in the list, as well as any students who are `pri1`.
+Example:
+`leveldown ex/5` demotes all students by one level, excluding the 5th student in the list
+(and `grad` students).
+
+![LevelDown Command](images/DemoLevelDownCommand.png)
+
+Other examples:
+
+Command     | Result
+----------- |---------------------------------------------------
+`leveldown`   | demotes all students (except `pri` students) by one level
+`leveldown ex/1 2`| demotes all students by one level, excluding the 2nd and 4th student in the list (and `pri1` students)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -629,13 +639,14 @@ TutorsPet data are saved into three different JSON files: <br>
 2. **\[JAR file location]/data/datesbook.json** for storing important exam dates.
 3. **\[JAR file location]/data/lessonbook.json** for storing student lesson dates.
 
-Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 
 * You are strongly discouraged from editing the files due to syncing of information between the three files.
+  
 * If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
+
 </div>
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -657,7 +668,23 @@ by providing the file path to the picture._
 ## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsPet home folder.
+**A**: Install the app in the other computer and overwrite the three empty data files named `addressbook.json`, `datesbook.json`, `lessonbook.json`
+it creates with the corresponding files that contains the data of your previous TutorsPet home folder.
+
+**Q**: Do I have to connect the internet to use this application? <br>
+**A**: No, TutorsPet is an offline application. No internet connection is needed.
+
+**Q**: What is the optimal display setting for this application? <br>
+**A**: The default settings of almost all desktops support our application perfectly. 
+However, if you want to personalise your window size, the optimal display resolution is 1920 * 1080 and scaled to 150%.
+
+**Q**: What is the maximum length for a student's name? <br>
+**A**: TutorsPet allows names of up to 60 characters. See [6.1 Field Format Summary](#61-field-format-summary) for more details on the specifications of the other fields.
+
+**Q**: Why is all my data cleared? <br>
+**A**: You could have edited the data files accidentally and corrupted the data.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -665,17 +692,17 @@ by providing the file path to the picture._
 
 ### 6.1 Field Format Summary
 
-Student Contact Field   | Prefix | Optional?|Notes
+Student Contact Field   | Prefix | Optional?|Format
 ------------------------| -------|--------- |------------------------------------
-Name                    | `n/`   | Y        | Contains alphanumeric characters and spaces only
-Phone number            | `p/`   | Y        | Contains numbers only; at least 3 digits long
-Email                   | `e/`   | N        | Should be in the format of **local-part@domain** e.g. `alexyeoh@gmail.com`
-Address                 | `a/`   | N        | Any format
-Guardian's name         | `gn/`  | N        | Contains alphanumeric characters and spaces only
-Guardian's phone number | `gp/`  | N        | Contains numbers only; at least 3 digits long
-Education level         | `lv/`  | N        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad`
-Subject                 | `t/`   | N        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.
-Lesson                  | `le/`  | N        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`
+Name                    | `n/`   | N        | Contains alphanumeric characters and spaces only
+Phone number            | `p/`   | N        | Contains numbers only; at least 3 digits long
+Email                   | `e/`   | Y        | Should be in the format of **local-part@domain** e.g. `alexyeoh@gmail.com`
+Address                 | `a/`   | Y        | Any format
+Guardian's name         | `gn/`  | Y        | Contains alphanumeric characters and spaces only
+Guardian's phone number | `gp/`  | Y        | Contains numbers only; at least 3 digits long
+Education level         | `lv/`  | Y        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad`
+Subject                 | `t/`   | Y        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.
+Lesson                  | `le/`  | Y        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
@@ -701,11 +728,22 @@ Action | Format, Examples
 **[Search](#325-searching-for-a-contact--search)** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/eng`
 **[Sort](#326-sorting-contacts--sort)** | `sort PREFIX` <br> e.g., `sort [n/]`, `sort [s/]`
 **[List](#327-listing-all-contacts--list)** | `list`
-**[Level Up](#328-advancing-all-students--levelup)** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/2 4`
-**[Level Down](#329-demoting-all-students--leveldown)** | `leveldown [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/1 2`
+**[Level Up](#328-increasing-level-of-all-students--levelup)** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/3 4`
+**[Level Down](#329-decreasing-level-of-all-students--leveldown)** | `leveldown [ex/INDEX]` <br> e.g., `leveldown`, `leveldown ex/1 2`
 **[Add dates](#331-adding-an-important-date--add-date)** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
 **[Delete dates](#333-deleting-an-important-date--delete-date)** | `delete-date INDEX`<br> e.g., `delete-date 3`
 **[List dates](#332-listing-all-important-dates--list-date)** | `list-date`
 **[Schedule](#341-viewing-schedule--schedule)** | `schedule`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+## 7. Glossary 
+
+**Parameters:** Inputs keyed in after the command word that specify the behaviour of the command
+
+**Prefix**: Expressions that signal inputs of a certain field e.g. `n/` signals name field, `gp/` signals guardian's phone.
+
+**Case sensivitity**: Case-insensitive means that a word input in upper case or lower case will be treated the same way.
+Case-sensitive means the opposite.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>

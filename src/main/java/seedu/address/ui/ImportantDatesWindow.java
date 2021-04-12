@@ -7,10 +7,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.ui.PanelList.DateListPanel;
+import seedu.address.ui.panel.DateListPanel;
 
 /**
- * Controller for a schedule page
+ * Controller for the Important Dates page
  */
 public class ImportantDatesWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(ImportantDatesWindow.class);

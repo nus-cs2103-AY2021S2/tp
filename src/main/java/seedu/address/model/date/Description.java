@@ -8,9 +8,6 @@ public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Descriptions should not be blank";
 
-    // Input should not be a whitespace
-    public static final String VALIDATION_REGEX = "(.|\\s)*\\S(.|\\s)*";
-
     public final String description;
 
     /**
@@ -25,10 +22,15 @@ public class Description {
     }
 
     /**
-     * Returns true if a given string is a valid description.
+     * Returns true if a given string is a valid description (should not be empty).
      */
     public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
+        String trimmedTest = test.trim();
+        if (trimmedTest.length() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
