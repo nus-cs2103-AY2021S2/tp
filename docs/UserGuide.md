@@ -198,7 +198,7 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]â€
 * You can remove all the taskâ€™s tags by typing `t/` without specifying any tags after it.
 * There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However, you can cannot directly modify a 
   task's status to `expired` or from `uncompleted`/`completed` to `expired`.
-* If the edited task exist in the tasklist, an error will be thrown to the user. 
+* After editing a task, if it is a duplicate of another task currently in the list, an error will be thrown to the user.
 
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
