@@ -16,7 +16,7 @@ BookCoin (to the Moon) is a **desktop app for managing bookings that presents us
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `BookCoin.jar` [here](https://github.com/AY2021S2-CS2103-W17-3/tp/releases).
+1. Download the latest `BookCoin.jar` [here](https://github.com/AY2021S2-CS2103-W17-3/tp/releases), or as provided for PE.
 
 1. Copy the file to the folder that you want to use as the _home folder_ for BookCoin.
 
