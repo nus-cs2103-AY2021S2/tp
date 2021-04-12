@@ -10,13 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class SubjectName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Subject names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Subject names should only contain alphanumeric characters and spaces,"
+                    + "it should be between 1 to 20 characters and it should not be blank";
 
     /*
      * The first character of the subject name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "(?=^.{0,20}$)[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String name;
 

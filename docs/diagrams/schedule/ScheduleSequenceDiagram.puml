@@ -24,7 +24,7 @@ deactivate ScheduleTracker
 Model --> AddScheduleCommand
 deactivate Model
 
-AddScheduleCommand -> DateTimeValidationUtil : isInvalidTimeRange()
+AddScheduleCommand -> DateTimeValidationUtil : validateDateTime()
 activate DateTimeValidationUtil
 DateTimeValidationUtil --> AddScheduleCommand
 deactivate DateTimeValidationUtil

@@ -89,11 +89,25 @@ This feature allows tutees to maintain and keep track of the list of tuition tut
     * Subject Qualifications
 * Note
 
+* Minimum length for name is 1 character, maximum is 50 characters.
+* Minimum length for phone number is 8 digit, maximum 15 digits.
+* Minimum length for address is 1 character, maximum is 200 characters.
+* Minimum length for subject name is 1 character, maximum 20 characters.
+* Minimum length for subject hourly rate is 1 digit, and maximum is 5 digits.
+* Minimum length for subject education level is 4 characters, and maximum is 20 characters. 
+* Minimum length for subject years of experience is 1 digit and maximum is 2 digits.
+* Minimum length for subject qualification is 4 characters, and maximum is 20 characters.
+
 #### Add a new tutor: `add_tutor`
 
 Add a new tutor and enter their basic details as well as an optional note.
 
 Multiple subjects may be provided, and all subject attributes must be present when providing a subject.
+
+Gender can be male, female or others. Accepted genders will be automatically converted to capital letters on the UI.
+
+Note:
+* A known limitation of `add_tutor` is that customers with different names but exactly the same attributes will not be marked as a duplicate.
 
 Format:
 `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE`
@@ -108,10 +122,10 @@ View a list of all tutors known. Will ignore all input(s) after `list_tutors`.
 Example Output:
 ```
 1. John Doe
+MALE
 98765432
 John street, block 123, #01-01
 johnd@example.com
-Subjects:
 English
     Level: Sec 3
     Rate: SGD60/hr
@@ -119,10 +133,10 @@ English
     Qualification: Bachelor of English Literature
     
 2. Jane Doe 
+FEMALE
 98765433
 Jane street, block 123, #01-01
 janed@example.com
-Subjects:
 Maths
     Level: Sec 4
     Rate: SGD30/hr
@@ -142,9 +156,8 @@ Example: `delete_tutor 1` deletes the first tutor.
 
 Edit a tutor's information by index. Only the attributes present can be changed in the tutor, including notes.
 
-All subjects taught by the tutor will be overwritten by subjects provided to
-this command. Furthermore, all subject attributes must be present when providing
-a subject.
+All subjects taught by the tutor will be overwritten by subjects provided to this command. 
+Furthermore, all subject attributes must be present when providing a subject.
 
 Format: `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES`
 
@@ -161,10 +174,10 @@ Example: `view_tutor 1`
 Example Output:<br>
 ```
 1. John Doe
+MALE
 98765432
 John street, block 123, #01-01
 johnd@example.com
-Subjects:
 English
     Level: Sec 3
     Rate: SGD60/hr
@@ -189,10 +202,10 @@ Example Output:
 on the right of ,<br>
 ```
 1. John Doe 
+MALE
 98765432
 John street, block 123, #01-01
 johnd@example.com
-Subjects:
 English
     Level: Sec 3                     
     Rate: SGD60/hr
@@ -215,11 +228,11 @@ Example: `edit_note 1 not patient` edits existing note of tutor 1 to `not patien
 Example Output:
 on the right of ,<br>
 ```
-1. John Doe 
+1. John Doe
+MALE 
 98765432
 John street, block 123, #01-01
 johnd@example.com
-Subjects:
 English
     Level: Sec 3                     
     Rate: SGD60/hr
@@ -233,35 +246,35 @@ not patient
 ```
 ##### Delete note of a tutor: `delete_note`
 
-Deletes solely the note to tutor at a particular index that was added previously.
+Deletes solely the note added previously to tutor at a particular index.
 
-Format: `delete_note INDEX NOTE`
+Format: `delete_note INDEX`
 
 Example: `delete_note 1` deletes the existing note from the first tutor displayed.
 
-##### List tutors with note `list_note`
-Lists all the tutor with note. Will ignore all input after `list_note`.
+##### List tutor(s) with note `list_note`
+Lists all the tutor(s) with note. Will ignore all input after `list_note`.
 
 Format:`list_note`
 
 ##### Export the tutor details: `export`
-Export the tutor details of that index together with the notes and subject list into a text file in the directory you saved the 
-TutorTracker jar under the export folder, with the tutor's name as file name. 
+Export the tutor details of that particular index together with the notes and subject list into a text file in the directory tutee saved the 
+TutorTracker jar, under the export folder, with the tutor's name as file name. 
 
 Format:`export INDEX`
 
-Example: `export 1` If the jar is saved in `C:\Users\user\Downloads`, and first tutor name is Alex Yeoh,
-text file `Alex_Yeoh.txt` will be saved under the export folder. 
+Example: `export 1` If the jar is saved in `C:\Users\user\Downloads`, and first tutor name is Alex Yeoh, text file `Alex_Yeoh.txt` 
+will be saved under the export folder. 
 Full path in this case would be `C:\Users\user\Downloads\export\Alex_Yeoh.txt`.
 
 #### Favourites
-This feature allows users to track and manage their favourite tutors.
+This feature allows tutees to track and manage their favourite tutors.
 
 ![Favourite Ui](images/ug-images/Favourite.png)
 
 ##### Favourite a tutor: `favourite`
 
-Label a tutor as a favourite.
+Label a tutor at a particular index as a favourite.
 
 Format: `favourite INDEX`
 
@@ -270,10 +283,10 @@ Example: `favourite 1`
 Example Output:<br>
 ```
 1. John Doe *
+MALE
 98765432
 John street, block 123, #01-01
 johnd@example.com
-Subjects:
 English
     Level: Sec 3
     Rate: SGD60/hr
@@ -295,7 +308,7 @@ View list of tutor(s) that had been added as favourite.
 
 Format: `list_favourites`
 
-Example: `list_favourites`
+Example: `list_favourites` shows the list of tutor(s) that had been added as favourite.
 
 ### Appointment Tracker
 This feature allows tutees to manage and track their tuition appointments.
@@ -340,13 +353,13 @@ Examples:<br>
 
 #### List tuition appointments: `list_appointments`
 
-Shows a list of all upcoming tuition appointments in the personal tuition appointment list. Appointments are automatically sorted by ascending order (oldest to newest).
+Shows a list of all upcoming tuition appointment(s) in the personal tuition appointment list. Appointment(s) are automatically sorted by ascending order (the earliest appointment date to the latest appointment date).
 
 Format: `list_appointments`
 
 Result Display Example Output:
 ```
-Listed all appointments (1 displayed)
+Listed all appointments (2 displayed)
 ```
 
 Appointment List Example Output:
@@ -366,7 +379,7 @@ Location: Hougang
 
 #### View tuition appointments: `view_appointment`
 
-View the list of tuition appointment happening on a particular date.
+View the list of tuition appointment(s) happening on a particular date.
 
 Format:
 `view_appointment DATE`
@@ -393,6 +406,11 @@ Alternatively, users can press the desired date on the calendar panel instead to
 #### Find tuition appointments: `find_appointment`
 
 Find list of tuition appointments based on tutor's name.
+
+The search will be case-insensitive. e.g. searching john will match JOHN.
+The order of the keywords does not matter. e.g. John Doe will match Doe John.
+Only full words will be matched e.g. Do will not match Doe.
+Students with name matching at least one keyword will be returned e.g. John Doe will return John, Peter Doe.
 
 Format:
 `find_appointment NAME...`
@@ -469,6 +487,8 @@ This feature allows tutees to track and manage their tuition-related schedules, 
 * The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**.
 * The schedule timeslot must be in blocks of **30 minutes** or **1 hour**, i.e., 10:00 AM to 11:00 AM and 12:30 PM to 2:00 PM.
 * No schedules can clash or overlap with existing appointments or schedules, i.e., same day, 10:00am - 11:00am and 10:30am - 12:00pm.
+* Minimum length for title is 1 character, maximum is 30 characters.
+* Minimum length for description is 1 character, maximum is 50 characters.
 
 </div>
 
@@ -508,7 +528,7 @@ Chapter 5 to 6
 
 #### Listing all schedules : `list_schedules`
 
-This feature shows a list of the tutees's personal schedule. Schedules are automatically sorted by ascending order (oldest to newest).
+This feature shows a list of the tutees's personal schedule. Schedule(s) are automatically sorted by ascending order (the earliest schedule date to the latest schedule date).
 
 Format: `list_schedules`
 
@@ -586,9 +606,9 @@ Chapter 5 to 6
 
 Edits a schedule with a specific index. Only the attributes present are changed in the schedule.
 
-Format: `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]`
+Format: `edit_schedule INDEX [t/TITLE] <[d/DATE] [fr/TIME_FROM] [to/TIME_TO]> [ds/DESCRIPTION]`
 
-* Past schedules cannot be edited. Please add a new schedule if there's a need to.
+* Past schedules cannot be edited. Please add a new schedule if there is a need to.
 * If any one of the following fields (`DATE`, `TIME_FROM`, `TIME_TO`) are edited, then all three
   fields are required to be present together.
 * The modified `DATE`, `TIME_FROM` and `TIME_TO` must be in the future.
@@ -834,6 +854,7 @@ This feature allows tutees to track and manage reminders daily. This is exceptio
 **:information_source: Note:**<br>
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+* Minimum length for description is 1 character, maximum is 50 characters.
 
 </div>
 
@@ -869,7 +890,7 @@ Date: Jun 21 2021
 
 #### Listing all reminders : `list_reminders`
 
-Shows a list of all personal reminders. Reminders are automatically sorted by ascending order (oldest to newest).
+Shows a list of all personal reminders. Reminders are automatically sorted by ascending order (the earliest reminder date to the latest reminder date).
 
 Format: `list_reminders`
 

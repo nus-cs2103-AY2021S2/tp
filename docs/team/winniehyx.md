@@ -83,6 +83,8 @@ Given below are my contributions to the project.
       * Added model and storage class diagram (#162) (https://github.com/AY2021S2-CS2103-T14-3/tp/commit/15bc6e2c66eab91c8b7489e40b94ac117e0869c7)
       * Added brief description for `favourite`, `unfavourite`, `list_favourite`,`add_note`,`edit_note`,`list_note` (#130) (https://github.com/AY2021S2-CS2103-T14-3/tp/commit/b73a97ba1c4dba8ed5b7de0416c5b6282777f3bc)
       * Added description for `export` (#187) (https://github.com/AY2021S2-CS2103-T14-3/tp/commit/61093220dd295f8491e0f08529fc2883dece661a)
+      * Added description, sequence diagram and activity diagram for notes feature (#325) (https://github.com/AY2021S2-CS2103-T14-3/tp/commit/f997864d6cfcc2e90cca2ff59825bb410a41009d)
+    
 * **Community**:
   * Constantly approved PRs of group members despite not being their reviewer.
   * Reported bugs and suggestions for other teams in the class

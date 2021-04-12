@@ -1,0 +1,36 @@
+@startuml
+!include ../style.puml
+title Adding a Tutor Filter
+
+start
+:User inputs one
+or more tutor filters;
+:System checks
+formatting of user input;
+
+if () then ([Input is formatted correctly])
+    :System checks for
+    duplicate filter in system;
+    if () then ([No duplicate filter in system])
+        :System adds filters
+        to list of filters;
+        :System updates
+        dispayed list of filters;
+        :System updates
+        displayed tutors according
+        to list of filters;
+        :System clears user input;
+    else ([Has duplicate filter in system])
+        :System displays
+        duplicate filter error;
+    endif
+
+else ([Input is not formatted correctly])
+    :System displays
+    incorrect format error
+    and expected format;
+endif
+
+stop
+
+@enduml

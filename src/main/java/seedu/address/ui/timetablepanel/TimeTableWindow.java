@@ -52,6 +52,14 @@ public class TimeTableWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows the timetable window.
+     */
+    public void reconstruct(LocalDate queryDate) {
+        logger.fine("Refresh timetable events.");
+        timeTablePanel.reconstruct(queryDate);
+    }
+
+    /**
      * Returns true if the TimeTableWindow is currently being shown.
      */
     public boolean isShowing() {
