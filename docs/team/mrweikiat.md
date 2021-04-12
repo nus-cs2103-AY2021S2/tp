@@ -13,7 +13,7 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 2) Assist in creating sorting comparator to sort the tasks according to Priority levels
 3) Reconfigure Storage component to ensure data are correctly stored
 
-### Enhancement 1
+*Enhancement 1*
 * It allows the user to classify tasks into 3 different category, `LOW/MEDIUM/HIGH`, with `HIGH` having the most priority
 * Justification : User can view the different priority on the Ui and each priority levels are color coded distinctively from one another
 * Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature that was handled by another of my team mate.
