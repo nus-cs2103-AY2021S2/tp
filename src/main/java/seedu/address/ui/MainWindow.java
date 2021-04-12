@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -53,6 +54,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox passengerList;
+
+    @FXML
+    private VBox poolList;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,7 +129,14 @@ public class MainWindow extends UiPart<Stage> {
         poolListPanelPlaceholder.getChildren().add(poolListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
+        final int smallScreenHeight = 768;
+        final int smallerResultDisplayHeight = 75;
+        if (logic.getGuiSettings().getWindowHeight() <= smallScreenHeight){
+            // make resultDisplay smaller to fit into smaller screen
+            resultDisplay.getRoot().setMaxHeight(smallerResultDisplayHeight);
+        }
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
