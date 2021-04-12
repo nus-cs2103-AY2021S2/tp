@@ -62,15 +62,15 @@ The following diagram omits the parser object created, namely `FilterEntryComman
 1. Decide whether the filtering above considers Union or Intersection of tags.
 
 ### List entry feature
-The proposed list entry mechanism allows users to see all of their schedules, or see them by day or by week.
+The list entry mechanism allows users to see all of their entries, or see them by day or by week.
 
 An outline of the implementation is as follows:
 
-The `TeachingAssistantParser` should accept command word `elist` and eventually returns a `ListEntryCommand` 
-back to `LogicManager`. This command can take in three arguments: an empty string, the string “day” or the string “week”. 
-The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of `ListEntryFormatPredicate`.
-Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the `ListEntryFormatPredicate` as 
-an argument.
+The `TeachingAssistantParser` should accept command word `elist` and eventually return a `ListEntryCommand` 
+back to `LogicManager`. This command can take in one of these three arguments: an empty string, the string “day” or 
+the string “week”. The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of 
+`ListEntryFormatPredicate`. Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the 
+`ListEntryFormatPredicate` as an argument.
 
 The following activity diagram (Fig 2.3.1) summarizes what happens when a user executes the list entry command. The
 `ListEntryCommandParser` is not featured for simplicity.
@@ -104,7 +104,7 @@ Fig 2.3.2
 * Do not have their schedules and students' contacts digitalised
 * Prefer to use typing over mouse/voice commands
 
-**Value proposition**: efficient tool to keep track of schedules and tasks as well as find and add student contact
+**Value proposition**: efficient tool to keep track of schedules (i.e. entries) as well as find and add student contact
 information easily.
 
 ---
