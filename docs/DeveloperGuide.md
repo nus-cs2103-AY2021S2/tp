@@ -54,7 +54,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 2. **Architecture diagram** A type of UML diagram that shows the overall organization of the system and how components are connected with each other.
 
 
-3. **CLI** (Command Line Interface) A text box like interface which allows a user to enter commands.
+3. **CLI** (Command line interface) A text-box-like interface which allows a user to enter commands.
 
 
 4. **GUI** (Graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
@@ -63,13 +63,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 5. **JavaFx** A software platform for creating and delivering desktop applications, as well as rich Internet applications that can run across a wide variety of devices. We use it to construct our graphical user interface.
 
 
-6. **Mainstream OS** Windows, Linux, Unix, OS-X
+6. **Mainstream OS** Windows, Linux, macOS.
 
 
-6. **MSS** (Main Success Scenario) The expected flow of events when a use case goes as expected. 
+6. **MSS** (Main success scenario) The expected flow of events when a use case goes as expected. 
 
 
-8. **Private contact detail**: A contact detail that is not meant to be shared with others
+8. **Private contact detail** A contact detail that is not meant to be shared with others.
 
 
 7. **Sequence diagram** A type of UML diagram that describes a particular instance of components interacting with each other.
@@ -78,7 +78,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 8. **UML** (Unified Modeling Language) A standard for creating models and diagrams to visualize the design of a system.
 
 
-9. **UI** (User Interface) An interface for a user to interact with the program.
+9. **UI** (User interface) An interface for a user to interact with the program.
 
 <br><br>
 
@@ -126,8 +126,8 @@ Each of the four components
 
 <br>
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-<p align="center"><img src="images/LogicClassDiagram.png"></p>
+For example, the `UI` component (see the class diagram given below) defines its API in the `Ui.java` interface and exposes its functionality using the `UiManager.java` class which implements the `Ui` interface. 
+<p align="center"><img src="images/UiClassDiagram.png"></p>
 
 <br>
 
@@ -161,6 +161,10 @@ The `UI` component,
 ### Logic component
 
 <p align="center"><img src="images/LogicClassDiagram.png"></p>
+<p align="center">Overall Logic Class Diagram (due to limitations of PlantUML, the 1 in the Parser box is meant to be the multiplicity from LogicManager to Parser)</p>
+<br><br>
+<p align="center"><img src="images/ParserClassDiagram.png"></p>
+<p align="center">Parser Class Diagram in Logic Component</p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -309,7 +313,7 @@ of the existing data file `clientbook.json`. Hence, there is minimal dependency 
 
 <br>
 
-### Feature to allow more options for user to edit insurance policy information of each client in ClientBook.
+### Feature to allow more options for user to edit insurance policy information of each client in ClientBook
 
 #### Motivation
 
@@ -583,7 +587,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new client               |                                                                        |
 | `* * *`  | user                                       | delete a client                | remove the contact of a client that I no longer serve                                   |
 | `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
-| `* * *`  | forgetful user                             | store many clients details     | so that I do not have to remember them                                                   |
+| `* * *`  | forgetful user                             | store many clients details     | remember them easily                                       |
 | `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the application                                        |
 | `* * *`  | insurance agent                            | find clients by insurance policy    | find my clients who share the same insurance policy                    |
 | `* * *`  | insurance agent                            | link contact to portfolio      | access my clients' portfolio  easily                                                     |
@@ -697,7 +701,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 5: Find a client**
+**Use case 5: Find clients**
 
 **MSS**
 
