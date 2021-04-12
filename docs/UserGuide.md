@@ -598,6 +598,6 @@ This glossary provides definitions for the special terms used in this user guide
 ![sample_student](images/enhao/sample_student.png)
 
 #### Sample Data (Sessions)
-
 ![sample_session](images/enhao/sample_session.png)
+
 --------------------------------------------------------------------------------------------------------------------
