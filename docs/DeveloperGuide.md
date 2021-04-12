@@ -7,7 +7,10 @@ title: Developer Guide
   <img src="images/dietlah-slim.png" alt="DietLAH!">
 </p>
 
+<p align="center">
+
 # Developer Guide
+</p>
 
 ## Table of Contents
 
