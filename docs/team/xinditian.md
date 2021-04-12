@@ -48,8 +48,8 @@ Given below are my contributions to the project.
 * **New Feature**: Added ability to copy the contents from the dictionary to a new note.
   * What it does: copies the content specified at the index provided by the user from the list of contents in the dictionary and makes a new note with the corresponding contents.  
   * Justifications: This feature improves the product significantly as it allows users to copy the wanted content from the dictionary directly into a note with a simple command. This allows them to satisfy their want of being able to take down important content easily from the textbook without having the going through the effort of copy-pasting into an external app.  
-    (Pull request [\#165](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/165))
-
+    (Pull request [\#165](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/165))  
+    
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=XindiTian&tabRepo=AY2021S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
