@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -100,8 +99,6 @@ public class SnoozeCommand extends Command {
         Task snoozedTask = updateTaskWithNewDate(taskToSnooze);
 
         model.setTask(taskToSnooze, snoozedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        model.resetCalendarDate();
     }
 
     private Task updateTaskWithNewDate(Task taskToSnooze) {
