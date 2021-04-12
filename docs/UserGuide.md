@@ -12,7 +12,7 @@ title: User Guide
 
 # What is A-Bash Book?
 
-A-Bash Book (ABB) is a Command Line Interface (CLI) based Employee and Business Relations Management System.
+A-Bash Book (ABB) is a Command Line Interface (CLI) based Employee and Business Contact Management System.
 
 ABB utilises command patterns similar to Bash, hence the name, A-Bash Book (ABB).
 
@@ -451,7 +451,9 @@ Exits the program.
 
 **Format**: `exit`
 
-## Command Auto Completion
+## Autocompletion
+
+### Autocomplete Commands
 
 Command Auto Completion automatically fills a command in the command box by pressing the <kbd>Tab</kbd> key.
 
@@ -461,7 +463,7 @@ To execute the command `delete`,
 
 Typing `del` followed by <kbd>Tab</kbd> will auto complete `del` to `delete`.
 
-In the command box, it is possible to toggle through **Existing** and **Aliased** [Coming Soon] commands with <kbd>Tab</kbd>.
+In the command box, it is possible to toggle through **Existing** and **Aliased** commands with <kbd>Tab</kbd>.
 
 Extra auto completion features exist for some commands.
 See the table below for more information.
@@ -472,7 +474,7 @@ See the table below for more information.
 | `edit`                       | The <kbd>Up</kbd>/<kbd>Down</kbd> arrow keys toggles through contacts. Appends the `index` of a contact in focus to existing text in the command box. |
 | `Other Commands`| [Coming Soon] |
 
-## Command Flag Auto Completion
+### Autocomplete Flags
 
 Command flags are specific options that can be keyed in to add more information in a command.
 
