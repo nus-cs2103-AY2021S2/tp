@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Developer Guide
+title: A-Bash Book Developer Guide
+navigation_title: Developer Guide
 ---
 * Table of Contents
 {:toc}
@@ -12,6 +13,20 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+A-Bash Book (ABB) is a Command Line Interface (CLI) based Contact Management System built to address the growing demands 
+of businesses with an increasing business ecosystem. Especially in a climate where large amounts of business information 
+are being stored in various decentralised places. ABB acts as a centralised platform for users to store contact details 
+of business partners or colleagues.
+
+This guide serves to aid A-Bash Book (ABB) developers by describing the **Design**, **Architecture** and **Implementation**
+behind each feature. **Design Considerations** can be found for certain features that would require extra attention when
+modifying or enhancing the feature. **Future Enhancements** for some features can also indicate the future state of the feature.
+
+Various **UML Diagrams** are used to help describe the feature flow as well as the associations between objects and classes, 
+to ensure this guide serves as a utilitarian guide. 
+
 
 ## **Design**
 
@@ -216,70 +231,134 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Filtering PersonCard
 
 ![Sequence Diagram of Filtering Display](images/FilterDisplaySequenceDiagram.png)
 
 A new `DisplayFilterPredicate` is added in `Model`.
-When the `FilterCommand` is executed, `Model` will be updated with the latest `DisplayFilterPredicate`.
 
 Executing a `FilterCommand` will trigger an update of the `DisplayFilterPredicate` that is stored in
 `PersonListPanel`.
 
 `PersonListView` will need to be re-drawn since certain UI elements will have its visibility updated.
-Re-drawing of the `PersonListView` will re-create all the `PersonCard`,
-allowing it to show or hide UI elements based on the `DisplayFilterPredicate`.
-This has to be done so that the dimension of the hidden UI element will not be included during the
-layoutBounds calculations.
+Re-drawing of the `PersonListView` will re-create all the `PersonCard`, allowing it to show or hide
+UI elements based on the `DisplayFilterPredicate`. This has to be done so that the dimension of the
+hidden UI element will not be included during the layoutBounds calculations.
+
+#### Design Considerations
+
+##### Aspect: Implementation for predicate
+
+* **Alternative 1 (current choice):** Store the predicate in `Model` and expose it
+  to `UI (MainWindow)` via `Logic`
+    * Pros: Separation of Concerns principle (SoC) is applied here to improve modularity.
+      The `Model` deals with the creation of the predicate while the `UI (MainWindow)` retrieves the
+      predicate from `Model` via `Logic`.
+    * Cons: Will require new getter methods to the `Logic` and `Model` class as long as
+* **Alternative 2:** Store the predicate as a global variable
+    * Pros: Simple to implement as a global variable is accessible by both the UI components and
+      Model.
+    * Cons: Creates implicit links between code segments.
 
 ### Autocomplete
 
-The current implementation consists of a Ui component called `AutoCompleteListPanel` which is made up of `AutocompleteCells`.
-Each `AutoCompleteCell` contains a command word. Command words are retrieved by calling `getAutocompleteCommands()` in `LogicManager` and populated
-by `MainWindow` in the `fillInnerParts()` method. 
+There are 3 autocomplete features currently implemented.
 
-In `CommandBox` a method called `setKeyUpCallback()` triggers the method `updateList()` in `AutocompleteListPanel` on every release of a key. This updates the existing command panel
+1) Commands
+2) Flags
+3) Index
+
+#### Commands
+
+##### Implementation
+
+![Sequence Diagram of Autocomplete Commands](images/AutocompleteCommandsDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+
+Autocomplete Commands currently only implemented for `EDIT` and `DELETE`.
+
+</div>
+
+The current implementation consists of a Ui component called `AutoCompleteListPanel` which is made up of `AutocompleteCells`.
+Each `AutoCompleteCell` contains a command word. Command words are retrieved by calling `LogicManager#getAutocompleteCommands()` and populated
+by `MainWindow#fillInnerParts()`.
+
+The method `CommandBox#setKeyUpCallback()` triggers `AutocompleteListPanel#updateList()` on every release of a key. This updates the existing command panel
 with the correct filtered commands.
 - The `setKeyUpCallback()` uses `addEventFilter()` and detects when a key is released before triggering the function to handle it.
 
-Event filters are added to the root by `MainWindow` and the corresponding keys (`TAB`, `UP`, `DOWN`)
+Event filters are added to the root by `MainWindow` and the corresponding keys (<kbd>`TAB`</kbd>, <kbd>`UP`</kbd>, <kbd>`DOWN`</kbd>, <kbd>ENTER</kbd>)
 are listened to.
 
-- On `TAB` key release, the `doTab()` method which resides in the `AutocompleteListPanel` will be called to handle the
-toggling between commands.
+- On `TAB` key release, `AutocompleteListPanel#processTabKey() ` will be called to handle the
+  toggling between commands.
 
-[Expected Behaviour]
+**[Expected Behaviour]**
 ![TabToggleCommand](images/TabToggleCommand.png)
 
-- On `UP/DOWN` key release, the `selectNext()` and `selectPrev()` methods which reside in PersonListPanel will be called 
-to handle the toggling between contacts.
+#### Flags
+
+##### Implementation
+
+![Sequence Diagram of Autocomplete Flags](images/AutocompleteFlagsDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+
+Autocomplete Flags is currently only implemented for `ADD` and `EDIT` commands.
+
+</div>
+
+The current implementation consists of `MainWindow`, `CommandBox` and `LogicManager`.
+
+`MainWindow` has an eventListener listening to the <kbd>Tab</kbd> key. `LogicManager#getAvailableFlags()` is called to 
+attempt to get the available flags for the command.
+
+`LogicManager#getAvailableFlags()` returns null if command is incomplete. Instead, <kbd>Tab</kbd> key results in
+`Command Autocompletion`.
+
+`LogicManager#getAvailableFlags()` checks if the supplied command string is supported by `Flag Autocompletion`. 
+`LogicManager#filterExistingCommands()` is called to determine which flags are already in the `command string`.
+This is important as this check is required everytime <kbd>Tab</kbd> key is pressed.
+
+When `LogicManager#getAvailableFlags()` returns a populated list of strings, it continues to check the last tag in
+`command string`. If the flag has no content, that flag will be replaced by `CommandBox#setTextvalue()`. If the flag has
+content, the next available flag will be appended by `CommandBox#setAndAppendFlag()`.
+
+#### Index
+
+![Sequence Diagram of Autocomplete Index](images/AutocompleteIndexDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+
+Autocomplete Index is currently only implemented for `EDIT` and `DELETE` commands.
+
+</div>
+
+The current implementation consists of `MainWindow`, `PersonListPanel`, `CommandBox`.
+
+On <kbd>Up/Down</kbd> key press, the `PersonListPanel#selectNext()` and `PersonListPanel#selectPrev()` methods which will be called 
+to handle the toggling between contacts. Then the `CommandBox#setAndAppendIndex()` method appends the index to the
+existing `command string` in `CommandBox`.
 
 [Expected Behaviour]
 ![UpDownToggleCommand](images/UpDownToggleContact.png)
 
-The CommandBox updates the list of commands in the AutocompleteListPanel. 
-The CommandBox also handles autocomplete indices as provided by methods bound to the `UP/DOWN`, by appending them to
-the existing text.
+### Future Enhancements
 
-#### Enhanced Features
+Autocomplete commands could include alias commands.
 
-1. Autocomplete Delete
-    * Once the `DELETE` command is in the command box, `UP/DOWN` keys now scrolls through the contacts. The index
-    of each contact will be autocompleted in the command box.
+### Design Considerations
 
-#### [Proposed Features]
-2. Autocomplete Edit
+Initially, autocomplete flags were untoggleable, and would just append to the `command string` regardless of content. 
+This was originally implemented to allow users to, but to maintain consistency in the future. Consider keeping similar
+autocomplete functionalities to be toggleable.
 
-    * Once the `edit` command is in the command box,`UP/DOWN` keys now scrolls through the contacts. The index of 
-      each contact will be autocompleted in the command box.
-    * On `TAB` key, the possible editable flags will appear be appended into the text of the command box.    
-   
-This feature not only allows the command and index to be autocompleted, but allows autocompletion of command flags too.   
-    
+When adding new flags, `LogicManager#getAutocompleteFlags()` should be updated with the new flags.
+When adding new commands, `LogicManager#getAutocompleteCommands()` should be updated with the new commands.
+When adding autocomplete flag support for new commands, `LogicManager#isAutocompleteFlag()` and 
+`LogicManager#getAvailableFlags()` should add the new commands.
+
 
 ### Remark
 
@@ -350,7 +429,120 @@ In the future, a combination of full word and partial matches can be used with w
 matches. To avoid both issue, string fuzzy search may not be sufficient. Levenshtein distance is not able to account for
 phonetic differences in names and expected result when doing name searches.
 
+### Alias feature
 
+Allows the user to create shortcut command (also known as command alias) to the actual command in 
+`alias { add | delete | list } [ALIAS] [COMMAND]` format. The `ALIAS` must be one word and cannot be an existing command, 
+while the `COMMAND` must be a valid existing command.
+
+#### Implementation
+
+The `AliasCommand` is split into three sub-commands `AddAliasCommand`, `DeleteAliasCommand` and `ListAliasCommand`.
+Supporting these classes are the `AliasCommandParser`, `AddAliasCommandParser`, `DeleteAliasCommandParser` and 
+`ListAliasCommandParser` which helps to parse user input into their respective alias sub-commands.
+
+![AliasCommandClassDiagram](images/AliasCommandClassDiagram.png)
+
+![AliasCommandParserClassDiagram](images/AliasCommandParserClassDiagram.png)
+
+Step 1. The user input will be parsed through the `AddressBookParser` which will then pass the user input to the
+`AliasCommandParser` when it checks that the user input is trying to execute an alias command.
+
+Step 2. The user input will be parsed through the `AliasCommandParser` which will then pass the user input to either 
+`AddAliasCommandParser`, `DeleteAliasCommandParser` or `ListAliasCommandParser` after it checks which alias sub-command 
+the user input is trying to execute.
+
+Step 3. The user input will be parsed through the `AddAliasCommandParser`, `DeleteAliasCommandParser` or 
+`ListAliasCommandParser` and the respective `Parser` will check if the user input is valid.
+* `ALIAS` must be one word and not an existing command
+* `COMMAND` must be a valid existing command.
+
+Step 4. Once the user input is successfully parsed, a `AddAliasCommand`, `DeleteAliasCommand` or `ListAliasCommand`
+will be initialised and returned from their respective `Parser` classes and executed subsequently.
+
+![AliasCommandSequenceDiagram](images/AliasCommandSequenceDiagram.png)
+
+![AddAliasCommandParserSequenceDiagram](images/AddAliasCommandParserSequenceDiagram.png)
+
+![DeleteAliasCommandParserSequenceDiagram](images/DeleteAliasCommandParserSequenceDiagram.png)
+
+Notes: 
+* `AddAliasCommand` will check if alias exists in `model` before adding as duplicate alias is not allowed.
+* `DeleteAliasCommand` will check if alias exists in `model` before deleting as alias must exist for it to be deleted.
+
+#### Design Considerations
+
+##### Aspect: Implementation for `alias` command
+
+* **Alternative 1 (current choice)**: Create a separate `AliasCommand` with sub-commands
+    * Pros: `AliasCommand` will be independent from `AddCommand`. Easier to implement, test and debug.
+    * Cons: `alias add` compared to `add alias` might be less intuitive for users.
+* **Alternative 2**: Implement in `AddCommand` with `alias` as a sub-command of `add`. e.g. `add alias`.
+    * Pros: `add alias` compared to `alias add` might be more intuitive for users.
+    * Cons: Will require huge changes to `AddCommand`. `AddCommand` will require more testing and debugging.
+    
+### Tag feature
+
+Allows the user to create and delete one or more `tag` from one or more person in 
+`tag { add | delete | INDEX... } -t TAG...` format. Tags are case-insensitive, therefore `Photoshop` and `photoshop` are
+treated as the same tag. There must be at one index and one tag for the command to be valid.
+
+#### Implementation
+
+The `TagCommand` is split into two sub-commands `AddTagCommand` and `DeleteTagCommand`. Supporting these classes are the 
+`TagCommandParser`, `AddTagCommandParser` and `DeleteTagCommandParser` which helps to parse user input into their 
+respective tag sub-commands.
+
+![TagCommandClassDiagram](images/TagCommandClassDiagram.png)
+
+![TagCommandParserClassDiagram](images/TagCommandParserClassDiagram.png)
+
+Step 1. The user input will be parsed through the `AddressBookParser` which will then pass the user input to the
+`TagCommandParser` when it checks that the user input is trying to execute a tag command.
+
+Step 2. The user input will be parsed through the `TagCommandParser` which will then pass the user input to either 
+`AddTagCommandParser` or `DeleteTagCommandParser` after it checks which tag sub-command the user input is trying to 
+execute.
+
+Step 3. The user input will be parsed through the `AddTagCommandParser` or `DeleteTagCommandParser` and the respective 
+`Parser` will check if the user input is valid.
+* The index argument can only be `shown`, `selected` or `INDEX...`.
+* `INDEX...` must be valid positive integers.
+* `-t TAG...` must be valid tags which are alphanumeric.
+
+Step 4. Once the user input is successfully parsed, a `AddTagCommand` or `DeleteTagCommand` will be initialised and 
+returned from their respective `Parser` classes and executed subsequently.
+
+![TagCommandSequenceDiagram](images/TagCommandSequenceDiagram.png)
+
+![AddTagCommandParserSequenceDiagram](images/AddTagCommandParserSequenceDiagram.png)
+
+![DeleteTagCommandParserSequenceDiagram](images/DeleteTagCommandParserSequenceDiagram.png)
+
+Notes:
+* Tags are stored in a `HashSet` in `Person` class.
+* `tag add` command can be executed successfully even if the persons already have the tags. The tags will just not be 
+  added by the `HashSet` due to the property of `HashSet`.
+* `tag delete` command can be executed successfully even if the persons does not have the tags. The tags will just not 
+  be deleted by the `HashSet` due to the property of `HashSet`.
+
+#### Design Considerations
+
+##### Aspect: Command result for `tag` command
+
+* **Alternative 1 (current choice)**: Command results will show how many persons the command has been executed on, but 
+  not the actual number of persons which tags are added to or deleted from.
+    * Pros: Easy to implement, test and debug. The goal of the command will still be achieved even when the tags are not
+      added or deleted, e.g. a `delete tag` command deleting `Photoshop` tag from a person without the tag will still
+      result in the person without the tag.
+    * Cons: Command results does not reflect the exact number of persons tags are added to or deleted from when the 
+      command is executed. An additional note in the command result will be required to warn users of this behaviour.
+* **Alternative 2**: Command results will show exactly the number of persons tags are added to or deleted from.
+    * Pros: Command results are clearer for users as it will reflect the exact number of persons tags are added to or
+      deleted from when the command is executed.
+    * Cons: Will require many checks to show the exact number of persons modified, and it gets even more complicated
+      when adding multiple tags to multiple persons or deleting multiple tags from multiple persons.
+      
 ### Selecting Persons
 
 SelectCommand allows a user to select Person object(s) to apply actions on.
@@ -368,8 +560,43 @@ When `SelectShowCommand` is called, a predicate will be applied onto the `filter
 only the selected list of `Person` objects. The application of predicate follows the same method as
 `FindCommand` and `ListCommand`.
 
+#### Design Considerations
+
+##### Aspect: Implementation for `select` command
+
+* Alternative 1 (current choice): Use a separate `List<Person>` to store the selected person
+  objects.
+    * Pros: Simple implementation with Separation of Concerns (SoC) principle applied as the `Model`
+      stores the selected persons while `UI` retrieves a predicate to act upon (which will be
+      updated everytime the user makes a new selection).
+    * Cons: Model will have to ensure that after a person object is deleted, the object reference
+      has to be deleted.
+* Alternative 2: Use a global static `List<Person>` to store the selected person objects.
+    * Pros: Simple to implement and access by both the `UI` and `Model` components.
+    * Cons: Create implicit links between code segments.
+
 ### Email Person(s)
 
+The email command allows the user to open the operating system's email client with the 'to' field
+filled up with the email of contacts.
+
+#### Implementation
+
+The current implementation consists of using
+the ['mailto' URI scheme](https://tools.ietf.org/html/rfc6068) to trigger the operating system's
+email client.
+
+#### Design Considerations
+
+##### Aspect: Implementation for `email` command
+
+* Alternative 1 (current choice): Use 'mailto' URI scheme
+    * Pros: Simple implementation as the operating system will be in charge of resolving and opening
+      the email client.
+    * Cons: Impossible to determine if the operating system has opened the email client
+      successfully.
+
+No other possible alternatives as it would be overly complex at this point in time.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -500,13 +727,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Fresh installation of ABB should contain sample data for the user to try the commands on.
-5.  ABB should be of a reasonably small size.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for
+   typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin
+   commands) should be able to accomplish most of the tasks faster using commands than using the
+   mouse.
+4. Should work without any internet connection.
 
 ### Glossary
 
@@ -539,24 +766,167 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Delete persons
 
-### Deleting a person
+1. Delete one person
 
-1. Deleting a person while all persons are being shown
+    1. Prerequisites: Must have at least one person in the list
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `delete 1`<br>
+       Expected: Delete the first person in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Delete multiple persons
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Prerequisites: Must have at least 3 person in the list
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Test case: `delete 1 2 3`<br>
+       Expected: Persons at index 1, 2 and 3 are deleted.
 
-1. _{ more test cases …​ }_
+1. Delete shown person(s) in the list
+
+    1. Prerequisites: Must have at least 1 person in the list.
+
+    1. Test case: `delete shown`<br>
+       Expected: All person(s) in the visible person list are deleted.
+
+1. Delete selected person(s)
+
+    1. Prerequisites: Must have at least 1 person selected
+
+    1. Test case: `delete selected`<br>
+       Expected: All selected person(s) will be deleted.
+
+1. Invalid test cases
+
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains
+       the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than
+       the list size)<br>
+       Expected: Similar to previous.
+
+### Selecting persons
+
+1. Select one person
+
+    1. Test case: `select 1`<br>
+       Expected: First person is selected in the list.
+
+1. Selecting persons multiple persons
+
+    1. Prerequisites: List must contain at least 3 persons.
+
+    1. Test case: `select 1 2 3`<br>
+       Expected: 1st, 2nd and 3rd person is marked as selected.
+
+    1. Test case: `select shown`<br>
+       Expected: All person(s) in the current list will be selected
+
+1. Selecting person(s) after find
+
+    1. Prerequisites: `find` command executed.
+
+    1. Test case: `select shown`<br>
+       Expected: All person(s) that satisfies the `find` command will be selected
+
+1. Clearing selection
+
+    1. Prerequisites: Must have at least 1 person selected
+
+    1. Test case: `select clear`<br>
+       Expected: All person(s) that are selected will be un-selected.
+
+### Email persons
+
+Prerequisites: Must have an email client installed.
+
+1. Email one person
+
+    1. Prerequisites: Must have at least 1 person in the list
+
+    1. Test case: `email 1`<br>
+       Expected: Email client is opened with the "to" field filled with the email of the person at
+       index 1.
+
+1. Email multiple persons
+
+    1. Prerequisites: Must have at least 3 person in the list
+
+    1. Test case: `email 1 2 3`<br>
+       Expected: Email client is opened with the "to" field filled with the email of the persons at
+       index 1, 2 and 3.
+
+1. Email shown person(s) in the list
+
+    1. Prerequisites: Must have at least 1 person in the list.
+
+    1. Test case: `email shown`<br>
+       Expected: Email client is opened with the "to" field filled with the email(s) of the person(
+       s) in the person list.
+
+1. Email selected person(s)
+
+    1. Prerequisites: Must have at least 1 person selected
+
+    1. Test case: `email selected`<br>
+       Expected: Email client is opened with the "to" field filled with the email(s) of the person(
+       s)
+
+### Edit persons
+
+1. Edit one person
+
+    1. Prerequisites: Must have at least one person in the list
+
+    1. Test case: `edit 1 -p 99998888`<br>
+       Expected: Phone number of person at index one is updated to "99998888".
+
+1. Edit multiple persons
+
+    1. Prerequisites: Must have at least 3 person in the list
+
+    1. Test case: `edit 1 2 3 -a 21 Lower Kent Ridge Rd`<br>
+       Expected: Address of persons at index 1, 2 and 3 is updated to "21 Lower Kent Ridge Rd".
+
+1. Edit shown person(s) in the list
+
+    1. Prerequisites: Must have at least 1 person in the list.
+
+    1. Test case: `edit shown -a 21 Lower Kent Ridge Rd`<br>
+       Expected: All person(s) address in the visible person list is updated to "21 Lower Kent Ridge
+       Rd".
+
+1. Edit selected person(s)
+
+    1. Prerequisites: Must have at least 1 person selected
+
+    1. Test case: `edit selected -a 21 Lower Kent Ridge Rd`<br>
+       Expected: All selected person(s) address will be updated to "21 Lower Kent Ridge Rd".
+
+### Filter fields
+
+Prerequisites: Must have at least one person in the list to view the changes.
+
+1. Filter to show only names
+
+    1. Test case: `filter -n`<br>
+       Expected: Only names are shown.
+
+1. Filter to show only names and addresses
+
+    1. Test case: `filter -n -a`<br>
+       Expected: Only names and addresses are shown.
+       
+    1. Test case: `filter -a`<br>
+       Expected: Only names and addresses are shown.
+
+1. Remove filter
+
+    1. Prerequisites: Must have a filter applied (e.g. `filter -a -p`).
+
+    1. Test case: `fitler`<br>
+       Expected: All fields are shown.
 
 ### Editing Remark
 
@@ -571,10 +941,88 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `edit 1 -r`<br>
        Expected: First person's remark is now empty.
 
+### Alias
+
+1. Add alias
+
+    1. Test case: `alias add ls list`<br>
+       Expected: Executing `ls` will behave exactly like `list`.
+       
+1. Delete alias
+
+    1. Prerequisites: Must have an alias named `ls` (e.g. `alias add ls list`).
+
+    1. Test case: `alias delete ls`<br>
+       Expected: `ls` alias deleted.
+
+1. List alias
+
+    1. Test case: `alias list`<br>
+       Expected: All existing alias(es) are shown.
+
+### Tag
+
+1. Add tag
+
+    1. Prerequisites: Must have at least 1 person in the list.
+
+    1. Test case: `tag add shown -t Photoshop`<br>
+       Expected: All shown person(s) will have `Photoshop` tag added. If `Photoshop` tag exists
+       before execution, nothing will change for that person. The command result will display the
+       total number of persons the command have successfully executed on and not the total number of
+       persons the tags are added to.
+
+    1. Prerequisites: Must have at least selected 1 person.
+
+    1. Test case: `tag add selected -t Photoshop`<br>
+       Expected: All selected person(s) will have `Photoshop` tag added. If `Photoshop` tag exists
+       before execution, nothing will change for that person. The command result will display the
+       total number of persons the command have successfully executed on and not the total number of
+       persons the tags are added to.
+
+1. Delete tag
+
+    1. Test case: `tag delete shown -t Photoshop`<br>
+       Expected: All shown person(s) will have `Photoshop` tag removed. The command result will
+       display the total number of persons the command have successfully executed on and not the
+       total number of persons the tags are deleted from.
+
+### Autocomplete
+
+1. Command Autocomplete
+
+    1. Test case: `e`<kbd>tab</kbd><br>
+       Expected: `e` will be autocompleted to the next command in the command list panel (
+       e.g. `edit`).
+
+    1. Test case: `e`<kbd>tab</kbd> multiple times<br>
+       Expected: `e` will be autocompleted to the next command in the command list panel and will
+       cycle through the options.
+
+1. Flag Autocomplete
+
+    1. Test case: `add `<kbd>tab</kbd><br>
+       Expected: Pressing <kbd>tab</kbd> multiple times will cycle through all the flags available
+       for `add` command.
+
+    1. Test case: `edit 1 `<kbd>tab</kbd> multiple times<br>
+       Expected: Pressing <kbd>tab</kbd> multiple times will cycle through all the flags available
+       for `edit` command.
+
+### Find
+
+1. Find All Fields
+
+    1. Test case: `find coll`<br>
+       Expected: Names, emails, tags and remarks containing `coll` will be shown.
+
+1. Find by Specific Fields
+
+    1. Test case: `find -t coll`<br>
+       Expected: Tag(s) containing `coll` will be shown.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
