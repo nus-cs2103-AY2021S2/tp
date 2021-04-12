@@ -7,6 +7,9 @@ import seedu.address.model.ingredient.Ingredient;
 public class InventoryCommandUtil {
     public static final String MESSAGE_INVALID_QUANTITY = "The quantity entered is invalid, "
             + "please enter a positive number only!";
+    public static final String MESSAGE_DECREASE_QUANTITY = "Invalid quantity entered! "
+            + "The quantity to decrease is more than available quantity.";
+
     /**
      * Checks whether the Ingredient is a valid entry.
      * @param ingredient Candidate Ingredient to be added.

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.inventory;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.inventory.InventoryCommandUtil.MESSAGE_INVALID_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import seedu.address.commons.core.index.Index;
@@ -46,6 +47,10 @@ public class InventoryDecreaseCommand extends Command {
         requireNonNull(model);
 
         Ingredient toDecrease = model.getIngredientByIndex(this.targetIndex.getZeroBased());
+
+        if (quantity > toDecrease.getQuantity()) {
+            throw new CommandException(MESSAGE_INVALID_QUANTITY);
+        }
 
         InventoryCommandUtil.isValidIngredient(toDecrease, model);
 
