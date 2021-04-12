@@ -15,9 +15,6 @@ public class FilterCommand extends Command {
             + "Parameters: PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...\n"
             + "Prefixes: address: a/ADDRESS; gender: g/GENDER; tag: t/TAG; insurance plan name: i/PLAN_NAME; \n"
             + "age/[lower_bound]-[higher_bound]; age/[specific age] \n"
-            + "Tip 1: for age filter, you can search using a single age value or using a range. To use a range, \n"
-            + "input 'age/[lower_bound]-[higher_bound]'. These queries are valid: 'age/25', 'age/30-35' \n"
-            + "Tip 2: for gender filter, the valid keywords are 'M', 'N' and 'F'. To use a range, \n"
             + "Example: " + COMMAND_WORD + " a/Clementi g/M t/medical plan/Protecc age/30-35";
 
     private final AttributeContainsKeywordsPredicate predicate;
