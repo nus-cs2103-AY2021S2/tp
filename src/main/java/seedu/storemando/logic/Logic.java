@@ -12,7 +12,7 @@ import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.Location;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**

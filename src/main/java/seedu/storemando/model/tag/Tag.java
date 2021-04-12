@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the storemando.
+ * Represents a Tag in StoreMando.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {

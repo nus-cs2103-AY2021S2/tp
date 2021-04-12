@@ -6,7 +6,6 @@ import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
@@ -17,7 +16,9 @@ import seedu.storemando.model.item.predicate.LocationContainsPredicate;
  */
 public class ClearLocationCommand extends ClearCommand {
 
-    public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location are cleared!";
+    public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location "
+        + "(if the location exists) are cleared!";
+
 
     /**
      * The predicate that clear command uses to filter the items.
@@ -31,9 +32,9 @@ public class ClearLocationCommand extends ClearCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Item> currentList = model.getFilteredItemList();
+        List<Item> currentList = model.getItemList();
         if (currentList.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
+            throw new CommandException(MESSAGE_NO_ITEMS_IN_STOREMANDO);
         }
         model.clearLocation(predicate);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);

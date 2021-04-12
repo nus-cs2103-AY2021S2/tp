@@ -8,7 +8,7 @@ public abstract class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Sorts the items in StoreMando by quantity or expiry date.\n"
+        + ": Sorts the items in the inventory by quantity or expiry date.\n"
         + "Parameters (case-insensitive): quantity asc, quantity desc OR expirydate\n"
         + "Examples: \n"
         + "1. " + COMMAND_WORD + " quantity asc\n"

@@ -6,6 +6,8 @@ title: User Guide
 {:toc}
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 ### 1.1. About StoreMando
@@ -51,6 +53,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick start
 
 ### 2.1. Installation
@@ -73,6 +77,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 1. Type the command in the [command box](#command-box) and press Enter on your keyboard to execute it.
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.2. StoreMando's layout
 
@@ -140,6 +146,8 @@ t/ | TAG | `t/TAG` | Each TAG must only be one word long.
 */ | PARTIAL_WORD | `*/PARTIAL_WORD` | PARTIAL_WORD must have at least one word.
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Features
 
@@ -315,6 +323,8 @@ Do you want to view all your items? What about items at a specific location or w
 you to do just that.
 
 You can use this command in 3 different ways.
+
+<div style="page-break-after: always;"></div>
 
 * #### 3.5.1. Listing all items in StoreMando
 
@@ -565,6 +575,8 @@ to this user guide to provide you with the help you need.
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 5. Command summary
 
 Action | Format, Examples 
@@ -581,6 +593,8 @@ Action | Format, Examples
 **[“Exit"](#310-exiting-storemando--exit)** | `exit`
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 6. Glossary
 
