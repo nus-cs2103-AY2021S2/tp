@@ -1,5 +1,5 @@
 @startuml
-!include style.puml
+!include ../style.puml
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -57,15 +57,17 @@ AddSessionCommand -> Model : hasSession(name, sessionToAdd)
 activate Model
 deactivate Model
 
+opt has name and does not have session
 AddSessionCommand -> Model : addSession(name, sessionToAdd)
 activate Model
 deactivate Model
+end opt
 
 create CommandResult
 AddSessionCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddSessionCommand
+CommandResult --> AddSessionCommand : result
 deactivate CommandResult
 
 AddSessionCommand --> LogicManager : result
