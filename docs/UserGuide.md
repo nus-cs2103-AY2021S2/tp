@@ -209,10 +209,13 @@ Examples:
 Deletes person(s) from the contact list.
 
 Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
-1. If no parameters supplied, `delete`: Deletes all contacts in the displayed contact list
-2. If indices supplied, `delete INDEX [INDEX]...`: Deletes the contacts associated with each specified `INDEX`
+1. If no parameters supplied, `delete`:<br>
+Deletes all contacts in the displayed contact list
+2. If indices supplied, `delete INDEX [INDEX]...`:<br>
+Deletes the contacts associated with each specified `INDEX`
    * Invalid indices are ignored.
-3. If tags supplied, `delete [--any] -t TAG [-t TAG]...`: Delete the contacts containing all specified tags
+3. If tags supplied, `delete [--any] -t TAG [-t TAG]...`:<br>
+Delete the contacts containing all specified tags
    * If the `--any` flag is supplied, contacts only need to match with any of the specified tags.
    * Tags specified are case-sensitive.
 
@@ -228,12 +231,14 @@ Examples:
 Edits an existing person in the contact list.
 
 Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]…​}`
-1. If index supplied, `edit INDEX [...]`: Edits the person at the specified `INDEX`
+1. If index supplied, `edit INDEX [...]`:<br>
+Edits the person at the specified `INDEX`
    * At least 1 parameter must be supplied.
    * Existing values are replaced by the input values, if specified.
    * To retrieve existing values, use the autocompletion workflow specified [below](#autocomplete-tab).
    * Tags can be removed from a contact by specifying a standalone `-t` without parameters.
-2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`: Removes all specified tags from every contact in the displayed list
+2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`:<br>
+Removes all specified tags from every contact in the displayed list
    * All specified tags will be removed from every contact in the displayed list.
    * Tags specified are case-sensitive.
 
@@ -247,8 +252,10 @@ Examples:
 Displays a list of contacts in the contact list, with optional search criteria.
 
 Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`
-1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts in contact list
-2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
+1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
+List all contacts in contact list
+2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
+List all contacts matching the search criteria
 
 Search criteria, case-insensitive:
 * `-n`, `--name` filters the contacts by name
@@ -322,9 +329,11 @@ Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
 Format: `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT] [-o ORDER]`
 
-1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
+1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
+List out all events in event list.
 2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o
-   SORT_ORDER]`: List all events matching the search criteria
+   SORT_ORDER]`:<br>
+List all events matching the search criteria
 
 Search criteria, case-insensitive:
 * `-n`, `--name` filters the events by event name
