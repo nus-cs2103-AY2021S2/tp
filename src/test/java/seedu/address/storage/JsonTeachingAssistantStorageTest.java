@@ -54,13 +54,13 @@ public class JsonTeachingAssistantStorageTest {
     }
 
     @Test
-    public void readTeachingAssistant_invalidPersonTeachingAssistant_throwDataConversionException() {
+    public void readTeachingAssistant_invalidContactTeachingAssistant_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTeachingAssistant(
                 "invalidContactTeachingAssistant.json"));
     }
 
     @Test
-    public void readTeachingAssistant_invalidAndValidPersonTeachingAssistant_throwDataConversionException() {
+    public void readTeachingAssistant_invalidAndValidContactTeachingAssistant_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTeachingAssistant(
                 "invalidAndValidTeachingAssistant.json"));
     }

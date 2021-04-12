@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 public class ContactUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code contact}.
      */
     public static String getAddContactCommand(Contact contact) {
         return AddContactCommand.COMMAND_WORD + " " + getContactDetails(contact);
