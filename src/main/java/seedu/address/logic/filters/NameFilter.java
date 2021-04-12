@@ -67,7 +67,7 @@ public class NameFilter extends Filter {
 
     private boolean testSearchToken(String searchToken, String[] customerTokenList) {
         return Arrays.stream(customerTokenList)
-            .anyMatch(customerToken -> (isSubsequence(customerToken, searchToken)));
+            .anyMatch(customerToken -> (isSubsequence(customerToken.toLowerCase(), searchToken.toLowerCase())));
     }
 
     /**

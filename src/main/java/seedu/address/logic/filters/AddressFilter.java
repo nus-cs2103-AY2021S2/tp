@@ -29,6 +29,6 @@ public class AddressFilter extends Filter {
     @Override
     public boolean test(Customer customer) {
         Objects.requireNonNull(customer);
-        return customer.getAddress().value.trim().contains(filterString.trim());
+        return customer.getAddress().value.trim().toLowerCase().contains(filterString.trim().toLowerCase());
     }
 }
