@@ -34,9 +34,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jaredtengsw.png" width="200px">
 
 [[github](http://github.com/jaredtengsw)]
+[[portfolio](team/jaredtengsw.md)]
 
 * Role: Developer
-* Responsibilities: _TBC_
+* Responsibilities: User Interface
 
 ### V R Soorya
 
