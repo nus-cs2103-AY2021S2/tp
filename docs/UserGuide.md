@@ -7,7 +7,7 @@ title: User Guide
   <img src="images/dietlah-slim.png" alt="DietLAH!">
 </p>
 
-# User Guide
+<center><h1>User Guide</h1></center>
 
 ## Table of Contents
 
