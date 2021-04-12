@@ -5,7 +5,7 @@ title: User Guide
 
 <img width="960" alt="docboblogo" src="https://user-images.githubusercontent.com/59093518/113546749-2db63300-961f-11eb-979d-128c9fd10ee6.png">
 
-**DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let DocBob take you to an automated future. In the event of any issues, please feel free to contact the team via the email provided below under the **Issues** section
+**DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let DocBob take you to an automated future. If there are any issues, please feel free to contact the team via the emails provided below under the **Issues** section.
 
 * Table of Contents
 {:toc}
