@@ -21,7 +21,8 @@ public abstract class Filter implements Predicate<Customer> {
      */
     public Filter(String filterString) {
         Objects.requireNonNull(filterString);
-        LogsCenter.getLogger(Filter.class).info("Created a new filter : " + this.getClass().getName() + " : " + filterString);
+        LogsCenter.getLogger(Filter.class)
+            .info("Created a new filter : " + this.getClass().getName() + " : " + filterString);
         this.filterString = filterString.trim();
         if (this.filterString.isEmpty()) {
             throw new IllegalArgumentException("Search string cannot be empty!");
