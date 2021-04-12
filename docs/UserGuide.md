@@ -154,6 +154,7 @@ Format: `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE 
 Description:
 * Each property has a **unique pair of address and postal code**.
   * No two properties with the exact same pair of address and postal code can exist in the app at the same time.
+* Property types can be either Hdb ![hdb_icon](images/hdb_16.png), Condo ![condo_icon](images/condo_16.png) or Landed ![landed_icon](images/landed_16.png)
 * The format for specifying a deadline date is **`DD-MM-YYYY`**.
 * Postal codes should have a **minimum of 5 digits** and a **maximum of 10 digits**.
 * Client's contact number should have a **minimum of 7 digits** and a **maximum of 15 digits**.
