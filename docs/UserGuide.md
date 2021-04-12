@@ -33,30 +33,30 @@ title: User Guide
   * [3.3. List food item](#33-list-food-item)
   * [3.4. Delete food item](#34-delete-food-item)
   * [3.5. Input food intake](#35-input-food-intake)
-     * [3.5.1. Input food intake (For new food items that are not created before)](#351-input-food-intake-for-new-food-items-that-are-not-created-before)
-     * [3.5.2. Input food intake (For existing food items)](#352-input-food-intake-for-existing-food-items)
-     * [3.5.3. Input food intake (For existing food items, using different nutrient value(s))](#353-input-food-intake-for-existing-food-items-using-different-nutrient-values)
+    * [3.5.1. Input food intake (For new food items that are not created before)](#351-input-food-intake-for-new-food-items-that-are-not-created-before)
+    * [3.5.2. Input food intake (For existing food items)](#352-input-food-intake-for-existing-food-items)
+    * [3.5.3. Input food intake (For existing food items, using different nutrient value(s))](#353-input-food-intake-for-existing-food-items-using-different-nutrient-values)
   * [3.6. Update food intake](#36-update-food-intake)
   * [3.7. Delete food intake](#37-delete-food-intake)
   * [3.8. Query food intake](#38-query-food-intake)
-     * [3.8.1. Query food intake on a day](#381-query-food-intake-on-a-day)
-     * [3.8.2. Query food intake over a period of days](#382-query-food-intake-over-a-period-of-days)
-  * [4. Progress report](#4-progress-report)
-     * [4.1 Generate progress report](#41-generate-progress-report)
-  * [5. Miscellaneous](#5-miscellaneous)
-     * [5.1 Reset application to blank](#51-reset-application-to-blank)
-     * [5.2 Populate application with sample template data](#52-populate-application-with-sample-template-data)
-     * [5.3 Exit the application](#53-exit-the-application)
+    * [3.8.1. Query food intake on a day](#381-query-food-intake-on-a-day)
+    * [3.8.2. Query food intake over a period of days](#382-query-food-intake-over-a-period-of-days)
+* [4. Progress report](#4-progress-report)
+  * [4.1 Generate progress report](#41-generate-progress-report)
+* [5. Miscellaneous](#5-miscellaneous)
+  * [5.1 Reset application to blank](#51-reset-application-to-blank)
+  * [5.2 Populate application with sample template data](#52-populate-application-with-sample-template-data)
+  * [5.3 Exit the application](#53-exit-the-application)
 * [Command summary](#command-summary)
 * [Glossary](#glossary)
 * [Appendix](#appendix)
   * [A1. Diet plans](#a1-diet-plans)
-      * [A1.1 Standard Ketogenic Diet](#a11-standard-ketogenic-diet)
-      * [A1.2 High Protein Ketogenic Diet](#a12-high-protein-ketogenic-diet)
-      * [A1.3 Balanced Plan For Weight Gain](#a13-balanced-plan-for-weight-gain)
-      * [A1.4 Clean Bulk](#a14-clean-bulk)
-      * [A1.5 High Carbohydrates Bulk](#a15-high-carbohydrates-bulk)
-      * [A1.6 Balanced Plan](#a16-balanced-plan)
+    * [A1.1 Standard Ketogenic Diet](#a11-standard-ketogenic-diet)
+    * [A1.2 High Protein Ketogenic Diet](#a12-high-protein-ketogenic-diet)
+    * [A1.3 Balanced Plan For Weight Gain](#a13-balanced-plan-for-weight-gain)
+    * [A1.4 Clean Bulk](#a14-clean-bulk)
+    * [A1.5 High Carbohydrates Bulk](#a15-high-carbohydrates-bulk)
+    * [A1.6 Balanced Plan](#a16-balanced-plan)
 <!--te-->
 
 ---
@@ -96,11 +96,11 @@ Legend | Description
 
   <p align="center"><img src="images/user-guide/gui.png"></p>
 
-  It will show some basic information on how to use it, and some sample data will already be present. 
+It will show some basic information on how to use it, and some sample data will already be present.
 
 6. Type the command in the command box at the top and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:
-   
+
    * `reset t/blank`: Resets sample data in the application.
 
    * `bmi g/M a/43 h/170 w/70 i/50`: Sets up your user profile with the gender (male), age (43), height (170cm), weight (70kg) and ideal weight (50kg).
@@ -142,7 +142,7 @@ Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
 ### 1.1 Input user information
 
-When you first launch DietLAH!, some sample data will already be loaded. 
+When you first launch DietLAH!, some sample data will already be loaded.
 
 DietLAH! uses your information to provide personalized recommendations based on your personal goals and current characteristics.
 
@@ -311,7 +311,7 @@ Deletes the specified food item.
 
 ### 3.5 Input food intake
 
-For tracking your diet plan progress, you are encouraged to record your daily food intake. 
+For tracking your diet plan progress, you are encouraged to record your daily food intake.
 
 You are allowed to add food intakes from the future. This is because you can use the function to perform a "food forecast" - so that you will know if eating the foods you have put in would go over your recommended daily intake of nutrients.
 
@@ -379,11 +379,11 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
 <div markdown="span" class="alert alert-success">
-  💡 <strong>Tip:</strong> Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged. 
+  💡 <strong>Tip:</strong> Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
 </div>
 
 <div markdown="span" class="alert alert-primary">
-  ✏️ <strong>Note:</strong> The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places. 
+  ✏️ <strong>Note:</strong> The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places.
 </div>
 
 **Expected output:**
@@ -443,7 +443,7 @@ View the list of food intakes over a period of days (both inclusive).
 
 Generates a progress report based on your current active diet plan. Your food intake will be calculated against the daily requirements to generate a report detailing how much you have adhered to the plan's requirements.
 
-**Command Format:** `progress`
+**Command Format:** `progress`  
 
 <div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> An active diet plan must be selected before running this command.
@@ -568,7 +568,7 @@ This plan is aimed at individuals who are intending to gain healthy weight in a 
 
 ### A1.4 Clean Bulk
 
-The clean bulk is a process which bodybuilders use to gain lean muscle mass. The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and 
+The clean bulk is a process which bodybuilders use to gain lean muscle mass. The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and
 processed foods to hit the calorie intake.
 
 **Classification:** `Weight Gain`  

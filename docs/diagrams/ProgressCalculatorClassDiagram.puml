@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor #73c8df
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeFontColor #FFFFFF
+skinparam ArrowColor MODEL_COLOR
+show members
+
+skinparam classAttributeIconSize 0
+
+class ProgressCalculator
+class FoodIntakeList
+class DietPlan
+class User
+class FoodIntake
+class PlanInfoCalculator
+class MacroNutrientsComposition
+class Bmi
+class Gender
+class Age
+
+PlanInfoCalculator ..> Bmi
+PlanInfoCalculator ..> Gender
+PlanInfoCalculator ..> Age
+
+class PlanInfoCalculator {
+calories : double
+carbohydrates : double
+proteins : double
+fats : double
+PlanInfoCalculator(User, DietPlan)
+}
+
+PlanInfoCalculator ..> MacroNutrientsComposition
+PlanInfoCalculator ..> User
+PlanInfoCalculator ..> DietPlan
+
+class MacroNutrientsComposition {
+carbohydrates : double
+fats : double
+proteins : double
+}
+
+class ProgressCalculator {
+{static}calculateProgress(FoodIntakeList, DietPlan, User)
+}
+
+ProgressCalculator ..> FoodIntakeList
+ProgressCalculator ..> DietPlan
+ProgressCalculator ..> User
+ProgressCalculator ..> PlanInfoCalculator
+ProgressCalculator ..> FoodIntake
+
+enum PlanType {
+WEIGHT_GAIN
+WEIGHT_LOSS
+WEIGHT_MAINTAIN
+}
+
+@enduml

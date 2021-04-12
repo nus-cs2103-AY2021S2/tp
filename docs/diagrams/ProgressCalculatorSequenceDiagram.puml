@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DietLahParser" as DietLahParser LOGIC_COLOR
+participant ":RunProgressCalculatorCommand" as RunProgressCalculatorCommand LOGIC_COLOR
+participant "<<class>>\n:ProgressCalculator" as ProgressCalculator LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("progress")
+activate LogicManager
+
+LogicManager -> DietLahParser : parseCommand("progress")
+activate DietLahParser
+
+create RunProgressCalculatorCommand
+DietLahParser -> RunProgressCalculatorCommand
+activate RunProgressCalculatorCommand
+
+RunProgressCalculatorCommand -> Model : getActiveDiet()
+activate Model
+
+Model --> RunProgressCalculatorCommand : activeDiet
+deactivate Model
+
+RunProgressCalculatorCommand -> Model : getFoodIntakeList()
+activate Model
+
+Model --> RunProgressCalculatorCommand : foodIntakeList
+deactivate Model
+
+RunProgressCalculatorCommand -> Model : getUser()
+activate Model
+
+Model --> RunProgressCalculatorCommand : user
+deactivate Model
+
+RunProgressCalculatorCommand -> ProgressCalculator : calculateProgress(foodIntakeList, activeDiet, user)
+activate ProgressCalculator
+
+ProgressCalculator --> RunProgressCalculatorCommand : report
+deactivate ProgressCalculator
+
+create CommandResult
+RunProgressCalculatorCommand -> CommandResult : CommandResult(report)
+activate CommandResult
+CommandResult --> RunProgressCalculatorCommand
+deactivate CommandResult
+RunProgressCalculatorCommand --> DietLahParser
+
+deactivate RunProgressCalculatorCommand
+RunProgressCalculatorCommand -[hidden]-> DietLahParser
+destroy RunProgressCalculatorCommand
+
+DietLahParser --> LogicManager
+deactivate DietLahParser
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

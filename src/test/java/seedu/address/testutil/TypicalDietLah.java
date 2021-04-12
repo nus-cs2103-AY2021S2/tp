@@ -8,7 +8,10 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
+import seedu.address.model.user.Age;
 import seedu.address.model.user.Bmi;
+import seedu.address.model.user.Gender;
+import seedu.address.model.user.IdealWeight;
 import seedu.address.model.user.User;
 
 /**
@@ -28,8 +31,14 @@ public class TypicalDietLah {
 
     public static User getTypicalUser() {
         Bmi typicalBmi = new Bmi(61.4, 168.5);
+        UniqueFoodList typicalUniqueFoodList = getTypicalUniqueFoodList();
+        FoodIntakeList typicalFoodIntakeList = getTypicalFoodIntakeList();
+        Age typicalAge = new Age(23);
+        Gender typicalGender = new Gender("F");
+        IdealWeight typicalIdealWeight = new IdealWeight(48.5);
 
-        User typicalUser = new User();
+        User typicalUser = new User(typicalBmi, typicalUniqueFoodList.getFoodList(), typicalFoodIntakeList,
+                typicalAge, typicalGender, typicalIdealWeight);
         return typicalUser;
     }
 
