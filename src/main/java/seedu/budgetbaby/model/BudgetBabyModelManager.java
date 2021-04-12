@@ -100,6 +100,11 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
+    public void findMonth(YearMonth month) {
+        versionedBudgetTracker.findMonth(month);
+    }
+
+    @Override
     public void deleteMonth(Month target) {
         versionedBudgetTracker.removeMonth(target);
     }

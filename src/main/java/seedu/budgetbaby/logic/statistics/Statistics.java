@@ -1,5 +1,6 @@
 package seedu.budgetbaby.logic.statistics;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,7 +28,17 @@ public class Statistics {
         assert monthList.size() == 1;
     }
 
+
+    private void fillPastMonths() {
+        List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
+        List<YearMonth> months = monthList.stream().map(m -> m.getMonth()).collect(Collectors.toList());
+        for (int i = 1; i < 6; i++) {
+            YearMonth curr = this.monthList.get(0).getMonth().minusMonths(i);
+            model.findMonth(curr);
+        }
+    }
     private List<Month> getPastMonths() {
+        fillPastMonths();
         List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
         monthList = monthList.stream()
                 .filter(month -> month.getMonth().isBefore(this.monthList.get(0).getMonth().plusMonths(1))
