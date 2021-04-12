@@ -34,13 +34,13 @@ interface with the UI. The process by which message passing of the theme change 
    passed via the `Logic` interface back into `MainWindow#executeCommand`. which in turn processes the `Theme`
    via the `setTheme` method as specified above. Both steps 1 and 2 are illustrated below:
 
-![](images/ThemeDiagramLogicExecute.png)
+   ![](images/ThemeDiagramLogicExecute.png)
 
 3. The `Theme` encapsulated in the `CommandResult` is then passed into `setTheme`.
    A replacement `GuiSettings` object is created by `Logic` using the updated theme,
    and stored for subsequent retrieval (in step 1). This is shown below:
    
-![](images/ThemeDiagramSetTheme.png)
+   ![](images/ThemeDiagramSetTheme.png)
 
 Notably, since `GuiSettings` is a common resource shared between the `Logic` and `Model` objects, this allows
 `ToggleThemeCommand` and `MainWindow` to access `GuiSettings` from different contexts without
