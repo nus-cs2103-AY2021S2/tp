@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A UI Component that display user feedback from the application.
  */
 public class ResultDisplay extends UiPart<Region> {
 
@@ -23,7 +23,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     /**
-     * Sets feed back text with default style
+     * Sets feed back text with default style.
      */
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
@@ -32,7 +32,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     /**
-     * Sets feed back text with error style
+     * Sets feed back text with error style.
      */
     public void setErrorFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);

@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/riyadh-h.md)]
 
 * Role: Member
-* Responsibilities: Full Stack Developer
+* Responsibilities: Development, testing, and documentation of `Contact`-related features; meetings timekeeping.
 
 ### Dick Jessen William
 

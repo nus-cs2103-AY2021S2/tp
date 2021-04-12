@@ -4,7 +4,7 @@ import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.model.Model;
 
 /**
- * Format full help instructions for every command for display.
+ * Shows a help window to user guide.
  */
 public class HelpCommand extends Command {
 

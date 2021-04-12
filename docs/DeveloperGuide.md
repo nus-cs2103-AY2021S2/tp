@@ -157,8 +157,12 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save instances of the following classses in JSON format and read it back:
+    * `UserPref`.
+    * `ContactsList`.
+    * `NoteBook`.
+    * `Dictionary`.
+    * `DefinitionBook`.
 
 ### Common classes
 
@@ -176,19 +180,21 @@ This section describes some noteworthy details on how certain features are imple
 
 ##### Implementation
 
-This feature is implemented as a command, `EmailCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific contact on the contacts list.
+This feature is implemented as a command, `EmailCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific contact on the contacts list. In addition, the command has an optional index number argument that refers to a note within the note book.
 
-The index number was selected to refer to a particular contact. This is due to its character length being shorter in most cases than any other field of information in `Contact` objects, making it both simple and sufficient.
+The index number was selected to refer to a particular contact. This is due to its character length being shorter in most cases than any other field of information in `Contact` objects, making it both simple and sufficient. Likewise, notes are referred to by their index numbers for the same reasons.
 
-The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end.
+The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end. In case a note index number is provided, the contents of the note located at the specified index number will be copied to the messages's body field.
+
+If the command is executed successfully, the target contact's frequency counter (see [*Sorting the contacts list by most-frequently contacted*](./DeveloperGuide.md#sorting-the-contacts-list-by-most-frequently-contacted) below) will be incremented by one.
 
 As an example, consider running Dictionote on a Windows 10 machine with Microsoft Outlook as the OS default mail client:
 
-* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
+* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window and the note on the right):
 
 ![ContactEmailFeatureInitState](images/ContactEmailFeatureInitState.png)
 
-* After typing in `emailcontact 2` and executing it, the result would be:
+* After typing in `emailcontact 2 ni\1` and executing it, the result would be:
 
 ![ContactEmailFeatureExecute](images/ContactEmailFeatureExecute.png)
 
@@ -197,13 +203,14 @@ As an example, consider running Dictionote on a Windows 10 machine with Microsof
 ![ContactEmailFeatureOSClient](images/ContactEmailFeatureOSClient.png)
 
 * Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
+* Also note that the body of the message contains the contents of the first note on the list (that is, `QA stands for Quality Assurance`).
 
-Note that if the user does not have a mail client software set as default in their OS, then Dictionote will try to navigate to the `mailto` link through the user's default browser (i.e., the `mailto` link will be treated as an ordinary URL link).
+In case the user does not have a mail client software set as default in their OS, Dictionote will try to navigate to the `mailto` link through the user's default browser (i.e., the `mailto` link will be treated as an ordinary URL link).
 
 ##### Design Considerations
 
 * **Alternative 1 (current choice):** make use of the OS mail client to facilitate email features.
-    * Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail xyz.
+    * Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail clients.
     * Cons: Requires the user to have a mail client installed on their OS, which is then set to be the default mail client of the system.
 
 * **Alternative 2:** implement basic email features directly into Dictionote.
@@ -211,7 +218,40 @@ Note that if the user does not have a mail client software set as default in the
     * Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
 
 
-#### More implementation details to be added...
+#### Sorting the contacts list by most-frequently contacted
+
+##### Implementation
+
+This feature is implemented as a command, `MostFreqContact`, that extends `Command`. It can execute without arguments, and it ignores any of them if provided.
+
+The `execute()` method attempts to sort all contacts stored within the contacts list in descending order based on each contact's **frequency counter**, which is an attribute holding a non-negative integer value that represents the number of attempts an email was sent to that contact. The sorting is handled by the `sorted` method of the `ObservableList` class, of which an instance stores the contacts.
+
+As an example, consider running Dictionote as follows:
+
+* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
+
+![ContactEmailFeatureInitState](images/ContactMostFreqFeatureInitState.png)
+
+* In addition, assume the successful execution of the following commands:
+    * `emailcontact 3` three times.
+    * `emailcontact 2` one time.
+    * `emailcontact 1` two times.
+
+* After typing in `mostfreqcontact` and executing it, the result would be:
+
+![ContactEmailFeatureExecute](images/ContactMostFreqFeatureExecute.png)
+
+* Note that the ordering of the contacts in the contacts list had changed, with Charlie (formerly with index number 3) being the first on the list, followed by Alice (formerly with index number 1) and finally Bob (formerly with index number 2).
+
+##### Design Considerations
+
+* **Alternative 1 (current choice):** add a new attribute to the `Contact` class in order to keep track of the number of attempts to send an email.
+    * Pros: Preserves the functionality of the `Contact` class before the implementation of the new feature; minimal integration issues with other `Contact`-dependent classes and methods.
+    * Cons: Requires the creation of a new class to represent this attribute; adds an extra attribute to the contacts list's JSON storage file, which might requires more space (although it may be minimal).
+
+* **Alternative 2:** create a `HashTable` to store a mapping between the contacts and the number of attempts to send an email of which they were the recipients.
+    * Pros: Zero modifications on the `Contact` class; `Contact` objects will not contain any attributes required by this feature.
+    * Cons: Difficult to integrate with the other classes and methods related to `Contact` objects (e.g., deletion of a contact from the list must propagate to the `HashTable`).
 
 ### UI features
 
@@ -595,14 +635,60 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case resumes at step 2.
 
-**Use case: UC04 -  Delete a note**
+**Use case: UC04 -  Clear the contacts list**
+
+**MSS**
+
+1.  User requests to clear their contacts list.
+2.  Dictionote clears the contacts list by deleting all contacts.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+  
+**Use case: UC05 -  Send an email to a contact**
+
+**Actors:** User, Operating System (OS), Mail Application, Web Browser.
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  Dictionote shows a list of contacts.
+3.  User requests to send an email to the contact located at the specified index number.
+4.  Dictionote invokes the OS's mail application with the appropriate fields filled in.
+5.  User types in a subject for the message.
+6.  User sends the message through the mail application.
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+  
+* 3a. User provides a note index whose contents are requested to be sent.
+
+  Use case resumes from step 4.
+
+* 4a. OS does not have a default mail application set.
+    * 4a1. OS invokes its default web browser.
+    * 4a2. Web browser opens a new, empty tab.
+    
+  Use case ends.
+
+**Use case: UC06 -  Delete a note**
 
 **MSS**
 
 1.  User requests to list notes.
 2.  Dictionote shows a list of notes.
 3.  User requests to delete a specific note in the list.
-4.  Dictionote deletes the contact.
+4.  Dictionote deletes the note.
 
     Use case ends.
 
@@ -618,23 +704,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case resumes at step 2.
 
-**Use case: UC05 -  Sort notes by Last Edit Time**
+**Use case: UC07 -  Sort notes by Last Edit Time**
 
 **MSS**
 
-1.  User requests to list contacts.
-2.  Dictionote shows a list of contacts.
+1.  User requests to list notes.
+2.  Dictionote shows a list of notes.
 3.  User requests to sort notes based on the last edit time.
-4.  Dictionote shows a list of contacts, sorted by last edit time.
+4.  Dictionote shows a list of notes, sorted by last edit time.
 
     Use case ends.
-
+    
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
-
+    
 
 ### Non-Functional Requirements
 
