@@ -90,11 +90,11 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PASSENGER);
         }
 
-        if (model.hasPassenger(passengerToEdit) && editPassengerDescriptor.isDayFieldEdited()) {
+        if (model.hasPassenger(passengerToEdit) && editPassengerDescriptor.getTripDay().isPresent()) {
             throw new CommandException(MESSAGE_NOT_EDITED_DAY_ERROR);
         }
 
-        if (model.hasPassenger(passengerToEdit) && editPassengerDescriptor.isTimeFieldEdited()) {
+        if (model.hasPassenger(passengerToEdit) && editPassengerDescriptor.getTripTime().isPresent()) {
             outputMessage = MESSAGE_EDIT_PASSENGER_WARNING;
         }
 
@@ -175,20 +175,6 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, price, tags);
-        }
-
-        /**
-         * Returns true if at least TripDay field is edited.
-         */
-        public boolean isDayFieldEdited() {
-            return tripDay != null;
-        }
-
-        /**
-         * Returns true if at least TripTime field is edited.
-         */
-        public boolean isTimeFieldEdited() {
-            return tripTime != null;
         }
 
         public void setName(Name name) {
