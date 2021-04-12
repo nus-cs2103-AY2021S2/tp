@@ -76,10 +76,12 @@ Head over to our [Quickstart](#quickstart) to start learning about NuFash.
 
 4. Double-click the file to start the app. A GUI similar to one depicted below should launch in a few seconds.<br>
 
- <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="550">
+ <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="500">
 
 5. You may refer to the [User Interface Overview](#user-interface-overview) for further details on the application's interface or
    [NuFash Features](#nufash-features) to try out our commands.
+
+<div style="page-break-after: always;"></div>
 
 ---
 ## User Interface Overview
@@ -163,6 +165,8 @@ condition.
 The listing generated Image allows for the garment to be represented in a visual form. It displays the dress-code of the
 garment (either formal, casual or active-wear), its type (either upper, lower or foot-wear) and it's colour.
 
+<div style="page-break-after: always;"></div>
+
 ---
 ## NuFash Features
 ### Feature Syntax and Terminology
@@ -188,6 +192,8 @@ garment (either formal, casual or active-wear), its type (either upper, lower or
 NuFash is divided into two sets of features, each allowing the application to
 achieve one of its goals.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### <a name="wardrobe-management-features"></a> Wardrobe Management Features
 The first category of features is wardrobe management. These features
@@ -322,6 +328,8 @@ Exits the program.<br>
 Format: `exit`
 <br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### <a name="outfit-building-features"></a> Outfit Building Features
 The second category of features is outfit building. These features
 aim to achieve the goal of providing users with clothing suggestions, allowing
@@ -405,6 +413,8 @@ Advanced users are welcome to update data directly by editing the data file at [
 **:exclamation: Caution:**<br>
   If your changes to the data file makes its format invalid, NuFash will discard all data and start with an empty data file at the next run.
 <br><br>
+
+<div style="page-break-after: always;"></div>
 
 ---
 ## FAQ
