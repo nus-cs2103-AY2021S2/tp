@@ -8,14 +8,14 @@ import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EmailContactCommand object
+ * Parses input arguments and creates a new EmailContactCommand object.
  */
 public class EmailContactCommandParser implements Parser<EmailContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EmailContactCommand
      * and returns an EmailContactCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EmailContactCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

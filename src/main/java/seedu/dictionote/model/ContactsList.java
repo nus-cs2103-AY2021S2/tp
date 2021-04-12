@@ -15,7 +15,7 @@ import seedu.dictionote.model.contact.UniqueContactList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
 
 /**
- * Wraps all data at the dictionote-book level
+ * Wraps all data at the dictionote-book level.
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class ContactsList implements ReadOnlyContactsList {
@@ -33,10 +33,11 @@ public class ContactsList implements ReadOnlyContactsList {
         contacts = new UniqueContactList();
     }
 
+    //Todo
     public ContactsList() {}
 
     /**
-     * Creates a ContactsList using the Persons in the {@code toBeCopied}
+     * Creates a ContactsList using the Persons in the {@code toBeCopied}.
      */
     public ContactsList(ReadOnlyContactsList toBeCopied) {
         this();
