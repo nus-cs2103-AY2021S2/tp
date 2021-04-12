@@ -1,19 +1,31 @@
 @startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+participant ":CommandBox" as CommandBox MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
 -> MainWindow : TAB KeyPress
-MainWindow -> LogicManager : getAvailableFlags
+MainWindow -> LogicManager : getAvailableFlags(string)
+LogicManager -> LogicManager : filterExistingFlags(string,string)
 LogicManager --> MainWindow
-LogicManager -> LogicManager : filterExistingFlags
+
 
 alt if availableFlags exist
 
-    MainWindow -> CommandBox: setAndAppendFlag
+    MainWindow -> CommandBox: setAndAppendFlag(string)
     CommandBox --> MainWindow
 
 else else
 
-    MainWindow -> LogicManager : getAutocompleteFlags
+    MainWindow -> LogicManager : getAutocompleteFlags(string)
     LogicManager --> MainWindow
-    MainWindow -> CommandBox : setTextValue
+    MainWindow -> CommandBox : setTextValue(string)
     CommandBox --> MainWindow
     end
 @enduml

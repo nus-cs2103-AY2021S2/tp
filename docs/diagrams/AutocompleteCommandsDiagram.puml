@@ -1,4 +1,11 @@
 @startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+participant ":AutocompleteListPanel" as AutocompleteListPanel MODEL_COLOR
+end box
+
 -> MainWindow : TAB KeyPress
 MainWindow -> AutocompleteListPanel : getAvailableFlags
 AutocompleteListPanel --> MainWindow
