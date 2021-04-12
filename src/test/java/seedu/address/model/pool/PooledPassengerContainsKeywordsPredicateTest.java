@@ -50,24 +50,24 @@ public class PooledPassengerContainsKeywordsPredicateTest {
         // One keyword
         PooledPassengerContainsKeywordsPredicate predicate =
                 new PooledPassengerContainsKeywordsPredicate(
-                        Collections.singletonList(ALICE.getName().toString().split("\\s")[0]));
+                        Collections.singletonList(ALICE.getName().toString().toLowerCase().split("\\s")[0]));
         assertTrue(predicate.test(WORKPOOL));
 
         // Multiple keywords
         predicate = new PooledPassengerContainsKeywordsPredicate(Arrays.asList(
-                ALICE.getName().toString().split("\\s")[0],
-                GEORGE.getName().toString().split("\\s")[0]));
+                ALICE.getName().toString().toLowerCase().split("\\s")[0],
+                GEORGE.getName().toString().toLowerCase().split("\\s")[0]));
         assertTrue(predicate.test(WORKPOOL));
 
         // Only one matching keyword
         predicate = new PooledPassengerContainsKeywordsPredicate(Arrays.asList(
-                ALICE.getName().toString().split("\\s")[0],
-                DANIEL.getName().toString().split("\\s")[0]));
+                ALICE.getName().toString().toLowerCase().split("\\s")[0],
+                DANIEL.getName().toString().toLowerCase().split("\\s")[0]));
         assertTrue(predicate.test(WORKPOOL));
 
         // Mixed-case keywords
         predicate = new PooledPassengerContainsKeywordsPredicate(Arrays.asList("aLIce", "GeorGe"));
-        assertTrue(predicate.test(WORKPOOL));
+        assertFalse(predicate.test(WORKPOOL));
     }
 
     @Test

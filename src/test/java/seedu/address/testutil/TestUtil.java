@@ -59,6 +59,6 @@ public class TestUtil {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     public static PooledPassengerContainsKeywordsPredicate prepareNamePredicate(String userInput) {
-        return new PooledPassengerContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new PooledPassengerContainsKeywordsPredicate(Arrays.asList(userInput.toLowerCase().split("\\s+")));
     }
 }
