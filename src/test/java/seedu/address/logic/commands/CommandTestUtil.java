@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -49,6 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_DATE_BALLET_RECITAL = "23/12/2021 18:00";
     public static final String VALID_CONTACT_1 = "1";
     public static final String VALID_CONTACT_2 = "2";
+    public static final String VALID_CHILD_ALEX = "alex";
+    public static final String VALID_CHILD_LISA = "lisa";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -71,6 +74,8 @@ public class CommandTestUtil {
     public static final String DATE_DESC_BALLET_RECITAL = " " + PREFIX_DATE + VALID_DATE_BALLET_RECITAL;
     public static final String CONTACT_DESC_1 = " " + PREFIX_CONTACT + VALID_CONTACT_1;
     public static final String CONTACT_DESC_2 = " " + PREFIX_CONTACT + VALID_CONTACT_2;
+    public static final String CHILD_DESC_ALEX = " " + PREFIX_CHILD + VALID_CHILD_ALEX;
+    public static final String CHILD_DESC_LISA = " " + PREFIX_CHILD + VALID_CHILD_LISA;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -80,6 +85,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE
             + "09-01-2021 00:00"; // should be '/' instead of '-'
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "amy"; // only numbers accepted
+    public static final String INVALID_CHILD_DESC = " " + PREFIX_CHILD + "alex*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

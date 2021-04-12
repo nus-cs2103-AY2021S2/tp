@@ -1,46 +1,54 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Edeline's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: ParentPal
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ParentPal is a desktop app for managing your children’s contacts and their related appointments. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to sort contacts.
+  * What it does: allows the user to sort the contact list in alphabetical or chronological order.
+  * Justification: This feature helps users keep their contact list organised in whichever way they want, 
+    and is a foundational function that users expect to have when they store a lot of information.
+  * Highlights: 
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the ability to favourite contacts and list favourited contacts.
+  * What it does: allows the user to favourite or unfavourite contacts in the contact list.
+  * Justification: This feature makes the process of finding frequently contacted people much easier.
+  * Highlights: This enhancement affected many other commands, as favourite was a new attribute under a contact.
+    In addition, the list command can now accept arguments in terms of options of what to list.
+    It required analysis of design alternatives as there were multiple ways to implement it.
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added the ability to delete appointments.
+  * What it does: allows the user to delete appointments by index.
+  * Justification: This feature is a core functionality.
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=edelinetenges&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Prevent deleting of contacts that are involved in appointments (Pull requests [\#149](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/149))
+  * Allow appointments of same name to be added, given that they have a different date/time or address (Pull requests [\#257](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/257))
+  * Allow users to edit contacts to remove their previous entries to optional fields such as the phone, email and address (Pull requests [\#263](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/263))
+  * Wrote tests for features (`FavouriteCommand`, `FavouriteCommandParser`, `SortCommand`, `SortCommandParser`, `ListCommand`, `ListCommandParser`, `DeleteAppointmentCommand`, `DeleteAppointmentCommandParser`) to increase coverage 
+    (Pull requests [\#284](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/284), [\#288](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/288))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `sort` and `favourite` [\#72]()
+    * Did cosmetic tweaks to existing documentation of features `list`, `delete`: [\#74]()
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Updated target user, value proposition and user stories. (Pull request [\#22](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/22))
+    * Added use cases. (Pull request [\#22](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/22))
+    * Added implementation details of the `sort` feature. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/97))
+    * Added implementation details of the `favourite` feature. (Pull request [\#283](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/283))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
+  * PRs reviewed (with non-trivial review comments): [\##139](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/139), [\#141](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/141), [\#147](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/147), [\#42]()
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_

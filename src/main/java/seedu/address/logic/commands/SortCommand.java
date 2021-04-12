@@ -51,5 +51,10 @@ public class SortCommand extends Command {
         return new CommandResult(message);
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && option.equals(((SortCommand) other).option)); // state check
+    }
 }
