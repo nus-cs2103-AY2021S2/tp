@@ -139,12 +139,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the data for `Dictionote`, including `ContactsList`, `NoteBook`, `DictionaryBook` and `DefinitionBook`.
+* exposes an unmodifiable `ObservableList<Contact>`,`ObservableList<Note>`,`ObservableList<Content>`,`ObservableList<Definition>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changed.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+The `ContactsList` stores the `Contact` of the user. A `Contact` consists of `Name`, `Email`, `Phone`, `Address` and a custom `Tag` class.
+The `NoteBook` stores the `Notes` of the user. A `Note` also has a `Tag` class. The `Dictionary` stores both the `Definition` and `Content` in the `Dictionote`. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ContactList` and `NoteBook`, which `Contact` and `Note` references, respectively. This allows `ContactList` and `NoteBook` to only require one `Tag` object per unique `Tag` in each "Book", instead of each `Contact` and  `Note` needing their own `Tag` object, respectively.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -163,6 +164,7 @@ The `Storage` component,
     * `NoteBook`.
     * `Dictionary`.
     * `DefinitionBook`.
+* depends on a few classes in the `Model` component; however, such dependencies are not shown in the diagram for simplicity's sake.
 
 ### Common classes
 
@@ -230,7 +232,7 @@ As an example, consider running Dictionote as follows:
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
 
-![ContactEmailFeatureInitState](images/ContactMostFreqFeatureInitState.png)
+![ContactMostFreqFeatureInitState](images/ContactMostFreqFeatureInitState.PNG)
 
 * In addition, assume the successful execution of the following commands:
     * `emailcontact 3` three times.
@@ -239,7 +241,7 @@ As an example, consider running Dictionote as follows:
 
 * After typing in `mostfreqcontact` and executing it, the result would be:
 
-![ContactEmailFeatureExecute](images/ContactMostFreqFeatureExecute.png)
+![ContactMostFreqFeatureExecute](images/ContactMostFreqFeatureExecute.PNG)
 
 * Note that the ordering of the contacts in the contacts list had changed, with Charlie (formerly with index number 3) being the first on the list, followed by Alice (formerly with index number 1) and finally Bob (formerly with index number 2).
 
@@ -646,7 +648,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
   
@@ -720,7 +722,30 @@ _{Explain here how the data archiving feature will be implemented}_
 * 2a. The list is empty.
 
   Use case ends.
-    
+
+**Use case: UC08 -  List all notes**
+
+**MSS**
+
+1.  User requests to list notes.
+2.  Dictionote shows a list of notes which might or might not be empty.
+
+    Use case ends.
+
+**Use case: UC09 -  Show a specific note**
+
+**MSS**
+
+1.  User requests to show a specific note.
+2.  Dictionote shows note requested by the user in the rightmost panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The requested index is out of bounds. Then an index invalid exception will arise.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
@@ -773,7 +798,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. Note that some tests use specific data in their examples, which might need to be inserted first using CRUD commands; however, it is possible to replace such specific data with already-existing ones found by default in the application.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -797,23 +822,50 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a contact
 
-1. Deleting a person while all persons are being shown
+1. Adding a contact that shares its phone number with another existing contact.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: At least one contact is present in the list.
+	
+	1. Assumptions: One contact is present with the phone number `11223344`.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `addcontact p/11223344 n/<ANY_NAME> a/<ANY_ADDRESS> e/<ANY_UNIQUE_EMAIL>`<br>
+       Expected: An error message is displayed, telling that another existing contact already has the specified phone number or email.
+	   
+	* Note that this behavior should apply for any phone number that is already used for another contact in the list.
+	
+1. Adding a contact that shares its email with another existing contact.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Prerequisites: At least one contact is present in the list.
+	
+	1. Assumptions: One contact is present with the email `taken@email.com`.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Test case: `addcontact e/taken@email.com n/<ANY_NAME> a/<ANY_ADDRESS> p/<ANY_UNIQUE_PHONE_NUMBER>`<br>
+       Expected: An error message is displayed, telling that another existing contact already has the specified phone number or email.
+	   
+	* Note that this behavior should apply for any email that is already used for another contact in the list.
+	
+### Editing a contact
+
+Similar to *Adding a contact* above (shared phone numbers and/or emails).
+
+### Deleting a note
+
+1. Deleting a note while all notes are being shown
+
+    1. Prerequisites: List all notes using the `listnote` command. Multiple notes in the list.
+
+    1. Test case: `deletenote 1`<br>
+       Expected: First note is deleted from the list. Details of the deleted note shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `deletenote 0`<br>
+       Expected: No note is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `deletenote`, `deletenote x`, `...` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
-
 
 ### Modifying the UI through command
 For more information regarding the panel layout and divider position, 
