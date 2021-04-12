@@ -870,11 +870,15 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `sort o/date` \
        Expected: List of contacts get sorted in chronological order.
     1. Test case: `sort` \
-       Expected: List does not get sorted. Error details shown in the status message.
+       Expected: List does not get sorted. Invalid command format error details shown in the status message.
+    1. Other incorrect sort commands to try: `sort   `, `sort 1`, `sort aaa` \
+       Expected: Similar to previous.
+    1. Test case: `sort o/jskdnks`
+       Expected: List does not get sorted. Invalid option error details shown in the status message.
 2. Sorting contacts on a found list
     1. Prerequisites: Multiple contacts in the list sharing a keyword.
        Find contacts related to keyword using the `find` command.
-    1. Test case: sort o/name` \
+    1. Test case: `sort o/name` \
        Expected: Found list of contacts get sorted in alphabetical order.
     1. Test case: `sort o/date` \
        Expected: Found list of contacts get sorted in chronological order.
