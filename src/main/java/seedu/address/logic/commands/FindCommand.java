@@ -118,16 +118,16 @@ public class FindCommand extends Command {
 
             if (numOfAttributes == 1 && sizeOfFilteredList == 1) {
                 attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
-                        model.getFilteredPersonList().size(), attributeName, "", "");
+                        model.getFilteredPersonList().size(), "", attributeName, "");
             } else if (numOfAttributes == 1 && sizeOfFilteredList > 1) {
                 attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
-                        model.getFilteredPersonList().size(), attributeName, "s", "");
+                        model.getFilteredPersonList().size(), "s", attributeName, "");
             } else if (numOfAttributes > 1 && sizeOfFilteredList == 1) {
                 attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
-                        model.getFilteredPersonList().size(), attributeName, "", "s");
+                        model.getFilteredPersonList().size(), "", attributeName, "s");
             } else {
                 attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
-                        model.getFilteredPersonList().size(), attributeName, "s", "s");
+                        model.getFilteredPersonList().size(), "s", attributeName, "s");
             }
             return new CommandResult(attributeSuccessMessage);
         }
