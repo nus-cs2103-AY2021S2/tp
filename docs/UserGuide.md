@@ -298,6 +298,7 @@ exists and editing a client to have the same information as an existing client i
     <td> <code>i</code> </td>
     <td><ul><li>Optional</li></ul>
         <ul><li>Should be of the form <code>POLICY_ID>POLICY_URL</code> or <code>POLICY_ID</code></li></ul>
+        <ul><li>Should not contain <code>;</code></li></ul>
         <ul><li>Anything after the <code>></code> character will be considered as the <code>POLICY_URL</code>
             <ul><li>Due to the huge range of possibilities for the <code>POLICY_URL</code>, it is <b>possible that invalid URLs will also be accepted</b></li></ul>
             <ul><li><b>Do check the <code>POLICY_URL</code> before entering the input!</b></li></ul>
