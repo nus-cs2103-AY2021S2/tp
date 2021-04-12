@@ -236,7 +236,9 @@ Prefix: `t/`
 4. Double-click the file to start CakeCollate. A GUI similar to the below should appear in a few seconds. Note how the application contains some sample data. 
 You can use the sample data pre-loaded in the application to play around and get used to the available commands. <br><br>
 ![Ui](images/Ui.png)
-   
+
+<div style="page-break-after: always;"></div>
+
 5. Type the command in the command box and press Enter to execute it.<br>
    E.g. typing **`help`** and pressing Enter will display the help window.<br>
    Some example commands you can try:
@@ -306,6 +308,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_IT
 
 * As such, you can interpret the order items table of the GUI as being a shortcut table.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 ![order_item_table_eg](images/order_item_table_eg.PNG)<br>
@@ -321,6 +325,8 @@ Examples:
 * When you specify an order description using the prefix `o/`, E.g. `o/Chocolate Cake`, CakeCollate automatically adds it into the order items table. As such, you don't need to go through extra steps to add in items into the order items table manually.
 
 * If you do want to add items into the order items table, you can refer to the [`addItem`](#adding-order-items-additem) command below.
+
+<div style="page-break-after: always;"></div>
 
 :information_source: **How do you specify that a cake has been ordered multiple times using the `oi/` prefix?**<br>
 
