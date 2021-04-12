@@ -56,5 +56,5 @@ Given below are my contributions to the project.
     * Improved the introduction to be a better description of our application [\#154](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/154)
   * Developer Guide: [\#277](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/277)
     * Added an introduction
-    * Fixes several naming issues of existing diagrams 
+    * Fixed several naming issues of existing diagrams 
     * Added implementation details of the `tag` feature along with a class and sequence diagram 
