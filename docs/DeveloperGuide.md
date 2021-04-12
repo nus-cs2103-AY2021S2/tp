@@ -293,7 +293,10 @@ The following sequence diagram shows how deleting a session works:
 ![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
-Note that: this feature is shared below, in deletion of an entire recurring session.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+This feature applies to the deletion of an entire recurring session, mentioned below, as well. 
+</div>
+
 
 ### Recurring Session
 Recurring Session is facilitated by the `RecurringSession` class which stores specific details of
@@ -301,7 +304,9 @@ a tuition session with one student, that recurs. Similar to `Session` each recur
 and a `Student` can have multiple `RecurringSession`s. <br>
 The class `RecurringSession` inherits from `Session`, albeit with additional properties `Interval` and `LastSessionDate`.
 This is because a recurring session can be defined a session that recurs, by given intervals, and up till a last date of session. <br>
-![SessionAndRecurringSessionClassDiagram](images/shion/SessionAndRecurringClassDiagram.png) <br>
+![SessionAndRecurringSessionClassDiagram](images/shion/SessionAndRecurringClassDiagram.png) 
+
+
 Note that:
 - `SessionDate` property inherited from `Session`, now serves as the `FirstSessionDate` in `RecurringSession`
 - Creation of a `RecurringSession` with zero recurrence is not allowed by the user. <br>
@@ -316,7 +321,10 @@ The add recurring session feature allows users to add tuition sessions that recu
 
 ##### Implementation
 ![AddRecurringSessionSequenceDiagram](images/shion/AddRecurringSessionSequenceDiagram.png)
-(Note: This is a partial sequence diagram; `AddressBookParser` at the left edge is omitted for brevity)<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+This is a partial sequence diagram; `AddressBookParser` at the left edge is omitted for brevity <br>
+The lifeline for `AddRecurringSessionCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 The process of creating a recurring session and the addition of it to the model component follows the sequence diagram above,
 and is described in the following:
 1. User input previously parsed is directed to `AddRecurringSessionParser` for further parsing with `#parse(input)`. <br>
@@ -339,7 +347,7 @@ Aspect 1: Use of Inheritance for RecurringSession and related classes
 * **Alternative 1 (current choice)**: Both `RecurringSession` and `RecurringSessionCommand` classes extends 
   `Session` and `SessionCommand` classes
     * Pros:
-        * Abides "don't repeat yourself" principle, given that the `RecurringSession` is a proper subtype of superclass `Session`.
+        * Abides by the "don't repeat yourself" principle, given that the `RecurringSession` is a proper subtype of superclass `Session`.
           Enhancements to recurring session is only additive to superclass `Session`.
         * Reduced complexity. Abstract classes/interfaces are not required with the simple inheritance.
     * Cons:
