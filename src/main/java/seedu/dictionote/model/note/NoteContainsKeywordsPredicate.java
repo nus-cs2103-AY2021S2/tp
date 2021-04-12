@@ -3,11 +3,15 @@ package seedu.dictionote.model.note;
 import java.util.List;
 import java.util.function.Predicate;
 
-//Todo
+/**
+ * Tests that a {@code Note}'s {@code Content}s contains the keywords given.
+ */
 public class NoteContainsKeywordsPredicate implements Predicate<Note> {
     private final List<String> keywords;
 
-    //Todo
+    /**
+     * Constructor for NoteContainsKeywordPredicate class.
+     */
     public NoteContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
