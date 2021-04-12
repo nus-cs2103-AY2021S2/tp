@@ -59,7 +59,7 @@ The rest of the App consists of four components.
 Each of the four components,
 
 - defines its _API_ in an `interface` with the same name as the Component.
-- exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+- exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -145,12 +145,13 @@ Classes used by multiple components are in the `seedu.focuris.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Priority feature
+### Priority feature
 
-#### Proposed Implementation
+#### Implementation
 
 The priority feature is an additional field in the Event class. It is implemented as an enumeration named EventPriority and consists of
 a set of members named HIGH, MEDIUM, LOW. If the User decides not to add a priority to an event, LOW will be assigned as the default priority.
+The user can change the priority of the Event via the Edit command.
 
 The following class diagram illustrates how the priority feature is implemented:
 
@@ -160,9 +161,9 @@ The following class diagram illustrates how the priority feature is implemented:
 
 Events in Focuris have a unique `identifier` attached to them.
 
-- Identifier is an integer attribute inside the Event model, which increments each time the constructor is called. This means, identifier will increment irregardless of whether an Event is successfully added in EventBook.
+- Identifier is an integer attribute inside the Event model, which increments each time the constructor is called. This means, identifier will increment regardless of whether an Event is successfully added in EventBook.
 - Identifier gets re-allocated each time Focuris restarts.
-- Identifiers never get reset or decremented in a single session. This ensures that even with a potential undo feature in the future, Focuris' Events are not at risk of having duplicate identifiers.
+- Identifiers never reset or decrement in a single session. This ensures that even with a potential undo feature in the future, Focuris' Events are not at risk of having duplicate identifiers.
 - This implementation of an identifier which does not reset or decrement is in line with other kanban boards, such as GitHub or Jira.
 
 #### Design consideration:
@@ -214,11 +215,11 @@ Events in Focuris have a unique `identifier` attached to them.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+**Priorities**: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​  | I want to …​                                        | So that I can…​                                                   |
 | -------- | -------- | --------------------------------------------------------- | -------------------------------------------------------------------- |
-| `* * *`  | new user | see usage instructions                                    | refer to instructions when I forget how to use the App               |
+| `* * *`  | new user | see usage instructions                                    | refer to instructions when I am unsure or forget how to use the App  |
 | `* * *`  | user     | add a new TODO event                                      | keep track of events that I have to work on                          |
 | `* * *`  | user     | add a new BACKLOG event                                   | keep track of the events that I have upcoming                        |
 | `* * *`  | user     | add a new IN PROGRESS event                               | keep track of the events that I am currently working on              |
@@ -308,6 +309,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
+- 2c. The edited Event already exists.
+
+    - 2c1. Focuris shows an error message.
+
+      Use case resumes at step 2.
+
 
 **Use case: Mark an event to be done**
 
@@ -331,6 +338,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+- 2b. The event is already marked done.
+
+    - 2b1. Focuris shows an error message.
+
+      Use case resumes at step 2.
+
 
 **Use case: Find an event**
 
@@ -338,7 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Focuris currently shows events.
 2.  User requests to find an event.
-3.  Focuris shows events whose names contain any of the given words.
+3.  Focuris shows events whose name or description contain any of the given words.
 
     Use case ends.
 
