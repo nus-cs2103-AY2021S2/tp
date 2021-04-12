@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([invalid input])
+    :UI outputs error message;
+else ([else])
+    :UI shows updated list of Tasks which have matching names;
+endif
+stop
+@enduml
