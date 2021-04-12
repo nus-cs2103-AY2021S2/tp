@@ -12,7 +12,7 @@ clients and enabling them to maintain a good relationship with their clients wit
 
 ## Contribution
 
-This is the [code](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=shizheng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=rajobasu&tabRepo=AY2021S2-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false) I contributed.
+This is the [code](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=shizheng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=Shizheng001&tabRepo=AY2021S2-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false) I contributed.
 
 - I have implemented the email interface to allow for user to send emails via a simplified interface. The email functions opens an interface that is adapted for car sales and comes with a prefilled text to help safe time. The email feature uses fxml for interface and javax mail api library for smtp connection for login authentication to gmail.
 
