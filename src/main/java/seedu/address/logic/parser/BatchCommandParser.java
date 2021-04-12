@@ -51,18 +51,19 @@ public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOp
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
         }
 
-        try {
-            // Checks the validity of the Command that the user passed as input to the BatchCommand
-            switch (inputCommand) {
-            case EditCommand.COMMAND_WORD:
-                /* fall through */
-            case DeleteCommand.COMMAND_WORD:
-                break;
-            default:
-                throw new ParseException(INVALID_BATCH_COMMAND);
-            }
+        // Checks the validity of the Command that the user passed as input to the BatchCommand
+        switch (inputCommand) {
+        case EditCommand.COMMAND_WORD:
+            /* fall through */
+        case DeleteCommand.COMMAND_WORD:
+            break;
+        default:
+            throw new ParseException(INVALID_BATCH_COMMAND);
+        }
 
-            // Tokenises and parses the user input
+        try {
+
+            // Tokenizes and parses the user input
             String inputIndicesAndArgs = " " + splitCommandAndIndicesAndArgs[1].trim();
             ArgumentMultimap argMultimap = ArgumentTokenizer
                             .tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,

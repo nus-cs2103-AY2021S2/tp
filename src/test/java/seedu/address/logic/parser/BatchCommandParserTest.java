@@ -86,6 +86,16 @@ public class BatchCommandParserTest {
         // No field for edit
         assertParseFailure(BATCH_COMMAND_PARSER, "edit 1, 2",
                 String.format(BatchCommand.ERROR_MESSAGE, EditCommand.MESSAGE_NOT_EDITED));
+        /*
+        assertParseFailure(BATCH_COMMAND_PARSER, "edit 1 2",
+                String.format(BatchCommand.ERROR_MESSAGE, EditCommand.MESSAGE_NOT_EDITED));
+
+        assertParseFailure(BATCH_COMMAND_PARSER, "edit 1, 2 lol",
+                String.format(BatchCommand.ERROR_MESSAGE, EditCommand.MESSAGE_NOT_EDITED));
+
+        assertParseFailure(BATCH_COMMAND_PARSER, "edit 1 2 lol",
+                String.format(BatchCommand.ERROR_MESSAGE, EditCommand.MESSAGE_NOT_EDITED));
+         */
     }
 
     @Test
@@ -97,6 +107,14 @@ public class BatchCommandParserTest {
         // No argument for delete
         assertParseFailure(BATCH_COMMAND_PARSER, "delete ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
+        /*
+        assertParseFailure(BATCH_COMMAND_PARSER, "delete 1 lol",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
+
+        assertParseFailure(BATCH_COMMAND_PARSER, "delete 1 2",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
+
+         */
     }
 
     @Test
@@ -111,25 +129,25 @@ public class BatchCommandParserTest {
     @Test
     public void parse_invalidCommandForBatch_throwsParseException() {
         assertParseFailure(BATCH_COMMAND_PARSER, "add n/Tom a/Orchard p/9999 e/tom@tom.com t/tom i/POL_#tom123",
-                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
+                INVALID_BATCH_COMMAND);
 
         assertParseFailure(BATCH_COMMAND_PARSER, "policy 1",
-                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
+                INVALID_BATCH_COMMAND);
 
         assertParseFailure(BATCH_COMMAND_PARSER, "exit",
-                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
+                INVALID_BATCH_COMMAND);
 
         assertParseFailure(BATCH_COMMAND_PARSER, "list",
-                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
+                INVALID_BATCH_COMMAND);
 
         assertParseFailure(BATCH_COMMAND_PARSER, "find",
-                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
+                INVALID_BATCH_COMMAND);
 
         assertParseFailure(BATCH_COMMAND_PARSER, "sort -n -des",
-                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
+                INVALID_BATCH_COMMAND);
 
         assertParseFailure(BATCH_COMMAND_PARSER, "lock 123",
-                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
+                INVALID_BATCH_COMMAND);
     }
 
 }

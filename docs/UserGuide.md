@@ -391,6 +391,7 @@ A person can have any number of tags and insurance policies (including 0).
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
     * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
+    * All input before the first valid identifier will be considered as `INDEX`.
 * At least one of the optional fields must be provided.
 * Meetings of a client cannot be modified with this command.
 
@@ -419,6 +420,7 @@ A person can have any number of tags and insurance policies (including 0).
 * Deletes the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
+* Any 
 
 **Examples**:
 * `delete 2` deletes the 2nd person in the currently displayed list.

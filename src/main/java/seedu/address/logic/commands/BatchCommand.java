@@ -25,7 +25,8 @@ public class BatchCommand<T extends BatchOperation> extends Command {
             + "The same rules apply here, just like for the individual commands.\n"
             + "Parameters: COMMAND (only edit or delete command are supported) "
             + "ARGUMENTS (for the chosen command)\n"
-            + "Example: " + COMMAND_WORD + " edit 1, 2 t/colleagues";
+            + "Example: " + COMMAND_WORD + " edit 1, 2 t/colleagues\n"
+            + "Example: " + COMMAND_WORD + " delete 1, 2";
     public static final String SUCCESS_MESSAGE = "Batch operation successful!";
     public static final String ERROR_MESSAGE = "Batch operation halted. Error message from command: \n%s";
 
