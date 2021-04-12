@@ -176,7 +176,7 @@ The FoodIntakeList and FoodList objects are separated from the User object, even
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 ---
 <div style="page-break-after: always;"></div>
