@@ -176,23 +176,6 @@ It implements the following operations:
 * `View schedules` - View the list of appointments that is happening on the queried date.
 * `List all appointments` - Show an unfiltered list of the appointments.
 
-Diagram below shows the activity diagram of the `add_appointment` command.
-
-![Activity Diagram of Add Appointment](images/appointment/appointmentActivity.png)
-
-Steps for the execution of the `AddAppointmentCommand` (assuming that no errors are 
-encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddAppointmentCommandParser`.
-3. The `AddApppointmentCommandParser` will then parse the inputs, and then validate
-   the parameters and create an `Appointment` object.
-4. The `AddAppointmentCommandParser` will then create and `AddAppointmentCommand` 
-   with the created `Appointment` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call 
-   the `ModelManager`'s `addAppointment()`, then create a `CommandResult` object and 
-   return the result.
-
-![Sequence Diagram of Add Appointment](images/appointment/appointmentSequence.png)
 
 These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
 `ViewAppointmentCommand` and `ListAppointmentCommand`.
@@ -410,11 +393,9 @@ When adding or deleting from each `FilterSet`, the combined filter must be recre
 
 The difference for exclusive filters is that an `and` is used instead of `or` to compose the filters. The sequence for deletion is similar, except that filters are removed from the set before composing the filters.
 
+
 ### Appointment Book
 Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
-
-#### Rationale
-As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, allowing user to store a list of his/her tuition appointment is core of Tutor Tracker.
 
 The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
 It implements the following operations:
@@ -425,8 +406,36 @@ It implements the following operations:
 * `View appointments` - View the list of appointments that is happening on the queried date.
 * `List all appointments` - Show an unfiltered list of the appointments.
 
+
+Diagram below shows the activity diagram of the `add_appointment` command.
+
+![Activity Diagram of Add Appointment](images/appointment/appointmentActivity.png)
+
+Steps for the execution of the `AddAppointmentCommand` (assuming that no errors are
+encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddAppointmentCommandParser`.
+3. The `AddApppointmentCommandParser` will then parse the inputs, and then validate
+   the parameters and create an `Appointment` object.
+4. The `AddAppointmentCommandParser` will then create and `AddAppointmentCommand`
+   with the created `Appointment` object.
+5. Assuming that the above steps are all successful, the `LogicManager` will call
+   the `ModelManager`'s `addAppointment()`, then create a `CommandResult` object and
+   return the result.
+
+![Sequence Diagram of Add Appointment](images/appointment/appointmentSequence.png)
+
+
 These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
 `ViewAppointmentCommand` and `ListAppointmentCommand`.
+
+### Event Class
+
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition 
+appointments, schedules are naturally created, and the event class helps determine
+the hierarchy of schedule.
+
 
 #### Implementation
 The class and commands are re-used from the `AddressBook Level-3`'s `Person` class.
