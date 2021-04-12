@@ -28,7 +28,7 @@ Given below are my contributions to the project.
   
 
 * **Enhancement**: Implemented storage support for both `Property`, `Appointment` and their attributes.
-    * What it does: Performs accurate parsing of `Property` and `Appointment` data from the respective `Property` and `Appointment` lists to data forms that are reader friendly for display to the user, which is then stored in separate json files.
+    * What it does: Performs accurate parsing of `Property` and `Appointment` data from the respective `Property` and `Appointment` lists to data forms that ar reader friendly for display to the user, which is then stored in separate json files.
     * Justification: Proper parsing and storage of `Property` and `Appointment` data ensures data integrity and reliability of PocketEstate that aims to manage significant property and appointment data. 
     * Highlights: Maintains 2 separate json files with reader friendly data (Eg. Parsing of date from 01-12-2021 to Dec 12, 2021, time from 1500 to 3:00pm) to be presented to the user in GUI 
 
