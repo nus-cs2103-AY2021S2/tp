@@ -323,7 +323,7 @@ Project names that are too long may be truncated in the side panel. Simply view 
 Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To switch between the overview and todo pages, you can use the `overview` and `todo` commands respectively.
+To switch between the overview and todo pages, you can use the `overview` and `todos` commands respectively.
 </div>
 
 Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
