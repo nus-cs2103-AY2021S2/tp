@@ -14,6 +14,7 @@ Given below are my contributions to the project.
   * What it does: Allows users to list of all their contacts.
   * Justification: This feature is essential as the find and filter features lists a subset of all contacts. In order
     to revert the contact list to show all contacts, this feature is needed.
+  * Pull request [\#207](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/207)
     
 * **New Feature**: Added the finalised feature to allow users to find their contacts by name.
   * What it does: Allows users to find their contacts by name.
@@ -22,12 +23,14 @@ Given below are my contributions to the project.
   * Highlights: The original AB3 implementation for this feature uses a OR search to search for contacts by name, 
     which I felt needed to be changed as it does not feel intuitive, especially in the context of searching for names. 
     Hence, I changed the implementation to use an AND search instead.
+  * Pull request [\#207](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/207)
     
 * **New Feature**: Added the finalised feature to allow users to filter their contacts by tags.
   * What it does: Allows users to filter their contacts via tags.
   * Justification: This feature is useful when users do not remember the names of their contacts, but remember a
     characteristic of them that they have previously tagged to their contact. It is also useful for finding more than
     one contact at once.
+  * Pull request [\#207](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/207)
   
 * **New Feature**: Added an early version of the feature which allows users to list their entries.
   * What it does: Allows users to list all their entries, or list them by day or week.
