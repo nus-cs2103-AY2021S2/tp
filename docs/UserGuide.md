@@ -556,8 +556,6 @@ restart with an empty data file at the next run. Proceed with caution!!
 
 ----
 
-<div style="page-break-after: always;"></div>
-
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
