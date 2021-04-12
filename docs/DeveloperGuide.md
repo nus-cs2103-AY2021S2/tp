@@ -181,7 +181,51 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
     * Cons:
         * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
 
-### Update Commands [Coming soon in v1.3]
+### Add Event Feature
+
+The mechanism is used to add an `Event` to the `EventList` of a `Project` specified by the `Index` in the project list shown.
+
+A concrete `AddEventCommand` containing the specified `Index` of `Project` and a valid `Event` object.
+
+Each concrete `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
+
+Below is a sequence diagram and explanation of how an `addE` command is executed.
+
+![Add Event Sequence Diagram](images/AddEventCommandSequenceDiagram.png)
+
+*Sequence Diagram for the Add Event command*
+
+Step 1. The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
+
+Step 2. User input is passed to the `ColabParser` and `ColabParser` will call `ÀddEventCommandParser#parse`, which creates a new `AddEventCommand`.
+
+Step 3. The `AddEventCommand` will then be executed by calling its `execute` method.
+
+Step 4. Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
+
+Step 5. From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
+
+Step 6. This `Project` will add the `Event` to its `EventList` by calling `addEvent` function.
+
+Step 7. After the `Event` is successfully added, the `Model` will call `Model#updateFilteredProjectList` to update the Project List based on the current change.
+
+#### Design Considerations
+
+##### Aspect: How to add a new `Event` to a `Project`, which is done in part `internally adding Event`
+
+* **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
+    * Pros:
+        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
+    * Cons:
+        * This implementation will not work with an immutable implementation of `EventList`
+
+* **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
+    * Pros:
+        * If the implementation of `EventList` becomes immutable. This implementaion still works.
+    * Cons:
+        * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
+
+### Update Features
 
 CoLAB has several update commands for projects, events, deadlines, tasks and groupmates. They are used to edit details of entities that have already been created.
 
@@ -230,50 +274,6 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
 * **Alternative 3:** Pass the zero-based index as an integer down to `UniqueContactList#setContact`.
     * Pros: Will use less memory (only needs memory for an integer instead of a `Contact` object or an `Index` object), no reliance on `Index`.
     * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
-
-### Add Event to Project Command [Implemented in v1.2]
-
-The mechanism is used to add an `Event` to the `EventList` of a `Project` specified by the `Index` in the project list shown.
-
-A concrete `AddEventCommand` containing the specified `Index` of `Project` and a valid `Event` object.
-
-Each concrete `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
-
-Below is a sequence diagram and explanation of how an `addE` command is executed.
-
-![Add Event Sequence Diagram](images/AddEventCommandSequenceDiagram.png)
-
-*Sequence Diagram for the Add Event command*
-
-Step 1. The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
-
-Step 2. User input is passed to the `ColabParser` and `ColabParser` will call `ÀddEventCommandParser#parse`, which creates a new `AddEventCommand`.
-
-Step 3. The `AddEventCommand` will then be executed by calling its `execute` method.
-
-Step 4. Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
-
-Step 5. From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
-
-Step 6. This `Project` will add the `Event` to its `EventList` by calling `addEvent` function. 
-
-Step 7. After the `Event` is successfully added, the `Model` will call `Model#updateFilteredProjectList` to update the Project List based on the current change.
-
-#### Design Considerations
-
-##### Aspect: How to add a new `Event` to a `Project`, which is done in part `internally adding Event`
-
-* **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
-    * Pros:
-        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
-    * Cons:
-        * This implementation will not work with an immutable implementation of `EventList`
-
-* **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
-    * Pros:
-        * If the implementation of `EventList` becomes immutable. This implementaion still works.
-    * Cons:
-        * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
 ### Delete Todo Feature
 
