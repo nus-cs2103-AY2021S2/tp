@@ -756,14 +756,15 @@ This feature allows tutees to track and manage their grades obtained of differen
   ```  
   A1, A2, B3, B4, C5, C6, D7, E8, F9
   ```
-* `SUBJECT_NAME` and `GRADED_ITEM` are case-insensitive. (e.g "s/English" is considered the same as "s/english")
 * `GRADE_LETTER` must be in uppercase.
-* Maximum number of characters for `SUBJECT_NAME` is limited to 20.
-* Maximum number of characters for `GRADED_ITEM` is limited to 25.
+* `SUBJECT_NAME` and `GRADED_ITEM` are case-insensitive. (e.g "s/English" is the same as "s/english")
+* Grades with the same Subject Name and Graded Item will be considered as duplicates.
+* Minimum length for `SUBJECT_NAME` is 1 character, maximum 20 characters.
+* Minimum length for `GRADED_ITEM` is 1 character, maximum 25 characters.
 
 #### Add a grade: `add_grade`
 
-Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
+Adds a grade with a subject, a graded item and a grade letter specified by user. Stores in user system.
 
 Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER`
 
