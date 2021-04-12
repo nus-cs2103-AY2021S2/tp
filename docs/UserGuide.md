@@ -95,6 +95,17 @@ Here are some examples of how a command is documented in A-Bash Book:
 - `edit { shown | selected | INDEX... } [-n NAME] [-r REMARK] [-t TAG]...`
 - `tag delete { shown | selected | INDEX... } -t TAG [-t TAG]...`
 
+## Command Flags
+
+Command flags are specific options that can be specified to add more information in a command.
+
+E.g `add -n John Doe -p 94326543 -e john@doe.com -a 45 Address #06-90`
+
+Command: `add`
+
+Command flags: `-n` , `-p`, `-e`, `-a`.
+
+
 ## Uppercase Words
 
 Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -451,59 +462,91 @@ Exits the program.
 
 **Format**: `exit`
 
-## Autocompletion
+## Autocomplete
 
-### Autocomplete Commands
+### Commands
 
-Command Auto Completion automatically fills a command in the command box by pressing the <kbd>Tab</kbd> key.
+Commands in the command box can be autocompleted by pressing the <kbd>Tab</kbd> key.
 
-**Examples**:
+**Example**:
 
 To execute the command `delete`,
 
 Typing `del` followed by <kbd>Tab</kbd> will auto complete `del` to `delete`.
 
-In the command box, it is possible to toggle through **Existing** and **Aliased** commands with <kbd>Tab</kbd>.
+| Current text in command box | Key Press | Result |
+| ------------------------------ | -------------| ----|
+| `ad` | <kbd>TAB</kbd> | `add` |
+| `edi` | <kbd>TAB</kbd> | `edit` |
+| `ex` | <kbd>TAB</kbd> | `exit` |
+| `he` | <kbd>TAB</kbd> | `help` |
+| `li` | <kbd>TAB</kbd> | `list` |
+| `s` | <kbd>TAB</kbd> | `select` |
 
-Extra auto completion features exist for some commands.
-See the table below for more information.
 
-| Command                        | Description                                                                                                                                           |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `delete`                       | The <kbd>Up</kbd>/<kbd>Down</kbd> arrow keys toggles through contacts. Appends the `index` of a contact in focus to existing text in the command box. |
-| `edit`                       | The <kbd>Up</kbd>/<kbd>Down</kbd> arrow keys toggles through contacts. Appends the `index` of a contact in focus to existing text in the command box. |
-| `Other Commands`| [Coming Soon] |
+<div markdown="block" class="alert alert-info">
 
-### Autocomplete Flags
+:information_source: In the command box, it is also possible to cycle through **Existing** commands with <kbd>Tab</kbd>.
 
-Command flags are specific options that can be keyed in to add more information in a command.
+</div>
 
-E.g `add -n John Doe -p 94326543 -e john@doe.com -a 45 Address #06-90`
+### Flags
 
-Command: `add`
+Command flags can be autocompleted at the end of your command text by pressing the <kbd>Tab</kbd> key.
 
-Command flags: `-n` , `-p`, `-e`, `-a`.
+<div markdown="block" class="alert alert-info">
 
-**Usage**
+:information_source: **Note on flags:**
 
-Press the <kbd>Tab</kbd> key for any of the commands below to automatically add command flags to the command box.    
+- If your flag has no content, the next available flag will be replaced and cycled.
+- If you flag has content, the next available flag will be appended to your command text.
+
+</div>
 
 | Supported Commands                        | Available command flags|
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `add`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
 | `edit`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
 
-**Example Usages**
+<div markdown="block" class="alert alert-info">
 
-:information_source: **Note on `add` command:** a space character should follow the add command for flags to begin 
+:information_source: **Note on `add` command:** 
+
+- a space character should follow the add command for flags to begin 
 autocompletion.
 
-| Current text in command box                        | Press <kbd>Tab</kbd> once |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add␣`                      | `add -n ` |
-| `add -n John Doe -p 94326543 -e john@doe.com`                      | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
-| `edit 3`                       | `edit 3 -n` |
-| `edit 3 -n John Doe -p 94326543`                       | `edit 3 -n John Doe -p 94326543 -e ` |
+</div>
+
+| Current text in command box | Key Press | Result |
+| ------------------------------ | -------------| ----|
+| `add␣` | <kbd>TAB</kbd> | `add -n` |
+| `add -n` | <kbd>TAB</kbd> | `add -p` |
+| `add -n John Doe` | <kbd>TAB</kbd> | `add -n John Doe -p` |
+| `add -n John Doe -p 94326543 -e john@doe.com` | <kbd>TAB</kbd> | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
+| `edit 1` | <kbd>TAB</kbd> | `edit 1 -n` |
+| `edit 1 -n` | <kbd>TAB</kbd> | `edit 1 -p` |
+| `edit 1 -n John Dow` | <kbd>TAB</kbd> | `edit 1 -n John Dow -p` |
+
+### Index
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Autocomplete index only works for the `EDIT` and `DELETE` commands.
+
+</div>
+
+Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supported commands are fully typed out.
+
+**Examples**
+
+| Current text in command box | Key Press | Result |
+| ------------------------------ | -------------| ----|
+| `edit` | <kbd>UP/DOWN</kbd> | `edit 1` |
+| `edit 1` | <kbd>DOWN</kbd> | `edit 2` |
+| `edit 2` | <kbd>UP</kbd> | `edit 1` |
+| `add` | <kbd>UP/DOWN</kbd> | `add 1` |
+| `add 1` | <kbd>DOWN</kbd> | `add 2` |
+| `add 2` | <kbd>UP</kbd> | `add 1` |
 
 ## Alias : `alias`
 
