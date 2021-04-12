@@ -35,11 +35,12 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W13-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -832,34 +833,160 @@ testers are expected to do more *exploratory* testing.
 
 ### Testing Address Book Features
 
-#### Add a contact
+#### Tag a contact
+1. Append tags to a contact
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+       
+    2. Input `tag 2 tc/alice t/kovanSecSch` into the command box and press enter.
+       Expected: The tags of the second contact (*Charlotte Oliveiro*) should now include a red ChildTag `alice` and
+       the tag `kovanSecSch` as seen below.
+       
+![Append tags example](images/AppendTagExample.png)
+
+2. Replace tags of a contact
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+    
+    2. Input `tag 2 o/replace tc/alice` into the command box and press enter.<br>
+       Expected: The tags of the second contact (*Charlotte Oliveiro*) should be entirely replaced with only a red
+       ChildTag `alice` as seen below.
+       
+![Replace tags example](images/ReplaceTagExample.png)
+    
+#### Clear tags
+1. Clearing contacts by tag
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+    
+    2. Input `clear t/psg` into the command box and press enter.<br>
+       Expected: The contacts with a psg tag, *'Charlotte Oliveiro'* and *'Annie Li'* are deleted from the address book.
 
 #### Delete a contact
 
 #### Sort contacts
+1. Sorting contacts while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command. 
+       Multiple contacts in the list.
+    1. Test case: `sort o/name` \
+       Expected: List of contacts get sorted in alphabetical order. 
+       Success message is shown in the status message.
+    1. Test case: `sort o/date` \
+       Expected: List of contacts get sorted in chronological order. 
+       Success message is shown in the status message.
+    1. Test case: `sort` \
+       Expected: List does not get sorted. 
+       Invalid command format error details shown in the status message.
+    1. Other incorrect sort commands to try: `sort   `, `sort 1`, `sort aaa` \
+       Expected: Similar to previous.
+    1. Test case: `sort o/jskdnks` \
+       Expected: List does not get sorted. 
+       Invalid option error details shown in the status message.
 
+2. Sorting contacts on a found list
+    1. Prerequisites: Multiple contacts in the list sharing a keyword.
+       Find contacts related to keyword using the `find` command.
+    1. Test case: `sort o/name` \
+       Expected: Found list of contacts get sorted in alphabetical order.
+       Executing the `list` command after this should show the full contact list in alphabetical order.
+    1. Test case: `sort o/date` \
+       Expected: Found list of contacts get sorted in chronological order.
+       Executing the `list` command after this should show the full contact list in chronological order.
 
-      
+#### Favourite a contact
+1. Favourite a contact while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command.
+    1. Test case: `fav 1` \
+       Expected: First contact in the list is favourited. 
+       Details of favourited contact is shown in status message.
+       The star next to the first contact's name becomes filled.
+    1. Test case: `fav 1 o/remove` \
+       Expected: First contact in the list is unfavourited. 
+       Details of unfavourited contact is shown in status message.
+       The star next to the first contact's name becomes empty.
+    1. Test case: `fav` \
+       Expected: Invalid command format error details shown in the status message.
+    1. Other incorrect sort commands to try: `fav   ` \
+       Expected: Similar to previous.
+    1. Test case: `fav aaa`
+       Expected: Invalid index error details shown in the status message.
+    1. Other incorrect sort commands to try: `fav x` (where x is larger than list size) \
+       Expected: Similar to previous.
+    1. Test case: `fav 1 o/jskdnks` \
+       Expected: Invalid option error details shown in the status message.
+       
+2. Favourite a contact while a found list is being shown
+    1. Prerequisites: Multiple contacts in the list sharing a keyword.
+       Find contacts related to keyword using the `find` command.
+    1. Test case: `fav 2` \
+       Expected: Second contact in the list is favourited.
+       Details of favourited contact is shown in status message.
+       The star next to the second contact's name becomes filled.
+    1. Test case: `fav 1 o/remove` \
+       Expected: First contact in the list is unfavourited.
+       Details of unfavourited contact is shown in status message.
+       The star next to the first contact's name becomes empty.
+
 ### Testing Appointment Book Features
 
 #### Add an appointment
 
+1. Adding an appointment
+    
+    1. Test case: `addAppt n/PTM a/ABC Pri Sch d/21/05/2021 10:00 tc/alice`, where an appointment named "PTM" does not already exist \
+       Expected: A new appointment named "PTM" is created. The date of the appointment is 21/05/2021 10:00, the address is "ABC Pri Sch" and the appointment is tagged with the child tag "alice". 
+
+    1. Test case: `addAppt n/PTM a/ABC Pri Sch d/21/05/2021 10:00 tc/alice`, where an appointment named "PTM" that occurs on 21/05/2021 10:00 at ABC Pri Sch already exists \
+       Expected: No appointment is added. Error details shown in the status message.
+
+    1. Test case: `addAppt n/PTM` \
+       Expected: No appointment is added. Error details shown in the status message.
+
 #### Edit an appointment
+1. Edit all fields
+    1. Prerequisites: There is an existing appointment and existing contact in ParentPal.
+    
+    2. Input `editAppt 1 n/Math Tuition a/Sunshine Tuition Center d/20/10/2021 13:00 c/1 tc/alice` and press enter.<br>
+       Expected: The first appointment is edited to the fields specified.
+       
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+A reordering of the appointment list may occur.
+</div>
 
 #### Find an appointment
 
-#### List all appointments
 
 
 ### Saving data
 
 1. Dealing with missing data files
-    1. Prerequisites: some commands that makes a change to the Address Book and Appointment Book have been performed.
+    1. Prerequisites: some commands that triggers saving data have been performed.
        
-    1. Delete the `addressbook.json` and `appointmentbook.json` files found in the directory 
+    2. Delete the `addressbook.json` and `appointmentbook.json` files found in the directory 
       `[JAR file location]/data`.
       
-    2. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+    3. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
         Expected: The app launches with the sample contacts and appointments.
 
-1. _{ more test cases …​ }_
+
+2. Dealing with corrupted address book data
+    1. Prerequisites: some commands that triggers saving data have been performed.
+    
+    2. Open the `addressbook.json` file with a text editor found at `[JAR file location]/data/addressbook.json`.
+    
+    3. Make some changes to corrupt the file such as deleting a line or adding a nonsense line such as `aaaaaaaa`
+    to the middle of the file.
+       
+    4. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+        Expected: The app launches with the appointments loading correctly, and an empty contacts list.
+
+
+3. Dealing with corrupted appointment book data
+    1. Prerequisites: some commands that triggers saving data have been performed.
+
+    2. Open the `appointmentbook.json` file with a text editor found at `[JAR file location]/data/appointmentbook.json`.
+
+    3. Make some changes to corrupt the file such as deleting a line or adding a nonsense line such as `aaaaaaaa`
+       to the middle of the file.
+
+    4. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+       Expected: The app launches with the contacts loading correctly, and an empty appointments list.
+    
+
