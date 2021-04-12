@@ -8,9 +8,9 @@ skinparam Note {
     BackgroundColor #white
 }
 
-package Logic {
+package Logic{
 
-package Parser {
+package Parser as parser{
 Interface Parser <<Interface>>
 Class JJIMYParser
 Interface ComponentParser <<Interface>>
@@ -26,8 +26,8 @@ Class ArgumentTokenizer
 Class Prefix
 }
 
-package Command {
-Class XYZCommand
+package Command as command {
+Class ComponentXYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
@@ -37,13 +37,17 @@ Class LogicManager
 }
 
 package Model{
-Class HiddenModel #FFFFFF
+Class HiddenModel<<hidden>>
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+package Storage{
+Class HiddenStorage<<hidden>>
+}
 
-LogicManager --> "1" JJIMYParser
+Class HiddenOutside<<hidden>>
+HiddenOutside .down.> Logic
+
+LogicManager -down-> "1" JJIMYParser
 JJIMYParser .right.> ComponentParser: creates >
 CustomerParser .up.|> ComponentParser
 MenuParser .up.|> ComponentParser
@@ -54,8 +58,8 @@ MenuParser ..> ComponentXYZCommandParser: creates >
 OrderParser ..> ComponentXYZCommandParser: creates >
 InventoryParser ..> ComponentXYZCommandParser: creates >
 
-ComponentXYZCommandParser ..> XYZCommand: creates >
-ComponentXYZCommandParser .left.|> Parser : \t\t\t
+ComponentXYZCommandParser .left.> ComponentXYZCommand: creates >
+ComponentXYZCommandParser .right.|> Parser : \t
 ComponentXYZCommandParser ..> ArgumentMultimap
 ComponentXYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -65,16 +69,16 @@ ComponentXYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 
+ComponentXYZCommand -up-|> Command
+Command .up.> CommandResult
+LogicManager .down.> CommandResult
+
 LogicManager .up.|> Logic
-XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager -left-> Model
+LogicManager -up-> Storage
+LogicManager -down-> Model
 Command .left.> Model
-'note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
-Logic ..> CommandResult
-LogicManager .down.> CommandResult
-Command .up.> CommandResult
-CommandResult -[hidden]-> Parser
+Logic .right.> CommandResult
 @enduml

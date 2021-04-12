@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,6 +92,9 @@ public class OrderEditCommand extends Command {
             throw exception;
         }
 
+        Comparator<Order> comparator = new OrderChronologicalComparator();
+        model.updateFilteredOrderList(comparator);
+
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder),
                 CommandResult.CRtype.PERSON);
     }
@@ -130,7 +134,8 @@ public class OrderEditCommand extends Command {
 
         assert updatedDishQuantityList != null;
 
-        Order editedOrder = new Order(updatedDateTime, updatedCustomer, updatedDishQuantityList, orderToEdit.getState());
+        Order editedOrder = new Order(updatedDateTime, updatedCustomer, updatedDishQuantityList,
+            orderToEdit.getState());
 
         return editedOrder;
     }
