@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+TutorBook *-right-> "1" UniqueTutorList
+
+UniqueTutorList o-right-> Tutor
+
+Tutor *--> "1" Name
+Tutor  *--> "1" Phone
+Tutor  *--> "1" Email
+Tutor  *--> "1" Address
+Tutor  *--> "1" Gender
+Tutor  *--> "1" Notes
+Tutor  *--> "*" Tag
+Tutor  *--> "*" Subject
+
+Subject *--> "*" SubjectName
+Subject *--> "*" HourlyRate
+Subject *--> "*" EducationLevel
+Subject *--> "*" YearsOfExperience
+Subject *--> "*" Qualifications
+
+@enduml

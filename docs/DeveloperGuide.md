@@ -56,7 +56,7 @@ The application consists of 6 main components:
 
 | Component                           | Description
 | ----------------------------------- | -------------------------------------------------------------------- |
-| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). * It is responsible for: *At app launch: Initializes the components in the correct sequence, and connects them up with each other. *At shut down: Shuts down the components and invokes cleanup methods where necessary.|
+| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). * It is responsible for: * At app launch: Initializes the components in the correct sequence, and connects them up with each other. * At shut down: Shuts down the components and invokes cleanup methods where necessary.|
 | [**`UI`**](#ui-component)           | The UI of the App.                                                   |
 | [**`Logic`**](#logic-component)     | The command executor.                                                |
 | [**`Model`**](#model-component)     | Holds the data of the App in memory.                                 |
@@ -161,23 +161,10 @@ It implements the following operations:
 These operations are exposed in the `Logic` interface by parsing respective `AddCommand` `EditCommand`, `DeleteCommand`, `FindCommand`,
 `ViewCommand` and `ListCommand`. 
 
-### Appointment Book
-Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
+#### Implementation 
+The class and commands are re-used from the `AddressBook3`'s `Person` class.
 
-#### Rationale
-As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, allowing user to store a list of his/her tuition appointment is core of Tutor Tracker.
-
-The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
-It implements the following operations:
-* `Add appointment` - Adds an appointment to the list of appointments.
-* `Edit appointment` - Edit an appointment from the list of appointments.
-* `Delete appointment` - Delete an appointment from the list of appointments.
-* `Find appointment` - Find a tutor from the list of appointments by tutor's name.
-* `View schedules` - View the list of appointments that is happening on the queried date.
-* `List all appointments` - Show an unfiltered list of the appointments.
-
-These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
-`ViewAppointmentCommand` and `ListAppointmentCommand`.
+![Class Diagram of Tutor](images/TutorClassDiagram.png)
 
 ### Favourite Feature
 Tutor Tracker's Favourite feature allows users to create a list of favourites tutors from the entire list of tutors.
@@ -370,6 +357,29 @@ filter the lists of tutors and appointments.
 
 These filters would be shown in the UI along the top of the list of tutors and appointments, showing
 the active and inactive filters.
+
+### Appointment Book
+Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
+
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, allowing user to store a list of his/her tuition appointment is core of Tutor Tracker.
+
+The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
+It implements the following operations:
+* `Add appointment` - Adds an appointment to the list of appointments.
+* `Edit appointment` - Edit an appointment from the list of appointments.
+* `Delete appointment` - Delete an appointment from the list of appointments.
+* `Find appointment` - Find a tutor from the list of appointments by tutor's name.
+* `View schedules` - View the list of appointments that is happening on the queried date.
+* `List all appointments` - Show an unfiltered list of the appointments.
+
+These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
+`ViewAppointmentCommand` and `ListAppointmentCommand`.
+
+#### Implementation
+The class and commands are re-used from the `AddressBook3`'s `Person` class.
+The following UML Class Diagram depicts the hirerachy of `Event`, `Appointment` and `Schedule`.
+![Class Diagram of Event](images/EventClassDiagram.png)
 
 ### Schedule Tracker
 Tutor Tracker's Schedule Tracker allows users to create schedules to track their ongoing or upcoming timed-sensitive tasks.
