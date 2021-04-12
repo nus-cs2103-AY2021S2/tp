@@ -44,7 +44,7 @@ As part of CI, this project uses Codecov to generate coverage reports. Here are 
 
 1. Sign up with Codecov using your GitHub account [here](https://codecov.io/signup).
 1. Once you are inside Codecov web app, add your fork to CodeCov.
-1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3) in that page reflects the coverage of your project.
+1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/AY2021S2-CS2103-T14-1/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S2-CS2103-T14-1/tp) in that page reflects the coverage of your project.
 
 ### Repository-wide checks
 
