@@ -53,7 +53,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Refactored Person class from AB3 to Task class for Taskify:
       [\#31](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/31)
-    * 
+    * Designed the app logo for Taskify.
     * Wrote tests for the tag-search command to increase coverage: 
       [\#36](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/36)
 
