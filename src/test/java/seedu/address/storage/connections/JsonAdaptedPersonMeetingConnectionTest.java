@@ -1,6 +1,10 @@
 package seedu.address.storage.connections;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
@@ -10,9 +14,6 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.connection.JsonAdaptedPersonMeetingConnection;
 import seedu.address.testutil.TypicalMeetings;
 import seedu.address.testutil.TypicalPersons;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class JsonAdaptedPersonMeetingConnectionTest {
     private static MeetingBook meetingBook = TypicalMeetings.getTypicalMeetingBook();
@@ -40,7 +41,7 @@ public class JsonAdaptedPersonMeetingConnectionTest {
         String expectedMessage = JsonAdaptedPersonMeetingConnection.PERSON_NOT_FOUND_ERROR_MESSAGE;
 
         assertThrows(IllegalValueException.class, expectedMessage, () -> {
-             jsonAdaptedPersonMeetingConnection.toModelType(addressBook, meetingBook, new PersonMeetingConnection());
+            jsonAdaptedPersonMeetingConnection.toModelType(addressBook, meetingBook, new PersonMeetingConnection());
         });
     }
 
@@ -56,7 +57,8 @@ public class JsonAdaptedPersonMeetingConnectionTest {
     }
 
     @Test
-    public void toModelType_duplicatePersonMeetingConnectionDetected_illegalValueException() throws IllegalValueException {
+    public void toModelType_duplicatePersonMeetingConnectionDetected_illegalValueException()
+            throws IllegalValueException {
         JsonAdaptedPersonMeetingConnection jsonAdaptedPersonMeetingConnection =
                 new JsonAdaptedPersonMeetingConnection(personTwo, meetingOne);
         PersonMeetingConnection personMeetingConnection = new PersonMeetingConnection();
