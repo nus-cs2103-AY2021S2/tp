@@ -412,9 +412,8 @@ Term | Explanation
 **App** | Short form for application
 **CCA** | Abbreviation for Co-curricular activities
 **CLI** | Abbreviation for Command Line Interface. The command line interface is an interface that accepts text input from users which is then processed and passed as commands to Taskify.
-**GUI** | Abbreviation for Graphical User Interface. The graphical user interface is a form of user interface that allows users to interact with Taskify through graphical icons.   
+**GUI** | Abbreviation for Graphical User Interface. The graphical user interface is a form of user interface that allows users to interact with Taskify through graphical icons. 
 **UI**  | Abbreviation for User Interface
-
 
 <div style="page-break-after: always;"></div>
 
