@@ -39,7 +39,7 @@ Given below are my contributions to the project.
   * Added the ability for commands to parse date in multiple formats (Pull request [\#186](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/186)).
   * Consistently added automated tests for features. Of note, pull request [\#353](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/353) increased coverage by 13.71%.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=samuelfangjw&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=samuelfangjw&tabRepo=AY2021S2-CS2103T-T11-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=samuelfangjw&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=samuelfangjw&tabRepo=AY2021S2-CS2103T-T11-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false).
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (6 releases) on GitHub.
@@ -54,6 +54,6 @@ Given below are my contributions to the project.
     * Added implementation details of the `view project` feature.
 
 * **Community**:
-  * PRs reviewed with non-trivial review comments (some examples: [\#66](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/66#discussion_r590305059), [\#133](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/133#discussion_r596271704), [\#134](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/134#discussion_r596096725))
-  * Contributed to forum discussions (some examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/14#issuecomment-762001887), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/166#issuecomment-782832950), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/178#issuecomment-785672104), [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/175#issuecomment-784275365))
-  * Helped solve classmates issues in forum (some examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/152#issuecomment-780571317), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/180#issuecomment-785819204), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/215#issuecomment-792492685), [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/284#issuecomment-812535574))
+  * PRs reviewed with non-trivial review comments (some examples: [\#66](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/66#discussion_r590305059), [\#133](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/133#discussion_r596271704), [\#134](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/134#discussion_r596096725)).
+  * Contributed to forum discussions (some examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/14#issuecomment-762001887), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/166#issuecomment-782832950), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/178#issuecomment-785672104), [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/175#issuecomment-784275365)).
+  * Helped solve classmates issues in forum (some examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/152#issuecomment-780571317), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/180#issuecomment-785819204), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/215#issuecomment-792492685), [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/284#issuecomment-812535574)).
