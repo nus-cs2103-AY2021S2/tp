@@ -5,52 +5,63 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyTeachingAssistant <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class TeachingAssistant
+Class ReadOnlyTeachingAssistant
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Contact {
+Class Contact
+Class ContactEmail
+Class ContactName
+Class ContactPhone
+Class UniqueContactList
 }
 
 Package Tag {
 Class Tag
 }
+
+Package Entry {
+Class Entry
+Class EntryName
+Class EntryDate
+Class NonOverlappingEntryList
+}
+
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TeachingAssistant .up.|> ReadOnlyTeachingAssistant
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" TeachingAssistant
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+TeachingAssistant *--> "1" UniqueContactList
+TeachingAssistant *--> "1" NonOverlappingEntryList
+UniqueContactList o--> "*" Contact
+NonOverlappingEntryList o--> "*" Entry
+Contact *--> ContactName
+Contact *--> ContactPhone
+Contact *--> ContactEmail
+Contact *--> "*" Tag
+Entry *--> EntryName
+Entry *--> EntryDate
+Entry *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ContactName -[hidden]right-> ContactPhone
+ContactPhone -[hidden]right-> ContactEmail
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Contact
+ModelManager ----->" ~* filtered list" Entry
 @enduml
