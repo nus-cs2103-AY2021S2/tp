@@ -32,12 +32,10 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=marcusleeeugene&tabRepo=AY2021S2-CS2103-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
-
 * **Project management**:
     * Managed releases `v1.2.1`, `v1.3.0` and `v1.4.0` (3 releases) on GitHub
     * Tracked team's tasks using project board and setting deadlines
-
-<div style="page-break-after: always;"></div>
+    
 
 * **Documentation**:
     * User Guide:
@@ -64,7 +62,6 @@ Given below are my contributions to the project.
 * **Review/mentoring contributions**:
     * Helped the person in charge of merging, with resolving conflicts
     * PRs reviewed:
-      
       [#189](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/189), 
       [#185](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/185),
       [#114](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/114),
