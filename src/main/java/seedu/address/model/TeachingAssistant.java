@@ -12,8 +12,8 @@ import seedu.address.model.entry.NonOverlappingEntryList;
 
 
 /**
- * Wraps all data at the teaching-assistant level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the teaching-assistant level.
+ * Duplicates are not allowed (by .isSameContact comparison).
  */
 public class TeachingAssistant implements ReadOnlyTeachingAssistant {
 
@@ -35,14 +35,14 @@ public class TeachingAssistant implements ReadOnlyTeachingAssistant {
     public TeachingAssistant() {}
 
     /**
-     * Creates an TeachingAssistant using the Persons in the {@code toBeCopied}
+     * Creates an TeachingAssistant using the data in the {@code toBeCopied}.
      */
     public TeachingAssistant(ReadOnlyTeachingAssistant toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    //// ===== List Operations =====
 
     /**
      * Replaces the contents of the contact list with {@code contacts}.
@@ -69,7 +69,7 @@ public class TeachingAssistant implements ReadOnlyTeachingAssistant {
         setEntries(newData.getEntryList());
     }
 
-    //// contact-level operations
+    //// ===== Contact Operations =====
 
     /**
      * Returns true if a contact with the same identity as {@code contact} exists in Teaching Assistant.
@@ -83,8 +83,8 @@ public class TeachingAssistant implements ReadOnlyTeachingAssistant {
      * Adds a contact to Teaching Assistant.
      * The contact must not already exist in Teaching Assistant.
      */
-    public void addContact(Contact c) {
-        contacts.add(c);
+    public void addContact(Contact contact) {
+        contacts.add(contact);
     }
 
     /**
@@ -95,22 +95,21 @@ public class TeachingAssistant implements ReadOnlyTeachingAssistant {
      */
     public void setContact(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
-
         contacts.setContact(target, editedContact);
     }
 
     /**
-     * Removes {@code key} from this {@code Teaching Assistant}.
-     * {@code key} must exist in Teaching Assistant.
+     * Removes {@code contact} from this {@code Teaching Assistant}.
+     * {@code contact} must exist in Teaching Assistant.
      */
-    public void removeContact(Contact key) {
-        contacts.remove(key);
+    public void removeContact(Contact contact) {
+        contacts.remove(contact);
     }
 
-    //// entry methods
+    //// ===== Entry Operations =====
 
     /**
-     * Returns true if the entry exists in the list.
+     * Returns true if an entry with the same identity as {@code entry} exists in Teaching Assistant.
      */
     public boolean hasEntry(Entry entry) {
         requireNonNull(entry);
@@ -126,12 +125,12 @@ public class TeachingAssistant implements ReadOnlyTeachingAssistant {
     }
 
     /**
-     * Removes an entry {@code key} from the list.
-     * {@code key} must exist in the list.
+     * Removes an entry {@code entry} from the list.
+     * {@code entry} must exist in the list.
      */
-    public void removeEntry(Entry key) {
-        requireNonNull(key);
-        entries.remove(key);
+    public void removeEntry(Entry entry) {
+        requireNonNull(entry);
+        entries.remove(entry);
     }
 
     /**
@@ -145,19 +144,21 @@ public class TeachingAssistant implements ReadOnlyTeachingAssistant {
     }
 
     /**
-     * returns true if the give entry overlaps with existing entries in the list.
+     * Returns true if the give entry overlaps with existing entries in the list.
      */
     public boolean isOverlappingEntry(Entry entry) {
         requireNonNull(entry);
         return entries.overlapsWith(entry);
     }
 
+    /**
+     * Clears all overdue entries in Teaching Assistant.
+     */
     public void clearOverdueEntries() {
         entries.clearOverdueEntries();
     }
-    //// schedule methods
 
-    //// util methods
+    // ===== Util =====
 
     @Override
     public String toString() {
@@ -186,5 +187,4 @@ public class TeachingAssistant implements ReadOnlyTeachingAssistant {
     public int hashCode() {
         return contacts.hashCode();
     }
-
 }

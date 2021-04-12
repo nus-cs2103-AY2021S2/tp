@@ -9,8 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Entry's date and time in Teaching Assistant.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ * Represents a Entry's date and time.
  */
 public class EntryDate {
 
@@ -23,9 +22,7 @@ public class EntryDate {
     public final LocalDateTime value;
 
     /**
-     * Constructs an {@code EntryDate}.
-     *
-     * @param date A valid date.
+     * Creates an EntryDate with valid date times.
      */
     public EntryDate(String date) {
         requireNonNull(date);
@@ -79,5 +76,4 @@ public class EntryDate {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

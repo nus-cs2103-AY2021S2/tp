@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Contact's phone number in Teaching Assistant.
+ * Represents a Contact's phone number.
  */
 public class ContactPhone {
 

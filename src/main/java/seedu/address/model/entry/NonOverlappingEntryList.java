@@ -8,9 +8,18 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
 import seedu.address.model.entry.exceptions.OverlappingEntryException;
 
+/**
+ * A list of entries that enforces that its elements do not overlap and are not nulls.
+ * An entry is considered overlapping by testing using {@code Entry#overlapsWith(Entry)}.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Entry#overlapsWith(Entry)
+ */
 public class NonOverlappingEntryList implements Iterable<Entry> {
 
     private final ObservableList<Entry> internalList = FXCollections.observableArrayList();
@@ -39,6 +48,7 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
      */
     public void add(Entry toAdd) {
         requireNonNull(toAdd);
+
         if (overlapsWith(toAdd)) {
             throw new OverlappingEntryException();
         }
@@ -56,6 +66,7 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
         requireAllNonNull(target, editedEntry);
 
         int index = internalList.indexOf(target);
+
         if (index == -1) {
             throw new EntryNotFoundException();
         }
@@ -78,6 +89,10 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@replacement}.
+     * All entries in {@replacement} are non-overlapping.
+     */
     public void setEntries(NonOverlappingEntryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -97,11 +112,12 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Removes all overdue entries
+     * Removes all overdue entries in this list.
      */
     public void clearOverdueEntries() {
         internalList.removeIf(Entry::isOverdue);
     }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -139,5 +155,4 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
         }
         return true;
     }
-
 }

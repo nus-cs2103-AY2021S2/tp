@@ -16,6 +16,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code TeachingAssistant} with sample data.
  */
 public class SampleDataUtil {
+
     public static Contact[] getSampleContacts() {
         return new Contact[] {
             new Contact(new ContactName("Alex Yeoh"), new ContactPhone("87438807"),
@@ -49,5 +50,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

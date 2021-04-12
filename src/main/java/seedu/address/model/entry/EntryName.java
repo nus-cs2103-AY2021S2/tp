@@ -3,6 +3,9 @@ package seedu.address.model.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Entry's name.
+ */
 public class EntryName {
 
     public static final String NAME_CONSTRAINTS =
@@ -17,9 +20,7 @@ public class EntryName {
     public final String name;
 
     /**
-     * Constructs an EntryName
-     *
-     * @param name valid name
+     * Creates an EntryName with a vaild name.
      */
     public EntryName(String name) {
         requireNonNull(name);

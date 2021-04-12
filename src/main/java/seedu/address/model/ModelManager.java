@@ -18,6 +18,7 @@ import seedu.address.model.entry.Entry;
  * Represents the in-memory model of the Teaching Assistant data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final TeachingAssistant teachingAssistant;
@@ -119,34 +120,22 @@ public class ModelManager implements Model {
 
     // ====== Entry ======
 
-    /**
-     * checks if {@code entry} is in the list
-     */
     @Override
     public boolean hasEntry(Entry entry) {
         return teachingAssistant.hasEntry(entry);
     }
 
-    /**
-     * adds an {@code Entry} into the list
-     */
     @Override
     public void addEntry(Entry entry) {
         teachingAssistant.addEntry(entry);
         updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
-    /**
-     * deletes an {@code Entry} from the list
-     */
     @Override
     public void deleteEntry(Entry entry) {
         teachingAssistant.removeEntry(entry);
     }
 
-    /**
-     * replaces {@code target} with {@code editedEntry}
-     */
     @Override
     public void setEntry(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
@@ -168,7 +157,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
-     * {@code versionedTeachingAssistant}
+     * {@code versionedTeachingAssistant}.
      */
     @Override
     public ObservableList<Contact> getFilteredContactList() {
@@ -185,7 +174,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Entry} backed by the internal list of
-     * {@code versionedTeachingAssistant}
+     * {@code versionedTeachingAssistant}.
      */
     @Override
     public ObservableList<Entry> getFilteredEntryList() {
@@ -198,7 +187,7 @@ public class ModelManager implements Model {
         filteredEntries.setPredicate(predicate);
     }
 
-    //=========== misc ===============
+    //=========== Misc ===============
 
     @Override
     public boolean equals(Object obj) {
@@ -219,5 +208,4 @@ public class ModelManager implements Model {
                 && filteredContacts.equals(other.filteredContacts)
                 && filteredEntries.equals(other.filteredEntries);
     }
-
 }

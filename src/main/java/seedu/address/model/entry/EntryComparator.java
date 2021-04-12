@@ -2,6 +2,9 @@ package seedu.address.model.entry;
 
 import java.util.Comparator;
 
+/**
+ * Compares two entries based on their date times.
+ */
 public class EntryComparator implements Comparator<Entry> {
 
     @Override

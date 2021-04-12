@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Contact's name in Teaching Assistant.
+ * Represents a Contact's name.
  */
 public class ContactName {
 
@@ -13,12 +13,16 @@ public class ContactName {
             + "- consist of only alphabets, spaces and hyphens\n"
             + "- start and end with alphabets";
 
+    /**
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
     public static final String VALIDATION_REGEX = "^[A-Za-z][-A-Za-z ]*[A-Za-z]$";
 
     public final String fullName;
 
     /**
-     * Constructs a ContactName with a vaild name.
+     * Creates a ContactName with a vaild name.
      */
     public ContactName(String name) {
         requireNonNull(name);

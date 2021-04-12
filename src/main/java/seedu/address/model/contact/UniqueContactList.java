@@ -87,7 +87,7 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
-     * Replaces the contents of this lisst with {@replacement}.
+     * Replaces the contents of this list with {@replacement}.
      * All contacts in {@replacement} are unique.
      */
     public void setContacts(UniqueContactList replacement) {

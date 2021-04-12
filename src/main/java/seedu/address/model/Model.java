@@ -12,6 +12,7 @@ import seedu.address.model.entry.Entry;
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
 
@@ -39,17 +40,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' teaching assistant file path.
      */
     Path getTeachingAssistantFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' teaching assistant file path.
      */
     void setTeachingAssistantFilePath(Path teachingAssistantFilePath);
 
     /**
-     * Replaces address book data with the data in {@code teachingAssistant}.
+     * Replaces teaching assistant data with the data in {@code teachingAssistant}.
      */
     void setTeachingAssistant(ReadOnlyTeachingAssistant teachingAssistant);
 
@@ -65,7 +66,7 @@ public interface Model {
 
     /**
      * Deletes the given contact.
-     * The contact must exist in Teaching Assistant.
+     * {@code target} must exist in Teaching Assistant.
      */
     void deleteContact(Contact target);
 
@@ -101,7 +102,7 @@ public interface Model {
 
     /**
      * Deletes the given entry.
-     * The entry must exist in the list.
+     * {@code entry} must exist in the list.
      */
     void deleteEntry(Entry entry);
 
@@ -119,7 +120,7 @@ public interface Model {
     void setEntry(Entry target, Entry editedEntry);
 
     /**
-     * Returns true if the given entry has dates overlapping with other entries in the list.
+     * Returns true if the given entry {@code toAdd} has dates overlapping with other entries in the list.
      */
     boolean isOverlappingEntry(Entry toAdd);
 

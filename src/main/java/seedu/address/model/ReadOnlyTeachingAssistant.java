@@ -5,7 +5,7 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 
 /**
- * Unmodifiable view of Teaching Assistant
+ * Unmodifiable view of Teaching Assistant.
  */
 public interface ReadOnlyTeachingAssistant {
 

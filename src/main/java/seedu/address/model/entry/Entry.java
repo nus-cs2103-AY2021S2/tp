@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents an Entry in Teaching Assistant
+ * Represents an Entry in Teaching Assistant.
  */
 public class Entry {
 
@@ -20,7 +20,7 @@ public class Entry {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Creates an Entry where every field is present and not null
+     * Creates an Entry where every field is present and not null.
      */
     public Entry(EntryName entryName, EntryDate startDate,
                  EntryDate endDate, Set<Tag> tags) {
