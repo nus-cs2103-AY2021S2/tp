@@ -310,7 +310,7 @@ Examples:
 
 :information_source: **How do you specify that a cake has been ordered multiple times using the `oi/` prefix?**<br>
 
-* If Chocolate Cake is in index 4 of the order item table, you can specify `oi/4 4`.
+* If Chocolate Cake is at index 4 of the order items table, you can specify `oi/4 4`.
 
 ##### Adding a special request to an order: `request`
 
