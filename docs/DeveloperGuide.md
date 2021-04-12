@@ -556,13 +556,15 @@ Step 3: The user executes `progress` to view a progress report based on the acti
 
 #### ProgressCalculator class
 
-The `ProgressCalulator` class is a static class containing the `calculateProgress` method which accepts a `user` input parameter in the form of a `User` class object.
-This `user` object will contain the necessary information required to calculate the precentage of adherence to the diet plan. These information are:
+<img src="images/ProgressCalculatorClassDiagram.png" width="1000" />
+
+The `ProgressCalulator` class is a static class containing the `calculateProgress` method which accepts three paramters, namely:
 
 1. The `DietPlan` class object which contains the macronutrients requirements for the plan
 2. The `FoodIntakeList` class object which contains the list of foods consumed by the user on which day
+3. The `User` class object which contains information about the user
 
-The progress calculator will first calculate the required calories and macronutrients to fit the goal of the user's active diet plan. Documented below are the steps involved in deciding the daily amount of calories and macronutrients needed for the user to adhere to the diet plan:
+The progress calculator will first calculate the required calories and macronutrients to fit the goal of the user's active diet plan. This is done through the `PlanInfoCalculator` class. Documented below are the steps involved in deciding the daily amount of calories and macronutrients needed for the user to adhere to the diet plan:
 
 1. The user's weight maintenance calories are calculated based on the **Mifflin-St Joer Formula**.
 2. Depending on the type of diet plan (weight gain, weight loss or weight maintenance), the amount of calories required is calculated:
@@ -773,7 +775,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  MacroTracker displays updated list of food intakes for the specified date.
 
     Use case ends.
-    
+
 **Extensions**
 *  1a. The food intake exists.
 
@@ -835,16 +837,16 @@ Included in this section are some basic instructions developers may make use of 
 1. After clearing the sample data (instructions provided above), you are now ready to record, show and update your BMI information.
     1. Test case: `bmi_query`<br>
        Result: Error message printed because no BMI information is available after clearing the sample data.
-       
+
     1. Using the command `bmi g/F a/30 h/170 w/70 i/50`, this will create a new user information with the given parameters.<br>
        Result: Success message with User object created with the corresponding values.
-       
+
     1. Test case: `bmi_query`<br>
       Result: BMI information corresponding to above values is printed.
-       
+
     1. Test case: `bmi g/F a/30 h/170 w/70 i/50`<br>
        Result: Error message is printed as the User object already exists.
-       
+
     1. Test case: `bmi_update g/F a/30 h/165 w/65 i/45`<br>
        Result: Success message with User object updated to the corresponding values.
 
@@ -858,50 +860,50 @@ Included in this section are some basic instructions developers may make use of 
 
     1. Test case: `plan_recommend`<br>
         Result: As the BMI is in the overweight range, and the ideal weight is lower, weight-loss plans are recommended. (Standard Ketogenic and High-Protein Ketogenic diets)
-       
+
     1. Test case: `bmi_update g/F a/30 h/165 w/40 i/60`; `plan_recommend`<br>
         Result: As the BMI is in the underweight range, and the ideal weight is higher, weight-gain plans are recommended. (Balanced Weight Gain, Bulk and High Carbo diets)
-    
+
 1. Get information on diet plan:
     1. Test case: `plan p/2`<br>
         Result: Shows information on plan 2, the "High-Protein Ketogenic Diet"
-       
+
 1. Select and view selected diet plan
     1. Test case: `plan_set p/2`<br>
         Result: Shown that you have selected "High-Protein Ketogenic Diet"
-       
+
        1. Test case: `plan_current`<br>
         Result: Shown that you have selected "High-Protein Ketogenic Diet"
-          
+
 ### Manage food items
 
 1. Add food item
     1. Test case: `food_add n/tomato c/10 f/10 p/10`<br>
         Result: Tomato food item added.
-       
+
     1. Test case: `food_add n/tomato c/10.1555 f/10 p/10`<br>
         Result: Error message that macronutrients can only be up to 2 decimal places long.
 
 1. Update food item
     1. Test case: `food_update n/tomato c/20 f/30 p/40`<br>
         Result: Tomato food item updated.
-       
+
     1. Test case: `food_update n/tomato c/20.1515 f/30 p/40`<br>
         Result: Error message that macronutrients can only be up to 2 decimal places long.
-       
+
 1. List food items
     1. Test case: `food_list`<br>
         Result: List of food is printed (only tomato should exist at this point).
-       
+
 1. Delete food items
     1. Test case: `food_delete n/tomato`<br>
         Result: Tomato food item deleted.
-       
+
 ### Manage food intake
 1. Add food intake for a food item that is not in the food list
     1. Test case: `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`<br>
         Result: Food item with name "tomato" is added into FoodIntake list for 31 Mar 2021.
-       
+
 1. Add food intake for a food item that is already in the food list
     1. Prerequisite: `food_add n/potato c/10 f/10 p/10`
     1. Test case: `food_intake_add d/31 Mar 2021 n/potato`<br>
@@ -910,31 +912,31 @@ Included in this section are some basic instructions developers may make use of 
 1. Add food intake for a food item that is already in the food list, but with different nutritional values
     1. Test case: `food_intake_add d/31 Mar 2021 n/potato c/20 f/35 p/50`<br>
         Result: Food item that was in the list "potato" is added into FoodIntake list for 31 Mar 2021, but with the new nutritional values.
-       
+
 1. Update food intake
     1. Test case: `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`<br>
         Result: "tomato" that was in the list for 31 Mar 2021 is updated with the new nutritional values.
-       
+
     1. Test case: `food_intake_update d/31 Mar 2021 n/asdasdf c/20 f/40 p/50`<br>
         Result: Error message that the food item could not be found.
-       
+
 1. Delete food intake
     1. Test case: `food_intake_delete d/31 Mar 2021 n/tomato`<br>
         Result: "tomato" deleted from the FoodIntake list for 31 Mar 2021.
-       
+
     1. Test case: `food_intake_delete d/31 Mar 2021 n/asdasdad`<br>
         Result: Error message that the food item could not be found.
-       
+
 1. List food intake
     1. Test case: `food_intake_query d/31 Mar 2021`<br>
         Result: Food intake for 31 Mar 2021 is listed.
-       
+
     1. Test case: `food_intake_query d/32 Mar 2021`<br>
         Result: Error message that date format is wrong.
-       
+
     1. Test case: `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`<br>
         Result: Food intake from 1 Mar to 31 Mar is listed.
-       
+
 ### Progress Report
 
 1. Show progress report
