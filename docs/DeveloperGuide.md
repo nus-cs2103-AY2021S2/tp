@@ -785,14 +785,14 @@ _{Explain here how the data archiving feature will be implemented}_
 * 1a. The list is empty.
 
   Use case ends.
-* 2a. The given index is invalid.
+* 3a. The given index is invalid.
 
-    * 2a1. Dictionote shows an error message.
+    * 3a1. Dictionote shows an error message.
 
       Use case resumes at step 2.
-* 4a. The given index is invalid.
+* 5a. The given index is invalid.
 
-    * 4a1. Dictionote shows an error message.
+    * 5a1. Dictionote shows an error message.
 
       Use case resumes at step 4.
 
