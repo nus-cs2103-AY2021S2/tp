@@ -143,15 +143,15 @@ The Sequence Diagram below shows how the components interact when a user enters 
 
 **Description:**
 
-When the user keys in the input 'delete 3', execute method of LogicManager is called with the input as the parameter.
-In the method, LogicManager calls the parseCommand method of DeliveryListParser to parse the user input.
-The DeliveryListParser parses the input and identifies it as a DeleteCommand and instantiates a DeleteCommandParser object.
-DeliveryListParser then invokes the parse method of the DeleteCommandParser object to further parse the arguments provided.
-In the parse method, the DeleteCommandParser ensures that the input is of the correct format and identifies the input for the index of the item to be deleted.
-If the index specified by the user is valid, a new DeleteCommand instance will be created and returned to LogicManager via DeliveryListParser.
-The LogicManager will then invoke the overridden execute method of the DeleteCommand object with Model as the argument.
-Subsequently, the DeleteCommand object will invoke deleteCustomer method of Model with the index of the customer to delete as the argument. It will then return a CommandResult object to LogicManager.
-This CommandResult will be returned at the end by LogicManager.
+* When the user keys in the input 'delete 3', execute method of LogicManager is called with the input as the parameter.
+* In the method, LogicManager calls the parseCommand method of DeliveryListParser to parse the user input.
+* The DeliveryListParser parses the input and identifies it as a DeleteCommand and instantiates a DeleteCommandParser object.
+* DeliveryListParser then calls the parse method of the DeleteCommandParser object to further parse the arguments provided.
+* In the parse method, the DeleteCommandParser ensures that the input is of the correct format and identifies the index of the customer to be deleted.
+* If the index specified by the user is valid, a new DeleteCommand instance is created and returned to LogicManager via DeliveryListParser.
+* The LogicManager will then call the overridden execute method of the DeleteCommand object with Model as the argument.
+* Subsequently, the DeleteCommand object will invoke deleteCustomer method of Model with the index of the customer to be deleted as the argument.
+* It will then return a CommandResult object to LogicManager. This CommandResult will be returned at the end by LogicManager.
 
 The following Activity Diagram summarizes what happens when a user executes the `delete` command:
 
@@ -187,17 +187,17 @@ The Sequence Diagram below shows how the components interact when a user enters 
 
 **Description:**
 
-When the user keys in the input `edit 1 n/Jacob`, execute method of LogicManager is called with the input as the parameter.
-In the method, LogicManager calls the parseCommand method of DeliveryListParser to parse the user input.
-The DeliveryListParser parses the input and identifies it as a EditCommand and instantiates a EditCommandParser object.
-DeliveryListParser then invokes the parse method of the EditCommandParser object to further parse the arguments provided.
-In the parse method, the EditCommandParser ensures that the input is of the correct format and identifies the index of the item to be edited.
-If both the index and attributes specified by the user is valid, a new EditCommand instance will be created and returned to LogicManager via DeliveryListParser.
-The LogicManager will then invoke the overridden execute method of the EditCommand object with Model as the argument.
-EditCommand calls the getFilteredCustomerList method of Model to get the customer list. It also calls the createEditedCustomer method to create an edited customer
-Using the index attribute of the EditCommand object, the customer to be edited from the customer list is retrieved and set to the edited customer.
-Then, EditCommand will create a CommandResult object and return it to LogicManager.
-This CommandResult will be returned at the end by LogicManager.
+* When the user keys in the input `edit 1 n/Jacob`, execute method of LogicManager is called with the input as the parameter.
+* In the method, LogicManager calls the parseCommand method of DeliveryListParser to parse the user input.
+* The DeliveryListParser parses the input and identifies it as a EditCommand and instantiates a EditCommandParser object.
+* DeliveryListParser then calls the parse method of the EditCommandParser object to further parse the arguments provided.
+* In the parse method, the EditCommandParser ensures that the input is of the correct format and identifies the index of the item to be edited.
+* If both the index and attributes specified by the user is valid, a new EditCommand instance will be created and returned to LogicManager via DeliveryListParser.
+* The LogicManager will then call the overridden execute method of the EditCommand object with Model as the argument.
+* EditCommand calls the getFilteredCustomerList method of Model to get the customer list. It also calls the createEditedCustomer method to create an edited customer.
+* Using the index attribute of the EditCommand object, the customer to be edited from the customer list is retrieved and set to the edited customer.
+* Then, EditCommand will create a CommandResult object and return it to LogicManager.
+* This CommandResult will be returned at the end by LogicManager.
 
 The following Activity Diagram summarizes what happens when a user executes the `edit` command:
 
