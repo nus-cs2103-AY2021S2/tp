@@ -506,7 +506,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -659,7 +659,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The residence tracker will start with only the sample data.
        
 
-## Effort
+## **Appendix: Effort**
 ResidenceTracker is a brownfield project that builds on the existing code base of AddressBook3. It contains around 7k LOC of additional implementation, testing, documentation and refactoring as logged by reposense. <br>
 
 The person class was refactored into a residence class with some different parameters. We added some parameters such as BookingList and clean status tag. <br>
