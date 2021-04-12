@@ -1,12 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_VIEW;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.NoteCommand;
+import seedu.address.logic.parser.exceptions.InvalidIntegerException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Note;
 
@@ -34,8 +36,11 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (InvalidIntegerException pe) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
         }
 
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE_RECORD).orElse("placeholder"));

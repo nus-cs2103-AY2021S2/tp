@@ -8,6 +8,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.InvalidIntegerException;
+import seedu.address.logic.parser.exceptions.NotANumberException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.insurance.InsurancePlan;
 import seedu.address.model.meeting.Meeting;
@@ -25,6 +27,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_INVALID_NUMBER = "Index is not a number.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -34,8 +37,12 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        boolean isNumber = trimmedIndex.matches("-{0,1}\\d+");
+        if (!isNumber) {
+            throw new NotANumberException(MESSAGE_INVALID_NUMBER);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new InvalidIntegerException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }

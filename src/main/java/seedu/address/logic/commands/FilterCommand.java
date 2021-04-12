@@ -10,13 +10,11 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds and filters clients whose attributes contain"
-            + " any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter clients whose matching attributes contain"
+            + " any of the specified keywords (case-insensitive) and displays them as a list.\n"
             + "Parameters: PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...\n"
-            + "Prefixes: address: a/ADDRESS; gender: g/GENDER; tag: t/TAG; insurance plan name: plan/PLAN_NAME \n"
-            + "Tip 1: for age filter, you can search using a single age value or using a range. To use a range, \n"
-            + "Tip 2: for gender filter, the valid keywords are 'M', 'N' and 'F'. To use a range, \n"
-            + "input 'age/[lower_bound]-[higher_bound]'. These queries are valid: 'age/25', 'age/30-35' \n"
+            + "Valid prefixes: a/ADDRESS; g/GENDER; t/TAG; i/INSURANCE_PLAN_NAME; \n"
+            + "age/[LOWER_BOUND]-[UPPER_BOUND]; age/[SPECIFIC_AGE] \n"
             + "Example: " + COMMAND_WORD + " a/Clementi g/M t/medical plan/Protecc age/30-35";
 
     private final AttributeContainsKeywordsPredicate predicate;

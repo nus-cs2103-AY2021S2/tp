@@ -17,7 +17,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
- * Schedules a meeting with a client identified using its displayed index from the address book.
+ * Schedules a meeting with a client identified using its displayed index from Link.me.
  */
 public class ScheduleCommand extends Command {
 
