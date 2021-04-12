@@ -501,6 +501,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 <br><br>
 
+**Use case: Finding garments**
+
+**MSS**
+
+1. User specifies keywords of the attributes for the garments they would like to find.
+2. NuFash shows a list of all the garments that contain the specified keywords, which is a list of 0 or more garments.
+   Use case ends.
+   
+**Extensions**
+* 1a. The specified keywords are invalid.
+    * 1a1. NuFash shows an error message.
+    Use case resumes from step 1.
+<br><br>    
+
 **Use case: Matching a garment**
 
 **MSS**
@@ -517,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. NuFash shows an error message.  
-    Use case ends.
+    Use case resumes from step 2.
 <br><br>
 
 **Use case: Viewing an outfit consisting of 3 garments (upper, lower, footwear)**
