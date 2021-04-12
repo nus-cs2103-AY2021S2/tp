@@ -497,8 +497,6 @@ otherwise)
 * **Note** : Longer and complex remarks that gives details about the client
 * **JAR** : Java Archive File, the deployment format of the Link.me application
 
-<!--
-
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
 
@@ -511,43 +509,132 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+* Initial launch
 
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+* Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Scheduling a meeting
 
-### Deleting a client
-
-1. Deleting a client while all clients are being shown
+* Scheduling a meeting with a client
 
    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `schedule 1 m/Insurance Plan Talk @ 2032-01-02 16:30`<br>
+      Expected: Meeting scheduled with first client. Meeting list panel on the right should be updated. 
+      Status bar should display a message indicating success.
 
-   1. Test case: `delete 0`<br>
-      Expected: No clients is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `schedule 0 m/Insurance Plan Talk @ 2032-01-02 16:30`<br>
+      Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `schedule 1 m/Insurance Plan Talk 2032-01-02 16:30`<br>
+      Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
+    
+   1. Test case: `schedule 1 m/Insurance Plan Talk `<br>
+      Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect schedule commands to try: `schedule`, `schedule x m/ DESCRIPTION @ DATETIME ` (where x is larger than the list size), `...`<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Unscheduling a meeting
+
+* Unscheduling a meeting with a client
+
+  1. Prerequisites: Meetings are scheduled and shown in the Meeting List Panel on the right on the Ui
+
+  1. Test case: `unschedule 2`<br>
+     Expected: First meeting on the meeting list panel removed. 
+     Meeting list panel on the right should be updated.
+     Status bar should display a message indicating success.
+
+  1. Test case: `unschedule expired`<br>
+     Expected: All meetings on the meeting list panel whose scheduled time has passed are removed. 
+     Meeting list panel on the right should be updated.
+     Status bar should display a message indicating success.
+
+  1. Test case: `unschedule all`<br>
+     Expected: All meetings on the meeting list panel are removed.
+     Meeting list panel on the right should be updated.
+     Status bar should display a message indicating success.
+
+  1. Test case: `unschedule 0 `<br>
+     Expected: No meeting is unscheduled. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect unschedule commands to try: `unschedule everything`, `unschedule x` (where x is negative), `...`<br>
+     Expected: Similar to previous.
+
+### Generating Notifications
+
+* Generating Notifications
+
+  1. Prerequisites: None
+
+  1. Test case: `notif`<br>
+     Expected: Notification window should pop up.
+
+  1. Test case: `notif 12345`<br>
+     Expected: Notification window should pop up.
+
+  1. Other correct notif commands to try: `notif x`(where x is any string appended)<br>
+     Expected: Similar to previous.
+     
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Editing linkme.json
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+  1. Prerequisites: Link.me is not started while data files are edited
+     
+  1. Test case: delete the `linkme.json` file 
+      Expected: Link.me will load sample data upon initialization the next time it starts
 
-1. _{ more test cases …​ }_
--->
+  1. Test case: valid edits are made in the `linkme.json` file
+     Expected: Link.me will the data in from the json file correctly
+
+  1. Test case: invalid edits are made in the `linkme.json` file
+     Expected: Link.me will start with an empty data set upon initialization the next time it starts
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+### Meetings and scheduling
+While AB3 only deals with a single entity, `Link.me` deals with an additional entity - `Meeting`. As `Meeting` and 
+`Person` are closely intertwined, the level of dependency between the two entities had to be carefully determined.
+Another issue we had to face with `Meeting` was that the `Meeting` entity was time-related, thus some operations could
+not be easily tested. Due to the time-related nature of `Meeting`, we also had to come up with a method to order 
+`Meeting` according to time when put on display.
+
+### Notifications and notes
+Notifications and notes had too much information to fit on the main GUI window, thus we had to display the information 
+on a separate window. As the construction of a new stage was troublesome especially when we still wanted keyboard 
+operations like `Enter` to still work on the new window as well as keep the main GUI consistent, we decided to piggyback 
+the implementation on the inbuilt `JavaFX Alert` class, which proved to be another hassle, as `Alert` windows were not
+designed to hold that much information. As a result, we had to sacrifice a bit of UI theme consistency over successful
+functionality.
+
+### Insurance plans
+For insurance plans, the troubling part was to try to keep the similar functionalities of adding and removing within the
+same command in order to reduce user confusion. A separate parser had to be implemented. Another challenge was that the
+insurance premiums could be very large when we wanted to subject it to different small value currencies. Hence, we had
+to store the value as a `String` with validations made with regular expressions, something else we had to learn, instead
+of an `Integer`.
+
+### Filtering clients
+For filtering clients, the main issue was trying to express the selection criteria of different attributes as 
+predicates, to which we had to utilize functional programming techniques instead of more common OOP usage. The parser 
+for the filter command was also more complex than other commands to construct. In particular, for filtering, we also
+had to filter by age, which required an extra processing step as compared to filtering by other attributes.
+
+### UI
+The UI tinkering for the MainWindow proved to be a major hurdle as we wanted the UI to remain viewable even after 
+extreme inputs, which we allowed in order to give our users the greatest flexibility. The GUI also had to stay intact
+when the window is restarted. Furthermore, GUI behaviors could be different on different OSes, so we had to test the GUI
+under different environments.
