@@ -64,6 +64,7 @@ purposes, these steps are split into a few categories.
    These are 2 possible ways of using this feature:
     * Mark the event as done after the planning is completed
     * Mark the event as done after the event is over
+
    As such, the Welfare ICs are given the flexibility to decide what way they want to use the feature, and hence the 
    event will not automatically be marked as done after the date of the event passes.
 
