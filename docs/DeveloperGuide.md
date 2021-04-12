@@ -410,6 +410,17 @@ When adding or deleting from each `FilterSet`, the combined filter must be recre
 
 The difference for exclusive filters is that an `and` is used instead of `or` to compose the filters. The sequence for deletion is similar, except that filters are removed from the set before composing the filters.
 
+#### Design Consideration
+
+**Filtering or Searching**
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1 (current choice)** <br> Filtering | Users can add and remove multiple filters in order to refine their display of tutors and appointments. | User may have to type multiple commands. |
+| **Option 2** <br> Searching. | User can search for tutor or appointment using only one command. | User may have to type long command, and must retype it for every change. |
+
+Option 1 was chosen as it does not require retyping a long command in the event that the user wants to refine their search.
+
 ### Appointment Book
 Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
 
