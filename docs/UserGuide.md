@@ -504,7 +504,7 @@ component command prefix/[INPUT] -flag
         order edit [INDEX] (n/[CUSTOMER_ID]) (dt/[DELIVERY_DATETIME]) (d/[DISH_ID]... q/[QUANTITY]...)
         ```
 
-        At least one of the fields in round brackets must be present in the edit command.
+        At least one of the fields in round brackets must be present in the edit command Only uncompleted orders can be edited. Uncompleted orders can be viewed with the `order list` command.
       
         <p>&nbsp;</p>
         
@@ -540,8 +540,7 @@ component command prefix/[INPUT] -flag
         ```
         order complete [INDEX]
         ```
-        The above command would mark the order of that index as complete. The order will no longer be in the order list. Instead, it will be in order history.
-        
+        The above command would mark the order of that index as complete. Only uncompleted orders can be completed. Uncompleted orders can be viewed with the `order list` command. The order will no longer be in the order list. Instead, it will be in order history.        
         <p>&nbsp;</p>
         
         ---
