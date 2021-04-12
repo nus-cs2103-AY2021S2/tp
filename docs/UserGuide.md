@@ -12,27 +12,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
-
-1. Ensure you have Java `11` or above installed on your computer.
-
-1. Download the latest `docbob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
-
-1. Double-click the file to start the app. You should see a Graphical User Interface similar to the image below on startup.![images/Startup.png](images/Startup.png)
-   > **First Startup**: If the full Graphical User Interface does not appear on your screen, please resize your window. DocBob comes with some sample patient data when started for the first time. Try out the example commands below with the sample data and when you are ready, use the `clear` command to remove all sample patient data and start adding your own patients!
-
-1. Execute commands by typing them in the command box and pressing **Enter**. See [Features](#features) for comprehensive details of each and every command.<br>
-   Examples of commands:
-   * **`list`** : Lists out all patients in DocBob's main patient list.
-
-   * **`add n/Breanna Frye y/13121999 g/F p/97890525 e/example@gmail.com a/4340 Monroe Street b/AB+ h/163cm w/54kg`** : Adds a patient named `Breanna Frye` with the given information to the patient book.
-
-   * **`appt 1 d/010120301200`** : Adds a scheduled appointment with the patient at index 1 in DocBob's main patient list, on 1st January 2030 12pm.
-
-> **Quick tip**: typing **`help`** and pressing Enter will list out all available commands!
-
---------------------------------------------------------------------------------------------------------------------
-## Layout
+## Application Layout
 
 ![img_1.png](img_1.png)
 
@@ -44,6 +24,27 @@ DocBob's interface comprises of 4 main parts.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Quick start
+
+1. Ensure you have Java `11` or above installed on your computer.
+
+1. Download the latest `docbob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
+
+1. Double-click the file to start the app. You should see a Graphical User Interface similar to the image below on startup.![images/Startup.png](images/Startup.png)
+   > **First Startup**: If the full Graphical User Interface does not appear on your screen, please resize your window. DocBob comes with some sample patient data when started for the first time. Try out the example commands below with the sample data and when you are ready, use the `clear` command to remove all sample patient data and start adding your own patients!
+
+1. Execute commands by typing them in the command box and pressing **Enter**. See [Features](#features) for more comprehensive details on each and every command.<br>
+   Example commands you can try:
+   
+   * **`list`** : Lists out all patients in DocBob's main patient list.
+
+   * **`add n/Breanna Frye y/13121999 g/F p/97890525 e/example@gmail.com a/4340 Monroe Street b/AB+ h/163cm w/54kg`** : Adds a patient named `Breanna Frye` with the given information to the patient book.
+
+   * **`appt 1 d/010120301200`** : Adds a scheduled appointment with the patient at index 1 in DocBob's main patient list, on 1st January 2030 12pm.
+
+> **Quick tip**: typing **`help`** and pressing Enter will list out all available commands!
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
