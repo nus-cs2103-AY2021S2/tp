@@ -22,7 +22,7 @@ public class Grade {
     /*
      * The first character of the gradedItem must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
-     * Maximum number of characters is 20, otherwise the string cannot be shown in full in GUI.
+     * Maximum number of characters is 20.
      */
     public static final String VALIDATION_REGEX = "(?=^.{1,20}$)[\\p{Alnum}][\\p{Alnum} ]*";
 
