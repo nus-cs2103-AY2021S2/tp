@@ -210,6 +210,8 @@ Steps for the execution of the `FavouriteCommand` (assuming that no errors are e
 6. After the new `Notes` has been successfully added to a tutor, it will update the GUI with the `Favourite` indicator (a star) beside the tutor's name, and return
    a `CommandResult` to provide feedback of the command's execution.
 
+![Sequence Diagram of Favourite Tutor](images/favourite/FavouriteSequenceDiagram.png)
+
 #### Design Consideration
 
 ##### Displaying Favourite Tutors in the GUI
@@ -225,7 +227,7 @@ Reason for choosing option 1:
 
 The following activity diagram summarizes what happens when the `favourite` command is executed.
 
-![Activity Diagram of Add Schedule](images/notes/NotesActivityDiagram.png)
+![Activity Diagram of Favourite Activity](images/favourite/FavouriteActivityDiagram.png)
 
 ### Note Feature
 Tutor Tracker's Notes feature allows users to create notes that are tagged to specific tutors and export them into a text file.
@@ -1148,9 +1150,6 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     Use case ends.
 
 <hr/>
-
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 **Technical Requirements**:

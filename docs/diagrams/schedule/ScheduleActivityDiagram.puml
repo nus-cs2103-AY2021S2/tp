@@ -14,68 +14,14 @@ if () then ([all required prefixes present])
           if () then ([schedule do not exist])
           :Check if time_from and time_to are valid;
 
-              if () then ([time_from is before time_to])
-
-                  if () then ([time_from and time_to are in the future])
-
-                      if () then ([time_from is after or equal to 6:00 AM])
-
-                          if () then ([time_to is before or equal to 11:00 PM])
-
-                              if () then ([duration is between 1 to 8 hours])
-
-                                  if () then ([time_from and time_to are in 30 or 60 minutes blocks])
-
-                                      if () then ([timing do not clash with existing timeslots])
-                                      :Add schedule to Schedule Tracker;
-                                      :Show success message;
-
-                                      else ([else])
-
-                                      :Shows a time slot
-                                      clash error message;
-
-                                      endif
-
-                                  else ([else])
-
-                                  :Shows an invalid time
-                                  minutes error message;
-
-                                  endif
-
-                              else ([else])
-
-                              :Shows an invalid
-                              duration error message;
-
-                              endif
-
-                          else ([else])
-
-                          :Shows an invalid time_to
-                          error message;
-
-                          endif
-
-                      else ([else])
-
-                      :Shows an invalid time_from
-                      error message;
-
-                      endif
-
-                  else ([else])
-
-                  :Shows an invalid datetime
-                  error message;
-
-                  endif
+              if () then ([time_from and time_to is valid])
+              :Add schedule to Schedule Tracker;
+              :Show success message;
 
               else ([else])
 
-              :Shows an invalid time
-              range error message;
+              :Shows a invalid time slot
+              error message;
 
               endif
 
