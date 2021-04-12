@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3 (to be changed)
+title: MeetBuddy
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
@@ -8,10 +8,15 @@ title: AddressBook Level-3 (to be changed)
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+**MeetBuddy** is a desktop app optimised for people who want to organise their meetings and their contacts.
+They can store both meetings and contacts, view the meetings scheduled for the week, and take note of which contacts
+they are meeting up with. It also allows users to assign notes to their meetings to keep people informed about meeting
+details. Furthermore, it supports automatic syncing of contacts profile photos if they have a Gravatar account. The app is
+targeted towards users with a daily 7am - 4pm schedule, have frequent meetings during this period, and prefer typing.
+
+* If you are interested in using MeetBuddy, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing MeetBuddy, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
