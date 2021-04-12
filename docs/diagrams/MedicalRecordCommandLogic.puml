@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":OpenMedicalRecordCommandParser" as OpenMedicalRecordCommandParser LOGIC_COLOR
+participant ":OpenMedicalRecordCommand" as OpenMedicalRecordCommand LOGIC_COLOR
+participant ":EditorWindow" as EditorWindow LOGIC_COLOR
+participant ":SaveMedicalRecordCommand" as SaveMedicalRecordCommand LOGIC_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+autonumber
+-> MainWindow ++ : executeCommand("mrec 1")
+MainWindow -> LogicManager ++: execute("mrec 1")
+LogicManager -> AddressBookParser ++: parseCommand("mrec 1")
+AddressBookParser -> OpenMedicalRecordCommandParser**
+activate OpenMedicalRecordCommandParser
+AddressBookParser <-- OpenMedicalRecordCommandParser--
+AddressBookParser -> OpenMedicalRecordCommandParser : parse("mrec 1")
+activate OpenMedicalRecordCommandParser
+OpenMedicalRecordCommandParser -> OpenMedicalRecordCommand**
+activate OpenMedicalRecordCommand
+OpenMedicalRecordCommandParser <-- OpenMedicalRecordCommand--
+AddressBookParser <-- OpenMedicalRecordCommandParser--
+LogicManager <-- AddressBookParser--
+LogicManager -> OpenMedicalRecordCommand : execute(OpenMedicalRecordCommand)
+activate OpenMedicalRecordCommand
+LogicManager <-- OpenMedicalRecordCommand-- : CommandResult
+MainWindow <-- LogicManager--
+MainWindow -> EditorWindow** : processResult(CommandResult)
+activate EditorWindow
+MainWindow <-- EditorWindow
+EditorWindow -> SaveMedicalRecordCommand**
+activate SaveMedicalRecordCommand
+EditorWindow <--SaveMedicalRecordCommand--
+EditorWindow -> SaveMedicalRecordCommand : execute(SaveMedicalRecordCommand)
+activate SaveMedicalRecordCommand
+SaveMedicalRecordCommand -> Model
+activate Model
+SaveMedicalRecordCommand <-- Model--
+EditorWindow <-- SaveMedicalRecordCommand--
+MainWindow <-- EditorWindow--
+@enduml
