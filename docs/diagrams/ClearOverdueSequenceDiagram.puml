@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TeachingAssistantParser" as TeachingAssistantParser LOGIC_COLOR
+participant ":ClearOverdueEntryCommand" as ClearOverdueEntryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("eclear")
+activate LogicManager
+
+LogicManager -> TeachingAssistantParser : parseCommand("eclear")
+activate TeachingAssistantParser
+
+create ClearOverdueEntryCommand
+TeachingAssistantParser -> ClearOverdueEntryCommand
+activate ClearOverdueEntryCommand
+
+ClearOverdueEntryCommand --> TeachingAssistantParser
+deactivate ClearOverdueEntryCommand
+
+TeachingAssistantParser --> LogicManager
+deactivate TeachingAssistantParser
+
+LogicManager -> ClearOverdueEntryCommand : execute()
+activate ClearOverdueEntryCommand
+
+ClearOverdueEntryCommand -> Model : clearOverdueEntries()
+activate Model
+
+Model --> ClearOverdueEntryCommand
+deactivate Model
+
+create CommandResult
+ClearOverdueEntryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearOverdueEntryCommand
+deactivate CommandResult
+
+ClearOverdueEntryCommand --> LogicManager : result
+deactivate ClearOverdueEntryCommand
+[<-- LogicManager
+
+@enduml
