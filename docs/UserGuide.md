@@ -141,7 +141,8 @@ Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+O
 **IMP** : All arguments are optional. In particular:
 - for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to 
   separate.
-  
+- for `p/PHONE` any phone number containing the given parameter string will be returned. 
+  - `98776` will be matched with both `77` and `786` for example.
 - for `cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE` user can either give brand or type information, or both using the 
   `+` sign to separate.
   
@@ -154,10 +155,7 @@ Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+O
         -  `abcd@gmail.com`
         -  `bbabc@gmail.com`
 
-
-Further details about the search options are as follows:
-
-- For `ex/COE_EXPIRY_DATE`, using `ex/exp` will search for all customers with an expired COE on any of the cars they 
+- for `ex/COE_EXPIRY_DATE`, using `ex/exp` will search for all customers with an expired COE on any of the cars they 
   own.
   it is a special case alias for the search `ex/0`, where `ex/NON_NEGATIVE_NUMBER` will search for any customers with
   at least one car that will expire in `NON_NEGATIVE_NUMBER` years *or less*.
