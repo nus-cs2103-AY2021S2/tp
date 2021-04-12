@@ -15,9 +15,13 @@ activate DeleteOrderItemCommand
 
 loop for each index in the index list
     DeleteOrderItemCommand -> Model: lastShownList(index)
+    activate Model
     Model --> DeleteOrderItemCommand: orderItem
+    deactivate Model
     |||
     DeleteOrderItemCommand -> Model : deleteOrderItem(orderItem)
+    activate Model
+    deactivate Model
     |||
 end
 

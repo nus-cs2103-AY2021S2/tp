@@ -39,6 +39,10 @@ destroy AddOrderItemCommandParser
 activate AddOrderItemCommand
 
 AddOrderItemCommand -> Model : addOrderItem(orderItem)
+activate Model
+deactivate Model
+
+
 
 |||
 

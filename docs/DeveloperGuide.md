@@ -37,7 +37,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T11-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -118,7 +118,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`:
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores cakecollate's data.
+* stores CakeCollate's data.
 * stores the order item data.
 * exposes an unmodifiable `ObservableList<Order>` and `ObservableList<OrderItem>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * does not depend on any of the other three components.
@@ -137,9 +137,9 @@ The `Model`:
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* `UserPrefsStorage` can save `UserPref` objects in json format and read it back.
-* `CakeCollateStorage` can save cakecollate's data in json format and read it back.
-* `OrderItemsStorage` can save order items data in json format and read it back.
+* `UserPrefsStorage` can save `UserPref` objects in JSON format and read it back.
+* `CakeCollateStorage` can save CakeCollate's data in JSON format and read it back.
+* `OrderItemsStorage` can save order items data in JSON format and read it back.
 
 ### Common classes
 
@@ -358,6 +358,60 @@ The following sequence diagram shows how this works:
     * Cons:
       * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
 
+### Delete Order Item Feature
+The `deleteItem` command enables users to delete predefined order items (also known as cake items or order descriptions). The user can choose to delete a single order item or multiple order items at the same time.
+
+The `deleteItem` command utilises the `IndexList` class to enable the deletion of multiple items at once. The `IndexList` parser takes in a string of multiple indexes separated by spaces, parses them to `Index` and stores them in an `ArrayList<Index>`.
+
+The underlying functionality for the `deleteItem` command utilises the `DeleteOrderItemCommand::execute` method which sorts the provided `Index List` in descending order. All the order items pertaining to the indexes input by the user are removed from the `UniqueOrderItemList` using the `Model::deleteOrderItem` method.
+
+If the user wants to delete order items at index `1` and `2` in the order items table, they can use the command `deleteItem 1 2`.
+
+Given below is an example usage scenario and how the `deleteItem` mechanism works.
+
+*Step 1.* The user keys in and executes the command `deleteItem 1 2` to delete the order items located at index 1 and 2 in the order items table.
+
+*Step 2.* The command is parsed by `DeleteOrderItemCommandParser`.
+
+*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, a `DeleteOrderItemCommand` will be created.
+
+*Step 4.* `DeleteOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
+
+The following sequence diagram shows how the `DeleteOrderItemCommandParser` works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates DeleteOrderItemCommandParser and calls parse("1 2"). 
+
+</div>
+
+![DeleteOrderItemParserSequenceDiagram](images/DeleteOrderItemParserSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following sequence diagram shows how the `DeleteOrderItemCommand` works:
+
+![DeleteOrderItemSequenceDiagram](images/DeleteOrderItemSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+
+</div>
+
+#### Design considerations:
+
+##### Aspect: Parsing multiple indexes
+* **Alternative 1 (current choice):** Create an IndexList class which can be used to store and parse multiple Indexes.
+    * Pros:
+        * Other commands which accept multiple indexes can also use methods from the IndexList class.
+    * Cons:
+        * Different commands have different requirements for index lists. For e.g. `DeleteOrderItemCommand` and `DeleteCommand` require that there should be no duplicate `Indexes` in the `IndexList` after parsing. However, the `AddOrderCommand` requires duplicate `Indexes` to also be stored. Each command has to implement additional checks when using `IndexList` due to differing requirements.
+* **Alternative 2:** Simply use an `ArrayList` of `Index` without creating a new class.
+    * Pros:
+        * Each command can have its own implementation of `ArrayList` which suits its needs.
+    * Cons:
+        * Not extensible to other commands as they will have to implement their own `List` if they want to accept multiple indexes.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
@@ -506,8 +560,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 1.  User requests to list orders
 2.  CakeCollate shows a list of orders
-3.  User requests to set a specific order, or a list of orders in the above list as undelivered/delivered/cancelled.
-4.  CakeCollate updates the order and sets the delivery status to undelivered/delivered/cancelled.
+3.  User requests to set a specific order, or a list of orders in the above list as undelivered/delivered/cancelled
+4.  CakeCollate updates the order and sets the delivery status to undelivered/delivered/cancelled
 
     Use case ends.
 
@@ -533,8 +587,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests to add an order item to the order items table.
-2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI.
+1.  User requests to add an order item to the order items table
+2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI
 
     Use case ends.
 
@@ -550,8 +604,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests to delete a specific list of order items.
-2.  CakeCollate deletes the specified order items.
+1.  User requests to delete a specific list of order items
+2.  CakeCollate deletes the specified order items
 
     Use case ends.
 
@@ -579,8 +633,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests for help.
-2.  CakeCollate shows a list of commands, their formats, descriptions, and examples.
+1.  User requests for help
+2.  CakeCollate shows a list of commands, their formats, descriptions, and examples
 
     Use case ends.
 
@@ -785,7 +839,31 @@ Prerequisites: Use the sample data provided on first start up. You can delete th
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`cancelled x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
+ 
+### Adding order items
+
+1. Adding an order item to the order items table
+    1. Prerequisites: none.
+    1.Test case: `addItem Chocolate Cake`<br>
+       Expected: A new Order Item with description "Chocolate Cake" is added to the order items table.
+    1.Test case: `addItem 123`<br>
+       Expected:  No order item is added. Error details shown in the status message.
        
+### Deleting multiple order items
+
+1. Deleting multiple order items from the order items table.
+    1. Prerequisites: Multiple order items in the order items table.
+    1. Test case: `delete 1`<br>
+       Expected: First order item is deleted from the order items table. Details of the deleted order item shown in the status message.
+    1. Test case: `delete 1 2` <br>
+       Expected: First and second order items are deleted from the order items table. Details of the deleted order items are shown in the status message.
+    1. Test case: `delete 0 1`<br>
+       Expected: No order item is deleted. Error details shown in the status message.
+    1. Test case: `delete 0 1`<br>
+       Expected: No order item is deleted. Error details shown in the status message.
+    1. Other incorrect deleteItem commands to try: `deleteItem`, `deleteItem x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+      
 ### Saving data
 
 1. Dealing with missing/corrupted data files
