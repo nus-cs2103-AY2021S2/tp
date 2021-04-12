@@ -19,19 +19,23 @@ Class ReadOnlyUserPrefs
 Package Contact {
 Class Contact
 Class UniqueContactList
+'Class Phone
+'Class Email
 }
 
-Class Address
-Class Name
-note "Name and Address, classes previously in Contact package" as N1
-Name .. N1
-Address .. N1
+'Package Tag {
+'Class Tag
+'Class ChildTag
+'}
+
+'Class Address
+'Class Name
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook ..|> ReadOnlyAddressBook
-AppointmentBook ..|> ReadOnlyAppointmentBook
+AddressBook .up.|> ReadOnlyAddressBook
+AppointmentBook .up.|> ReadOnlyAppointmentBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
@@ -42,31 +46,33 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueContactList
 UniqueContactList o--> "*" Contact
 
-ModelManager -->"filtered list ~*" Contact
+ModelManager ----->"~* filtered list" Contact
 
 ModelManager o--> "1" AppointmentBook
 
 Package Appointment {
 Class Appointment
 Class UniqueAppointmentList
-Class DateTime
+'Class DateTime
 }
 
 AppointmentBook *--> "1" UniqueAppointmentList
 UniqueAppointmentList o--> "*" Appointment
 
-Contact ---> Name
-Contact ---> Address
+'Tag <|- ChildTag
 
-Appointment ----> "name 1" Name
-Appointment ----> "*" Address
-Appointment --> "*" DateTime
-Appointment ---> "~* contact" Contact
+'Contact ----> "1" Name
+'Contact ----> Address
+'Contact ----> Email
+'Contact ----> Phone
+'Contact ----> "~*" Tag
+'
+'Appointment ----> "1" Name
+'Appointment ----> "*" Address
+'Appointment --> "*" DateTime
+'Appointment ---> "~*" Contact
+'Appointment --> "~*" Tag
 
-ModelManager -->"filtered list *" Appointment
-note "Possible design considerations for ModelManager:\n- 2 subclass, one for Contact and one for Appointment\n- As an implementation of the Model interface,\n  ModelManager can handle both" as N3
-
-note "Extra: Tag functions" as N4
-N4 .left. Appointment
+ModelManager ----> "filtered list *" Appointment
 
 @enduml

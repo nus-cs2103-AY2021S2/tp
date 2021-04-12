@@ -56,9 +56,8 @@ UiManager -right-> Logic
 MainWindow -left-> Logic
 
 ContactListPanel -[hidden]left- HelpWindow
-AppointmentListPanel -left- HelpWindow
+AppointmentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 
-MainWindow ---|> UiPart
 @enduml

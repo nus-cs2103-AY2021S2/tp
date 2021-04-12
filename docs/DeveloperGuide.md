@@ -59,7 +59,7 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/AppointmentWithLogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
@@ -71,7 +71,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/AppointmentWithUiClassDiagram.png)
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -87,7 +87,7 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/AppointmentWithLogicClassDiagram.png)
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -107,7 +107,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/AppointmentWithModelClassDiagram.png)
+![More detailed structure of Model Component](images/AppointmentAndContact.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -127,7 +128,7 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/AppointmentWithStorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
