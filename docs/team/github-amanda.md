@@ -42,7 +42,7 @@ Given below are my contributions to the project:
         * Updated Amanda Ang's part (Pull request [\#12](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/12))
     * Developer Guide:
         * Added use case for `delete` (Pull request [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151))
-        * Added implementations for `list` and `find` (Pull requests [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213), [\#294](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/294))
+        * Added implementations with activity diagrams, sequence diagrams and design considerations for `list` and `find` (Pull requests [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213), [\#294](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/294))
         * Finalise use cases, user stories, non-functional requirements and glossary (Pull requests [\#285](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/285), [\#326](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/326))
         
 * **Community**:
