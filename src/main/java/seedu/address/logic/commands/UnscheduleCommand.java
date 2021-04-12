@@ -18,11 +18,10 @@ public class UnscheduleCommand extends Command {
     public static final String COMMAND_WORD = "unschedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unschedules a meeting with the client identified by the "
-            + "index number used in the displayed meeting list.\n"
+            + ": Unschedules a meeting identified by the index number used in the displayed meeting list.\n"
             + "Parameter to removes all meetings: " + COMMAND_WORD + " all\n"
             + "Parameter to removes all expired meetings: " + COMMAND_WORD + " expired\n"
-            + "Parameter to removes a specific meetings: " + COMMAND_WORD + " INDEX -- removes the specified meeting\n";
+            + "Parameter to removes a specific meeting: " + COMMAND_WORD + " INDEX\n";
 
     public static final String MESSAGE_UNSCHEDULE_ALL_SUCCESS = "All meetings unscheduled.";
     public static final String MESSAGE_UNSCHEDULE_EXPIRED_SUCCESS = "All expired meetings removed";
@@ -75,5 +74,4 @@ public class UnscheduleCommand extends Command {
                 && all == ((UnscheduleCommand) other).all
                 && expired == ((UnscheduleCommand) other).expired); // state check
     }
-
 }

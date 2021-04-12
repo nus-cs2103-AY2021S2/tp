@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":PlanCommandParser" as PlanCommandParser LOGIC_COLOR
+participant "p:PlanCommand" as PlanCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("plan 1 ...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("plan 1 ...")
+activate AddressBookParser
+
+create PlanCommandParser
+AddressBookParser -> PlanCommandParser
+activate PlanCommandParser
+
+PlanCommandParser --> AddressBookParser
+deactivate PlanCommandParser
+
+AddressBookParser -> PlanCommandParser : parse("1 ...")
+activate PlanCommandParser
+
+create PlanCommand
+PlanCommandParser -> PlanCommand
+activate PlanCommand
+
+PlanCommand --> PlanCommandParser : p
+deactivate PlanCommand
+
+PlanCommandParser --> AddressBookParser : p
+deactivate PlanCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PlanCommandParser -[hidden]-> AddressBookParser
+destroy PlanCommandParser
+
+AddressBookParser --> LogicManager : p
+deactivate AddressBookParser
+
+LogicManager -> PlanCommand : execute()
+activate PlanCommand
+
+PlanCommand -> Model : setPerson(original, updated)
+activate Model
+
+Model --> PlanCommand
+deactivate Model
+
+create CommandResult
+PlanCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PlanCommand
+deactivate CommandResult
+
+PlanCommand --> LogicManager : result
+deactivate PlanCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

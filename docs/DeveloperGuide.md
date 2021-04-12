@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page
+title: Developer Guide
 ---
 
 * Table of Contents {:toc}
@@ -170,10 +171,17 @@ risk of overflow. This is to support all currency values, including those that h
 The validity of the user's input amount is checked using regular expressions. Unnecessary leading zeroes in the input 
 string are trimmed, and the input string is padded with zeroes as necessary to format it to 2 decimal places.
 
+### Adding or removing insurance plans of clients
+![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
+
+The `PlanCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. Depending
+on the `Prefix` the user inputs (`i/` or `c/`), an `AddPlanCommand` or a `RemovePlanCommand` will be created and 
+returned respectively. 
+
 ### Recording, viewing and clearing notes for clients
 ![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
 
-The `NoteCommand` is created and parsed similar to other commands, as show in the sequence diagram above. The `Prefix` 
+The `NoteCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. The `Prefix` 
 that the user called the command with (`/r` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
 additional parameter in the `NoteCommand`.
 
