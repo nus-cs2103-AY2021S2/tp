@@ -275,6 +275,40 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
     * Pros: Will use less memory (only needs memory for an integer instead of a `Contact` object or an `Index` object), no reliance on `Index`.
     * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
 
+### Add Event to Project Command
+
+The mechanism is used to add an event to the `EventList` of `Project` specified by the index in the project list shown.
+
+The client creates a concrete `AddEventCommand` that contains the specified index of project and a valid Event object. Each concrete `AddEventCommand` implements the `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user executes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
+
+Step 2: The input is parsed by `AddEventCommandParser`. It checks if `Event` provided is valid or not. If input is invalid, an exception will be throw and `Ui` will help print out the exception message. Otherwise, an `AddEventCommand` will be created.
+
+Step 3: The `AddEventCommand#execute` is called. It checks whether `Index` provided is valid or not and if `Event` provided is duplicated. If check fails, an exception will be thrown, `Ui` will help print out the exception message. Otherwise, the change will be made to `Project`and `Model` in the next step.
+
+Step 4: The `Project` specified by Index will call addEvent function to add the given `Event` to its `EventList`. `Model` updates its Project List based on the change.
+
+Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message.
+
+#### Design Considerations
+
+##### Aspect: How to add a new `Event` to a `Project`.
+
+* **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
+    * Pros:
+        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
+    * Cons:
+        * This implementation will not work with an immutable implementation of `EventList`
+
+* **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
+    * Pros:
+        * If the implementation of `EventList` becomes immutable. This implementaion still works.
+    * Cons:
+        * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
+
 ### Delete Todo Feature
 
 This section explains the implementation of the Delete Todo command feature. As the implementation of deleting Deadlines, Events and Groupmates are similar, this section will focus only on the implementation of the deletion of Todos.
@@ -343,41 +377,41 @@ Our target users are students currently enrolled in a university who,
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                        | So that I can…​                                                               |
-| -------- | ------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------------------- |
-| `* * *`  | University Student                         | add a new contact                  | keep track of details from peers I have crossed paths with                   |                      
-| `* * *`  | University Student                         | edit a contact's details           | update the contact's details when there is change                            |
-| `* * *`  | University Student                         | delete a contact                   | remove contacts that I no longer need                                        |
-| `* * *`  | University Student                         | find a contact by name             | locate details of contacts without having to go through an entire list       |
-| `* * *`  | University Student                         | tag a contact with tags            | easily keep track of who the contact is                                      |
-| `* * *`  | University Student                         | view all my contacts               | see the overall contents of my contact list                                  |
-| `* * *`  | University Student                         | add a new project                  | keep track of my projects                                                    |
-| `* * *`  | University Student                         | edit a project's details           | update the project's details when there is change                            |
-| `* * *`  | University Student                         | delete a project                   | remove projects that I no longer need                                        |
-| `* * *`  | University Student                         | view a project                     | see details of that project                                                  |
-| `* * *`  | University Student                         | view the overview of a project     | see my deadlines, events and groupmates of that project                      |
-| `* * *`  | University Student                         | view todos of a project            | see my todos of that project                                                 |
-| `* * *`  | University Student                         | add a new todo to a project        | keep track of my project's todos                                             |
-| `* * *`  | University Student                         | delete a todo from a project       | remove todos that I no longer need                                           |
-| `* * *`  | University Student                         | edit a todo's details              | update the todo's details when there is change                               |
-| `* * *`  | University Student                         | mark a todo as done                | know when a todo is done                                                     |
-| `* * *`  | University Student                         | add a new deadline to a project    | keep track of my project's deadline                                          |
-| `* * *`  | University Student                         | delete a deadline from a project   | remove deadlines that I no longer need                                       |
-| `* * *`  | University Student                         | edit a deadline's details          | update the deadline's details when there is change                           |
-| `* * *`  | University Student                         | mark a deadline as done            | know when a deadline is done                                                 |
-| `* * *`  | University Student                         | keep track of a deadline's date    | know when the deadline is due                                                |
-| `* * *`  | University Student                         | add an new event to a project      | keep track of my project's events                                            |
-| `* * *`  | University Student                         | delete an event from a project     | remove events that I no longer need                                          |
-| `* * *`  | University Student                         | edit an event's details            | update the event's details when there is change                              |
-| `* *`    | University Student                         | indicate an event as weekly        | have events that repeat weekly                                               |
-| `* * *`  | University Student                         | keep track of an event's date      | know when the event is                                                       |
-| `* * *`  | University Student                         | add a new groupmate to a project   | keep track of my project's groupmates                                        |
-| `* * *`  | University Student                         | delete a groupmate from a project  | remove groupmates that I no longer need                                      |
-| `* * *`  | University Student                         | edit a groupmate's details         | update the groupmate's details when there is change                          |
-| `* * *`  | University Student                         | add roles to a groupmate           | easily keep track of the groupmate's roles                                   |
-| `* *`    | University Student                         | undo an action made in the app     | revert an unintended action                                                  |
-| `* *`    | University Student                         | redo an action made in the app     | redo an action that was previously undone                                    |
-| `* *`    | University Student                         | clear all data in the app          | start my application from fresh                                              |
+| Priority | As a …​ | I want to …​ | So that I can…​ |
+| -------- | ---------- | --------------- | ------------------ |
+| `* * *` | University Student | add a new project| keep track of my projects |
+| `* * *` | University Student | edit a project's details | update the project's details when there is change |
+| `* * *` | University Student | delete a project | remove projects that I no longer need |
+| `* * *` | University Student | view a project | see details of that project |
+| `* * *` | University Student | view the overview of a project | see my deadlines, events and groupmates of that project |
+| `* * *` | University Student | view todos of a project| see my todos of that project |
+| `* * *` | University Student | add a new todo to a project| keep track of my project's todos |
+| `* * *` | University Student | delete a todo from a project | remove todos that I no longer need |
+| `* * *` | University Student | edit a todo's details| update the todo's details when there is change |
+| `* * *` | University Student | mark a todo as done| know when a todo is done |
+| `* * *` | University Student | add a new deadline to a project| keep track of my project's deadline |
+| `* * *` | University Student | delete a deadline from a project | remove deadlines that I no longer need |
+| `* * *` | University Student | edit a deadline's details| update the deadline's details when there is change |
+| `* * *` | University Student | mark a deadline as done| know when a deadline is done |
+| `* * *` | University Student | keep track of a deadline's date| know when the deadline is due |
+| `* * *` | University Student | add an new event to a project| keep track of my project's events |
+| `* * *` | University Student | delete an event from a project | remove events that I no longer need |
+| `* * *` | University Student | edit an event's details| update the event's details when there is change |
+| `* *` | University Student | indicate an event as weekly| have events that repeat weekly |
+| `* * *` | University Student | keep track of an event's date| know when the event is |
+| `* * *` | University Student | add a new groupmate to a project | keep track of my project's groupmates |
+| `* * *` | University Student | delete a groupmate from a project| remove groupmates that I no longer need |
+| `* * *` | University Student | edit a groupmate's details | update the groupmate's details when there is change |
+| `* * *` | University Student | add roles to a groupmate | easily keep track of the groupmate's roles |
+| `* * *` | University Student | add a new contact| keep track of details from peers I have crossed paths with |            
+| `* * *` | University Student | edit a contact's details | update the contact's details when there is change |
+| `* * *` | University Student | delete a contact | remove contacts that I no longer need |
+| `* * *` | University Student | find a contact by name | locate details of contacts without having to go through an entire list |
+| `* * *` | University Student | tag a contact with tags| easily keep track of who the contact is |
+| `* * *` | University Student | view all my contacts | see the overall contents of my contact list |
+| `* *` | University Student | undo an action made in the app | revert an unintended action |
+| `* *` | University Student | redo an action made in the app | redo an action that was previously undone |
+| `* *` | University Student | clear all data in the app| start my application from fresh |
 
 ### Use cases
 
@@ -812,7 +846,7 @@ testers are expected to do more *exploratory* testing.
 
 If the effort required to create **AB3** is 100, we would place the effort required to implement the current version of **CoLAB** at 200.
 
-Our team has put in a significant amount of effort to get CoLAB to the current state. As evidence, we currently have over [20,000 lines of code contributed](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103T-T11-2%2Ftp&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19) and over 500 automated tests. Below, we list some notable changes that required a significant amount of effort.
+Our team has put in a significant amount of effort to get CoLAB to the current state. As evidence, we currently have over [20,000 lines of code contributed](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103T-T11-2%2Ftp&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19) and over 500 automated tests. Below, we list some notable changes that required a significant amount of effort to implement.
 
 ### Notable Changes
 
@@ -845,7 +879,7 @@ Our team has put in a significant amount of effort to get CoLAB to the current s
 
 4. **CRUD operations**
 
-    We had to implement create, read, update, and delete (CRUD) operations for each of the new models we created. This was not as simple due to the complexity and size of our models. For example, we had to ensure that the operations were executed on the correct task as the index shown to the user may not be the same as the index in the list (as the list displayed to the user is sorted). We also had to ensure that the many lists were all updated correctly and kept in sync with each other.
+    We had to implement create, read, update, and delete (CRUD) operations for each of the new models we created. This was not as simple as expected due to the complexity and size of our models. For example, we had to ensure that the operations were executed on the correct task as the index shown to the user may not be the same as the index in the list (as the list displayed to the user is sorted). We also had to ensure that the many lists were all updated correctly and kept in sync with each other.
 
 5. **Undo/Redo**
 
@@ -855,4 +889,4 @@ Our team has put in a significant amount of effort to get CoLAB to the current s
 
 6. **Command History**
 
-    Keeping in mind that CoLAB is a CLI based application, we implemented the Command History feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition, our solution had to take into account the current command the user was typing in order to better mimic a real command line.
+    Keeping in mind that CoLAB is a CLI based application, we implemented the `Command History` feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition, our solution had to take into account the current command the user was typing in order to better mimic a real command line.

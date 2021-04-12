@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam defaultFontSize 30
 
 Class ColabFolder
 Class ModelManager
@@ -42,25 +43,29 @@ Class Name
 
 ModelManager o--> "1" ColabFolder
 ModelManager -->"~* filtered list" Project
-ColabFolder *--> "1" UniqueProjectList
+ColabFolder *-right-> "1" UniqueProjectList
 
-UniqueProjectList o-> "*" Project
-Project *--> "1" EventList
-Project *--> "1" DeadlineList
-Project *--> "1" TodoList
-Project *--> "1" GroupmateList
+UniqueProjectList o-down-> "*" Project
+Project *-right-> "1  " EventList
+Project *-right-> "1  " DeadlineList
+Project *-right-> "1   " TodoList
+Project *-right-> "1" GroupmateList
 
-EventList o--> "*" Repeatable
+EventList o--right--> "*" Repeatable
 Event .up.|> Repeatable
 
-DeadlineList o--> "*" CompletableDeadline
+DeadlineList o-right-> "*" CompletableDeadline
 Deadline .up.|> CompletableDeadline
 
-TodoList o--> "*" CompletableTodo
+TodoList o-right-> "*" CompletableTodo
 Todo .up.|> CompletableTodo
 
-GroupmateList o--> "*" Groupmate
-Groupmate *--> "*" Role
+GroupmateList o-right-> "*" Groupmate
+Groupmate *-right-> "*" Role
 Groupmate *--> Name
+
+GroupmateList -[hidden]down- TodoList
+TodoList -[hidden]down- EventList
+EventList -[hidden]down- DeadlineList
 
 @enduml
