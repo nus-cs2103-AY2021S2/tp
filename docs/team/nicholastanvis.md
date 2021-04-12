@@ -28,9 +28,10 @@ Given below are some of my major contributions to the project.
     * Look after the entire test suite
 * **Documentation**:
   * Developer Guide
-    * A part of User Stories [#22](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/22)
+    * User Stories [#22](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/22)
     * One implementation [#80](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/80)
     * Architecture, Getting Started in [#231](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/231)
+    * Table of Contents, Appendix: Manual testing [#262](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/262)
   * User Guide
     * Quick Start, Table in Contents in [#87](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/87)
 * **Review Contributions**:
