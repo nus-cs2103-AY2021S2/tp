@@ -190,7 +190,7 @@ These commands do not process any additional parameters, including the single-ar
 | Show help | `help` |
 | Exit the app | `exit` |
 
-A special command invoked by pressing the `TAB` key instead of `Enter` exists for `edit` and `eedit` -  details specified
+A special command invoked by pressing the <kbd>TAB</kbd> key instead of `Enter` exists for `edit` and `eedit` -  details specified
 in the [autocomplete section](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#autocomplete-tab)
 
 ### Contact list commands
@@ -333,8 +333,7 @@ Format: `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o
 
 1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
 List out all events in event list.
-2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o
-   SORT_ORDER]`:<br>
+2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
 List all events matching the search criteria
 
 Search criteria, case-insensitive:
@@ -407,21 +406,21 @@ Examples:
 * `help` lists all available commands.
 * `help list` shows the syntax and description for the `list` command.
 
-#### Autocomplete: `TAB`
+#### Autocomplete: <kbd>TAB</kbd>
 
 The Autocomplete feature helps autocomplete when editing a Person or an Event to save the user time from retyping details. Currently, the feature only works for commands `edit` and `eedit`.
 
 Format:
 
-Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK]` + `TAB`
+Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK]` + <kbd>TAB</kbd>
 
-EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` + `TAB`
+EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` + <kbd>TAB</kbd>
 
 Note: Valid INDEX must be used in order for Autocomplete to function.
 
 Below are the respective behaviors of Autocomplete for various prefixes.
 
-All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
+All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on <kbd>TAB</kbd> keypress down.
 
 Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the person.
 
@@ -449,8 +448,8 @@ Can be invoked repeatedly until there is no more history from the current sessio
 Format: `undo`
 
 Shortcuts:
-PC: `CTRL + Z`
-Mac: `CMD + Z`
+PC: <kbd>CTRL</kbd> + <kbd>Z</kbd>
+Mac: <kbd>CMD</kbd> + <kbd>Z</kbd>
 
 #### Redoing actions : `redo`
 
@@ -461,8 +460,8 @@ Can be invoked repeatedly until there are no more previously executed actions fr
 Format: `redo`
 
 Shortcut:
-PC: `CTRL + SHIFT + Z` or `CTRL + Y`
-Mac: `CMD + SHIFT + Z` or `CMD + Y`
+PC: <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd> or <kbd>CTRL + Y</kbd>
+Mac: <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd> or <kbd>CMD + Y</kbd>
 
 #### Toggle theme : `theme`
 
@@ -484,12 +483,12 @@ Retrieves previously entered input.
 
 * Entering new command adds new entry to InputHistory.
 * InputHistory will save last 20 inputs.
-* Pressing `Up` arrow key in the text input panel reverts to earlier input.
-* Pressing `Down` arrow key undoes the history revert.
-* At the most recent input, pressing `Down` arrow key once more clears the text box.
-* `ESC` key clears the text box.
-* `CTRL + Z`(PC) or `CMD + Z` (Mac) key combination undoes the last change to the address or event books.
-* `CTRL + SHIFT + Z` or `CTRL + Y` (PC) or `CMD + SHIFT + Z` or `CMD + Y` (Mac) key combinations redo the last undone change to the address or event books.
+* Pressing <kbd>UP</kbd> arrow key in the text input panel reverts to earlier input.
+* Pressing <kbd>DOWN</kbd> arrow key undoes the history revert.
+* At the most recent input, pressing <kbd>DOWN</kbd> arrow key once more clears the text box.
+* <kbd>ESC</kbd> key clears the text box.
+* <kbd>CTRL</kbd> + <kbd>Z</kbd> (PC) or <kbd>CMD</kbd> + <kbd>Z</kbd> (Mac) key combination undoes the last change to the address or event books.
+* <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd> or <kbd>CTRL</kbd> + <kbd>Y</kbd> (PC) or <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>Z</kbd> or <kbd>CMD</kbd> + <kbd>Y</kbd> (Mac) key combinations redo the last undone change to the address or event books.
 
 #### Data path display :
 
