@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -8,8 +11,6 @@ import javafx.scene.layout.Region;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.meeting.Meeting;
 
-import java.time.LocalDateTime;
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Meeting}.
@@ -62,7 +63,8 @@ public class MeetingCard extends UiPart<Region> {
             personsRelated.getChildren().add(new Label("People Attending:"));
             meeting.getConnectionToPerson().stream()
                     .sorted(Comparator.comparing(person -> person.getName().fullName))
-                    .forEach(person -> personsRelated.getChildren().add(new Label("[" + person.getName().fullName + "]")));
+                    .forEach(person -> personsRelated.getChildren()
+                            .add(new Label("[" + person.getName().fullName + "]")));
         }
     }
 
