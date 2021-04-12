@@ -178,6 +178,7 @@ We can combine in the following way :
 
 Note that for `find A /and B /or C /or D /and E` , the implicit bracketing considered is `find A /and [B /or [C /or [D 
 /and E]]]`
+Further, the bracketing order is not dependent on `/and` or `/or` -- we treat them as the same.
 
 ## Deleting a customer : `delete`
 
