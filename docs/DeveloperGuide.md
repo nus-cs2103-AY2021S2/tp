@@ -90,7 +90,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `deleteP 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser`  and `DeleteProjectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model Component
@@ -103,7 +103,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the `ColabFolder` data, which contains data of contacts and projects.
-* exposes an unmodifiable `ObservableList<Contact>` and `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes various `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other components.
 
 #### Inner Workings
@@ -141,7 +141,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### View Projects Feature
 
-This section explains the implementation of the View Project feature. The implementation of other commands that opens panels, windows or tabs are similar.
+This section explains the implementation of the View Project feature. The implementation of other commands that opens panels or tabs are similar.
 
 The `ViewProject` command results in the UI displaying the specified project together with all its related information.
 
@@ -151,29 +151,38 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 ![View Project Sequence Diagram](images/ViewProjectCommandSequenceDiagram.png)
 
-Step 1. The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ViewProjectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
+<div style="text-align: left">
 
-Step 3. The `CommandResult` is passed to the `MainWindow`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
+**Step 1.** The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
 
-Step 4. The `MainWindow` now calls `UiCommand#execute`, which will result in a call to the overridden method `ViewProjectUiCommand#execute`.
+**Step 2.** A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
 
-Step5. Execution of this method will result in a call to `MainWindow#selectProject` with the `Index` of the first project as an argument. This will display the first project in the project list.
+**Step 3.** The `CommandResult` is passed to the `MainWindow`, which gets the `UiCommand` by calling `CommandResult#getUiCommand`.
+
+**Step 4.** The `MainWindow` now calls `UiCommand#execute`, which will result in a call to the overridden method `ViewProjectUiCommand#execute`.
+
+**Step 5.** Execution of this method will result in a call to `MainWindow#selectProject` with the `Index` of the first project as an argument. This will display the first project in the project list.
+
+</div>
 
 #### Design Considerations
 
 ##### Aspect: How to Store and Pass Around UI Related Instructions
 
+<div style="text-align: left">
+
 * **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
     * Pros:
-        * Design allows behaviour of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommands`.
+        * Design allows behaviour of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommand`s.
         * `UiCommand` encapsulates all information needed to execute the instruction (e.g. `Index` of project). It is easy to add new commands that store different types of information.
-        * Easy to support complex `UiCommands` that perform multiple instructions or contain logic.
+        * Easy to support complex `UiCommand`s that perform multiple instructions or contain more complex logic.
 
     * Cons:
         * Many classes required.
-        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action.
+        * `MainWindow` and `UiCommand` are highly coupled, as `MainWindow` both invokes the command and performs the requested action.
 
 * **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
     * Pros:
@@ -182,88 +191,108 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
         * No need for extra classes.
     * Cons:
         * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
+    
+</div>
 
 ### Add Event Feature
 
-The mechanism is used to add an `Event` to the `EventList` of a `Project` specified by the `Index` in the project list shown.
+This section explains the mechanism used to add an `Event` to a `Project`. The mechanism for adding `Project`s, `Deadline`s, `Todos`s and `Contacts`s are similar.
 
-A concrete `AddEventCommand` containing the specified `Index` of `Project` and a valid `Event` object.
+The `AddEventCommand` results in the specified event being added to the application. This command requires a compulsory field Project Index to specify which project the event is to be added to.
 
-Each concrete `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
+When the command is executed, a concrete `AddEventCommand` is created containing the specified Project Index and a valid `Event` object.
 
-Below is a sequence diagram and explanation of how an `addE` command is executed.
+The `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate methods in `Project` to update its `EventList` and appropriate methods in `Model` to update the Project List.
+
+Below is a sequence diagram and explanation of how the `AddEventCommand` is executed.
 
 ![Add Event Sequence Diagram](images/AddEventCommandSequenceDiagram.png)
 
-*Sequence Diagram for the Add Event command*
+<div style="text-align: left">
 
-Step 1. The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
+**Step 1.** The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
 
-Step 2. User input is passed to the `ColabParser` and `ColabParser` will call `ÀddEventCommandParser#parse`, which creates a new `AddEventCommand`.
+**Step 2.** User input is passed to the `ColabParser` and `ColabParser` will call `ÀddEventCommandParser#parse`, which creates a new `AddEventCommand`.
 
-Step 3. The `AddEventCommand` will then be executed by calling its `execute` method.
+**Step 3.** The `AddEventCommand` will then be executed by calling its `execute` method.
 
-Step 4. Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
+**Step 4.** Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
 
-Step 5. From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
+**Step 5.** From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
 
-Step 6. This `Project` will add the `Event` to its `EventList` by calling `addEvent` function.
+**Step 6.** This `Project` will add the `Event` to its `EventList` by calling `addEvent` function.
 
-Step 7. After the `Event` is successfully added, the `Model` will call `Model#updateFilteredProjectList` to update the Project List based on the current change.
+**Step 7.** After the `Event` is successfully added, the `Model` will call `Model#updateFilteredProjectList` to update the Project List based on the current change.
+
+</div>
 
 #### Design Considerations
 
-##### Aspect: How to Add a New `Event` to a `Project`, Which is Done in Part `Internally Adding Event`
+##### Aspect: How to Add a New `Event` to a `Project`
+
+<div style="text-align: left">
 
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
     * Pros:
-        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
+        * This implementation requires no additional time and space (for creation of new `Project` and `EventList` object).
     * Cons:
-        * This implementation will not work with an immutable implementation of `EventList`
+        * This implementation will not work with an immutable implementation of `EventList`.
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
     * Pros:
-        * If the implementation of `EventList` becomes immutable. This implementaion still works.
+        * If the implementation of `EventList` becomes immutable, this implementaion still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
+</div>
+
 ### Update Feature
 
-CoLAB has several update commands for `Project`s, `Contact`s, `Event`s, `Deadline`s, `Todo`` and `Groupmate`s respectively. They are used to edit details of entities that have already been created.
+CoLAB has several update commands for `Project`s, `Contact`s, `Event`s, `Deadline`s, `Todo`s and `Groupmate`s respectively. They are used to update details of entities that have already been created.
 
 Below is a sequence diagram of how an `updateP` (update project) command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateProjectCommandSequenceDiagram.png)
 
-Step 1. The user types an update project command `updateP 1 n/Group Project`.
+<div style="text-align: left">
 
-Step 2. User input is passed to the `colabParser`, which creates a new `UpdateProjectCommand`.
+**Step 1.** The user types an update project command `updateP 1 n/Group Project`.
 
-Step 3. The `UpdateProjectCommand` will then be executed by calling its `execute` method.
+**Step 2.** User input is passed to the `colabParser`, which creates a new `UpdateProjectCommand`.
 
-Step 4. Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it is able to call a method `ModelManager#setProject` to change an existing project of a given `Index` in the `ProjectsFolder` to the modified version.
+**Step 3.** The `UpdateProjectCommand` will then be executed by calling its `execute` method.
 
-Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+**Step 4.** Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it is able to call a method `ModelManager#setProject` to change an existing project of a given `Index` in the `ProjectsFolder` to the modified version.
 
-The other commands for `Event`s, `Deadline`s, `Todo`` and `Groupmate`s require some more work because these are sub-components of a `Project`. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
+**Step 5.** After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+</div>
+
+The other commands for `Event`s, `Deadline`s, `Todo`s and `Groupmate`s require some more work because these are sub-components of a `Project`. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateGroupmateCommandSequenceDiagram.png)
 
-Step 1. The user types an update groupmate command `updateG 1 i/1 n/Sylphiette Greyrat`.
+<div style="text-align: left">
 
-Step 2. User input is passed to the `colabParser`, which creates a new `UpdateGroupmateCommand`.
+**Step 1.** The user types an update groupmate command `updateG 1 i/1 n/Sylphiette Greyrat`.
 
-Step 3. The `UpdateGroupmateCommand` will then be executed by calling its `execute` method.
+**Step 2.** User input is passed to the `colabParser`, which creates a new `UpdateGroupmateCommand`.
 
-Step 4. It will then get the list of projects through `Model#getFilteredProjectList`, and use the project `Index` to get the project to be updated.
+**Step 3.** The `UpdateGroupmateCommand` will then be executed by calling its `execute` method.
 
-Step 5. It will then call a method `Project#setGroupmate` to change an existing groupmate of a given `Index` in the `GroupmateList` to the modified version.
+**Step 4.** It will then get the list of projects through `Model#getFilteredProjectList`, and use the project `Index` to get the project to be updated.
 
-Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+**Step 5.** It will then call a method `Project#setGroupmate` to change an existing groupmate of a given `Index` in the `GroupmateList` to the modified version.
+
+**Step 6.** After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+</div>
 
 #### Design consideration:
 
 ##### Aspect: How the Target Contact is Specified When Updating Contacts
+
+<div style="text-align: left">
 
 * **Alternative 1 (current choice):** Pass the `Index` object down to `UniqueContactList#setContact`.
     * Pros: More Consistent in how to pass indexes and locate an element in a `List` throughout the codebase.
@@ -277,9 +306,11 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
     * Pros: Will use less memory (only needs memory for an integer instead of a `Contact` object or an `Index` object), no reliance on `Index`.
     * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
 
+</div>
+
 ### Delete Todo Feature
 
-This section explains the implementation of the Delete Todo command feature. As the implementation of deleting Deadlines, Events and Groupmates are similar, this section will focus only on the implementation of the deletion of Todos.
+This section explains the implementation of the Delete Todo feature. As the implementation of deleting Deadlines, Events and Groupmates are similar, this section will focus only on the implementation of the deletion of Todos.
 
 The `DeleteTodoCommand` results in the specified todo being removed from the application. This command requires two compulsory fields Project Index & Todo Index to specify which project the todo is to be deleted from.
 
@@ -287,11 +318,9 @@ This is done through the use of the `ParserUtil#parseIndex` method inside the `s
 
 If the provided project index and todo index are valid, then `DeleteTodoCommandParser` creates a `DeleteTodoCommand` object. The sequence diagram below shows how the `DeleteTodoCommand` object is created.
 
-For a better understanding, take a look at the Logic Class Diagram in the Logic Component section of the DG where you can see `DeleteTodoCommandParser` being represented as `XYZCommandParser`.
+For a better understanding, take a look at the Logic Class Diagram in the [Logic Component](#logic-component) section of the DG where you can see `DeleteTodoCommandParser` being represented as `XYZCommandParser`.
 
 ![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserSequenceDiagram.png)
-
-*Sequence Diagram for the Delete Todo command*
 
 The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`. 
 
@@ -299,7 +328,8 @@ Depicted below is another sequence diagram that shows the interaction between `S
 
 ![Delete Todo Sequence Diagram](images/DeleteTodoSequenceDiagram.png)
 
-*Sequence Diagram for `DeleteTodoCommand#execute()`*
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 As shown, the original todo in CoLAB's Model Component has been deleted. Moreover, the updated list of todos has been saved to the Storage Component of CoLAB. As the operation comes to an end, the `CommandResult` object returned is used for UI purposes, where a message is displayed to the user to inform him/her about the status of their input command and the deleted todo.
 
