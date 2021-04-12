@@ -605,7 +605,7 @@ For those who have not used Snapchat before, do not fear. We will try our best t
 
 Streaks are calculated relative to the date today. A year has approximately 52 weeks. Assume that your friend, John, has a weekly meeting goal set and the current week is week 10, 
 you started to meet your friend on week 7 and you consistently met him for weeks 8 and 9 but not yet on week 10. John's streak will be 3 on week 10. 
-If you managed to meet him on week 10, his streak will be incremented by 1, to 4. However, if you did not meet him in Week 10 and once the Monday of week 11 reaches, John's streak will 
+If you managed to meet him on week 10, his streak will be incremented by 1, to 4. However, if you did not meet him in week 10 and once the Monday of week 11 reaches, John's streak will 
 be reset back to 0. The goal deadline for weekly goals is 11:59pm on Sundays. Since you did not manage to meet John for the whole of week 10, you failed to keep to your goal of meeting 
 John weekly and so the streak resets. 
 
