@@ -27,8 +27,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=simran-bhadani3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=simran-bhadani3&tabRepo=AY2021S2-CS2103T-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-        * Maintained the issue tracker
-        * Managed jar file creation for two releases
+      * Maintained the issue tracker
+      * Managed jar file creation for two releases
 
 * **Enhancements to existing features**:
     * Modified delete command to accept multiple indexes
@@ -39,7 +39,7 @@ Given below are my contributions to the project.
         * Added documentation for the `delete`, `addItem` and `deleteItem` features. [\#122](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/112/)
         * Edited Glossary, FAQ and checked for grammatical errors. [\#248](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/248)
 
-  * Developer Guide:
+    * Developer Guide:
         * Added implementation details for the `addItem` feature.
         * Added implementation details for the `deleteItem` feature.
 
