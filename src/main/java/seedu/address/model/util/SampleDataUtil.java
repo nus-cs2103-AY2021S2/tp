@@ -28,7 +28,7 @@ public class SampleDataUtil {
                 new DressCode("formal"), new Type("upper"),
                 getDescriptionSet("home", "wrinkled"), new LastUse("2021-04-01")),
             new Garment(new Name("Jeans"), new Size("29"), new Colour("blue"),
-                new DressCode("Casual"), new Type("lower"),
+                new DressCode("casual"), new Type("lower"),
                 getDescriptionSet("school", "stained", "torn"), new LastUse("2021-03-30")),
             new Garment(new Name("Adidas Shoes"), new Size("26"), new Colour("orange"),
                 new DressCode("active"), new Type("footwear"),
