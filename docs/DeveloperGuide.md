@@ -867,12 +867,20 @@ testers are expected to do more *exploratory* testing.
        Expected: The contacts with a psg tag, *'Charlotte Oliveiro'* and *'Annie Li'* are deleted from the address book.
 
 #### Delete a contact
+1. Deleting a contact while all contacts are being shown, with some contacts involved in appointments
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list, with some contacts tagged in appointments.
+    1. Test case: `delete 1` (where the first contact is not tagged in any appointment) \
+       Expected: First contact in the list is deleted. Details of deleted contact is shown in status message.
+    1. Test case: `delete x` (where the contact at index x is tagged in an appointment) \
+       Expected: Contact is not deleted. Error message is shown in status message.
 
 #### Delete multiple contacts
 
 #### Clear contacts
 
 #### Edit a contact
+1. Editing 
 
 #### Find a contact
 
