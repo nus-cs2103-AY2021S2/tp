@@ -1,14 +1,13 @@
 ### [Feature] Marking `Event` as Done
 
-We want to allow `Event` to be marked as done. So that the user can easily keep track of what events have been completed,
-and what events are upcoming.
+This feature allows `Event` to be marked as done. Helps user to easily keep track of what events have been completed.
 
-`Event` titles could include a tick to represent completion.
+In the display, done `Event` will include a tick to represent completion.
 
 #### Implementation
 * Syntax for EDoneCommand: `edone INDEX [INDEX]...`
 * Modification to `Event` class
-    * New attribute `isDone` should be added to represent a done and not done event.
+    * New attribute `isDone` to represent a done and not done event.
     * A `setDone()` method to return a new `Event` object that is done.
     * A `getStatus()` method that returns a tick if the `Event` is done (for UI display).
 
