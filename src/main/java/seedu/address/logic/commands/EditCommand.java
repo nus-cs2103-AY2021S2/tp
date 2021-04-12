@@ -101,8 +101,8 @@ public class EditCommand extends Command {
             outputMessage = MESSAGE_EDIT_PASSENGER_WARNING;
         }
 
-        if (model.hasPoolWithDriver(passengerToEdit)) {
-            throw new CommandException(String.format(MESSAGE_DRIVER_IS_PASSENGER, passengerToEdit));
+        if (model.hasPoolWithDriver(editedPassenger)) {
+            throw new CommandException(String.format(MESSAGE_DRIVER_IS_PASSENGER, editedPassenger.getName()));
         }
 
         model.setPassenger(passengerToEdit, editedPassenger);
