@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import seedu.dictionote.model.note.Note;
 
 /**
- * An UI component that displays information of a {@code DisplayableContent}.
+ * A UI component that displays and edits of a {@code Note} information.
  */
 public class NoteContentPanel extends UiPart<Region> implements NoteContentConfig {
 
@@ -50,7 +50,7 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
     private boolean onEditMode;
 
     /**
-     * Creates a {@code DictionaryContentPanel} for {@code DisplayableContent}.
+     * Creates a {@code NoteContentPanel} for {@code Note}.
      */
     public NoteContentPanel() {
         super(FXML);
@@ -105,7 +105,7 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
     }
 
     /**
-     * Enter edit mode, enable note content editable
+     * Enters edit mode, enable note content editable.
      */
     public void enterEditMode() {
         notecontent.setEditable(true);
@@ -114,7 +114,7 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
     }
 
     /**
-     * Exit edit mode, disable note content editable
+     * Exits edit mode, disable note content editable.
      */
     public void exitEditMode() {
         notecontent.setEditable(false);
@@ -122,7 +122,7 @@ public class NoteContentPanel extends UiPart<Region> implements NoteContentConfi
     }
 
     /**
-     * Request focus on text field box.
+     * Requests focus on text field box.
      */
     public void requestFocus() {
         notecontent.requestFocus();;

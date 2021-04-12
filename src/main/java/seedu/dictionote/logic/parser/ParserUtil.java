@@ -174,30 +174,6 @@ public class ParserUtil {
         return trimmedMainContent;
     }
 
-    /**
-     * Parses a {@code String term} into a {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code term} is invalid.
-     */
-    public static String parseTerm(String term) throws ParseException {
-        requireNonNull(term);
-        String trimmedTerm = term.trim();
-        return trimmedTerm;
-    }
-
-    /**
-     * Parses a {@code String defs} into a {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code defs} is invalid.
-     */
-    public static String parseDefs(String defs) throws ParseException {
-        requireNonNull(defs);
-        String trimmedDefs = defs.trim();
-        return trimmedDefs;
-    }
-
     /** Parses a {@code String option} into a {@code UiOptionAction}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -213,8 +189,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code position} into an {@code int} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code position} into an {@code int} and returns it. Leading and trailing whitespaces will be trimmed.
      * return 0 if the specified position is invalid (not between 1 to 9).
      */
     public static int parsePosition(String oneBasedIndex) {

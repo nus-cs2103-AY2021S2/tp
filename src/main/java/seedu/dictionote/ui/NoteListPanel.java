@@ -11,7 +11,7 @@ import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.note.Note;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of note.
  */
 public class NoteListPanel extends UiPart<Region> {
     private static final String FXML = "NoteListPanel.fxml";

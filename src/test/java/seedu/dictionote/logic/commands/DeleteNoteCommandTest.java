@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -57,7 +59,8 @@ public class DeleteNoteCommandTest {
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.deleteNote(noteToDelete);
 
-        assertCommandSuccess(deleteNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteNoteCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.NOTE_LIST, expectedModel);
     }
 
     @Test
@@ -83,7 +86,8 @@ public class DeleteNoteCommandTest {
         expectedModel.deleteNote(noteToDelete);
         showNoNote(expectedModel);
 
-        assertCommandSuccess(deleteNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteNoteCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.NOTE_LIST, expectedModel);
     }
 
     @Test

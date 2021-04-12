@@ -6,7 +6,7 @@ import javafx.scene.layout.Region;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code DisplayableContent}.
  */
 public class DictionaryContentCard extends UiPart<Region> {
 
@@ -30,7 +30,7 @@ public class DictionaryContentCard extends UiPart<Region> {
     private Label week;
 
     /**
-     * Creates a {@code DictionaryListContentCard} with the given {@code DisplayableContent} and index to display.
+     * Creates a {@code DictionaryContentCard} with the given {@code DisplayableContent} and index to display.
      */
     public DictionaryContentCard(DisplayableContent displayableContent) {
         super(FXML);

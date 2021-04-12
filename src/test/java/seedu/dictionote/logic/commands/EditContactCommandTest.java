@@ -22,6 +22,8 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
@@ -50,7 +52,8 @@ public class EditContactCommandTest {
                 new UserPrefs(), model.getNoteBook(), model.getDictionary(), getTypicalDefinitionBook());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
-        assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editContactCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
     @Test
@@ -72,7 +75,8 @@ public class EditContactCommandTest {
                 new UserPrefs(), model.getNoteBook(), model.getDictionary(), getTypicalDefinitionBook());
         expectedModel.setContact(lastContact, editedContact);
 
-        assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editContactCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
     @Test
@@ -86,7 +90,8 @@ public class EditContactCommandTest {
         Model expectedModel = new ModelManager(new ContactsList(model.getContactsList()),
                 new UserPrefs(), getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
-        assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editContactCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
     @Test
@@ -104,7 +109,8 @@ public class EditContactCommandTest {
                 new UserPrefs(), model.getNoteBook(), model.getDictionary(), getTypicalDefinitionBook());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
-        assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editContactCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
     @Test

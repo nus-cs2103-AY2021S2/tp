@@ -64,18 +64,18 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
-     * Set the user prefs' GUI settings.
+     * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Set Dictionary UI Configuration Interface
+     * Sets Dictionary UI Configuration Interface.
      */
     void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig);
 
 
     /**
-     * Set Note UI Configuration Interface
+     * Sets Note UI Configuration Interface.
      */
     void setNoteContentConfig(NoteContentConfig noteContentConfig);
 }

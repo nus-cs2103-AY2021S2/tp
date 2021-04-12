@@ -20,12 +20,17 @@ public class ToggleNoteOrientationCommandTest {
     @Test
     public void execute_toggle_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_TOGGLE_SUCCESS, UiAction.OPEN,
-            UiActionOption.NOTE_CONTENT);
+            UiActionOption.NOTE);
+        expectedModel.getGuiSettings().toggleNotePanelOrientation();
         assertCommandSuccess(new ToggleNoteOrientationCommand(), model, expectedCommandResult, expectedModel);
+
         //value should not equal after toggle
         assertNotEquals(model.getGuiSettings().getNotePanelOrientation(), (
             new ModelManager()).getGuiSettings().getNotePanelOrientation());
+
+        expectedModel.getGuiSettings().toggleNotePanelOrientation();
         assertCommandSuccess(new ToggleNoteOrientationCommand(), model, expectedCommandResult, expectedModel);
+
         //value should be equal after toggle again
         assertEquals(model.getGuiSettings().getNotePanelOrientation(), (
             new ModelManager()).getGuiSettings().getNotePanelOrientation());

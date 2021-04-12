@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
@@ -111,6 +113,28 @@ public class CommandTestUtil {
     }
 
     /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage} and a UiAction {@code expectedUiAction}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            UiAction expectedUiAction, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedUiAction);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}, a UiAction {@code expectedUiAction}
+     * and a UiActionOption {@code expectedUiActionOption}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            UiAction expectedUiAction, UiActionOption expectedUiActionOption, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedUiAction,
+            expectedUiActionOption);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
@@ -181,8 +205,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredContentList().size());
 
         Content content = model.getFilteredContentList().get(targetIndex.getZeroBased());
-        Predicate<Note> showSelectedContentsPredicate = x -> x.equals(content);
-        model.updateFilteredNoteList(showSelectedContentsPredicate);
+        Predicate<Content> showSelectedContentsPredicate = x -> x.equals(content);
+        model.updateFilteredContentList(showSelectedContentsPredicate);
 
         assertEquals(1, model.getFilteredContentList().size());
     }

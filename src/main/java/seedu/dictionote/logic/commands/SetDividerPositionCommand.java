@@ -8,7 +8,9 @@ public abstract class SetDividerPositionCommand extends Command {
     protected final int position;
 
     /**
-     * Creates an SetDividerPositionCommand that set an divider to a the specified position
+     * Creates an SetDividerPositionCommand that set an divider to a the specified position.
+     *
+     * @param position position of divider
      */
     public SetDividerPositionCommand(int position) {
         this.position = position;
