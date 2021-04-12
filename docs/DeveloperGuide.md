@@ -748,29 +748,48 @@ otherwise)
 
 **Extensions**
 
-* 1a. User input has invalid syntax.
+* 1a. The command keyed in by the user has an invalid command format.
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 1b. Duplicate item exists in the inventory.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
     
-* 1c. User inputs a number smaller than 0 or larger than 1,000,000.
+* 1c. User inputs a quantity number smaller than 1 or larger than 1,000,000.
 
     * 1c1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-**Use case: UC2 - Delete an item in a specific location**
+**Use case: UC2 - Delete an item from the entire inventory**
 
 **MSS**
 
-1. User requests to <u> list all items in a specific location (UC7). </u>
+1. User requests to <u> list all items in the inventory (UC7). </u>
+2. StoreMando displays all items.
+3. User requests to delete a specific item in the list.
+4. StoreMando deletes the specified item from the list and displays the updated list of items.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The command keyed in by the user has an invalid command format.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case ends.
+
+**Use case: UC3 - Delete an item from a specific location**
+
+**MSS**
+
+1. User requests to <u> list all items in a specific location (UC8). </u>
 2. StoreMando displays all items in the location.
 3. User requests to delete a specific item in the list.
 4. StoreMando deletes the specified item from the list and displays the updated list of items.
@@ -779,6 +798,12 @@ otherwise)
 
 **Extensions**
 
+* 1a. The command keyed in by the user has an invalid command format.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case ends.
+    
 * 2a. There are no items in the specified location.
 
   Use case ends.
@@ -787,9 +812,9 @@ otherwise)
 
     * 3a1. StoreMando shows an error message.
 
-      Use case resumes at step 3.
+      Use case ends.
 
-**Use case: UC3 - Find an item**
+**Use case: UC4 - Find an item**
 
 **MSS**
 
@@ -798,7 +823,15 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC4 - Edit an item**
+**Extensions**
+
+* 1a. The command keyed in by the user has an invalid command format.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case ends.
+
+**Use case: UC5 - Edit an item**
 
 **MSS**
 
@@ -809,48 +842,54 @@ otherwise)
 
 **Extensions**
 
-* 1a. The command keyed in by the user has an invalid syntax.
+* 1a. The command keyed in by the user has an invalid command format.
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 1b. The new details keyed in by the user is the same as the existing details of the item.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-* 1c. User inputs a number smaller than 0 or larger than 1,000,000.
+* 1c. User inputs a quantity number smaller than 1 or larger than 1,000,000.
 
     * 1c1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
     
-**Use case: UC5 - Check for expiring items**
+**Use case: UC6 - Check for expiring items**
 
 **MSS**
 
-1. User wants to search for items that are expiring within a specific number of days.
-2. StoreMando displays a list of items that have either expired or are expiring within the specified number of days.
+1. User wants to search for items that are expiring within a specific number of days/weeks.
+2. StoreMando displays a list of items that have either expired or are expiring within the specified number of days/weeks.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User inputs a number smaller than -365 or larger than 365.
+* 1a. The command keyed in by the user has an invalid command format.
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-* 1a. Time unit input is neither day(s) or week(s)
+* 1b. User inputs a number smaller than -365 or larger than 365.
 
-    * 1a1. StoreMando shows an error message.
+    * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-**Use case: UC6 - List all items**
+* 1c. Time unit input is neither day(s) or week(s)
+
+    * 1c1. StoreMando shows an error message.
+
+      Use case ends.
+
+**Use case: UC7 - List all items**
 
 **MSS**
 
@@ -859,7 +898,7 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC7 - List all items in a specific location**
+**Use case: UC8 - List all items in a specific location**
 
 **MSS**
 
@@ -870,13 +909,13 @@ otherwise)
 
 **Extensions**
 
-* 1a. User input has invalid syntax.
+* 1a. The command keyed in by the user has an invalid command format.
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-**Use case: UC8 - List all items with a specific tag**
+**Use case: UC9 - List all items with a specific tag**
 
 **MSS**
 
@@ -885,7 +924,15 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC9 - Sort items in ascending order of quantity**
+**Extensions**
+
+* 1a. The command keyed in by the user has an invalid command format.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case ends.
+
+**Use case: UC10 - Sort items in ascending order of quantity**
 
 **MSS**
 
@@ -894,7 +941,15 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC10 - Sort items in descending order of quantity**
+**Extensions**
+
+* 1a. The command keyed in by the user has an invalid command format.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case ends.
+
+**Use case: UC11 - Sort items in descending order of quantity**
 
 **MSS**
 
@@ -903,7 +958,15 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC11 - Sort items by expiry date**
+**Extensions**
+
+* 1a. The command keyed in by the user has an invalid command format.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case ends.
+
+**Use case: UC12 - Sort items by expiry date**
 
 **MSS**
 
@@ -912,31 +975,39 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC12 - Clear all items**
+**Extensions**
+
+* 1a. The command keyed in by the user has an invalid command format.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case ends.
+
+**Use case: UC13 - Clear all items**
 
 **MSS**
 
 1. User requests to clear all items in the inventory.
-2. StoreMando deletes all items in the inventory.
+2. StoreMando clears all items in the inventory.
 
-Use case ends.
+    Use case ends.
 
-**Use case: UC13 - Clear all items in a specific location**
+**Use case: UC14 - Clear all items in a specific location**
 
 **MSS**
 
-1. User requests to delete all items in a specific location.
-2. StoreMando deletes all items in that location.
+1. User requests to clears all items in a specific location.
+2. StoreMando clears all items in that location.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 1a. The location keyed in by the user does not exist in the inventory.
+* 1a. The command keyed in by the user has an invalid command format.
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 ### Non-Functional Requirements
 
