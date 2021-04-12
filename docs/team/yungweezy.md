@@ -45,7 +45,6 @@ Given below is a summary of my contributions to the development of TutorBuddy.
 * Testing
     * Written test cases for `Tuition` class ([PR #97](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/97))
     * Added relevant test cases for overlapping sessions check ([PR #155](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/155))
-    * Added some test cases for `list_session` command ([PR #75](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/75)) (Deprecated)
     * Added relevant test cases for `DeleteRecurringSessionCommand` ([PR #300])(https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/300)
 * Documentation
     * User Guide
@@ -54,6 +53,6 @@ Given below is a summary of my contributions to the development of TutorBuddy.
         * Added sub-headers that groups commands into different categories to improve readability.
     * Developer Guide
         * Added implementation details for the `list` command along with the relevant sequence and activity diagram ([PR #100](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/100))
-        * Added implementation details for the `delete_rec_session` command along with the relevant sequence and activity diagram ([PR #303])(https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/303)
+        * Added implementation details for the `delete_rec_session` command along with the relevant sequence and activity diagram ([PR #303](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/303))
     * Codes Contributed
         * [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=yungweezy&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
