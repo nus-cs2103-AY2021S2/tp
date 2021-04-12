@@ -44,7 +44,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+#Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -176,7 +176,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 ![Ui](images/FindTelephone.png)
 
 
-4. finding by date of delivery: `find 2021-10-10`
+4. finding by date of delivery: `find 2021-10-25`
 
 
 ![Ui](images/FindDate.png)
@@ -414,7 +414,7 @@ Action | Format,<br> Example(s)
 **Exit** | `exit`<br> e.g., `exit`
 
 
-# Glossary
+#Glossary
 
 Term | Definition,<br>
 --------|------------------
