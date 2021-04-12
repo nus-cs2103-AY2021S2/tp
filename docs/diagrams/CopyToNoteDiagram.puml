@@ -38,6 +38,7 @@ List -> ContentObj : getDictionaryContent()
 activate ContentObj
 ContentObj --> List
 deactivate ContentObj
+List --> Model
 deactivate List
 
 create Note
