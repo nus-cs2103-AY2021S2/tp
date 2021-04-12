@@ -1,0 +1,77 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TutorTrackerParser" as TutorTrackerParser LOGIC_COLOR
+participant ":AddGradeCommandParser" as AddGradeCommandParser LOGIC_COLOR
+participant "a:AddGradeCommand" as AddGradeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "g:Grade" as Grade LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add_Grade s/Mathematics \ngi/Final Exam \ngr/A1")
+activate LogicManager
+
+LogicManager -> TutorTrackerParser : parseCommand("add_Grade s/Mathematics \ngi/Final Exam gr/A1")
+activate TutorTrackerParser
+
+create AddGradeCommandParser
+TutorTrackerParser -> AddGradeCommandParser
+activate AddGradeCommandParser
+
+AddGradeCommandParser --> TutorTrackerParser
+deactivate AddGradeCommandParser
+
+TutorTrackerParser -> AddGradeCommandParser : parse("Mathematics", "Final Exam", \n"A1")
+activate AddGradeCommandParser
+
+create Grade
+AddGradeCommandParser -> Grade : Grade("Mathematics", "Final Exam", "A1")
+activate Grade
+
+Grade --> AddGradeCommandParser : g
+deactivate Grade
+
+create AddGradeCommand
+AddGradeCommandParser -> AddGradeCommand : AddGradeCommand(g)
+activate AddGradeCommand
+
+AddGradeCommand --> AddGradeCommandParser : g
+deactivate AddGradeCommand
+
+AddGradeCommandParser --> TutorTrackerParser : g
+deactivate AddGradeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddGradeCommandParser -[hidden]-> TutorTrackerParser
+destroy AddGradeCommandParser
+
+TutorTrackerParser --> LogicManager : g
+deactivate TutorTrackerParser
+
+LogicManager -> AddGradeCommand : execute()
+activate AddGradeCommand
+
+AddGradeCommand -> Model : addGrade(g)
+activate Model
+
+Model --> AddGradeCommand
+deactivate Model
+
+create CommandResult
+AddGradeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddGradeCommand
+deactivate CommandResult
+
+AddGradeCommand --> LogicManager : result
+deactivate AddGradeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

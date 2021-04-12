@@ -8,14 +8,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class Title {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Title should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Title should only contain alphanumeric characters and spaces, "
+            + "it should between 2 to 30 characters and not blank\";\n";
 
     /*
      * The first character of the title must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "(?=^.{0,30}$)[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String value;
 

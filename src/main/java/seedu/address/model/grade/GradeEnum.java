@@ -7,8 +7,8 @@ public enum GradeEnum {
     D7("D7"), E8("E8"), F9("F9");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should follow the grading pattern of the Singapore-Cambridge GCE \"O\" level examination: "
-                    + "A1, A2, B3, B4, C5, C6, D7, E8, F9 "
+            "Grade should follow the Singapore-Cambridge GCE \"O\" level grading system: "
+                    + "A1, A2, B3, B4, C5, C6, D7, E8, F9, all letters should be in upper case "
                     + "and it should not be blank";
     public final String gradeLetter;
 

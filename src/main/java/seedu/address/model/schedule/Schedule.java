@@ -52,7 +52,7 @@ public class Schedule extends Event {
 
     @Override
     public String toString() {
-        return String.format("Schedule (%s) %s", this.title.value, super.toString());
+        return String.format("%s %s", this.title.value, super.toString());
     }
 
     /**

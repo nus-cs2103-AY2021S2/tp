@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SCHEDULE_DISPL
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showScheduleAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalModel.ModelType.SCHEDULETRACKER;
@@ -61,7 +62,7 @@ public class DeleteScheduleCommandTest {
 
         Model expectedModel = TypicalModel.getTypicalModel(model, SCHEDULETRACKER);
         expectedModel.deleteSchedule(scheduleToDelete);
-        showNoSchedule(expectedModel);
+        model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULE);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

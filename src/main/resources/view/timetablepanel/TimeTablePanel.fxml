@@ -6,6 +6,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
+<!-- @@author RuiFengg -->
+<!-- Reused from https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/resources/view/schedulepanel/SchedulePanel.fxml with no modifications -->
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11">
     <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308"
            minWidth="-Infinity" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label"

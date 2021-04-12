@@ -22,11 +22,7 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-    * **`add_appointment`** `n/Charlotte Oliveiro s/English d/2021-04-20 fr/2:00 PM to/4:00 PM l/Bedok` : Adds an appointment with a tutor named `Charlotte Oliveiro` to the Tutor Tracker.
-    * **`list_appointments`** : Lists all personal tuition appointments.
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -34,13 +30,13 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 
 ## Application Layout
 
-The figure below shows the GUI of TutorTracker, annotated with a description of each GUI component.
+The figure below shows the GUI of Tutor Tracker, annotated with a description of each GUI component.
 
 ![Ui Components](images/ug-images/Components.png)
 
 ## Features
 
-This section contains all the information about features of TutorTracker. You may enter a command into the Command Box to use each feature or sub-feature.
+This section contains all the information about the features of Tutor Tracker. You may enter a command into the Command Box to use each feature or sub-feature.
 
 <div markdown="block" class="alert alert-info">
 
@@ -58,7 +54,7 @@ This section contains all the information about features of TutorTracker. You ma
 * Items that have date as a parameter must strictly follow `YYYY-MM-DD` format.<br> 
   e.g. `2021-03-01`and `2021-04-20`.
 
-* Items that have time as parameter must strictly follow `HH:MM AM/PM` format.<br>
+* Items that have time as a parameter must strictly follow `HH:MM AM/PM` format.<br>
   e.g. `9:01 AM` and `10:30 PM`.
 
 * Parameters can be in any order.<br>
@@ -254,8 +250,9 @@ TutorTracker jar under the export folder, with the tutor's name as file name.
 
 Format:`export INDEX`
 
-Example: `export 1` If the jar is saved in C:\Users\user\Downloads, and first tutor name is Alex Yeoh,
-text file Alex_Yeoh.txt will be saved under the export folder. Full path in this case would be C:\Users\user\Downloads\export\Alex_Yeoh.txt
+Example: `export 1` If the jar is saved in `C:\Users\user\Downloads`, and first tutor name is Alex Yeoh,
+text file `Alex_Yeoh.txt` will be saved under the export folder. 
+Full path in this case would be `C:\Users\user\Downloads\export\Alex_Yeoh.txt`.
 
 #### Favourites
 This feature allows users to track and manage their favourite tutors.
@@ -286,7 +283,7 @@ English
 
 ##### Unfavourite a tutor: `unfavourite`
 
-Removes favourite status of a particular tutor that had been previously added as a favourite by using the index.
+Removes the favourite status of a particular tutor that had been previously added as a favourite by using the index.
 
 Format: `unfavourite INDEX`
 
@@ -347,7 +344,12 @@ Shows a list of all upcoming tuition appointments in the personal tuition appoin
 
 Format: `list_appointments`
 
-Example outputs:
+Result Display Example Output:
+```
+Listed all appointments (1 displayed)
+```
+
+Appointment List Example Output:
 ```
 1. Mathematics
 Tutor: Alex Yeoh
@@ -364,7 +366,7 @@ Location: Hougang
 
 #### View tuition appointments: `view_appointment`
 
-View details of a tuition appointment on a particular date.
+View the list of tuition appointment happening on a particular date.
 
 Format:
 `view_appointment DATE`
@@ -372,7 +374,12 @@ Format:
 Example:
 `view_appointment 2021-03-24`
 
-Example Output:
+Result Display Example Output:
+```
+Viewing appointment(s) on Mar 24 2021 (1 displayed)
+```
+
+Appointment List Example Output:
 ```
 1. Mathematics
 Tutor: Alex Yeoh
@@ -393,7 +400,12 @@ Format:
 Example:
 `find_appointment Alex Yeoh`
 
-Example Output:
+Result Display Example Output:
+```
+1 appointments listed!
+```
+
+Appointment List Display Output:
 ```
 1. Mathematics
 Tutor: Alex Yeoh
@@ -413,7 +425,7 @@ The index must be a positive integer e.g. `1, 2, 3, …​`
 Example:
 `delete_appointment 1`
 
-Example Output:
+Result Display Example Output:
 ```
 Deleted Appointment: Appointment with Tutor (Alex Poon) from 
 Mar 10 2021 05:00PM to Mar 10 2021 07:00PM
@@ -432,7 +444,7 @@ Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM
 * The modified `DATE`, `TIME_FROM` and `TIME_TO` must be in the future.
 * Refer to [Appointment Tracker Section](#appointment-tracker) for other date related constraints.
  
-Examples: `edit_appointment 1 s/English l/Clementi`
+Example: `edit_appointment 1 s/English l/Clementi`
 
 ### Schedule Tracker
 This feature allows tutees to track and manage their tuition-related schedules, i.e., allocating time to do their tuition homework.
@@ -470,8 +482,29 @@ Format: `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION`
 * Refer to [Schedule Tracker Section](#schedule-tracker) for other date related constraints.
 
 Examples:<br>
-* `add_schedule t/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
-* `add_schedule t/Maths Tuition Homework d/2021-4-2 fr/5:00pm to/7:00pm ds/Calculus Topic`
+* `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic`
+* `add_schedule t/Science Tuition Homework d/2021-6-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
+
+Result Display Example Output:
+```
+New schedule added: Maths Tuition Homework from Jun 02 2021 05:00 PM to Jun 02 2021 07:00 PM
+```
+```
+New schedule added: Science Tuition Homework from Jun 30 2021 06:00 PM to Jun 30 2021 07:00 PM
+```
+
+Schedule List Panel Example Output:
+```
+1. Maths Tuition Homework
+Jun 02 2021
+5:00 PM - 7:00 PM
+Calculus Topic
+
+2. Science Tuition Homework
+Jun 30 2021
+6:00 PM - 7:00 PM
+Chapter 5 to 6
+```
 
 #### Listing all schedules : `list_schedules`
 
@@ -479,34 +512,45 @@ This feature shows a list of the tutees's personal schedule. Schedules are autom
 
 Format: `list_schedules`
 
-Example outputs:
+Result Display Example Output:
 ```
-1.  Math Tuition Homework
-Mar 24 2021
-2:00 PM - 4:00 PM
-Chapter 5 to 6
-2.  Science Tuition Homework
-Mar 30 2021
-2:00 PM - 4:00 PM
+Listed all schedule(s) (2 displayed)
+```
+
+Schedule List Panel Example Output:
+```
+1. Maths Tuition Homework
+Jun 02 2021
+5:00 PM - 7:00 PM
 Calculus Topic
+
+2. Science Tuition Homework
+Jun 30 2021
+6:00 PM - 7:00 PM
+Chapter 5 to 6
 ```
 
-#### View schedule details: `view_schedule`
+#### View schedules: `view_schedule`
 
-View details of a schedule on a particular date.
+View the list of schedules happening on a particular date.
 
 Format:
 `view_schedule DATE`
 
 Example:
-`view_schedule 2021-4-20`
+`view_schedule 2021-6-2`
 
-Example Output:
+Result Display Example Output:
 ```
-1.  Math Tuition Homework
-Mar 24 2021
-2:00 PM - 4:00 PM
-Chapter 5 to 6
+Viewing schedule(s) on Jun 02 2021 (1 displayed)
+```
+
+Schedule List Panel Example Output:
+```
+1. Maths Tuition Homework
+Jun 02 2021
+5:00 PM - 7:00 PM
+Calculus Topic
 ```
 
 Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
@@ -517,20 +561,25 @@ Deletes the specific schedule at the specified INDEX.
 
 Format: `delete_schedule INDEX`
 
-The index refers to the index number shown in the displayed schedule list. <br>
-The index must be a positive integer e.g. `1, 2, 3, …​`
-
-Referencing to the example output from `list_schedules`,
+* The index refers to the index number shown in the displayed schedule list. <br>
+* The index must be a positive integer e.g. `1, 2, 3, …​`
 
 Example:
 `delete_schedule 1`
 
-Example Output:
+Referencing to the example output from `list_schedules`,
+
+Result Display Example Output:
 ```
-1.  Science Tuition Homework
-Mar 30 2021
-2:00 PM - 4:00 PM
-Calculus Topic
+Deleted Schedule: Maths Tuition Homework from Jun 02 2021 05:00 PM to Jun 02 2021 07:00 PM
+```
+
+Schedule List Panel Example Output:
+```
+1. Science Tuition Homework
+Jun 30 2021
+6:00 PM - 7:00 PM
+Chapter 5 to 6
 ```
 
 #### Editing a schedule : `edit_schedule`
@@ -545,15 +594,29 @@ Format: `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/
 * The modified `DATE`, `TIME_FROM` and `TIME_TO` must be in the future.
 * Refer to [Schedule Tracker Section](#schedule-tracker) for other date related constraints.
 
-Examples: `edit_schedule 1 t/Science Tuition Homework`
+Example: `edit_schedule 1 t/English Tuition Homework`
+
+Result Display Example Output:
+```
+Edited Schedule: English Tuition Homework from Jun 02 2021 05:00 PM to Jun 02 2021 07:00 PM
+```
+
+Schedule List Panel Example Output:
+```
+1. English Tuition Homework
+Jun 02 2021
+5:00 PM - 7:00 PM
+Calculus Topic
+
+2. Science Tuition Homework
+Jun 30 2021
+6:00 PM - 7:00 PM
+Chapter 5 to 6
+```
 
 ### Event Tracker
 Events represent a timetable, which comprises both `Appointment` and `Schedule`.
 This feature allows tutee to track and view their timetable easily.
-
-![Timetable Ui](images/ug-images/Timetable.png)
-
-* Green slots represent `Appointment` and blue slots represent `Schedule`.
 
 #### Opening timetable window : `timetable`
 
@@ -561,9 +624,46 @@ Launch a timetable graphical representation of the tutee's appointment and sched
 
 Format: `timetable [DATE]`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
 * The date is an optional parameter. If there is no date entered, it will display the timetable of the current week. Otherwise, by typing `2021-3-28`, it will show the week's timetable that contains 28 March 2021.
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1` or `2021-03-01`.
 * Only one timetable can be opened at a time.
+
+</div>
+
+Example: `timetable 2021-4-1`
+
+Result Display Example Output:
+```
+Opened timetable window.
+```
+
+GUI Display Example:
+
+![Timetable Ui](images/ug-images/Timetable.png)
+
+* Green slots represent `Appointment` and blue slots represent `Schedule`.
+
+
+#### View events: `view_event`
+
+View all appointments and schedules that are happening on a particular date.
+
+Format: `view_event DATE`
+
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1` or `2021-03-01`.
+
+Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
+
+Example: `view_event 2021-6-2`
+
+Result Display Example Output:
+```
+Viewing events on Jun 02 2021 (0 appointment(s) and 1 schedule(s) displayed)
+```
 
 ### Budget Tracker
 This feature allows tutees to track and manage his/her budget allocated to tuitions.
@@ -585,7 +685,7 @@ Format: `add_budget b/BUDGET`
 Example:
 `add_budget b/500`
 
-Example Output:
+Result Display Example Output:
 ```
 Budget of 500 is sucessfully added
 ```
@@ -601,7 +701,7 @@ Format : `edit_budget b/BUDGET`
 Example:
 `edit_budget b/600`
 
-Example Output
+Result Display Example Output:
 ```
 Budget of 600 is sucessfully updated.
 ```
@@ -617,7 +717,7 @@ Format : `delete_budget`
 Example:
 `delete_budget`
 
-Example Output:
+Result Display Example Output:
 ```
 Budget of 600 is sucessfully deleted.
 ```
@@ -631,7 +731,7 @@ Format : `view_budget`
 Example:
 `view_budget`
 
-Example Output:
+Result Display Example Output:
 ```
 1) Budget does not already exist. Please ensure there is a budget. You can use the 
 add_budget function to add a budget.
@@ -655,29 +755,31 @@ This feature allows tutees to track and manage their grades obtained in particul
 
 Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
 
-Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`
+Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER`
 
-* Valid `GRADE_ALPHABET` recognized by the system only include A to F, S and U.
-* `SUBJECT_NAME` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
+* Valid `GRADE_LETTER` must follow the Singapore-GCE O'Level grading system.
+* `SUBJECT_NAME` is case-insensitive and `GRADE_LETTER` must be uppercase.
 
-Example: `add_grade s/English gi/Final gr/A`
+Example: `add_grade s/English gi/Final gr/A1`
 
-Example Output:
+Result Display Example Output:
 ```
-New grade added: English (Final): A
+New grade added: English (Final): A1
 ```
 
 #### Edit a grade: `edit_grade`
 
 Edits an already existing grade at the specified index. Only the attributes present are changed in the grade.
 
-Format: `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`
+Format: `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]`
 
-Example: `edit_grade 1 gr/B`
+* At least one optional field to edit must be provided.
 
-Example Output:
+Example: `edit_grade 1 gr/B3`
+
+Result Display Example Output:
 ```
-Edited Grade: Science (Lab 1): B
+Edited Grade: Science (Lab 1): B3
 ```
 
 #### Delete a grade: `delete_grade`
@@ -688,9 +790,9 @@ Format: `delete_grade INDEX`
 
 Example: `delete_grade 1`
 
-Example Output: 
+Result Display Example Output:
 ```
-Deleted Grade: Science (Lab 1): B
+Deleted Grade: Science (Lab 1): B3
 ```
 
 #### List grades: `list_grades`
@@ -701,18 +803,18 @@ Format: `list_grades`
 
 Example: `list_grades`
 
-Example Output:
+Result Display Example Output:
 ```
 Listed all grades
   1. Science
      Lab 1
-     A
+     A1
   2. Mathematics
      Final
-     B
+     B3
   3. English
      Midterm
-     C
+     C5
 ```
 
 ### Reminder Tracker
@@ -747,8 +849,25 @@ Format: `add_reminder ds/DESCRIPTION d/REMINDER_DATE`
 * Refer to [Reminder Tracker Section](#reminder-tracker) for other date related constraints.
 
 Examples:<br>
-* `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
-* `add_reminder ds/Maths Tuition Payment Due d/2021-4-21`
+* `add_reminder ds/Science Tuition Payment Due d/2021-6-2`
+* `add_reminder ds/Maths Tuition Payment Due d/2021-6-21`
+
+Result Display Example Output:
+```
+New reminder added: Science Tuition Payment Due (Remind on: Jun 02 2021)
+```
+```
+New reminder added: Maths Tuition Payment Due (Remind on: Jun 21 2021)
+```
+
+Reminder List Panel Example Output:
+```
+1. Science Tuition Payment Due
+Date: Jun 02 2021
+
+2. Maths Tuition Payment Due
+Date: Jun 21 2021
+```
 
 #### Listing all reminders : `list_reminders`
 
@@ -756,12 +875,18 @@ Shows a list of all personal reminders. Reminders are automatically sorted by as
 
 Format: `list_reminders`
 
-Example outputs:
+Result Display Example Output:
 ```
-1.  Science Tuition Payment
-Date: Apr 2 2021
-2.  Maths Tuition Payment Due
-Date: Apr 21 2021
+Listed all reminders
+```
+
+Reminder List Panel Example Output:
+```
+1. Science Tuition Payment Due
+Date: Jun 02 2021
+
+2. Maths Tuition Payment Due
+Date: Jun 21 2021
 ```
 
 #### Delete a reminder: `delete_reminder`
@@ -773,13 +898,18 @@ Format: `delete_reminder INDEX`
 The index refers to the index number shown in the displayed reminder list. <br>
 The index must be a positive integer e.g. `1, 2, 3, …​`
 
-Referencing to the example output from `list_reminders`,
-
 Example: `delete_reminder 1`
 
-Example Output:
+Referencing to the example output from `list_reminders`,
+
+Result Display Example Output:
 ```
-1.  Maths Tuition Payment Due
+Deleted Reminder: Science Tuition Payment Due (Remind on: Jun 02 2021)
+```
+
+Reminder List Panel Example Output:
+```
+1. Maths Tuition Payment Due
 Date: Apr 21 2021
 ```
 
@@ -793,7 +923,21 @@ Format: `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]`
 * The modified `DATE` must be in the future.
 * Refer to [Reminder Tracker Section](#reminder-tracker) for other date related constraints.
 
-Examples: `edit_reminder 1 ds/Science Tuition Payment Due`
+Example: `edit_reminder 1 ds/English Tuition Payment Due`
+
+Result Display Example Output:
+```
+Edited Reminder: English Tuition Payment Due (Remind on: Jun 02 2021)
+```
+
+Reminder List Panel Example Output:
+```
+1. English Tuition Payment Due
+Date: Jun 02 2021
+
+2. Maths Tuition Payment Due
+Date: Jun 21 2021
+```
 
 ### Tutor and Appointment Filters 
 This feature enhances the tutee's viewing experiences by allowing the tutees to filter tutors or appointments based on attributes.
@@ -896,6 +1040,7 @@ Closes the app.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tutor Tracker home folder.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
@@ -917,22 +1062,23 @@ Action | Format | Examples
 **List favourites** | `list_favourites` | `list_favourites`
 **Add a new tuition appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
 **List tuition appointments** | `list_appointments` | `list_appointments`
-**View tuition appointment details** | `view_appointment DATE` | `view_appointment 2020-03-24`
+**View tuition appointments** | `view_appointment DATE` | `view_appointment 2021-03-24`
 **Find tuition appointments** | `find_appointment NAME...` | `find_appointment Alex Yeoh`
 **Delete a tuition appointment** | `delete_appointment INDEX` | `delete_appointment 1`
 **Edit a tuition appointment** | `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` | `edit_appointment 1 s/English l/Clementi`
-**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` | `add_schedule n/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
+**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` | `add_schedule n/Science Tuition Homework d/2021-03-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
 **List schedules** | `list_schedules` | `list_schedules`
-**View schedule details** | `view_schedule DATE` | `view_schedule 2020-03-24`
+**View schedules** | `view_schedule DATE` | `view_schedule 2021-03-24`
 **Delete a schedule** | `delete_schedule INDEX` | `delete_schedule 1`
 **Edit a schedule** | `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]` | `edit_schedule 1 t/Science Tuition Homework`
-**View timetable** | `timetable [DATE]` | `timetable 2021-3-28`
+**View timetable** | `timetable [DATE]` | `timetable 2021-03-28`
+**View events** | `view_event DATE` | `view_event 2021-03-24`
 **Add a budget** | `add_budget b/BUDGET` |`add_budget b/500`
 **Edit a budget** | `edit_budget b/BUDGET` | `edit_budget b/600`
 **Delete a budget** | `delete_budget` | `delete_budget`
 **View a budget** | `view_budget` | `view_budget`
-**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, | `add_grade s/English gi/Final gr/A` 
-**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, | `edit_grade 1 gr/B`
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER`, | `add_grade s/English gi/Final gr/A` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]`, | `edit_grade 1 gr/B`
 **Delete a grade** | `delete_grade INDEX`, | `delete_grade 1`
 **List grades** | `list_grades` | `list_grades`
 **Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` | `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
