@@ -108,7 +108,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private SplitPane mainSplitPanel;
 
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -127,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Setup event listener for divider.
+     * Setups event listener for divider.
      */
     private void addSplitPaneListener() {
         mainSplitPanel.getDividers().get(0).positionProperty().addListener((observeValue, oldValue, newValue) -> {
@@ -236,7 +235,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Dynamically detect and change the split ratio depending on the content
+     * Detects and change the split ratio depending on the content.
      */
     void configSplit() {
         configOrientation();
@@ -246,7 +245,7 @@ public class MainWindow extends UiPart<Stage> {
         configMainSplit();
     }
     /**
-     * Detect the change in orientation setting
+     * Detects the change in orientation setting.
      */
     private void configOrientation() {
         if (noteSplitPanel.getOrientation() != logic.getGuiSettings().getNotePanelOrientation()) {
@@ -259,7 +258,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Dynamically detect and change the split ratio depending on contact visible visibility
+     * Detects and change the split ratio depending on contact visible visibility.
      */
     private void configContactSplit() {
         if (contactDisplay.isVisible()) {
@@ -270,7 +269,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Dynamically detect and change the split ratio depending on the dictionary list and content visibility
+     * Detects and change the split ratio depending on the dictionary list and content visibility.
      */
     private void configDictionarySplit() {
         if (!dictionaryListDisplay.isVisible()) {
@@ -283,7 +282,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Dynamically detect and change the split ratio depending on the note list and note visibility
+     * Detects and change the split ratio depending on the note list and note visibility.
      */
     private void configNoteSplit() {
         if (!noteListDisplay.isVisible()) {
@@ -296,7 +295,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Dynamically detect and change the split ratio depending on the dictionary and note visibility
+     * Detects and change the split ratio depending on the dictionary and note visibility.
      */
     private void configMainSplit() {
         if (!noteListDisplay.isVisible() && !noteContentDisplay.isVisible()) {
@@ -309,7 +308,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * set divider position for splitpane
+     * Sets divider position for splitpane.
      */
     private void setDividerPosition(SplitPane splitPane, double position) {
         if (splitPane.getDividerPositions()[0] != position) {
@@ -347,7 +346,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-
+    /**
+     * Handles user key input event.
+     *
+     * @param event user input key event
+     */
     void handleKey(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
             commandBox.requestFocus();
@@ -359,7 +362,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Set the visiable of the panel.
+     * Sets the visiable of the panel.
      *
      * @param pane to hide.
      */
@@ -368,7 +371,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Setup display panel.
+     * Sets ups display panel.
      */
     private void setupDisplayPanel() {
         setPanelVisibility(contactDisplay, logic.getGuiSettings().isContactPanelVisible());
@@ -380,7 +383,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Configure window after shown
+     * Configures window after shown.
      */
     public void handleShown() {
         setupDisplayPanel();
@@ -391,7 +394,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * * Set the visiable of the panels.
+     * * Sets the visiable of the panels.
      */
     private void handlePanelVisibility(UiActionOption uiActionOption, boolean visible) {
 
@@ -439,40 +442,37 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Open a panel of a selected type.
+     * Opens a panel of a selected type.
      *
-     * @param uiActionOption desire display to open.
+     * @param uiActionOption the option of type of display to open.
      */
     private void handleOpen(UiActionOption uiActionOption) {
         handlePanelVisibility(uiActionOption, true);
     }
 
     /**
-     * Close display panel of a selected type.
+     * Closes display panel of a selected type.
      *
-     * @param uiActionOption desire display to close.
+     * @param uiActionOption the option of the type of display to close.
      */
     private void handleClose(UiActionOption uiActionOption) {
         handlePanelVisibility(uiActionOption, false);
     }
 
     /**
-     * Enter Edit Mode.
+     * Enters Edit Mode.
      */
     private void handleEditModeEnter() {
         setPanelVisibility(noteContentDisplay, true);
         noteContentPanel.enterEditMode();
     }
 
-
     /**
-     * Exit Edit Mode.
+     * Exits Edit Mode.
      */
     private void handleEditModeExit() {
         noteContentPanel.exitEditMode();
     }
-
-
 
     /**
      * Executes the command and returns the result.

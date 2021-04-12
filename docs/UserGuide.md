@@ -18,6 +18,8 @@ title: User Guide
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Dictionote application.
 
+1. Download the additional files 'dictionarybook.json' and 'definitionbook.json' into the ***same*** folder as the one you have downloaded the application into in Step 3. This step will add the contents and definitions into the Dictionary of the application for your usage.
+
 1. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
    ![UiUserguide](images/UiUserGuide.png)
 
@@ -190,14 +192,10 @@ Shows a list of all the definitions in the Dictionary.
 Format: `copytonote`
 
 Example: `copytonote 1`
-  ![copttonote](images/Diagram-copytonote.png)  
+  ![copytonote](images/Diagram-copytonote.png)  
 You will see that a new note with the details of the content at index 1 will be created in the note list panel.  
 
-To view the note created in the note content panel, use the command `shownote` at the respective index, in this case index 6  
-`shownote 6`:
-  ![shownote for content](images/Diagram-shownoteforcontent.png)  
-  
-To edit the note/carry out other commands, please view the detailed commands under the [Note Features](#note-features).
+To see/edit the note/carry out other commands, please view the detailed commands under the [Note Features](#note-features).
 
 ### Note Features
 
@@ -285,6 +283,9 @@ Format: `shownote INDEX​`
 
 * Shows the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Note list. The index **must be a positive integer** 1, 2, 3, …​
+* To view the note created in the note content panel (by [`copytonote`](#Copying-content-to-a-note:-copytonote))), use the command `shownote` at the respective index, in this case index 6  
+  `shownote 6`:
+  ![shownote for content](images/Diagram-shownoteforcontent.png)
 
 #### List all notes : `listnote`
 

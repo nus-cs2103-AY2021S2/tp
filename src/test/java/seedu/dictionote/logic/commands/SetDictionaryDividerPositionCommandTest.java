@@ -1,6 +1,8 @@
 package seedu.dictionote.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -31,7 +33,7 @@ public class SetDictionaryDividerPositionCommandTest {
         for (int i = 0; i < VALID_UI_POSITION.length; i++) {
             CommandResult expectedCommandResult = new CommandResult(
                 MESSAGE_SET_DIVIDER_SUCCESS + VALID_UI_POSITION[i], UiAction.OPEN,
-                UiActionOption.LIST);
+                UiActionOption.DICTIONARY);
             expectedModel.getGuiSettings().setDictionarySplitRatio(
                 VALID_UI_POSITION[i] / SetDividerPositionCommand.NORMALIZE_RATIO);
 
@@ -50,5 +52,27 @@ public class SetDictionaryDividerPositionCommandTest {
             assertCommandFailure(new SetDictionaryDividerPositionCommand(invalidPosition[i]), model,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetDictionaryDividerPositionCommand.MESSAGE_USAGE));
         }
+    }
+
+    @Test
+    public void equal() {
+        SetDictionaryDividerPositionCommand command1 = new SetDictionaryDividerPositionCommand(1);
+        SetDictionaryDividerPositionCommand command2 = new SetDictionaryDividerPositionCommand(1);
+        SetDictionaryDividerPositionCommand command3 = new SetDictionaryDividerPositionCommand(2);
+
+        // same object -> returns true
+        assertTrue(command1.equals(command1));
+
+        // same values -> returns true
+        assertTrue(command1.equals(command2));
+
+        // different values -> returns false
+        assertFalse(command1.equals(command3));
+
+        // different types -> returns false
+        assertFalse(command1.equals(1));
+
+        // null -> returns false
+        assertFalse(command1.equals(null));
     }
 }

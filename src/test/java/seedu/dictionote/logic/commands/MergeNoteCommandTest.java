@@ -19,6 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -56,7 +58,8 @@ public class MergeNoteCommandTest {
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.mergeNote(firstNoteToMerge, secondNoteToMerge);
 
-        assertCommandSuccess(mergeNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(mergeNoteCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.NOTE_LIST, expectedModel);
     }
 
     @Test
@@ -87,7 +90,8 @@ public class MergeNoteCommandTest {
 
         showNoteAtIndex(expectedModel, INDEX_FIRST_NOTE);
 
-        assertCommandSuccess(mergeNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(mergeNoteCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.NOTE_LIST, expectedModel);
     }
 
     @Test

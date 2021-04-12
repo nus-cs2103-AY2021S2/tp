@@ -20,6 +20,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
@@ -53,7 +55,7 @@ public class MostFreqContactCommandTest {
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
         assertCommandSuccess(new MostFreqContactCommand(), model,
-                MostFreqContactCommand.MESSAGE_SUCCESS, expectedModel);
+                MostFreqContactCommand.MESSAGE_SUCCESS, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
     @Test
@@ -72,7 +74,7 @@ public class MostFreqContactCommandTest {
         emailContactManyTimes(model, 2, 1); // CARL
 
         assertCommandSuccess(new MostFreqContactCommand(), model,
-                MostFreqContactCommand.MESSAGE_SUCCESS, expectedModel);
+                MostFreqContactCommand.MESSAGE_SUCCESS, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
     /**

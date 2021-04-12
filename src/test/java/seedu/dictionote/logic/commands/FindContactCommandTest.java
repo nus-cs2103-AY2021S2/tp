@@ -21,6 +21,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -89,7 +91,7 @@ public class FindContactCommandTest {
         FindContactCommand command = new FindContactCommand(namePredicate, emailPredicate, tagsPredicate);
         expectedModel.updateFilteredContactList(namePredicate.and(emailPredicate).and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
         assertEquals(TypicalContacts.getTypicalContacts(), model.getFilteredContactList());
     }
 
@@ -104,7 +106,7 @@ public class FindContactCommandTest {
         FindContactCommand command = new FindContactCommand(namePredicate, emailPredicate, tagsPredicate);
         expectedModel.updateFilteredContactList(namePredicate.and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredContactList());
     }
 
@@ -119,7 +121,7 @@ public class FindContactCommandTest {
         FindContactCommand command = new FindContactCommand(namePredicate, emailPredicate, tagsPredicate);
         expectedModel.updateFilteredContactList(namePredicate.and(emailPredicate).and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
         assertEquals(Arrays.asList(ALICE, CARL, DANIEL), model.getFilteredContactList());
     }
 
@@ -134,7 +136,7 @@ public class FindContactCommandTest {
         FindContactCommand command = new FindContactCommand(namePredicate, emailPredicate, tagsPredicate);
         expectedModel.updateFilteredContactList(namePredicate.and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, FIONA), model.getFilteredContactList());
     }
 
@@ -150,7 +152,7 @@ public class FindContactCommandTest {
         FindContactCommand command = new FindContactCommand(namePredicate, emailPredicate, tagsPredicate);
         expectedModel.updateFilteredContactList(namePredicate.and(emailPredicate).and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
         assertEquals(Arrays.asList(DANIEL), model.getFilteredContactList());
     }
 
@@ -166,7 +168,7 @@ public class FindContactCommandTest {
         FindContactCommand command = new FindContactCommand(namePredicate, emailPredicate, tagsPredicate);
         expectedModel.updateFilteredContactList(namePredicate.and(emailPredicate).and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
         assertEquals(Arrays.asList(BENSON), model.getFilteredContactList());
     }
 
@@ -182,7 +184,7 @@ public class FindContactCommandTest {
         FindContactCommand command = new FindContactCommand(namePredicate, emailPredicate, tagsPredicate);
         expectedModel.updateFilteredContactList(namePredicate.and(emailPredicate).and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
         assertEquals(Arrays.asList(BENSON, FIONA), model.getFilteredContactList());
     }
 
@@ -198,7 +200,7 @@ public class FindContactCommandTest {
         FindContactCommand command = new FindContactCommand(namePredicate, emailPredicate, tagsPredicate);
         expectedModel.updateFilteredContactList(namePredicate.and(emailPredicate).and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
         assertEquals(Arrays.asList(DANIEL), model.getFilteredContactList());
     }
 
