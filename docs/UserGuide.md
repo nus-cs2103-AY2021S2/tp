@@ -36,6 +36,7 @@ title: User Guide
   - [5.11 Viewing budget for the current month](#viewing-budget-for-the-current-month)
   - [5.12 Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
   - [5.13 Saving the data](#saving-the-data)
+  - [5.14 Editing the data file](#editing-the-data-file)
 - [6 FAQ](#6-faq)
 - [7 Command Summary](#7-command-summary)
 - [8 Credits](#8-credits)
