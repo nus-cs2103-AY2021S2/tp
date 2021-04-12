@@ -1,269 +1,5 @@
 {
   "content" : [ {
-    "title": "Week 11",
-    "header" : "Quality assurance - What",
-    "maincontent" : "Software Quality Assurance (QA) is the process of ensuring that the software being built has the required levels of quality.\n\nWhile testing is the most common activity used in QA, there are other complementary techniques such as static analysis, code reviews, and formal verification."
-  },{
-    "title": "Week 11",
-    "header" : "Quality assurance - Validation vs Verification",
-    "maincontent" : "Quality Assurance = Validation + Verification\n\nQA involves checking two aspects:\n\n1.Validation: are you building the right system i.e., are the requirements correct?\n2.Verification: are you building the system right i.e., are the requirements implemented correctly?\n\nWhether something belongs under validation or verification is not that important. What is more important is that both are done, instead of limiting to only verification (i.e., remember that the requirements can be wrong too)."
-  },{
-    "title": "Week 4",
-    "header" : "Quality assurance - Code Reviews",
-    "maincontent" : "Reviews can be done in various forms. Some examples below:\n\nPull Request reviews\nProject Management Platforms such as GitHub and BitBucket allow the new code to be proposed as Pull Requests and provide the ability for others to review the code in the PR.\n\nIn pair programming\nAs pair programming involves two programmers working on the same code at the same time, there is an implicit review of the code by the other member of the pair.\n\nFormal inspections\nInspections involve a group of people systematically examining project artifacts to discover defects. Members of the inspection team play various roles during the process, such as:\n\nthe author - the creator of the artifact\nthe moderator - the planner and executor of the inspection meeting\nthe secretary - the recorder of the findings of the inspection\nthe inspector/reviewer - the one who inspects/reviews the artifact\n\nAdvantages of code review over testing:\nIt can detect functionality defects as well as other problems such as coding standard violations.\nIt can verify non-code artifacts and incomplete code.\nIt does not require test drivers or stubs.\n\nDisadvantages:\nIt is a manual process and therefore, error prone."
-  },{
-    "title": "Week 4",
-    "header" : "Quality assurance - Static Analysis",
-    "maincontent" : "Static analysis of code can find useful information such as unused variables, unhandled exceptions, style errors, and statistics. Most modern IDEs come with some inbuilt static analysis capabilities. For example, an IDE can highlight unused variables as you type the code into the editor.\n\nThe term static in static analysis refers to the fact that the code is analyzed without executing the code. In contrast, dynamic analysis requires the code to be executed to gather additional information about the code e.g., performance characteristics.\n\nHigher-end static analysis tools (static analyzers) can perform more complex analysis such as locating potential bugs, memory leaks, inefficient code structures, etc.\n\nLinters are a subset of static analyzers that specifically aim to locate areas where the code can be made 'cleaner'."
-  },{
-    "title": "Week 11",
-    "header" : "Quality assurance - Formal verification",
-    "maincontent" : "Formal verification uses mathematical techniques to prove the correctness of a program.\n\nAdvantages: \nFormal verification can be used to prove the absence of errors. In contrast, testing can only prove the presence of errors, not their absence.\n\nDisadvantages:\nIt only proves the compliance with the specification, but not the actual utility of the software.\nIt requires highly specialized notations and knowledge which makes it an expensive technique to administer. Therefore, formal verifications are more commonly used in safety-critical software such as flight control systems."
-  },{
-    "title": "Week 2",
-    "header" : "Testing - Introduction - What",
-    "maincontent" : "When testing, you execute a set of test cases. A test case specifies how to perform a test. At a minimum, it specifies the input to the software under test (SUT) and the expected behavior.\n\nTest cases can be determined based on the specification, reviewing similar existing systems, or comparing to the past behavior of the SUT.\n\nA test case failure is a mismatch between the expected behavior and the actual behavior. A failure indicates a potential defect (or a bug), unless the error is in the test case itself."
-  },{
-    "title": "Week 2",
-    "header" : "Testing types - Regression testing",
-    "maincontent" : "When you modify a system, the modification may result in some unintended and undesirable effects on the system. Such an effect is called a regression.\n\nRegression testing is the re-testing of the software to detect regressions. Note that to detect regressions, you need to retest all related components, even if they had been tested before.\n\nRegression testing is more effective when it is done frequently, after each small change. However, doing so can be prohibitively expensive if testing is done manually. Hence, regression testing is more practical when it is automated."
-  },{
-    "title": "Week 3",
-    "header" : "Testing types - Developer testing",
-    "maincontent" : "Delaying testing until the full product is complete has a number of disadvantages:\n\nLocating the cause of a test case failure is difficult due to a large search space; in a large system, the search space could be millions of lines of code, written by hundreds of developers! The failure may also be due to multiple inter-related bugs.\nFixing a bug found during such testing could result in major rework, especially if the bug originated from the design or during requirements specification i.e. a faulty design or faulty requirements.\nOne bug might 'hide' other bugs, which could emerge only after the first bug is fixed.\nThe delivery may have to be delayed if too many bugs are found during testing.\n\nearly testing of partially developed software is usually, and by necessity, done by the developers themselves i.e. developer testing."
-  },{
-    "title": "Week 3",
-    "header" : "Testing types - Unit testing - Stub",
-    "maincontent" : "A proper unit test requires the unit to be tested in isolation so that bugs in the dependencies cannot influence the test i.e. bugs outside of the unit should not affect the unit tests.\n\nStubs can isolate the SUT from its dependencies."
-  },{
-    "title": "Week 7",
-    "header" : "Testing types - Integration testing",
-    "maincontent" : "Integration testing : testing whether different parts of the software work together (i.e. integrates) as expected. Integration tests aim to discover bugs in the 'glue code' related to how components interact with each other. These bugs are often the result of misunderstanding what the parts are supposed to do vs what the parts are actually doing.\n\nIntegration testing is not simply a case of repeating the unit test cases using the actual dependencies (instead of the stubs used in unit testing). Instead, integration tests are additional test cases that focus on the interactions between the parts.\n\nIn practice, developers often use a hybrid of unit+integration tests to minimize the need for stubs."
-  },{
-    "title": "Week 8",
-    "header" : "Testing types - System testing",
-    "maincontent" : "System testing is typically done by a testing team (also called a QA team).\n\nSystem test cases are based on the specified external behavior of the system. Sometimes, system tests go beyond the bounds defined in the specification. This is useful when testing that the system fails 'gracefully' when pushed beyond its limits.\n\nSystem testing includes testing against non-functional requirements too"
-  },{
-    "title": "Week 8",
-    "header" : "Testing types - Alpha and beta testing",
-    "maincontent" : "Alpha testing is performed by the users, under controlled conditions set by the software development team.\n\nBeta testing is performed by a selected subset of target users of the system in their natural work setting.\n\nAn open beta release is the release of not-yet-production-quality-but-almost-there software to the general population. For example, Google’s Gmail was in 'beta' for many years before the label was finally removed."
-  },{
-    "title": "Week 8",
-    "header" : "Testing types - Exploratory testing",
-    "maincontent" : "Exploratory testing is ‘the simultaneous learning, test design, and test execution’ [source: bach-et-explained] whereby the nature of the follow-up test case is decided based on the behavior of the previous test cases. In other words, running the system and trying out various operations. It is called exploratory testing because testing is driven by observations during testing. Exploratory testing usually starts with areas identified as error-prone, based on the tester’s past experience with similar systems. One tends to conduct more tests for those operations where more faults are found.\n\nExploratory testing is also known as reactive testing, error guessing technique, attack-based testing, and bug hunting."
-  },{
-    "title": "Week 8",
-    "header" : "Testing types - Exploratory versus scripted testing",
-    "maincontent" : "Which approach is better – scripted or exploratory? A mix is better.\n\nThe success of exploratory testing depends on the tester’s prior experience and intuition. Exploratory testing should be done by experienced testers, using a clear strategy/plan/framework. Ad-hoc exploratory testing by unskilled or inexperienced testers without a clear strategy is not recommended for real-world non-trivial systems. While exploratory testing may allow us to detect some problems in a relatively short time, it is not prudent to use exploratory testing as the sole means of testing a critical system.\n\nScripted testing is more systematic, and hence, likely to discover more bugs given sufficient time, while exploratory testing would aid in quick error discovery, especially if the tester has a lot of experience in testing similar systems."
-  },{
-    "title": "Week 8",
-    "header" : "Testing types - Acceptance testing",
-    "maincontent" : "Acceptance tests give an assurance to the customer that the system does what it is intended to do. Acceptance test cases are often defined at the beginning of the project, usually based on the use case specification. Successful completion of UAT is often a prerequisite to the project sign-off."
-  },{
-    "title": "Week 8",
-    "header" : "Test Automations - Tools",
-    "maincontent" : "JUnit is a tool for automated testing of Java programs. Similar tools are available for other languages and for automating different types of testing.\n\nMost modern IDEs have integrated support for testing tools. The figure below shows the JUnit output when running some JUnit tests using the Eclipse IDE."
-  },{
-    "title": "Week 8",
-    "header" : "Test Automation - Automated Testing of GUIs",
-    "maincontent" : "If a software product has a GUI (Graphical User Interface) component, all product-level testing (i.e. the types of testing mentioned above) need to be done using the GUI. However, testing the GUI is much harder than testing the CLI (Command Line Interface) or API, for the following reasons:\n\nMost GUIs can support a large number of different operations, many of which can be performed in any arbitrary order.\nGUI operations are more difficult to automate than API testing. Reliably automating GUI operations and automatically verifying whether the GUI behaves as expected is harder than calling an operation and comparing its return value with an expected value. Therefore, automated regression testing of GUIs is rather difficult.\nThe appearance of a GUI (and sometimes even behavior) can be different across platforms and even environments. For example, a GUI can behave differently based on whether it is minimized or maximized, in focus or out of focus, and in a high resolution display or a low resolution display.\n\nMoving as much logic as possible out of the GUI can make GUI testing easier. That way, you can bypass the GUI to test the rest of the system using automated API testing. While this still requires the GUI to be tested, the number of such test cases can be reduced as most of the system will have been tested using automated API testing."
-  },{
-    "title": "Week 8",
-    "header" : "Test coverage",
-    "maincontent" : "Test coverage is a metric used to measure the extent to which testing exercises the code i.e., how much of the code is 'covered' by the tests.\nHere are some examples of different coverage criteria:\n\nFunction/method coverage : based on functions executed e.g., testing executed 90 out of 100 functions.\nStatement coverage : based on the number of lines of code executed e.g., testing executed 23k out of 25k LOC.\nDecision/branch coverage : based on the decision points exercised e.g., an if statement evaluated to both true and false with separate test cases during testing is considered 'covered'.\nCondition coverage : based on the boolean sub-expressions, each evaluated to both true and false with different test cases. Condition coverage is not the same as the decision coverage.\nPath coverage measures coverage in terms of possible paths through a given part of the code executed. 100% path coverage means all possible paths have been executed. A commonly used notation for path analysis is called the Control Flow Graph (CFG).\nEntry/exit coverage measures coverage in terms of possible calls to and exits from the operations in the SUT."
-  },{
-    "title": "Week 8",
-    "header" : "Test coverage - How",
-    "maincontent" : "Measuring coverage is often done using coverage analysis tools. Most IDEs have inbuilt support for measuring test coverage, or at least have plugins that can measure test coverage.\n\nCoverage analysis can be useful in improving the quality of testing e.g., if a set of test cases does not achieve 100% branch coverage, more test cases can be added to cover missed branches."
-  },{
-    "title": "Week 8",
-    "header" : "Dependency injection",
-    "maincontent" : "Dependency injection is the process of 'injecting' objects to replace current dependencies with a different object. This is often used to inject stubs to isolate the SUT from its dependencies so that it can be tested in isolation.\n\n"
-  },{
-    "title": "Week 8",
-    "header" : "Test-Driven Development",
-    "maincontent" : "Test-Driven Development(TDD) advocates writing the tests before writing the SUT, while evolving functionality and tests in small increments. In TDD you first define the precise behavior of the SUT using test cases, and then write the SUT to match the specified behavior. While TDD has its fair share of detractors, there are many who consider it a good way to reduce defects. One big advantage of TDD is that it guarantees the code is testable.\n\nNote that TDD does not imply writing all the test cases first before writing functional code. Rather, proceed in small steps:\n\nDecide what behavior to implement.\nWrite test cases to test that behavior.\nRun those test cases and watch them fail.\nImplement the behavior.\nRun the test cases.\nKeep modifying the code and rerunning test cases until they all pass.\nRefactor code to improve quality.\nRepeat the cycle for each small unit of behavior that needs to be implemented."
-  },{
-    "title": "Week 10",
-    "header" : "Test case design",
-    "maincontent" : "Except for trivial SUTs, exhaustive testing is not practical because such testing often requires a massive/infinite number of test cases.\n\nEvery test case adds to the cost of testing. In some systems, a single test case can cost thousands of dollars e.g. on-field testing of flight-control software. Therefore, test cases need to be designed to make the best use of testing resources. In particular:\n\nTesting should be effective i.e., it finds a high percentage of existing bugs e.g., a set of test cases that finds 60 defects is more effective than a set that finds only 30 defects in the same system.\nTesting should be efficient i.e., it has a high rate of success (bugs found/test cases) a set of 20 test cases that finds 8 defects is more efficient than another set of 40 test cases that finds the same 8 defects.\n\nFor testing to be E&E, each new test you add should be targeting a potential fault that is not already targeted by existing test cases. There are test case design techniques that can help us improve the E&E of testing."
-  },{
-    "title": "Week 10",
-    "header" : "Test case design - Positive vs Negative Test Cases",
-    "maincontent" : "A positive test case is when the test is designed to produce an expected/valid behavior. On the other hand, a negative test case is designed to produce a behavior that indicates an invalid/unexpected situation, such as an error message."
-  },{
-    "title": "Week 10",
-    "header" : "Test case design - Black Box vs Glass Box",
-    "maincontent" : "Test case design can be of three types, based on how much of the SUT's internal details are considered when designing test cases:\n\nBlack-box (aka specification-based or responsibility-based) approach: test cases are designed exclusively based on the SUT’s specified external behavior.\nWhite-box (aka glass-box or structured or implementation-based) approach: test cases are designed based on what is known about the SUT’s implementation, i.e. the code.\nGray-box approach: test case design uses some important information about the implementation. For example, if the implementation of a sort operation uses different algorithms to sort lists shorter than 1000 items and lists longer than 1000 items, more meaningful test cases can then be added to verify the correctness of both algorithms."
-  },{
-    "title": "Week 10",
-    "header" : "Test case design - Equivalence partitions",
-    "maincontent" : "In general, most SUTs do not treat each input in a unique way. Instead, they process all possible inputs in a small number of distinct ways. That means a range of inputs is treated the same way inside the SUT. Equivalence partitioning (EP) is a test case design technique that uses the above observation to improve the E&E of testing. By dividing possible inputs into equivalence partitions you can,\n\navoid testing too many inputs from one partition. Testing too many inputs from the same partition is unlikely to find new bugs. This increases the efficiency of testing by reducing redundant test cases.\nensure all partitions are tested. Missing partitions can result in bugs going unnoticed. This increases the effectiveness of testing by increasing the chance of finding bugs."
-  },{
-    "title": "Week 10",
-    "header" : "Test case design - Boundary value analysis",
-    "maincontent" : "Boundary Value Analysis (BVA) is a test case design heuristic that is based on the observation that bugs often result from incorrect handling of boundaries of equivalence partitions. This is not surprising, as the end points of boundaries are often used in branching instructions, etc., where the programmer can make mistakes.\n\nBVA suggests that when picking test inputs from an equivalence partition, values near boundaries (i.e. boundary values) are more likely to find bugs.\n\nBoundary values are sometimes called corner cases.\n\nTypically, you should choose three values around the boundary to test: one value from the boundary, one value just below the boundary, and one value just above the boundary. The number of values to pick depends on other factors, such as the cost of each test case."
-  },{
-    "title": "Week 11",
-    "header" : "Test case design - Combining test inputs",
-    "maincontent" : "An SUT can take multiple inputs. You can select values for each input (using equivalence partitioning, boundary value analysis, or some other technique).\n\nTesting all possible combinations is effective but not efficient. If you test all possible combinations for the above example, you need to test 6x5x2x6=360 cases. Doing so has a higher chance of discovering bugs (i.e. effective) but the number of test cases will be too high (i.e. not efficient). Therefore, you need smarter ways to combine test inputs that are both effective and efficient."
-  },{
-    "title": "Week 11",
-    "header" : "Test case design - Test Input Combination Strategies",
-    "maincontent" : "Given below are some basic strategies for generating a set of test cases by combining multiple test inputs.\n\nEach Valid Input at Least Once in a Positive Test Case\nNo More Than One Invalid Input In A Test Case\nMix between the two"
-  },{
-    "title": "Week 11",
-    "header" : "Test case design - Testing Based on Use Cases",
-    "maincontent" : "Use cases can be used for system testing and acceptance testing. For example, the main success scenario can be one test case while each variation (due to extensions) can form another test case. However, note that use cases do not specify the exact data entered into the system. Instead, it might say something like user enters his personal data into the system. Therefore, the tester has to choose data by considering equivalence partitions and boundary values. The combinations of these could result in one use case producing many test cases.\n\nTo increase the E&E of testing, high-priority use cases are given more attention. For example, a scripted approach can be used to test high-priority test cases, while an exploratory approach is used to test other areas of concern that could emerge during testing."
-  },{
-    "title": "Week 2",
-    "header" : "Revision Control",
-    "maincontent" : "Revision control is the process of managing multiple versions of a piece of information. In its simplest form, this is something that many people do by hand: every time you modify a file, save it under a new name that contains a number, each one higher than the number of the preceding version.\n\nManually managing multiple versions of even a single file is an error-prone task, though, so software tools to help automate this process have long been available. The earliest automated revision control tools were intended to help a single user to manage revisions of a single file. Over the past few decades, the scope of revision control tools has expanded greatly; they now manage multiple files, and help multiple people to work together. The best modern revision control tools have no problem coping with thousands of people working together on projects that consist of hundreds of thousands of files.\n\nRevision control software will track the history and evolution of your project, so you don't have to. For every change, you'll have a log of who made it; why they made it; when they made it; and what the change was.\n\nRevision control software makes it easier for you to collaborate when you're working with other people. For example, when people more or less simultaneously make potentially incompatible changes, the software will help you to identify and resolve those conflicts.\n\nIt can help you to recover from mistakes. If you make a change that later turns out to be an error, you can revert to an earlier version of one or more files. In fact, a really good revision control tool will even help you to efficiently figure out exactly when a problem was introduced.\n\nIt will help you to work simultaneously on, and manage the drift between, multiple versions of your project. Most of these reasons are equally valid, at least in theory, whether you're working on a project by yourself, or with a hundred other people.\n-- [adapted from bryan-mercurial-guide]"
-  },{
-    "title": "Week 2",
-    "header" : "Revision Control - Repositories",
-    "maincontent" : "The repository is the database where the meta-data about the revision history are stored. Suppose you want to apply revision control on files in a directory called ProjectFoo. In that case, you need to set up a repo (short for repository) in the ProjectFoo directory, which is referred to as the working directory of the repo. For example, Git uses a hidden folder named .git inside the working directory.\n\nYou can have multiple repos in your computer, each repo revision-controlling files of a different working directory, for examples, files of different projects."
-  },{
-    "title": "Week 2",
-    "header" : "Revision Control - Saving History",
-    "maincontent" : "Tracking and ignoring\nIn a repo, you can specify which files to track and which files to ignore. Some files such as temporary log files created during the build/test process should not be revision-controlled.\n\nStaging and committing\nCommitting saves a snapshot of the current state of the tracked files in the revision control history. Such a snapshot is also called a commit (i.e. the noun).\n\nWhen ready to commit, you first stage the specific changes you want to commit. This intermediate step allows you to commit only some changes while saving other changes for a later commit."
-  },{
-    "title": "Week 2",
-    "header" : "Revision Control - Using History",
-    "maincontent" : "RCS tools store the history of the working directory as a series of commits. This means you should commit after each change that you want the RCS to 'remember'.\n\nEach commit in a repo is a recorded point in the history of the project that is uniquely identified by an auto-generated hash e.g. a16043703f28e5b3dab95915f5c5e5bf4fdc5fc1.\n\nYou can tag a specific commit with a more easily identifiable name e.g. v1.0.2.\n\nTo see what changed between two points of the history, you can ask the RCS tool to diff the two commits in concern.\n\nTo restore the state of the working directory at a point in the past, you can checkout the commit in concern. i.e., you can traverse the history of the working directory simply by checking out the commits you are interested in."
-  },{
-    "title": "Week 2",
-    "header" : "Revision Control - Remote Repositories",
-    "maincontent" : "Remote repositories are repos that are hosted on remote computers and allow remote access. They are especially useful for sharing the revision history of a codebase among team members of a multi-person project. They can also serve as a remote backup of your codebase.\n\nIt is possible to set up your own remote repo on a server, but the easier option is to use a remote repo hosting service such as GitHub or BitBucket.\n\nYou can clone a repo to create a copy of that repo in another location on your computer. The copy will even have the revision history of the original repo i.e., identical to the original repo. For example, you can clone a remote repo onto your computer to create a local copy of the remote repo.\n\nWhen you clone from a repo, the original repo is commonly referred to as the upstream repo. A repo can have multiple upstream repos. For example, let's say a repo repo1 was cloned as repo2 which was then cloned as repo3. In this case, repo1 and repo2 are upstream repos of repo3.\n\nYou can pull from one repo to another, to receive new commits in the second repo, if the repos have a shared history. Let's say some new commits were added to the upstream repo after you cloned it and you would like to copy over those new commits to your own clone i.e., sync your clone with the upstream repo. In that case, you pull from the upstream repo to your clone.\n\nYou can push new commits in one repo to another repo which will copy the new commits onto the destination repo. Note that pushing to a repo requires you to have write-access to it. Furthermore, you can push between repos only if those repos have a shared history among them (i.e., one was created by copying the other at some point in the past).\n\nCloning, pushing, and pulling can be done between two local repos too, although it is more common for them to involve a remote repo.\n\nA repo can work with any number of other repositories as long as they have a shared history e.g., repo1 can pull from (or push to) repo2 and repo3 if they have a shared history between them.\n\nA fork is a remote copy of a remote repo. As you know, cloning creates a local copy of a repo. In contrast, forking creates a remote copy of a Git repo hosted on GitHub. This is particularly useful if you want to play around with a GitHub repo but you don't have write permissions to it; you can simply fork the repo and do whatever you want with the fork as you are the owner of the fork.\n\nA pull request (PR for short) is a mechanism for contributing code to a remote repo, i.e., \"I'm requesting you to pull my proposed changes to your repo\". For this to work, the two repos must have a shared history. The most common case is sending PRs from a fork to its upstream repo."
-  },{
-    "title": "Week 3",
-    "header" : "Revision Control - Branching",
-    "maincontent" : "Branching is the process of evolving multiple versions of the software in parallel. For example, one team member can create a new branch and add an experimental feature to it while the rest of the team keeps working on another branch. Branches can be given names e.g. master, release, dev.\n\nA branch can be merged into another branch. Merging usually results in a new commit that represents the changes done in the branch being merged.\n\nMerge conflicts happen when you try to merge two branches that had changed the same part of the code and the RCS cannot decide which changes to keep. In those cases, you have to ‘resolve’ the conflicts manually."
-  },{
-    "title": "Week 7",
-    "header" : "Revision Control - DRCS vs CRCS",
-    "maincontent" : "RCS can be done in two ways: the centralized way and the distributed way.\n\nCentralized RCS (CRCS for short) uses a central remote repo that is shared by the team. Team members download (‘pull’) and upload (‘push’) changes between their own local repositories and the central repository. Older RCS tools such as CVS and SVN support only this model. Note that these older RCS do not support the notion of a local repo either. Instead, they force users to do all the versioning with the remote repo.\n\nDistributed RCS (DRCS for short, also known as Decentralized RCS) allows multiple remote repos and pulling and pushing can be done among them in arbitrary ways. The workflow can vary differently from team to team. For example, every team member can have his/her own remote repository in addition to their own local repository, as shown in the diagram below. Git and Mercurial are some prominent RCS tools that support the distributed approach."
-  },{
-    "title": "Week 7",
-    "header" : "Revision Control - Forking Flow",
-    "maincontent" : "In the forking workflow, the 'official' version of the software is kept in a remote repo designated as the 'main repo'. All team members fork the main repo and create pull requests from their fork to the main repo.\n\nOne main benefit of this workflow is that it does not require most contributors to have write permissions to the main repository. Only those who are merging PRs need write permissions. The main drawback of this workflow is the extra overhead of sending everything through forks."
-  },{
-    "title": "Week 7",
-    "header" : "Revision Control - Feature Branch Flow",
-    "maincontent" : "Feature branch workflow is similar to forking workflow except there are no forks. Everyone is pushing/pulling from the same remote repo. The phrase feature branch is used because each new feature (or bug fix, or any other modification) is done in a separate branch and merged to the master branch when ready. Pull requests can still be created within the central repository, from the feature branch to the main branch.\n\nAs this workflow require all team members to have write access to the repository,\n\nit is better to protect the main branch using some mechanism, to reduce the risk of accidental undesirable changes to it.\nit is not suitable for situations where the code contributors are not 'trusted' enough to be given write permission."
-  },{
-    "title": "Week 7",
-    "header" : "Revision Control - Centralized",
-    "maincontent" : "The centralized workflow is similar to the feature branch workflow except all changes are done in the master branch."
-  },{
-    "title": "Week 7",
-    "header" : "Project planning - Work Breakdown Structure",
-    "maincontent" : "A Work Breakdown Structure (WBS) depicts information about tasks and their details in terms of subtasks. When managing projects, it is useful to divide the total work into smaller, well-defined units. Relatively complex tasks can be further split into subtasks. In complex projects, a WBS can also include prerequisite tasks and effort estimates for each task.\n\nThe effort is traditionally measured in man hour/day/month i.e. work that can be done by one person in one hour/day/month. The Task ID is a label for easy reference to a task. Simple labeling is suitable for a small project, while a more informative labeling system can be adopted for bigger projects.\n\nAll tasks should be well-defined. In particular, it should be clear as to when the task will be considered done."
-  },{
-    "title": "Week 7",
-    "header" : "Project planning - Milestone",
-    "maincontent" : "A milestone is the end of a stage which indicates significant progress. You should take into account dependencies and priorities when deciding on the features to be delivered at a certain milestone.\n\nIn some projects, it is not practical to have a very detailed plan for the whole project due to the uncertainty and unavailability of required information. In such cases, you can use a high-level plan for the whole project and a detailed plan for the next few milestones."
-  },{
-    "title": "Week 7",
-    "header" : "Project planning - Buffers",
-    "maincontent" : "A buffer is time set aside to absorb any unforeseen delays. It is very important to include buffers in a software project schedule because effort/time estimations for software development are notoriously hard. However, do not inflate task estimates to create hidden buffers; have explicit buffers instead. Reason: With explicit buffers, it is easier to detect incorrect effort estimates which can serve as feedback to improve future effort estimates."
-  },{
-    "title": "Week 7",
-    "header" : "Project planning - Issue Trackers",
-    "maincontent" : "Keeping track of project tasks (who is doing what, which tasks are ongoing, which tasks are done etc.) is an essential part of project management. In small projects, it may be possible to keep track of tasks using simple tools such as online spreadsheets or general-purpose/light-weight task tracking tools such as Trello. Bigger projects need more sophisticated task tracking tools.\n\nIssue trackers (sometimes called bug trackers) are commonly used to track task assignment and progress. Most online project management software such as GitHub, SourceForge, and BitBucket come with an integrated issue tracker."
-  },{
-    "title": "Week 7",
-    "header" : "Project planning - GANTT Chart",
-    "maincontent" : "A Gantt chart is a 2-D bar-chart, drawn as time vs tasks (represented by horizontal bars).\n\nIn a Gantt chart, a solid bar represents the main task, which is generally composed of a number of subtasks, shown as grey bars. The diamond shape indicates an important deadline/deliverable/milestone."
-  },{
-    "title": "Week 7",
-    "header" : "Project planning - PERT Charts",
-    "maincontent" : "A PERT (Program Evaluation Review Technique) chart uses a graphical technique to show the order/sequence of tasks. It is based on the simple idea of drawing a directed graph in which:\n\nNodes or vertices capture the effort estimations of tasks, and\nArrows depict the precedence between tasks\n\nA PERT chart can help determine the following important information:\n\nThe order of tasks. In the example above, Final Testing cannot begin until all coding of individual subsystems have been completed.\nWhich tasks can be done concurrently. In the example above, the various subsystem designs can start independently once the High level design is completed.\nThe shortest possible completion time. In the example above, there is a path (indicated by the shaded boxes) from start to end that determines the shortest possible completion time.\nThe Critical Path. In the example above, the shortest possible path is also the critical path.\n\nCritical path is the path in which any delay can directly affect the project duration. It is important to ensure tasks on the critical path are completed on time."
-  },{
-    "title": "Week 7",
-    "header" : "Teamwork - Team Structures",
-    "maincontent" : "Given below are three commonly used team structures in software development. Irrespective of the team structure, it is a good practice to assign roles and responsibilities to different team members so that someone is clearly in charge of each aspect of the project. In comparison, the ‘everybody is responsible for everything’ approach can result in more chaos and hence slower progress.\n\nEgoless team\nIn this structure, every team member is equal in terms of responsibility and accountability. When any decision is required, consensus must be reached. This team structure is also known as a democratic team structure. This team structure usually finds a good solution to a relatively hard problem as all team members contribute ideas.\n\nHowever, the democratic nature of the team structure bears a higher risk of falling apart due to the absence of an authority figure to manage the team and resolve conflicts.\n\nChief programmer team\nFrederick Brooks proposed that software engineers learn from the medical surgical team in an operating room. In such a team, there is always a chief surgeon, assisted by experts in other areas. Similarly, in a chief programmer team structure, there is a single authoritative figure, the chief programmer. Major decisions, e.g. system architecture, are made solely by him/her and obeyed by all other team members. The chief programmer directs and coordinates the effort of other team members. When necessary, the chief will be assisted by domain specialists e.g. business specialists, database experts, network technology experts, etc. This allows individual group members to concentrate solely on the areas in which they have sound knowledge and expertise.\n\nThe success of such a team structure relies heavily on the chief programmer. Not only must he/she be a superb technical hand, he/she also needs good managerial skills. Under a suitably qualified leader, such a team structure is known to produce successful work.\n\nStrict hierarchy team\nAt the opposite extreme of an egoless team, a strict hierarchy team has a strictly defined organization among the team members, reminiscent of the military or a bureaucratic government. Each team member only works on his/her assigned tasks and reports to a single “boss”.\n\nIn a large, resource-intensive, complex project, this could be a good team structure to reduce communication overhead."
-  },{
-    "title": "Week 2",
-    "header" : "SDLC process models",
-    "maincontent" : "Software development goes through different stages such as requirements, analysis, design, implementation and testing. These stages are collectively known as the software development life cycle (SDLC). There are several approaches, known as software development life cycle models (also called software process models), that describe different ways to go through the SDLC. Each process model prescribes a \"roadmap\" for the software developers to manage the development effort. The roadmap describes the aims of the development stage(s), the artifacts or outcome of each stage, as well as the workflow i.e. the relationship between stages."
-  },{
-    "title": "Week 2",
-    "header" : "SDLC process models - Sequential Models",
-    "maincontent" : "The sequential model, also called the waterfall model, models software development as a linear process, in which the project is seen as progressing steadily in one direction through the development stages. The name waterfall stems from how the model is drawn to look like a waterfall (see below).\n\nWhen one stage of the process is completed, it should produce some artifacts to be used in the next stage. For example, upon completion of the requirements stage, a comprehensive list of requirements is produced that will see no further modifications. A strict application of the sequential model would require each stage to be completed before starting the next.\n\nThis could be a useful model when the problem statement is well-understood and stable. In such cases, using the sequential model should result in a timely and systematic development effort, provided that all goes well. As each stage has a well-defined outcome, the progress of the project can be tracked with relative ease.\n\nThe major problem with this model is that the requirements of a real-world project are rarely well-understood at the beginning and keep changing over time. One reason for this is that users are generally not aware of how a software application can be used without prior experience in using a similar application."
-  },{
-    "title": "Week 2",
-    "header" : "SDLC process models - Iterative Models",
-    "maincontent" : "The iterative model (sometimes called iterative and incremental) advocates having several iterations of SDLC. Each of the iterations could potentially go through all the development stages, from requirements gathering to testing & deployment. Roughly, it appears to be similar to several cycles of the sequential model.\n\nIn this model, each of the iterations produces a new version of the product. Feedback on the new version can then be fed to the next iteration. Taking the Minesweeper game as an example, the iterative model will deliver a fully playable version from the early iterations. However, the first iteration will have primitive functionality, for example, a clumsy text based UI, fixed board size, limited randomization, etc. These functionalities will then be improved in later releases.\n\nThe iterative model can take a breadth-first or a depth-first approach to iteration planning.\n\nbreadth-first: an iteration evolves all major components in parallel e.g., add a new feature fully, or enhance an existing feature.\ndepth-first: an iteration focuses on fleshing out only some components e.g., update the backend to support a new feature that will be added in a future iteration.\n\nMost projects use a mixture of breadth-first and depth-first iterations i.e., an iteration can contain some breadth-first work as well as some depth-first work."
-  },{
-    "title": "Week 9",
-    "header" : "SDLC process models - Agile Models",
-    "maincontent" : "In 2001, a group of prominent software engineering practitioners met and brainstormed for an alternative to documentation-driven, heavyweight software development processes that were used in most large projects at the time. This resulted in something called the agile manifesto (a vision statement of what they were looking to do).\n\nYou are uncovering better ways of developing software by doing it and helping others do it.\n\nThrough this work you have come to value:\n\nIndividuals and interactions over processes and tools\nWorking software over comprehensive documentation\nCustomer collaboration over contract negotiation\nResponding to change over following a plan\n\nThat is, while there is value in the items on the right, you value the items on the left more.\n\n-- Extract from the Agile Manifesto\nSubsequently, some of the signatories of the manifesto went on to create process models that try to follow it. These processes are collectively called agile processes. Some of the key features of agile approaches are:\n\nRequirements are prioritized based on the needs of the user, are clarified regularly (at times almost on a daily basis) with the entire project team, and are factored into the development schedule as appropriate.\nInstead of doing a very elaborate and detailed design and a project plan for the whole project, the team works based on a rough project plan and a high level design that evolves as the project goes on.\nThere is a strong emphasis on complete transparency and responsibility sharing among the team members. The team is responsible together for the delivery of the product. Team members are accountable, and regularly and openly share progress with each other and with the user.\n\nThere are a number of agile processes in the development world today. eXtreme Programming (XP) and Scrum are two of the well-known ones."
-  },{
-    "title": "Week 9",
-    "header" : "SDLC process models example - XP",
-    "maincontent" : "The following description was adapted from the XP home page, emphasis added:\n\nExtreme Programming (XP) stresses customer satisfaction. Instead of delivering everything you could possibly want on some date far in the future, this process delivers the software you need as you need it.\n\nXP aims to empower developers to confidently respond to changing customer requirements, even late in the life cycle.\n\nXP emphasizes teamwork. Managers, customers, and developers are all equal partners in a collaborative team. XP implements a simple, yet effective environment enabling teams to become highly productive. The team self-organizes around the problem to solve it as efficiently as possible.\n\nXP aims to improve a software project in five essential ways: communication, simplicity, feedback, respect, and courage. Extreme Programmers constantly communicate with their customers and fellow programmers. They keep their design simple and clean. They get feedback by testing their software starting on day one. Every small success deepens their respect for the unique contributions of each and every team member. With this foundation, Extreme Programmers are able to courageously respond to changing requirements and technology.\n\nXP has a set of simple rules. XP is a lot like a jig saw puzzle with many small pieces. Individually the pieces make no sense, but when combined together a complete picture can be seen. This flow chart shows how Extreme Programming's rules work together.\n\nPair programming, CRC cards, project velocity, and standup meetings are some interesting topics related to XP. Refer to extremeprogramming.org to find out more about XP."
-  },{
-    "title": "Week 1",
-    "header" : "SDLC process models example - Scrum",
-    "maincontent" : "This description of Scrum was adapted from Wikipedia [retrieved on 18/10/2011], emphasis added:\n\nScrum is a process skeleton that contains sets of practices and predefined roles. The main roles in Scrum are:\n\nThe Scrum Master, who maintains the processes (typically in lieu of a project manager)\nThe Product Owner, who represents the stakeholders and the business\nThe Team, a cross-functional group who do the actual analysis, design, implementation, testing, etc.\n\nA Scrum project is divided into iterations called Sprints. A sprint is the basic unit of development in Scrum. Sprints tend to last between one week and one month, and are a timeboxed (i.e. restricted to a specific duration) effort of a constant length.\n\nEach sprint is preceded by a planning meeting, where the tasks for the sprint are identified and an estimated commitment for the sprint goal is made, and followed by a review or retrospective meeting, where the progress is reviewed and lessons for the next sprint are identified.\n\nDuring each sprint, the team creates a potentially deliverable product increment (for example, working and tested software). The set of features that go into a sprint come from the product backlog, which is a prioritized set of high level requirements of work to be done. Which backlog items go into the sprint is determined during the sprint planning meeting. During this meeting, the Product Owner informs the team of the items in the product backlog that he or she wants completed. The team then determines how much of this they can commit to complete during the next sprint, and records this in the sprint backlog. During a sprint, no one is allowed to change the sprint backlog, which means that the requirements are frozen for that sprint. Development is timeboxed such that the sprint must end on time; if requirements are not completed for any reason they are left out and returned to the product backlog. After a sprint is completed, the team demonstrates the use of the software.\n\nScrum enables the creation of self-organizing teams by encouraging co-location of all team members, and verbal communication between all team members and disciplines in the project.\n\nA key principle of Scrum is its recognition that during a project the customers can change their minds about what they want and need (often called requirements churn), and that unpredicted challenges cannot be easily addressed in a traditional predictive or planned manner. As such, Scrum adopts an empirical approach—accepting that the problem cannot be fully understood or defined, focusing instead on maximizing the team’s ability to deliver quickly and respond to emerging requirements."
-  },{
-    "title": "Week 9",
-    "header" : "SDLC process models example - Daily Scrum",
-    "maincontent" : "Daily Scrum is another key scrum practice. The description below was adapted from https://www.mountaingoatsoftware.com (emphasis added):\n\nIn Scrum, on each day of a sprint, the team holds a daily scrum meeting called the daily scrum. Meetings are typically held in the same location and at the same time each day. Ideally, a daily scrum meeting is held in the morning, as it helps set the context for the coming day's work. These scrum meetings are strictly time-boxed to 15 minutes. This keeps the discussion brisk but relevant.\n\n...\n\nDuring the daily scrum, each team member answers the following three questions:\n\nWhat did you do yesterday?\nWhat will you do today?\nAre there any impediments in your way?\n\n...\n\nThe daily scrum meeting is not used as a problem-solving or issue resolution meeting. Issues that are raised are taken offline and usually dealt with by the relevant subgroup immediately after the meeting."
-  },{
-    "title": "Week 9",
-    "header" : "SDLC process models example - Unified Process",
-    "maincontent" : "The unified process is developed by the Three Amigos - Ivar Jacobson, Grady Booch and James Rumbaugh (the creators of UML).\n\nThe unified process consists of four phases: inception, elaboration, construction and transition. The main purpose of each phase can be summarized as follows:\n\nGiven above is a visualization of a project done using the Unified process (source: Wikipedia). As the diagram shows, a phase can consist of several iterations. Each vertical column (labeled “I1” “E1”, “E2”, “C1”, etc.) represents a single iteration. Each of the iterations consists of a set of ‘workflows’ such as ‘Business modeling’, ‘Requirements’, ‘Analysis & Design’, etc. The shaded region indicates the amount of resources and effort spent on a particular workflow in a particular iteration.\n\nUnified process is a flexible and customizable process model framework rather than a single fixed process. For example, the number of iterations in each phase, definition of workflows, and the intensity of a given workflow in a given iteration can be adjusted according to the nature of the project. Take the Construction Phase: to develop a simple system, one or two iterations would be sufficient. For a more complicated system, multiple iterations will be more helpful. Therefore, the diagram above simply records a particular application of the UP rather than prescribe how the UP is to be applied. However, this record can be refined and reused for similar future projects."
-  },{
-    "title": "Week 9",
-    "header" : "SDLC process models example - CMMI",
-    "maincontent" : "CMMI (Capability Maturity Model Integration) is a process improvement approach defined by Software Engineering Institute at Carnegie Melon University. CMMI provides organizations with the essential elements of effective processes, which will improve their performance. -- adapted from http://www.sei.cmu.edu/cmmi/\n\nCMMI defines five maturity levels for a process and provides criteria to determine if the process of an organization is at a certain maturity level. The diagram below [taken from Wikipedia] gives an overview of the five levels."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - Single Responsibility Principle",
-    "maincontent" : "Single responsibility principle (SRP): A class should have one, and only one, reason to change. -- Robert C. Martin\n\nIf a class has only one responsibility, it needs to change only when there is a change to that responsibility."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - The Open-Closed Principle",
-    "maincontent" : "Open-closed principle (OCP): A module should be open for extension but closed for modification. That is, modules should be written so that they can be extended, without requiring them to be modified. -- proposed by Bertrand Meyer\n\nIn object-oriented programming, OCP can be achieved in various ways. This often requires separating the specification (i.e. interface) of a module from its implementation."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - Liskov substitution principle",
-    "maincontent" : "Liskov substitution principle (LSP): Derived classes must be substitutable for their base classes. -- proposed by Barbara Liskov\n\nLSP sounds the same as substitutability but it goes beyond substitutability; LSP implies that a subclass should not be more restrictive than the behavior specified by the superclass. As you know, Java has language support for substitutability. However, if LSP is not followed, substituting a subclass object for a superclass object can break the functionality of the code."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - Interface Segregation Principle",
-    "maincontent" : "Interface segregation principle (ISP): No client should be forced to depend on methods it does not use."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - Dependency Inversion Principle",
-    "maincontent" : "Dependency inversion principle (DIP):\n\nHigh-level modules should not depend on low-level modules. Both should depend on abstractions.\nAbstractions should not depend on details. Details should depend on abstractions."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - SOLID Principles",
-    "maincontent" : "The five OOP principles given below are known as SOLID Principles (an acronym made up of the first letter of each principle):\n\nSingle Responsibility Principle (SRP)\nOpen-Closed Principle (OCP)\nLiskov Substitution Principle (LSP)\nInterface Segregation Principle (ISP)\nDependency Inversion Principle (DIP)"
-  },{
-    "title": "Week 9",
-    "header" : "Principles - Separation of concerns principle",
-    "maincontent" : "Separation of concerns principle (SoC): To achieve better modularity, separate the code into distinct sections, such that each section addresses a separate concern. -- Proposed by Edsger W. Dijkstra\n\nA concern in this context is a set of information that affects the code of a computer program.\n\nExamples for concerns:\n\nA specific feature, such as the code related to the add employee feature\nA specific aspect, such as the code related to persistence or security\nA specific entity, such as the code related to the Employee entity\n\nApplying SoC reduces functional overlaps among code sections and also limits the ripple effect when changes are introduced to a specific part of the system.\n\nIf the code related to persistence is separated from the code related to security, a change to how the data are persisted will not need changes to how the security is implemented.\n\nThis principle can be applied at the class level, as well as at higher levels.\n\nThe n-tier architecture utilizes this principle. Each layer in the architecture has a well-defined functionality that has no functional overlap with each other.\n\nThis principle should lead to higher cohesion and lower coupling."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - Law of Demeter",
-    "maincontent" : "Law of Demeter (LoD):\n\nAn object should have limited knowledge of another object.\nAn object should only interact with objects that are closely related to it.\n\nAlso known as\n\nDon’t talk to strangers.\nPrinciple of least knowledge\n\nMore concretely, a method m of an object O should invoke only the methods of the following kinds of objects:\n\nThe object O itself\nObjects passed as parameters of m\nObjects created/instantiated in m (directly or indirectly) \nObjects from the direct association of O\n\nLoD aims to prevent objects from navigating the internal structures of other objects.\n\nAn analogy for LoD can be drawn from Facebook. If Facebook followed LoD, you would not be allowed to see posts of friends of friends, unless they are your friends as well. If Jake is your friend and Adam is Jake’s friend, you should not be allowed to see Adam’s posts unless Adam is a friend of yours as well."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - YAGNI",
-    "maincontent" : "YAGNI (You Aren't Gonna Need It!) Principle: Do not add code simply because ‘you might need it in the future’.\n\nThe principle says that some capability you presume your software needs in the future should not be built now because chances are \"you aren't gonna need it\". The rationale is that you do not have perfect information about the future and therefore some of the extra work you do to fulfill a potential future need might go to waste when some of your predictions fail to materialize."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - DRY",
-    "maincontent" : "DRY (Don't Repeat Yourself) principle: Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. -- The Pragmatic Programmer, by Andy Hunt and Dave Thomas\n\nThis principle guards against the duplication of information.\n\nA functionality being implemented twice is a violation of the DRY principle even if the two implementations are different.\nThe value of a system-wide timeout being defined in multiple places is a violation of DRY."
-  },{
-    "title": "Week 9",
-    "header" : "Principles - Brooks' Law",
-    "maincontent" : "Brooks' law: Adding people to a late project will make it later. -- Fred Brooks (author of The Mythical Man-Month)\n\nExplanation: The additional communication overhead will outweigh the benefit of adding extra manpower, especially if done near a deadline."
-  },{
     "title": "Week 5",
     "header" : "Requirements - Requirements - Intro",
     "maincontent" : "A software requirement specifies a need to be fulfilled by the software product.\n\nA software project may be,\n\na brown-field project i.e., develop a product to replace/update an existing software product\na green-field project i.e., develop a totally new system with no precedent\nIn either case, requirements need to be gathered, analyzed, specified, and managed.\n\nRequirements come from stakeholders.\n\nIdentifying requirements is often not easy. For example, stakeholders may not be aware of their precise needs, may not know how to communicate their requirements correctly, may not be willing to spend effort in identifying requirements, etc."
@@ -335,6 +71,246 @@
     "title": "Week 5",
     "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
     "maincontent": "A supplementary requirements section can be used to capture requirements that do not fit elsewhere. Typically, this is where most Non-Functional Requirements will be listed.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design - Introduction - What",
+    "maincontent": "Software design has two main aspects:\n\n1. Product/external design: designing the external behavior of the product to meet the users' requirements. This is usually done by product designers with input from business analysts, user experience experts, user representatives, etc.\n\n2. Implementation/internal design: designing how the product will be implemented to meet the required external behavior. This is usually done by software architects and software engineers.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Abstraction - What",
+    "maincontent": "Abstraction is a technique for dealing with complexity. It works by establishing a level of complexity we are interested in, and suppressing the more complex details below that level.\n\nThe guiding principle of abstraction is that only details that are relevant to the current perspective or the task at hand need to be considered. As most programs are written to solve complex problems involving large amounts of intricate details, it is impossible to deal with all these details at the same time. That is where abstraction can help.\n\nData abstraction: abstracting away the lower level data items and thinking in terms of bigger entities\n\nControl abstraction: abstracting away details of the actual control flow to focus on tasks at a higher level\n\nAbstraction can be applied repeatedly to obtain progressively higher levels of abstraction.\n\nAbstraction is a general concept that is not limited to just data or control abstractions.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Coupling - What",
+    "maincontent": "Coupling is a measure of the degree of dependence between components, classes, methods, etc. Low coupling indicates that a component is less dependent on other components. High coupling (aka tight coupling or strong coupling) is discouraged due to the following disadvantages:\n\n1. Maintenance is harder because a change in one module could cause changes in other modules coupled to it (i.e. a ripple effect).\n\n2. Integration is harder because multiple components coupled with each other have to be integrated at the same time.\n\n3. Testing and reuse of the module is harder due to its dependence on other modules.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Coupling - How",
+    "maincontent": "X is coupled to Y if a change to Y can potentially require a change in X.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Coupling - Types of Coupling",
+    "maincontent": "Some examples of different coupling types:\n\n1. Content coupling: one module modifies or relies on the internal workings of another module e.g., accessing local data of another module\n\n2. Common/Global coupling: two modules share the same global data\n\n3. Control coupling: one module controlling the flow of another, by passing it information on what to do e.g., passing a flag\n\n4. Data coupling: one module sharing data with another module e.g. via passing parameters\n\n5. External coupling: two modules share an externally imposed convention e.g., data formats, communication protocols, device interfaces.\n\n6. Subclass coupling: a class inherits from another class. Note that a child class is coupled to the parent class but not the other way around.\n\n7. Temporal coupling: two actions are bundled together just because they happen to occur at the same time e.g. extracting a contiguous block of code as a method although the code block contains statements unrelated to each other\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Cohesion - What",
+    "maincontent": "Cohesion is a measure of how strongly-related and focused the various responsibilities of a component are. A highly-cohesive component keeps related functionalities together while keeping out all other unrelated things.\n\nHigher cohesion is better. Disadvantages of low cohesion (aka weak cohesion):\n\n1. Lowers the understandability of modules as it is difficult to express module functionalities at a higher level.\n\nLowers maintainability because a module can be modified due to unrelated causes (reason: the module contains code unrelated to each other) or many modules may need to be modified to achieve a small change in behavior (reason: because the code related to that change is not localized to a single module).\n\nLowers reusability of modules because they do not represent logical units of functionality.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Cohesion - How",
+    "maincontent": "Cohesion can be present in many forms. Some examples:\n\n1. Code related to a single concept is kept together, e.g. the Student component handles everything related to students.\n\n2. Code that is invoked close together in time is kept together, e.g. all code related to initializing the system is kept together.\n\n3. Code that manipulates the same data structure is kept together, e.g. the GameArchive component handles everything related to the storage and retrieval of game sessions.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Introduction - What",
+    "maincontent": "A model is a representation of something else.\n\nA model provides a simpler view of a complex entity because a model captures only a selected aspect. This omission of some aspects implies models are abstractions.\n\nMultiple models of the same entity may be needed to capture it fully.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Introduction - How",
+    "maincontent": "In software development, models are useful in several ways:\n\na. To analyze a complex entity related to software development.\n\nb. To communicate information among stakeholders. Models can be used as a visual aid in discussions and documentation.\n\nc. As a blueprint for creating software. Models can be used as instructions for building software.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Introduction - UML Models",
+    "maincontent": "Unified Modeling Language (UML) is a graphical notation to describe various aspects of a software system. UML is the brainchild of three software modeling specialists James Rumbaugh, Grady Booch and Ivar Jacobson (also known as the Three Amigos). Each of them had developed their own notation for modeling software systems before joining forces to create a unified modeling language (hence, the term ‘Unified’ in UML). UML is currently the de facto modeling notation used in the software industry.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - OO Structures",
+    "maincontent": "An OO solution is basically a network of objects interacting with each other. Therefore, it is useful to be able to model how the relevant objects are 'networked' together inside a software i.e. how the objects are connected together.\n\nNote that these object structures within the same software can change over time.\n\nHowever, object structures do not change at random; they change based on a set of rules, as was decided by the designer of that software. Those rules that object structures need to follow can be illustrated as a class structure i.e. a structure that exists among the relevant classes.\n\nUML Object Diagrams are used to model object structures and UML Class Diagrams are used to model class structures of an OO solution.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Class Diagrams (Basics, Part 1)",
+    "maincontent": "UML class diagrams describe the structure (but not the behavior) of an OOP solution. These are possibly the most often used diagrams in the industry and are an indispensable tool for an OO programmer.\n\nClasses form the basis of class diagrams.\n\nThe basic UML notations used to represent a class consists of three compartments: 'Class Name', 'Attributes', and 'Methods' ('Operations').\n\nThe 'Operations' compartment and/or the 'Attributes' compartment may be omitted if such details are not important for the task at hand. 'Attributes' always appear above the 'Operations' compartment. All operations should be in one compartment rather than each operation in a separate compartment. Same goes for attributes.\n\nThe visibility of attributes and operations is used to indicate the level of access allowed for each attribute or operation. The types of visibility and their exact meanings depend on the programming language used. Here are some common visibilities and how they are indicated in a class diagram:\n\n+ : public\n\n- : private\n\n# : protected\n\n~ : package private\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Class Diagrams (Basics, Part 2)",
+    "maincontent": "The notation format of generic classes is drawn as a box with a dashed outline on the top-right corner of the class's box.\n\nIn UML class diagrams, underlines denote class-level attributes and variables.\n\nAssociations are the main connections among the classes in a class diagram.\n\nThe most basic class diagram is a bunch of classes with some solid lines among them to represent associations.\n\nIn addition, associations can show additional decorations such as association labels, association roles, multiplicity and navigability to add more information to a class diagram.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Adding More Info to UML Models",
+    "maincontent": "UML notes can be used to add more info to any UML model.\n\nUML notes can augment UML diagrams with additional information. These notes can be shown connected to a particular element in the diagram or can be shown without a connection\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Class Diagrams (Intermediate)",
+    "maincontent": "A class diagram can also show different types of relationships between classes: inheritance, compositions, aggregations, dependencies.\n\nA class diagram can also show different types of class-like entities: enumerations, abstract classes, and interfaces.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Class Diagrams (Advanced)",
+    "maincontent": "A class diagram can show association classes too.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Object Diagrams",
+    "maincontent": "Object diagrams can be used to complement class diagrams. For example, you can use object diagrams to model different object structures that can result from a design represented by a given class diagram.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Object Oriented Domain Models",
+    "maincontent": "Class diagrams can also be used to model objects in the problem domain (i.e. to model how objects actually interact in the real world, before emulating them in the solution). Class diagrams that are used to model the problem domain are called conceptual class diagrams or OO domain models (OODMs).\n\nOODMs do not contain solution-specific classes (i.e. classes that are used in the solution domain but do not exist in the problem domain). For example, a class called DatabaseConnection could appear in a class diagram but not usually in an OO domain model because DatabaseConnection is something related to a software solution but not an entity in the problem domain.\n\nOODMs represents the class structure of the problem domain and not their behavior, just like class diagrams. To show behavior, use other diagrams such as sequence diagrams.\n\nOODM notation is similar to class diagram notation but omit methods and navigability.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Deployment Diagrams",
+    "maincontent": "A deployment diagram shows a system's physical layout, revealing which pieces of software run on which pieces of hardware.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Component Diagrams",
+    "maincontent": "A component diagram is used to show how a system is divided into components and how they are connected to each other through interfaces.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Package Diagrams",
+    "maincontent": "A package diagram shows packages and their dependencies. A package is a grouping construct for grouping UML elements (classes, use cases, etc.).\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Composite Structure Diagrams",
+    "maincontent": "A composite structure diagram hierarchically decomposes a class into its internal structure.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Activity Diagrams (Basic, Part 1)",
+    "maincontent": "Software projects often involve workflows. Workflows define the flow in which a process or a set of tasks is executed. Understanding such workflows is important for the success of the software project.\n\nUML  activity diagrams (AD) can model workflows.  Flow charts are another type of diagram that can model workflows. Activity diagrams are the UML equivalent of flow charts.\n\nAn activity diagram (AD) captures an activity through the actions and control flows that make up the activity.\n\nAn action is a single step in an activity. It is shown as a rectangle with rounded corners.\n\nA control flow shows the flow of control from one action to the next. It is shown by drawing a line with an arrow-head to show the direction of the flow.\n\nNote the slight difference between the start node and the end node which represent the start and the end of the activity, respectively, in which the end node is surrounded by a circle outline while the start node is not.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Activity Diagrams (Basic, Part 2)",
+    "maincontent": "A branch node shows the start of alternate paths. Each control flow exiting a branch node has a guard condition: a boolean condition that should be true for execution to take that path. Exactly one of the guard conditions should be true an any.\n\nA merge node shows the end of alternate paths.\n\nBoth branch nodes and merge nodes are diamond shapes. Guard conditions must be in square brackets.\n\nSome acceptable simplifications (by convention):\n\n1. Omitting the merge node if it doesn't cause any ambiguities.\n\n2. Multiple arrows can starting from the same corner of a branch node.\n\nOmitting the [Else] condition.\n\nFork nodes indicate the start of concurrent flows of control.\n\nJoin nodes indicate the end of parallel paths.\n\nBoth have the same notation: a bar.\n\nIn a set of parallel paths, execution along all parallel paths should be complete before the execution can start on the outgoing control flow of the join.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Activity Diagrams (Intermediate)",
+    "maincontent": "The rake notation is used to indicate that a part of the activity is given as a separate diagram.\n\nIt is possible to partition an activity diagram to show who is doing which action. Such partitioned activity diagrams are sometime called swimlane diagrams.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Sequence Diagrams (Basic)",
+    "maincontent": "A UML sequence diagram captures the interactions between multiple objects for a given scenario.\n\nArrows representing method calls should be solid arrows while those representing method returns should be dashed arrows.\n\nNote that unlike in object diagrams, the class/object name is not underlined in sequence diagrams.\n\nThe arrow that represents a constructor arrives at the side of the box representing the instance.\n\nThe activation bar represents the period the constructor is active.\n\nTo reduce clutter, activation bars and return arrows may be omitted if they do not result in ambiguities or loss of relevant information. Informal operation descriptions can be used, if more precise details are not required for the task at hand.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Sequence Diagrams (Intermediate)",
+    "maincontent": "UML uses an X at the end of the lifeline of an object to show its deletion.\n\nUML can show a method of an object calling another of its own methods.\n\nUML uses alt frames to indicate alternative paths.\n\nUML uses opt frames to indicate optional paths.\n\nMethod calls to static (i.e., class-level) methods are received by the class itself, not an instance of that class. You can use <<class>> to show that a participant is the class itself.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Use Case Diagrams",
+    "maincontent": "Use case diagrams model the mapping between features of a system and its user roles.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Timing Diagrams",
+    "maincontent": "A timing diagram focuses on timing constraints.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Interaction Overview Diagrams",
+    "maincontent": "Interaction overview diagrams are a combination of activity diagrams and sequence diagrams.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Communication Diagrams",
+    "maincontent": "Communication diagrams are like sequence diagrams but emphasize the data links between the various participants in the interaction rather than the sequence of interactions.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - State Machine Diagrams",
+    "maincontent": "A State Machine Diagram models state-dependent behavior.\n\nOften, state-dependent behavior displayed by an object in a system is simple enough that it needs no extra attention; such a behavior can be as simple as a conditional behavior like if x > y, then x = x - y.\n\nOccasionally, objects may exhibit state-dependent behavior that is complex enough such that it needs to be captured in a separate model. Such state-dependent behavior can be modeled using UML state machine diagrams (SMD for short, sometimes also called ‘state charts’, ‘state diagrams’ or ‘state machines’).\n\nOccasionally, objects may exhibit state-dependent behavior that is complex enough such that it needs to be captured into a separate model. Such state-dependent behavior can be modelled using UML state machine diagrams (SMD for short, sometimes also called ‘state charts’, ‘state diagrams’ or ‘state machines’).\n\nAn SMD views the life-cycle of an object as consisting of a finite number of states where each state displays a unique behavior pattern. SMDs capture information such as the states an object can be in during its lifetime, how the object responds to various events while in each state, and how the object transits from one state to another. In contrast to sequence diagrams that capture object behavior one scenario at a time, SMDs capture the object’s behavior over its full life-cycle.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Introudction - What",
+    "maincontent": "The software architecture shows the overall organization of the system and can be viewed as a very high-level design. It usually consists of a set of interacting components that fit together to achieve the required functionality. It should be a simple and technically viable structure that is well-understood and agreed-upon by everyone in the development team, and it forms the basis for the implementation.\n\nThe architecture is typically designed by the software architect, who provides the technical vision of the system and makes high-level (i.e. architecture-level) technical decisions about the project.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Diagrams - Reading",
+    "maincontent": "Architecture diagrams are free-form diagrams. There is no universally adopted standard notation for architecture diagrams. Any symbols that reasonably describe the architecture may be used.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Diagrams - Drawing",
+    "maincontent": "While architecture diagrams have no standard notation, try to follow these basic guidelines when drawing them.\n\nMinimize the variety of symbols. If the symbols you choose do not have widely-understood meanings e.g. A drum symbol is widely-understood as representing a database, explain their meaning.\n\nAvoid the indiscriminate use of double-headed arrows to show interactions between components.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Styles - Introduction",
+    "maincontent": "Software architectures follow various high-level styles (aka architectural patterns), just like how building architectures follow various architecture styles.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Styles - N-tier Architectural Style",
+    "maincontent": "In the n-tier style, higher layers make use of services provided by lower layers. Lower layers are independent of higher layers. Other names: multi-layered, layered.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Styles - Client-Server Architectural Style",
+    "maincontent": "The client-server style has at least one component playing the role of a server and at least one client component accessing the services of the server. This is an architectural style used often in distributed applications.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Styles - Transaction Processing Architectural Style",
+    "maincontent": "The transaction processing style divides the workload of the system down to a number of transactions which are then given to a dispatcher that controls the execution of each transaction. Task queuing, ordering, undo etc. are handled by the dispatcher.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Styles - Service-oriented Architectural Style",
+    "maincontent": "The service-oriented architecture (SOA) style builds applications by combining functionalities packaged as programmatically accessible services. SOA aims to achieve interoperability between distributed services, which may not even be implemented using the same programming language. A common way to implement SOA is through the use of XML web services where the web is used as the medium for the services to interact, and XML is used as the language of communication between service providers and service users.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Styles - Event-driven Architectural Style",
+    "maincontent": "Event-driven style controls the flow of the application by detecting events from event emitters and communicating those events to interested event consumers. This architectural style is often used in GUIs.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Styles - More Styles",
+    "maincontent": "Other well-known architectural styles include the pipes-and-filters architecture, the broker architecture, the peer-to-peer architecture, and the message-oriented architecture.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Architecture - Architecture Styles - Using Styles",
+    "maincontent": "Most applications use a mix of these architectural styles.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Introduction - What",
+    "maincontent": "Design pattern: An elegant reusable solution to a commonly recurring problem within a given context in software design.\n\nIn software development, there are certain problems that recur in a certain context.\n\nAfter repeated attempts at solving such problems, better solutions are discovered and refined over time. These solutions are known as design patterns, a term popularized by the seminal book Design Patterns: Elements of Reusable Object-Oriented Software by the so-called \"Gang of Four\" (GoF) written by Eric Gamma, Richard Helm, Ralph Johnson, and John Vlissides.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Introduction - Format",
+    "maincontent": "The common format to describe a pattern consists of the following components:\n\nContext: The situation or scenario where the design problem is encountered.\nProblem: The main difficulty to be resolved.\nSolution: The core of the solution. It is important to note that the solution presented only includes the most general details, which may need further refinement for a specific context.\nAnti-patterns (optional): Commonly used solutions, which are usually incorrect and/or inferior to the Design Pattern.\nConsequences (optional): Identifying the pros and cons of applying the pattern.\nOther useful information (optional): Code examples, known uses, other related patterns, etc.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Singleton Pattern - What",
+    "maincontent": "Context\n\nCertain classes should have no more than just one instance (e.g. the main controller class of the system). These single instances are commonly known as singletons.\n\nProblem\n\nA normal class can be instantiated multiple times by invoking the constructor.\n\nSolution\n\nMake the constructor of the singleton class private, because a public constructor will allow others to instantiate the class at will. Provide a public class-level method to access the single instance.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Singleton Pattern - Evaluation",
+    "maincontent": "Pros:\n\neasy to apply\neffective in achieving its goal with minimal extra work\nprovides an easy way to access the singleton object from anywhere in the code base\n\nCons:\n\nThe singleton object acts like a global variable that increases coupling across the code base.\nIn testing, it is difficult to replace Singleton objects with stubs (static methods cannot be overridden).\nIn testing, singleton objects carry data from one test to another even when you want each test to be independent of the others.\nGiven that there are some significant cons, it is recommended that you apply the Singleton pattern when, in addition to requiring only one instance of a class, there is a risk of creating multiple objects by mistake, and creating such multiple objects has real negative consequences.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Abstraction Occurrence Pattern - What",
+    "maincontent": "Context\n\nThere is a group of similar entities that appear to be ‘occurrences’ (or ‘copies’) of the same thing, sharing lots of common information, but also differing in significant ways.\n\nProblem\n\nRepresenting the objects mentioned previously as a single class would be problematic because it results in duplication of data which can lead to inconsistencies in data (if some of the duplicates are not updated consistently).\n\nSolution\n\nThe <<Abstraction>> class should hold all common information, and the unique information should be kept by the <<Occurrence>> class. Note that ‘Abstraction’ and ‘Occurrence’ are not class names, but roles played by each class. Think of this diagram as a meta-model (i.e. a ‘model of a model’) of the BookTitle-BookCopy class diagram given above.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Facade Pattern - What",
+    "maincontent": "Context\n\nComponents need to access functionality deep inside other components.\n\nProblem\n\nAccess to the component should be allowed without exposing its internal details.\n\nSolution\n\nInclude a Façade class that sits between the component internals and users of the component such that all access to the component happens through the Facade class.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Command Pattern - What",
+    "maincontent": "Context\n\nA system is required to execute a number of commands, each doing a different task.\n\nProblem\n\nIt is preferable that some part of the code executes these commands without having to know each command type.\n\nSolution\n\nThe essential element of this pattern is to have a general <<Command>> object that can be passed around, stored, executed, etc without knowing the type of command (i.e. via polymorphism).\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Model View Controller (MVC) Pattern - What",
+    "maincontent": "Context\n\nMost applications support storage/retrieval of information, displaying of information to the user (often via multiple UIs having different formats), and changing stored information based on external inputs.\n\nProblem\n\nThe high coupling that can result from the interlinked nature of the features described above.\n\nSolution\n\nDecouple data, presentation, and control logic of an application by separating them into three different components: Model, View and Controller.\n\nView: Displays data, interacts with the user, and pulls data from the model if necessary.\nController: Detects UI events such as mouse clicks and button pushes, and takes follow up action. Updates/changes the model/view when necessary.\nModel: Stores and maintains data. Updates the view if necessary.\n\nNote that in a simple UI where there’s only one view, Controller and View can be combined as one class.\n\nThere are many variations of the MVC model used in different domains.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Observer Pattern - What",
+    "maincontent": "Context\n\nAn object (possibly more than one) is interested in being notified when a change happens to another object. That is, some objects want to ‘observe’ another object.\n\nProblem\n\nThe ‘observed’ object does not want to be coupled to objects that are ‘observing’ it.\n\nSolution\n\nForce the communication through an interface known to both parties.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Combining Design Patterns",
+    "maincontent": "Design patterns are usually embedded in a larger design and sometimes applied in combination with other design patterns.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Other Design Patterns",
+    "maincontent": "The most famous source of design patterns is the \"Gang of Four\" (GoF) book which contains 23 design patterns divided into three categories:\n\nCreational: About object creation. They separate the operation of an application from how its objects are created.\nAbstract Factory, Builder, Factory Method, Prototype, Singleton\nStructural: About the composition of objects into larger structures while catering for future extension in structure.\nAdapter, Bridge, Composite, Decorator, Façade, Flyweight, Proxy\nBehavioral: Defining how objects interact and how responsibility is distributed among them.\nChain of Responsibility, Command, Interpreter, Template Method, Iterator, Mediator, Memento, Observer, State, Strategy, Visitor\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Using Design Patterns",
+    "maincontent": "Design patterns provide a high-level vocabulary to talk about design.\n\nKnowing more patterns is a way to become more ‘experienced’. Aim to learn at least the context and the problem of patterns so that when you encounter those problems you know where to look for a solution.\n\nSome patterns are domain-specific e.g. patterns for distributed applications, some are created in-house e.g. patterns in the company/project and some can be self-created e.g. from past experience.\n\nBe careful not to overuse patterns. Do not throw patterns at a problem at every opportunity. Patterns come with overhead such as adding more classes or increasing the levels of abstraction. Use them only when they are needed. Before applying a pattern, make sure that:\n\n1. There is substantial improvement in the design, not just superficial.\n2. The associated tradeoffs are carefully considered. There are times when a design pattern is not appropriate (or an overkill).\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Other Types of Patterns",
+    "maincontent": "The notion of capturing design ideas as \"patterns\" is usually attributed to Christopher Alexander. He is a building architect noted for his theories about design. His book The Timeless Way of Building talks about \"design patterns\" for constructing buildings.\n\nApparently, patterns and anti-patterns are found in the field of building architecture. This is because they are general concepts applicable to any domain, not just software design. In software engineering, there are many general types of patterns: Analysis patterns, Design patterns, Testing patterns, Architectural patterns, Project management patterns, and so on.\n\nIn fact, the abstraction occurrence pattern is more of an analysis pattern than a design pattern, while MVC is more of an architectural pattern.\n\nNew patterns can be created too. If a common problem that needs to be solved frequently leads to a non-obvious and better solution, it can be formulated as a pattern so that it can be reused by others. However, don’t reinvent the wheel; the pattern might already exist.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Design Patterns vs. Design Principles",
+    "maincontent": "Design principles have varying degrees of formality – rules, opinions, rules of thumb, observations, and axioms. Compared to design patterns, principles are more general, have wider applicability, with correspondingly greater overlap among them.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Approaches - Multi-level Design - What",
+    "maincontent": "In a smaller system, the design of the entire system can be shown in one place.\n\nThe design of bigger systems needs to be done/shown at multiple levels.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Approaches - Top-Down and Bottom-Up Design - What",
+    "maincontent": "Multi-level design can be done in a top-down manner, bottom-up manner, or as a mix.\n\n1. Top-down: Design the high-level design first and flesh out the lower levels later. This is especially useful when designing big and novel systems where the high-level design needs to be stable before lower levels can be designed.\n\n2. Bottom-up: Design lower level components first and put them together to create the higher-level systems later. This is not usually scalable for bigger systems. One instance where this approach might work is when designing a variation of an existing system or re-purposing existing components to build a new system.\n\n3. Mix: Design the top levels using the top-down approach but switch to a bottom-up approach when designing the bottom levels.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Approaches - Agile Design - What",
+    "maincontent": "Agile design can be contrasted with full upfront design in the following way:\n\nAgile designs are emergent, they’re not defined up front. Your overall system design will emerge over time, evolving to fulfill new requirements and take advantage of new technologies as appropriate. Although you will often do some initial architectural modeling at the very beginning of a project, this will be just enough to get your team going. This approach does not produce a fully documented set of models in place before you may begin coding. (adapted from agilemodeling.com)\n\n"
   },{
       "title": "Implementation",
       "header": "IDE: Introduction",
