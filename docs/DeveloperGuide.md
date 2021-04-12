@@ -440,7 +440,7 @@ testers are expected to do more *exploratory* testing.
 1. Creating a pool from using the list of all passengers being shown.
 
     1. Prerequisites: List all passengers using the `list` command.
-       Multiple passengers in the list, with the first two passengers having the same the trip day of `MONDAY` and trip time of `1930`.
+       Multiple passengers in the list, with the first four passengers having the same the trip day of `MONDAY` and trip time of `1930`.
        The rest of the passengers having any other trip day and time.
 
     1. Test case: `pool n/Paul p/90101231 d/MONDAY t/1930 c/1 c/2`<br>
@@ -449,13 +449,13 @@ testers are expected to do more *exploratory* testing.
        Names of the passengers from the passenger list at index 1 and 2 are also displayed in the pool.
        Status message shows the details of the pool created.
 
-   1. Test case: `pool n/Sarah p/96663777 d/MONDAY t/1400 c/1 c/2`<br>
+   1. Test case: `pool n/Sarah p/96663777 d/MONDAY t/1400 c/3 c/4`<br>
       
       Expected: A pool is created and added to the pool list, with a trip by the driver named `Sarah`, phone number `96663777`, at `MONDAY 1400`.
-      Names of the passengers from the passenger list at index 1 and 2 are also displayed in the pool.
+      Names of the passengers from the passenger list at index 3 and 4 are also displayed in the pool.
       Status message shows a message to warn the user that there are passengers with a time difference of more than 15 minutes of the pool time.
 
-   1. Test case: `pool n/Patricia p/90102020 d/WEDNESDAY t/1930 c/1 c/3`<br>
+   1. Test case: `pool n/Patricia p/90102020 d/WEDNESDAY t/1930 c/1 c/5`<br>
       
       Expected: No pool is added. Error details shown in the status message, prompting user to check for a trip day mismatch. Text in command bar turns red.
 
