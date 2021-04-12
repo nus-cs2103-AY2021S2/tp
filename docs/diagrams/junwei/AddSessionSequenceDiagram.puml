@@ -65,11 +65,14 @@ create CommandResult
 AddSessionCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddSessionCommand
+CommandResult --> AddSessionCommand : result
 deactivate CommandResult
 
 AddSessionCommand --> LogicManager : result
 deactivate AddSessionCommand
+
+AddSessionCommand -[hidden]-> LogicManager
+destroy AddSessionCommand
 
 [<--LogicManager
 deactivate LogicManager
