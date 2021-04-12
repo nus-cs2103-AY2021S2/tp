@@ -25,7 +25,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can efficiently search for defintions they need to save time, which satisfies their concern of wasting time having to find data in the textbook. All definitions are extracted from the CS2103/T textbook.  
     (Pull request [\#95](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/95))
 
-\newpage
+---
 
   
 * **New Feature**: Added ability to show specific content in the Dictionary.
