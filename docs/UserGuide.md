@@ -694,7 +694,7 @@ Viewing events on Jun 02 2021 (0 appointment(s) and 1 schedule(s) displayed)
 ### Budget Tracker
 This feature allows tutees to track and manage his/her budget allocated to tuitions.
 
-![Budget Ui](images/ug-images/Budget_2.PNG)
+![Budget Ui](images/ug-images/Budget_updated.PNG)
 
 **Attributes / Parameters**:
 * Budget Amount
@@ -839,13 +839,21 @@ Example: `list_grades`
 
 Result Display Example Output:
 ```
-Listed all grades
+1. Mathematics
+   Final Exam
+   A1
+2. English
+   Midterm
+   B3
+3. Science
+   Lab 1
+   A2
 ```
 
 ### Reminder Tracker
 This feature allows tutees to track and manage reminders daily. This is exceptionally helpful if the reminders are related to the tuition or the tutor itself, i.e. setting a reminder to pay a particular tutor's tuition fee.
 
-![Reminder Ui](images/ug-images/Reminder.png)
+![Reminder Ui](images/ug-images/Reminder_updated.png)
 
 * Red reminder card sidebar represent past reminders.
 * Yellow reminder card sidebar represent ongoing reminders.
@@ -968,7 +976,7 @@ Date: Jun 21 2021
 ### Tutor and Appointment Filters 
 This feature enhances the tutee's viewing experiences by allowing the tutees to filter tutors or appointments based on attributes.
 
-![Filters Ui](images/ug-images/Filters.png)
+![Filters Ui](images/ug-images/Filters_updated.png)
 
 #### Add a Tutor Filter: `add_tutor_filter`
 
@@ -1103,9 +1111,9 @@ Action | Format | Examples
 **Edit a budget** | `edit_budget b/BUDGET` | `edit_budget b/600`
 **Delete a budget** | `delete_budget` | `delete_budget`
 **View a budget** | `view_budget` | `view_budget`
-**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER`, | `add_grade s/English gi/Final gr/A` 
-**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]`, | `edit_grade 1 gr/B`
-**Delete a grade** | `delete_grade INDEX`, | `delete_grade 1`
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER` | `add_grade s/English gi/Final gr/A1` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]` | `edit_grade 1 gr/B3`
+**Delete a grade** | `delete_grade INDEX` | `delete_grade 1`
 **List grades** | `list_grades` | `list_grades`
 **Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` | `add_reminder ds/Science Tuition Payment Due d/2021-5-2`
 **List reminders** | `list_reminders` | `list_reminders`
