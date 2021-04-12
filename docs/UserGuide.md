@@ -217,6 +217,8 @@ To remove tags from a property, you can use the command `edit property INDEX tag
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 *  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
 
