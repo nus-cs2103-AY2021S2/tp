@@ -726,6 +726,8 @@ Note: this set of test cases can be similarly performed for the doctor record js
     * Handled UI display of Patient, Doctor, Appointment to not display the UUID and to show the appropriate names instead, and performed the translation with high efficiency with Java Maps.
 
 * Handled dependency issues regarding deleting of patient/doctors and clearing of patient/doctor records.
+    * Added exceptions when patient/ doctor has existing appointments in the appointment schedule
+    * Added force delete functionality for delete commands so that users can conveniently delete patients/ doctors with their associated appointments
 
 * Modified `Model`, `Storage`, and `Logic` to be generic, to accept extensions of the `Person` class.
 * Added Timeslot Parser, and related enums, so that user is able to be more flexible in entering date and time for their appointments.
