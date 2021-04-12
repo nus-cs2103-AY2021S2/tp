@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -81,7 +82,7 @@ public class UnpoolCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         Index outOfBoundIndex = INDEX_THIRD;
         List<String> searchString = new ArrayList<>();
-        searchString.add("Alice");
+        searchString.add(VALID_FIRST_NAME_AMY_LOWER_CASE);
 
         model.updateFilteredPoolList(new PooledPassengerContainsKeywordsPredicate(searchString));
 
