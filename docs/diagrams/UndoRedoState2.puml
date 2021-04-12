@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "add n/David"
+title After command "addreader r/David p/98765432 e/dav@hi.com a/house"
 
 package States <<rectangle>> {
     class State1 as "__sl0:SmartLib__"
