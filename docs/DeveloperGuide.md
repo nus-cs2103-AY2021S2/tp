@@ -8,10 +8,18 @@ title: Developer Guide
   <h1 align="center">BudgetBaby :baby: :money_with_wings: Developer Guide</h1>
 </p>
 
-- Table of Contents
-  {:toc}
+<br><br>
 
----
+**BudgetBaby** is a **budget and expenses tracking desktop app for University students and/or those who are looking to
+better manage their finances**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and
+editing financial records and budgets can be done faster by typing in commands while still having the benefits of a
+Graphical User Interface (GUI).
+
+This document aims to guide developers ...
+
+## Table of Content
+
+- [Setting up, getting started](#setting-up-getting-started)
 
 ## **Setting up, getting started**
 
