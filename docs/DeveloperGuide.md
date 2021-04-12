@@ -5,13 +5,10 @@ title: Developer Guide
 
 <p align="center">
   <img src="images/dietlah-slim.png" alt="DietLAH!">
+
 </p>
-
-<p align="center">
-
-<h1>Developer Guide</h1>
-</p>
-
+<center><h1>Developer Guide</h1></center>
+<div style="page-break-after: always;"></div>
 ## Table of Contents
 
 <!--ts-->
