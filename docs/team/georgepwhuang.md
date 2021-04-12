@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Huang Po-Wei's Project Portfolio Page
 ---
 
@@ -36,7 +36,7 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
     * What it does: reminds the user of upcoming birthdays and meetings.
     * Justification: This feature allows users to be reminds of important events without having to go through the entire
       list of information.
-    * Highlights: This feature required a separate window to be displayed, which had to be able to contain all 
+    * Highlights: This feature required a separate window to be displayed, which had to be able to contain all
       the information and notices, which can amount to a lot when there are a large number of clients
 
 * **Enhancements to existing features**:
