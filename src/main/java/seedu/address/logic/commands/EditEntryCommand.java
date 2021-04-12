@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_EDIT_ENTRY_SUCCESS;
-import static seedu.address.commons.core.Messages.MESSAGE_ENTRY_END_DATE_IN_PAST;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ENTRY_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_OVERLAPPING_ENTRY;
@@ -74,10 +73,6 @@ public class EditEntryCommand extends Command {
         EntryDate updatedEntryEndDate = tempEntry.getEndDate().orElse(targetEntry.getOriginalEndDate());
         Set<Tag> updatedTags = tempEntry.getTags().orElse(targetEntry.getTags());
         Entry updatedEntry = new Entry(updatedEntryName, updatedEntryStartDate, updatedEntryEndDate, updatedTags);
-
-        if (updatedEntry.isOverdue()) {
-            throw new CommandException(MESSAGE_ENTRY_END_DATE_IN_PAST);
-        }
 
         if (!updatedEntryStartDate.isBefore(updatedEntryEndDate)) {
             throw new CommandException(MESSAGE_INVALID_DATE_RANGE);

@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
-import seedu.address.model.entry.exceptions.OverdueEntryException;
 import seedu.address.model.entry.exceptions.OverlappingEntryException;
 
 public class NonOverlappingEntryList implements Iterable<Entry> {
@@ -43,9 +42,7 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
         if (overlapsWith(toAdd)) {
             throw new OverlappingEntryException();
         }
-        if (toAdd.isOverdue()) {
-            throw new OverdueEntryException();
-        }
+
         internalList.add(toAdd);
         FXCollections.sort(internalList, new EntryComparator());
     }

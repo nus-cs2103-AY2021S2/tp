@@ -52,9 +52,9 @@ public class EditEntryCommandTest {
     @Test
     public void execute_disjointEntries_commandSuccess() {
         // CLASS_MEETING 2022-02-01 15:00 2022-02-01 16:30
-        EntryDate entryDate13 = new EntryDate("2022-02-01 13:00");
-        EntryDate entryDate14 = new EntryDate("2022-02-01 14:00");
-        EntryDate entryDate15 = new EntryDate("2022-02-01 15:00");
+        EntryDate entryDate13 = new EntryDate("2020-02-01 13:00");
+        EntryDate entryDate14 = new EntryDate("2020-02-01 14:00");
+        EntryDate entryDate15 = new EntryDate("2020-02-01 15:00");
 
         // editing CONSULTATION
         Index target = Index.fromZeroBased(0);
