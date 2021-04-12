@@ -7,6 +7,7 @@ participant ":TaskifyParser" as TaskifyParser LOGIC_COLOR
 participant ":TagSearchCommandParser" as TagSearchCommandParser LOGIC_COLOR
 participant "t:TagSearchCommand" as TagSearchCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "predicate:TagContainsKeywordsPredicate" as TagContainsKeywordsPredicate LOGIC_COLOR
 end box
 
 
@@ -31,8 +32,14 @@ deactivate TagSearchCommandParser
 TaskifyParser -> TagSearchCommandParser : parse("tutorial cs2100")
 activate TagSearchCommandParser
 
+create TagContainsKeywordsPredicate
+TagSearchCommandParser -> TagContainsKeywordsPredicate : TagContainsKeywordsPredicate("tutorial cs2100")
+activate TagContainsKeywordsPredicate
+TagContainsKeywordsPredicate -> TagSearchCommandParser : predicate
+deactivate TagContainsKeywordsPredicate
+
 create TagSearchCommand
-TagSearchCommandParser -> TagSearchCommand
+TagSearchCommandParser -> TagSearchCommand : TagSearchCommand(predicate)
 activate TagSearchCommand
 
 TagSearchCommand --> TagSearchCommandParser : t

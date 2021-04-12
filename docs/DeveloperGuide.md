@@ -24,9 +24,10 @@ title: Developer Guide
   - [4.3 View Command](#43-view-command)
   - [4.4 Switch between the different tabs](#44-switch-between-the-different-tabs)
   - [4.5 Tag Search Command](#45-tag-search-command)
-  - [4.6 Delete multiple tasks with indices](#46-delete-multiple-tasks-with-indices)
-  - [4.7 Delete multiple tasks with an index range](#47-delete-multiple-tasks-with-an-index-range)
-  - [4.8 Delete all tasks of a specified status](#48-delete-all-tasks-of-a-specified-status)
+  - [4.6 Find Command](#46-find-command)
+  - [4.7 Delete multiple tasks with indices](#47-delete-multiple-tasks-with-indices)
+  - [4.8 Delete multiple tasks with an index range](#48-delete-multiple-tasks-with-an-index-range)
+  - [4.9 Delete all tasks of a specified status](#49-delete-all-tasks-of-a-specified-status)
 - [**5. Documentation, logging, testing, configuration, dev-ops**](#5-documentation-logging-testing-configuration-dev-ops)
 - [**6. Appendix: Requirements**](#6-appendix-requirements)
   - [6.1 Product scope](#61-product-scope)
@@ -327,11 +328,10 @@ checks if any of the `keywords` match the tags in the `Task`. If one or more of 
 
 
 `Task` has the following function to retrieve the tags:
-* `Task#getTags()` - Return the tags of a `Task` .
+* `Task#getTags()` - Returns the tags of a `Task` .
 
-`TagContainsKeywordsPredicate` will be passed to `Model#updateXYZFilteredTaskList(Predicate)`
-(`updateFilteredTaskList`, `updateUncompleredFilteredTaskList`, etc.) depending on which tab is currently active. The
-filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
+`TagContainsKeywordsPredicate` will be passed to `Model#updateFilteredTaskList(Predicate)`.
+The filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
 
 
 The following sequence diagram shows how the tag-search command works. As an example we will take `tag-search
@@ -352,8 +352,37 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Users can type less and save time if they have multiple tags to search for.
     * Cons: Less intuitive as user will have to keep track of which tags are under which group.
 
+## 4.6 Find Command
 
-## 4.6 Delete multiple tasks with indices
+### Implementation
+
+The implementation of the Find feature is facilitated by `NameContainsKeywordsPredicate` which implements
+`Predicate<Task>` and has the `test` method's implementation overridden to test if a `Task` name matches any
+of the keywords entered by the user.
+
+The `NameContainsKeywordsPredicate#test(Task)` iterates through the `keywords` of type `List<String>` and
+checks if any of the `keywords` match the name of the `Task`. If any of the keywords match any of the words in the Task 
+name, the function returns true.
+
+
+`Task` has the following function to retrieve the name:
+* `Task#getName()` - Returns the name of a `Task` .
+
+`NameContainsKeywordsPredicate` will be passed to `Model#updateFilteredTaskList(Predicate)`. The
+filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
+
+
+The following sequence diagram shows how the tag-search command works. As an example we will take `find
+Buy Grocery` as input.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the tag-search command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+
+## 4.7 Delete multiple tasks with indices
 This feature allows users to list out the [indices](#65-glossary) of tasks to delete.
 
 ### Implementation
@@ -383,7 +412,7 @@ The following sequence diagram traces the step-by-step execution of deleting mul
 
 Solution 1 was selected for its better benefits as well as increased testability.
 
-## 4.7 Delete multiple tasks with an index range
+## 4.8 Delete multiple tasks with an index range
 This feature allows users to provide an index range to delete all tasks within the range, inclusive of the upper and lower bound indices.
 
 ### Implementation
@@ -411,7 +440,7 @@ be part of the same responsibility, so it likely does not violate SRP.
 
 
 
-## 4.8 Delete all tasks of a specified status
+## 4.9 Delete all tasks of a specified status
 This feature allows users to provide a `Status` to delete all tasks that are of that `Status`.
 
 ### Implementation
