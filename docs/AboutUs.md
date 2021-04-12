@@ -42,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/shuyang0.png" width="200px">
 
 [[github](http://github.com/Shuyang0)]
-[[portfolio](team/shuyang.md)]
+[[portfolio](team/shuyang0.md)]
 
 * Role: Developer
-* Responsibilities: Integration, Git expert
+* Responsibilities: Integration, Git/GitHub
