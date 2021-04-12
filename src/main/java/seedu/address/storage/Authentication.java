@@ -32,6 +32,7 @@ import net.lingala.zip4j.model.enums.EncryptionMethod;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.FileUtil;
 
+//@@author swayongshen
 /**
  * Handles the encryption and decryption of the data .json file.
  */

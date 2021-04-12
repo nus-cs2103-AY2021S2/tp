@@ -5,6 +5,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.storage.Authentication;
 
+//@@author swayongshen
 public class UnlockCommand extends Command {
 
     public static final String COMMAND_WORD = "unlock";
