@@ -350,7 +350,7 @@ Reason for choosing option 2:
 
 The following activity diagram summarizes what happens when the `add_grade` command is executed.
 
-![Activity Diagram of Add Grade](images/grade/GradeActivityDiagram.png)
+![Activity Diagram of Add Grade](images/grade/GradeActivityDiagram_updated.png)
 
 ### [Proposed] Filter Feature
 This Filter feature would allow users to manage filters and apply them to the list of tutors
@@ -647,6 +647,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 1. User inputs tutor details.
 2. TutorTracker confirms that tutor details have been added to list.
+   Use case ends.
 
 **Extensions**
 * 1a. Details are not keyed in the correct format as specified in user guide.
@@ -705,11 +706,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-  Use case ends.
+* 1a. The list is empty.   
+    Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.
+    * 3a1. TutorTracker shows an error message.   
       Use case resumes at step 2.
 
 <hr/>
@@ -727,11 +728,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty. 
+* 1a. The list is empty.   
     Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.
+    * 3a1. TutorTracker shows an error message.    
       Use case resumes at step 2.
 
 <hr/>
@@ -747,9 +748,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-
-      Use case ends.
+* 1a. The list is empty.   
+Use case ends.
 
 <hr/>
 
@@ -766,9 +766,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-
-      Use case ends.
+* 1a. The list is empty.  
+Use case ends.
 
 * 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
@@ -784,14 +783,15 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 2.  TutorTracker shows a list of tutors.
 3.  User requests to export a tutor's details and notes in the list by index.
 4.  Text file containing tutor's details and notes created.
+    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-  Use case ends.
+* 1a. The list is empty.   
+Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.
+    * 3a1. TutorTracker shows an error message.   
       Use case resumes at step 2.
 
 <hr/>
@@ -886,7 +886,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 1.  User requests to list appointments.
 2.  TutorTracker shows a list of appointments.
 3.  User requests to delete a specific appointment in the list.
-4.  TutorTracker deletes that specific appointment.
+4.  TutorTracker deletes that specific appointment.   
+    Use case ends.
 
 <hr/>
 
@@ -895,25 +896,28 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **MSS**
 
 1. User inputs grade details.
-2. TutorTracker confirms that grade details have been added to GradeBook.
-
+2. TutorTracker adds the grade and displays the new grade.    
+   Use case ends.
+   
 **Extensions**
 * 1a. Grade details are invalid or empty.
-    * 1a1. TutorTracker shows an error message
+    * 1a1. TutorTracker shows an error message.   
     
-* 2a. Grade details already exists in list.
-    * 2a1. TutorTracker shows an error message
+    Use case ends.   
+ 
 
-  Use case resumes at step 1.
+* 2a. Grade details already exist in list.
+    * 2a1. TutorTracker shows an error message.
+      
+    Use case ends.
 
 <hr/>
 
-**Use Case UC0015: List all grades**
+**Use Case UC0015: List grade(s)**
 
 **MSS**
-1. User requests to list grades.
-2. TutorTracker shows a list of grades.
-
+1. User requests to list grade(s).
+2. TutorTracker shows a list of grade(s).    
    Use case ends.
 
 <hr/>
@@ -925,13 +929,14 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 1.  User requests to list grades.
 2.  TutorTracker shows a list of grades.
 3.  User requests to delete a grade at specified index.
-4.  TutorTracker deletes that specific grade.
+4.  TutorTracker deletes that specific grade.    
+    Use case ends.
 
 **Extensions**
 * 3a. Index is invalid.
-    * 3a1. TutorTracker shows an error message
+    * 3a1. TutorTracker shows an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 <hr/>
 
@@ -942,16 +947,26 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 1.  User requests to list grades.
 2.  TutorTracker shows a list of grades.
 3.  User requests to edit a grade at specified index.
-4.  TutorTracker deletes that specific grade.
+4.  TutorTracker edits that specific grade.   
+Use case ends.
 
 **Extensions**
 * 3a. Index is invalid.
-    * 3a1. TutorTracker shows an error message
+    * 3a1. TutorTracker shows an error message.
+      
+  Use case ends.
 
-* 3b. Grade details already exists in list.
-    * 3b1. TutorTracker shows an error message
 
-  Use case resumes at step 1.
+* 3b. Grade details are invalid or empty.
+    * 3b1. TutorTracker shows an error message.
+
+  Use case ends.
+
+
+* 3c. Grade details already exist in list.
+    * 3c1. TutorTracker shows an error message
+
+  Use case ends.
 
 <hr/>
 
@@ -960,11 +975,12 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **MSS**
 
 1. User wants to add a personal budget to keep track of.
-2. User keys in command to add budget of an amount he wants. 
+2. User keys in command to add budget of an amount he wants.   
+   Use case ends.
 
 **Extensions** 
 * 2a. A budget is already present.
-    * 2a1. TutorTracker flags out an error.
+    * 2a1. TutorTracker flags out an error.  
 * 2b. Invalid budget amount is added, for example a negative amount.
     * 2b1. TutorTracker flags out the error.
     

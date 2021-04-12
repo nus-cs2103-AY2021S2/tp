@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalGrades.MATHS_GRADE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
 import seedu.address.model.subject.SubjectName;
@@ -32,7 +33,7 @@ public class JsonAdaptedGradeTest {
     public void toModelType_invalidSubject_throwsIllegalValueException() {
         JsonAdaptedGrade grade =
                 new JsonAdaptedGrade(INVALID_SUBJECT, VALID_GRADED_ITEM, VALID_GRADE);
-        String expectedMessage = SubjectName.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Grade.SUBJECT_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, grade::toModelType);
     }
 

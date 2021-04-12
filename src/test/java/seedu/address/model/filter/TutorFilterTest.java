@@ -26,8 +26,12 @@ import seedu.address.model.tutor.Gender;
 import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Phone;
 import seedu.address.model.tutor.Tutor;
+import seedu.address.testutil.TypicalFilters;
 import seedu.address.testutil.TypicalTutors;
 
+/**
+ * Integration tests for TutorFilter.
+ */
 public class TutorFilterTest {
     private Set<Predicate<Name>> nameFilters;
     private Set<Predicate<Gender>> genderFilters;
@@ -54,6 +58,27 @@ public class TutorFilterTest {
         this.subjectRateFilters = new LinkedHashSet<>();
         this.subjectExperienceFilters = new LinkedHashSet<>();
         this.subjectQualificationFilters = new LinkedHashSet<>();
+    }
+
+    @Test
+    public void test() {
+        Tutor alice = TypicalTutors.ALICE;
+        Tutor benson = TypicalTutors.BENSON;
+
+        // EP 1: Tutor Details
+        TutorFilter tutorFilter = TypicalFilters.getBensonNoSubjectsFilter();
+        assertTrue(tutorFilter.test(benson));
+        assertFalse(tutorFilter.test(alice));
+
+        // EP 2: One Subject Details
+        tutorFilter = TypicalFilters.getBensonOneSubjectFilter();
+        assertTrue(tutorFilter.test(benson));
+        assertFalse(tutorFilter.test(alice));
+
+        // EP 3: All subject details
+        tutorFilter = TypicalFilters.getBensonTwoSubjectsFilter();
+        assertTrue(tutorFilter.test(benson));
+        assertFalse(tutorFilter.test(alice));
     }
 
     @Test
@@ -90,7 +115,7 @@ public class TutorFilterTest {
     }
 
     @Test
-    public void hasAny_personFilter_success() {
+    public void hasAny_tutorFilter_success() {
         Tutor amy = TypicalTutors.AMY;
         Tutor bob = TypicalTutors.BOB;
 
@@ -118,7 +143,7 @@ public class TutorFilterTest {
     }
 
     @Test
-    public void add_personFilter_success() {
+    public void add_tutorFilter_success() {
         TutorFilter tutorFilter = new TutorFilter();
 
         Tutor amy = TypicalTutors.AMY;
@@ -149,7 +174,7 @@ public class TutorFilterTest {
     }
 
     @Test
-    public void remove_personFilter_success() {
+    public void remove_tutorFilter_success() {
         Tutor amy = TypicalTutors.AMY;
         Tutor bob = TypicalTutors.BOB;
 

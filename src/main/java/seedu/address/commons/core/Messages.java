@@ -26,6 +26,12 @@ public class Messages {
             + " because at least one existing appointment has been booked with the"
             + " tutor in question. Please ensure that tutor to be deleted does not"
             + " have any existing appointments.";
+    public static final String MESSAGE_APPOINTMENT_LIST_HAS_TUTOR_EDIT = "Failed to "
+            + "edit tutor name"
+            + " because at least one existing appointment has been booked with the"
+            + " tutor in question. Please ensure that tutor whose name is to be "
+            + "edited does not have any existing appointments.";
+
     public static final String MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT = "Tutor of the "
             + "appointment in question does not teach this subject. Please ensure "
             + "that tutor teaches this subject: %s";

@@ -162,6 +162,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void changeAllAppointmentsToName(Name oldName, Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean doesAppointmentClash(Name name, AppointmentDateTime timeFrom, AppointmentDateTime timeTo) {
             throw new AssertionError("This method should not be called.");
         }

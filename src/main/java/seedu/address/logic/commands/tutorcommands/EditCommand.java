@@ -114,6 +114,10 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TUTOR);
         }
 
+        if (model.hasAppointmentContainingTutor(tutorToEdit.getName())) {
+            model.changeAllAppointmentsToName(tutorToEdit.getName(), editedTutor.getName());
+        }
+
         model.setTutor(tutorToEdit, editedTutor);
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
         return new CommandResult(String.format(MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor));
