@@ -143,7 +143,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Contact>`,`ObservableList<Note>`,`ObservableList<Content>`,`ObservableList<Definition>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changed.
 * does not depend on any of the other three components.
 
-The `ContactsList` stores the `Contact` of the user. A `Contact` consists of `Name`, `Email`, `Phone`, `Address` and a custom `Tag` class.
+The `ContactsList` stores the `Contact` of the user. A `Contact` consists of `Name`, `Email`, `Phone`, `Address`, `FrequencyCounter`, and a custom `Tag` class.
 The `NoteBook` stores the `Notes` of the user. A `Note` also has a `Tag` class. The `Dictionary` stores both the `Definition` and `Content` in the `Dictionote`. 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ContactList` and `NoteBook`, which `Contact` and `Note` references, respectively. This allows `ContactList` and `NoteBook` to only require one `Tag` object per unique `Tag` in each "Book", instead of each `Contact` and  `Note` needing their own `Tag` object, respectively.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
@@ -510,53 +510,54 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-#### User Stories : Main/UI
-
 | Priority | As a …​                                                   | I want to …​                                          | So that I can…​                                            | Category               |
 | -------- | -------------------------------------------------------------| -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------- |
-|***Main***| | | |
-| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy dictionary content to note                        | Main/UI/UX         |
-| `* *`    | CS2103 Student                                               | Open and close Contact panel                             | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Dictionary Content panel                  | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Dictionary List panel                     | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Note Content panel                        | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Note List  panel                          | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjusting the Ui everytime I open the app  | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Change my UI configuration                               | Do no need to adjust the UI using mouse                       | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | Use the space available more efficiently                      | Main/Non-essential |
-|***Dictionary*** | -- | -- | --  | -- |
-| `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Dictionary/Essential|
-| `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Dictionary/Essential|
-| `* * *`  | CS2103T student                                              | List all the contents in the dictionary                  | View the extensive list of contents                           | Dictionary/Essential|
-| `* * *`  | CS2103T student                                              | List all the definitions in the dictionary               | View the extensive list of contents                           | Dictionary/Essential|
-| `*`      | CS2103T student                                              | Track my progress when reading through a summary         | Continue my preparation from where I left off                 | Dictionary/Non-essential|
-| `* *`    | CS2103T student                                              | Copy specific contents in the dictionary to the notes    | Keep track of the important content on my personal note list  | Dictionary/Non-essential|
+|***UI***| | | |
+| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy dictionary content to note                        | Essential     |
+| `* *`    | CS2103 Student                                               | Open and close Contact panel                             | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary Content panel                  | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary List panel                     | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note Content panel                        | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note List  panel                          | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjusting the Ui everytime I open the app  | Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI configuration                               | Do no need to adjust the UI using mouse                       | Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | Use the space available more efficiently                      | Non-essential |
+|***Dictionary*** | | | | |
+| `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Essential|
+| `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Essential|
+| `* * *`  | CS2103T student                                              | List all the contents in the dictionary                  | View the extensive list of contents                           | Essential|
+| `* * *`  | CS2103T student                                              | List all the definitions in the dictionary               | View the extensive list of contents                           | Essential|
+| `*`      | CS2103T student                                              | Track my progress when reading through a summary         | Continue my preparation from where I left off                 | Non-essential|
+| `* *`    | CS2103T student                                              | Copy specific contents in the dictionary to the notes    | Keep track of the important content on my personal note list  | Non-essential|
 |***Note*** |  |  |  | |
-| `* * *`  | CS2103T student                                              | Take a new note                                          | Have easy access to my materials whenever I need them         | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Delete an existing note                                  | Remove out-of-date notes.                                     | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Edit a note                                              | Revise a small typo in the note.                              | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Look at all notes                                        | Remember what is the content of the note                      | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Show a specific note                                     | To read the content of a specific note in detail              | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Edit a note in edit mode                                 | Modify the content of the note easily.                        | Note/Essential  |
-| `* * `   | CS2103T student                                              | Tag a note                                               | I can access notes easily.                                    | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Track the date and time the note is created              | Find the note according to the time created                   | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Sort a note alphabetically                               | I can read the notes in order.                                | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Search a note using keyword                              | Find out what notes contain the specific keyword.             | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Mark a note as undone                                    | Remember which part of the notes I have not done yet.         | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Mark all notes as undone                                 | Reset all the features I have marked as done.                 | Note/Non-Essential  |
-| `* `     | CS2103T student                                              | Track the date and time the note is last modified        | Find the note according to the time last modify.              | Note/Non-Essential  |
-| `* `     | CS2103T student                                              | Mark a content of a note as done                         | Remember which part of the notes I have done.                 | Note/Non-Essential  |
+| `* * *`  | CS2103T student                                              | Take a new note                                          | Have easy access to my materials whenever I need them         | Essential  |
+| `* * * ` | CS2103T student                                              | Delete an existing note                                  | Remove out-of-date notes.                                     | Essential  |
+| `* * * ` | CS2103T student                                              | Edit a note                                              | Revise a small typo in the note.                              | Essential  |
+| `* * * ` | CS2103T student                                              | Look at all notes                                        | Remember what is the content of the note                      | Essential  |
+| `* * * ` | CS2103T student                                              | Show a specific note                                     | To read the content of a specific note in detail              | Essential  |
+| `* * * ` | CS2103T student                                              | Edit a note in edit mode                                 | Modify the content of the note easily.                        | Essential  |
+| `* * `   | CS2103T student                                              | Tag a note                                               | I can access notes easily.                                    | Non-Essential  |
+| `* * `   | CS2103T student                                              | Track the date and time the note is created              | Find the note according to the time created                   | Non-Essential  |
+| `* * `   | CS2103T student                                              | Sort a note alphabetically                               | I can read the notes in order.                                | Non-Essential  |
+| `* * `   | CS2103T student                                              | Search a note using keyword                              | Find out what notes contain the specific keyword.             | Non-Essential  |
+| `* * `   | CS2103T student                                              | Mark a note as undone                                    | Remember which part of the notes I have not done yet.         | Non-Essential  |
+| `* * `   | CS2103T student                                              | Mark all notes as undone                                 | Reset all the features I have marked as done.                 | Non-Essential  |
+| `* `     | CS2103T student                                              | Track the date and time the note is last modified        | Find the note according to the time last modify.              | Non-Essential  |
+| `* `     | CS2103T student                                              | Mark a content of a note as done                         | Remember which part of the notes I have done.                 | Non-Essential  |
 |***Contact***| | | | |
-| `* * *`  | CS2103T Student                                              | Add my contacts                                          | Easily manage the contacts list                               | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Edit my contacts                                         | Easily manage the contacts list                               | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Delete my contacts                                       | Easily manage the contacts list                               | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Look at all contacts                                     | Easily manage the contacts list                               | Contact/Essential     |
-| `* *`    | CS2103T Student                                              | Tag a contact with a word                                | Find contacts based on their tags                             | Contact/Non-essential |
-| `* *`    | CS2103T Student                                              | Search for contacts using tags                           | Contact anyone from a particular tag                          | Contact/Non-essential |
-| `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list                       | Ask questions, discuss topics, or exchange notes with them    | Contact/Non-essential |
+| `* * *`  | CS2103T Student                                              | Add my contacts                                          | Easily manage the contacts list                               | Essential     |
+| `* * *`  | CS2103T Student                                              | Edit my contacts                                         | Easily manage the contacts list                               | Essential     |
+| `* * *`  | CS2103T Student                                              | Delete my contacts                                       | Easily manage the contacts list                               | Essential     |
+| `* * *`  | CS2103T Student                                              | Look at all contacts                                     | Easily manage the contacts list                               | Essential     |
+| `* *`    | CS2103T Student                                              | Tag a contact with a word                                | Find contacts based on their tags                             | Non-essential |
+| `* *`    | CS2103T Student                                              | Search for contacts using tags                           | Contact anyone from a particular tag                          | Non-essential |
+| `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list                       | Ask questions, discuss topics, or exchange notes with them    | Non-essential |
+| `* *`    | Extroverted student who likes to discuss things with friends | Locate the contacts whom I frequently contact                       | Save time having to look for them in my address book    | Non-essential |
+| `* *`    | CS2103T student | Send a note by email                       | Easily discuss the contents of a particular note with one of my contacts    | Non-essential |
+| `* *`    | CS2103T Student | Search the email of my friends             | I can easily find for whom a particular email address is.    | Non-essential |
 |***Guide*** | | | | |
-| `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Guide/Essential  |
-| `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Guide/Essential  |
+| `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Essential  |
+| `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Essential  |
 
 
 ### Use cases
