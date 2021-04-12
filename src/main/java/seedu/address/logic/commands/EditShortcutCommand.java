@@ -18,8 +18,8 @@ public class EditShortcutCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the shortcut command of the shortcut identified "
             + "by the shortcut name used in the shortcut library. "
             + "Existing command will be overwritten by the input command.\n"
-            + "Parameters: sn/SHORTCUT_NAME (must be an existing shortcut name) "
-            + "sc/SHORTCUT_COMMAND (must be a valid command)\n"
+            + "Parameters: sn/SHORTCUT_NAME (must alphanumeric without any spacing and must be an existing shortcut "
+            + "name) sc/SHORTCUT_COMMAND (must be a valid ClientBook command)\n"
             + "Example: " + COMMAND_WORD + " sn/findfriends sc/find t/friend";
 
     public static final String MESSAGE_EDIT_SHORTCUT_SUCCESS = "Edited Shortcut: %1$s";

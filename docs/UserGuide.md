@@ -286,15 +286,13 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
     <td> Insurance Policies </td>
     <td> <code>i</code> </td>
     <td><ul><li>Optional</li></ul>
-        <ul><li>Should be of the form <code>PolicyId>URL</code> or <code>PolicyId</code></li></ul>
-        <ul><li><code>PolicyId</code> part should not contain the <code>></code> character</li></ul>
-        <ul><li><code>URL</code> part should not contain the <code>></code> character (not a valid website link if it contains <code>></code>)</li></ul>
+        <ul><li>Should be of the form <code>POLICY_ID>POLICY_URL</code> or <code>POLICY_ID</code></li></ul>
+        <ul><li>Anything after the <code>></code> character will be considered as the <code>POLICY_URL</code>
+            <ul><li>Due to the huge range of possibilities for the <code>POLICY_URL</code>, it is <b>possible that invalid URLs will also be accepted</b></li></ul>
+            <ul><li><b>Do check the <code>POLICY_URL</code> before entering the input!</b></li></ul>
+        </li></ul>
         <ul><li>A client should not have duplicate insurance policies</li></ul>
         <ul><li>If duplicate insurance policies are entered in a command, only 1 will be added to the client</li></ul>
-        <ul><li><code>URL</code> part should be of the form minimally be of the form <code>xxx.yyy</code>
-            <ul><li>Other basic URL formats will also be accepted, e.g. <code>https://www.xxx.yyy/page/?q=query</code></li></ul>
-        </li></ul> 
-        <ul><li>Due to the huge range of possibilities for the URL, we will have made the acceptable URL formats flexible rather than restrictive. <b>Do check your URL before entering the input!</b></li></ul>
     </td>
   </tr>
   <tr>
@@ -334,10 +332,6 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
 
 * **Parameters can be in any order**. 
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-
-* **If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.**
-  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
 * **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `listshortcut`) **will be ignored**. 
@@ -623,19 +617,55 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 We understand that you might have commands that you frequently use. You may use shortcuts to abbreviate
 those commands to make using ClientBook more convenient.
 
+### <span style="color:#c9a500">Example Usage</span>
+<p><b>Scenario:</b></p> 
+
+You are an insurance agent and you have many client contacts stored inside of ClientBook. Your work mainly requires 
+you to manage your clients' policies and you would like a way to view all your clients' policies while hiding other 
+additional information (e.g. address, email, phone). You know that you can do so with the `list -i` command. However, 
+you would like a faster way to do it because you have to use it frequently, so you decided to create a 
+shortcut named `li` to perform the same action as `list -i`.
+
+<br>
+
+<p><b>Step 1.</b></p> 
+
+**Adding the shortcut using the command** `addshortcut sn/li sc/list -i`.
+
+This command creates a shortcut which performs `list -i` everytime you type `li` in the command box, and it is saved to 
+your shortcut library.
+
+<br>
+
+<p><b>Step 2.</b></p> 
+
+**Using the shortcut using the command** `li`.
+
+As you have saved this shortcut in the shortcut library, you may now use `li` to perform the command `list -i` anytime 
+and as many times as you want, which will save you from the hassle of having to type `list -i` everytime.
+
+<p align="center"><img src="images/shortcut-example.png"></p>
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
 ### <span style="color:#c9a500"><code>addshortcut</code>: Add shortcut</span>
 
 **Purpose**: Adds a command shortcut to the shortcut library.
 
 **Format**: `addshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
 
-* Adds a shortcut named `SHORTCUT_NAME` to the shortcut library and assigns a valid command `SHORTCUT_COMMAND` to it.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must not already exist the shortcut library.
-* The specified `SHORTCUT_COMMAND` must be a valid command.
+* Adds a shortcut named `SHORTCUT_NAME` to the shortcut library and assigns a valid ClientBook command `SHORTCUT_COMMAND` to it.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must not already exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid ClientBook command (e.g. `find n/alex`).
 
 **Examples**:
-* Add a shortcut named `sna` to represent the command `sort -n -asc` (sort list by name in ascending order) in the shortcut library.
-    * `addshortcut sn/sna sc/sort -n -asc`
+* Add a shortcut named `li` to represent the command `list -i` (filter all client information to show policy details 
+  only) in the shortcut library.
+    * `addshortcut sn/li sc/list -i`
+
+![addshortcut](images/addshortcut.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -643,13 +673,13 @@ those commands to make using ClientBook more convenient.
 
 ### <span style="color:#c9a500"><code>editshortcut</code>: Edit shortcut</span>
 
-**Purpose**: Edits the command of a shortcut in the existing shortcut library.
+**Purpose**: Edits the command of a shortcut in the shortcut library.
 
 **Format**: `editshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
 
-* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and replaces its existing command with the provided valid command `SHORTCUT_COMMAND`.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must exist the shortcut library.
-* The specified `SHORTCUT_COMMAND` must be a valid command.
+* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and replaces its existing command with the provided valid ClientBook command `SHORTCUT_COMMAND`.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid ClientBook command (e.g. `find n/alex`).
 
 **Examples**:
 * Edit a shortcut named `ls` in the shortcut library such that it takes on a new command `list`.
@@ -666,7 +696,7 @@ those commands to make using ClientBook more convenient.
 **Format**: `deleteshortcut SHORTCUT_NAME`
 
 * Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and deletes it from the shortcut library.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must exist in the shortcut library.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must exist in the shortcut library.
 
 **Examples**:
 * Delete a shortcut named `ls` in the shortcut library.
@@ -678,8 +708,10 @@ those commands to make using ClientBook more convenient.
 
 ### <span style="color:#c9a500"><code>listshortcut</code>: List all shortcuts</span>
 
-**Purpose**: Lists all shortcuts in the existing shortcut library in case you want to view the shortcuts that you have previously
+**Purpose**: Lists all shortcuts in the shortcut library in case you want to view the shortcuts that you have previously
 created.
+
+![listshortcut](images/listshortcut.png)
 
 **Format**: `listshortcut`
 
@@ -689,7 +721,7 @@ created.
 
 ### <span style="color:#c9a500"><code>clearshortcut</code>: Delete all shortcuts</span>
 
-**Purpose**: Deletes all shortcuts in the existing shortcut library.
+**Purpose**: Deletes all shortcuts in the shortcut library.
 
 **Format**: `clearshortcut`
 

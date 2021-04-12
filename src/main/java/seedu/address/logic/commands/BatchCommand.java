@@ -82,17 +82,25 @@ public class BatchCommand<T extends Command> extends Command {
         if (other instanceof BatchCommand) {
             BatchCommand otherBatchCommand = (BatchCommand) other;
 
-            boolean areListsSame = true;
-            for (int i = 0; i < listOfCommands.size(); i++) {
-                Command fromMainList = listOfCommands.get(i);
-                Command fromOtherList = (Command) otherBatchCommand.listOfCommands.get(i);
-                areListsSame &= fromMainList.equals(fromOtherList);
-            }
-
-            return areListsSame;
+            return compareLists(listOfCommands, otherBatchCommand.listOfCommands);
         }
 
         return false;
+    }
+
+    private boolean compareLists(List<T> firstList, List<T> secondList) {
+        if (firstList.size() != secondList.size()) {
+            return false;
+        }
+
+        boolean areListsSame = true;
+        for (int i = 0; i < firstList.size(); i++) {
+            Command fromMainList = firstList.get(i);
+            Command fromOtherList = secondList.get(i);
+            areListsSame &= fromMainList.equals(fromOtherList);
+        }
+
+        return areListsSame;
     }
 
 }

@@ -12,10 +12,6 @@ import java.util.regex.Pattern;
  */
 public class InsurancePolicy {
 
-    public static final String MESSAGE_CONSTRAINTS = "Policy input is of an incorrect format."
-            + "\nPolicyIDs should not contain '>'."
-            + "\nOptional URLs should be preceded by '>' after the PolicyID, and should be of a standard URL format."
-            + "\nDo head over to our User Guide if you are unsure of the command or input format for policies.";
     public static final String MESSAGE_NO_POLICY = "Currently does not have an active policy";
     /*
     Checks if a String is a valid URL.
