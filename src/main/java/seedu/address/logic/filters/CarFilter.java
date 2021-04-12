@@ -1,7 +1,5 @@
 package seedu.address.logic.filters;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.model.customer.Car;
 
 /**
