@@ -368,10 +368,6 @@ Prefix | Searching Criteria
 `s/`   | School
 `t/`   | Subject
 
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * **At least one** prefix must be used.
    
 * All 3 types of prefix can be used **concurrently**.
@@ -384,7 +380,12 @@ Prefix | Searching Criteria
   
 * Contacts matching at least one keyword will be returned. 
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
+* Available **subject** names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
   
