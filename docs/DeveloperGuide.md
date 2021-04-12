@@ -14,6 +14,8 @@ Please refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 ### Architecture
@@ -141,6 +143,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.storemando.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -683,6 +687,8 @@ The following Activity Diagram summarizes what happens when a user executes a he
     
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -1039,6 +1045,8 @@ otherwise)
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -1188,6 +1196,9 @@ testers are expected to do more *exploratory* testing.
        Expected: All items in the specified location are cleared.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Effort**
 
 This section explains the challenges faced as well as the effort required to develop StoreMando.
@@ -1228,5 +1239,3 @@ team member visualise the tasks remaining.
 
 With our dedicated members and good team spirit, we were able to overcome the challenges mentioned 
 above and produce a great product.
-
-
