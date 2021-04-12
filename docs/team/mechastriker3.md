@@ -72,20 +72,18 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `findAppt` and `find` [\#272](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/272)
     * Edited documentation for feature `add` for **adding incomplete contacts** [\#103](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/103)
-    * Edited documentation for feature `delete` for **deleting multiple contacts** [\#103](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/103)
+    * Edited documentation for feature `delete` for **deleting multiple contacts** [\#310](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/310)
   * Developer Guide:
     * Added implementation details of the `add` feature [\#301](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/301)
     * Added use cases for `delete`, `find` in Appendix:Requirements [\#291](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/291)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Contributed to forum discussions (examples: [#17](https://github.com/nus-cs2103-AY2021S2/forum/issues/17#issuecomment-767455612), [21](https://github.com/nus-cs2103-AY2021S2/forum/issues/21), [#281](https://github.com/nus-cs2103-AY2021S2/forum/issues/281#issuecomment-811904159), [#95](https://github.com/nus-cs2103-AY2021S2/forum/issues/95#issuecomment-775764330), [4]())
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/177), [2](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/173), [3](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/167), [4](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/165), [5](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/163))
 
 * **Team-Based**:
-  * Set up Git Repo and organization aat the start
-  * Set up GitHub pages and added initial PPP for teammates and 
+  * Set up Git Repo and organization at the start of project.
+  * Set up GitHub pages and added initial PPP for teammates.
   * Documented product aim in README.md 
 
 * _{you can add/remove categories in the list above}_
