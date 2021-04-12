@@ -629,7 +629,7 @@ Action | Format, Examples
 **Sort property** | `sort property o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g. `sort property o/asc k/price`
 **Sort appointment** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g. `sort appointment o/asc k/datetime`
 **Find property** | `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] [ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g. `find property n/bishan north t/hdb pl/$1,000,000`
-**Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]` <br><br> e.g., `find appointment n/bob d/23-12-2021`
+**Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]` <br><br> e.g. `find appointment n/bob d/23-12-2021`
 **Find client** | `find client [KEYWORD]...` <br><br> e.g. `find client alice`
 **Clear all properties and appointments** | `clear all`
 **Clear property** | `clear property`
