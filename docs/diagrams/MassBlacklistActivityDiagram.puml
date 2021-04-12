@@ -7,7 +7,7 @@ if () then ([arguments are valid])
 if () then ([keyword is "blacklist"])
     :Blacklists all contacts within the index range;
 else ([keyword is "unblacklist"])
-    :Unblacklists all contacts within the index range;
+    :Un-blacklists all contacts within the index range;
 endif
 :Save changes to storage;
 else ([else])

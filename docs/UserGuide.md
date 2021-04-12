@@ -156,7 +156,7 @@ Format: `remark INDEX r/REMARK`
   refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, …​
 * By default, all newly added contacts will be displayed as having 'No remark'.
 * You can remove a person's remark by typing `r/` without specifying any remark after it. This will cause the person
-  will be displayed as having 'No remark'.
+  to be displayed as having 'No remark' again.
 
 Example:
 
@@ -225,7 +225,7 @@ Format: `massdelete START-END`
   number of contacts currently displayed in the list.
 
 Example:
-`massdelete 7-34`
+`massdelete 5-12`
 
 ### Clearing all entries : `clear`
 
@@ -262,7 +262,6 @@ Format: `sort ASCENDING_OR_DESCENDING`
   descending alphabetical order.
 * The keyword (`ascending` or `descending`) must be in lower case.
 * Both the currently displayed list and the entire contact list will be sorted.
-* Contacts with the same name will be sorted by email in lexicographical order.
 
 Examples:
 
@@ -352,7 +351,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MODE_OF_CONTACT [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/email t/friend t/colleague`
 **Blacklist** | `blist INDEX`<br> e.g., `blist 2`
-**Mass blacklist** | `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`<br> e.g., `massblist 13-67 b/blacklist`
+**Mass Blacklist** | `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`<br> e.g., `massblist 3-10 b/blacklist`
 **Clear** | `clear`
 **Collect** | `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`<br> e.g., `collect e/ s/,`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
@@ -365,6 +364,5 @@ Action | Format, Examples
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Light** | `light`
 **Dark** | `dark`
-**Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Undo** | `undo`
 **Exit** | `exit`

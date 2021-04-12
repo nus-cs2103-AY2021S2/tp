@@ -10,6 +10,8 @@ public class Remark {
 
     public static final String DEFAULT_REMARK = "No remark";
 
+    public static final String MESSAGE_CONSTRAINTS = "Remark should not contain leading and trailing spaces";
+
     public final String value;
 
     /**
@@ -24,6 +26,13 @@ public class Remark {
         } else {
             this.value = remark;
         }
+    }
+
+    /**
+     * Remark should not have any leading or trailing spaces after passing through the parser.
+     */
+    public static boolean isValidRemark(String test) {
+        return test.trim().length() == test.length();
     }
 
     @Override

@@ -29,6 +29,7 @@ title: Developer Guide
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
   - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
   - [Saving data](#saving-data)
@@ -347,7 +348,7 @@ The following sequence diagram shows how the add command works:
 The mass blacklist/un-blacklist mechanism is facilitated by `MassBlacklistCommand`.
 Below is an example usage scenario for mass blacklist.
 
-Step 1: The user executes `massblist 2-5 b/blacklist ` to blacklist all contacts within the index range 2-5.
+Step 1: The user executes `massblist 2-5 b/blacklist` to blacklist all contacts within the index range 2-5.
 The string is passed to the `Logic` component.
 
 Step 2: The `Logic` component parses the string and creates a corresponding `MassBlacklistCommand` object.
@@ -364,20 +365,22 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 </div>
 
-The following activity diagram summarizes what happens when a user executes a mass delete command:
+The following activity diagram summarizes what happens when a user executes a mass blacklist command:
 ![MassBlacklistActivityDiagram](images/MassBlacklistActivityDiagram.png)
 
 #### Design considerations:
 
-##### Aspect: Implementation of mass blacklist command
-* **Alternative 1 (current choice):** Input format is `massdelete START-END`.
-  * Pros: More intuitive for the user.
-  * Cons: More difficult to implement as new methods will have to be written to parse the hyphen (-) symbol.
+##### Aspect: Inheritance or no inheritance with `MassDeleteCommand`
+* **Alternative 1 (current choice):** Implement `MassBlacklistCommand` as a separate class.
+  * Pros: Easier to implement. Code is also shorter.
+  * Cons: This implementation is difficult to extend to other mass operations in the future.
 
-* **Alternative 2:** Input format is `massdelete start/START end/END`.
-  * Pros: Easier to implement as the existing `ArgumentMultimap` and `CliSyntax` classes are
-    well-suited to parse such input formats.
-  * Cons: There are more prefixes for the user to remember.
+* **Alternative 2:** Create a `MassCommand` class and let `MassBlacklistCommand` and `MassDeleteCommand` inherit from
+  `MassCommand`.
+  * Pros: Certain parts of the code can be reused for other mass operation commands in the future.
+  * Cons: `MassBlacklistCommand` and `MassDeleteCommand` differ in significant ways and only a small portion of the code
+    is shared. This implementation makes the code much longer and adds even more classes to the
+    commands package.
   
 ### Mass Delete feature
 The mass delete mechanism is facilitated by `MassDeleteCommand`.
@@ -430,13 +433,10 @@ The `Logic` component creates a new `RemarkCommand` object for execution.
 Step 4: `RemarkCommand` creates a new `Person` object which is identical to the original `Person` object in
 every field except that the `Remark` of the new `Person` object have been updated.
 
-Step 6: `RemarkCommand` calls `Model#setPerson()` to replace the original `Person` in the `AddressBook` with the new
-`Person`.
-
 ![RemarkState2](images/RemarkState2.png)
 
-Step 7: After the `AddressBook` has been updated, the `ModelManager` class will update `filteredPersons`
-to reflect the change.
+Step 5: `RemarkCommand` calls `Model#setPerson()` to replace the original `Person` in the `AddressBook` with the new
+`Person`.
 
 The following activity diagram summarizes what happens when a user executes a remark command:
 ![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
@@ -525,7 +525,7 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ##### Aspect: Sort input format
 * **Alternative 1 (current choice):** `sort ascending` and `sort descending`
-  * Pros: Easier for the user to remember
+  * Pros: Easier for the user to remember.
   * Cons: Difficult to extend the command to accept more parameters.
 
 * **Alternative 2:** `sort d/ascending` and `sort d/descending`
@@ -743,14 +743,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC05 - Add an optional remark to a contact**
+**Use case: UC05 - Add a remark to a contact**
 
 **MSS**
 
 1. User requests to list contacts.
 2. SpamEZ shows a list of contacts.
 3. User requests to add a remark to a specific contact in the list.
-4. SpamEZ adds the optional remark to the specific contact.
+4. SpamEZ adds the remark to the specific contact.
 5. SpamEZ shows the updated list of contacts.
    
    Use case ends.
@@ -763,9 +763,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case resumes at step 3.
 
-* 4a. The contact already has a remark.
+* 3b. The contact already has a remark.
 
-    * 4a1. The old remark is replaced with the new remark.
+    * 3b1. The old remark is replaced with the new remark.
 
       Use case ends.
 
@@ -773,7 +773,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to sort the contact list by name in alphabetical order.
+1. User requests to sort the contact list by name in ascending alphabetical order.
 2. SpamEZ sorts the contact list.
 3. SpamEZ displays the updated contact list.
    
@@ -783,7 +783,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The contact list currently being displayed is not the full contact list. 
     * 1a1. SpamEZ will sort both the full contact list and the currently displayed contact list.
-      1a2. SpamEZ displays the updated partial contact list.
+    * 1a2. SpamEZ displays the updated partial contact list.
       
       Use case ends.
 
@@ -801,10 +801,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 3a. The given index range is invalid.
   * 3a1. SpamEZ shows an error message.
     
     Use case resumes at step 2.
+* 3b. All contacts within the index range have already been blacklisted.
+  * 3b1. SpamEZ displays the contact list (without any changes).
+    
+    Use case ends.
 
 **Use case: UC08 - Mass delete contacts**
 
@@ -1027,7 +1031,8 @@ testers are expected to do more *exploratory* testing.
   
     1. Test case: `remark 1 r/Absent`<br>
        Expected: The remark of the first contact in the list will be changed to 'Absent'. If the contact has an existing
-       remark, the old remark will be replaced with the new remark.
+       remark, the old remark will be replaced with the new remark. Details of the updated contact shown in the status
+       message.
   
     1. Test case: `remark 2`<br>
        Expected: No contact is edited. Error details are shown in the status message.
