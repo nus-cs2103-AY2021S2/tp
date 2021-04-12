@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability view categorical statistics for a particular month.
     * What it does: allows the user to view the categories that they have spent within the month, sorted according to the categories' lexicographical ordering, and the respective amounts spent on each category.
     * Justification: This feature improves the product significantly because a user is able to get a quick glance on their spending amounts and get an idea on where they spend their money.
-
+    * This feature was originally a side panel with only 5 top categories shown per month, a duplicate with the next feature implemented. Eventually, this feature was brainstormed on and improved in terms of utility, to reduce the redundancy of certain features in the app and provide more possibilities to viewing data. 
 * **New Feature**: Added the ability view top 5 categories for a particular month.
     * What it does: allows the user to view the top 5 categories which has contributed to most of their spending within the month, sorted according to the amount spent.
     * Justification: This feature improves the product significantly because a user is able to get a quick glance on which categories they are putting their money in the most, and may be able to spot trends which enable them to save in the future.
@@ -27,10 +27,10 @@ Given below are my contributions to the project.
         * Added details on every feature related to obtaining user statistics in the application [\#125](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/125/files)
         * Elaborated usage of every single function in the application [\#129](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/129)
         * Formatted all tips in the document to reflect accurate notes on parameters and command formatting for every function [\#119](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/119/files)
-        * Made corrections for language and minor mistakes in the user guide
+        * Made corrections for language and minor mistakes in the user guide.
 
     * Developer Guide:
-        * Added implementation details of statistics features.
         * Added the documentation for Architecture component [\#96](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/96)
+        * Added implementation details of statistics features and updated architectural details.
 
 
