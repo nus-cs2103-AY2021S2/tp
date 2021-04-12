@@ -1,4 +1,3 @@
-@startuml
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
@@ -18,7 +17,7 @@ StorageManager o--> DeliveryListStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonDeliveryListStorage .left.|> DeliveryListStorage
-JsonDeliveryListStorage .down.> JsonSerializableDeliveryListStorage
-JsonSerializableDeliveryListStorage .right.> JsonSerializableCustomer
-JsonSerializableCustomer .right.> JsonAdaptedTag
+JsonDeliveryListStorage .down.> JsonSerializableDeliveryList
+JsonSerializableDeliveryList .right.> JsonAdaptedCustomer
+JsonAdaptedCustomer .right.> JsonAdaptedTag
 @enduml

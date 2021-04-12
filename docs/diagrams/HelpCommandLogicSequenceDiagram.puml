@@ -8,10 +8,6 @@ participant "command:HelpCommand" as HelpCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Ui UI_COLOR_T1
-participant ":Ui" as Ui UI_COLOR
-end box
-
 [-> LogicManager : execute("help")
 activate LogicManager
 
@@ -30,12 +26,6 @@ deactivate DeliveryListParser
 
 LogicManager -> HelpCommand : execute()
 activate HelpCommand
-
-HelpCommand -> Ui : showHelp()
-activate Ui
-
-Ui --> HelpCommand
-deactivate Ui
 
 create CommandResult
 HelpCommand -> CommandResult

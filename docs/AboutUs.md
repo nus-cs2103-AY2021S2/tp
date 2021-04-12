@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gmail.com`, `galencheung97@gmail.com`
+You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000@gmail.com`, `galencheung97@gmail.com`
 
 ## Project team
 
@@ -23,7 +23,7 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 
 <img src="images/pasha-292.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/pasha-292)]
 [[portfolio](team/pasha-292.md)]
 
 * Role: Developer
@@ -33,7 +33,8 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 
 <img src="images/cheunggalen.png" width="200px">
 
-[[github](http://github.com/cheunggalen)] [[portfolio]()]
+[[github](http://github.com/cheunggalen)]
+[[portfolio](team/cheunggalen.md)]
 
 * Role: Developer
 * Responsibilities: UI, Logic
@@ -42,8 +43,8 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 
 <img src="images/jacob-109.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio]()]
+[[github](http://github.com/Jacob-109)]
+[[portfolio](team/Jacob-109.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
