@@ -25,8 +25,15 @@ public class FindCommand extends Command {
             + "keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: n/KEYWORD [MORE_KEYWORDS] or s/KEYWORD [MORE_KEYWORDS] ... for each attribute.\n"
             + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
-            + "For dress code, [KEYWORD] must be either casual, formal, or active\n"
-            + "For type, [KEYWORD] must be upper, lower, or footwear.";
+            + "All [KEYWORD] must be non-empty"
+            + "For dress code, [KEYWORD] must be either casual, CASUAL, formal, FORMAL, active, or ACTIVE\n"
+            + "For type, [KEYWORD] must be upper, lower, or footwear.\n"
+            + "For size, [KEYWORD] must be a positive integer less or equal to 200\n"
+            + "For name, [KEYWORD] must be less than or equal to 40 characters\n"
+            + "For description, [KEYWORD] must be less than or equal to 15 characters\n"
+            + "For colour, [KEYWORD] must be  either red, orange, yellow, green, blue, pink, grey, white,\n"
+            + "purple, brown, beige, or black.";
+
 
     private final AttributesContainsKeywordsPredicate predicates;
 

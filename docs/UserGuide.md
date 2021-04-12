@@ -174,7 +174,7 @@ garment (either formal, casual or active-wear), its type (either upper, lower or
   be used as `add n/striped shirt`.
 * The different inputs that the user can input are the following:
   * `n/NAME`, the name of the garment, limited to 40 characters
-  * `s/SIZE`, the size of the garment, which is a positive integer less than 200
+  * `s/SIZE`, the size of the garment, which is a positive integer less or equal to 200
   * `c/COLOUR`, the colour of the garment
   * `r/DRESSCODE`, the dresscode of the garment
   * `t/TYPE`, the type of the garment
@@ -304,7 +304,7 @@ Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRI
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:** <br>
-* At least one of the optional bracketed fields must be provided.
+* At least one of the optional bracketed fields must be provided and non-empty.
 * A set of keywords (search phrase) can be used for finding.
 * At least one keyword in a search phrase should be present in the garments to get results.
 * Keywords are not case-sensitive.

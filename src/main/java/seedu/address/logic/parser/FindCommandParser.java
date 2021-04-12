@@ -12,8 +12,13 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.description.Description;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
+import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -53,35 +58,38 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] keywords = {""};
         boolean isValidSyntax = false;
         boolean isNotEmpty = true;
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+        Optional<String> nameOpt = argMultimap.getValue(PREFIX_NAME);
+        if (nameOpt.isPresent() && isValidName(nameOpt.get())) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        Optional<String> dressCode = argMultimap.getValue(PREFIX_DRESSCODE);
-        if (dressCode.isPresent() && isValidDressCode(dressCode)) {
+        Optional<String> dressCodeOpt = argMultimap.getValue(PREFIX_DRESSCODE);
+        if (dressCodeOpt.isPresent() && isValidDressCode(dressCodeOpt.get())) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
+        Optional<String> colourOpt = argMultimap.getValue(PREFIX_COLOUR);
+        if (colourOpt.isPresent() && isValidColour(colourOpt.get())) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_COLOUR).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        Optional<String> size = argMultimap.getValue(PREFIX_SIZE);
-        if (argMultimap.getValue(PREFIX_SIZE).isPresent() && isValidSize(size)) {
+        Optional<String> sizeOpt = argMultimap.getValue(PREFIX_SIZE);
+        if (sizeOpt.isPresent() && isValidSize(sizeOpt.get())) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_SIZE).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+        Optional<String> descriptionOpt = argMultimap.getValue(PREFIX_DESCRIPTION);
+        if (descriptionOpt.isPresent() && isValidDescription(descriptionOpt.get())) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        Optional<String> type = argMultimap.getValue(PREFIX_TYPE);
-        if (type.isPresent() && isValidType(type)) {
+        Optional<String> typeOpt = argMultimap.getValue(PREFIX_TYPE);
+        if (typeOpt.isPresent() && isValidType(typeOpt.get())) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_TYPE).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
@@ -92,13 +100,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Returns true if the all query dress codes are valid
      */
-    public static boolean isValidDressCode(Optional<String> dressCode) {
+    public static boolean isValidDressCode(String dressCode) {
         boolean isValid = true;
-        String[] dressCodes = dressCode.get().split(" ");
+        String[] dressCodes = dressCode.split(" ");
         for (String d : dressCodes) {
-            if (!d.equalsIgnoreCase("casual")
-                    && !d.equalsIgnoreCase("formal")
-                    && !d.equalsIgnoreCase("active")) {
+            if (!DressCode.isValidDressCode(d)) {
                 isValid = false;
             }
         }
@@ -108,13 +114,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Returns true if the all query types are valid
      */
-    public static boolean isValidType(Optional<String> type) {
+    public static boolean isValidType(String type) {
         boolean isValid = true;
-        String[] types = type.get().split(" ");
+        String[] types = type.split(" ");
         for (String t : types) {
-            if (!t.equalsIgnoreCase("upper")
-                    && !t.equalsIgnoreCase("lower")
-                    && !t.equalsIgnoreCase("footwear")) {
+            if (!Type.isValidType(t)) {
                 isValid = false;
             }
         }
@@ -124,11 +128,53 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Returns true if the all query sizes are valid
      */
-    public static boolean isValidSize(Optional<String> size) {
+    public static boolean isValidSize(String size) {
         boolean isValid = true;
-        String[] sizes = size.get().split(" ");
+        String[] sizes = size.split(" ");
         for (String s : sizes) {
             if (!Size.isValidSize(s)) {
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+
+    /**
+     * Returns true if the all query names are valid
+     */
+    public static boolean isValidName(String name) {
+        boolean isValid = true;
+        String[] names = name.split(" ");
+        for (String n : names) {
+            if (!Name.isValidName(n)) {
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+
+    /**
+     * Returns true if the all query colours are valid
+     */
+    public static boolean isValidColour(String colour) {
+        boolean isValid = true;
+        String[] colours = colour.split(" ");
+        for (String c : colours) {
+            if (!Colour.isValidColour(c)) {
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+
+    /**
+     * Returns true if the all query descriptions are valid
+     */
+    public static boolean isValidDescription(String description) {
+        boolean isValid = true;
+        String[] descriptions = description.split(" ");
+        for (String d : descriptions) {
+            if (!Description.isValidDescriptionName(d)) {
                 isValid = false;
             }
         }
