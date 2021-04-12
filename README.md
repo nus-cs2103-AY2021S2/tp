@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/budget_baby.png" width="200px" />
+  <img src="docs/images/budget-baby.png" width="200px" />
   <h1 align="center">BudgetBaby :baby: :money_with_wings:</h1>
 </p>
 
