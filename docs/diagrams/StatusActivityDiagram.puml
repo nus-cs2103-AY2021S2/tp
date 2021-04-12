@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:user inputs status command;
+if() then ([valid command format])
+    :System updates clean status of the required residences;
+    :System saves updated  residence list to storage;
+    :System shows the updated residences in the result box;
+else([invalid command format])
+:System shows error message in result box;
+endif
+stop
+
+@enduml
