@@ -215,15 +215,15 @@ The following diagram omits the parser object created, namely `FilterEntryComman
 
 ### List entry feature
 
-The proposed list entry mechanism allows users to see all of their schedules, or see them by day or by week.
+The list entry mechanism allows users to see all of their entries, or see them by day or by week.
 
 An outline of the proposed implementation is as follows:
 
-The `TeachingAssistantParser` should accept another case of command word `elist` which eventually returns a `ListEntryCommand` 
-back to `LogicManager`. This command can take in three arguments: an empty string, the string “day” or the string “week”. 
-The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of `ListEntryFormatPredicate`.
-Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the `ListEntryFormatPredicate` as 
-an argument.
+The `TeachingAssistantParser` should accept command word `elist` and eventually return a `ListEntryCommand`
+back to `LogicManager`. This command can take in one of these three arguments: an empty string, the string “day” or
+the string “week”. The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of
+`ListEntryFormatPredicate`. Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the
+`ListEntryFormatPredicate` as an argument.
 
 The following activity diagram (Fig 2.3.1) summarizes what happens when a user executes the list entry command.
 
@@ -256,6 +256,17 @@ The following activity diagram (Fig 2.3.4) shows how `Model` executes `clearOver
 
 ![Clear overdue entries activity diagram](images/ClearOverdueEntryCommandActivityDiagram.png)
 
+---
+
+# Documentation, logging, testing, configuration, dev-ops
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
+
+---
+
 # Appendix: Requirements
 
 ## Product Scope
@@ -266,8 +277,8 @@ The following activity diagram (Fig 2.3.4) shows how `Model` executes `clearOver
 * Do not have their schedules and students' contacts digitalised
 * Prefer to use typing over mouse/voice commands
 
-**Value proposition**: efficient tool to keep track of schedules and tasks as well as find and add student contact
-information easily.
+**Value proposition**: efficient tool to keep track of schedules (i.e. entries) as well as find and add student contact
+information easily
 
 ---
 
@@ -280,45 +291,29 @@ Priority | As a... | I want to... | So that I can...
 high | teacher | add a contact | have a consolidated list of contacts that I require
 high | teacher | delete a contact | remove a contact I no longer need
 medium | teacher | edit a contact | modify contact details without going through the tedious process of removing and re-adding the contact
-high | teacher | find and view a contact based on name | quickly find the details of a specific contact I need
+high | teacher | find a contact based on name | quickly find the details of a specific contact I need
 high | teacher | list all contacts | keep track of the contacts of all the people I have saved
 medium | teacher | filter contacts via tags | categorise and find a group of contacts easily
 
-### Schedules
+### Entries
 
 Priority | As a... | I want to... | So that I can...
 --- | --- | --- | ---
-high | teacher | add an event into my schedule | have a consolidated list of events
-high | teacher | delete an event from my schedule | remove events that have been cancelled
-medium | teacher | edit an event in my schedule | modify event details without going through the tedious process of removing and re-adding the event
-high | teacher | list my schedule according to day/week | view my schedule in a more organised way
-high | teacher | find and view an event based on name | see the details of an event I have saved
-low | teacher | list all the timings in my schedule when I am free | check the timings when I am free
-low | teacher | view all events in my schedule for a specific time period | check if I am free during that timing
-medium | teacher | filter events via tags | categorise and find events easily
-medium | teacher | mark and event as done | keep track of what events are remaining
-medium | teacher | link a contact with my schedule if necessary | easily access the contact details of the person relevant to my schedule
-low | teacher | get notified of upcoming schedules on the same day | be reminded of upcoming events
-
-### Tasks
-
-Priority | As a... | I want to... | So that I can...
---------- | --------- | -------------- | -----------------
-high | teacher | add a task into my tasks list | have a consolidated list of my tasks
-high | teacher | delete a task from my tasks list | I can remove tasks that I no longer have to do
-medium | teacher | edit a task in my tasks list | modify task details without going through the tedious process of removing and re-adding it
-high | teacher | list my tasks according to module/week/day | view my tasks in a more organised way
-high | teacher | find and view a task by name | see the details of a task I have saved
-medium | teacher | filter for tasks via tags | categorise and find tasks easily
+high | teacher | add an entry | have a consolidated list of entries representing my schedule
+high | teacher | delete an entry | remove entries that have been cancelled
+medium | teacher | edit an entry | modify entry details without going through the tedious process of removing and re-adding the entry; in case an entry has been rescheduled
+high | teacher | list my entries according to day/week | view my entries in a more organised way
+high | teacher | find an entry based on name | see the details of an entry I have saved
+low | teacher | view all entries in my schedule for a specific time period | check if I am free during that timing
+medium | teacher | filter entries via tags | categorise and find entries easily
+medium | teacher | clear all entries that have passed | easily see ongoing or future entries without past entries cluttering the list
 
 ### Others
 
 Priority | As a... | I want to... | So that I can...
 --------- | --------- | -------------- | -----------------
-high | forgetful user | be prompted for the commands’ syntax | type all commands without memorising their syntax
-medium | teacher | access the guide or the commands list | eliminate the need to memorise all the commands
-low | teacher | confirm crucial commands with a confirmation message | avoid entering the wrong command
-low | user adopting this products | clear all my contacts from Teaching Assistant | clear dummy data easily when I use the app for testing
+high | forgetful teacher | be prompted for the User Guide | refer to it and type all commands without memorising their syntax
+low | first time user | clear all my contacts and entries from teaching assistant | clear all sample data easily
 
 ---
 
