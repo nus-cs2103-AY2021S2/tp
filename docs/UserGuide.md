@@ -284,6 +284,8 @@ Delete multiple tasks by either:
     
     
 
+<div style="page-break-after: always;"></div>
+
 ### Locating a task by name : `find`
 
 Find tasks whose names contain any of the given keywords. This feature allows you to quickly find important tasks 
@@ -300,6 +302,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find CS2103T` returns `Study for CS2103T Tutorial` and `Practical for CS2103T`, but does not return `CS2103TExam`
+
+<div style="page-break-after: always;"></div>
 
 ### Searching for a task by tags : `tag-search`
 
@@ -334,6 +338,8 @@ Examples:
 
 
 
+<div style="page-break-after: always;"></div>
+
 ### Sorting tasks by date : `sort`
 
 Sort tasks in ascending order of their dates. By sorting tasks you can easily see upcoming deadlines and decide 
@@ -349,6 +355,8 @@ Format: `sort`
 |<img src="images/feature-screenshots/sort-task-after.png">  | <ins>**After**</ins><br/>All the tasks have been sorted by deadline date       |
 
 
+
+<div style="page-break-after: always;"></div>
 
 ### Switching between tabs :`home` / `uncompleted` / `completed` / `expired`
 
