@@ -166,7 +166,8 @@ Edits an existing person in the booking system.
 
 Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 * Edits the person with the specified `EMAIL` indicated in `eo/EMAIL` (case-insensitive).  
-* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified person. 
+* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified person.
+* It is allowed that the provided field(s) match the data in the existing field(s) of a specified person.
 
 Example:
 * `edit_person eo/amy@example.com p/83984029 n/Jane` edits the person who currently has the email `amy@example.com`. The person's phone number is edited to `83984029` and name is edited to `Jane`.
@@ -183,7 +184,7 @@ Example:
 
 #### 3.3.4. Listing all persons : `list_person`
 
-Shows a list of all persons in the booking app.
+Shows a list of all persons and their corresponding fields in the booking app.
 
 Format: `list_person`
 
@@ -232,6 +233,7 @@ Edits an existing venue in the booking system.
 Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY] [d/DESCRIPTION] [t/TAG]`
 * Edits the venue with the specified `VENUE_NAME` indicated in `vo/VENUE_NAME`(case-insensitive).
 * At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified venue.
+* It is allowed that the provided field(s) match the data in the existing field(s) of a specified venue.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
@@ -251,7 +253,7 @@ Example:
 
 #### 3.4.4. Listing all venues : `list_venue`
 
-Shows a list of all venues in the booking app.
+Shows a list of all venues and their corresponding fields in the booking app.
 
 Format: `list_venue`
 
@@ -266,8 +268,8 @@ Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
-* `find_venue v/Victoria Hall max/50` shows a list of venues whose name contains words that fully matches any of the two specified venue name keywords `Victoria` and `Hall`. The venue must also have a maximum capacity of at least `50`.
-* `find_venue d/` shows a list of venues that do not have description.
+* `find_venue v/Victoria Hall max/50` shows a list of venues whose names contain words that fully matches any of the two specified venue name keywords `Victoria` and `Hall`. The venue must also have a maximum capacity of at least `50`.
+* `find_venue d/` shows a list of venues that do not have descriptions.
 
 ### 3.5. Booking
 
@@ -276,14 +278,14 @@ Examples:
 **:information_source: About venues:**<br>
 
 * BookCoin stores information about bookings for scheduling/ contacting purposes. 
-* Bookings are identified by their , hence all  between bookings must be unique.
+* Bookings are identified by their indexes, hence all indexes between bookings must be unique.
 
 </div>
 
 #### 3.5.1. Adding a booking : `add_booking` (Multi step command)
 
 Adds a new booking into the booking app. `add_booking` is a multi-step command that will prompt you for additional input. Inputting 
-`add_booking` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
+`add_booking` will start the command, and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
 The system will ask for and store the email of the booker, the venue booked, the start and end time of your booking (in the format YYYY-MM-DD HH:MM). You may also choose to add an optional description or tags for your booking.
 
@@ -291,26 +293,34 @@ Format: `add_booking`
 
 #### 3.5.2. Editing a booking : `edit_booking`
 
-Edits an existing booking in the booking system with the specified booking ID.
+Edits an existing booking in the booking system.
 
 Format: `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
+* Edits the venue with the specified `INDEX`.
+* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified booking.
+* It is allowed that the provided field(s) match the data in the existing field(s) of a specified booking.
+* The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
-* `edit_booking bid/8937936578 b/janetan@gmail.com` 
-* `edit_booking bid/9384720480 v/Field`
+* `edit_venue vo/Lab max/30 d/Used for experiments` edits the venue that currently has the venue name `Lab`. The venue's maximum capacity is edit to `30`.
+* `edit_venue vo/Victoria Hall d/` edits the venue that currently has the venue name `Victoria Hall`. The venue's description, if any, is made empty.
+
+Examples:
+* `edit_booking 1 b/janetan@gmail.com` edits the booking that currently has an index of `1`. The email of the booker belonging to this booking is edited to `janetan@gmail.com`.
 
 #### 3.5.3. Deleting a booking : `delete_booking`
 
-Deletes booking corresponding to the booking ID specified.
+Deletes the specified booking from the booking system.
 
 Format: `delete_booking INDEX`
+* Deletes the booking at the specified `INDEX`.
 
 Example:
-* `delete_booking bid/232138762134`
+* `delete_booking 1` deletes the booking at index `1`
 
 #### 3.5.4. Listing all bookings : `list_booking`
 
-Shows a list of all bookings and their corresponding IDs in the booking app.
+Shows a list of all bookings and their corresponding fields and index in the booking app.
 
 Format: `list_booking`
 
@@ -367,7 +377,7 @@ Action | Format, Example
 **add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
 **delete booking** | `delete_booking INDEX` <br> e.g. `delete_booking 1`
 **edit booking** | `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking 1 e/doe@gmail.com`
-**find person** | `find_booking INDEX` <br> e.g., `find_booking 1`
+**find booking** | `find_booking INDEX` <br> e.g., `find_booking 1`
 **list booking** | `list_booking`
 **help** | `help`
 **clear** | `clear`
