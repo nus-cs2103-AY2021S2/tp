@@ -2,6 +2,13 @@
 layout: page
 title: Developer Guide
 ---
+
+<style>
+code {
+    padding: 1px 1px;
+}
+</style>
+
 * Table of Contents
 {:toc}
 
