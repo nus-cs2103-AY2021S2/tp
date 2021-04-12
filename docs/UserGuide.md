@@ -211,18 +211,17 @@ Description:
 * Existing values will be updated to the input values.
 * The edited property **cannot have a deadline that is already passed**.
 
-Examples:
-*  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
-
-![Example property edited](images/ExampleEditProperty.PNG)
-
-<br>
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
 To remove tags from a property, you can use the command `edit property INDEX tags/`. <br> e.g. `edit property 1 tags/` can be used to remove all the tags from the property at index 1.
 
 </div>
+
+Examples:
+*  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
+
+![Example property edited](images/ExampleEditProperty.PNG)
+
 
 #### 4.3.2 Editing an appointment : `edit appointment`
 
