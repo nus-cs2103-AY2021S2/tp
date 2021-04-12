@@ -1,7 +1,19 @@
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Proposed] Enquire if time interval is free
+### Deleting a contact in the address book. 
+
+The command immediately responsible for this is the 'DeleteContactCommand'
+
+An outline of the proposed implementation is as follows:
+
+The `TeachingAssistantParser` should accept the command 
+word `cdelete`. It will then get the `DeleteContactCommandParser`
+to parse and return the `DeleteContactCommand`. Subsequently, it
+returns `CommandResult` which is shown on the command result
+field of the GUI as the information of the user that is deleted.
+`
+###[Proposed] Enquire if time interval is free
 
 The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
 

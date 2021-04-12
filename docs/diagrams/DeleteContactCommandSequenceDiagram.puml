@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TeachingAssistantParser" as TeachingAssistantParser LOGIC_COLOR
+participant ":DeleteContactCommandParser" as DeleteContactCommandParser LOGIC_COLOR
+participant "d:DeleteContactCommand" as DeleteContactCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("cdelete 1")
+activate LogicManager
+
+LogicManager -> TeachingAssistantParser : parseCommand("cdelete 1")
+activate TeachingAssistantParser
+
+create DeleteContactCommandParser
+TeachingAssistantParser -> DeleteContactCommandParser
+activate DeleteContactCommandParser
+
+DeleteContactCommandParser --> TeachingAssistantParser
+deactivate DeleteContactCommandParser
+
+TeachingAssistantParser -> DeleteContactCommandParser : parse("1")
+activate DeleteContactCommandParser
+
+create DeleteContactCommand
+DeleteContactCommandParser -> DeleteContactCommand
+activate DeleteContactCommand
+
+DeleteContactCommand --> DeleteContactCommandParser : d
+deactivate DeleteContactCommand
+
+DeleteContactCommandParser --> TeachingAssistantParser : d
+deactivate DeleteContactCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteContactCommandParser -[hidden]-> TeachingAssistantParser
+destroy DeleteContactCommandParser
+
+TeachingAssistantParser --> LogicManager : d
+deactivate TeachingAssistantParser
+
+LogicManager -> DeleteContactCommand : execute()
+activate DeleteContactCommand
+
+DeleteContactCommand -> Model : deleteContact(1)
+activate Model
+
+Model --> DeleteContactCommand
+deactivate Model
+
+create CommandResult
+DeleteContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteContactCommand
+deactivate CommandResult
+
+DeleteContactCommand --> LogicManager : result
+deactivate DeleteContactCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
