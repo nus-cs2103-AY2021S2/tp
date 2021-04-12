@@ -53,8 +53,7 @@ public class EntryDateTest {
     public void isValidDate_invalidDay_returnFalse() {
         assertFalse(EntryDate.isValidDate("2021-01-32 12:12"));
         assertFalse(EntryDate.isValidDate("2021-02-0 12:12"));
-        //2021 isn't a leap year so this should be false, uncomment once fixed
-        //assertEquals(false, EntryDate.isValidDate("2021-02-29 12:12"));
+        assertFalse(EntryDate.isValidDate("2021-02-29 12:12"));
     }
 
     @Test
