@@ -106,13 +106,14 @@ public class DeleteOrderItemCommandTest {
         DeleteOrderItemCommand deleteFirstCommandCopy = new DeleteOrderItemCommand(indexList);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
         assertTrue(deleteFirstAndSecondOrder.equals(deleteSecondAndFirstOrder));
+
         // different types -> returns false
         assertFalse(deleteFirstCommand.equals(1));
 
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different order -> returns false
+        // different order item -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
 
     }
