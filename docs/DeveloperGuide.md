@@ -436,13 +436,13 @@ initial SmartLib state, and the `currentStatePointer` pointing to that single Sm
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th reader in the SmartLib. The `delete` command calls
-`Model#commitSmartLib()`, causing the modified state of the SmartLib after the `delete 5` command executes to be saved
+Step 2. The user executes `deletereader 5` command to delete the 5th reader in the SmartLib. The `deletereader` command calls
+`Model#commitSmartLib()`, causing the modified state of the SmartLib after the `deletereader 5` command executes to be saved
 in the `smartLibStateList`, and the `currentStatePointer` is shifted to the newly inserted SmartLib state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new reader. The `add` command also calls `Model#commitSmartLib()`,
+Step 3. The user executes `addreader n/David …​` to add a new reader. The `addreader` command also calls `Model#commitSmartLib()`,
 causing another modified SmartLib state to be saved into the `smartLibStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -492,7 +492,7 @@ will usually not call `Model#commitSmartLib()`, `Model#undoSmartLib()` or `Model
 
 Step 6. The user executes `clear`, which calls `Model#commitSmartLib()`. Since the `currentStatePointer` is not pointing
 at the end of the `smartLibStateList`, all SmartLib states after the `currentStatePointer` will be purged. Reason: It no
-longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications
+longer makes sense to redo the `addreader n/David …​` command. This is the behavior that most modern desktop applications
 follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -509,7 +509,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the reader being deleted).
+  * Pros: Will use less memory (e.g. for `deletereader`, just save the reader being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
