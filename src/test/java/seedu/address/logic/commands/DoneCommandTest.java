@@ -21,7 +21,7 @@ import seedu.address.model.event.EventStatus;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DoneCommand}.
  */
 public class DoneCommandTest {
 
