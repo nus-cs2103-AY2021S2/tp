@@ -60,12 +60,13 @@ A full list of code contribution can be found here:
 - Add initial GUI skeleton to display event list:
   commit [`02452dd`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/02452dd58c89a77c79a7f3b2597eb2580a845a65)
   * Implemented in favor of tag list proposed in [\#99](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/99) due to limited horizontal space.
-- Add unit tests:
-  `ParserUtil`, `Date` (commit [`7b886b5`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7b886b5b6b9e27971cde42b06a325cb14e64a063)),
-  `Birthday` (commit [`1f059df`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/1f059df0e26bac1f2d0629810367bb86b6c38795)),
-  `ListCommand` (commit [`bf68113`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/bf68113f18067d72a8da7b5d7a72966f80e3180b)),
-  `ListCommandUtil` (commit [`7ef9fb2`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7ef9fb209f4f19cb7cc65e2eb9ad44ee9163114d)),
-  `Prefix` (commit [`d2b9a8c`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/d2b9a8c9372f1f6f43892ff55322e95e7781d1cb))
+- Add unit tests for:
+  [`Date`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7b886b5b6b9e27971cde42b06a325cb14e64a063),
+  [`Birthday`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/1f059df0e26bac1f2d0629810367bb86b6c38795),
+  [`ListCommand`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/bf68113f18067d72a8da7b5d7a72966f80e3180b),
+  [`ListCommandUtil`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7ef9fb209f4f19cb7cc65e2eb9ad44ee9163114d),
+  [`ParserUtil`]((https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7b886b5b6b9e27971cde42b06a325cb14e64a063)),
+  [`Prefix`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/d2b9a8c9372f1f6f43892ff55322e95e7781d1cb)
 
 ### Documentation
 
