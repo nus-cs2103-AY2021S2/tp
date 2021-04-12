@@ -33,11 +33,9 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * I wrote test cases for Model component: `PriorityTagTest`, `TagTest`, `SortingFlagTest`
 * Maintained the `testUtil` folder so that the data stored and used for testing are correct. 
 
-#### Contributions to the UG
+#### Contributions to the DG and UG
 * I added the UG component for Priority Tag, the feature that I was in-charge of. 
-* I also helped to standardize the team's UG formatting and language and vetted the UG before every submission to ensure quality. 
-
-#### Contributions to the DG
+* I also helped to standardize the team's UG formatting and language and vetted the UG before every submission to ensure quality.
 * I was in charge of the Storage component where I drew up all the UML diagrams related to storage and edited all the contents of DG: Storage component. 
 * I also helped to standardize the teams's DG formatting and language and I vetted the DG before every submission to ensure quality.
 * Contributed to the DG, they include but are not restricted to:
