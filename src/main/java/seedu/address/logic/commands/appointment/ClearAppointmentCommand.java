@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENT_SUCCESS;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.AppointmentSchedule;
@@ -18,6 +18,6 @@ public class ClearAppointmentCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setAppointmentSchedule(new AppointmentSchedule());
-        return new CommandResult(Messages.MESSAGE_CLEAR_APPOINTMENT_SUCCESS);
+        return new CommandResult(MESSAGE_CLEAR_APPOINTMENT_SUCCESS);
     }
 }
