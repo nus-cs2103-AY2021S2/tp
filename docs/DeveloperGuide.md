@@ -464,8 +464,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 * **Alternative 2:** List the entire inventory categorised in their specific locations.
     * **Pros**: More organised overview of all the items in the inventory.
     * **Cons**: Difficult to implement.
-    
-<br>
 
 ### Reminder Feature `reminder`
 
