@@ -298,7 +298,7 @@ Shows a list of all persons and meetings in MeetBuddy.
 
 Format: `list`
 
-##Timetable feature
+## Timetable feature
 
 ### Viewing Timetable: 
  No command is necessary. Just click on the timetable tab to switch view from meeting list to timetable. The timetable
