@@ -40,7 +40,7 @@ Given below are my contributions to the project.
     - Added Use Case documentation on `edit-patient`, `find-patient`, `delete-doctor`, `edit-doctor`, `find-doctor`, `edit-appt` features.
        - Pull request [#162](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/162)
     - Added Instructions for Manual Testing for `edit-patient`, `find-patient`, `edit-doctor`, `find-doctor`, `edit-appt` features.
-       - Pull request [#169](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/169)
+       - Pull request [#175](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/169)
 
 
 * **Project management**:
