@@ -18,7 +18,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
     + [Add a customers](#customer-add)
     + [Delete customer](#customer-delete)
     + [Edit customer information](#customer-edit)
-    + [Find contact](#customer-find)
+    + [Find customer](#customer-find)
       </span>
   * <span class="menu">[`Menu`](#menu)
     + [List all dishes](#menu-list)
@@ -211,7 +211,7 @@ component command prefix/[INPUT] -flag
          customer add n/Alan Tan p/81236789 e/alantan@nus.edu.sg a/21 Lower Kent Ridge Road, Singapore 119077 t/Gluten Allergy
          ```
 
-        The above command would add a new contact named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
+        The above command would add a new customer named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
         address "Lower Kent Ridge Road, Singapore 119077" and tagged with "Gluten Allergy".
         > Note: A known limitation of add is that customers with different names but exactly the same details (phone number, email, address) will not be marked as a duplicate.
         
@@ -230,7 +230,7 @@ component command prefix/[INPUT] -flag
         customer delete [INDEX] (-f)
         ```
 
-        In the event that there are uncompleted orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
+        In the event that there are uncompleted orders by the customer that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
         Examples:
         ```
@@ -269,7 +269,7 @@ component command prefix/[INPUT] -flag
         customer edit 2 n/George Tan
         ```
 
-        The above command changes the name of the second customer on the contacts pane to "George Tan".
+        The above command changes the name of the second customer on the customers pane to "George Tan".
 
         ```
         customer edit 2 n/George Tan p/80009999
@@ -301,7 +301,7 @@ component command prefix/[INPUT] -flag
         customer find n/George Michael Lim
         ```
 
-        The above command would display all contacts with names that contain either "George", "Michael", or "Lim". Note that at least 1 keyword must be specified, `customer find n/Thomas` is a valid command too with only 1 keyword ("Thomas").
+        The above command would display all customers with names that contain either "George", "Michael", or "Lim". Note that at least 1 keyword must be specified, `customer find n/Thomas` is a valid command too with only 1 keyword ("Thomas").
         
         <p>&nbsp;</p>
         
