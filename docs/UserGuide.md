@@ -151,6 +151,8 @@ comprised of the following components:
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/wardrobe-box.png" alt="wardrobe-box" width="790">
 
+<div style="page-break-after: always;"></div>
+
 #### Listing Index
 
 The listing index assigns each unique garment listed into the digital wardrobe a number: `INDEX`.
@@ -314,6 +316,8 @@ Finds all garments that matched specified keywords during search.<br>
 
 Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRIPTIONS]...`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:** <br>
@@ -411,6 +415,8 @@ Format: `view INDEX INDEX INDEX`
 
 Example:
 * `view 1 2 3`<br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### Saving the data
 NuFash data is saved in the hard disk automatically as a JSON file under [JAR file location]/data/nufash.json
