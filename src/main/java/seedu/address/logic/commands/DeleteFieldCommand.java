@@ -159,13 +159,13 @@ public class DeleteFieldCommand extends Command {
                                      RecurringSchedule oldRecurringSchedule, Description oldDescription,
                                      Set<Tag> oldTags) throws CommandException {
 
-        boolean fieldAlreadyDeleted = (field.equals(PREFIX_DATE) && oldDate.isEmptyValue())
+        boolean isFieldAlreadyDeleted = (field.equals(PREFIX_DATE) && oldDate.isEmptyValue())
                 || (field.equals(PREFIX_RECURRINGSCHEDULE) && oldRecurringSchedule.isEmptyValue())
                 || (field.equals(PREFIX_DURATION) && oldDuration.isEmptyValue())
                 || (field.equals(PREFIX_DESCRIPTION) && oldDescription.isEmptyValue())
                 || (field.equals(PREFIX_TAG) && oldTags.isEmpty());
 
-        if (fieldAlreadyDeleted) {
+        if (isFieldAlreadyDeleted) {
             throw new CommandException(MESSAGE_FIELD_ALREADY_EMPTY);
         }
     }

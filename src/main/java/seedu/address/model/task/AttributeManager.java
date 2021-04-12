@@ -32,7 +32,7 @@ public class AttributeManager {
     }
 
     public boolean dateOver() {
-        return date.over();
+        return date.isOver();
     }
 
 
