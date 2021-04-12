@@ -583,22 +583,23 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **Use Case UC0002: Edit tutor**
 
 **MSS**
-1. User requests to edit tutor.
-2. TutorTracker confirms that tutor details have been edited.
+1. User __requests to list tutors (UC0003)__.
+2. User inputs new tutor details of specific tutor they want to edit.
+3. TutorTracker confirms that tutor details have been edited.
 
    Use case ends.
 
 **Extensions**
-* 1a. Details are not keyed in the correct format as specified in user guide.
-    * 1a1. TutorTracker shows an error message
+* 2a. Details are not keyed in the correct format as specified in user guide.
+    * 2a1. TutorTracker shows an error message
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
-* 1b. The index of tutor is invalid.
+* 2b. The tutor specified is invalid.
     * 1b1. TutorTracker shows an error message.
-    
-      Use case resumes at step 1.
-    
+
+      Use case resumes at step 2.
+
 <hr/>
 
 **Use Case UC0003: List tutor(s)**
