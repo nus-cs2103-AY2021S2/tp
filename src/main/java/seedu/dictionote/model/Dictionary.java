@@ -9,8 +9,8 @@ import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.UniqueContentList;
 
 /**
- * Wraps all data at the notebook level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the notebook level.
+ * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class Dictionary implements ReadOnlyDictionary {
     private final UniqueContentList contents;
@@ -21,7 +21,8 @@ public class Dictionary implements ReadOnlyDictionary {
 
     public Dictionary() {}
 
-    /** Make a dictionarybook
+    /**
+     * Make a dictionarybook.
      *
      * @param toBeCopied ReadOnlyDictionary
      */

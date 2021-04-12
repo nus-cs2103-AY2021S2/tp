@@ -5,9 +5,11 @@ import java.util.function.Predicate;
 
 import seedu.dictionote.commons.util.StringUtil;
 
+//Todo
 public class ContentContainsKeywordsPredicate implements Predicate<Content> {
     private final List<String> keywords;
 
+    //Todo
     public ContentContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

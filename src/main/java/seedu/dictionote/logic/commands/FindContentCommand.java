@@ -23,6 +23,7 @@ public class FindContentCommand extends Command {
 
     private final ContentContainsKeywordsPredicate predicate;
 
+    //Todo
     public FindContentCommand(ContentContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

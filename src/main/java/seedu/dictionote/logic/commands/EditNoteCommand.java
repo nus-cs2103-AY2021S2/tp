@@ -149,7 +149,7 @@ public class EditNoteCommand extends Command {
         public EditNoteDescriptor() {}
 
         /**
-         * Copy constructor.
+         * Copys constructor.
          */
         public EditNoteDescriptor(EditNoteDescriptor toCopy) {
             setNote(toCopy.note);

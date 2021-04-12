@@ -6,6 +6,9 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.MergeNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new MergeNoteCommand object.
+ */
 public class MergeNoteCommandParser implements Parser<MergeNoteCommand> {
 
     /**

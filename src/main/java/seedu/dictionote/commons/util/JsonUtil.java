@@ -24,7 +24,7 @@ import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.commons.exceptions.DataConversionException;
 
 /**
- * Converts a Java object instance to JSON and vice versa
+ * Converts a Java object instance to JSON and vice versa.
  */
 public class JsonUtil {
 
@@ -79,9 +79,9 @@ public class JsonUtil {
     /**
      * Saves the Json object to the specified file.
      * Overwrites existing file if it exists, creates a new file if it doesn't.
-     * @param jsonFile cannot be null
-     * @param filePath cannot be null
-     * @throws IOException if there was an error during writing to the file
+     * @param jsonFile cannot be null.
+     * @param filePath cannot be null.
+     * @throws IOException if there was an error during writing to the file.
      */
     public static <T> void saveJsonFile(T jsonFile, Path filePath) throws IOException {
         requireNonNull(filePath);
@@ -92,19 +92,19 @@ public class JsonUtil {
 
 
     /**
-     * Converts a given string representation of a JSON data to instance of a class
-     * @param <T> The generic type to create an instance of
-     * @return The instance of T with the specified values in the JSON string
+     * Converts a given string representation of a JSON data to instance of a class.
+     * @param <T> The generic type to create an instance of.
+     * @return The instance of T with the specified values in the JSON string.
      */
     public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException {
         return objectMapper.readValue(json, instanceClass);
     }
 
     /**
-     * Converts a given instance of a class into its JSON data string representation
-     * @param instance The T object to be converted into the JSON string
-     * @param <T> The generic type to create an instance of
-     * @return JSON data representation of the given class instance, in string
+     * Converts a given instance of a class into its JSON data string representation.
+     * @param instance The T object to be converted into the JSON string.
+     * @param <T> The generic type to create an instance of.
+     * @return JSON data representation of the given class instance, in string.
      */
     public static <T> String toJsonString(T instance) throws JsonProcessingException {
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance);
@@ -125,9 +125,9 @@ public class JsonUtil {
         }
 
         /**
-         * Gets the logging level that matches loggingLevelString
+         * Gets the logging level that matches loggingLevelString.
          * <p>
-         * Returns null if there are no matches
+         * Returns null if there are no matches.
          *
          */
         private Level getLoggingLevel(String loggingLevelString) {
