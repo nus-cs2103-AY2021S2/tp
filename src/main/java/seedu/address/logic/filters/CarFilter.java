@@ -19,26 +19,6 @@ public abstract class CarFilter extends Filter {
     }
 
     /**
-     * Parses filter command for c/, cp/ prefixes.
-     *
-     * @param car the car object to parse
-     * @return
-     */
-    public static Car parseCar(String car) {
-        String[] carDetails = car.split("\\+");
-
-        String filterCarBrand = carDetails[0].trim();
-        String filterCarType = carDetails[1].trim();
-        if (filterCarBrand.isEmpty()) {
-            filterCarBrand = null;
-        }
-        if (filterCarType.isEmpty()) {
-            filterCarType = null;
-        }
-        return new Car(filterCarBrand, filterCarType);
-    }
-
-    /**
      * Predicate for abstract test method use.
      *
      * @param car       Car member from carsOwned or carsPreferred.
