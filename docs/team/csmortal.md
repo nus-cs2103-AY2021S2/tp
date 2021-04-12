@@ -54,7 +54,7 @@ Given below are my contributions to the project.
         * Added the **Deleting multiple tasks** feature description: [\#189](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/189)
     * Developer Guide:
         * Added user stories and use cases: [\#40](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/40)
-        * Added section 4.6 to 4.8: [\#199](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/199)
+        * Added section 4.7 to 4.9: [\#199](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/199)
         * Modified section 7.4 [\#199](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/199)
     
 * **Community**:
