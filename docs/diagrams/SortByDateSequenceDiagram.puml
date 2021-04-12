@@ -5,19 +5,18 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PlannerParser" as PlannerParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
-participant ":TaskDateComparator" as TaskDateComparator LOGIC_COLOR
 participant ":SortCommand" as SortCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute(sort by a)
+[-> LogicManager : execute(args)
 activate LogicManager
 
-LogicManager -> PlannerParser : parseCommand(sort by a)
+LogicManager -> PlannerParser : parseCommand(args)
 activate PlannerParser
 
 create SortCommandParser
@@ -27,18 +26,11 @@ activate SortCommandParser
 SortCommandParser --> PlannerParser : return
 deactivate SortCommandParser
 
-PlannerParser -> SortCommandParser : parse(sort by a)
+PlannerParser -> SortCommandParser : parse(args)
 activate SortCommandParser
 
-create TaskDateComparator
-SortCommandParser -> TaskDateComparator : new TaskDateComparator()
-activate TaskDateComparator
-
-TaskDateComparator --> SortCommandParser : predicate
-deactivate TaskDateComparator
-
 create SortCommand
-SortCommandParser -> SortCommand : new SortCommand(Comparator, true)
+SortCommandParser -> SortCommand : new SortCommand(comparator, true)
 activate SortCommand
 
 SortCommand --> SortCommandParser : command
@@ -56,12 +48,6 @@ activate SortCommand
 SortCommand -> Model : updateSortedTaskList(comparator)
 activate Model
 
-create CommandResult
-SortCommand -> CommandResult : new CommandResult(Message_Success)
-activate CommandResult
-
-CommandResult --> SortCommand : result
-deactivate CommandResult
 SortCommand --> LogicManager : result
 deactivate SortCommand
 
