@@ -677,7 +677,7 @@ This glossary provides definitions for the special terms used in this user guide
 
 **Recurring Session:** Repeating session that occurs every number of days.
 
-**URL:** The address of a web page.
+**URL:**  Uniform Resource Locator, is an address of a web page. e.g. **https://www.google.com/**
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
