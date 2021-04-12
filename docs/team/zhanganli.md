@@ -55,7 +55,7 @@ Given below are my contributions to the project.
     * Streamlined and cleaned up the User Guide frequently to match current implementations of Pawbook. 
 
   * Developer Guide:
-    * Wrote Introduction, Purpose, Target User, Value Proposition, Use Cases, NFRs, User Stories, Find Command, View Command and Manual Testing. 
+    * Wrote Introduction, Purpose, Target User, Value Proposition, Use Cases, NFRs, User Stories, Find Command, View Command, Manual Testing and Effort. 
     * Completed Find Command, View Command and their respective sequence diagrams and activity diagrams, as well as their respective descriptions and explanations. 
     * Cleaned up DeveloperGuide to ensure consistency before submission.  
 
