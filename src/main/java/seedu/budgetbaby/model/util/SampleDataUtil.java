@@ -28,9 +28,9 @@ public class SampleDataUtil {
     public static FinancialRecord[] getSampleFinancialRecords() {
         return new FinancialRecord[]{
             new FinancialRecord(new Description("[Sample Financial Record] Lunch"),
-                new Amount("10"), getCategorySet("Food")),
+                new Amount("10"), getCategorySet("food")),
             new FinancialRecord(new Description("[Sample Financial Record] Dinner"),
-                new Amount("10.50"), getCategorySet("Food")),
+                new Amount("10.50"), getCategorySet("food")),
         };
     }
 

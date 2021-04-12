@@ -72,7 +72,8 @@ public class Statistics {
         Collections.sort(list, new Comparator<CategoryStatistics>() {
             @Override
             public int compare(CategoryStatistics cs1, CategoryStatistics cs2) {
-                return cs1.getCategory().getCategory().compareTo(cs2.getCategory().getCategory());
+                return cs1.getCategory().getCategory().toLowerCase()
+                        .compareTo(cs2.getCategory().getCategory().toLowerCase());
             }
         });
         return list;
