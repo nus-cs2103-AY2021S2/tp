@@ -650,13 +650,12 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-<<<<<<< HEAD
 ### Find commands
 
 1. Find
 
     1. Test case: `find`<br>
-        Expected: Both list not updated, error message showing the two types of `find` commands is shown. 
+        Expected: Both lists are not updated, error message showing the two types of `find` commands is shown. 
         
 1. Finding properties
     
@@ -669,10 +668,10 @@ testers are expected to do more *exploratory* testing.
         Expected: `Woodlands Crescent` property is shown in the list, properties with price less than $700,000 or are not HDB are not shown. 
         
     1. Test case: `find property n/`<br>
-        Expected: Property list not updated. Error details shown in the status message. 
+        Expected: Property list is not updated. Error details shown in the status message. 
         
     1. Test case: `find property pm/abc`<br>
-        Expected: Property list not updated. Error details shown in the status message. 
+        Expected: Property list is not updated. Error details shown in the status message. 
         
     1. Other incorrect find property commands to try: `find property x/ `, where x is any of the permissible options. 
         Expected: Similar to previous. 
@@ -688,10 +687,10 @@ testers are expected to do more *exploratory* testing.
         Expected: `Meet Emily` appointment is shown in the list, appointments whose date is not `Jun 15, 2021` and time is not `11:00AM` are not shown. 
         
     1. Test case: `find appointment n/ `<br>
-        Expected: Appointment list not updated. Error details shown in the status message. 
+        Expected: Appointment list is not updated. Error details shown in the status message. 
         
     1. Test case: `find appointment d/abc` <br>
-        Expected: Appointment list not updated. Error details shown in the status message. 
+        Expected: Appointment list is not updated. Error details shown in the status message. 
 
     1. Other incorrect find property commands to try: `find appointment x/ `, where x is any of the permissible options. 
         Expected: Similar to previous. 
@@ -704,7 +703,7 @@ testers are expected to do more *exploratory* testing.
         Expected: `Meet Alice` appointment is shown in appointment list, and properties with `Alice` in `Client Name` field are shown in property list. 
         
     1. Test case: `find client`
-        Expected: Both lists not updated. Error details shown in the status message. 
+        Expected: Both lists are not updated. Error details shown in the status message. 
 
 ### Editing a property
 
