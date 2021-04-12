@@ -2,7 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-<div style="page-break-after: always;"></div>
 <p align="center">
   <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="600">
 </p>
@@ -36,7 +35,6 @@ title: Developer Guide
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
