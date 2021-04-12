@@ -76,7 +76,7 @@ Head over to our [Quickstart](#quickstart) to start learning about NuFash.
 
 4. Double-click the file to start the app. A GUI similar to one depicted below should launch in a few seconds.<br>
 
- <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="600">
+ <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="550">
 
 5. You may refer to the [User Interface Overview](#user-interface-overview) for further details on the application's interface or
    [NuFash Features](#nufash-features) to try out our commands.
