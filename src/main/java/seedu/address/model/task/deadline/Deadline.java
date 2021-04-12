@@ -13,6 +13,7 @@ public class Deadline extends CompletableDeadline {
 
     /**
      * Constructor for Deadline.
+     *
      * @param description Description of the Deadline.
      * @param by Deadline of the Deadline.
      */
@@ -22,6 +23,7 @@ public class Deadline extends CompletableDeadline {
 
     /**
      * Constructor for Deadline.
+     *
      * @param description Description of the Deadline.
      * @param isDone Marks whether the Deadline is Done.
      * @param by Deadline of the Deadline.
@@ -32,6 +34,7 @@ public class Deadline extends CompletableDeadline {
 
     /**
      * Checks if an instance of a Deadline is equal to another Object.
+     *
      * @param other Object to be compared with.
      * @return True if both objects are equal. Else return false.
      */
@@ -59,6 +62,7 @@ public class Deadline extends CompletableDeadline {
 
     /**
      * Returns a String representation of the Deadline.
+     *
      * @return A String representation of the Deadline.
      */
     @Override
