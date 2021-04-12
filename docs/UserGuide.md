@@ -227,6 +227,9 @@ Format: `deletenote INDEX`
 * The index refers to the index number shown in the displayed note list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Examples:
+* `deletenote 1` Delete the note at the first position.
+
 #### Editing a note : `editnote`
 
 Edits an existing note in the note list.
@@ -280,6 +283,9 @@ Format: `shownote INDEX​`
 * To view the note created in the note content panel (by [`copytonote`](#Copying-content-to-a-note:-copytonote))), use the command `shownote` at the respective index, in this case index 6  
   `shownote 6`:
   ![shownote for content](images/Diagram-shownoteforcontent.png)
+
+Examples:
+* `shownote 2` Shows the note at position 2.
 
 #### List all notes : `listnote`
 
@@ -401,6 +407,10 @@ Format: `markasdonenote INDEX`
 * The index refers to the index number shown in the displayed note list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * After execution, the affected note will be marked with a green tick.
+* A note can only be marked as done if it is currently not done. Otherwise, an exception will be raised.
+
+Examples:
+* `markasdonenote 1` Marks note at the first position as done.
 
 #### Mark a note as undone: `markasundonenote`
 
@@ -412,6 +422,10 @@ Format: `markasundonenote INDEX`
 * The index refers to the index number shown in the displayed note list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * After execution, the affected note will not be marked with a green tick.
+* A note can only be marked as undone if it is currently done. Otherwise, an exception will be raised.
+
+Examples:
+* `markasundonenote 1` Marks note at the first position as undone.
 
 #### Mark all notes as undone: `markallasundonenote`
 
