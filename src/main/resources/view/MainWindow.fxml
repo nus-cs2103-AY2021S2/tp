@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="GreenMileageEfforts" minWidth="920" minHeight="800" onCloseRequest="#handleExit">
+         title="GreenMileageEfforts" minWidth="920" minHeight="725" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/gme_icon.png" />
   </icons>
@@ -51,39 +51,38 @@
           </padding>
         </StackPane>
         <VBox VBox.vgrow="ALWAYS">
-          <GridPane VBox.vgrow="ALWAYS">
+          <GridPane VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
             <columnConstraints>
               <ColumnConstraints percentWidth="50" />
               <ColumnConstraints percentWidth="50" />
             </columnConstraints>
             <rowConstraints>
-              <RowConstraints percentHeight="8" />
-              <RowConstraints percentHeight="92" />
+              <RowConstraints maxHeight="45" />
+              <RowConstraints percentHeight="105" />
             </rowConstraints>
-            <HBox GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="panel_tab_bar">
+            <HBox GridPane.valignment="TOP" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="panel_tab_bar">
               <Label fx:id="leftPanelLabel" text="Passenger List" styleClass="panel_tab_label" />
             </HBox>
-            <HBox GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="panel_tab_bar">
+            <HBox GridPane.valignment="TOP" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="panel_tab_bar">
               <Label fx:id="rightPanelLabel" text="Pool List" styleClass="panel_tab_label" />
             </HBox>
-            <VBox GridPane.rowIndex="1" GridPane.columnIndex="0" fx:id="passengerList" styleClass="pane-with-border" minWidth="450" prefWidth="450" VBox.vgrow="ALWAYS">
+            <VBox GridPane.valignment="TOP" GridPane.rowIndex="1" GridPane.columnIndex="0" fx:id="passengerList" styleClass="pane-with-border" minWidth="450" prefWidth="450" VBox.vgrow="ALWAYS">
               <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets top="10" right="10" bottom="40" left="10" />
               </padding>
               <children>
               <StackPane fx:id="filteredPassengerListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </children>
             </VBox>
-            <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="pane-with-border" HBox.hgrow="ALWAYS" minWidth="450" prefWidth="450" VBox.vgrow="ALWAYS">
+            <VBox GridPane.valignment="TOP" GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="poolList" styleClass="pane-with-border" HBox.hgrow="ALWAYS" minWidth="450" prefWidth="450" VBox.vgrow="ALWAYS">
               <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets top="10" right="10" bottom="40" left="10" />
               </padding>
               <StackPane fx:id="poolListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </GridPane>
+          <StackPane alignment="TOP_CENTER" fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

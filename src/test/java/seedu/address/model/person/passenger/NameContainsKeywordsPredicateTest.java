@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_FIRST_NAME_MIXED_CASE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LAST_NAME_MIXED_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -65,11 +63,6 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY_LOWER_CASE.split("\\s")[0],
                 VALID_NAME_BOB.split("\\s")[0]));
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
-
-        // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY_FIRST_NAME_MIXED_CASE.toLowerCase(),
-                VALID_NAME_AMY_LAST_NAME_MIXED_CASE.toLowerCase()));
-        assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
     }
 
     @Test
@@ -84,7 +77,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match phone and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_ADDRESS_BOB.split("\\s+")));
-        assertFalse(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+        assertFalse(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build()));
     }
 }
