@@ -325,8 +325,6 @@ Step 1: The user launches the application and executes `food_update n/grape c/20
 
 Step 2: The food item specified will have its value(s) updated to the new value(s) in the food list.
 
-The following sequence diagram shows how the update operation works:
-
 ### List food item feature
 
 The following activity diagram summarizes what happens when a user executes a `food_list` command:
