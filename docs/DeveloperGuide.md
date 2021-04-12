@@ -163,7 +163,7 @@ The `Model` in the diagram above refers to the Model API interface that the `Log
 
 #### Design consideration:
 
-##### Aspect: What should the `remind` feature do
+##### Aspect: Implementation of the Remind feature
 
 * **Alternative 1 (current choice):** Checks if residences have bookings starting in the next 7 days.
     * Pros: Easy to implement.
