@@ -5,24 +5,26 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.meetings.DeleteMeetingCommand;
+
 import seedu.address.logic.commands.meetings.SetTimetableCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.time.LocalDate;
 
-public class setTimetableCommandParserTest {
+
+public class SetTimetableCommandParserTest {
     private SetTimetableCommandParser timetableCommandParser = new SetTimetableCommandParser();
 
     @Test
     public void parseValidArguments_parseCommandSuccess() throws ParseException {
         assertParseSuccess(timetableCommandParser, "2021-03-03",
-                new SetTimetableCommand(LocalDate.of(2021,3,3)));
+                new SetTimetableCommand(LocalDate.of(2021, 3, 3)));
     }
 
     @Test
-    public void parseValidArguments_NoArguments() throws ParseException {
+    public void parseValidArguments_noArguments() throws ParseException {
         try {
             timetableCommandParser.parse("");
         } catch (ParseException e) {
