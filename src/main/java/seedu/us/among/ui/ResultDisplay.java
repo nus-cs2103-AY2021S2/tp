@@ -40,12 +40,18 @@ public class ResultDisplay extends UiPart<Region> {
 
     private String errorGifType = "error-white.gif";
 
+    //error gif generated from https://ejector.kassellabs.io/ with minor modifications
     private final Image error = new Image(this.getClass().getResourceAsStream("/images/" + errorGifType));
 
+    //loading spinner gif obtained from https://giphy.com/embed/g3793YXUk1uMnDACwM with minor modifications
     private final Image loadingSpinnerForDark = new Image(this.getClass().getResourceAsStream(
             "/images/loading_spinner-white.gif"));
     private final Image loadingSpinnerForLight = new Image(this.getClass().getResourceAsStream(
             "/images/loading_spinner-black.gif"));
+
+    //note: the error and loading spinner gifs used above are for educational purposes as part
+    //of a software engineering school project
+
     private final Image emptyList = new Image(this.getClass().getResourceAsStream("/images/imPosterEmptyList.png"));
 
     /**

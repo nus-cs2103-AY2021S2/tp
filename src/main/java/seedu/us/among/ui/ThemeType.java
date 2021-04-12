@@ -3,8 +3,9 @@ package seedu.us.among.ui;
 import java.util.HashMap;
 import java.util.Map;
 
-//Solution below adapted from
-//https://www.stubbornjava.com/posts/java-enum-lookup-by-name-or-field-without-throwing-exceptions
+//@@author tjtanjin-reused
+//Reused from https://www.stubbornjava.com/posts/java-enum-lookup-by-name-or-field-without-throwing-exceptions
+// with minor modifications
 public enum ThemeType {
     LIGHT, DARK, IMPOSTER, MATERIAL;
 
@@ -24,3 +25,4 @@ public enum ThemeType {
         return themeIndex.get(theme.toUpperCase());
     }
 }
+//@@author

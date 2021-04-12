@@ -25,7 +25,8 @@ import javafx.application.Application;
  * to be the entry point of the application, we avoid this issue.
  */
 public class Main {
-    //Solution adapted from https://mkyong.com/java/how-to-detect-os-in-java-systemgetpropertyosname/
+
+    //Solution below adapted from https://mkyong.com/java/how-to-detect-os-in-java-systemgetpropertyosname/
     private static final String OS = System.getProperty("os.name").toLowerCase();
     private static final boolean IS_WINDOWS = (OS.contains("win"));
     private static final boolean IS_MAC = (OS.contains("mac"));
