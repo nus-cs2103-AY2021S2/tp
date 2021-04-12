@@ -27,4 +27,7 @@ deactivate DeleteTodoCommand
 
 [<-- DeleteTodoCommandParser
 deactivate DeleteTodoCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteTodoCommandParser -[hidden]->
+destroy DeleteTodoCommandParser
 @enduml

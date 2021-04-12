@@ -322,6 +322,9 @@ For a better understanding, take a look at the Logic Class Diagram in the [Logic
 
 ![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`. 
 
 Depicted below is another sequence diagram that shows the interaction between `StorageManager`, `ModelManager`, `LogicManager` and `DeleteTodoCommand`, when `DeleteTodoCommand#execute` is called.
