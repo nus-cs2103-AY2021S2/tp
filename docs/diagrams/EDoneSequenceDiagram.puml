@@ -1,7 +1,7 @@
 @startuml
 !include style.puml
 
-box UI
+box UI UI_COLOR_T1
 participant ":UI" as UI UI_COLOR
 end box
 
