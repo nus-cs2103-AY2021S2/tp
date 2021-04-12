@@ -261,7 +261,7 @@ Search criteria, case-insensitive:
 Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches.
 `--exact` requires exact spelling match, but is still case-insensitive. e.g. `alEx yeOh` will match `Alex Yeoh`.
 
-All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified for any match.
+All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified, then any of the search criteria must be fulfilled.
 
 Filtered contacts can be additionally sorted using the `-s` and `-o` prefixes (except upcoming birthdays), as below.
   
@@ -333,7 +333,7 @@ Search criteria, case-insensitive:
     * If exact match is desired, specify an additional `--exact` flag. `--exact` requires exact spelling match, but is not case-sensitive.
     * All searches are case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
     * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by
-      default, unless `--any` is specified for any match.
+      default, unless `--any` is specified, then any search criteria must be fulfilled.
     * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as below.
   
 `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of `SORT_FIELD`:
