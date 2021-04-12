@@ -323,9 +323,10 @@ The `order comlete` command can be called from the CLI input with the general fo
 	order complete [argument]
 
 The argument of the `order complete` command will always be the index (1-indexed) of the order to be marked as completed. 
+
 For details on how the command is parsed, refer to the explanation in the [Component Parser description](#component-parser). After the command is successfully parsed into an complete `Command` object (e.g. `OrderCompleteCommand`), the `Command` object is executed by the `LogicManager`; the `order complete` commands' `execute` methods include validation routines to ensure the index selected is a valid index.
 
-Finally, the `ModelManager` is called to replace the order with an altered order - which is identical except it is marked as completed - in `orderBook`, and a `CommandResult` object is returned, which causes the `MainWindow` to update to display the result. The order will no longer appear in `order list` but instead show up in `order history` as a completed order.
+Finally, the `ModelManager` is called to replace the order with an altered order - which is identical except it is marked as `COMPLETED` - in `orderBook`, and a `CommandResult` object is returned, which causes the `MainWindow` to update to display the result. The order will no longer appear in `order list` but instead show up in `order history` as a completed order.
 
 #### Order history command
 
@@ -334,7 +335,8 @@ The `order history`  command can be called from the CLI input with the general f
 	order history
 
 There are no arguments for the `order history` command. The command is implemented similarly to the list command [List Command description](#list-command).
-In command will update the `FilteredOrderedList` object to only contain orders that are marked as `COMPLETED` and `CANCELLED` and return a `CommandResult` object to update the GUI such that all orders that are completed and canelled are displayed. Notably, `FilteredOrderedList` contains only `UNCOMPLETED` orders for all other component `order` commands. Further elaboration on how the GUI is updated can be found in the [concurrent list display description](#concurrent-list-display).
+
+The command will update the `FilteredOrderedList` object to only contain orders that are marked as `COMPLETED` and `CANCELLED` and return a `CommandResult` object to update the GUI such that all orders that are completed and cancelled are displayed. Notably, `FilteredOrderedList` contains only `UNCOMPLETED` orders for all other component `order` commands. Further elaboration on how the GUI is updated can be found in the [concurrent list display description](#concurrent-list-display).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -422,8 +424,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a contact
-2.  JJIMY adds the contact
+1.  User requests to add a customer
+2.  JJIMY adds the customer
 
     Use case ends.
 
@@ -439,8 +441,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  JJIMY shows a list of contacts
+1.  User requests to list customers
+2.  JJIMY shows a list of customers
 
     Use case ends.
 
@@ -448,10 +450,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  JJIMY shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  JJIMY deletes the contact
+1.  User requests to list customers
+2.  JJIMY shows a list of customers
+3.  User requests to delete a specific customer in the list
+4.  JJIMY deletes the customer
 
     Use case ends.
 
@@ -471,10 +473,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list contacts
-2. JJIMY shows a list of contacts
-3. User requests to find contacts based on keywords.
-4. JJIMY returns a list of matching contacts for the keywords.
+1. User requests to list customers
+2. JJIMY shows a list of customers
+3. User requests to find customers based on keywords.
+4. JJIMY returns a list of matching customers for the keywords.
 
     Use case ends.
 
@@ -484,7 +486,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given keywords do not match any contacts.
+* 3a. The given keywords do not match any customers.
 
     * 3a1. JJIMY shows an error message.
 
