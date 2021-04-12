@@ -162,7 +162,7 @@ These operations are exposed in the `Logic` interface by parsing respective `Add
 `ViewCommand` and `ListCommand`. 
 
 #### Implementation 
-The class and commands are re-used from the `AddressBook3`'s `Person` class.
+The class and commands are re-used from the `AddressBook Level-3`'s `Person` class.
 
 ![Class Diagram of Tutor](images/TutorClassDiagram.png)
 
@@ -370,14 +370,14 @@ It implements the following operations:
 * `Edit appointment` - Edit an appointment from the list of appointments.
 * `Delete appointment` - Delete an appointment from the list of appointments.
 * `Find appointment` - Find a tutor from the list of appointments by tutor's name.
-* `View schedules` - View the list of appointments that is happening on the queried date.
+* `View appointments` - View the list of appointments that is happening on the queried date.
 * `List all appointments` - Show an unfiltered list of the appointments.
 
 These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
 `ViewAppointmentCommand` and `ListAppointmentCommand`.
 
 #### Implementation
-The class and commands are re-used from the `AddressBook3`'s `Person` class.
+The class and commands are re-used from the `AddressBook Level-3`'s `Person` class.
 The following UML Class Diagram depicts the hirerachy of `Event`, `Appointment` and `Schedule`.
 ![Class Diagram of Event](images/EventClassDiagram.png)
 
@@ -391,7 +391,7 @@ With Schedule Tracker feature, users can now keep track and manage all tuition-r
 
 #### Implementation
 
-A schedule is composed of a `title`, `description`, `schedule date`, `time from` and `time to`, which are used to identify a schedule uniquely.
+A schedule is composed of a `title`, `description`, `time_from` and `time_to`, which are used to identify a schedule uniquely.
 
 All the user's schedules are stored internally in the `scheduleList`.
 Schedule Tracker consist of the following operations that can be performed on schedule:
@@ -1229,22 +1229,125 @@ Given below are instructions to test the app manually.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-       
+
+### Adding a Tutor
+
+1. Adding a tutor
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided.
+    1. Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: Adds a tutor by the name `John Doe`, who can teach `English` at `Secondary 3` level. <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient` <br>
+      Expected: Adds a tutor by the name `John Doe`, who can teach `English` at `Secondary 3` level. A note: `Patient` is attached to the tutor as well. <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient` <br>
+       Expected: The tutor is not added. An error message saying that the tutor already exists (assuming you did the first
+       test case) is shown <br><br>
+    1. Test Case: `add_tutor n/John!!!!! g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: The tutor is not added. An error message saying that the name should be in alphanumeric is shown <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Dinosaur p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: The tutor is not added. An error message saying that the gender is invalid is shown <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Male p/995 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+      Expected: The tutor is not added. An error message saying that the phone number length is invalid is shown <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johexample.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: The tutor is not added. An error message saying that the email format is invalid is shown <br><br>
+    1 . Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/ s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: The tutor is not added. An error message saying that the address should not be blank is shown <br><br>
+        
 ### Deleting a tutor
 
 1. Deleting a tutor while all tutor(s) are being shown
 
-    1. Prerequisites: List all tutor(s) using the `list` command. Multiple tutors in the list.
+    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
 
-    1. Test case: `delete 1`<br>
+    1. Test case: `delete_tutor 1`<br>
        Expected: First tutor is deleted from the list. Details of the deleted tutor shown in the status message.
 
-    1. Test case: `delete 0`<br>
+    1. Test case: `delete_tutor 0`<br>
        Expected: No tutor is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete_tutor`, `delete_tutor x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+       
+### Adding a Note
+
+1. Adding a Note
+    1. Prerequisites:
+        1. List all tutor(s) using the `list` command. Multiple tutors in the list
+        1. Arguments are valid and compulsory parameters are provided.
+    1. Test Case: `add_note 1 patient tutor` <br>
+       Expected: Adds a note `patient tutor` to the first tutor from the list. <br><br>
+    1. Test Case: `add_note 0 patient tutor` <br>
+      Expected: No note is added. Error details shown in the status message. <br><br>
+    1. Test Case: `add_note 1 patient tutor` <br>
+      Expected: No note is added. An error message saying that the tutor already has a note (assuming you did the first
+      test case) is shown <br><br>
+
+### Editing a Note
+
+1. Editing a Note
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided.
+    1. Test Case: `edit_note 1 good tutor` <br>
+       Expected: The note of the first tutor from the list changed to `good tutor`. <br><br>
+    1. Test Case: `edit_note 0 patient tutor` <br>
+       Expected: No note is updated. Error details shown in the status message. <br><br>
+
+### Listing All Tutor(s) with Note
+
+1. List all tutor(s) with note
+    1. Test Case: `list_note` <br>
+       Expected: The Tutor List Panel displays the all the tutor with notes. <br><br>
+    2. Test Case: `list_note abcdefg` <br>
+       Expected: The Tutor List Panel displays the all the tutor with notes. <br><br>
+
+### Deleting a Note
+
+1. Deleting a note while all note(s) are being shown
+
+    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+
+    1. Test case: `delete_note 1`<br>
+       Expected: Note of the first tutor is deleted. Details of the deleted note shown in the status message.
+
+    1. Test case: `delete_note 0`<br>
+       Expected: No note is deleted. Error details shown in the status message.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-       
+
+### Export Tutor Details
+
+1. Export Tutor Details
+    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+    1. Test Case: `export 1` <br>
+       Expected: The details of the first tutor is exported. A `txt` file named after the tutor is saved at the `export` folder of the `jar` file location. <br><br>
+    1. Test Case: `export 0` <br>
+       Expected: No details is exported. Error details shown in the status message. <br><br>
+
+### Favourite Tutor
+
+1. Favourite Tutor
+    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+    1. Test Case: `favourite 1` <br>
+       Expected: The first tutor from the list is favourite. A favourite indicator (star) shown beside the tutor's name. <br><br>
+    1. Test Case: `export 0` <br>
+       Expected: No tutor is favourite. Error details shown in the status message. <br><br>
+
+### Unfavourite Tutor
+
+1. Unfavourite
+    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+    1. Test Case: `favourite 1` <br>
+       Expected: The first tutor from the list is unfavourite. A favourite indicator (star) is removed from beside the tutor's name. <br><br>
+    1. Test Case: `export 0` <br>
+       Expected: No tutor is unfavourite. Error details shown in the status message. <br><br>
+
+### Listing All Favourite Tutor(s)
+
+1. List all favourite tutor(s)
+    1. Test Case: `list_favourites` <br>
+       Expected: The Tutor List Panel displays the all the favourite tutors. <br><br>
+    2. Test Case: `list_favourites abcdefg` <br>
+       Expected: The Tutor List Panel displays the all the favourite tutors. <br><br>
+
 ### Adding a Schedule
 
 1. Adding a schedule
