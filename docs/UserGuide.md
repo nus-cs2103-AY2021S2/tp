@@ -339,7 +339,7 @@ Search criteria, case-insensitive:
 `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of `SORT_FIELD`:
 * `n`, `name`: names (case-insensitive) in lexicographical order (by default, if `-s` not specified)
 * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
-* `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
+* `u`, `upcoming`: days left to next upcoming event (All overdue events or events marked as `done` will appear at the bottom of the list regardless of the date)
 
 Note: Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order 
 
