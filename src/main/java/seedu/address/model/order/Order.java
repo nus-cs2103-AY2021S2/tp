@@ -12,6 +12,7 @@ import seedu.address.commons.core.Pair;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.person.Person;
 
 
@@ -163,12 +164,15 @@ public class Order implements Item {
 
     /**
      * Checks if dish contains given keyword
-     * @param keyword keyword to be checked
+     * @param keywords keywords to be checked
      * @return true if dish contans given keyword
      */
-    public boolean containsDishKeyword(String keyword) {
+    public boolean containsDishKeywords(List<String> keywords) {
         for (Pair<Dish, Integer> pair : getDishQuantityList()) {
-            if (StringUtil.containsWordIgnoreCase(pair.getKey().getName(), keyword)) {
+            boolean containsKeywords = keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(pair.getKey().getName(), keyword));
+
+            if (containsKeywords) {
                 return true;
             }
         }

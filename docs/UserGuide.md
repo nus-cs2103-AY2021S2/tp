@@ -431,13 +431,13 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        menu find n/[KEYWORD] (MORE KEYWORDS) i/[NAME]
+        menu find n/[KEYWORD] (MORE KEYWORDS) i/[KEYWORD] (MORE KEYWORDS)
         ```
       
         At least one prefix must be specified. If both are specified, both conditions will be checked.
 
         - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `i/` - Finds all dishes with ingredient names that contain this ingredient name (case-insensitive). This name can be multiple words.
+        - `i/` - Finds all dishes with ingredient names that contain any of the keywords (case-insensitive). Keywords are space separated.
 
         The result list from find persists even if other commands are called and is only reset when `menu list` is called again.
         Any index that accesses `menu` will reference from this result list.
@@ -551,13 +551,13 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        order find n/[KEYWORD] (MORE KEYWORDS) d/[NAME]
+        order find n/[KEYWORD] (MORE KEYWORDS) d/[KEYWORD] (MORE KEYWORDS)
         ```
 
         At least one prefix must be specified. If both are specified, both conditions will be checked. 
 
         - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `d/` - Finds all orders with dish names that contain specified name (case-insensitive). This name can be multiple words.
+        - `d/` - Finds all orders with dish names that contain any of the keywords (case-insensitive). Keywords are space separated.
       
         The result list from find persists even if other commands are called and is only reset when `order list` or `order history` is called again.
         Any index that accesses `order` will reference from this result list.
