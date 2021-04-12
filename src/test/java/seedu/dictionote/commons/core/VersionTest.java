@@ -1,6 +1,7 @@
 package seedu.dictionote.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 
@@ -138,8 +139,8 @@ public class VersionTest {
         Version one;
 
         one = new Version(0, 0, 0, false);
-        assertTrue(!(one.equals(null)));
-        assertTrue(!(one.equals("test")));
+        assertFalse(one.equals(null));
+        assertFalse(one.equals("test"));
     }
 
     private void verifyVersionParsedCorrectly(String versionString,

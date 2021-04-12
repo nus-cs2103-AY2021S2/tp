@@ -295,7 +295,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Detect and change the split ratio depending on the dictionary and note visibility.
+     * Detects and change the split ratio depending on the dictionary and note visibility.
      */
     private void configMainSplit() {
         if (!noteListDisplay.isVisible() && !noteContentDisplay.isVisible()) {
@@ -371,7 +371,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Setups display panel.
+     * Sets ups display panel.
      */
     private void setupDisplayPanel() {
         setPanelVisibility(contactDisplay, logic.getGuiSettings().isContactPanelVisible());

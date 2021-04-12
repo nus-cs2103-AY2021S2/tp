@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import seedu.dictionote.model.note.Note;
 
 /**
- * An UI component that displays and edit of a {@code Note} information.
+ * A UI component that displays and edits of a {@code Note} information.
  */
 public class NoteContentPanel extends UiPart<Region> implements NoteContentConfig {
 
