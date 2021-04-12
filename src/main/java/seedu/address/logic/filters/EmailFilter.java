@@ -30,6 +30,6 @@ public class EmailFilter extends Filter {
     @Override
     public boolean test(Customer customer) {
         Objects.requireNonNull(customer);
-        return customer.getEmail().value.contains(filterString);
+        return customer.getEmail().value.toLowerCase().contains(filterString.toLowerCase());
     }
 }

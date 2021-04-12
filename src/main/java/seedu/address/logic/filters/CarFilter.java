@@ -50,11 +50,11 @@ public abstract class CarFilter extends Filter {
         String[] carDetails = filterCar.split("\\+", 2);
         if (carDetails.length == 1) {
 
-            return car.getCarBrand().contains(filterCar)
-                || car.getCarType().contains(filterCar);
+            return car.getCarBrand().toLowerCase().contains(filterCar.toLowerCase())
+                || car.getCarType().toLowerCase().contains(filterCar.toLowerCase());
         } else {
-            return car.getCarBrand().contains(carDetails[0])
-                || car.getCarType().contains(carDetails[1]);
+            return car.getCarBrand().toLowerCase().contains(carDetails[0].toLowerCase())
+                || car.getCarType().toLowerCase().contains(carDetails[1].toLowerCase());
         }
     }
 }

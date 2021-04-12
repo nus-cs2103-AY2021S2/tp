@@ -30,8 +30,8 @@ public class TagFilter extends Filter {
     @Override
     public boolean test(Customer customer) {
         Objects.requireNonNull(customer);
-        return customer.getTags().stream().map(x -> x.tagName).anyMatch(x ->
-            Arrays.stream(filterString.split(" ")).anyMatch(x::startsWith)
+        return customer.getTags().stream().map(x -> x.tagName.toLowerCase()).anyMatch(x ->
+            Arrays.stream(filterString.split(" ")).map(y -> y.toLowerCase()).anyMatch(x::startsWith)
         );
         /*
         Object[] tags = customer.getTags().toArray();
