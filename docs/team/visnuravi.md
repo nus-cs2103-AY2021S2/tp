@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=Visnu&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=VisnuRavi&tabRepo=AY2021S2-CS2103T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
+  * Managed releases `v1.2.1` - `v1.4` (3 releases) on GitHub
   <br><br>
 
 * **Enhancement to Existing Feature**: Added the ability to find clothings based on various attributes
@@ -30,6 +30,7 @@ Given below are my contributions to the project.
     multiple different attributes of a garment, manipulating the input to a suitable format, and then making use of
     this format to give the correct output to the user. <br><br>
 
+<div style="page-break-after: always;"></div>
 * **Enhancement to Existing Feature**: Added the ability to match a garment based on its colour, dresscode, and type
   [\#97](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/97)
   * What it does: allows the user to find the list of garments that match his chosen garment 
