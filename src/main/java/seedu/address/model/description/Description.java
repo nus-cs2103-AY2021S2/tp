@@ -11,7 +11,7 @@ public class Description {
 
     public static final String MESSAGE_CONSTRAINTS = "Description names should be alphanumeric and a maximum"
             + " of 20 characters long";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]{1,20}+$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]{1,15}+$";
 
     public final String descriptionName;
 

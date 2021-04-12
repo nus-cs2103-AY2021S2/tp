@@ -11,7 +11,7 @@ public class Size {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Size numbers should only contain numbers that are greater than 0";
+            "Size numbers should only contain numbers that are greater than 0 and less than 200";
     public final String value;
 
     /**
@@ -31,7 +31,7 @@ public class Size {
     public static boolean isValidSize(String test) {
         try {
             int size = Integer.parseInt(test);
-            return size > 0;
+            return size > 0 && size <= 200;
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
