@@ -611,22 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC03 - Find the most or least borrowed books**
-
-**MSS**
-
-1.  User requests to list books.
-2.  SmartLib shows a list of books.
-3.  User requests to sort the books by popularity.
-4.  SmartLib sorts the books based on the number of times the books were borrowed.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: UC04 - Borrow a book**
+**Use case: UC03 - Borrow a book**
 
 **MSS**
 
@@ -642,7 +627,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC05 - Return a book**
+**Use case: UC04 - Return a book**
 
 **MSS**
 
@@ -658,20 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC06 - Check a reader's balance**
-
-**MSS**
-
-1.  User enter reader id to check the balance left in reader's account
-2.  SmartLib displays reader's balance information
-
-**Extensions**
-
-* 1a. The reader does not exist
-
-  Use case ends.
-
-**Use case: UC07 - Delete a reader**
+**Use case: UC05 - Delete a reader**
 
 **Guarantee: Reader will be deleted from the registered reader base**
 
@@ -696,7 +668,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC08 - Add a book**
+**Use case: UC06 - Add a book**
 
 **MSS**
 
@@ -713,7 +685,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC09 - Delete a book**
+**Use case: UC07 - Delete a book**
 
 **MSS**
 
@@ -736,7 +708,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC10 - Add a reader**
+**Use case: UC08 - Add a reader**
 
 **Guarantee: New reader will be added into the registered reader base**
 
@@ -767,7 +739,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
 
-**Use case: UC11 - List all books**
+**Use case: UC09 - List all books**
 
 **MSS**
 
@@ -782,7 +754,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC12 - Find books whose names contain the given keywords **
+**Use case: UC10 - Find books whose names contain the given keywords **
 
 **MSS**
 
@@ -812,8 +784,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **ISBN**: International Standard Book Number is a unique numeric commercial book identifier.
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Regex**: A string of text that allows you to create patterns that help match, locate, and manage text
+* **Regex**: A string of text that allows you to create patterns that help match, locate, and manage text.
+* **GUI**:The abbreviation of Graphical User Interface, The GUI is a form of user interface that allows users to 
+interact with electronic devices through graphical icons, instead of text-based user interfaces or typed command labels.
 
 --------------------------------------------------------------------------------------------------------------------
 
