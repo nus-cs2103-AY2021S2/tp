@@ -26,7 +26,7 @@ deactivate Model
 create IdMatchPredicate
 ViewCommand -> IdMatchPredicate
 activate IdMatchPredicate
-IdMatchPredicate --> ViewCommand
+IdMatchPredicate --> ViewCommand : imp
 deactivate IdMatchPredicate
 
 ViewCommand -> Model : updateFilteredEntityList(imp)
@@ -37,7 +37,7 @@ deactivate Model
 create ViewCommandComparator
 ViewCommand -> ViewCommandComparator
 activate ViewCommandComparator
-ViewCommandComparator --> ViewCommand
+ViewCommandComparator --> ViewCommand : vcc
 deactivate ViewCommandComparator
 
 ViewCommand -> Model : sortEntities(vcc)
@@ -48,7 +48,7 @@ deactivate Model
 create CommandResult
 ViewCommand -> CommandResult
 activate CommandResult
-CommandResult --> ViewCommand
+CommandResult --> ViewCommand : cr
 deactivate CommandResult
 
 [<-- ViewCommand : cr

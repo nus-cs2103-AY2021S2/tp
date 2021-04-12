@@ -30,7 +30,7 @@ deactivate Model
 create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
-CommandResult --> FindCommand
+CommandResult --> FindCommand :cr
 deactivate CommandResult
 
 [<-- FindCommand : cr
