@@ -48,7 +48,8 @@ Given below are my contributions to the project.
       methods. (Pull request [\#159](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/159))
     * Modified list feature to make the search
       case-sensitive (Pull request [\#201](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/201))
-    
+    * Update clear feature to check the entire list instead of filtered list. (Pull request [\#329](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/329))  
+    * Edit success and error messages (Pull request [\#336](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/336)) 
 
 * **Documentation**:
     * User Guide:
@@ -73,7 +74,8 @@ Given below are my contributions to the project.
           explaining the implementation of the features. (Pull request [\#221](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/221))
         * Edited the implementation steps and sequence diagrams for edit, find, sort, clear 
           and help features. (Pull request [\#289](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/289))
-        * Edit ambiguous explanations and unecessary tips in DG (Pull request [\#316](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/316))  
+        * Edit ambiguous explanations and unnecessary tips in DG (Pull request [\#316](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/316))  
+        * Update DG Appendix (Pull request [\#327](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/327))
     * About Us:
         * Updated Kumaran's part (Pull request [\#18](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/18))
         * Updated team members' responsibilities. (Pull request [\#296](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/296))
