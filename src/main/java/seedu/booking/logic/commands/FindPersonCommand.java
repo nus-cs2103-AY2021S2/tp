@@ -45,7 +45,7 @@ public class FindPersonCommand extends Command {
         Predicate<Person> predicate = combinePersonPredicates(predicateList);
         model.updateFilteredPersonList(predicate);
         if (model.getFilteredPersonList().size() == 0) {
-            return new CommandResult(String.format(Messages.MESSAGE_NO_PERSONS_FOUND));
+            return new CommandResult(Messages.MESSAGE_NO_PERSONS_FOUND);
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

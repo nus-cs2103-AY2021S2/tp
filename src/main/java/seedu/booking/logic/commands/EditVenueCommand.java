@@ -49,8 +49,6 @@ public class EditVenueCommand extends Command {
             + MESSAGE_FIELDS;
 
     public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited venue: %1$s";
-    public static final String MESSAGE_NOT_EDITED =
-            "Incomplete command: At least one field to edit must be provided.\n";
 
     public static final String MESSAGE_DUPLICATE_VENUE = "This venue already exists in the booking system.";
 

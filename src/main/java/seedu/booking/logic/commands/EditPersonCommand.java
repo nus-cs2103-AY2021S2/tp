@@ -47,9 +47,6 @@ public class EditPersonCommand extends Command {
             + MESSAGE_FIELDS;
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited person: %1$s";
-    public static final String MESSAGE_NOT_EDITED =
-            "Incomplete command: At least one field to edit must be provided.\n";
-
     public static final String MESSAGE_DUPLICATE_EMAIL =
             "The new email already belongs to another person currently in the booking system.";
     public static final String MESSAGE_DUPLICATE_PHONE =

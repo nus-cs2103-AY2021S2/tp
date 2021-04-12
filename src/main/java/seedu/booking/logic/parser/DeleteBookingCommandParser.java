@@ -1,5 +1,6 @@
 package seedu.booking.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.booking.commons.core.index.Index;
@@ -14,12 +15,14 @@ public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> 
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteBookingCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteBookingCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookingCommand.MESSAGE_USAGE), pe);
+        requireNonNull(args);
+
+        Index index;
+        if (args.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookingCommand.MESSAGE_USAGE));
         }
+
+        index = ParserUtil.parseIndex(args);
+        return new DeleteBookingCommand(index);
     }
 }

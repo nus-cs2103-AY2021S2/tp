@@ -46,10 +46,12 @@ class EditBookingCommandParserTest {
         assertParseFailure(parser, VALID_BOOKING_BOOKER_EMAIL_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditBookingCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditBookingCommand.MESSAGE_USAGE));
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditBookingCommand.MESSAGE_USAGE));
     }
 
     @Test

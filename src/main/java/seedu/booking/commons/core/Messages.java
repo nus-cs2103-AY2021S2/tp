@@ -57,6 +57,7 @@ public class Messages {
             + "Please enter a valid input in yyyy-mm-dd HH:MM format.\n";
     public static final String PROMPT_END_MESSAGE = "Please indicate the booking end time. "
             + "Please enter a valid input in yyyy-mm-dd HH:MM format.\n";
+    public static final String INVALID_INDEX = "Invalid index! Please input a positive integer.\n";
 
     // General messages
     public static final String PROMPT_GENERAL_ERROR = "Error detected. Please exit command and try again.";

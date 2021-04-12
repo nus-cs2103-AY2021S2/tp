@@ -41,7 +41,7 @@ public class EditBookingCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_BOOKING_START + "DATETIME] "
             + "[" + PREFIX_BOOKING_END + "DATETIME] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "example@gmail.com "
             + PREFIX_VENUE + "Hall "
@@ -51,10 +51,7 @@ public class EditBookingCommand extends Command {
             + PREFIX_TAG + "meeting";
 
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited booking: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
-    public static final String MESSAGE_UNCHANGED_BOOKING = "The information provided has no difference "
-            + "from the records in the system.";
     public static final String MESSAGE_OVERLAPPING_BOOKING = "This slot has been booked already";
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_INVALID_TIME =
@@ -85,7 +82,6 @@ public class EditBookingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
         }
 
-
         Booking bookingToEdit = lastShownList.get(index.getZeroBased());
         Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
 
@@ -108,7 +104,6 @@ public class EditBookingCommand extends Command {
         if (!editedBooking.isValidTime()) {
             throw new CommandException(MESSAGE_INVALID_TIME);
         }
-
 
         model.setBooking(bookingToEdit, editedBooking);
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);

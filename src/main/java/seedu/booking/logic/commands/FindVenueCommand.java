@@ -48,7 +48,7 @@ public class FindVenueCommand extends Command {
         Predicate<Venue> predicate = combineVenuePredicates(predicateList);
         model.updateFilteredVenueList(predicate);
         if (model.getFilteredVenueList().size() == 0) {
-            return new CommandResult(String.format(Messages.MESSAGE_NO_VENUES_FOUND));
+            return new CommandResult(Messages.MESSAGE_NO_VENUES_FOUND);
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_VENUE_DISPLAYED, model.getFilteredVenueList().size()));

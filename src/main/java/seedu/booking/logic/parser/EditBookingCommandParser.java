@@ -13,9 +13,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.booking.commons.core.index.Index;
+import seedu.booking.logic.commands.DeleteBookingCommand;
 import seedu.booking.logic.commands.EditBookingCommand;
 import seedu.booking.logic.commands.EditBookingCommand.EditBookingDescriptor;
 import seedu.booking.logic.parser.exceptions.ParseException;
@@ -34,16 +34,13 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_VENUE,
                         PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END, PREFIX_TAG);
 
-
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditBookingCommand.MESSAGE_USAGE), pe);
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookingCommand.MESSAGE_USAGE));
         }
 
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();
 
@@ -75,18 +72,11 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editBookingDescriptor::setTags);
 
         if (!editBookingDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditBookingCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditBookingCommand.MESSAGE_USAGE));
         }
 
         return new EditBookingCommand(index, editBookingDescriptor);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
