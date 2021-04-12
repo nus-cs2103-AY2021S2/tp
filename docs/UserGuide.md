@@ -428,18 +428,19 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        menu find n/[KEYWORD] (MORE KEYWORDS) i/[KEYWORD]
+        menu find n/[KEYWORD] (MORE KEYWORDS) i/[NAME]
         ```
 
         At least one prefix must be specified. If both are specified, both conditions will be checked.
 
         - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `i/` - Finds all dishes with ingredient names that contain keyword (case-insensitive).
+        - `i/` - Finds all dishes with ingredient names that contain this ingredient name (case-insensitive). This name can be multiple words.
     
         Example:
         ```
-        menu find n/burger steak i/beef
+        menu find n/burger noodles i/soy sauce
         ```
+        This will find any dishes that are burger or noodles and have an ingredient name containing "soy sauce".
 
         <p>&nbsp;</p>
       
@@ -544,19 +545,20 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        order find n/[KEYWORD] (MORE KEYWORDS) d/[KEYWORD]
+        order find n/[KEYWORD] (MORE KEYWORDS) d/[NAME]
         ```
 
-        At least one prefix must be specified. If both are specified, both conditions will be checked.
+        At least one prefix must be specified. If both are specified, both conditions will be checked. 
 
         - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `d/` - Finds all orders with dish names that contain keyword (case-insensitive).
+        - `d/` - Finds all orders with dish names that contain specified name (case-insensitive). This name can be multiple words.
 
         Example:
         ```
-        order find n/Alex Sally d/Burger
+        order find n/Alex Sally d/Fried rice
         ```
-
+        Finds orders made by Alex or Sally that have fried rice in them.
+        
         <p>&nbsp;</p>
         
         ---
