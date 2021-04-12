@@ -45,7 +45,7 @@ destroy DeleteCommandParser
 WardrobeParser --> LogicManager : d
 deactivate WardrobeParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
 DeleteCommand -> Model : deleteGarment(1)
