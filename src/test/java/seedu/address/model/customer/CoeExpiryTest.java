@@ -1,6 +1,7 @@
 package seedu.address.model.customer;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
@@ -10,9 +11,9 @@ import java.time.format.ResolverStyle;
 import org.junit.jupiter.api.Test;
 
 class CoeExpiryTest {
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu MM dd")
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu MM dd")
             .withResolverStyle(ResolverStyle.STRICT);
-    public static final String expDate = "2030 05 09";
+    private static final String expDate = "2030 05 09";
 
     @Test
     public void constructor_null_throwsNullPointerException() {
