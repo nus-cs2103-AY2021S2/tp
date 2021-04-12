@@ -332,10 +332,10 @@ borrower to the reader
 
 Given below is an example usage scenario of how the `borrow` mechanism behaves at each step. In our example and the
 diagrams below,
-we assume that the user input is `borrow r/Tom b/Cloud Atlas`:
+we assume that the user input is `borrow r/Tom bc/1000000001`:
 * Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list and
 books added to the book list.
-* Step 2: The user inputs `borrow r/Tom b/Cloud Atlas` to SmartLib, which calls upon `LogicManager#execute()`.
+* Step 2: The user inputs `borrow r/Tom bc/1000000001` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` and `BorrowCommandParser` will check the user input, and return a `BorrowCommand` to
   the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `BorrowCommand#execute()`, which in turn calls `Model#addRecord()` and
