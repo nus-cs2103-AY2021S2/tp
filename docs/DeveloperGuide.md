@@ -103,7 +103,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the `ColabFolder` data, which contains data of contacts and projects.
-* exposes an unmodifiable `ObservableList<Contact>` and `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes various `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other components.
 
 #### Inner Workings
@@ -217,9 +217,9 @@ Step 7. After the `Event` is successfully added, the `Model` will call `Model#up
 
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
     * Pros:
-        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
+        * This implementation requires no additional time and space (for creation of new `Project` and `EventList` object).
     * Cons:
-        * This implementation will not work with an immutable implementation of `EventList`
+        * This implementation will not work with an immutable implementation of `EventList`.
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
     * Pros:
@@ -229,7 +229,7 @@ Step 7. After the `Event` is successfully added, the `Model` will call `Model#up
 
 ### Update Feature
 
-CoLAB has several update commands for `Project`s, `Contact`s, `Event`s, `Deadline`s, `Todo`` and `Groupmate`s respectively. They are used to edit details of entities that have already been created.
+CoLAB has several update commands for `Project`s, `Contact`s, `Event`s, `Deadline`s, `Todo`s and `Groupmate`s respectively. They are used to update details of entities that have already been created.
 
 Below is a sequence diagram of how an `updateP` (update project) command is executed.
 
@@ -245,7 +245,7 @@ Step 4. Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it
 
 Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
 
-The other commands for `Event`s, `Deadline`s, `Todo`` and `Groupmate`s require some more work because these are sub-components of a `Project`. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
+The other commands for `Event`s, `Deadline`s, `Todo`s and `Groupmate`s require some more work because these are sub-components of a `Project`. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateGroupmateCommandSequenceDiagram.png)
 
