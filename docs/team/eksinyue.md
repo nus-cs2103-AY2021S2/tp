@@ -22,8 +22,15 @@ Given below are my contributions to the project.
   - Justification: This feature is essential to our budget tracker, as users are likely to view financial records and related information of a past month frequently when managing their finances and reviewing their spending habits. This command alters all information displayed in the GUI. Adding this command requires a comprehensive understanding of most models in the project, as well as the overall logic flow from GUI to Logic to Model. This command made use of Observer Patterna and the overall implementation was challenging as it affects many components of the project.
   - Highlights: Although it is just one single command, the implementation effort goes beyond the command itself. In order to introduce the concept of `Month` into the project, a whole new layer of models including both `UniqueMonthList` and `Month` which contains `FinancialRecordList` will need to be added to the project. Implementing `Month` related features also introduce many complications in other basic features regarding `FinancialRecord`, as `FinancialRecord` now needs to be added to their respective `Month` and there are much more constraints which need to be taken into consideration, for example, if the `FinancialRecord` will violate the restrictions we set for a `Month`.
 
-  - **Enhancement**:
-    - Wrote additional tests for existing features to increase coverage (Pull requests [\#216]())
+- **Code Contribution** [RepoSense Report](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=eksinyue&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
+
+  - Initiate BudgetBaby OOP classes and implement `add-fr` command [\#45](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/45)
+  - Implement `view-month` command [\#86](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/86)
+  - Implement `edit-fr` and `add-fr` enhancement features [\#131](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/131)
+
+- **Enhancement**:
+
+  - Wrote additional tests for existing features to increase coverage (Pull requests [\#216]())
 
 - **Project management**:
 
