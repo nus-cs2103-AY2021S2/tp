@@ -199,6 +199,14 @@ Step 5. `StatusCommand#execute` checks if the residence exists and if status exp
 Step 6. The method then calls `StatusCommand#createUpdatedResidence()` to create status-updated residence one by one, and calls `Model#setResidence` to set the these residences.
 Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
 
+The following sequence diagram shows how the status operation works:
+
+![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a `status` command:
+
+![StatusActivityDiagram](images/StatusActivityDiagram.png)
+
 #### Design consideration:How to update clean status of residences
 
 * **Alternative 1 (current choice):** Create status-updated residences one by one and set them to residence list through function `Model#setResidence` 
@@ -208,14 +216,6 @@ Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predic
 * **Alternative 2:** use index to find residences in residence list and set their clean status directly 
     * Pros: Can change status directly, don't need to spend extra storage to create residence.
     * Cons: it needs new function to find residences by the index and change their clean status, which may damage security of residence list. 
-
-The following sequence diagram shows how the status operation works:
-
-![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a `status` command:
-
-![StatusActivityDiagram](images/StatusActivityDiagram.png)
 
 ### Edit Booking feature
 
