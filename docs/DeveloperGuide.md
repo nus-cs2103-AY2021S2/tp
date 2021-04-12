@@ -129,7 +129,7 @@ This section documents some of the noteworthy details on how certain features ar
 
 ### Mark Task as completed / uncompleted feature
 
-The implementation of the mark Task as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` 
+The implementation of the mark task as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` 
 classes respectively, both of which extends from the Command abstract class.
 
 The execution of the command is also facilitated by the following Parser Classes:
@@ -142,7 +142,7 @@ The above mentioned Parser classes inherit the `#parse` method from the `Parser`
 * `UndoTaskCommandParser#parse` - checks if the arguments passed to the current UndoTaskCommand is valid and creates an UndoTaskCommand instance if it is.
 
 Subsequently, the created `DoneTaskCommand` / `UndoTaskCommand` object contains an `#execute` method which is responsible for
-updating the status of the Task to `completed` or `uncompleted`. This is achieved by creating a new `Task` object with the
+updating the status of the task to `completed` or `uncompleted`. This is achieved by creating a new `Task` object with the
 same fields and values but updating the `TaskStatus` field depending on which command is being executed.
 
 Below is the usage scenario and how the mark task as completed mechanism behaves.
@@ -282,10 +282,10 @@ The above mentioned Parser class inherits the `#parse` method from the Parser in
   If the arguments are valid, it creates a ClearAssigneeCommand instance.
 
 Subsequently, the created `ClearAssigneeCommand` object contains an `#execute` method which is responsible for
-clearing all assignees of the Task, with respect to its index. This is achieved by creating a new 
+clearing all assignees of the task, with respect to its index. This is achieved by creating a new 
 `Task` object with the same fields and values as before but with the assignees field set to be a new empty HashSet. 
 
-Below is the usage scenario of how the clear all assignees of a Task mechanism behaves.
+Below is the usage scenario of how the clear all assignees of a task mechanism behaves.
 
 Assumptions:
 1. User has already launched the app
