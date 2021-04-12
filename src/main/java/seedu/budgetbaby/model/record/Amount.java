@@ -10,7 +10,8 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
 public class Amount {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Amount should be a positive number, and the upper limit for amount is 1,000,000.";
+        "Amount should be a positive number after rounding to 2 decimal places, "
+            + "and the upper limit for amount is 1,000,000.";
     public final Double value;
 
     /**
@@ -30,7 +31,7 @@ public class Amount {
     public static boolean isValidAmount(String test) {
         Boolean isValid = false;
         try {
-            Double amount = Double.parseDouble(test);
+            Double amount = parseValue(Double.parseDouble(test));
 
             if (amount > 0 && amount <= 1000000) {
                 isValid = true;

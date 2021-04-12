@@ -15,7 +15,7 @@ public class EncodeUtil {
         return encodedString;
     }
 
-    public static String getDecodedString(String encodedString) {
+    public static String getDecodedString(String encodedString) throws IllegalArgumentException {
         String decodedString = encodedString;
         for (int i = 0; i < ENCODING_COUNT; i++) {
             decodedString = new String(Base64.getDecoder().decode(decodedString.getBytes()));

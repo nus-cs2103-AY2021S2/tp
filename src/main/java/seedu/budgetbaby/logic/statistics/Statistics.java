@@ -1,5 +1,6 @@
 package seedu.budgetbaby.logic.statistics;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,7 +28,17 @@ public class Statistics {
         assert monthList.size() == 1;
     }
 
-    private List<Month> getPastMonths() {
+
+    protected boolean fillPastMonths() {
+        for (int i = 1; i < 6; i++) {
+            YearMonth curr = this.monthList.get(0).getMonth().minusMonths(i);
+            model.findMonth(curr);
+        }
+        return true;
+    }
+
+    protected List<Month> getPastMonths() {
+        fillPastMonths();
         List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
         monthList = monthList.stream()
                 .filter(month -> month.getMonth().isBefore(this.monthList.get(0).getMonth().plusMonths(1))
@@ -49,7 +60,7 @@ public class Statistics {
         return list;
     }
 
-    private List<CategoryStatistics> allCategories() {
+    protected List<CategoryStatistics> allCategories() {
         assert monthList.size() == 1;
         Month currMonth = monthList.get(0);
 
@@ -72,7 +83,8 @@ public class Statistics {
         Collections.sort(list, new Comparator<CategoryStatistics>() {
             @Override
             public int compare(CategoryStatistics cs1, CategoryStatistics cs2) {
-                return cs1.getCategory().getCategory().compareTo(cs2.getCategory().getCategory());
+                return cs1.getCategory().getCategory().toLowerCase()
+                        .compareTo(cs2.getCategory().getCategory().toLowerCase());
             }
         });
         return list;

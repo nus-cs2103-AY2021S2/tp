@@ -8,6 +8,7 @@ import java.util.List;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.util.InvalidationListenerManager;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.month.UniqueMonthList;
 import seedu.budgetbaby.model.record.FinancialRecord;
@@ -117,7 +118,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      * Adds a financial record to the budget tracker.
      * Adds a month to the budget tracker.
      */
-    public void addFinancialRecord(FinancialRecord r) {
+    public void addFinancialRecord(FinancialRecord r) throws CommandException {
         monthList.addFinancialRecord(r);
         notifyObservers();
     }
@@ -126,7 +127,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      * Replaces the given financial record {@code target} in the list with {@code editedRecord}.
      * {@code target} must exist in the budegt tracker.
      */
-    public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
+    public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) throws CommandException {
         requireNonNull(editedRecord);
         monthList.setFinancialRecord(target, editedRecord);
         notifyObservers();
@@ -203,7 +204,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
         boolean foundCurrentMonth = false;
         for (Month cloneMth : cloneMthList) {
             Month tmpMth = new Month(cloneMth.getFinancialRecords().getDeepClone(),
-                    cloneMth.getBudget(), cloneMth.getMonth());
+                cloneMth.getBudget(), cloneMth.getMonth());
             clone.setMonth(cloneMth, tmpMth);
             if (!foundCurrentMonth && tmpMth.equals(currentDisplayMonth)) {
                 clone.currentDisplayMonth = tmpMth;
