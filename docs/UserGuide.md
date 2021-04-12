@@ -186,7 +186,7 @@ Format: `showdc INDEX​`
 
 Copies the content/definition into a note
 
-Format: Format: `copytonote INDEX​`
+Format: `copytonote INDEX​`
 
 * This command allows you to copy the content, at the index that you have keyed in, over from the displayed dictionary panel into a new note.
 * The index and corresponding content will depend on the currently displayed list in the Dictionary List Panel. 
@@ -781,7 +781,7 @@ Action | Format, Examples
 **Show specific content** | `showdc INDEX` <br> e.g., `showdc 1`
 **List content** | `listcontent`
 **List definitions** | `listdef`
-**Copy content to note** | `copytonote`
+**Copy content to note** | `copytonote INDEX` <br> e.g., `copytonote 1`
 ***Note Features*** | 
 **Add note** | `addnote c/CONTENT [t/TAG]…​ ` <br> e.g. `addnote c/Do Homework`
 **List all notes** | `listnote`
