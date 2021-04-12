@@ -3,13 +3,15 @@ start
 :User executes clearAssignees command;
 
 if () then ([valid command input])
-    :Fetch target task from task list;
+    :Fetch task with the given
+     index from the task list;
         if () then ([target task has 1 or more assignees])
-            : Create a copy of the target
+            : Create a copy of the fetched
                task with its assignees
                 updated to be cleared;
             : Update task list with the
-              copy of the target task;
+                updated copy of the
+                    fetched task;
             : Output cleared assignees
                   success message;
         else([else])
