@@ -56,7 +56,6 @@ public class OrderEditCommandParser {
                 && argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
             List<String> editedDishNumbers = argMultimap.getAllValues(PREFIX_DISH);
             List<String> editedDishQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
-            ParserUtil.validateListLengths(editedDishNumbers, editedDishQuantities);
 
             List<Pair<Index, Integer>> editedDishIdsQuantityList = new ArrayList<>();
             for (int i = 0; i < editedDishNumbers.size(); i++) {

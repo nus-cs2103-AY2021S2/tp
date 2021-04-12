@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -21,8 +23,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_NAME = "Invalid name specified.";
     public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified.";
-    public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
     public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
+    public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
     public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
     public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
 
@@ -42,6 +44,15 @@ public class ParserUtil {
     // Phone validation: must contain numerical characters only.
     public static final String VALID_PHONE_REGEX = "[0-9]*";
 
+    // Address validation: address cannot start with whitespace, or " " can be a valid address.
+    public static final String VALID_ADDRESS_REGEX = "[^ ].*";
+
+    // Ingredient name validation: ingredient name cannot start with whitespace, or " " can be a valid ingredient name.
+    public static final String VALID_INGREDIENT_REGEX = "[^ ].*";
+
+    // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
+    public static final String VALID_DISH_REGEX = "[^ ].*";
+
     // Email address validation: must conform to the form local-part@domain
     // Assumes IP addresses are not used as domain portion
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
@@ -55,15 +66,6 @@ public class ParserUtil {
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
     public static final String VALID_EMAIL_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
-
-    // Address validation: address cannot start with whitespace, or " " can be a valid address.
-    public static final String VALID_ADDRESS_REGEX = "[^ ].*";
-
-    // Ingredient name validation: ingredient name cannot start with whitespace, or " " can be a valid ingredient name.
-    public static final String VALID_INGREDIENT_REGEX = "[^ ].*";
-
-    // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
-    public static final String VALID_DISH_REGEX = "[^ ].*";
 
     // ========== GENERAL ==========
 
@@ -116,6 +118,12 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Guarantees that two lists have the same length.
+     * @param listA The first list in the comparison.
+     * @param listB The other list in the comparison.
+     * @throws ParseException if the two lists do not have the same length.
+     */
     public static void validateListLengths(List listA, List listB) throws ParseException {
         requireNonNull(listA);
         requireNonNull(listB);
@@ -213,7 +221,11 @@ public class ParserUtil {
      */
     public static List<String> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        return new ArrayList<>(tags);
+        ArrayList<String> tagList = new ArrayList<>(tags);
+        HashSet<String> deduplicatedSet = new HashSet<>(tagList);
+        List<String> deduplicatedTagList = new ArrayList<>(deduplicatedSet);
+        Collections.sort(deduplicatedTagList);
+        return deduplicatedTagList;
     }
 
     // ========== INGREDIENT ==========
