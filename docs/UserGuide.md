@@ -452,13 +452,8 @@ empty data file at the next run.
 | **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                |
 | **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/food`                                                                 |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
-<<<<<<< HEAD
 | **Undo**                      | `undo`                                                                                                              |
 | **Redo**                      | `redo`                                                                                                              |
-=======
-| **Undo**                      | `undo`                                                                                                      |
-| **Redo**                      | `redo`                                                                                                      |
->>>>>>> 05144386daee73deead9709f6ce8a84f1ddfc3f9
 | **Help**                      | `help`                                                                                                              |
 | **Exit**                      | `exit`                                                                                                              |
 
