@@ -243,7 +243,7 @@ which correspond to client attributes as well as restrictions that have to be fo
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td> Must only contain <a href=#glossary>alphanumeric</a> characters and spaces </td>
+    <td> Must only contain <a href=#"glossary">alphanumeric</a> characters and spaces </td>
   </tr>
   <tr>
     <td> Phone number </td>
