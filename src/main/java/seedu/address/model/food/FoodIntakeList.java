@@ -182,38 +182,6 @@ public class FoodIntakeList {
     }
 
     /**
-     * Gets all FoodIntake object from the FoodIntakeList and outputs them in String format. (DELETE IF UNUSED)
-     *
-     * @return all FoodIntake items that are created in String output
-     */
-    public String getAllFoodIntakeList() {
-        StringBuilder stringBuilder = new StringBuilder();
-        ObservableList<FoodIntake> sortedFoodIntakeList = FXCollections.observableArrayList();
-        sortedFoodIntakeList = getFoodIntakeList();
-        FoodIntakeQueryProcessor foodIntakeQueryProcessor = new FoodIntakeQueryProcessor(sortedFoodIntakeList);
-
-        LocalDate startDate;
-        LocalDate endDate;
-        if (sortedFoodIntakeList.size() > 0) {
-            startDate = sortedFoodIntakeList.get(0).getDate();
-            endDate = sortedFoodIntakeList.get(sortedFoodIntakeList.size() - 1).getDate();
-            if (sortedFoodIntakeList.size() == 1) {
-                stringBuilder.append("Summary Food Intake for the Day ("
-                        + startDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
-                stringBuilder.append(foodIntakeQueryProcessor.generateDayQuery());
-            } else {
-                stringBuilder.append("Summary Food Intake from ("
-                        + startDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ") to ("
-                        + endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + "):\n");
-                stringBuilder.append(foodIntakeQueryProcessor.generateRangeOfDaysQuery());
-            }
-        } else {
-            stringBuilder.append("No record found during this date.");
-        }
-        return stringBuilder.toString();
-    }
-
-    /**
      * Gets all FoodIntake object based on the date provided.
      *
      * @param date filter date
