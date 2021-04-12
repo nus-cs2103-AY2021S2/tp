@@ -12,12 +12,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SHORTCUT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.BatchCommand;
 import seedu.address.logic.commands.BatchOperation;
 import seedu.address.logic.commands.DeleteCommand;
