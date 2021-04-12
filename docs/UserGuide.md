@@ -706,6 +706,9 @@ component command prefix/[INPUT] -flag
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JJIMY home folder.
 ![MoveData](images/MoveData.png)
 
+**Q**: The window for JJIMY is too small, is there a way for me to resize the window?<br>
+**A**: Hover over the bottom right corner ![corner](images/corner.png) of JJIMY, you will see ![resize](images/resize_white.png) icon. Drag it to resize the window.
+
 </details>
 
 --------------------------------------------------------------------------------------------------------------------

@@ -9,7 +9,7 @@
 
 !define UI_COLOR_DARK #3a6b39
 !define UI_COLOR #5fb051
-!define UI_COLOR_T1 #8FE381
+!define UI_COLOR_T1 #7dc971
 !define UI_COLOR_T2 #A7E99C
 !define UI_COLOR_T3 #BFEEB7
 !define UI_COLOR_T4 #D7F4D2
@@ -36,10 +36,11 @@
 !define STORAGE_COLOR_T2 #FDF1AD
 
 !define USER_COLOR #000000
+!define BACKGROUND_COLOR #e3f0ff
 
 scale 1280*720
 
-skinparam BackgroundColor #e3f0ff
+skinparam BackgroundColor BACKGROUND_COLOR
 
 skinparam Shadowing false
 
@@ -60,6 +61,13 @@ skinparam Class {
     BorderColor<<storage>> STORAGE_COLOR_DARK
     StereotypeFontColor #FFFFFF
     FontName Arial
+}
+
+skinparam Class<<hidden>> {
+    BackgroundColor BACKGROUND_COLOR
+    BorderColor BACKGROUND_COLOR
+    FontColor BACKGROUND_COLOR
+    StereotypeFontColor BACKGROUND_COLOR
 }
 
 skinparam Actor {

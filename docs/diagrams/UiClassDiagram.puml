@@ -1,31 +1,31 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor UI_COLOR_T4
+skinparam arrowThickness 2
+skinparam arrowColor UI_COLOR
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
+package Ui <<Rectangle>>{
 Interface Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class ComponentListPanel
+Class ComponentCard
 Class StatusBarFooter
 Class CommandBox
 }
 
 package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+Class HiddenModel<<hidden>>
 }
 
 package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
+Class HiddenLogic<<hidden>>
 }
 
-Class HiddenOutside #FFFFFF
+Class HiddenOutside<<hidden>>
 HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
@@ -33,25 +33,25 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> ComponentListPanel
 MainWindow *-down-> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+ComponentListPanel -down-> ComponentCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+ComponentListPanel --|> UiPart
+ComponentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+ComponentCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ComponentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
