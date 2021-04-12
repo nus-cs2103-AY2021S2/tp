@@ -31,7 +31,7 @@ public class UniqueRoomList implements Iterable<Room> {
     /**
      * Checks the list contains an equivalent {@code Room} as the given argument.
      *
-     * @param toCheck {@code Room} to check if it is contained within the {@link UniqueRoomList#internalList}
+     * @param toCheck {@code Room} to check if it is contained within the {@link UniqueRoomList#internalList}.
      * @return True if the list contains an equivalent {@code Room} as the given argument.
      * @throws NullPointerException If {@code toCheck} is null.
      */
