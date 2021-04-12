@@ -219,18 +219,26 @@ Examples:
 * `addnote c/Study for Midterms t/CS2103`
 * `addnote c/Go to school t/Panic t/Confused`
 
-#### Deleting a new note: `deletenote`
+#### Listing all notes : `listnote`
 
-Deletes the specified note from the note list.
+Lists every note on the note list.
 
-Format: `deletenote INDEX`
+Format: `listnote​`
 
-* Deletes the note at the specified `INDEX`.
-* The index refers to the index number shown in the displayed note list.
-* The index **must be a positive integer** 1, 2, 3, …​
+#### Showing a note : `shownote`
+
+Showcases a note.
+
+Format: `shownote INDEX​`
+
+* Shows the note at the specified `INDEX`.
+* The index refers to the index number shown in the displayed Note list. The index **must be a positive integer** 1, 2, 3, …​
+* To view the note created in the note content panel (by [`copytonote`](#Copying-content-to-a-note:-copytonote))), use the command `shownote` at the respective index, in this case index 6  
+  `shownote 6`:
+  ![shownote for content](images/Diagram-shownoteforcontent.png)
 
 Examples:
-* `deletenote 1` Deletes the note at the first position.
+* `shownote 2` Shows the note at position 2.
 
 #### Editing a note : `editnote`
 
@@ -249,80 +257,6 @@ Examples:
 * `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
 * `editnote 1 c/Hi` Edits the content of the 1st contact to be `Hi` and keep the tags. 
 
-#### Merging two notes into one : `mergenote`
-
-Merge two notes into one note.
-
-Format: `mergenote INDEX_1 INDEX_2`
-
-* Merge two notes in the specified index into one note.
-* The two notes that are merged are deleted.
-
-Examples:
-* `mergenote 2 5` Merges the note in the second and fifth position. 
-
-#### Converting a note into a .txt file : `converttxtnote`
-
-Converts a note into a text file.
-
-Format: `converttxtnote INDEX`
-
-* Merge two notes in the specified index into one note.
-* The two notes that are merged are deleted.
-* The file name will be the content of the note itself. Also, it can be found in the `data` folder of the `Dictionote`.
-
-Examples:
-* `converttxtnote 2` Converts the second note in the list into a text file. 
-
-#### Showing a note : `shownote`
-
-Showcases a note.
-
-Format: `shownote INDEX​`
-
-* Shows the note at the specified `INDEX`.
-* The index refers to the index number shown in the displayed Note list. The index **must be a positive integer** 1, 2, 3, …​
-* To view the note created in the note content panel (by [`copytonote`](#Copying-content-to-a-note:-copytonote))), use the command `shownote` at the respective index, in this case index 6  
-  `shownote 6`:
-  ![shownote for content](images/Diagram-shownoteforcontent.png)
-
-Examples:
-* `shownote 2` Shows the note at position 2.
-
-#### Listing all notes : `listnote`
-
-Lists every note on the note list.
-
-Format: `listnote​`
-
-#### Sort ingall notes : `sortnote`
-
-Sorts every note on the note list alphabetically.
-
-Format: `sortnote`
-
-#### Sorting all notes based on last edit time: `sortnotebytime`
-
-Sorts every note on the note list based on last edit time.
-
-Format: `sortnotebytime`
-
-#### Finding notes using a keyword : `findnote`
-
-Finds notes whose names contain any of—or tags contain all of—the given keywords.
-
-Format: `findnote c/NAME_KEYWORD... [t/TAG_KEYWORD]...`
-
-* The search is case-insensitive. e.g `c/cs2103` will match the name `CS2103`
-* Only the content and tags are searched.
-* Notes and tags will be matched if they contain the given keywords e.g. `c/CS` will match the note containing `CS2103T`
-* Notes matching at least one content keyword will be returned (i.e. OR search). e.g. `c/CS c/Important` will return `CS Midterm`, `Important stuff`
-* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `t/urgent` will return all notes that are tagged with `urgent`.
-* When both `c/` and `t/` are used, notes that satisfy BOTH of the constraints will be returned. 
-Examples:
-
-* `findnote c/CS2103` returns note containing `CS2103`
-* `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
 
 #### Editing a note in edit mode : `editmode`
 
@@ -348,7 +282,7 @@ Examples:
 
 </div>
 
-#### Saving and exit edit mode: `save`
+#### Saving and exiting edit mode: `save`
 
 Saves edited content and exit edit mode.
 
@@ -376,11 +310,6 @@ Examples:
 * `quit`
   * quit edit mode and discard all changes.
 
-#### Sorting all notes : `sortnote`
-
-Sorts every note on the note list alphabetically.
-
-Format: `sortnote`
 
 #### Finding notes using a keyword : `findnote`
 
@@ -398,6 +327,32 @@ Examples:
 
 * `findnote c/CS2103` returns note containing `CS2103`
 * `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
+
+
+#### Deleting a new note: `deletenote`
+
+Deletes the specified note from the note list.
+
+Format: `deletenote INDEX`
+
+* Deletes the note at the specified `INDEX`.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deletenote 1` Deletes the note at the first position.
+
+#### Sorting all notes : `sortnote`
+
+Sorts every note on the note list alphabetically.
+
+Format: `sortnote`
+
+#### Sorting all notes based on last edit time: `sortnotebytime`
+
+Sort every note on the note list based on last edit time.
+
+Format: `sortnotebytime`
 
 #### Marking a note as done: `markasdonenote`
 
@@ -437,6 +392,32 @@ Format: `markallasundonenote`
 
 * Marks all the notes as undone.
 * After execution, all notes marked with a green tick will be reset.
+
+#### Merging two notes into one : `mergenote`
+
+Merges two notes into one note.
+
+Format: `mergenote INDEX_1 INDEX_2`
+
+* Merge two notes in the specified index into one note.
+* The two notes that are merged are deleted.
+
+Examples:
+* `mergenote 2 5` Merges the note in the second and fifth position. 
+
+#### Converting a note into a .txt file : `converttxtnote`
+
+Converts a note into a text file.
+
+Format: `converttxtnote INDEX`
+
+* Merge two notes in the specified index into one note.
+* The two notes that are merged are deleted.
+* The file name will be the content of the note itself. Also, it can be found in the `data` folder of the `Dictionote`.
+
+Examples:
+* `converttxtnote 2` Converts the second note in the list into a text file. 
+
 
 ### Contact Features
 
@@ -803,21 +784,21 @@ Action | Format, Examples
 **Copy content to note** | `copytonote`
 ***Note Features*** | 
 **Add note** | `addnote c/CONTENT [t/TAG]…​`
+**List all notes** | `listnote`
+**Show note** | `shownote INDEX` <br> e.g., `shownote 1`
+**Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
+**Edit note in edit mode** | `editmode`
+**Save changes to note** | `save`
+**Quit edit mode** | `quit`
+**Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
 **Delete note** | `deletenote INDEX`
-**Convert note into .txt** | `converttxtnote INDEX`
+**Sort all notes** | `sortnote`
+**Sort all notes based on the last edit time** | `sortnotebytime`
 **Mark note as done** | `markasdonenote INDEX`
 **Mark note as undone** | `markasundonenote INDEX`
 **Mark all notes as undone** | `markallasundonenote`
-**Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
-**Show note** | `shownote INDEX` <br> e.g., `shownote 1`
-**List all notes** | `listnote`
 **Merge two notes** | `mergenote INDEX_1 INDEX_2`
-**Sort all notes** | `sortnote`
-**Sort all notes based on the last edit time** | `sortnotebytime`
-**Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
-**Edit note in edit mode** | `editmode`
-**Quit edit mode** | `quit`
-**Save changes to note** | `save`
+**Convert note into .txt** | `converttxtnote INDEX`
 ***Contact Features*** | 
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List all contacts** | `listcontact`
