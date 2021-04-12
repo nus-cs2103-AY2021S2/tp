@@ -423,17 +423,17 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a ...                                      | I want to ...                                             | So that I ...                                                                            |  
-| -------- | --------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------- |  
-| `* * *`  | new user                                      | have a tutorial to teach me how to use the app            | will be able to learn how to use the app quicker                                         |  
-| `* * *`  | user                                          | add a garment                                             | can keep a record of garments                                                            |  
-| `* * *`  | user                                          | edit details of garment logged in                         | can correct incorrect details pertaining to items                                        |
-| `* * *`  | user                                          | remove a garment from my wardrobe                         | can reflect that a garment has been discarded                                            |
-| `* * *`  | user with many garments in my wardrobe        | find a garment by name                                    | can locate details of a garment without having to go through the entire list             |
-| `* *`    | user that cannot decide what to wear          | easily plan a schedule for what garments to wear          | do not have to waste time deciding at the last minute                                    |
-| `* *`    | user that always wears the same few garments  | be reminded on the garments I have not worn               | would not be wearing the same garments all the time                                      |
-| `*`      | user that does not know how to match garments | to see whether certain colours and types of garment match | will be able to ascertain if the garments match without having to try them on physically |
-
+| Priority | As a ...                                           | I want to ...                                             | So that I ...                                                                            |  
+| -------- | -------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------- |  
+| `* * *`  | new user                                           | have a tutorial to teach me how to use the app            | will be able to learn how to use the app quicker                                         |  
+| `* * *`  | user                                               | add a garment                                             | can keep a record of garments                                                            |  
+| `* * *`  | user                                               | edit details of garment logged in                         | can correct incorrect details pertaining to items                                        |
+| `* * *`  | user                                               | remove a garment from my wardrobe                         | can reflect that a garment has been discarded                                            |
+| `* * *`  | user with many garments in my wardrobe             | find a garment by name                                    | can locate details of a garment without having to go through the entire list             |
+| `* *`    | user that cannot decide what to wear               | easily plan a schedule for what garments to wear          | do not have to waste time deciding at the last minute                                    |
+| `* *`    | user that always wears the same few garments       | be reminded on the garments I have not worn               | would not be wearing the same garments all the time                                      |
+| `*`      | user that does not know how to match garments      | to see whether certain colours and types of garment match | will be able to ascertain if the garments match without having to try them on physically |
+| `*`      | user that cannot visualise how an outfit will look | to be able to preview how an outfit will look             | will be able to better visualise how an outfit will look                                 |
 <br>
 
 ### Use cases
