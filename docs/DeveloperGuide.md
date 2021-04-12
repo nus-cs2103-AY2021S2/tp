@@ -827,7 +827,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     Use case ends.   
  
 
-* 2a. Grade details already exists in list.
+* 2a. Grade details already exist in list.
     * 2a1. TutorTracker shows an error message.
       
     Use case ends.
@@ -877,9 +877,14 @@ Use case ends.
       
   Use case ends.
 
+* 3b. Grade details are invalid or empty.
+    * 3b1. TutorTracker shows an error message.
 
-* 3b. Grade details already exists in list.
-    * 3b1. TutorTracker shows an error message
+  Use case ends.
+
+
+* 3c. Grade details already exist in list.
+    * 3c1. TutorTracker shows an error message
 
   Use case ends.
 
