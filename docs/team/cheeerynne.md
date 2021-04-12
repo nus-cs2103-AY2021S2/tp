@@ -48,7 +48,7 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly because should the user accidentally assigned a task to 
       the wrong group of members, the user can easily clear all members assigned to a task instead of removing one member at a time.
     * Highlights: The implementation was challenging as I had to create a copy of the task at the given index, update 
-      the assignees field accordingly and finally update the task list with the updated task copy. Furthermore, integration and unit testing 
+      the assignees field accordingly before updating the task list with the updated task copy. Furthermore, integration and unit testing 
       had to be implemented thoroughly to ensure that the various scenarios of usage were accounted for.
 
 
