@@ -45,5 +45,5 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Raised some issues in the forum for open discussions
-  * Reported bugs and suggestions for other team in the class: https://github.com/AY2021S2-CS2103T-W14-3/tp/issues?q=is%3Aissue+in%3Abody+ssoonwee
+  * Reported bugs and suggestions for other team in the class: [https://github.com/AY2021S2-CS2103T-W14-3/tp/issues?q=is%3Aissue+in%3Abody+ssoonwee]https://github.com/AY2021S2-CS2103T-W14-3/tp/issues?q=is%3Aissue+in%3Abody+ssoonwee
  
