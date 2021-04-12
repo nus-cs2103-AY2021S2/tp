@@ -305,7 +305,7 @@ The following sequence diagram shows how the find operation works:
 The following activity diagram summarizes what happens when a user executes `reset-filter`: </br>
 ![](images/ResetActivityDiagram.png)
 
-### Categories Statistics Feature
+### All Categories Statistics Feature
 ##### Implementation
 The `getAllUnsortedCategories()` function in `Statistics` relies on another method, `allCategories()` within the same `Statistics` class.
 The `allCategories()` method obtains the `currentDisplayedMonth` `Month` object via the local variable `monthList` and uses the
