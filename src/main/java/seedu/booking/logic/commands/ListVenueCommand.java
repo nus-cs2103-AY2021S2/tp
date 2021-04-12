@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_VENUES;
 
 import seedu.booking.commons.core.Messages;
@@ -29,6 +30,6 @@ public class ListVenueCommand extends Command {
             throw new CommandException(Messages.MESSAGE_VENUE_LISTED_EMPTY);
         }
 
-        return new CommandResult(MESSAGE_VENUE_LISTED_SUCCESS);
+        return new CommandResult(MESSAGE_VENUE_LISTED_SUCCESS, COMMAND_SHOW_VENUES);
     }
 }

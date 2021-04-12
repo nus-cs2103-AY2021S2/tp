@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -45,10 +46,11 @@ public class FindPersonCommand extends Command {
         Predicate<Person> predicate = combinePersonPredicates(predicateList);
         model.updateFilteredPersonList(predicate);
         if (model.getFilteredPersonList().size() == 0) {
-            return new CommandResult(String.format(Messages.MESSAGE_NO_PERSONS_FOUND));
+            return new CommandResult(String.format(Messages.MESSAGE_NO_PERSONS_FOUND), COMMAND_SHOW_PERSONS);
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                COMMAND_SHOW_PERSONS);
     }
 
     @Override

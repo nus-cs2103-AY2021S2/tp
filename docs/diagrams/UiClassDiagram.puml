@@ -13,6 +13,10 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
+Class BookingListPanel
+Class BookingCard
+Class VenueListPanel
+Class VenueCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -34,23 +38,35 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
+MainWindow *-down-> BookingListPanel
+MainWindow *-down-> VenueListPanel
 MainWindow *-down-> StatusBarFooter
 
 PersonListPanel -down-> PersonCard
+BookingListPanel -down-> BookingCard
+VenueListPanel -down-> VenueCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
+BookingListPanel --|> UiPart
+VenueListPanel --|> UiPart
 PersonCard --|> UiPart
+BookingCard --|> UiPart
+VenueCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 PersonCard ..> Model
+BookingCard ..> Model
+VenueCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
+VenueListPanel -[hidden]left- BookingListPanel
+BookingListPanel -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay

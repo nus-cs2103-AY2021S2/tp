@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class DeleteBookingCommand extends Command {
         }
         Booking bookingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteBooking(bookingToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_BOOKING_SUCCESS, bookingToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_BOOKING_SUCCESS, bookingToDelete), COMMAND_SHOW_BOOKINGS);
     }
 
     @Override

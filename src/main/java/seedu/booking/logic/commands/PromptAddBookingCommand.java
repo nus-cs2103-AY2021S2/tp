@@ -5,6 +5,7 @@ import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAY
 import static seedu.booking.commons.core.Messages.PROMPT_BOOKING_VENUE_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_VENUE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 
@@ -42,10 +43,11 @@ public class PromptAddBookingCommand extends Command {
         }
 
         CommandState commandState = new AddBookingCommandState(email);
+
         StatefulLogicManager.setCommandState(commandState);
         StatefulLogicManager.setStateActive();
         StatefulLogicManager.setState(STATE_VENUE);
-        return new CommandResult(PROMPT_BOOKING_VENUE_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+        return new CommandResult(PROMPT_BOOKING_VENUE_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT, COMMAND_SHOW_VENUES);
     }
 
 

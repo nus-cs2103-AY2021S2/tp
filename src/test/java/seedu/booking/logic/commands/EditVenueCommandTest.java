@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_COURT;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE1;
@@ -46,7 +47,7 @@ public class EditVenueCommandTest {
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
         expectedModel.setVenue(model.getFilteredVenueList().get(0), editedVenue);
 
-        assertCommandSuccess(editVenueCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editVenueCommand, model, expectedMessage, COMMAND_SHOW_VENUES, expectedModel);
     }
 
 
@@ -61,7 +62,7 @@ public class EditVenueCommandTest {
 
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
 
-        assertCommandSuccess(editVenueCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editVenueCommand, model, expectedMessage, COMMAND_SHOW_VENUES, expectedModel);
     }
 
     @Test
@@ -79,7 +80,7 @@ public class EditVenueCommandTest {
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
         expectedModel.setVenue(model.getFilteredVenueList().get(0), editedVenue);
 
-        assertCommandSuccess(editVenueCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editVenueCommand, model, expectedMessage, COMMAND_SHOW_VENUES, expectedModel);
     }
 
     @Test

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_DISPLAYED_PHONE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 
 import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
@@ -28,7 +29,8 @@ public class PromptPersonPhoneCommand extends Command {
 
         StatefulLogicManager.processStateInput(phone);
         StatefulLogicManager.setNextState();
-        return new CommandResult(StatefulLogicManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
+        return new CommandResult(StatefulLogicManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT,
+                COMMAND_SHOW_PERSONS);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -75,7 +76,7 @@ public class AddBookingCommand extends Command {
         }
 
         model.addBooking(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), COMMAND_SHOW_BOOKINGS);
     }
 
 
