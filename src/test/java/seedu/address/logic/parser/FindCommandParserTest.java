@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY_FIRST_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY_MIXED_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
@@ -84,6 +85,9 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n" + NAME_DESC_AMY + "\n \t", expectedFindCommand);
+
+        // mixed case should resolve to lower case
+        assertParseSuccess(parser, NAME_DESC_AMY_MIXED_CASE, expectedFindCommand);
     }
 
     @Test
