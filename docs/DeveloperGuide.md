@@ -423,10 +423,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a ...                                           | I want to ...                                             | So that I ...                                                                            |  
-| -------- | -------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------- |  
-| `* * *`  | new user                                           | have a tutorial to teach me how to use the app            | will be able to learn how to use the app quicker                                         |  
-| `* * *`  | user                                               | add a garment                                             | can keep a record of garments                                                            |  
+| Priority | As a ...                                           | I want to ...                                             | So that I ...                                                                            |
+| -------- | -------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `* * *`  | new user                                           | have a tutorial to teach me how to use the app            | will be able to learn how to use the app quicker                                         |
+| `* * *`  | user                                               | add a garment                                             | can keep a record of garments                                                            |
 | `* * *`  | user                                               | edit details of garment logged in                         | can correct incorrect details pertaining to items                                        |
 | `* * *`  | user                                               | remove a garment from my wardrobe                         | can reflect that a garment has been discarded                                            |
 | `* * *`  | user with many garments in my wardrobe             | find a garment by name                                    | can locate details of a garment without having to go through the entire list             |
