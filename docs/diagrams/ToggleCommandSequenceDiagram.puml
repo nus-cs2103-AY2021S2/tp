@@ -118,7 +118,8 @@ activate GuiSettings
 GuiSettings --> MainWindow
 deactivate GuiSettings
 
-
+MainWindow --> MainWindow
+deactivate MainWindow
 
 MainWindow --> MainWindow
 deactivate MainWindow

@@ -649,9 +649,6 @@ both the Dictionary List Panel and the Dictionary Content Panel become visible.
 
 Format: `toggledividerd`
 
-Examples:
-* `toggledividerd`
-
 ##### Toggle note divider orientation: `toggledividern`
 
 Toggle the orientation of the note divider.
@@ -662,8 +659,6 @@ both the Note List Panel and the Note Content Panel become visible.
 
 Format: `toggledividern`
 
-Examples:
-* `toggledividern`
 
 
 ### Others Feature
@@ -676,18 +671,27 @@ Format: `exit`
 
 #### Saving the data
 
-Dictionote data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Dictionote data are saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
 
-#### Editing the data file
+#### Editing dictionary content, definition and others data file
 
 Dictionote data are saved as a JSON file at directory `[JAR file location]/data/`. 
-Advanced users are welcome to update data directly by editing that data file.
+* Dictionary contents are saved as `dictionarybook.json`.
+* Dictionary definitions are saved as `definitionbook.json`.
+* Contact list are saved as `contactlist.json`
+* Note list are saved as `notebook.json`
+
+If you would like to contribute to the content and definitions of our dictionary,
+you are welcome to update the data directly by editing that data file.
+To avoid making mistakes, it is recommended that you use a JSON editor to edit the data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Dictionote will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, 
+Dictionote will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Customizing themes `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -700,9 +704,13 @@ _Details coming soon ..._
 * Please use a JSON editor software to ensure that the format is still valid after you've edited it.
 
 **I tried to open the closed panel with my mouse, but there is no content displayed when I drag the panel open.**
-* Dictionote is designed to support fast typists, mouse action is limited, please use the `open` command instead.
+* Dictionote currently does not allow user to change the visibility of the panel using mouse, 
+  please use the `open` command instead.
 
-
+**How do I contribute to the project? I have added some new dictionary content and definitions.**
+* You are welcome to do a pull request [here](https://github.com/AY2021S2-CS2103T-W13-1/tp/pulls). 
+  Refer to [this](https://nus-cs2103-ay2021s2.github.io/website/se-book-adapted/chapters/gitAndGithub.html#creating-prs) 
+  for details on how to do a pull request.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -716,7 +724,7 @@ Action | Format, Examples
 **Viewing Contact Command Details** | `commanddetailc`
 **Viewing UI Command Details** | `commanddetailu`
 **Exit** | `exit`
-***Dictionary Features*** | -
+***Dictionary Features*** | 
 **Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
 **Find definition** | `finddef KEYWORD [MORE_KEYWORDS]`
 **Show specific content** | `showdc INDEX` <br> e.g., `showdc 1`
@@ -725,7 +733,7 @@ Action | Format, Examples
 **Copy content to note** | `copytonote`
 **Add new definition** | `adddef tm/TERM d/DEFINITION`
 **Add new content** | `addcontent dt/TITLE h/HEADER mc/MAINCONTENT`
-***Note Features*** | -
+***Note Features*** | 
 **Add note** | `addnote c/CONTENT [t/TAG]…​`
 **Delete note** | `deletenote INDEX`
 **Mark note as done** | `markasdonenote INDEX`
@@ -739,7 +747,7 @@ Action | Format, Examples
 **Edit note in edit mode** | `editmode`
 **Quit edit mode** | `quit`
 **Save changes to note** | `save`
-***Contact Features*** | -
+***Contact Features*** | 
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List all contacts** | `listcontact`
 **Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
@@ -748,7 +756,7 @@ Action | Format, Examples
 **Send email to contact** | `emailcontact INDEX [ni/NOTE_INDEX]`<br> e.g., `emailcontact 2 ni/1`
 **Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
-***UI Features*** | -
+***UI Features*** | 
 **Open UI panel** | `open OPTION` <br> e.g., `open -c`
 **Close UI panel** | `close OPTION` <br> e.g., `close -c`
 **Set contact divider position** | `setdividerc POSITION` <br> e.g., `setdividerc 3`
