@@ -70,9 +70,6 @@ public class MenuDeleteCommand extends Command {
         }
 
         model.cancelOrders(outstandingOrders);
-        for (Order o : outstandingOrders) {
-            System.out.println(o);
-        }
         model.deleteDish(dishToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_DISH_SUCCESS, dishToDelete.getName()),

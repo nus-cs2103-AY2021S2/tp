@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:dish command received;
+:updatedDish object created;
+:collate orders uncompleted containing dish;
+:create orders with updatedDish replacing dish;
+:check if new orders can be fulfilled;
+if () then (can be fulfilled)
+    :insert updated Order objects;
+else (cannot be fulfilled)
+    :reinsert original Order objects;
+endif
+
+stop
+
+@enduml
