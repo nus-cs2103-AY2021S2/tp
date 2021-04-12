@@ -66,7 +66,7 @@ An image of our UI is shown below!
 1. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
    * **`clist`**: Lists all contacts in Teaching Assistant.
-   * **`cadd n/Danny Tan p/98765432 e/danny@email.com`**: Adds a contact named `Danny` to Teaching Assistant.
+   * **`cadd n/Danny Tan p/98765432 e/danny@email.com`**: Adds a contact named `Danny Tan` to Teaching Assistant.
    * **`efind consultation`**: Finds an entry named `consultation` or entries that have `consultation` in their names 
      in Teaching Assistant.
    * **`exit`**: Exits the app.
@@ -196,6 +196,10 @@ Example(s):
 * `cfind Danny` returns `danny` and `Danny Tan`
 * `cfind amy yeoh` returns only `Amy Yeoh`
 
+Below is an illustration of entering `cfind yeoh` on a sample Teaching Assistant:
+
+![Find contact example](images/FindContactExample.png)
+
 Scenario:
 Your student had booked a consultation with you and you want to find his/her contact details by name without scrolling 
 through the entire contact list so that you can remind him/her of the arrangement as the date of the consultation draws
@@ -210,7 +214,6 @@ Filters all contacts that have the tags of the specified keywords and displays t
 **Breakdown**:
 * Command word - `cfilter`
 * Parameters - `KEYWORD`, `MORE_KEYWORDS`
-
 
 * Only tags are searched.
 * The filtering is case-insensitive e.g. `Student` will match `student`.
@@ -256,6 +259,9 @@ Example(s):
 * `cedit 1 n/Bernice Yu Xiao Ling t/` Edits the name of the contact corresponding to index 1 to be `Bernice Yu Xiao Ling` 
   and clears all existing tags.
   
+Below is an illustration of entering `cedit 1 n/Bernice Yu Xiao Ling t/` into a sample Teaching Assistant:
+
+![Edit Contact Example](images/EditContactExample.png)  
 Scenario:
 Your student had recently changed his/her phone number and you want to update his/her contact details without the 
 hassle of deleting his/her old contact and then subsequently adding a new updated contact.
@@ -316,6 +322,11 @@ Example(s):
 * `eadd n/meeting sd/2021-06-06 21:00 ed/2021-06-06 23:00 t/meeting t/needprep`
 * `eadd n/consultation 1 sd/2021-06-07 22:00 ed/2021-06-07 23:00 t/consultation`
 
+Below is an illustration of entering `eadd n/consultation 1 sd/2021-06-07 22:00 ed/2021-06-07 23:00 t/consultation`
+into a sample Teaching Assistant:
+
+![Add Entry Example](images/AddEntryExample.png)
+
 Scenario: You want to add entries into Teaching Assistant to keep track of your schedule.
 
 ### Finding an entry: `efind`
@@ -367,6 +378,10 @@ Example(s):
 
 * `efilter meeting`
 * `efilter meeting needprep`
+
+Below is an example of entering `efliter history` into a sample Teaching Assistant:
+
+![Filter tag example](images/FilterTagExample.png)
 
 Scenario: You want to filter your entries via the consultation tag you have added to your entries in the past, so that
 you can plan ahead and prepare for your upcoming consultations.
@@ -421,6 +436,10 @@ Example(s):
 * `elist day`
 * `elist week`
 
+Below is an illustration of entering `elist week` into a sample Teaching Assistant (The current date is 2021-04-12):
+
+![List entry example](images/ListEntryWeek.png)
+
 Scenario: You want to see what is in store for you today so that you can mentally prepare yourself for the busy day ahead.
 
 ### Checking if time interval is free: `free`
@@ -441,10 +460,16 @@ interval will be shown in the entry list.
 
 Example(s):
 
-* `free sd/ 2021-06-06 21:30 ed/ 2021-06-06 22:30` if the time interval is free, entry list will be empty and _"You're
+* `free sd/2021-06-06 21:30 ed/2021-06-06 22:30` if the time interval is free, entry list will be empty and _"You're
   free!"_ message is shown. If not, a message _"Sorry, you're not free. Entries occupying that time interval listed
   below!"_ will be shown, accompanied by occupying entries in the entry list.
-  
+
+Below is an illustration of entering `free sd/2021-06-06 21:30 ed/2021-06-06 22:30` into a sample Teaching Assistant
+where there are no entries between the given timeslot:
+
+![Check free example](images/FreeExample.png)
+
+
 Scenario: Your student just approached you to book a consultation and asks if you are available at a specific timing.
 
 ### Deleting an entry: `edelete`
@@ -470,15 +495,16 @@ this entry from your schedule.
 
 ### Clearing overdue entries: `eclear`
 
-Clears all entries that have dates before today's date.
+Clears all entries that are overdue.
 
 **Format**: `eclear`
 
 **Breakdown**:
 * Command word - `eclear`
+* An Entry is considered overdue if it has an end date and time that is before current date and time.
 
-Scenario: You still have entries from the past that you no longer need, and want to remove those outdated entries
-to not clutter the entry list.
+Scenario: You still have a lot of entries from the past that you no longer need, and want to quickly remove those
+outdated entries to not clutter the entry list.
 
 ---
 
@@ -495,6 +521,9 @@ Scenario: You opened Teaching Assistant for the first time and want to start usi
 data given before you proceed.
 
 ### Exiting the program: `exit`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can still safely exit Teaching Assistant by clicking the close button on the top right of Teaching Assistant, so no worries!
 
 Exits the program.
 

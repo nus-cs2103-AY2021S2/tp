@@ -2,11 +2,36 @@
 layout: page title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+- [Getting Started](#getting-started)
+- [Design and Architecture](#design)
+  - [UI Component](#ui-component)
+  - [Logic Component](#logic-component)
+  - [Model Component](#model-component)
+  - [Storage Component](#storage-component)
+  - [Common Classes](#common-classes)
+- [Implementation](#implementation)
+  - [Deleting a contact in the address book](#deleting-a-contact-in-the-address-book)
+  - [Enquire if time interval is free](#enquire-if-time-interval-is-free)
+  - [Merge Schedule and Task](#merge-schedule-and-task)
+  - [Filtering entries via tags](#filtering-entries-via-tags)
+  - [List entry feature](#list-entry-feature)
+  - [Clear overdue entry feature](#clear-overdue-entry-feature)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product Scope](#product-scope)
+  - [User Stories](#user-stories)
+  - [Use Cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Adding a contact](#adding-a-contact)
+  - [Finding contacts](#finding-contacts)
+  - [Filtering contacts via tags](#filtering-contacts-via-tags)
+  - [Editing a contact](#editing-a-contact)
+  - [Deleting a contact](#deleting-a-contact)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -142,7 +167,7 @@ Classes used by multiple components are in the `seedu.ta.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Deleting a contact in the address book.
+### Deleting a contact in the address book
 
 The command immediately responsible for this is the 'DeleteContactCommand'
 
@@ -172,7 +197,7 @@ back to Logic Manager.
 
 This command is then executed to return `CommandResult` which is either shown on the result display of the GUI as:
 
-* "You're Free!"
+* "You're free!"
 * Or "Sorry, you're not free. Entries occupying that time interval listed below!". The occupying entries are shown in
   the entry list at the main window.
 
@@ -190,18 +215,18 @@ The following sequence diagram outlines how the free operation works:
 ![Free Intervals Sequence Diagram](images/FreeIntervalSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Details about creation of `ListOccupyingEntryPredicate`
-has been ommitted for simplicity.
+has been omitted for simplicity.
 </div>
 
-### [Proposed] Merge Schedule and Task
+### Merge Schedule and Task
 
-The proposed merger attempts to combine the functionalities of both the Task and Schedule classes. \
+The merger attempts to combine the functionalities of both the Task and Schedule classes. \
 As the Task and Schedule classes are similar in features, we can merge them into an Entry class for maintainability.
 
 ![Entry Class](images/EntryClassDiagram.png)
 
 Previously, we allowed schedules and tasks to be added separately through using two commands, `sadd` and `tadd`. \
-Combining them into an Entry task, we propose a "eadd" command.
+Combining them into an Entry task, we implement an "eadd" command.
 
 Below, we can see the before and after activity diagrams involving this merger.
 
@@ -497,7 +522,7 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
 
 ---
 
-## Appendix: Instructions for manual testing
+# Appendix: Instructions for manual testing
 
 ### Adding an entry
 
@@ -586,3 +611,59 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
     1. Prerequisites: There should be overdue entries (shown as a red entry box) in the entry list.
     1. Test case: `eclear`<br>
        Expected: Success message is shown. All entries that are before current date and time should be deleted.
+
+### Adding a contact
+
+1. Adding a contact while all contacts are being shown.
+    1. Prerequisites: The contact should not already exist in the list. List all contacts using the `clist` command.
+    1. Test case: `cadd n/Danny Tan p/98765432 e/danny@email.com`<br>
+       Expected: The contact is added into the contact list. Success message with details of the added contact is shown in the
+       result window.
+    1. Doing the exact same command one more time will fail with an error message as duplicated contacts are not allowed to be added into the list
+
+### Finding contacts
+
+1. Finding contacts while all contacts are being shown
+    1. Prerequisites: There should be at least a contact present in the contact list. List all contacts using the `clist` command.
+    1. Test case: `cfind Danny`<br>
+       Expected: Assuming that there is at least a contact named "Danny", a message indicating how many contacts are listed is
+       shown in the result window. Contact list will only list the contacts with the matching name.
+    1. Test case: `cfind Random`<br>
+       Expected: Assuming that there are no contacts named "Random", a message shown in the result display will indicate 0
+       contacts being listed. Contact list will be empty.
+
+### Filtering contacts via tags
+
+1. Filtering tags while all contacts are being shown.
+    1. Prerequisites: There should be contacts with tags present. List all contacts using the `clist` command.
+    1. Test case: `cfilter friend`<br>
+       Expected: Assuming there is only one contact that has the tag `friend`, a message is shown in the result
+       display indicating 1 contact is being listed. Contact list will only list the contact with the matching tag.
+    1. Test case: `cfilter family important`<br>
+       Expected: Assuming there is only one contact that has both the tags `family` and `important`, a message is shown in the
+       result display indicating 1 contact is being listed. Contact list will only list the contact with the matching tags.
+
+### Editing a contact
+
+1. Editing an existing contact while all contacts are being shown.
+    1. Prerequisites: There should be contacts present in the contact list. List all contacts using the `clist` command.
+    1. Test case: `cedit 1 n/Amy Toh`<br>
+       Expected: The contact that is numbered "1." is edited such that the previous name is now changed to the new
+       one specified. Details of the edited contact is shown in the result display.
+    1. Test case: `cedit 1 n/Amy Toh p/98761234`<br>
+       Expected: The contact that is numbered "1." is edited such that the previous name and phone number 
+       are now changed to the new ones specified. Details of the edited contact is shown in the result display.
+    1. Test case: `cedit 1`<br>
+       Expected: No contact will be edited. Error details shown in the result display indicating at least one field should be 
+       given.
+
+### Deleting a contact
+
+1. Deleting a contact while all contacts are being shown.
+    1. Prerequisites: List all contacts using the `clist` command. Contact list must not be empty.
+    1. Test case: `cdelete 0` <br>
+       Expected: No contact is deleted. Error details regarding the invalid argument will be 
+       shown in the result display. Contact list remains the same.
+    1. Test case: `cdelete 1` <br>
+       Expected: The contact that is numbered "1." is deleted from the contact list. Details of the deleted contact is shown 
+       in the result display.
