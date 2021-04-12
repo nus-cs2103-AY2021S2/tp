@@ -57,7 +57,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**: Extend usage of `help` command from teammate [Nicole](https://github.com/nicoleang09).
   * What it does: Instead of just copying the link to the user's clipboard, allowed button to open the link in the user's default browser.
   * Justification: it is troublesome to click on `copy URL`, open the browser then paste the link into a browser. Instead, opening the link straight would make things a lot easier for the user.
-  * Highlights: Had to make use of external libraries that i had to do a lot of googling to find out about. Hence, the implementation was hard as it required reading a lot of external API documentations.
+  * Highlights: Had to make use of external libraries that i had to do a lot of googling to find out about. Hence, the implementation was hard as it required understanding external API documentations and implementing them.
   * Pull requests: [#151](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/151) 
   
 * **Documentation**:
