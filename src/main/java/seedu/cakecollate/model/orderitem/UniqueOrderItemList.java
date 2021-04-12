@@ -13,7 +13,7 @@ import seedu.cakecollate.model.orderitem.exceptions.OrderItemNotFoundException;
 
 /**
  * A list of order items that enforces uniqueness between its elements and does not allow nulls.
- * A order item is considered unique by comparing using {@code OrderItem#equals(Object)}.
+ * An order item is considered unique by comparing using {@code OrderItem#equals(Object)}.
  * As such, adding and updating of orders uses OrderItem#equals(Object) for equality so as
  * to ensure that the order item being added or updated is unique in terms of order description in
  * the UniqueOrderItemList. The removal of an order uses OrderItem#equals(Object) so also uses

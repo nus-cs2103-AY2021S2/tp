@@ -13,7 +13,7 @@ import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
- * Deletes a order item identified using it's displayed index from the list of order items.
+ * Deletes a order item identified using the index displayed in the order items table.
  */
 public class DeleteOrderItemCommand extends Command {
 
@@ -30,6 +30,11 @@ public class DeleteOrderItemCommand extends Command {
 
     private final IndexList targetIndexList;
 
+    /**
+     * Creates a DeleteOrderItemCommand object with an IndexList containing the indexes passed in by user.
+     *
+     * @param targetIndexList Index list consisting of one or more indexes passed by the user
+     */
     public DeleteOrderItemCommand(IndexList targetIndexList) {
         this.targetIndexList = targetIndexList;
     }
