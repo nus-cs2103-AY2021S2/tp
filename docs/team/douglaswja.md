@@ -25,9 +25,9 @@ Given below are my contributions to the project:
 
 - Justification: The current semester identifies the semester that the student is currently undertaking. Being able to correctly identify this semester allows the app to distinguish between past (previous semesters), present (current semester), and future (prospective semesters). This feature, in conjunction with the **master plan** command, is a prerequisite for any commands that require knowledge of the student's university progress. 
 
-- Highlights: Similar to the master plan command, implementing this feature exposed me to AB3 in an end-to-end manner as its implementation involved user inputs, storage for persistence beyond a single session, and several other internally used classes.
+- Highlights: Similar to **master command**.
 
-- Credits: The `ModelManager`, `ArgMultiMap`, JSON Storage, and `Semester` classes were instrumental to my proper implementation of the feature. Notably, I implemented the `Semester` class.
+- Credits: Similar to **master command**.
 
 ### New feature: History Command
 - What it does: Shows the user summary information about all semesters prior to the **current semester** of their **master plan**.
@@ -38,21 +38,12 @@ Given below are my contributions to the project:
 
 - Credits: The `ModelManager` and `ArgMultiMap` classes and the relevant commands that I implemented.
 
-### New feature: Show MCs Command
-- What it does: Shows the user the total number of MCs they have taken in semesters prior to the **current semester** of their **master plan**.
+### New feature: Show MCs and Show CAP commands
+- What they do: Shows the user relevant information about semesters prior to the **current semester** of their **master plan**.
 
-- Justification: It is important for students to be able to quickly check how many MCs they have completed as completing a certain minimum number of MCs is a requirement for graduation from NUS.
+- Justification: It is important for students to be able to quickly gather accurate information about past semesters as such information is often required when applying for internships or exchange programmes.
 
-- Highlights: This feature utilised commands that I implemented (**current semester**, **master plan**) highlighting the benefits of these features. Additionally, it was then used by the **history** command, demonstrating its importance.
-
-- Credits: The `ModelManager`, `ArgMultiMap`, and `Ui` classes and the relevant commands that I implemented.
-
-### New feature: Show CAP Command
-- What it does: Shows the user the total CAP of grades they have gotten for modules taken in semesters prior to the **current semester** of their **master plan**.
-
-- Justification: It is important for students to be able to quickly and accurately check what their CAP is as this information is often required when applying for Exchange Programmes or internships.
-
-- Highlights: Required defensive programming as I had to handle boundary cases such as if the student had not taken any modules and required careful computation to handle for modules with unconventional MC counts (e.g. 5 or 6 MC modules), requiring the weighted average to be carefully computed. 
+- Highlights: This feature utilised commands that I implemented highlighting their benefits.
 
 - Credits: The `ModelManager`, `ArgMultiMap`, and `Ui` classes and the relevant commands that I implemented.
 
