@@ -1,14 +1,7 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.CountdownCommand;
-import seedu.address.logic.commands.DeleteFieldCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -16,8 +9,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class CountdownCommandParser implements Parser<CountdownCommand> {
 
-    public static final String MESSAGE_COUNTDOWN_FORMAT = "Invalid command format! Note that index must be positive and "
-            + "within the range of the displayed list. There should also be no additional parameters.\n\n"
+    public static final String MESSAGE_COUNTDOWN_FORMAT = "Invalid command format! Note that index must be positive "
+            + "and within the range of the displayed list. There should also be no additional parameters.\n\n"
             + CountdownCommand.MESSAGE_USAGE;
     /**
      * Parses the given {@code String} of arguments in the context of the CountdownCommand

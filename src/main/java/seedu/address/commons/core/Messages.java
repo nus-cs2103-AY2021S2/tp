@@ -14,7 +14,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PREAMBLE = "Your command might have spaces in your command word, "
             + "or your first prefix is invalid.";
     public static final String MESSAGE_INVALID_PREFIX = "Invalid prefix entered.\n";
-    public static final String MESSAGE_TOO_MANY_ARGUMENTS = "Too many arguments specified.";
-    public static String MESSAGE_TOO_LITTLE_ARGUMENTS = "Too little arguments specified.";
+    public static final String MESSAGE_TOO_MANY_ARGUMENTS = "Too many arguments specified.\n";
+    public static final String MESSAGE_TOO_LITTLE_ARGUMENTS = "Too little arguments specified.\n";
 
 }
