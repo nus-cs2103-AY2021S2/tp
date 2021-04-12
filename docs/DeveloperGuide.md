@@ -41,7 +41,7 @@ Given below is a quick overview of each component.
 `Commons` represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
-* `Ui`: The Ui of the App.
+* `Ui`: The User interface (ie. Ui) of the App.
 * `Logic`: The command executor.
 * `Model`: Holds the data of the App in memory.
 * `Storage`: Reads data from, and writes data to, the hard disk.
@@ -76,7 +76,7 @@ The sections below give more details of each component.
 * All of these Ui parts and windows, including the `MainWindow`, inherit from the abstract `UiPart` class.
 * In addition, the `Ui` component also uses the JavaFX Ui framework. The layout of these Ui parts are each defined in
  their corresponding `.fxml` files that can be loated in the `src/main/resources/view` folder.
-* For example, the layout of the HelpWindow is specified in the `HelpWindow.fxml` file.
+* For example, the layout of the `HelpWindow` is specified in the `HelpWindow.fxml` file.
 * A universal styling theme is applied to all components, and the styling is defined in 2 files:
  `DarkTheme.css` and `Extensions.css`. Both are located in the `src/main/resources/view` folder.
 * Images/icons used throughout the app windows are located in the `src/main/resources/images` folder.
@@ -129,10 +129,10 @@ The `Storage` component,
 ### Common classes
 * Classes used by multiple components are in the fooddiary.commons package.
 * There are primarily 3 folders of classes classified under common classes. Namely, these are:
-    * Index
-    * Exceptions
-    * Utility
-* In general, these classes are responsible for the processing the app's logging information, GUI settings,
+    * `Index`
+    * `Exceptions`
+    * `Utility`
+* In general, these classes are responsible for the processing of the app's logging information, GUI settings,
  error messages thrown, and file management etc.
 
 Notably:
@@ -173,13 +173,14 @@ The following activity diagram summaries the flow of events when a user executes
 #### Design Consideration
 
 ##### Aspect: Whether entry class should have a list of Reviews or a single Review as an attribute (for adding on reviews to an existing entry)
-* **Alternative 1 (current choice):** Entry containing a list of Reviews as an attribute
-    * Pros: Looks neater from a design perspective, as additional reviews added on will just be appended to the list of reviews.
+* **Alternative 1 (current choice):** Entry containing a list of Reviews as an attribute.
+    * Pro: Looks neater from a design perspective, as additional reviews added on will just be appended to the list of reviews.
       Easily extendable in the future (e.g. deleting a specific review in an entry).
-    * Cons: A lot of refactoring will be needed. Time-consuming.
-* **Alternative 2:** Entry containing a single Review attribute 
-    * Pros: Easy to implement, as additional reviews can be concatenated as a string to the current review
-    * Cons: This cannot be easily extended in the future (e.g. deleting a specific review in an entry).
+    * Con: A lot of refactoring will be needed. Time-consuming.
+* **Alternative 2:** Entry containing a single Review attribute.
+    * Pro: Easy to implement, as additional reviews can be concatenated as a string to the current review
+    * Con: This cannot be easily extended in the future (e.g. the capability to delete a specific
+    review in an entry without deleting other reviews).
 
 ### List Feature
 The List feature allows a user to list all entries that they have keyed in thus far. This will be useful when a user
@@ -194,16 +195,16 @@ Each Entry contains the `Name`, `Address`, `Price`, `Rating`,  `Review`, `TagCat
 
 This feature was brought over to The Food Diary from AB3. 
 There were not many changes apart from modifying it to list
-entries instead. Similar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()`
+entries instead. Similar to other commands, `MainWindow#executeCommand()` runs and `LogicManager#execute()`
 will be called to parse the user input in `FoodDiaryParser#parseCommand()`. 
 The parsed command will be identified as a list command.
 
 ### Find Feature
-The Find feature allows a user to find entries that match **ANY** of the keywords provided by the user.
-This enables the user to easily sieve out all the entries that meet every single requirement the user
+The Find feature allows a user to find entries that match **ANY** of the keyword(s) provided by the user.
+This enables the user to easily sieve out all the entries that meet any of the requirement(s) the user
 is looking for, which will be useful when deciding where to eat.
 
-This feature is implemented through the `find` command, where the user will provide a list of keywords that
+This feature is implemented through the `find` command, where the user will provide a list of keyword(s) that
 they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
 The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
 `TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
@@ -212,7 +213,7 @@ be updated to display the list of entries that were returned as a search result.
 
 Given below is an example usage scenario:
 
-The user wants to find for good food places within NUS.
+The user wants to find good food places within NUS.
 
 Step 1: User enters the command `find 5/5`.
 
@@ -230,25 +231,25 @@ implementation is largely the same.
 
 ##### Aspect: Whether the syntax used for the find command should be similar to the add command
 * **Alternative 1 (current choice):** Implement the `find` command without using similar syntax to the `add`
-  command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`)
-    * Pros: Lesser syntax required, making the command more user-friendly (**Important as the `find` command
-      will be executed by the user many more times as compared to the `add` command**)
-    * Cons: Makes the implementation less standardised across different commands
-* **Alternative 2:** Implement the `find` command by using similar syntax as the `add` command
-    * Pros: Makes the implementation more standardised across different commands
-    * Cons: Greatly slows down the efficiency of performing searches on the FoodDiary, which will negatively
-    impact the user experience
+  command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`).
+    * Pro: Less syntax required, making the command more user-friendly (**Important as the `find` command
+      will likely be executed by the user many more times as compared to the `add` command**).
+    * Con: Makes the implementation less standardised across different commands.
+* **Alternative 2:** Implement the `find` command by using similar syntax as the `add` command.
+    * Pro: Makes the implementation more standardised across different commands.
+    * Con: Greatly slows down the efficiency of performing searches on the FoodDiary, which will negatively
+    impact the user experience.
 
-##### Aspect: How the user input keywords for the Rating and Price fields should be implemented
-* **Alternative 1 (current choice):** Implement the rating and price fields with additional syntax (eg. Rating
+##### Aspect: How the user-input keywords for the Rating and Price fields should be implemented
+* **Alternative 1 (current choice):** Implement the Rating and Price fields with additional syntax (eg. Rating
   implemented as `RATING/5` instead of `RATING`, and price implemented as `$PRICE` or `$PRICE-PRICE` instead
-  of `PRICE` or `PRICE-PRICE`)
-    * Pros: More intuitive keywords for the user to type out when performing their search
-    * Cons: More typing is required, with additional syntax that needs to be strictly followed
-* **Alternative 2:** Implement the rating and price fields without additional syntax
-    * Pros: Keywords can be typed out faster, makes performing searches more efficient
-    * Cons: Possibility of user getting back results for rating when finding for price, or getting back results
-    for price when finding for rating
+  of `PRICE` or `PRICE-PRICE`).
+    * Pro: More intuitive keywords for the user to type out when performing their search.
+    * Con: More typing is required, with additional syntax that needs to be strictly followed.
+* **Alternative 2:** Implement the Rating and Price fields without additional syntax.
+    * Pro: Keywords can be typed out faster, makes performing searches more efficient.
+    * Con: Possibility of user getting back results for Rating when finding for Price, or getting back results
+    for Price when finding for Rating, which are both unintended consequences.
 
 ### FindAll Feature
 The FindAll feature allows a user to find entries that match **ALL** the keywords provided by the user.
@@ -268,7 +269,7 @@ given keywords.**
 
 Given below is an example usage scenario:
 
-The user wants to find for good food places within NUS that are within their budget, from a specific food
+The user wants to find good food places within NUS that are within their budget, from a specific food
 category.
 
 Step 1: User enters the command `findall 5/5 $0-10 western`.
@@ -292,30 +293,31 @@ command:
 #### Design Consideration
 
 ##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature
-* **Alternative 1 (current choice):** Implement the FindAll feature as a separate command
-    * Pros: Easier to implement, and more user-friendly as less syntax is required
-    * Cons: User has to utilise 2 different commands despite them both performing a similar search function
-* **Alternative 2:** Implement the FindAll feature using the same command as the Find feature
-    * Pros: User can carry out all searches using only one command, which makes the features fit together better
-      than the first alternative
-    * Cons: Much harder to implement, and less user-friendly as more syntax is required due to the user needing to
+* **Alternative 1 (current choice):** Implement the FindAll feature as a separate command.
+    * Pro: Easier to implement, and more user-friendly as less syntax is required.
+    * Con: User has to utilise 2 different commands despite them both performing a similar search function.
+* **Alternative 2:** Implement the FindAll feature using the same command as the Find feature.
+    * Pro: User can carry out all searches using only one command, which makes the features fit together better
+      than the first alternative.
+    * Con: Much harder to implement, and less user-friendly as more syntax is required due to the user needing to
       specify the method of search between the Find and FindAll features that they would like to use to perform
-      their search
+      their search.
 
 ### Revise Feature
 The Revise feature allows a user to quickly edit different sections of an entry. It is often misunderstood to be 
-mutually exclusive with the edit feature or the slower alternative. This feature shines when a user wishes to edit 
-while also adding into multiple sections in an entry. The edit and addon features are still necessities for making 
+mutually exclusive with the Edit feature or the slower alternative of it. This feature shines when a user wishes to edit 
+while also adding into multiple sections in an entry. The Edit and AddOn features are still necessities for making 
 quick and small chanegs to an entry.
 
 The command opens an additional window when a user enters the command in the Ui, the command will be passed into 
-`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
+`MainWindow#executeCommand()`, in which `Logic#execute()` calls `LogicManager#execute()`,
+ which parses the user input via `FoodDiaryParser#parseCommand()`.
 The user input will be parsed as a 'Revise' command and executed to retrieve all the details related to the specified entry.
-With the window for revision of the entry, a user can easily make changes to the sections all at once. 
+With a separate window for revision of the entry, a user can easily make changes to the sections all at once. 
 
-With the revise button, all the changes made are passed into the `MainWindow#executeCommand()`, and makes its way to 
-`ReviseCommand#revise()` with calls `MainWindow#executeCommand()` with the content at each section concatenated with its
-prefix and the EditCommand. 
+With the revise button, all the changes made are passed into the `MainWindow#executeCommand()`, which makes its way to 
+`ReviseCommand#revise()` which calls `MainWindow#executeCommand()` with the content of each section concatenated with its
+prefix and the EditCommand.
 
 The following sequence diagram shows how Revise feature works:
 ![Revise Sequence Diagram](images/ReviseSequenceDiagram.png)
@@ -325,24 +327,25 @@ The following activity diagram summarises the events that take place when a user
 
 #### Design Consideration
 
-##### Aspect: Whether to revise entry in command line or in a new Ui window.
+##### Aspect: Whether to revise entry in command line or in a new Ui window
 * **Alternative 1 (current choice):** Revise entry in a new Ui window.
-    * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
-    * Cons: Revise is not done purely in command line, but rather in a Ui window.
+    * Pro: View all details of an entry and easily revise them with keyboard shortcuts.
+    * Con: Revise is not done purely in command line, but rather in a separate Ui window.
 * **Alternative 2:** Revise entry in command line.
-  * Pros: Revise is purely done in the command line.
-  * Cons: For entry with lengthy details, it will flood the command line space and be difficult for revising.
+    * Pro: Revise is purely done in the command line.
+    * Con: For entry with lengthy details, typing in the full command will flood the command line text field
+   and pose a major inconvenience for users to revise the entry specified.
 
 ### Edit Feature
 #### Implementation
 At its core, the `edit` feature allows a user to edit multiple fields pertaining to the entry specified by its `index`,
  in a single edit command. The `edit` feature is the fundamental feature for editing an entry, and it is recommended
  for users to use it if minor changes to an entry are to be made, typically caused by a spelling mistake or typo.
- As such, the edit feature runs solely via the command typed in the command box. The following feature,
- the `revise` feature, builds upon the implementation of the `edit` feature. See more below.
+ As such, the edit feature runs solely via the command typed in the command box. The above feature,
+ the `revise` feature, builds upon the implementation of the `edit` feature. See more above.
  
-When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which
- `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
+When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute`
+ calls `LogicManager#execute()` to parse the user input via `FoodDiaryParser#parseCommand()`.
  The user input will be parsed as an `edit` command and executed to edit the entry specified by
  the index of the command.
  
@@ -360,14 +363,14 @@ command:
 
 ##### Design Consideration
 
-##### Aspect: Whether to edit a command in the command line or in a new Ui window.
+##### Aspect: Whether to edit a command in the command line or in a new Ui window
 * **Alternative 1 (current choice):** Edit entry in command line. 
-  * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
-  * Cons: For entries with lengthy details, typing long commands in the command line fills up the text field space
+  * Pro: View all details of an entry and easily revise them with keyboard shortcuts.
+  * Con: For entries with lengthy details, typing long commands in the command line fills up the text field space
   and makes it difficult for editing.
-* **Alternative 2:** Edit the entry in a new Ui window. 
-  * Pros: Edit is purely done in the command line, which might be convenient for minor changes a user want s to make.
-  * Cons: Edit is not done purely in command line, but rather in a Ui window. This might pose an inconvenience
+* **Alternative 2:** Edit the entry in a new Ui window.
+  * Pro: Edit is purely done in the command line, which might be convenient for minor changes a user want s to make.
+  * Con: Edit is not done purely in command line, but rather in a Ui window. This might pose an inconvenience
   for the user given the added step to edit a field of an entry.
   
   As such, we decided to implement a new feature named `revise` for users to achieve the cons of the current choice
@@ -385,9 +388,18 @@ The `help` feature primarily helps the user by showing a help guide whenever a u
 * The help guide also contains the link to our User Guide where users can copy the link from
  and visit for more information.
 
+Given below is an example usage scenario:
+
+Step 1. The user is unsure of what command to execute, or the syntax of the command to execute.
+
+Step 2. The user executes `help`, which opens up a help guide in a separate window. The user can copy the User Guide URL
+ and visit the URL for more information.
+
+Step 3. If the user input is invalid, an error message will be displayed in the command box. 
+
 An additional `HelpWindow` is opened when a user enters the `help` command in the Ui. 
-The command will be passed into `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the
-user input in `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
+The command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute` calls `LogicManager#execute()` to parse the
+user input via `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
 At the end, a `HelpWindow` is returned.
 
 The following sequence diagram shows how the Help feature works:
@@ -413,7 +425,7 @@ Step 3. If the user input is invalid, an error message will be displayed in the 
 not exist, the filteredEntryList will be empty and no entry will be displayed on the Main Window.  
 
 The mechanism works in such a way where after the user enters a command in the Ui, the command will be passed into
-`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
+`MainWindow#executeCommand()`, to which `Logic#execute()` calls `LogicManager#execute()` to parse the user input via
 `FoodDiaryParser#parseCommand()`. The parsed command will be recognised as a `view` command and executed to 
 retrieve all the details related to the specified entry. The result of this execution will be passed back to the Ui and 
 shown in a new window.
@@ -433,11 +445,11 @@ will show the correct syntax to use for the `view` command.
 #### Design Consideration
 ##### Aspect: Whether to view entry with lengthy reviews in the Main Ui or in a new window.
 * **Alternative 1 (current choice):** View entry with lengthy reviews in a new window.
-    * Pros: Easier to implement, do not need to deal with complex Ui codes. Entry information looks neater.
-    * Cons: User has to close/minimize the window to return to Main Window.
+    * Pro: Easier to implement, do not need to deal with complex Ui codes. Entry information looks neater.
+    * Con: User has to close/minimize the window to return to Main Window.
 * **Alternative 2:** View entry with lengthy reviews in the Main Ui.
-    * Pros: Design is integrated within Main Ui, which gives it a cleaner look.
-    * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
+    * Pro: Design is integrated within Main Ui, which gives it a cleaner look.
+    * Con: Difficult to implement, lesser time for testability given the project deadline duration.
 
 ### Clear Feature
 `clear`: Allows the user to clear entries in The Food Diary.
@@ -451,8 +463,8 @@ The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`,
 Step 2. The user executes `clear` to clear all entries in The Food Diary.
 
 This feature was brought over to The Food Diary from AB3. There were not many changes apart from modifying it to clear
-entries instead. Similar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()` 
-will be called to parse the user input in `FoodDiaryParser#parseCommand()`. The parsed command will be identified
+entries instead. Similar to other commands, `MainWindow#executeCommand()` runs, which calls `Logic#execute()`,
+ which calls `LogicManager#execute()` to parse the user input via `FoodDiaryParser#parseCommand()`. The parsed command will be identified
 as a `clear` command.
 
 ### Exit Feature
@@ -465,9 +477,9 @@ Step 1. The user is the midst of using The Food Diary application. The user has 
 Step 2. The user executes `exit` and closes the application.
 
 This feature was brought over to The Food Diary from AB3. 
-There were no changes. Similar to other commands,MainWindow#executeCommand() runs and Logic#execute()
-will be called to parse the user input in FoodDiaryParser#parseCommand().
-The parsed command will be identified as the exit command.
+There were no changes. Similar to other commands, `MainWindow#executeCommand()` runs, calling `Logic#execute()`,
+ which calls `LogicManager#execute()` to parse the user input via `FoodDiaryParser#parseCommand()`.
+ The parsed command will be identified as the exit command.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -547,22 +559,24 @@ keeping records of food options tasted in the vicinity of NUS.
 Product Scope:
 The Food Diary will allow NUS foodies to save time and effort when finding places to eat around the NUS vicinity.
 The Food Diary especially caters to students chiefly on 2 aspects – One, the ability for users to log personal food
-reviews tagged under different NUS-related location categories for future reference; and two, the ability to
-effortlessly reference food options based on relevant filters in a user-friendly GUI.
+reviews tagged under different NUS-related location categories for future reference; two, the ability to
+effortlessly reference food options based on relevant filters in a user-friendly GUI; and three, the option for users
+to use Commands typed by keyboard in an intuitive GUI to perform tasks quickly.
 
 ## **Appendix C: User stories**
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority| As a …​                                                           | I want to …​                                                        | So that I can…​                                                                    |
+| Priority| As a/an …​                                                           | I want to …​                                                        | So that I can…​                                                                    |
 | ------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
 | `* * *` | User wanting to add a review of food experience to a particular restaurant | Add a review of food experience                          | Refer back to the particular element that defined my food experience              |
 | `* * *` | User with little patience and time                               | Add names of places I have visited                                 | Efficiently add a review to a place I have visited                                |
 | `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had                            | Easily show them to my friends                                                    |
-| `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before                           | Decide where I shall re-visit                                                     |
-| `* * *` | User who would like to create custom category of food place      | Add the category of the place                                      | I can have a specific view of certain places                                      |
+| `* * *` | User trying to decide where to eat                               | Look at the places i have visited before                           | Decide where I shall re-visit                                                        |
+| `* * *` | User who would like to create custom categories of food place    | Add the category of the place                                      | Have a specific view of certain places                                            |
 | `* * *` | User who does not want to visit a place again                    | Remove the place                                                   | Reduce redundant food places in my list                                           |
-| `* * *` | User who wants to remember food ratings                          | Give a rating on the overall food experience                       | I can gauge/ballpark the satisfaction level I get against other food experiences  |
+| `* * *` | User who wants to remember food ratings                          | Give a rating on the overall food experience                       | Gauge/ballpark the satisfaction level I get against other food experiences        |
 | `* * *` | User who wants to read lengthy reviews of an entry               | Glance through reviews of an entry                                 | Quickly arrive at a conclusion for a food place                                   |
+| `*`     | User who wants to see what my friends think of a food place      | Glance through my friends' reviews of the entry of that place      | Decide if the food place is pleasant to eat at with my friends                    |
 | `* *`   | User frequently revisiting a place                               | Add multiple reviews to a single place                             | Store all my food experiences with the place                                      |
 | `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | Visit the best food places without overspending                                   |
 | `* *`   | User who wants identify a place he/she ate at previously by name | Find entries that match the name of the place I last visited       | Judge if I would like to go back to that place and eat there.                     |
@@ -576,7 +590,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UC01: Add an Entry**
 
-Preconditions: There are lesser than 1 000 000 entries in the Food Diary application.
+Preconditions: There are less than 1,000,000 entries in the Food Diary application.
 
 **MSS**
 
@@ -616,7 +630,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 * 2a. No entries to display.
 
     * 2a1. Tells users that there are no entries.
-    * 1a2. User enters correct syntax.
+    * 2a2. User enters correct syntax.
 
       Use case ends.
 
@@ -651,6 +665,8 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 2. Food Diary checks for the specified entry.
 3. Food Diary adds review(s) and/or a price to the specified entry.
 
+    Use case ends.
+
 **Extensions**:
 
 * 1a. Food Diary detects invalid command from user.
@@ -669,10 +685,12 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **MSS**
 
 1. User requests to delete a Food Diary entry.
-2. Food diary removes the entry from its database.
+2. Food Diary removes the entry from its database.
+
+    Use case ends.
 
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about invalid command syntax.
     * 1a2. User enters a valid command.
 
@@ -683,11 +701,11 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC06: Find for entries**
+**UC06: Find entry(-ies)**
 
 **MSS**
-1. User enters keywords to be used to search for entries.
-2. Food Diary shows all entries matching user requirements (if any).
+1. User enters keyword(s) to be used to search for entry(-ies).
+2. Food Diary shows entry/all entries matching user requirement(s).
 
    Use case ends.
 
@@ -696,14 +714,14 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
-  Use case resumes from step 2.
+   Use case resumes from step 2.
 
 
-**UC07: Find all specific entries**
+**UC07: Find specific entry(-ies)**
 
 **MSS**
-1. User enters keywords to specify requirements for entries.
-2. Food Diary shows all entries matching user requirements (if any).
+1. User enters keyword(s) to specify requirement(s) for entry(-ies).
+2. Food Diary shows entry/all entries matching user requirement(s).
 
    Use case ends.
 
@@ -712,7 +730,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
-  Use case resumes from step 2.
+   Use case resumes from step 2.
   
 **UC08: Get Help**
 
@@ -723,8 +741,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 4. User requests to close help guide after use.
 5. Food Diary closes help guide.
 
+    Use case ends.
+
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
@@ -741,16 +761,18 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **MSS**
 1. User requests to view a specific entry.
 2. Food Diary checks requested entry.
-3. Food diary shows specified entry details.
+3. Food Diary shows specified entry details.
+
+    Use case ends.
 
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
       Use case resumes from step 2.
 
-* 2a. No entry found
+* 2a. Food Diary detect a non-existent index in list.
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
@@ -760,7 +782,9 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **MSS**
 1. User requests to revise a specific entry.
 2. Food Diary checks requested entry.
-3. Food diary allows user to make revisions to the entry.
+3. Food Diary allows user to make revisions to the entry.
+
+    Use case ends.
 
 **Extensions**:
 * 1a. Food diary detects invalid command from user.
@@ -769,7 +793,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case resumes from step 2.
 
-* 2a. User key in a non-existent index in list
+* 2a. Food Diary detect a non-existent index in list.
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
@@ -780,8 +804,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 1. User requests to edit entry field(s) of a specific entry due to minor errors.
 2. Food Diary edits the entry with the updated field(s).
 
+    Use case ends.
+
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
@@ -798,8 +824,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 1. User requests to clear all entries.
 2. Food Diary clears all entries.
 
+      Use case ends.
+
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
@@ -811,8 +839,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 1. User exits.
 2. Food Diary closes and data is saved.
 
+      Use case ends.
+
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
@@ -821,8 +851,8 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 ## **Appendix E: Non-Functional Requirements**
 
 Non-functional requirements specify the constraints under which the system for The Food Diary is developed and operated.
-The Food Diary system is made up of the front-end, which is interchangeably referred to as the User Interface (UI),
-and the back-end, which handles data management and operations.
+The Food Diary system is made up of the front-end, which is interchangeably referred to as the User interface (Ui),
+and the back-end, which handles data management and operations. The app is interchangeably referred to as the system.
 
 ### Technical requirements
 
@@ -846,12 +876,12 @@ and the back-end, which handles data management and operations.
 * The system would not be responsible for features involving multiple users.
 
 ### Scalability requirements
-* The system can handle a larger user base with many more food reviews being added to it.
+* The system can handle a larger user base with many more food diary entries being added to it.
 * Program is extendable for future addition of features easily.
 
 ### Other Noteworthy Points
 
-* The system should preserve data keyed in by the user.
+* The system should preserve data keyed in by the user upon exiting.
 
 ## **Appendix F: Glossary**
 The glossary serves to ensure that all stakeholders, including users, have a common understanding of the noteworthy terms, and abbreviations.
@@ -870,7 +900,8 @@ to work on.
 
     1. Download the jar file and copy into an empty folder.
 
-    2. Double-click the jar file Expected: Shows the GUI with a set of sample food Diary entries. The window size may not be optimum.
+    2. Double-click the jar file<br>
+       Expected: Shows the GUI with a set of sample food Diary entries. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -882,33 +913,40 @@ to work on.
 ### Add an entry
 
 1. Add an entry with the provided details
-   
+ 
     1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
 
     2. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
+    
+        Expected: Adds an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
     FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.<br />
     <br />
     3. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid rating error will be shown in the result display. Entry will not be added.<br />
+        
+        Expected: Invalid rating error will be shown in the result display. Entry will not be added.<br />
     <br />
     4. Test case: `add n/Subway ra/5 p/1000 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid price error will be shown in the result display. Entry will not be added.<br />
+    
+        Expected: Invalid price error will be shown in the result display. Entry will not be added.<br />
     <br />
     5. Test case: `add n/Subway ra/5 p/6 re/ a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid review error will be shown in the result display. Entry will not be added.<br />
+        
+        Expected: Invalid review error will be shown in the result display. Entry will not be added.<br />
     <br />
     6. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/ c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid address error will be shown in the result display. Entry will not be added.<br />
+    
+        Expected: Invalid address error will be shown in the result display. Entry will not be added.<br />
     <br />
     7. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/Deck c/FastFood c/Math s/SOC`
-    <br>Expected: A list of valid categories will be shown in the result display. Entry will not be added.<br />
+        
+        Expected: A list of valid categories will be shown in the result display. Entry will not be added.<br />
     <br />
     8. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/Primary`
-    <br>Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br />
+    
+        Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br />
     <br />
     9. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)<br>
+    <br>followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)<br>
 
 ### Add on to an entry
 1. Add on to an entry with the provided details
@@ -916,19 +954,22 @@ to work on.
     1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.<br>
        
     2. Test case: `addon 1 re/I like this food a lot! p/7`
-
-    <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
-       out of the initial price range displayed in the entry). Specified Entry will be updated with the addon on fields.<br />
-    <br />
+    
+        Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
+           out of the initial price range displayed in the entry). Specified Entry will be updated with the addon on fields.<br />
+        <br />
     3. Test case: `addon 1`
-    <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.<br />
-    <br />
+    
+        Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
     4. Test case: `addon 1 re/`
-    <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.<br />
-    <br />
+    
+        Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
     5. Test case: `addon 1 re/Good Food p/1000`
-    <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.<br />
-    <br />
+    
+        Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
 
     6. Other incorrect `addon` commands to try: `addon 10000000000 re/Good Food` (invalid index)
     
@@ -938,14 +979,17 @@ to work on.
     1. Prerequisite: `list` all entries to find out the name of the entry to delete<br>
        
     2. Test case: `delete 1`
-    <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.<br />
-    <br />
-    3. Test case: `delete x` (where x is non-existent booking ID)
-    <br>Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
-    <br />
-    4. Other incorrect delete commands to try: `delete`, `delete Starbucks`
     
-        Expected: Invalid command format error. No entry is deleted.
+        Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.<br />
+        <br />
+       
+    3. Test case: `delete x` (where x is non-existent booking ID)
+       
+        Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
+        <br />
+       
+    4. Other incorrect `delete` commands to try: `delete`, `delete Starbucks`
+       Expected: Invalid command format error. No entry is deleted.
    
     
 ### Find entries
@@ -1000,7 +1044,7 @@ to work on.
         - Success message displayed informing the user of the number of entries found.
         - Suggestion message displayed informing the user of possible typos for a rating search,
         and a price search, providing directions to correct the typos.
-        - 0 default entries will be shown.
+        - 0 default entries will be shown.<br />
        
 ### Find specific entries
 
@@ -1138,62 +1182,70 @@ to work on.
     * `INDEX` refers to index of Entry to revise in view.
     
     * The following test cases will test different permutations and numbers of `KEYWORD`(s).<br />
-    <br /> 
+    <br />
+
     2. Test case: `edit 1 n/McDonalds`
     
        Expected:
-       - First entry has named changed to "McDonalds".
-       - All entries remained shown
-       - Success message displayed informing the user of change.<br />
-    <br />
+        - First entry has named changed to "McDonalds".
+        - All entries remain shown
+        - Success message displayed informing the user of change.<br />
+        <br />
     3. Test case: `edit 2 ra/0`
 
        Expected:
-       - Second entry has rating changed to 0. (0/5)
-       - All entries remained shown (with the first entry remaining edited as done previously).
-       - Success message displayed informing the user of change.<br />
-    <br />
+        - Second entry has rating changed to 0. (0/5)
+        - All entries remain shown (with the first entry remaining edited as done previously).
+        - Success message displayed informing the user of change.<br />
+        <br />
     4. Test case: `edit 3 a/50 West Coast Road`
 
        Expected:
-       - Third entry has address changed to "50 West Coast Road".
-       - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.<br />
-    <br />
+        - Third entry has address changed to "50 West Coast Road".
+        - All entries remain shown (with all entries updated previously).
+        - Success message displayed informing the user of change.<br />
+        <br />
     5. Test case: `edit 4 re/I had a great time here.`
 
-        Expected:
-       - Fourth entry has review changed to "I had a great time here".
-       - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.<br />
-    <br />
+       Expected:
+        - Fourth entry has review changed to "I had a great time here".
+        - All entries remain shown (with all entries updated previously).
+        - Success message displayed informing the user of change.<br />
+        <br />
     6. Test case: `edit 5 p/20`
 
        Expected:
        - Fifth entry has price changed to "20". ($20)
-       - All entries remained shown (with all entries updated previously).
+       - All entries remain shown (with all entries updated previously).
        - Success message displayed informing the user of change.<br />
-    <br />
+        <br />
     7. Test case: `edit 1 n/Hwangs ra/4 p/7 a/NUS re/Korean food makes me happy. s/Utown c/Korean`
 
-       Expected:
-       - First entry has name changed to "Hwangs", rating changed to "4" (4/5), price changed to "7" ($7),
+        Expected:
+        - First entry has name changed to "Hwangs", rating changed to "4" (4/5), price changed to "7" ($7),
         review changed to "Korean food makes me happy.", school location tags changed to "UTOWN", and 
         food category changed to "Korean".
-       - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.<br />
-    <br />
+        - All entries remain shown (with all entries updated previously).
+        - Success message displayed informing the user of change.<br />
+        <br />
     8. Test case: `edit 1 c/Korean c/Others`
 
-       Expected:
-       - First entry has food category changed to "Korean" and "Others".
-       - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.
+        Expected:
+        - First entry has food category changed to "Korean" and "Others".
+        - All entries remained shown (with all entries updated previously).
+        - Success message displayed informing the user of change.<br />
+        <br />
+    9. Test case: `edit -13 c/Korean c/Others`
+    
+        Expected:
+        - Error message will be thrown, warning users that the index of the entry is out of bounds.
+        - All entries remain shown (with all entries updated previously).
   
 ### Clear all entries
 1. Remove all entries from The Food Diary
    
-    1. Prerequisite: None
+    1. Prerequisite: None<br />
+       <br />
     
     2. Test Case: Correct command:`clear` 
 
@@ -1201,7 +1253,8 @@ to work on.
        <br />
     3. Test Case: Command not in lower-case: `cLeAr`
 
-       Expected: User will be notified about unknown command in the command box.
+       Expected: User will be notified about unknown command in the command box.<br />
+       <br />
        
 ## **UI Mockup**
 
