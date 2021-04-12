@@ -148,10 +148,29 @@ Classes used by multiple components are in the `seedu.booking.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Edit feature
-BookCoin allows users to edit the details of persons, venues and bookings saved in the system. 
+### 4.1 Find feature
+BookCoin allows users to narrow down the search of persons, venues and bookings through filters. 
 
 #### 4.1.1 Implementation details
+The find functionality is implemented through an FindCommand and FindCommandParser for Person, Venue and Booking.
+<br>
+![Class Diagram of Find Command](images/FindCommandClassDiagram.png)
+
+
+Since the functionality for all three classes are similar, we can focus our discussion here on the Person class here without loss of generality. The `find_person` command has the following format:
+`find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`, where at least one field must be provided. 
+
+#### 4.1.2 Design considerations:
+##### Aspect: Deciding between full and partial matching
+
+* **Alternative 1 (current choice):** Full matching which requires users to input at least one full word for a field.
+    * Pros: Easier to implement and use, prevents the return of too many unrelated results.
+    * Cons: User has to be able to remember and input at least one complete field for find command to work.
+
+* **Alternative 2:** Partial matching which would return all valid partial results when users input a field.
+    * Pros: More convenient for situations when a user cannot remember a full field.
+    * Cons: Results returned may contain many unrelated and undesirable entries (e.g. if searching for a person "Ann", the system would return partial matches "Annabelle", "Annabella", "Anna" etc.)
+
 
 
 ### 4.4 \[Proposed\] Undo/redo feature
@@ -219,7 +238,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### 4.4.2 Design consideration:
+#### 4.4.2 Design considerations:
 
 ##### Aspect: How undo & redo executes
 
