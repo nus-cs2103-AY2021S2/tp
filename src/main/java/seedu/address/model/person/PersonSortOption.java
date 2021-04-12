@@ -8,7 +8,9 @@ public enum PersonSortOption {
 
     private String sortString;
 
-    PersonSortOption(String sortString) {this.sortString = sortString;}
+    PersonSortOption(String sortString) {
+        this.sortString = sortString;
+    }
 
     public String getValue() { return sortString; }
 }

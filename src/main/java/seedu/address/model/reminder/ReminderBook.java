@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
@@ -62,12 +61,6 @@ public class ReminderBook implements ReadOnlyReminderBook{
 
     public void refreshRemindersFromMeetings(MeetingBook meetingBook){
         ObservableList<Meeting> meetinglist = meetingBook.getMeetingList();
-//        List<Reminder> remindersList = meetinglist.stream().map(Reminder::new).sorted(new Comparator<Reminder>() {
-//            @Override
-//            public int compare(Reminder reminder1, Reminder reminder2) {
-//                return reminder1.getRawTimeUntilStart().compareTo(reminder2.getRawTimeUntilStart());
-//            }
-//        }).collect(Collectors.toList());
         List<Reminder> remindersList = meetinglist.stream().map(Reminder::new).sorted(Comparator.comparing(
                 Reminder::getRawTimeUntilStart)).collect(Collectors.toList());
         setReminders(remindersList);

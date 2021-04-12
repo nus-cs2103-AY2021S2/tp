@@ -1,10 +1,7 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.connection.PersonMeetingConnection;
-import seedu.address.model.group.Group;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.schedule.Schedulable;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -13,8 +10,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.schedule.Schedulable;
 
 
 /**
@@ -153,7 +153,9 @@ public class Meeting implements Schedulable {
     public boolean containsDescription(Description desc) {
         return description.toString().contains(desc.toString());
     }
-
+    /**
+     * Returns whether a meeting is related to a certain person.
+     */
     public boolean containsPerson(Person person) {
         Set<Person> allPersons = getConnectionToPerson();
         return allPersons.contains(person);
@@ -162,7 +164,9 @@ public class Meeting implements Schedulable {
     public boolean containsGroup(Group group) {
         return groups.contains(group);
     }
-
+    /**
+     * Returns whether a meeting contains a point of time.
+     */
     public boolean containsTime(DateTime time) {
         boolean afterOrAtStart = time.compareTo(start) >= 0;
         boolean beforeOrAtEnd = time.compareTo(terminate) <= 0;

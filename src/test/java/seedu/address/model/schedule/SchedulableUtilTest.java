@@ -1,8 +1,5 @@
 package seedu.address.model.schedule;
 
-import org.junit.jupiter.api.Test;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.schedule.TypicalSchedules.LONG_SCHEDULABLE;
 import static seedu.address.model.schedule.TypicalSchedules.LONG_SCHEDULABLE_PART_ONE;
@@ -11,6 +8,10 @@ import static seedu.address.model.schedule.TypicalSchedules.LONG_SCHEDULABLE_PAR
 import static seedu.address.model.schedule.TypicalSchedules.SCHEDULE_THREE;
 import static seedu.address.model.schedule.TypicalSchedules.SCHEDULE_TWO;
 import static seedu.address.model.schedule.TypicalSchedules.SHORT_SCHEDULE_ONE;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 public class SchedulableUtilTest {
 

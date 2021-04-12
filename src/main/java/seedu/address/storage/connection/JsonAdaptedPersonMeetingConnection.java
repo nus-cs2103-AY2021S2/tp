@@ -60,7 +60,7 @@ public class JsonAdaptedPersonMeetingConnection {
                                                PersonMeetingConnection connection) throws IllegalValueException {
         assert addressBook != null && meetingBook != null && connection != null;
 
-        if (personName == null|| meetingName == null || startDateTime == null) {
+        if (personName == null || meetingName == null || startDateTime == null) {
             throw new IllegalValueException(MESSAGE_MSSING_FIELDS);
         }
 
