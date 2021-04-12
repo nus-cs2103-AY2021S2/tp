@@ -1333,7 +1333,7 @@ Given below are instructions to test the app manually.
 
 ### Unfavourite Tutor
 
-1. Unfavourite
+1. Unfavourite Tutor
     1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
     1. Test Case: `favourite 1` <br>
        Expected: The first tutor from the list is unfavourite. A favourite indicator (star) is removed from beside the tutor's name. <br><br>
