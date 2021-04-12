@@ -6,19 +6,42 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface AppointmentScheduleStorage <<Interface>>
+Class "{abstract}\nAddressBookStorage" as AddressBookStorage
+Class "{abstract}\nJsonAdaptedPerson" as JsonAdaptedPerson
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonPatientRecordsStorage
+Class JsonDoctorRecordsStorage
+Class JsonAppointmentScheduleStorage
 
 StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
+StorageManager o--> UserPrefsStorage
 StorageManager o--> AddressBookStorage
+StorageManager o--> AppointmentScheduleStorage
 
-JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+UserPrefsStorage -[hidden]left- AppointmentScheduleStorage
+AppointmentScheduleStorage -[hidden]left- AddressBookStorage
+
+JsonUserPrefsStorage .up.|> UserPrefsStorage
+JsonPatientRecordsStorage -up-|> AddressBookStorage
+JsonDoctorRecordsStorage -up-|> AddressBookStorage
+JsonPatientRecordsStorage .down.> JsonSerializablePatientRecords
+JsonDoctorRecordsStorage .down.> JsonSerializableDoctorRecords
+
+JsonAdaptedPatient -right-|> JsonAdaptedPerson
+JsonAdaptedDoctor -left-|> JsonAdaptedPerson
+
+JsonSerializablePatientRecords .down.> JsonAdaptedPatient
+JsonSerializableDoctorRecords .down.> JsonAdaptedDoctor
+JsonAdaptedPerson .right.> JsonAdaptedTag
+JsonAdaptedPatient .down.> JsonAdaptedTag
+JsonAdaptedDoctor .down.> JsonAdaptedTag
+
+AppointmentScheduleStorage <|.down. JsonAppointmentScheduleStorage
+JsonAppointmentScheduleStorage .down.>JsonSerializableAppointmentSchedule
+JsonSerializableAppointmentSchedule .down.> JsonAdaptedAppointment
+JsonAdaptedAppointment .down.> JsonAdaptedTag
+
 @enduml
