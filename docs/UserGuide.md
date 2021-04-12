@@ -80,7 +80,7 @@ Shortcut: press `F1`
 
 Adds a new residence to the list of residences, default for clean status is ‘clean’. Valid clean status inputs are `y`,`n`, `clean` and `unclean`
 
-* Names cannot be empty. Trailing white spaces before and after a valid name will be ignored. e.g `  BLK 3  ` will be used and displayed as `BLK 3`
+* Names cannot be empty. Trailing white spaces before and after a valid name will be ignored. e.g `​ ​ BLK 3 ​ ​` will be used and displayed as `BLK 3`
 * Names should only contain alpha-numeric characters. e.g `Block71 Ayer Rajah`  
 * Valid clean statuses are case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
 * Address can take any values (even emojis) but only alphanumeric characters and symbols will be visible on the residence tracker. `@!df34!@//` is a valid address.
@@ -164,7 +164,7 @@ Format: `delete RESIDENCE_INDEX`
 Examples:
 * `list` followed by `delete 3` deletes the 3rd residence in the list of residences shown.
 
-### Update multiple Clean status: `status`
+### Update multiple clean status: `status`
 
 Update Clean status of multiple residences at once.
 
