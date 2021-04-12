@@ -599,7 +599,7 @@ testers are expected to do more *exploratory* testing.
     1.  Use `add mc/CS2105 n/Assignment 1 d/24-04-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
     1.  Use `add mc/CS3240 n/Finals d/23-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
 
-1. Using the `dueIn` command.
+1. Using the `dueIn` command
     1. Test case: `dueIn day/7`.<br>
         Expected: tasks with module code: CS2103 and CS3240 will be shown on the task list.
     1. Test case:`dueIn week/1`.<br>
@@ -612,6 +612,17 @@ testers are expected to do more *exploratory* testing.
          
 
 ### Using command `doToday`
+
+1. Recommended to use the tasks provided in `dueIn` command for this feature. Instructions below will be based on that particular set of tasks.
+1. Add a task from the task list to the daily task list
+    1. Test case: `doToday -a 1`.<br>
+        Expected: First task on the task list will be added to the daily task list.
+    1. Test case: `doToday -r 1`.<br>
+        Expected: First task on the daily task list will be removed.
+    1. Test case: `doToday -a 3`.<br>
+        Expected: Third task on the task list will be added on the daily task list.
+    1. Invalid test cases to try: `dotoday -a 1`, `doToday -a x` (where x is an integer larger than the length of the task list), `doToday -r Y` (where Y is an integer larger than the length of the daily task list), `doToday -a 0`, `doToday -r 0`. 
+
 
 ### Undo a command
 
