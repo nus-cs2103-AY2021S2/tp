@@ -473,16 +473,39 @@ The add mechanism is facilitated by `AddCommand` and `AddCommandParser`.
   
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-Step 1. The user executes `add n/David `. Since only the `n/` arg is specified, 
-'NIL' will be used for the remaining args.
+Step 1. The user enters `add n/David `. 
 
-[comment]: <> (add UML diagram)
+Step 2. LogicManager#execute(userInput) calls ParentPalParser#parseCommand(userInput), which then parses 
+the input into the command word and arguments, ` n/David` . `n/David` is then passed to 
+`AddCommandParser#parse(" n/David")`
+
+Step 3. `AddCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()` into the 
+various fields for the `Contact`. A new `Contact` is created with these fields. Since only the `n/` arg is 
+specified for this example, the string 'NIL' will be used for the remaining args.
+
+Step 5. A new `AddCommand` is created using the new `Contact` and returned to `AddressBookParser`
+and subsequently `LogicManager`.
+
+Step 6. `LogicManager#execute()` calls `AddCommand#execute()`.
+
+Step 7. The `Model#addContact()` method is used to add the new `Contact` into the model. The success message 
+is returned to `LogicManager` via a `CommandResult`.
 
 The following sequence diagram shows how the add operation works:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-[Add sequence diagram]
-
-Note: Style of diagram to be updated.
+#### Design considerations
+##### Aspect: How to allow incomplete contacts to be added
+* **Alternative 1 (current choice):** Setting a placeholder string when fields not specified
+    * Pros: Lesser code refactoring, more uniform data in model so lesser need to check if a field is null.
+    * Cons: Might affect future extensions if logic is applied on the placeholder.
+    
+* **Alternative 1:** Setting a placeholder class. 
+    * Pros: Slightly more extendable 
+    * Cons: More code refactoring leading to more bugs
+    
+Alternative 1 was eventually chosen due to ease of refactoring and low chance of future extensions being affected 
+by the placeholder since it is a String.
 
 ### Appointment feature
 
