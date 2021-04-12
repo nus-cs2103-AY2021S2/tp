@@ -51,6 +51,7 @@ public class UniqueContactList implements Iterable<Contact> {
             throw new DuplicateContactException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList, new ContactComparator());
     }
 
     /**
