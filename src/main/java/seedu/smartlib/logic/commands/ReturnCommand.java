@@ -62,11 +62,11 @@ public class ReturnCommand extends Command {
     private void verifyReturnInfo(Model model) throws CommandException {
         requireAllNonNull(model);
 
-        if (!model.getBookByBarcode(incompleteRecord.getBookBarcode()).isBorrowed()) {
-            throw new CommandException(BOOK_NOT_BORROWED);
-        }
         if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())) {
             throw new CommandException(NO_BOOK_FOUND);
+        }
+        if (!model.getBookByBarcode(incompleteRecord.getBookBarcode()).isBorrowed()) {
+            throw new CommandException(BOOK_NOT_BORROWED);
         }
 
         if (model.getReaderNameForReturn(incompleteRecord.getBookBarcode()) == null) {
