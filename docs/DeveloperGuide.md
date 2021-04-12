@@ -26,7 +26,7 @@ ClientBook would not be complete without a set of features that help our end-use
 We have also seen the problems that come with overly complicated user interfaces - users tend to get confused easily and might hence not take full advantage of what the program can do for them.
 ClientBook thus aims to keep things simple, by only providing what is essential, so as not to confused our end-users.
 
-### Going forward,
+### Going forward
 These 3 design ideals should be adhered to as much as possible when implementing new features for your version of the application.
 This Developer Guide aims to provide insights for other developers on how the initial functionalities and system architecture were designed and implemented.
 
@@ -149,7 +149,8 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are 
+in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -230,12 +231,12 @@ we considered and the design considerations are further elaborated below.
 #### Implementation
 
 A new command `PolicyCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute` 
-method. When `PolicyCommand#execute()` is called, all the insurance policies and their associated policy URLs are fetched from the 
+method. `PolicyCommand#execute()` is called by `LogicManager`, all the insurance policies and their associated policy URLs are fetched from the 
 selected `Person` through `Person#getPersonNameAndAllPoliciesInString()`.
 
 Below is an example usage scenario and how the information and data are passed around at each step.
 
-**Step 1.** The user types `policy 1` into the input box.
+**Step 1.** The user types `policy 1` into the input box and presses enter.
 
 **Step 2.** `MainWindow` receives the `commandText` (`policy 1`), which is then executed by `LogicManager`.
 
@@ -287,20 +288,19 @@ Two new commands, `LockCommand` and `UnlockCommand` were created to interface th
 
 Below is an example usage scenario involving the locking of ClientBook and how the information and data are passed around at each step.
 
-**During program launch:** An Authentication object is created and attached as an attribute in `ModelManager`.
+**During program launch:** An `Authentication` object is created and attached as an attribute in `ModelManager`.
 
-**Step 1.** 
-The user is locking ClientBook for the first time. The user enters `lock 1234` into the command box and presses enter.
+**Step 1.**  The user locks ClientBook for the first time and enters `lock 1234` into the command box and presses enter.
 
 **Step 2.** `MainWindow` receives the `commandText` (`lock 1234`), which is then executed by `LogicManager`.
 
 **Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a
 `LockCommand`, which would contain the password that the user wants to use to lock ClientBook (in this case, 1234).
 
-**Step 4.** `LogicManager` then excecutes `LockCommand` which makes use of `Authentication` to lock ClientBook. A `CommandResult` is returned.
+**Step 4.** `LogicManager` then executes `LockCommand` which makes use of `Authentication` to lock ClientBook. A `CommandResult` is returned.
 The `CommandResult` describes whether the locking process was successful.
 
-**Step 5.** This `CommandResult` is passed back to MainWindow to reflect the result of the lock command to the user.
+**Step 5.** This `CommandResult` is passed back to `MainWindow` to reflect the result of the lock command to the user.
 
 Below is a sequence diagram illustrating the flow of this entire process.
 
@@ -317,15 +317,15 @@ of the existing data file `clientbook.json`. Hence, there is minimal dependency 
 
 #### Motivation
 
-In the previous implementation of the `EditCommand`, each time a user edits a clients policy information, the user's only option is to
+In the previous implementation of the `EditCommand`, each time a user edits a client's policy information, the user's only option is to
 replace the client's entire existing policy list with the specified policies. This enhancement of the `EditCommand` gives the user
 the option to append, replace, remove or modify specific policies within a client's policy list.
 
 #### Implementation
 
 A new enumeration `EditPolicyMode` was created within the `EditCommand` class. It provides the developer with an enumeration of
-modes to notify other methods of the different ways of editing a client's policy list, namely `MODIFY`, `APPEND`, `REPLACE` and `REMOVE`.
-This editing mode parsed from the user input, and then passed as an argument to the constructor of `EditCommand` to specify how 
+modes to notify the program of the different ways of editing a client's policy list, namely `MODIFY`, `APPEND`, `REPLACE` and `REMOVE`.
+This editing mode is parsed from the user input, and then passed as an argument to the constructor of `EditCommand` to specify how 
 the client's policy list should be edited.
 
 Within the `EditCommand#execute` method, a new `Person` object is created through the `EditCommand#createEditedPerson` method.
@@ -343,7 +343,7 @@ which is then executed by `LogicManager`.
 `EditCommand`, which would contain the index of the selected client in the displayed list (in this case 1), followed by
 the values that the user intends to edit, followed by the edit policy mode (in this case insert).
 
-**Step 4.** `EditCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the feedback string message
+**Step 4.** `EditCommand#execute()` is called by `LogicManager`, returning a `CommandResult`. This `CommandResult` contains the feedback string message
 which indicates to the user which client was edited.
 
 **Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the list after the edit to the user.
@@ -375,12 +375,12 @@ ClientBook. Having a sort function will allow the user to sort the list of clien
 #### Implementation
 
 A new command `SortCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute`
-method. When `SortCommand#execute()` is called, a comparator will be created based on the attribute and direction specified
+method. When `SortCommand#execute()` is called by `LogicManager`, a comparator will be created based on the attribute and direction specified
 by the user and `ModelManager#updateSortedPersonList(comparator)` is called to sort the list of clients.
 
 Below is an example usage scenario and how the information and data are passed around at each step.
 
-**Step 1.** The user types `sort -n -asc` into the input box.
+**Step 1.** The user types `sort -n -asc` into the input box and presses enter.
 
 **Step 2.** `MainWindow` receives the `commandText` (`sort -n -asc`), which is then executed by `LogicManager`.
 
@@ -388,8 +388,8 @@ Below is an example usage scenario and how the information and data are passed a
 a `SortCommand`, which would contain the attribute to be sorted (in this case name), followed by the direction that the 
 user intends to sort in (in this case ascending order).
 
-**Step 4.** `LogicManager` then calls `SortCommand#execute()`, sorting the list of clients with the comparator created 
-by calling `ModelManager#updateSortedPersonList(comparator)` and returning a `CommandResult`. This `CommandResult` 
+**Step 4.** `LogicManager` then calls `SortCommand#execute()`, sorting the list of clients by calling `ModelManager#updateSortedPersonList(comparator)` 
+with the comparator created and returning a `CommandResult`. This `CommandResult` 
 contains the feedback string message which indicates to the user how the list of clients is sorted.
 
 **Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the sorted list of clients.
@@ -417,13 +417,13 @@ ClientBook will give the user a way to be more efficient during meetings with cl
 #### Implementation
 
 A new command `AddShortcutCommand` was created. It extends the abstract class `Command`, overriding and implementing its
-`execute` method. When `AddShortcutCommand#execute()` is called, a `Shortcut` is added to the `ShortcutLibrary`. When a 
+`execute` method. When `AddShortcutCommand#execute()` is called by `LogicManager`, a `Shortcut` is added to the `ShortcutLibrary`. When a 
 `Shortcut` is added, there will be a check for any existing `Shortcut`s with the same name.
 
 
 Below is an example usage scenario and how the information and data are passed around at each step.
 
-**Step 1.** The user types `addshortcut sn/aia sc/find i/aia` into the input box.
+**Step 1.** The user types `addshortcut sn/aia sc/find i/aia` into the input box and presses enter.
 
 **Step 2.** `MainWindow` receives the `commandText` (`addshortcut sn/aia sc/find i/aia`), which is then executed by 
 `LogicManager`.
@@ -432,7 +432,7 @@ Below is an example usage scenario and how the information and data are passed a
 a `AddShortcutCommand`, which would contain the name of the `Shortcut` (in this case `aia`), followed by the `Command` 
 mapped to the `Shortcut` (in this case `find i/aia`).
 
-**Step 4.** `AddShortcutCommand`then executes, storing the `Shortcut` in the `ShortcutLibrary` and returning a 
+**Step 4.** `LogicManager` then calls `AddShortcutCommand#execute()`, storing the `Shortcut` in the `ShortcutLibrary` and returning a 
 `CommandResult`. This `CommandResult` contains the feedback string message which indicates to the user whether the 
 specified `Shortcut` has been added successfully.
 
@@ -607,13 +607,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ClientBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case 1: Delete a client**
+**Use case 1: List all clients**
 
 **MSS**
 
 1.  User requests to list clients.
-    
-1.  ClientBook shows a list of clients.
+
+2.  ClientBook shows a list of clients.
+
+    Use case ends.
+
+<br>
+
+**Use case 2: Delete a client**
+
+**MSS**
+
+1.  <ins>User lists clients (Use case 1).</ins>
     
 1.  User requests to delete a specific client in the list.
     
@@ -623,19 +633,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. One or more of the given arguments are invalid.
 
-    * 3a1. ClientBook shows an error message.
+    * 2a1. ClientBook shows an error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 2.
     
 <br>
 
-**Use case 2: Add a client**
+**Use case 3: Add a client**
 
 **MSS**
 
@@ -647,29 +657,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The user input does not follow the format required.
+* 1a. One or more of the given arguments are invalid.
 
-  * 1a1. ClientBook shows an error message.
+    * 1a1. ClientBook shows an error message.
 
-    Use case resumes at step 1.
-
-<br>
-
-**Use case 3: List all clients**
-
-**MSS**
-
-1.  User requests to list clients.
-    
-2.  ClientBook shows a list of clients.
-
-    Use case ends.
-
-**Extensions**
-
-2a. The list is empty.
-
-  Use case ends.
+      Use case resumes at step 1.
 
 <br>
 
@@ -677,27 +669,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients.
+1.  <ins>User lists clients (Use case 1).</ins>
     
-2.  ClientBook shows a list of clients.
+2.  User requests to edit a specific client in the list.
     
-3.  User requests to edit a specific client in the list.
-    
-4.  ClientBook edits the client.
+3.  ClientBook edits the client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of clients is empty.
+* 1a. The list of clients is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The user input does not follow the format required.
 
-    * 3a1. ClientBook shows an error message.
+    * 2a1. ClientBook shows an error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 2.
+
+* 2b. One or more of the given arguments are invalid.
+
+    * 2b1. ClientBook shows an error message.
+
+      Use case resumes at step 2.
 
 <br>
 
@@ -713,27 +709,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list of matched clients is empty.
+* 1a. One or more of the given arguments are invalid.
 
-  Use case ends.
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
 
 <br>
 
-**Use case 6: Filter list of clients**
+**Use case 6: Display selected attributes of clients**
 
 **MSS**
 
-1.  User requests to filter clients with details.
+1.  User requests to display selected attributes of clients.
     
-2.  ClientBook shows a list of clients that matches details.
+2.  ClientBook shows a list of clients and the specified attributes.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of matched clients is empty.
+* 1a. One or more of the given arguments are invalid.
 
-  Use case ends.
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
 
 <br>
 
@@ -749,9 +749,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. One or more of the given arguments are invalid.
+* 1a. The user input does not follow the format required.
 
     * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. One or more of the given arguments are invalid.
+
+    * 1b1. ClientBook shows an error message.
 
       Use case resumes at step 1.
 
@@ -761,27 +767,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients.
+1.  <ins>User lists clients (Use case 1).</ins>
     
-2.  ClientBook shows a list of clients.
+2.  User requests to schedule a meeting with a specific client in the list.
     
-3.  User requests to schedule a meeting with a specific client in the list.
-    
-4.  ClientBook schedules a meeting with the client.
+3.  ClientBook schedules a meeting with the client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of clients is empty.
+* 2a. One or more of the given arguments are invalid.
 
-  Use case ends.
+    * 2a1. ClientBook shows an error message.
 
-* 3a. One or more of the given arguments are invalid.
-
-    * 3a1. ClientBook shows an error message.
-
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 <br>
 
@@ -797,17 +797,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. ClientBook is already locked but user did not enter the current password.
+* 1a. ClientBook is already locked but user has not entered the current password.
   
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1. <br><br>
+    * 1a1. ClientBook shows an error message. 
+      
+        Use case resumes at step 1.
     
-* 1b. ClientBook is already locked and user entered the incorrect current password.
+* 1b. ClientBook is already locked and user enters the incorrect current password.
   
-    * 1b1. ClientBook shows an error message. Use case resumes at step 1.
+    * 1b1. ClientBook shows an error message. 
+      
+        Use case resumes at step 1.
 
 <br>
 
 **Use case 10: Unlock ClientBook**
+
+**Preconditions:** ClientBook is already locked.
 
 **MSS**
 
@@ -819,7 +825,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User enters the incorrect current password that is used to lock ClientBook.
+* 1a. User enters the incorrect password.
   
     * 1a1. ClientBook shows an error message. Use case resumes at step 1.
     
@@ -857,7 +863,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. At least one of the given arguments is invalid.
+* 1a. One or more of the given arguments are invalid.
 
     * 1a1. ClientBook shows an error message.
     
@@ -875,21 +881,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
-
-* 1a. The shortcut library is empty.
-
-    * 1a1. ClientBook shows empty shortcut library message.
-
-      Use case ends.
-
 <br>
 
 **Use case 14: Edit a shortcut**
 
 **MSS**
 
-1.  User requests to edit a specific shortcut in the shortcut library.
+1.  One or more of the given arguments are invalid.
 
 2.  ClientBook edits the shortcut.
 
@@ -921,25 +919,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to display policies associated with a selected client.
+1. <ins>User lists clients (Use case 1).</ins>
 
-2.  ClientBook shows all policies associated with this client.
+2. User requests to display policies associated with a selected client.
+
+3.  ClientBook shows all policies associated with this client.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The selected client has no policies.
+* 2a. The selected client has no policies.
 
-    * 1a1. ClientBook shows message indicating that no policies are associated with the selected client.
+    * 2a1. ClientBook shows message indicating that no policies are associated with the selected client.
 
       Use case ends.
 
-* 1b. One or more of the given arguments are invalid.
+* 2b. One or more of the given arguments are invalid.
 
-    * 1b1. ClientBook shows an error message.
+    * 2b1. ClientBook shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 <br>
 
@@ -947,11 +947,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User <ins>views insurance policies of selected client (UC16)</ins>.
+1. <ins>User lists clients (Use case 1).</ins>
 
-2.  User retrieves URL from ClientBook.
+2. <ins>User views insurance policies of selected client (Use case 16)</ins>.
 
-    Use case ends.
+3. User retrieves URL from ClientBook.
+
+   Use case ends.
 
 <br>
 
@@ -959,19 +961,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to change the details of several clients.
+1. <ins>User lists clients (Use case 1).</ins>
 
-2.  ClientBook updates the details.
+2. User requests to change the details of several clients.
+
+3. ClientBook updates the details.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. One or more of the given arguments are invalid.
+* 2a. One or more of the given arguments are invalid.
 
-    * 1a1. ClientBook shows an error message.
+    * 2a1. ClientBook shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 <br>
 
@@ -979,19 +983,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete several clients at once.
+1. <ins>User lists clients (Use case 1).</ins>
 
-2.  ClientBook deletes the client contacts.
+2. User requests to delete several clients at once.
 
-    Use case ends.
+3. ClientBook deletes the client contacts.
+
+   Use case ends.
 
 **Extensions**
 
-* 1a. One or more of the given arguments are invalid.
+* 2a. One or more of the given arguments are invalid.
 
-    * 1a1. ClientBook shows an error message.
+    * 2a1. ClientBook shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 
 ### Non-Functional Requirements
@@ -1016,9 +1022,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
+<div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
+</div>
 
 ### Launch and shutdown
 

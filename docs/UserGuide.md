@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+<img align="left" src="images/logo.png" height="50" width="50">
+
 # ClientBook
 
 ClientBook is an application for insurance agents to manage client contacts, optimized for use with just a keyboard,
@@ -73,8 +75,7 @@ Please use the table of contents to navigate through the user guide quickly. Cli
         * [**4.4.4** `exit`: Exiting the program](#exit-exiting-the-program)
         * [**4.4.5** Keyboard commands](#keyboard-commands)
         * [**4.4.5** Saving data](#saving-data)
-        * [**4.4.6** Editing data file](#editing-data-file)
-        * [**4.4.7** Upcoming features!](#upcoming-features-v20-and-beyond)
+        * [**4.4.6** Upcoming features!](#upcoming-features-v20-and-beyond)
 * [**5.** Frequently Asked Questions](#frequently-asked-questions)
   * [**5.1** Setting Up](#setting-up)
 * [**6.** Summary of Commands](#summary-of-commands)
@@ -97,7 +98,7 @@ Ensure you have Java `11` or above installed in your Computer.
 
 <p><b>Step 2.</b></p>
 
-Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.4).
+Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases).
    
 <br>
 
@@ -149,6 +150,8 @@ For each of the commands, type them into the command box and press enter to exec
 <p align="center"><img src="images/Ui-annotate.png"></p>
 <p align="center">Graphical User Interface of ClientBook.</p>
 
+<br>
+
 <p><b>Step 1.</b></p> 
 
 **Try adding a new Client contact using the command** `add n/James Lee p/91234567 e/james@gmail.com a/Blk 123 Serangoon Rd t/Friend t/Colleague i/OCBC#412>www.ocbc.com/policy/412`.
@@ -193,6 +196,8 @@ This command deletes the contact of the third client displayed in the contact li
 Now that you have tried out the basic commands available in ClientBook, you can use the command `batch delete 1,2,3,4,5,6,7`
 to delete all the sample entries and start using your very own ClientBook.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Overview
@@ -225,17 +230,18 @@ to delete all the sample entries and start using your very own ClientBook.
 | [`exit`](#exit-exiting-the-program) | Exit ClientBook |
 | [Keyboard commands](#keyboard-commands) | Keyboard commands to enter command keywords quickly |
 | [Saving data](#saving-data) | Save the data to a file in the home folder |
-| [Editing data file](#editing-data-file) | Edit the data stored in the file in the home folder|
+
+[Return to Table of Contents](#table-of-contents)
 
 ### What information can we store for each client contact?
 
 
 Each client attribute such as name and address have been assigned identifiers so that you do not have to type out
-the entire attribute when using ClientBook. For example, name has been abbreviated to n. Listed below are all the identifiers
+the entire attribute when using ClientBook. For example, name has been abbreviated to `n`. Listed below are all the identifiers
 which correspond to client attributes as well as restrictions that have to be followed when they are used as part of a command.
 
-Please note that clients may have the same name (two different persons with the same name), phone number (e.g. company phone number), address (e.g. company address),
-email (e.g. company email address) and insurance policies (co-owner of the same policy).
+Please note that duplicate clients (having the same information for all attributes) is not allowed. Adding a client that already
+exists and editing a client to have the same information as an existing client is invalid.
 
 <table>
   <tr>
@@ -246,7 +252,9 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td> NA </td>
+    <td> 
+        <ul><li>Must only contain <a href="#glossary">alphanumeric</a> characters and spaces</li></ul>
+    </td>
   </tr>
   <tr>
     <td> Phone number </td>
@@ -265,7 +273,9 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
     <td> Email </td>
     <td> <code>e</code> </td>
     <td><ul><li>Should be of the form <code>name@email.com</code></li></ul>
-        <ul><li><code>name</code> part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul>
+        <ul><li><code>name</code> part of email should:
+            <ul><li>Consists only of alphanumeric characters and these special characters <code>!#$%&'*+/=?`{|}~^.-</code></li></ul>
+        </li></ul>
         <ul><li> <code>email</code> part of email should: 
             <ul><li>Be at least 2 characters long</li></ul>
             <ul><li>Start and end with either alphabets or numbers</li></ul>
@@ -278,6 +288,7 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
     <td> <code>t</code> </td>
     <td><ul><li>Optional</li></ul>
         <ul><li>Tags can be used to label your relationship with your client e.g. friend, family, classmate</li></ul>
+        <ul><li>Should contain only alphanumeric characters</li></ul>
         <ul><li>Tags associated with a client are shown in alphabetical order in ClientBook</li></ul>
         <ul><li>If duplicate tags are entered in a command, only 1 will be added to the client</li></ul>
     </td>
@@ -334,6 +345,10 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 
+* **Order of flags matter**.
+  * e.g. `sort -n -asc` will work, but `sort -asc -n` does not work.
+
+
 * **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `listshortcut`) **will be ignored**. 
   * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
@@ -361,12 +376,14 @@ It contains basic features such as adding and removing of client contacts.
 <div markdown="block" class="alert alert-info">
 :bulb: 
 **Tip**:
-A person can have any number of tags and insurance policies (including 0).
+A client can have any number of tags and insurance policies (including 0).
 </div>
 
 * It is optional to include the `POLICY_URL` for the specified `POLICY_ID`.
 * To include the URL, remember to use `>` to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
 * Meetings of a client cannot be added with this command.
+* If a field (e.g. `n/NAME`) is expected only once in the command, but you specified it multiple times, only the last occurrence of the field will be taken.
+    * E.g. if you specify `add n/Alex n/Bob...`, only `n/Bob` will be taken.
 
 **Examples**:
 * Example of a client with insurance policy but no URL associated with insurance policy
@@ -384,31 +401,47 @@ A person can have any number of tags and insurance policies (including 0).
 
 ### <span style="color:#b573c9"><code>edit</code>: Edit client contact</span>
 
-**Purpose**: Edits an existing client contact in the ClientBook.
+**Purpose**: Edits an existing client contact in the ClientBook. The new information passed to this command will replace 
+the existing client information.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL] [-MODE]]…​ [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
     * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
+    * All input before the first valid identifier will be considered as `INDEX`.
 * At least one of the optional fields must be provided.
 * Meetings of a client cannot be modified with this command.
+* If a field (e.g. `n/NAME`) is expected only once in the command, but you specified it multiple times, only the last occurrence of the field will be taken.
+    * If you specify `edit n/Alex n/Bob...`, only `n/Bob` will be taken.
+* For fields that are allowed to be empty, specifying the identifier and leaving it empty will clear the existing information.
+    * `edit 1 i/` will clear the existing policies.
+* While editing the insurance policies of a client, user can choose to modify, remove or insert policy ids to 
+a client, by typing `-MODE` to specify an editing mode after a policy number. 
+    * `-MODE` can be -insert, -modify or -remove.
+    * If user chooses to modify an existing policy, the user can specify the old and new policies, separated by `;`. An example is shown below.
+    * For each edit command, only 1 editing mode can be specified.
+    * If no mode is specified, the edit command will replace all existing policies with the policies specified in the command.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
 </div>
 
 **Examples**:
-*  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  Edit the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
     * `edit 1 p/91234567 e/johndoe@example.com`
     
       ![edit 1](images/edit-annotate.png)
       <br><br>
-*  Edit the name of the 2nd person to be `Betsy Crower`.
+*  Edit the name of the 2nd client to be `Betsy Crower`.
     * `edit 2 n/Betsy Crower`
+    <br><br> 
+*  Modify the policy id of the 1st client from `Pol#12345` to `Pol#54321`.
+    * `edit 1 i/Pol#12345;Pol#54321 -modify`
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
+
 
 ### <span style="color:#b573c9"><code>delete</code>: Delete client contact</span>
 
@@ -419,11 +452,16 @@ A person can have any number of tags and insurance policies (including 0).
 * Deletes the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
+* Any 
 
 **Examples**:
-* `delete 2` deletes the 2nd person in the currently displayed list.
+* `delete 2` deletes the 2nd client in the currently displayed list.
   <br><br>
-* `find n/Charlotte` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* To easily delete a specific client "Charlotte Chan", `delete` can be used in conjunction with `find`.
+    * First, use `find n/Charlotte Chan`. Assuming there is only one Charlotte Chan in the client book, she will be the 
+    client at index 1 after we run the command.
+    * After we get the filtered list, use `delete 1` to delete the client at index 1, which is 
+    Charlotte Chan after the above command.
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -505,23 +543,24 @@ you may reorder your contact list or look for specific clients.
 
 ### <span style="color:#c93640"><code>list</code>: List all clients</span>
 
-**Purpose**: Shows a list of all clients in ClientBook. You may use optional identifiers in conjunction with the minus (-)
-symbol to select which client details you want to see, so that you can have a clutter free view of your client contacts.
+**Purpose**: Shows a list of all clients in ClientBook. You may use optional identifiers in conjunction with the `-`
+symbol to select which client details you want to see, so that you can have a clutter-free view of your client contacts.
 
 **Format**: `list [-p] [-e] [-a] [-i] [-m]`
 
+* A client's name and tags will be shown regardless of the identifiers that you specify.
+
 **Examples**: 
 *  `list` without any specified identifiers shows a list of all clients and all their information.
-
-    ![list](images/list.png)
+    * `list`
+  
+      ![list](images/list.png)
 <br><br>
 *  One or more identifiers can be used to make `list` only show the specified information. The following command 
-   shows a list of all clients and their phone number and insurance policy number. A client's name and tags will
-   be shown regardless of the identifiers that you specify.
-
-    `list -p -i`
+   shows a list of all clients and their phone number and insurance policy information.
+    * `list -p -i`
     
-    ![list phone](images/list-phone-policy-annotate.png)
+      ![list phone](images/list-phone-policy-annotate.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -530,19 +569,20 @@ symbol to select which client details you want to see, so that you can have a cl
 ### <span style="color:#c93640"><code>find</code>: Search for client contact based on keywords</span>
 
 **Purpose**: Finds client contacts based on the attribute and keywords that you specify.
-You may use optional identifiers in conjunction with the minus(-) symbol to limit the details shown, similar to the [`list`](#list-list-all-clients) command.
+You may use optional identifiers in conjunction with the `-` symbol to limit the details shown, similar to the [`list`](#list-list-all-clients) command.
 
-**Format**: `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​`
+**Format**: `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-p] [-e] [-a] [-i] [-m]`
 
 * The `IDENTIFIER` specifies which attribute of the client you want to search for. For example, if you want to search for a client contact
   by name, use the `n` identifier.
     * For more information about the identifiers for each field, refer to [What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact).
-* You may not use multiple attributes as your search criteria e.g. you cannot search for a client using address and name at the same time.
-  A command like `find n/David a/Botanic gardens` is invalid.
+* You may not use multiple attributes as your search criteria.
+    *`find n/David a/Botanic gardens` is invalid.
 * The search is **case-insensitive**. 
-  * E.g. `hans` will match `Hans`.
+  * `find n/hans` is equivalent to `find n/Hans`.
+* The symbol `&` between keywords allows you to search for Clients using multiple keywords.
 * The **order of the keywords does not matter**.
-* The delimiter `&` between keywords allows you to search for Clients using multiple keywords.
+  * `find n/alex & david` is equivalent to `find n/david & alex`
     
 **Examples**:
 * Find `Alex David` and `Alex Yeoh`.
@@ -556,10 +596,10 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
     <br><br>
-* Find all persons whose address contains `geylang`.
+* Find all clients whose address contains `geylang`.
   * `find a/geylang` - returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`
     <br><br>
-* Find the email and phone number of all persons whose names contain `alex` and `david` using the `&` delimiter, and only display their email and phone number.
+* Find the email and phone number of all clients whose names contain `alex` and `david` using the `&` symbol, and only display their email and phone number.
   * `find n/alex & david -e -p`
     
     ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter-annotate.png)
@@ -580,11 +620,17 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `policy 2` displays the policies associated with the 2nd person in the currently displayed list.
-  
-  ![with policy URL](images/with-policy-URL-annotate.png)
+* Displays the policies associated with the 2nd client in the currently displayed list.
+    * `policy 2`  
+    
+      ![with policy URL](images/with-policy-URL-annotate.png)
   <br><br>
-* `find n/Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
+
+* To easily view policies of a specific client, named "Bernice Tan" `policy` can be used in conjunction with `find`.
+    * First, use `find n/Bernice Tan`. Assuming there is only 1 Bernice Tan in the client book, she will be the 
+    client at index 1 after we run the command.
+    * After we get the filtered list, use `policy 1` to display the policies associated with the client at index 1, which is 
+    Bernice Tan after the above command.
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -615,7 +661,8 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 
 ### <span style="color:#c9a500">Shortcuts</span>
 We understand that you might have commands that you frequently use. You may use shortcuts to abbreviate
-those commands to make using ClientBook more convenient.
+those commands to make using ClientBook more convenient. As this feature is not commonly found in other contact management applications,
+we have included the following Example Usage section to guide you through on how to use this feature. 
 
 ### <span style="color:#c9a500">Example Usage</span>
 <p><b>Scenario:</b></p> 
@@ -737,9 +784,13 @@ created.
 
 **Format**: `lock [CURRENT_PASSWORD] [NEW_PASSWORD]`
 
-* Verifies the current password before locking ClientBook with the new password.
-* The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
-* When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
+* If ClientBook is not yet locked:
+    * `CURRENT_PASSWORD` field can be omitted.
+    * `NEW_PASSWORD` can also be omitted and ClientBook will attempt to lock itself using your most recently used password.
+
+
+* If ClientBook is already locked:
+    * ClientBook verifies the current password before locking ClientBook with `NEW_PASSWORD`.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Note**: 
@@ -822,29 +873,21 @@ CTRL + F | `find` |
 CTRL + L | `list` |
 CTRL + S | `sort` |
 
-### <span style="color:#3cb44b">Saving data</span>
-ClientBook saves its data in a zip-contained JSON file in the [home folder](#quick-start) automatically after any command that changes the data. There is no need to save manually.
-
-
 [Return to Table of Contents](#table-of-contents)
-<br><br>
 
+### <span style="color:#3cb44b">Saving data</span>
+ClientBook saves its data file `clientbook.json` in a zip file `clientbook.zip` inside the `data` folder in the [home folder](#quick-start).
+Data is saved automatically after any command that changes the data. There is no need to save manually.
 
-### <span style="color:#3cb44b">Editing data file</span>
-
-ClientBook saves its data as a JSON file. Advanced users are welcome to update their client data directly by editing the data file.
-
-* The data file is stored in a zip file `clientbook.zip` inside the `data` folder in the [home folder](#quick-start). 
-* If you have previously set a `lock` for ClientBook, the zip folder can be unzipped with that same password.
+* If ClientBook is locked with a password, the zip folder can be unzipped with that same password.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**:
-If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
+Please do not make changes to the data file. If the format is invalid, **all your data will be lost** at the next run.
 </div>
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
-
 
 ### Upcoming features (v2.0 and beyond!)
 
@@ -884,7 +927,7 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Batch**](#batch-execute-commands-in-batch) | `batch COMMAND INDICES [ARGUMENTS]` | `batch edit 1, 2, 4 p/91234567 a/Hougang Green t/TanFamily i/FamPol#111` |
 [**Meet**](#meet-schedule-a-meeting-with-a-client) | `meet INDEX [-ACTION] DATE START_TIME END_TIME PLACE` | `meet 1 -add 20.05.2021 15:00 16:00 KENT RIDGE MRT` |
 |<span style="color:#c93640">**Contact Viewing**</span>|
-[**List**](#list-list-all-clients) | `list [-IDENTIFIER]` | `list -i` |
+[**List**](#list-list-all-clients) | `list [-p] [-e] [-a] [-i] [-m]` | `list -i` |
 [**Find**](#find-search-for-client-contact-based-on-keywords) | `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#policy-display-policies-associated-with-a-client) | `policy INDEX` | `policy 4` |
 [**Sort**](#sort-sort-list-of-clients) | `sort -IDENTIFIER -DIRECTION` | `sort -n -des` |
@@ -914,6 +957,8 @@ CTRL + F | `find` |
 CTRL + L | `list` |
 CTRL + S | `sort` |
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
 
@@ -923,13 +968,13 @@ CTRL + S | `sort` |
 2. **Attribute** The types of information you can store in ClientBook. E.g. phone number, address, name of your clients.
    
 
-3. **CLI** (Command Line Interface) A text box like interface which allows a user to enter and execute commands.
+3. **CLI** (command line interface) A text box like interface which allows a user to enter and execute commands.
 
 
 4. **Command Prompt** A command line interpreter application on the Windows operating system.
 
 
-5. **GUI** (Graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
+5. **GUI** (graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
 
 
 6. **Identifier** The alphabetical letter associated with an attribute.
@@ -944,7 +989,7 @@ CTRL + S | `sort` |
 9. **Terminal** A command line interpreter application on MacOS/Linux operating systems.
 
 
-10. **UI** (User Interface) An interface for a user to interact with a program.
+10. **UI** (user interface) An interface for a user to interact with a program.
 
 
 
@@ -956,7 +1001,7 @@ CTRL + S | `sort` |
 
 Didn't find what you were looking for? Contact us at [clientbook@email.com](clientbook@email.com).
 
-ClientBook is still a work in progess. We hope to be able to further improve ClientBook to suit your needs. 
+ClientBook is still a work in progress. We hope to be able to further improve ClientBook to suit your needs. 
 Should you have any suggestions, feel free to drop us an email! 
 We would love to hear from you insurance agents who are actively out and about, providing us with the best services.
 

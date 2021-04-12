@@ -70,7 +70,7 @@ public class Person {
      * Creates a code{Person} with the specified code{attribute} using the input code{person}.
      * Other than name and tags, other unspecified field is empty.
      */
-    public Person(Person person, List<Attribute> attributes) {
+    public Person(Person person, Set<Attribute> attributes) {
         requireAllNonNull(person, attributes);
         this.name = person.name;
         if (attributes.contains(Attribute.POLICY_ID)) {
@@ -150,19 +150,6 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
-    }
-
-    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -182,8 +169,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getPolicies().equals(getPolicies())
-                && otherPerson.getMeetings().equals(getMeetings());
+                && otherPerson.getPolicies().equals(getPolicies());
     }
 
     @Override

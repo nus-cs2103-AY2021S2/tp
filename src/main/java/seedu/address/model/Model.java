@@ -2,7 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -104,7 +104,7 @@ public interface Model {
      * Updates the Persons in person list to have only the particular given {@code attribute}.
      * @throws NullPointerException if {@code attribute} is null.
      */
-    void updatePersonListByAttribute(List<Attribute> attributeTypes);
+    void updatePersonListByAttribute(Set<Attribute> attributeTypes);
 
     /**
      * Undoes the last modification done on the person list.

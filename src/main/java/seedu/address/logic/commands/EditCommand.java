@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCommand extends Command {
+public class EditCommand extends Command implements BatchOperation {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -45,23 +45,34 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] where FLAG can be modify, insert or remove "
-            + "for editing policy ids. If no flag is specified, the default behaviour is replace."
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] "
+            + "[" + PREFIX_TAG + "TAG]... \n"
+            + "FLAG can be modify, insert or remove or editing policy ids. If no flag is specified, the default "
+            + "behaviour is replace.\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
+    public static final String MESSAGE_USAGE_BATCH = COMMAND_WORD + ": Edits the details of the client identified "
+            + "by the index number used in the displayed person list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDICES (all must be distinct positive integers) "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] "
+            + "[" + PREFIX_TAG + "TAG]... \n"
+            + "FLAG can be modify, insert or remove or editing policy ids. If no flag is specified, the default "
+            + "behaviour is replace.\n"
+            + "Example: batch " + COMMAND_WORD + " 1, 2, 3 "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_INSURANCE_POLICY + "POL#123";
+
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_NOT_EDITED_BATCH = "At least one field (tag or policy) to edit "
-            + "must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_MODIFY_POLICY_CONSTRAINT = "When -modify flag is indicated for editing policy,"
             + " the format should be i/[TO_MODIFY];[TO_REPLACE]. ";
-    public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found!";
-    public static final String MESSAGE_EXCESS_BATCH_ARGUMENTS = "Batch edit can only edit tags or insurance policies.\n"
-            + "Please check that you have not entered other prefixes.";
+    public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -92,7 +103,7 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, editPolicyMode);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!personToEdit.equals(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -100,6 +111,27 @@ public class EditCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
+
+    @Override
+    public CommandResult executeBatch(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, editPolicyMode);
+
+        if (!personToEdit.equals(editedPerson) && model.hasPerson(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        model.setPerson(personToEdit, editedPerson);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}

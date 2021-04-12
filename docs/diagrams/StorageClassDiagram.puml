@@ -22,6 +22,7 @@ Class JsonSerializableAddressBook
 Class JsonAdaptedTag
 Class JsonAdaptedPerson
 Class JsonAdaptedInsurancePolicy
+Class JsonAdaptedMeeting
 }
 
 Class HiddenOutside #FFFFFF

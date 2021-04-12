@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindCommand;
@@ -48,7 +49,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         String noFlagArgs = getArgsWithoutFlag(trimmedArgs);
         List<String> keywords = getKeywords(noFlagArgs);
         List<String> attributeStrings = getAttributeStrings(noFlagArgs);
-        List<Attribute> parsedAttributes = ParserUtil.parseAttributes(attributeStrings);
+        Set<Attribute> parsedAttributes = ParserUtil.parseAttributes(attributeStrings);
 
         for (String keyword : keywords) {
             if (keyword.isEmpty()) {
