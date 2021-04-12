@@ -37,7 +37,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T11-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -118,7 +118,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`:
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores cakecollate's data.
+* stores CakeCollate's data.
 * stores the order item data.
 * exposes an unmodifiable `ObservableList<Order>` and `ObservableList<OrderItem>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * does not depend on any of the other three components.
@@ -137,9 +137,9 @@ The `Model`:
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* `UserPrefsStorage` can save `UserPref` objects in json format and read it back.
-* `CakeCollateStorage` can save cakecollate's data in json format and read it back.
-* `OrderItemsStorage` can save order items data in json format and read it back.
+* `UserPrefsStorage` can save `UserPref` objects in JSON format and read it back.
+* `CakeCollateStorage` can save CakeCollate's data in JSON format and read it back.
+* `OrderItemsStorage` can save order items data in JSON format and read it back.
 
 ### Common classes
 
