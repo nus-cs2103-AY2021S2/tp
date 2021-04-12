@@ -144,13 +144,67 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Month Management Feature
 
+`Month` is a very important concept in our application. As a budget tracker, we keep track of users'
+financial records every month and a monthly budget can be set, which represents their spending goal
+of the month. As such, a `Month` can be seen a building block of the budget tracker, and our application,
+the budget tracker consists of many unique months, of which each represents an actual month in real life.
+
+#### Actual Implementation
+
+In order to introduce this `Month` concept to our application, we used two models, `Month` and `UniqueMonthList`. `UniqueMonthList` consists of a list of `Month` where every two months in the list
+must be unique, just like in real life, no two months will be the same. Our `BudgetTracker` model will then contain this `UniqueMonthList` representing the months which have records in our application. Please refer to
+[Model Component](###model-component) for class diagram illustrating this relationship.
+
+In our `BudgetTracker` class, we also keep a single `Month` reference to the `currentDisplayMonth`. `currentDisplayMonth` represents the month that is currently being dispayed on the application. As can be seen from the Ui of our application, at one time, only the associated data of one particular month is being displayed. Every time `currentDisplayMonth` is updated, we will notify the observers of this object, and thus the Ui will be updated correspondingly.
+
 #### `view-month` command
 
-To be updated by Xinyue
+`view-month` is the command that users use to change the Ui to display information on another month. Similar to the mechanism described in [Logic Component](###logic-component), `view-month`command goes through its own `ViewMonthCommandParser`to produce a `ViewMonthCommand`, and when the command is executed, the `currentDisplayMonth` of the budget tracker is updated and this change is reflected on the Ui through an Observer Pattern.
+
+The following sequence diagram shows how the `view-month` operation works:
+
+![](images/ViewMonthSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `find-fr`:
+
+![](images/ViewMonthActivityDiagram.png)
 
 ### Financial Record Management Feature
 
-To be updated by Xinyue
+`FinancialRecord` is another important concept in our application. A financial record represents one record of expense that users key in to store in the budget tracker. Each `FinancialRecord` consists of a `Description`, `Amount`, `Timestamp` and potentially `Categories`. Each `Month` then contains a `FinancialRecordList` which is essentially a list of `FinancialRecord`
+
+#### `add-fr` command
+
+The proposed `add-fr` mechanism is facilitated by `BudgetBabyModelManager` which contains
+a `BudgetTracker` object in which `FinancialRecord` can be added.
+
+The command is parsed from `BudgetBabyCommandParser` to the `AddFrCommandParser` class,
+where the input fields will be processed before instantiating a new valid `AddFrCommand`.
+The `AddFrCommand` calls the `addFinancialRecord` method of the `BudgetBabyModel` that
+is implemented by `BudgetBabyModelManager`. `BudgetBabyModelManager` then handles the
+adding of the new `FinancialRecord` to the `BudgetTracker`. Inside the `BudgetTracker`, the corresponding `Month` that the `FinancialRecord` belongs to will be found first based on the `FinancialRecord`'s `Timestamp`, then the `FinancialRecord` will be added to the `FinancialRecordList` of the `Month`, if the `Amount` of the `FinancialRecordList` will not cause the total expense of the month to exceed the upper limit of $1,000,000. If there is any invalid input in this process or if the `FinancialRecord` cause the totally monthly expense to exceed the upper limit, an exception will be thrown and the command will be denied.
+
+The `add-fr` commands expects minimally a `Description` and a `Amount` for the `FinancialRecord`. The default `Timestamp` will be the date when the `FinancialRecord` is added to the application. The user can also specify a `Timestamp` which is also referred as `Date`, as only the date of the timestamp is stored in our application. The user can also tag the `FinancialRecord` with `Category`s.
+
+#### Extensions Implemented
+
+One extension that we implemented regarding the `add-fr` feature is that after a `FinancialRecord` is successfully added, we check if the `FinancialRecord` belongs to the `Month` that is currently being displayed. If not, we will switch the `currentDisplayMonth` to the month that the new `FinancialRecord` belongs to. We implement this extension in order to improve the overall user experience, as users are likely to want to see the newly added `FinancialRecord` on the screen to be assured that their action has been successful.
+
+The following activity diagram summarizes what happens when a user executes `add-fr`:
+
+![](images/AddFrActivityDiagram.png)
+
+#### `edit-fr` command
+
+Similar to `add-fr` command, `edit-fr` command goes through relevant logic components and model managers in the similar manner to edit an existing `FinancialRecord` in the application.
+
+The `edit-fr` command expects a minimum of 1 and up to 4 of the following types of arguments: `Description`, `Amount`, `Timestamp` and `Category` (accept more than more `Category`). The user needs to provide a `Index` in the currently dispalying list of `FinancialRecord` to specify the `FinancialRecord` that he/she wants to edit. Once we confirm the `Index` is valid, the relevant data of `FinancialRecord` will then be replaced with the new data that the user provided. For the four types of arguments that users provide, we replace the existing data completely with the new data provided. To be more specific, if a user include `Category` argument in his/her `edit-fr` command, all existing `Category` of the `FinancialRecord` will be removed and replaced with the new `Category`(s) provided by the user.
+
+The `edit-fr` command has primarily the same set of checks as `add-fr`, and it also check if the new `Amount` for the `FinancialRecord` (if there is one) will cause the total expense of the month to exceed.
+
+#### `delete-fr` command
+
+The `delete-fr` command simply remove the financial record from the `Month` that it belongs to, and hence from the `BudgetTracker`. Only one argument which is the `Index` of the `FinancialRecord` in the currently displaying list of `FinancialRecord` needs to be provided to execute this command.
 
 ### Budget Management Feature
 

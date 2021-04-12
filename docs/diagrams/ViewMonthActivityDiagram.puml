@@ -1,0 +1,29 @@
+@startuml
+start
+:User executes view-month
+        command;
+
+if () then ([valid command])
+    :System attempts to find the month
+        that the users want to view;
+
+if () then ([found matching month])
+    :   Set the month as
+     current display month;
+
+else ([else])
+    :Add the month to the application
+    with an empty financial record list;
+    :Set this new month as
+    current display month;
+endif
+    :Notify and update the Ui component;
+    :The exepcted month shown on
+       the application successfully;
+else ([else])
+    :Output invalid command
+             format error;
+endif
+
+stop
+@enduml
