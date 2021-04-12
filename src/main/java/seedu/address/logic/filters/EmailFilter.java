@@ -9,8 +9,15 @@ import seedu.address.model.customer.Customer;
  * filter string is contained inside the emailID.
  */
 public class EmailFilter extends Filter {
+
+    /**
+     * Creates a constructor for EmailFilter using a filter string.
+     *
+     * @param filterString - the string against which to parse
+     */
     public EmailFilter(String filterString) {
         super(filterString.trim());
+        Objects.requireNonNull(filterString);
     }
 
     /**

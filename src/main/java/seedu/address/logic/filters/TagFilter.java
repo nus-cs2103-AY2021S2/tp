@@ -11,8 +11,13 @@ import seedu.address.model.customer.Customer;
  * function.
  */
 public class TagFilter extends Filter {
+    /**
+     * Constuctor to create the filter from a given filter string.
+     * @param filterString - the filter string against which to test
+     */
     public TagFilter(String filterString) {
         super(filterString.trim());
+        Objects.requireNonNull(filterString);
     }
 
     /**

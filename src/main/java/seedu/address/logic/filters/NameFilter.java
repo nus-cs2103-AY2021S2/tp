@@ -9,8 +9,8 @@ import seedu.address.model.customer.Customer;
 
 /**
  * This class encapsulates the filter used for filtering {@code Customer} by name. It checks against multiple names
- * given via a {@code filterString} and the {@code Customer} is matched if the {@code Customer} name matches with any
- * of the given names. Here, matching is spelling-tolerant to some extent in that it matches using subsequence -- in
+ * given via a {@code filterString} and the {@code Customer} is matched if the {@code Customer} name matches with any of
+ * the given names. Here, matching is spelling-tolerant to some extent in that it matches using subsequence -- in
  * particular, {@code abbbc} is matched to {@code abc} but not to {@code acb}.
  */
 public class NameFilter extends Filter {
@@ -45,9 +45,10 @@ public class NameFilter extends Filter {
     }
 
     /**
-     * Checks whether the second string is a subsequence of the first string. Here the first string represents the
-     * given customer name whereas the second string corresponds to the given filter name.
-     * @param customerName - the actual customer name
+     * Checks whether the second string is a subsequence of the first string. Here the first string represents the given
+     * customer name whereas the second string corresponds to the given filter name.
+     *
+     * @param customerName  - the actual customer name
      * @param potentialName - the filter string against which to check whether the customer name matches
      * @return - whether there is a match
      */
@@ -64,15 +65,16 @@ public class NameFilter extends Filter {
 
         return potentialPointer == potentialName.length();
     }
+
     private boolean testSearchToken(String searchToken, String[] customerTokenList) {
         return Arrays.stream(customerTokenList)
-                     .anyMatch(customerToken -> (isSubsequence(customerToken, searchToken)));
+            .anyMatch(customerToken -> (isSubsequence(customerToken, searchToken)));
     }
 
     /**
-     * {@inheritDoc}
-     * Checks whether any of the given names in the filterString matches the {@code Customer} name for the particular
-     * {@code Customer} being tested.
+     * {@inheritDoc} Checks whether any of the given names in the filterString matches the {@code Customer} name for the
+     * particular {@code Customer} being tested.
+     *
      * @param customer - the customer should to be tested
      * @return - whether there is a match
      */
@@ -81,6 +83,6 @@ public class NameFilter extends Filter {
         requireNonNull(customer);
         String[] customerNameTokens = customer.getName().fullName.split("\\s+");
         return Arrays.stream(nameList)
-                     .allMatch(searchToken -> testSearchToken(searchToken, customerNameTokens));
+            .allMatch(searchToken -> testSearchToken(searchToken, customerNameTokens));
     }
 }

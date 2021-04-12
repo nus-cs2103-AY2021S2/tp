@@ -14,7 +14,20 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.model.customer.Customer;
 
+/**
+ * Helper class to support the filters. This is essentially a factory class which takes in a string and returns the
+ * appropriate kind of filter it represents, after parsing.
+ */
 public class Filters {
+
+    /**
+     * This method parses the given string, and checks which filter it corresponds to, and returns that. However, in
+     * case there are no filters matching, or more than one token, this throws an exception.
+     *
+     * @param info - the given input string
+     * @return - the corresponding filter created after parsing the input string
+     * @throws IllegalArgumentException - If either there are more than one prefixes or its an unknown prefix
+     */
     public static Filter getCorrespondingFilter(String info) {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(" " + info + " ", PREFIX_NAME,
             PREFIX_EMAIL,
@@ -64,7 +77,7 @@ public class Filters {
         }
 
 
-
+        //  TODO
         /*
          * throw new IllegalArgumentException("No appropriate filter for : " + info);
          */
