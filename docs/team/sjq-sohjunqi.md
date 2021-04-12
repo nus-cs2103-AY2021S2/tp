@@ -24,7 +24,6 @@ Given below are my contributions to the project.
 * **New Feature**: Implemented plan recommendation feature
     * What it does: Users are able to use this feature to get a recommendation of diet plans based on their BMI (whether thye need to lose weight, gain weight or maintain weight)
     * Justification: This helps users who are unsure of what plans are suitable for them to find the appropriate diet plan for their BMI.
-<div style="page-break-after: always;"></div>
 
 * **New Feature**: Implemented progress report feature
     * What it does: Users are able to use this feature to generate a progress report based on their food intakes and their current diet plan.
