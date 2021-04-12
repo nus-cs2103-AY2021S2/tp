@@ -1,10 +1,9 @@
 ---
 layout: page
-title: user-guide
+title: User Guide
 ---
 <p align="center">
   <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="600">
-  <h1 align="center"> User Guide </h1>
 </p>
 
 <div style="page-break-after: always;"></div>
@@ -382,6 +381,7 @@ Format: `view INDEX INDEX INDEX`
 * Displays the garments at the selected set of `INDEX`.<br>
 * The `INDEX` must be a positive integer 1, 2, 3, …
 * Garments must be of different Types (i.e. `upper`, `lower` and `footwear`).<br>
+* Garments must be of the same DressCode (i.e. `casual`, `formal`, `active`)<br>
 * The command must have exactly 3 indexes as input, any more inputs will not be registered.<br>
 * Use the coloured garment previews to visualise how your whole outfit will look like.
 
