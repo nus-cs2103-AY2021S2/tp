@@ -58,7 +58,7 @@ title: User Guide
     * [A1.5 High Carbohydrates Bulk](#a15-high-carbohydrates-bulk)
     * [A1.6 Balanced Plan](#a16-balanced-plan)
 <!--te-->
-
+<div style="page-break-after: always;"></div>
 ---
 
 ## Introduction
@@ -81,6 +81,8 @@ Legend | Description
 <span class="alert alert-inline alert-tip">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
 <span class="alert alert-inline alert-note">✏️ <strong>Note</strong></span> | Note - Important things to take note of
 <span class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -133,7 +135,7 @@ yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
 Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## Features
 
 ---
@@ -486,7 +488,7 @@ Closes the application.
 **Command Format:** `exit`
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## Command summary
 
 Action | Format, Examples
@@ -514,7 +516,7 @@ Action | Format, Examples
 **Reset application data** | `reset t/blank`
 **Populate application with sample template data** | `reset t/template`
 **Exit the application** | `exit`
-
+<div style="page-break-after: always;"></div>
 ---
 
 ## Glossary
@@ -534,7 +536,7 @@ Health Terms | Meaning
 **Macronutrients** | Nutrients, such as fats, proteins and carbohydrates that provide us with energy.
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## Appendix
 
 ---
