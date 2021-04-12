@@ -36,11 +36,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the diagrams folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called `Main` and `MainApp`. It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -76,12 +76,12 @@ The sections below give more details of each component.
 for clarity.](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+`Ui.java`
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`
 
 The `UI` component,
 
@@ -93,9 +93,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+`Logic.java`
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `MeetBuddyParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -113,7 +113,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagramNew.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : `Model.java`
 
 The `Model`,
 
@@ -122,7 +122,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the meeting book data.
 * exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the connection between the person in the address book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
+* stores the connection between the person in the contacts book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
 * does not depend on any of the other three components.
 * (Some details are omitted)
 
@@ -138,7 +138,7 @@ The `Model`,
 
 ![Structure of the Storage Component. The full diagram for MeetingBook is omitted to make the figure less cluttered.](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : `Storage.java`
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -162,7 +162,7 @@ However, there were a few implementations details to consider. The implementatio
 discuss the one for contacts.
 
 Currently, an essential attribute in the model are the filtered lists, 
-which shows the results of searches and finds. 
+which show the results of searches and finds. 
 The indexes used in commands like "edit" are taken with respect to these filtered list.
 These filtered lists, however, are backed by immutable observable lists, 
 which helps update the JavaFX GUI. I initially tried to make copies of these observable lists,
@@ -516,18 +516,6 @@ Users would be better able to manage their social and academic commitments by to
     * 1a1. MeetBuddy shows an error message.
 
   Use case ends.
-
-<<<<<<< HEAD
-**Use case: Viewing meetings in the timetable**
-
-=======
->>>>>>> 6b3cdedcdc7d066e766ef5f4d6971efdb9916ac1
-
-New features on V1.2
-5.  Assign priorities to contacts
-6.  Notes about the contact.
-7.  Sort contacts by (priorities/personName/groups)
-8.  Last meetup date for each contact
 
 **Use case: Sort contact list**
 
