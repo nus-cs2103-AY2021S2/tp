@@ -546,7 +546,9 @@ Health Terms | Meaning
 -------------|---------
 **Body Mass Index (BMI)** | A value derived from the mass and height of a person, by taking the body mass divided by the square of the body height.
 **Macronutrients** | Nutrients, such as fats, proteins and carbohydrates that provide us with energy.
+
 <div style="page-break-after: always;"></div>
+
 ---
 
 ## Appendix
