@@ -19,6 +19,7 @@ import seedu.address.commons.core.LogsCenter;
 public class PoliciesWindow extends UiPart<Stage> {
 
     private static final String NOT_URL = "No URL!";
+    private static final String POLICIES_WINDOW_TITLE = "Policies";
     private static final Logger logger = LogsCenter.getLogger(PoliciesWindow.class);
     private static final String FXML = "PoliciesWindow.fxml";
     private static final String COPY_URL_TEXT = "Copy URL!";
@@ -33,7 +34,7 @@ public class PoliciesWindow extends UiPart<Stage> {
      */
     public PoliciesWindow(Stage root) {
         super(FXML, root);
-        setWindowTitle("Policies");
+        setWindowTitle();
     }
 
     /**
@@ -157,8 +158,8 @@ public class PoliciesWindow extends UiPart<Stage> {
         outerBox.getChildren().clear();
     }
 
-    private void setWindowTitle(String windowTitle) {
-        getRoot().setTitle(windowTitle);
+    private void setWindowTitle() {
+        getRoot().setTitle(POLICIES_WINDOW_TITLE);
     }
 
     private void setupHBoxRowWithButton(HBox row, String rowText, String url) {

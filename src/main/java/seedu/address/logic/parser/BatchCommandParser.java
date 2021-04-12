@@ -17,6 +17,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.BatchCommand;
+import seedu.address.logic.commands.BatchOperation;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,7 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Handles all parsing of {@code BatchCommand} as well as arguments for {@code BatchOperation}.
  */
-public class BatchCommandParser implements Parser<BatchCommand> {
+public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOperation>> {
     public static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
             + "are supported.";
     public static final String REPEATED_INDICES = "Input indices are repeated! Please ensure that all indices are "
@@ -38,12 +39,12 @@ public class BatchCommandParser implements Parser<BatchCommand> {
      * Then, parses and checks the validity of the indices and arguments (if applicable) to be passed to the
      * {@code BatchOperation}.
      *
-     * @param args arguments of the {@BatchCommand} passed in by the user.
-     * @return a {@code BatchCommand} with the {@code List} of {@code Commands} to be executed in batch.
-     * @throws ParseException if the user input for {@code BatchCommand} or the {@code Commands} does not conform to
-     *      the expected format.
+     * @param args arguments of the {@code BatchCommand} passed in by the user.
+     * @return a {@code BatchCommand} with the {@code List} of {@code BatchOperations} to be executed.
+     * @throws ParseException if the user input for {@code BatchCommand} or the {@code BatchOperations} does not
+     *      conform to the expected format.
      */
-    public BatchCommand parse(String args) throws ParseException {
+    public BatchCommand<? extends BatchOperation> parse(String args) throws ParseException {
         try {
             String[] splitCommandAndIndicesAndArgs = args.trim().split(" ", 2);
             String inputCommand = splitCommandAndIndicesAndArgs[0].trim();
