@@ -539,9 +539,33 @@ testers are expected to do more *exploratory* testing.
    1. Deleting the first task on the task list: `delete 1`<br>
       Expected: First task is deleted from the task list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
    1. Attempting to delete a task on index 0: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: No task is deleted. Error details shown in the status message.
+   1. Other incorrect `delete` commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Error will be thrown.
+
+### Finding a task 
+
+1. Recommended to use the `clear` command at this point to input a new set of diversed tasks to be used for test cases
+1. Inputting fresh set of diverse tasks into the task list.
+    1.  Use `add mc/CS2103 n/Practical d/11-02-2021 t/08:00 w/10%`
+    1.  Use `add mc/CS2105 n/Assignment 1 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
+    1.  Use `add mc/CS3240 n/Finals d/16-08-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
+    1.  Use `add mc/CS4101 n/Project 1 d/08-07-2021 t/23:00 w/5%`
+    1.  Use `add mc/CS1231 n/practical d/13-06-2021 t/12:00 w/40% pt/URGENT pt/NONCORE ptag/MEDIUM`
+    1.  Use `add mc/CS1010J n/Finals d/12-09-2021 t/21:00 w/15% pt/CORE ptag/HIGH notes/Must do soon`.<br>
+          Expected: 6 newly added tasks into the task list
+1. Using `find` command to find a list of similar task
+    1. Test case: `find practical`.<br>
+        Expected: task list will now show 2 tasks: module code: CS1231 and CS2103
+    1. Test case: `find URGENT`
+        Expected: task list will now show 3 tasks: module code: CS2131, CS2103, CS3240
+    1. Test case: `find must do soon`.<br>
+        Expected: task list will now show 2 tasks: module code: CS1010J and CS3240 
+    1. Test case: `find`.<br>
+        Expected: Error details will be shown in the status message
+        
+### Sorting a task 
+1. Recommended to use the tasks from the previous command `find` to be used here for `sort` command
 
 
 ## **Appendix: Effort**
