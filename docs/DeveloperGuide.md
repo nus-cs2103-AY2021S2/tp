@@ -111,6 +111,8 @@ limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -228,6 +230,8 @@ Even though the edit command expects the user input to only have multiple tag pr
   item.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Actual Implementation
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
@@ -320,6 +324,8 @@ The following Activity Diagram summarizes what happens when a user executes the 
 <br>
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations:
 
@@ -429,6 +435,8 @@ From the diagram above:
    `Model` to retrieve the current predicate. The retrieved predicate is then used to update the list by calling on `updateFilteredItemList` method of `Model`.  
 8. Subsequently, a `CommandResult` object is created and returned to `LogicManager`.
 9. This `CommandResult` will be returned at the end by `LogicManager`.
+
+<div style="page-break-after: always;"></div>
 
 The following Activity Diagram summarizes what happens when a user executes the `list` command:
 
@@ -717,6 +725,8 @@ The following Activity Diagram summarizes what happens when a user executes a he
 in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to
 physically search for an item to obtain information on it. Get everything you need from StoreMando - locations,
 quantities and expiry dates.
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
