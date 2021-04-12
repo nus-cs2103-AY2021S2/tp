@@ -133,7 +133,7 @@ Given below is the sequence diagram for interactions within the `Logic` componen
 
 ### 3.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<img src="images/ModelClassDiagram.png" width="500px">
 
 **API** : [`BudgetBabyModel.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/model/BudgetBabyModel.java)
 
