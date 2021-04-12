@@ -27,7 +27,7 @@ public class OrderDescriptionTest {
         // invalid order descriptions
         assertFalse(OrderDescription.isValidOrderDescription("")); // empty string
         assertFalse(OrderDescription.isValidOrderDescription(" ")); // spaces only
-        assertFalse(OrderDescription.isValidOrderDescription("          ")); // spaces only
+        assertFalse(OrderDescription.isValidOrderDescription(" \t  \n   \r ")); // spaces
         assertFalse(OrderDescription.isValidOrderDescription("Cake##")); // with special characters excluding "
         assertFalse(OrderDescription.isValidOrderDescription("12345")); // numbers
         assertFalse(OrderDescription.isValidOrderDescription("2 x Chocolate cake")); // numbers

@@ -201,7 +201,7 @@ Prefix: `t/`
   * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
   * Use it as a tag for the order. E.g. `urgent`, `complicated`
     
-**:exclamation: For advanced users:** Tags are not taken into consideration when comparing if two orders are the same order.
+**:exclamation: For advanced users:** Only `NAME`, `ADDRESS`, `ORDER_DESCRIPTION` and `DELIVERY_DATE` are taken into consideration when comparing if two orders are the same order.
 
 --------------------------------------------------------------------------------------------------------------------
 
