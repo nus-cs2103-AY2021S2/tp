@@ -194,7 +194,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Book
 
 #### Adding a book
-The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under [**`Adding a reader`**](#Adding a reader)).
+The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under [**`Adding a reader`**](#adding-a-reader)).
 
 #### Deleting a book
 
@@ -275,7 +275,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 
 #### Deleting a reader
-The execution of deleting a reader `deletereader` is very similar to deleting a book `deletebook` (refer to diagrams under [**`Deleting a book`**](#Deleting a book)).
+The execution of deleting a reader `deletereader` is very similar to deleting a book `deletebook` (refer to diagrams under [**`Deleting a book`**](#deleting-a-book)).
 
 
 #### Listing all readers
