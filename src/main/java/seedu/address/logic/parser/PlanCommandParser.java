@@ -45,7 +45,7 @@ public class PlanCommandParser implements Parser<Command> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        }  catch (InvalidIntegerException pe) {
+        } catch (InvalidIntegerException pe) {
             throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (ParseException pe) {
             throw new ParseException(

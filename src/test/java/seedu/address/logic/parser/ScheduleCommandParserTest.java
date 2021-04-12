@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalMeetings.MEETING_PRANK;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ScheduleCommand;
-import seedu.address.model.meeting.Meeting;
 
 class ScheduleCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
