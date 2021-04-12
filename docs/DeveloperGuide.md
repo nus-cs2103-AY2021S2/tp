@@ -206,11 +206,29 @@ The `edit-fr` command has primarily the same set of checks as `add-fr`, and it a
 
 The `delete-fr` command simply remove the financial record from the `Month` that it belongs to, and hence from the `BudgetTracker`. Only one argument which is the `Index` of the `FinancialRecord` in the currently displaying list of `FinancialRecord` needs to be provided to execute this command.
 
+#### Extensions Implemented
+
+One extension implemented to the `delete-fr` command is the support for multiple deletion at once. It was difficult to support multiple deletion because whenever a `FinancialRecord` in the associated list within the current month is removed, it may possibly update the index of all future `FinancialRecord` within the list after it. The simplest solution used was to sort the indices `List<Index>` in descending order, by removing the `FinancialRecord` with the greatest `Index` first it circumvents the issue since the removal of a `FinancialRecord` with a greater `Index` will not affect the `Index` of all the `FinancialRecord` before it.
+
 ### Budget Management Feature
+
+This section describes how the budget was implemented in our application. To model the user's budget, `Budget` is used which represents such an abstraction and wraps an amount stored as a double. Each `Month` is associated with a respective `Budget`. By default, the amount stored within a `Budget` is set to 1000, though this can be changed easily by modifying the `DEFAULT_BUDGET` field.
 
 #### `set-bg` command
 
-To be updated by Yu Heem
+The `set-bg` command results in the specified `BG_AMOUNT` being set for the current month as well as the future year ahead. Note that the `BG_AMOUNT` is compulsory and must be a positive number up to two decimal places. A realistic upper limit has been set on `BG_AMOUNT` of 1000000 to prevent issues with the UI displaying numbers that are too large.
+
+When the command is executed, a concrete `SetBudgetCommand` is created containing a concrete `Budget` which has the respective amount that corresponds to what the user keyed in.
+
+The `SetBudgetCommand` implements `SetBudgetCommand#execute` method. A concrete `BudgetBabyLogicManager` handles the execution of the `SetBudgetCommand` and makes appropriate calls to update the `BudgetBabyModel`.
+
+Below is a sequence diagram and explanation of how the `SetBudgetCommand` is executed for the `execute("set-bg 1000") API call.
+
+![](images/SetBgSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `set-bg`:
+
+![](images/SetBgActivityDiagram.png)
 
 ### [Completed] Find Financial Record Feature : `find-fr`
 
@@ -306,7 +324,9 @@ The following activity diagram summarizes what happens when a user executes `res
 ![](images/ResetActivityDiagram.png)
 
 ### All Categories Statistics Feature
+
 ##### Implementation
+
 The `getAllUnsortedCategories()` function in `Statistics` relies on another method, `allCategories()` within the same `Statistics` class.
 The `allCategories()` method obtains the `currentDisplayedMonth` `Month` object via the local variable `monthList` and uses the
 `getFinancialRecordList()` method from the `currentDisplayedMonth` object.
@@ -321,14 +341,16 @@ The following sequence diagram shows how the categories statistics feature works
 ![](images/CategoriesStatisticsSequenceDiagram.png)
 
 ### Top 5 Categories Statistics Feature
+
 ##### Implementation
+
 The `getTopCategories()` feature is based off the previous `getAllUnsortedCategories()` feature, except that the final returned
 `ArrayList` objects is sorted by the `Category` amounts and limited to 5 categories using the `stream` `limit` method.
-
 
 ### Past 6 Months Statistics Feature
 
 ##### Implementation
+
 This feature was developed with the help of `BudgetBabyModel` and `BudgetBabyModelManager`,
 which allowed for the method calls required for this feature to function as required.
 The method `getPastMonthStatistics()` from the `Statistics` class is called to trigger this feature.

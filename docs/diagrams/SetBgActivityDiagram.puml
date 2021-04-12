@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes set-bg
+        command;
+
+if () then ([valid command])
+    :System attempts to set budget
+        for the current month;
+
+if () then ([valid budget amount])
+    :Update budget;
+    :Display updated budget;
+    :Output update budget
+        success message;
+else ([else])
+    :Output command exception error message;
+endif
+
+else ([else])
+    :Output invalid command 
+        format error message;
+endif
+
+stop
+@enduml
