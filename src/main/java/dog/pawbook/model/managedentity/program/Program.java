@@ -1,3 +1,4 @@
+//@@author branzuelajohn
 package dog.pawbook.model.managedentity.program;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;

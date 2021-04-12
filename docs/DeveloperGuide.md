@@ -1224,9 +1224,9 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
        Expected: Error status message indicating wrong command format.
 
 ### Help Command
-
-1. Test case: `help` <br>
-   Expected: Opens a pop-up window that shows the command summary and provides a link to the user guide.
+1. Opening the help window
+    1. Test case: `help` <br>
+    Expected: Opens a pop-up window that shows the command summary and provides a link to the user guide.
 
 ### Exit Command
 
@@ -1247,6 +1247,6 @@ In terms of testing, we are proud to say that our test coverage is over the 77% 
 
 We also placed emphasis on GUI, making sure that our GUI was suitable and aesthetically pleasing for users. Through the process, we also had to learn a great deal of FXML syntax as we did away with SceneBuilder which we thought was hard to use and inflexible. Hence, we directly edited the code instead. It was also necessary to edit the CSS to change the theme of the application.
 
-While Pawbook inherited a GUI from AddressBook, we made a conscious effort to not revolve the product too heavily on the GUI. Instead of having separate tabs for each of the entities, we decided to make use of the existing `ListView` to display the various types of entities, allowing the user to switch between them using the `list` command rather than requireing that the user leave their keyboard to reach for their mouse in order to perform a trivial task like this.
+While Pawbook inherited a GUI from AddressBook, we made a conscious effort to not revolve the product too heavily on the GUI. Instead of having separate tabs for each of the entities, we decided to make use of the existing `ListView` to display the various types of entities, allowing the user to switch between them using the `list` command rather than requiring that the user leave their keyboard to reach for their mouse in order to perform a trivial task like this.
 
 Finally, the team made additional effort into making sure that the documentation was organised, comprehensive and easy to read. We all had to pick up PlantUML notation to create the UML diagrams such as activity diagrams and sequence diagram. Before submission, we made sure to standardize and make the formatting consistent, positioning of diagrams and overall flow and logic of the User Guide and this Developer Guide.
