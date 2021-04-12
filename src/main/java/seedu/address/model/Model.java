@@ -5,14 +5,15 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.residence.Residence;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /** {@code Predicate} that always evaluates to true */
+    Predicate<Residence> PREDICATE_SHOW_ALL_RESIDENCES = unused -> true;
+    Predicate<Residence> PREDICATE_UPCOMING_BOOKED_RESIDENCES = residence -> residence.hasUpcomingBooking();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +36,55 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' residence tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getResidenceTrackerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' residence tracker file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setResidenceTrackerFilePath(Path residenceTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces residence tracker data with the data in {@code residenceTracker}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setResidenceTracker(ReadOnlyResidenceTracker residenceTracker);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ResidenceTracker */
+    ReadOnlyResidenceTracker getResidenceTracker();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a residence with the same identity as {@code residence} exists in the residence tracker.
      */
-    boolean hasPerson(Person person);
+    boolean hasResidence(Residence residence);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given residence.
+     * The residence must exist in the residence tracker.
      */
-    void deletePerson(Person target);
+    void deleteResidence(Residence target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given residence.
+     * {@code residence} must not already exist in the residence tracker.
      */
-    void addPerson(Person person);
+    void addResidence(Residence residence);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given residence {@code target} with {@code editedResidence}.
+     * {@code target} must exist in the residence tracker.
+     * The residence identity of {@code editedResidence} must not be the same as another existing residence in the
+     * residence tracker.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setResidence(Residence target, Residence editedResidence);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered residence list */
+    ObservableList<Residence> getFilteredResidenceList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered residence list to filter by the given {@code predicate}.
+     * The result of this method always sorts the Residences as described in the Residence's {@code compareTo} method.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredResidenceList(Predicate<Residence> predicate);
 }

@@ -1,0 +1,76 @@
+{
+  "_comment": "Residence Tracker save file which contains the same Residence values as in TypicalResidence#getTypicalResidenceTracker()",
+  "residences" : [ {
+    "cleanStatusTag" : "Clean",
+    "residenceName" : "Amber Heights",
+    "residenceAddress" : "123, Jurong West Ave 6, #08-111",
+    "bookingList" : [{
+      "name" : "933230",
+      "phone" : "092382",
+      "start" : "2008-08-08",
+      "end" : "2008-09-09"
+    }],
+    "tags" : [ "valuable" ]
+  }, {
+    "cleanStatusTag" : "Unclean",
+    "residenceName" : "Beverly Hills",
+    "residenceAddress" : "311, Clementi Ave 2, #02-25",
+    "bookingList" : [ ],
+    "tags" : [ "repair", "popular" ]
+  }, {
+    "cleanStatusTag" : "Clean",
+    "residenceName" : "Casuarina Apartment",
+    "residenceAddress" : "wall street",
+    "bookingList" : [ {
+      "name" : "933230",
+      "phone" : "092382",
+      "start" : "2008-08-08",
+      "end" : "2008-09-09"
+    }, {
+      "name" : "nsd",
+      "phone" : "098",
+      "start" : "2009-09-09",
+      "end" : "2009-09-09"
+    }, {
+      "name" : "cs",
+      "phone" : "098",
+      "start" : "2010-10-10",
+      "end" : "2011-09-09"
+    } ],
+    "tags" : [ ]
+  }, {
+    "cleanStatusTag" : "Clean",
+    "residenceName" : "Dover Condominium",
+    "residenceAddress" : "10th street",
+    "bookingList" : [ {
+      "name" : "nsd",
+      "phone" : "098",
+      "start" : "2009-09-09",
+      "end" : "2009-09-09"
+    }, {
+      "name" : "cs",
+      "phone" : "098",
+      "start" : "2010-10-10",
+      "end" : "2011-09-09"
+    } ],
+    "tags" : [ "forFriends" ]
+  }, {
+    "cleanStatusTag" : "Clean",
+    "residenceName" : "Emerald Hills",
+    "residenceAddress" : "michegan ave",
+    "bookingList" : [ ],
+    "tags" : [ ]
+  }, {
+    "cleanStatusTag" : "Unclean",
+    "residenceName" : "Floravale",
+    "residenceAddress" : "little tokyo",
+    "bookingList" : [ ],
+    "tags" : [ ]
+  }, {
+    "cleanStatusTag" : "Clean",
+    "residenceName" : "Gem Residences",
+    "residenceAddress" : "4th street",
+    "bookingList" : [ ],
+    "tags" : [ ]
+  } ]
+}

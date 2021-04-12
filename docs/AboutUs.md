@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lim Li Gang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/whatthelump.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/whatthelump)]
+[[portfolio](team/whatthelump.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Deliverables and deadlines, Documentation
 
-### Jean Doe
+### Aw Zhen Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/awzhenyi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/awzhenyi)]
+[[portfolio](team/awzhenyi.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Features, Testing
+
+### Teng Shu Wei Jared
+
+<img src="images/jaredtengsw.png" width="200px">
+
+[[github](http://github.com/jaredtengsw)]
+[[portfolio](team/jaredtengsw.md)]
+
+* Role: Developer
+* Responsibilities: User Interface
+
+### V R Soorya
+
+<img src="images/vrsoorya.png" width="200px">
+
+[[github](http://github.com/vrsoorya)]
+[[portfolio](team/vrsoorya.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops
+
+### Wang Tao
+
+<img src="images/wangtao0717.png" width="200px">
+
+[[github](http://github.com/wangtao0717)]
+[[portfolio](team/wangtao0717.md)]
+
+* Role: Developer
+* Responsibilities: Features, Testing
