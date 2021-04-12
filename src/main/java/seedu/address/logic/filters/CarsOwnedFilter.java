@@ -14,8 +14,7 @@ public class CarsOwnedFilter extends CarFilter {
      * @param filterString the filter against which to match
      */
     public CarsOwnedFilter(String filterString) {
-        super(filterString.trim());
-        requireNonNull(filterString);
+        super(filterString);
     }
 
     /**

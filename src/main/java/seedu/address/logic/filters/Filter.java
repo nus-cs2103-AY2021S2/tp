@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 import seedu.address.model.customer.Customer;
 
 /**
- * This class encapsulates a filter. However, no implementation of criterion on which to filter is given. This class
- * is an abstraction of any filter subclass which will have some specific criterion to filter {@code Customer}.
+ * This class encapsulates a filter. However, no implementation of criterion on which to filter is given. This class is
+ * an abstraction of any filter subclass which will have some specific criterion to filter {@code Customer}.
  */
 public abstract class Filter implements Predicate<Customer> {
     protected final String filterString;
@@ -20,11 +20,10 @@ public abstract class Filter implements Predicate<Customer> {
      */
     public Filter(String filterString) {
         Objects.requireNonNull(filterString);
-        if (filterString.isEmpty()) {
+        this.filterString = filterString.trim();
+        if (this.filterString.isEmpty()) {
             throw new IllegalArgumentException("Search string cannot be empty!");
         }
-
-        this.filterString = filterString.trim();
     }
 
     @Override
