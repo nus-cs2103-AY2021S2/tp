@@ -1,351 +1,345 @@
 {
-<<<<<<< HEAD
   "content" : [ {
-    "week" : "Week 11",
+    "title": "Week 11",
     "header" : "Quality assurance - What",
     "maincontent" : "Software Quality Assurance (QA) is the process of ensuring that the software being built has the required levels of quality.\n\nWhile testing is the most common activity used in QA, there are other complementary techniques such as static analysis, code reviews, and formal verification."
   },{
-    "week" : "Week 11",
+    "title": "Week 11",
     "header" : "Quality assurance - Validation vs Verification",
     "maincontent" : "Quality Assurance = Validation + Verification\n\nQA involves checking two aspects:\n\n1.Validation: are you building the right system i.e., are the requirements correct?\n2.Verification: are you building the system right i.e., are the requirements implemented correctly?\n\nWhether something belongs under validation or verification is not that important. What is more important is that both are done, instead of limiting to only verification (i.e., remember that the requirements can be wrong too)."
   },{
-    "week" : "Week 4",
+    "title": "Week 4",
     "header" : "Quality assurance - Code Reviews",
     "maincontent" : "Reviews can be done in various forms. Some examples below:\n\nPull Request reviews\nProject Management Platforms such as GitHub and BitBucket allow the new code to be proposed as Pull Requests and provide the ability for others to review the code in the PR.\n\nIn pair programming\nAs pair programming involves two programmers working on the same code at the same time, there is an implicit review of the code by the other member of the pair.\n\nFormal inspections\nInspections involve a group of people systematically examining project artifacts to discover defects. Members of the inspection team play various roles during the process, such as:\n\nthe author - the creator of the artifact\nthe moderator - the planner and executor of the inspection meeting\nthe secretary - the recorder of the findings of the inspection\nthe inspector/reviewer - the one who inspects/reviews the artifact\n\nAdvantages of code review over testing:\nIt can detect functionality defects as well as other problems such as coding standard violations.\nIt can verify non-code artifacts and incomplete code.\nIt does not require test drivers or stubs.\n\nDisadvantages:\nIt is a manual process and therefore, error prone."
   },{
-    "week" : "Week 4",
+    "title": "Week 4",
     "header" : "Quality assurance - Static Analysis",
     "maincontent" : "Static analysis of code can find useful information such as unused variables, unhandled exceptions, style errors, and statistics. Most modern IDEs come with some inbuilt static analysis capabilities. For example, an IDE can highlight unused variables as you type the code into the editor.\n\nThe term static in static analysis refers to the fact that the code is analyzed without executing the code. In contrast, dynamic analysis requires the code to be executed to gather additional information about the code e.g., performance characteristics.\n\nHigher-end static analysis tools (static analyzers) can perform more complex analysis such as locating potential bugs, memory leaks, inefficient code structures, etc.\n\nLinters are a subset of static analyzers that specifically aim to locate areas where the code can be made 'cleaner'."
   },{
-    "week" : "Week 11",
+    "title": "Week 11",
     "header" : "Quality assurance - Formal verification",
     "maincontent" : "Formal verification uses mathematical techniques to prove the correctness of a program.\n\nAdvantages: \nFormal verification can be used to prove the absence of errors. In contrast, testing can only prove the presence of errors, not their absence.\n\nDisadvantages:\nIt only proves the compliance with the specification, but not the actual utility of the software.\nIt requires highly specialized notations and knowledge which makes it an expensive technique to administer. Therefore, formal verifications are more commonly used in safety-critical software such as flight control systems."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "Testing - Introduction - What",
     "maincontent" : "When testing, you execute a set of test cases. A test case specifies how to perform a test. At a minimum, it specifies the input to the software under test (SUT) and the expected behavior.\n\nTest cases can be determined based on the specification, reviewing similar existing systems, or comparing to the past behavior of the SUT.\n\nA test case failure is a mismatch between the expected behavior and the actual behavior. A failure indicates a potential defect (or a bug), unless the error is in the test case itself."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "Testing types - Regression testing",
     "maincontent" : "When you modify a system, the modification may result in some unintended and undesirable effects on the system. Such an effect is called a regression.\n\nRegression testing is the re-testing of the software to detect regressions. Note that to detect regressions, you need to retest all related components, even if they had been tested before.\n\nRegression testing is more effective when it is done frequently, after each small change. However, doing so can be prohibitively expensive if testing is done manually. Hence, regression testing is more practical when it is automated."
   },{
-    "week" : "Week 3",
+    "title": "Week 3",
     "header" : "Testing types - Developer testing",
     "maincontent" : "Delaying testing until the full product is complete has a number of disadvantages:\n\nLocating the cause of a test case failure is difficult due to a large search space; in a large system, the search space could be millions of lines of code, written by hundreds of developers! The failure may also be due to multiple inter-related bugs.\nFixing a bug found during such testing could result in major rework, especially if the bug originated from the design or during requirements specification i.e. a faulty design or faulty requirements.\nOne bug might 'hide' other bugs, which could emerge only after the first bug is fixed.\nThe delivery may have to be delayed if too many bugs are found during testing.\n\nearly testing of partially developed software is usually, and by necessity, done by the developers themselves i.e. developer testing."
   },{
-    "week" : "Week 3",
+    "title": "Week 3",
     "header" : "Testing types - Unit testing - Stub",
     "maincontent" : "A proper unit test requires the unit to be tested in isolation so that bugs in the dependencies cannot influence the test i.e. bugs outside of the unit should not affect the unit tests.\n\nStubs can isolate the SUT from its dependencies."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Testing types - Integration testing",
     "maincontent" : "Integration testing : testing whether different parts of the software work together (i.e. integrates) as expected. Integration tests aim to discover bugs in the 'glue code' related to how components interact with each other. These bugs are often the result of misunderstanding what the parts are supposed to do vs what the parts are actually doing.\n\nIntegration testing is not simply a case of repeating the unit test cases using the actual dependencies (instead of the stubs used in unit testing). Instead, integration tests are additional test cases that focus on the interactions between the parts.\n\nIn practice, developers often use a hybrid of unit+integration tests to minimize the need for stubs."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Testing types - System testing",
     "maincontent" : "System testing is typically done by a testing team (also called a QA team).\n\nSystem test cases are based on the specified external behavior of the system. Sometimes, system tests go beyond the bounds defined in the specification. This is useful when testing that the system fails 'gracefully' when pushed beyond its limits.\n\nSystem testing includes testing against non-functional requirements too"
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Testing types - Alpha and beta testing",
     "maincontent" : "Alpha testing is performed by the users, under controlled conditions set by the software development team.\n\nBeta testing is performed by a selected subset of target users of the system in their natural work setting.\n\nAn open beta release is the release of not-yet-production-quality-but-almost-there software to the general population. For example, Google’s Gmail was in 'beta' for many years before the label was finally removed."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Testing types - Exploratory testing",
     "maincontent" : "Exploratory testing is ‘the simultaneous learning, test design, and test execution’ [source: bach-et-explained] whereby the nature of the follow-up test case is decided based on the behavior of the previous test cases. In other words, running the system and trying out various operations. It is called exploratory testing because testing is driven by observations during testing. Exploratory testing usually starts with areas identified as error-prone, based on the tester’s past experience with similar systems. One tends to conduct more tests for those operations where more faults are found.\n\nExploratory testing is also known as reactive testing, error guessing technique, attack-based testing, and bug hunting."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Testing types - Exploratory versus scripted testing",
     "maincontent" : "Which approach is better – scripted or exploratory? A mix is better.\n\nThe success of exploratory testing depends on the tester’s prior experience and intuition. Exploratory testing should be done by experienced testers, using a clear strategy/plan/framework. Ad-hoc exploratory testing by unskilled or inexperienced testers without a clear strategy is not recommended for real-world non-trivial systems. While exploratory testing may allow us to detect some problems in a relatively short time, it is not prudent to use exploratory testing as the sole means of testing a critical system.\n\nScripted testing is more systematic, and hence, likely to discover more bugs given sufficient time, while exploratory testing would aid in quick error discovery, especially if the tester has a lot of experience in testing similar systems."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Testing types - Acceptance testing",
     "maincontent" : "Acceptance tests give an assurance to the customer that the system does what it is intended to do. Acceptance test cases are often defined at the beginning of the project, usually based on the use case specification. Successful completion of UAT is often a prerequisite to the project sign-off."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Test Automations - Tools",
     "maincontent" : "JUnit is a tool for automated testing of Java programs. Similar tools are available for other languages and for automating different types of testing.\n\nMost modern IDEs have integrated support for testing tools. The figure below shows the JUnit output when running some JUnit tests using the Eclipse IDE."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Test Automation - Automated Testing of GUIs",
     "maincontent" : "If a software product has a GUI (Graphical User Interface) component, all product-level testing (i.e. the types of testing mentioned above) need to be done using the GUI. However, testing the GUI is much harder than testing the CLI (Command Line Interface) or API, for the following reasons:\n\nMost GUIs can support a large number of different operations, many of which can be performed in any arbitrary order.\nGUI operations are more difficult to automate than API testing. Reliably automating GUI operations and automatically verifying whether the GUI behaves as expected is harder than calling an operation and comparing its return value with an expected value. Therefore, automated regression testing of GUIs is rather difficult.\nThe appearance of a GUI (and sometimes even behavior) can be different across platforms and even environments. For example, a GUI can behave differently based on whether it is minimized or maximized, in focus or out of focus, and in a high resolution display or a low resolution display.\n\nMoving as much logic as possible out of the GUI can make GUI testing easier. That way, you can bypass the GUI to test the rest of the system using automated API testing. While this still requires the GUI to be tested, the number of such test cases can be reduced as most of the system will have been tested using automated API testing."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Test coverage",
     "maincontent" : "Test coverage is a metric used to measure the extent to which testing exercises the code i.e., how much of the code is 'covered' by the tests.\nHere are some examples of different coverage criteria:\n\nFunction/method coverage : based on functions executed e.g., testing executed 90 out of 100 functions.\nStatement coverage : based on the number of lines of code executed e.g., testing executed 23k out of 25k LOC.\nDecision/branch coverage : based on the decision points exercised e.g., an if statement evaluated to both true and false with separate test cases during testing is considered 'covered'.\nCondition coverage : based on the boolean sub-expressions, each evaluated to both true and false with different test cases. Condition coverage is not the same as the decision coverage.\nPath coverage measures coverage in terms of possible paths through a given part of the code executed. 100% path coverage means all possible paths have been executed. A commonly used notation for path analysis is called the Control Flow Graph (CFG).\nEntry/exit coverage measures coverage in terms of possible calls to and exits from the operations in the SUT."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Test coverage - How",
     "maincontent" : "Measuring coverage is often done using coverage analysis tools. Most IDEs have inbuilt support for measuring test coverage, or at least have plugins that can measure test coverage.\n\nCoverage analysis can be useful in improving the quality of testing e.g., if a set of test cases does not achieve 100% branch coverage, more test cases can be added to cover missed branches."
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Dependency injection",
     "maincontent" : "Dependency injection is the process of 'injecting' objects to replace current dependencies with a different object. This is often used to inject stubs to isolate the SUT from its dependencies so that it can be tested in isolation.\n\n"
   },{
-    "week" : "Week 8",
+    "title": "Week 8",
     "header" : "Test-Driven Development",
     "maincontent" : "Test-Driven Development(TDD) advocates writing the tests before writing the SUT, while evolving functionality and tests in small increments. In TDD you first define the precise behavior of the SUT using test cases, and then write the SUT to match the specified behavior. While TDD has its fair share of detractors, there are many who consider it a good way to reduce defects. One big advantage of TDD is that it guarantees the code is testable.\n\nNote that TDD does not imply writing all the test cases first before writing functional code. Rather, proceed in small steps:\n\nDecide what behavior to implement.\nWrite test cases to test that behavior.\nRun those test cases and watch them fail.\nImplement the behavior.\nRun the test cases.\nKeep modifying the code and rerunning test cases until they all pass.\nRefactor code to improve quality.\nRepeat the cycle for each small unit of behavior that needs to be implemented."
   },{
-    "week" : "Week 10",
+    "title": "Week 10",
     "header" : "Test case design",
     "maincontent" : "Except for trivial SUTs, exhaustive testing is not practical because such testing often requires a massive/infinite number of test cases.\n\nEvery test case adds to the cost of testing. In some systems, a single test case can cost thousands of dollars e.g. on-field testing of flight-control software. Therefore, test cases need to be designed to make the best use of testing resources. In particular:\n\nTesting should be effective i.e., it finds a high percentage of existing bugs e.g., a set of test cases that finds 60 defects is more effective than a set that finds only 30 defects in the same system.\nTesting should be efficient i.e., it has a high rate of success (bugs found/test cases) a set of 20 test cases that finds 8 defects is more efficient than another set of 40 test cases that finds the same 8 defects.\n\nFor testing to be E&E, each new test you add should be targeting a potential fault that is not already targeted by existing test cases. There are test case design techniques that can help us improve the E&E of testing."
   },{
-    "week" : "Week 10",
+    "title": "Week 10",
     "header" : "Test case design - Positive vs Negative Test Cases",
     "maincontent" : "A positive test case is when the test is designed to produce an expected/valid behavior. On the other hand, a negative test case is designed to produce a behavior that indicates an invalid/unexpected situation, such as an error message."
   },{
-    "week" : "Week 10",
+    "title": "Week 10",
     "header" : "Test case design - Black Box vs Glass Box",
     "maincontent" : "Test case design can be of three types, based on how much of the SUT's internal details are considered when designing test cases:\n\nBlack-box (aka specification-based or responsibility-based) approach: test cases are designed exclusively based on the SUT’s specified external behavior.\nWhite-box (aka glass-box or structured or implementation-based) approach: test cases are designed based on what is known about the SUT’s implementation, i.e. the code.\nGray-box approach: test case design uses some important information about the implementation. For example, if the implementation of a sort operation uses different algorithms to sort lists shorter than 1000 items and lists longer than 1000 items, more meaningful test cases can then be added to verify the correctness of both algorithms."
   },{
-    "week" : "Week 10",
+    "title": "Week 10",
     "header" : "Test case design - Equivalence partitions",
     "maincontent" : "In general, most SUTs do not treat each input in a unique way. Instead, they process all possible inputs in a small number of distinct ways. That means a range of inputs is treated the same way inside the SUT. Equivalence partitioning (EP) is a test case design technique that uses the above observation to improve the E&E of testing. By dividing possible inputs into equivalence partitions you can,\n\navoid testing too many inputs from one partition. Testing too many inputs from the same partition is unlikely to find new bugs. This increases the efficiency of testing by reducing redundant test cases.\nensure all partitions are tested. Missing partitions can result in bugs going unnoticed. This increases the effectiveness of testing by increasing the chance of finding bugs."
   },{
-    "week" : "Week 10",
+    "title": "Week 10",
     "header" : "Test case design - Boundary value analysis",
     "maincontent" : "Boundary Value Analysis (BVA) is a test case design heuristic that is based on the observation that bugs often result from incorrect handling of boundaries of equivalence partitions. This is not surprising, as the end points of boundaries are often used in branching instructions, etc., where the programmer can make mistakes.\n\nBVA suggests that when picking test inputs from an equivalence partition, values near boundaries (i.e. boundary values) are more likely to find bugs.\n\nBoundary values are sometimes called corner cases.\n\nTypically, you should choose three values around the boundary to test: one value from the boundary, one value just below the boundary, and one value just above the boundary. The number of values to pick depends on other factors, such as the cost of each test case."
   },{
-    "week" : "Week 11",
+    "title": "Week 11",
     "header" : "Test case design - Combining test inputs",
     "maincontent" : "An SUT can take multiple inputs. You can select values for each input (using equivalence partitioning, boundary value analysis, or some other technique).\n\nTesting all possible combinations is effective but not efficient. If you test all possible combinations for the above example, you need to test 6x5x2x6=360 cases. Doing so has a higher chance of discovering bugs (i.e. effective) but the number of test cases will be too high (i.e. not efficient). Therefore, you need smarter ways to combine test inputs that are both effective and efficient."
   },{
-    "week" : "Week 11",
+    "title": "Week 11",
     "header" : "Test case design - Test Input Combination Strategies",
     "maincontent" : "Given below are some basic strategies for generating a set of test cases by combining multiple test inputs.\n\nEach Valid Input at Least Once in a Positive Test Case\nNo More Than One Invalid Input In A Test Case\nMix between the two"
   },{
-    "week" : "Week 11",
+    "title": "Week 11",
     "header" : "Test case design - Testing Based on Use Cases",
     "maincontent" : "Use cases can be used for system testing and acceptance testing. For example, the main success scenario can be one test case while each variation (due to extensions) can form another test case. However, note that use cases do not specify the exact data entered into the system. Instead, it might say something like user enters his personal data into the system. Therefore, the tester has to choose data by considering equivalence partitions and boundary values. The combinations of these could result in one use case producing many test cases.\n\nTo increase the E&E of testing, high-priority use cases are given more attention. For example, a scripted approach can be used to test high-priority test cases, while an exploratory approach is used to test other areas of concern that could emerge during testing."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "Revision Control",
     "maincontent" : "Revision control is the process of managing multiple versions of a piece of information. In its simplest form, this is something that many people do by hand: every time you modify a file, save it under a new name that contains a number, each one higher than the number of the preceding version.\n\nManually managing multiple versions of even a single file is an error-prone task, though, so software tools to help automate this process have long been available. The earliest automated revision control tools were intended to help a single user to manage revisions of a single file. Over the past few decades, the scope of revision control tools has expanded greatly; they now manage multiple files, and help multiple people to work together. The best modern revision control tools have no problem coping with thousands of people working together on projects that consist of hundreds of thousands of files.\n\nRevision control software will track the history and evolution of your project, so you don't have to. For every change, you'll have a log of who made it; why they made it; when they made it; and what the change was.\n\nRevision control software makes it easier for you to collaborate when you're working with other people. For example, when people more or less simultaneously make potentially incompatible changes, the software will help you to identify and resolve those conflicts.\n\nIt can help you to recover from mistakes. If you make a change that later turns out to be an error, you can revert to an earlier version of one or more files. In fact, a really good revision control tool will even help you to efficiently figure out exactly when a problem was introduced.\n\nIt will help you to work simultaneously on, and manage the drift between, multiple versions of your project. Most of these reasons are equally valid, at least in theory, whether you're working on a project by yourself, or with a hundred other people.\n-- [adapted from bryan-mercurial-guide]"
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "Revision Control - Repositories",
     "maincontent" : "The repository is the database where the meta-data about the revision history are stored. Suppose you want to apply revision control on files in a directory called ProjectFoo. In that case, you need to set up a repo (short for repository) in the ProjectFoo directory, which is referred to as the working directory of the repo. For example, Git uses a hidden folder named .git inside the working directory.\n\nYou can have multiple repos in your computer, each repo revision-controlling files of a different working directory, for examples, files of different projects."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "Revision Control - Saving History",
     "maincontent" : "Tracking and ignoring\nIn a repo, you can specify which files to track and which files to ignore. Some files such as temporary log files created during the build/test process should not be revision-controlled.\n\nStaging and committing\nCommitting saves a snapshot of the current state of the tracked files in the revision control history. Such a snapshot is also called a commit (i.e. the noun).\n\nWhen ready to commit, you first stage the specific changes you want to commit. This intermediate step allows you to commit only some changes while saving other changes for a later commit."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "Revision Control - Using History",
     "maincontent" : "RCS tools store the history of the working directory as a series of commits. This means you should commit after each change that you want the RCS to 'remember'.\n\nEach commit in a repo is a recorded point in the history of the project that is uniquely identified by an auto-generated hash e.g. a16043703f28e5b3dab95915f5c5e5bf4fdc5fc1.\n\nYou can tag a specific commit with a more easily identifiable name e.g. v1.0.2.\n\nTo see what changed between two points of the history, you can ask the RCS tool to diff the two commits in concern.\n\nTo restore the state of the working directory at a point in the past, you can checkout the commit in concern. i.e., you can traverse the history of the working directory simply by checking out the commits you are interested in."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "Revision Control - Remote Repositories",
     "maincontent" : "Remote repositories are repos that are hosted on remote computers and allow remote access. They are especially useful for sharing the revision history of a codebase among team members of a multi-person project. They can also serve as a remote backup of your codebase.\n\nIt is possible to set up your own remote repo on a server, but the easier option is to use a remote repo hosting service such as GitHub or BitBucket.\n\nYou can clone a repo to create a copy of that repo in another location on your computer. The copy will even have the revision history of the original repo i.e., identical to the original repo. For example, you can clone a remote repo onto your computer to create a local copy of the remote repo.\n\nWhen you clone from a repo, the original repo is commonly referred to as the upstream repo. A repo can have multiple upstream repos. For example, let's say a repo repo1 was cloned as repo2 which was then cloned as repo3. In this case, repo1 and repo2 are upstream repos of repo3.\n\nYou can pull from one repo to another, to receive new commits in the second repo, if the repos have a shared history. Let's say some new commits were added to the upstream repo after you cloned it and you would like to copy over those new commits to your own clone i.e., sync your clone with the upstream repo. In that case, you pull from the upstream repo to your clone.\n\nYou can push new commits in one repo to another repo which will copy the new commits onto the destination repo. Note that pushing to a repo requires you to have write-access to it. Furthermore, you can push between repos only if those repos have a shared history among them (i.e., one was created by copying the other at some point in the past).\n\nCloning, pushing, and pulling can be done between two local repos too, although it is more common for them to involve a remote repo.\n\nA repo can work with any number of other repositories as long as they have a shared history e.g., repo1 can pull from (or push to) repo2 and repo3 if they have a shared history between them.\n\nA fork is a remote copy of a remote repo. As you know, cloning creates a local copy of a repo. In contrast, forking creates a remote copy of a Git repo hosted on GitHub. This is particularly useful if you want to play around with a GitHub repo but you don't have write permissions to it; you can simply fork the repo and do whatever you want with the fork as you are the owner of the fork.\n\nA pull request (PR for short) is a mechanism for contributing code to a remote repo, i.e., \"I'm requesting you to pull my proposed changes to your repo\". For this to work, the two repos must have a shared history. The most common case is sending PRs from a fork to its upstream repo."
   },{
-    "week" : "Week 3",
+    "title": "Week 3",
     "header" : "Revision Control - Branching",
     "maincontent" : "Branching is the process of evolving multiple versions of the software in parallel. For example, one team member can create a new branch and add an experimental feature to it while the rest of the team keeps working on another branch. Branches can be given names e.g. master, release, dev.\n\nA branch can be merged into another branch. Merging usually results in a new commit that represents the changes done in the branch being merged.\n\nMerge conflicts happen when you try to merge two branches that had changed the same part of the code and the RCS cannot decide which changes to keep. In those cases, you have to ‘resolve’ the conflicts manually."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Revision Control - DRCS vs CRCS",
     "maincontent" : "RCS can be done in two ways: the centralized way and the distributed way.\n\nCentralized RCS (CRCS for short) uses a central remote repo that is shared by the team. Team members download (‘pull’) and upload (‘push’) changes between their own local repositories and the central repository. Older RCS tools such as CVS and SVN support only this model. Note that these older RCS do not support the notion of a local repo either. Instead, they force users to do all the versioning with the remote repo.\n\nDistributed RCS (DRCS for short, also known as Decentralized RCS) allows multiple remote repos and pulling and pushing can be done among them in arbitrary ways. The workflow can vary differently from team to team. For example, every team member can have his/her own remote repository in addition to their own local repository, as shown in the diagram below. Git and Mercurial are some prominent RCS tools that support the distributed approach."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Revision Control - Forking Flow",
     "maincontent" : "In the forking workflow, the 'official' version of the software is kept in a remote repo designated as the 'main repo'. All team members fork the main repo and create pull requests from their fork to the main repo.\n\nOne main benefit of this workflow is that it does not require most contributors to have write permissions to the main repository. Only those who are merging PRs need write permissions. The main drawback of this workflow is the extra overhead of sending everything through forks."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Revision Control - Feature Branch Flow",
     "maincontent" : "Feature branch workflow is similar to forking workflow except there are no forks. Everyone is pushing/pulling from the same remote repo. The phrase feature branch is used because each new feature (or bug fix, or any other modification) is done in a separate branch and merged to the master branch when ready. Pull requests can still be created within the central repository, from the feature branch to the main branch.\n\nAs this workflow require all team members to have write access to the repository,\n\nit is better to protect the main branch using some mechanism, to reduce the risk of accidental undesirable changes to it.\nit is not suitable for situations where the code contributors are not 'trusted' enough to be given write permission."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Revision Control - Centralized",
     "maincontent" : "The centralized workflow is similar to the feature branch workflow except all changes are done in the master branch."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Project planning - Work Breakdown Structure",
     "maincontent" : "A Work Breakdown Structure (WBS) depicts information about tasks and their details in terms of subtasks. When managing projects, it is useful to divide the total work into smaller, well-defined units. Relatively complex tasks can be further split into subtasks. In complex projects, a WBS can also include prerequisite tasks and effort estimates for each task.\n\nThe effort is traditionally measured in man hour/day/month i.e. work that can be done by one person in one hour/day/month. The Task ID is a label for easy reference to a task. Simple labeling is suitable for a small project, while a more informative labeling system can be adopted for bigger projects.\n\nAll tasks should be well-defined. In particular, it should be clear as to when the task will be considered done."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Project planning - Milestone",
     "maincontent" : "A milestone is the end of a stage which indicates significant progress. You should take into account dependencies and priorities when deciding on the features to be delivered at a certain milestone.\n\nIn some projects, it is not practical to have a very detailed plan for the whole project due to the uncertainty and unavailability of required information. In such cases, you can use a high-level plan for the whole project and a detailed plan for the next few milestones."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Project planning - Buffers",
     "maincontent" : "A buffer is time set aside to absorb any unforeseen delays. It is very important to include buffers in a software project schedule because effort/time estimations for software development are notoriously hard. However, do not inflate task estimates to create hidden buffers; have explicit buffers instead. Reason: With explicit buffers, it is easier to detect incorrect effort estimates which can serve as feedback to improve future effort estimates."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Project planning - Issue Trackers",
     "maincontent" : "Keeping track of project tasks (who is doing what, which tasks are ongoing, which tasks are done etc.) is an essential part of project management. In small projects, it may be possible to keep track of tasks using simple tools such as online spreadsheets or general-purpose/light-weight task tracking tools such as Trello. Bigger projects need more sophisticated task tracking tools.\n\nIssue trackers (sometimes called bug trackers) are commonly used to track task assignment and progress. Most online project management software such as GitHub, SourceForge, and BitBucket come with an integrated issue tracker."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Project planning - GANTT Chart",
     "maincontent" : "A Gantt chart is a 2-D bar-chart, drawn as time vs tasks (represented by horizontal bars).\n\nIn a Gantt chart, a solid bar represents the main task, which is generally composed of a number of subtasks, shown as grey bars. The diamond shape indicates an important deadline/deliverable/milestone."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Project planning - PERT Charts",
     "maincontent" : "A PERT (Program Evaluation Review Technique) chart uses a graphical technique to show the order/sequence of tasks. It is based on the simple idea of drawing a directed graph in which:\n\nNodes or vertices capture the effort estimations of tasks, and\nArrows depict the precedence between tasks\n\nA PERT chart can help determine the following important information:\n\nThe order of tasks. In the example above, Final Testing cannot begin until all coding of individual subsystems have been completed.\nWhich tasks can be done concurrently. In the example above, the various subsystem designs can start independently once the High level design is completed.\nThe shortest possible completion time. In the example above, there is a path (indicated by the shaded boxes) from start to end that determines the shortest possible completion time.\nThe Critical Path. In the example above, the shortest possible path is also the critical path.\n\nCritical path is the path in which any delay can directly affect the project duration. It is important to ensure tasks on the critical path are completed on time."
   },{
-    "week" : "Week 7",
+    "title": "Week 7",
     "header" : "Teamwork - Team Structures",
     "maincontent" : "Given below are three commonly used team structures in software development. Irrespective of the team structure, it is a good practice to assign roles and responsibilities to different team members so that someone is clearly in charge of each aspect of the project. In comparison, the ‘everybody is responsible for everything’ approach can result in more chaos and hence slower progress.\n\nEgoless team\nIn this structure, every team member is equal in terms of responsibility and accountability. When any decision is required, consensus must be reached. This team structure is also known as a democratic team structure. This team structure usually finds a good solution to a relatively hard problem as all team members contribute ideas.\n\nHowever, the democratic nature of the team structure bears a higher risk of falling apart due to the absence of an authority figure to manage the team and resolve conflicts.\n\nChief programmer team\nFrederick Brooks proposed that software engineers learn from the medical surgical team in an operating room. In such a team, there is always a chief surgeon, assisted by experts in other areas. Similarly, in a chief programmer team structure, there is a single authoritative figure, the chief programmer. Major decisions, e.g. system architecture, are made solely by him/her and obeyed by all other team members. The chief programmer directs and coordinates the effort of other team members. When necessary, the chief will be assisted by domain specialists e.g. business specialists, database experts, network technology experts, etc. This allows individual group members to concentrate solely on the areas in which they have sound knowledge and expertise.\n\nThe success of such a team structure relies heavily on the chief programmer. Not only must he/she be a superb technical hand, he/she also needs good managerial skills. Under a suitably qualified leader, such a team structure is known to produce successful work.\n\nStrict hierarchy team\nAt the opposite extreme of an egoless team, a strict hierarchy team has a strictly defined organization among the team members, reminiscent of the military or a bureaucratic government. Each team member only works on his/her assigned tasks and reports to a single “boss”.\n\nIn a large, resource-intensive, complex project, this could be a good team structure to reduce communication overhead."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "SDLC process models",
     "maincontent" : "Software development goes through different stages such as requirements, analysis, design, implementation and testing. These stages are collectively known as the software development life cycle (SDLC). There are several approaches, known as software development life cycle models (also called software process models), that describe different ways to go through the SDLC. Each process model prescribes a \"roadmap\" for the software developers to manage the development effort. The roadmap describes the aims of the development stage(s), the artifacts or outcome of each stage, as well as the workflow i.e. the relationship between stages."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "SDLC process models - Sequential Models",
     "maincontent" : "The sequential model, also called the waterfall model, models software development as a linear process, in which the project is seen as progressing steadily in one direction through the development stages. The name waterfall stems from how the model is drawn to look like a waterfall (see below).\n\nWhen one stage of the process is completed, it should produce some artifacts to be used in the next stage. For example, upon completion of the requirements stage, a comprehensive list of requirements is produced that will see no further modifications. A strict application of the sequential model would require each stage to be completed before starting the next.\n\nThis could be a useful model when the problem statement is well-understood and stable. In such cases, using the sequential model should result in a timely and systematic development effort, provided that all goes well. As each stage has a well-defined outcome, the progress of the project can be tracked with relative ease.\n\nThe major problem with this model is that the requirements of a real-world project are rarely well-understood at the beginning and keep changing over time. One reason for this is that users are generally not aware of how a software application can be used without prior experience in using a similar application."
   },{
-    "week" : "Week 2",
+    "title": "Week 2",
     "header" : "SDLC process models - Iterative Models",
     "maincontent" : "The iterative model (sometimes called iterative and incremental) advocates having several iterations of SDLC. Each of the iterations could potentially go through all the development stages, from requirements gathering to testing & deployment. Roughly, it appears to be similar to several cycles of the sequential model.\n\nIn this model, each of the iterations produces a new version of the product. Feedback on the new version can then be fed to the next iteration. Taking the Minesweeper game as an example, the iterative model will deliver a fully playable version from the early iterations. However, the first iteration will have primitive functionality, for example, a clumsy text based UI, fixed board size, limited randomization, etc. These functionalities will then be improved in later releases.\n\nThe iterative model can take a breadth-first or a depth-first approach to iteration planning.\n\nbreadth-first: an iteration evolves all major components in parallel e.g., add a new feature fully, or enhance an existing feature.\ndepth-first: an iteration focuses on fleshing out only some components e.g., update the backend to support a new feature that will be added in a future iteration.\n\nMost projects use a mixture of breadth-first and depth-first iterations i.e., an iteration can contain some breadth-first work as well as some depth-first work."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "SDLC process models - Agile Models",
     "maincontent" : "In 2001, a group of prominent software engineering practitioners met and brainstormed for an alternative to documentation-driven, heavyweight software development processes that were used in most large projects at the time. This resulted in something called the agile manifesto (a vision statement of what they were looking to do).\n\nYou are uncovering better ways of developing software by doing it and helping others do it.\n\nThrough this work you have come to value:\n\nIndividuals and interactions over processes and tools\nWorking software over comprehensive documentation\nCustomer collaboration over contract negotiation\nResponding to change over following a plan\n\nThat is, while there is value in the items on the right, you value the items on the left more.\n\n-- Extract from the Agile Manifesto\nSubsequently, some of the signatories of the manifesto went on to create process models that try to follow it. These processes are collectively called agile processes. Some of the key features of agile approaches are:\n\nRequirements are prioritized based on the needs of the user, are clarified regularly (at times almost on a daily basis) with the entire project team, and are factored into the development schedule as appropriate.\nInstead of doing a very elaborate and detailed design and a project plan for the whole project, the team works based on a rough project plan and a high level design that evolves as the project goes on.\nThere is a strong emphasis on complete transparency and responsibility sharing among the team members. The team is responsible together for the delivery of the product. Team members are accountable, and regularly and openly share progress with each other and with the user.\n\nThere are a number of agile processes in the development world today. eXtreme Programming (XP) and Scrum are two of the well-known ones."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "SDLC process models example - XP",
     "maincontent" : "The following description was adapted from the XP home page, emphasis added:\n\nExtreme Programming (XP) stresses customer satisfaction. Instead of delivering everything you could possibly want on some date far in the future, this process delivers the software you need as you need it.\n\nXP aims to empower developers to confidently respond to changing customer requirements, even late in the life cycle.\n\nXP emphasizes teamwork. Managers, customers, and developers are all equal partners in a collaborative team. XP implements a simple, yet effective environment enabling teams to become highly productive. The team self-organizes around the problem to solve it as efficiently as possible.\n\nXP aims to improve a software project in five essential ways: communication, simplicity, feedback, respect, and courage. Extreme Programmers constantly communicate with their customers and fellow programmers. They keep their design simple and clean. They get feedback by testing their software starting on day one. Every small success deepens their respect for the unique contributions of each and every team member. With this foundation, Extreme Programmers are able to courageously respond to changing requirements and technology.\n\nXP has a set of simple rules. XP is a lot like a jig saw puzzle with many small pieces. Individually the pieces make no sense, but when combined together a complete picture can be seen. This flow chart shows how Extreme Programming's rules work together.\n\nPair programming, CRC cards, project velocity, and standup meetings are some interesting topics related to XP. Refer to extremeprogramming.org to find out more about XP."
   },{
-    "week" : "Week 1",
+    "title": "Week 1",
     "header" : "SDLC process models example - Scrum",
     "maincontent" : "This description of Scrum was adapted from Wikipedia [retrieved on 18/10/2011], emphasis added:\n\nScrum is a process skeleton that contains sets of practices and predefined roles. The main roles in Scrum are:\n\nThe Scrum Master, who maintains the processes (typically in lieu of a project manager)\nThe Product Owner, who represents the stakeholders and the business\nThe Team, a cross-functional group who do the actual analysis, design, implementation, testing, etc.\n\nA Scrum project is divided into iterations called Sprints. A sprint is the basic unit of development in Scrum. Sprints tend to last between one week and one month, and are a timeboxed (i.e. restricted to a specific duration) effort of a constant length.\n\nEach sprint is preceded by a planning meeting, where the tasks for the sprint are identified and an estimated commitment for the sprint goal is made, and followed by a review or retrospective meeting, where the progress is reviewed and lessons for the next sprint are identified.\n\nDuring each sprint, the team creates a potentially deliverable product increment (for example, working and tested software). The set of features that go into a sprint come from the product backlog, which is a prioritized set of high level requirements of work to be done. Which backlog items go into the sprint is determined during the sprint planning meeting. During this meeting, the Product Owner informs the team of the items in the product backlog that he or she wants completed. The team then determines how much of this they can commit to complete during the next sprint, and records this in the sprint backlog. During a sprint, no one is allowed to change the sprint backlog, which means that the requirements are frozen for that sprint. Development is timeboxed such that the sprint must end on time; if requirements are not completed for any reason they are left out and returned to the product backlog. After a sprint is completed, the team demonstrates the use of the software.\n\nScrum enables the creation of self-organizing teams by encouraging co-location of all team members, and verbal communication between all team members and disciplines in the project.\n\nA key principle of Scrum is its recognition that during a project the customers can change their minds about what they want and need (often called requirements churn), and that unpredicted challenges cannot be easily addressed in a traditional predictive or planned manner. As such, Scrum adopts an empirical approach—accepting that the problem cannot be fully understood or defined, focusing instead on maximizing the team’s ability to deliver quickly and respond to emerging requirements."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "SDLC process models example - Daily Scrum",
     "maincontent" : "Daily Scrum is another key scrum practice. The description below was adapted from https://www.mountaingoatsoftware.com (emphasis added):\n\nIn Scrum, on each day of a sprint, the team holds a daily scrum meeting called the daily scrum. Meetings are typically held in the same location and at the same time each day. Ideally, a daily scrum meeting is held in the morning, as it helps set the context for the coming day's work. These scrum meetings are strictly time-boxed to 15 minutes. This keeps the discussion brisk but relevant.\n\n...\n\nDuring the daily scrum, each team member answers the following three questions:\n\nWhat did you do yesterday?\nWhat will you do today?\nAre there any impediments in your way?\n\n...\n\nThe daily scrum meeting is not used as a problem-solving or issue resolution meeting. Issues that are raised are taken offline and usually dealt with by the relevant subgroup immediately after the meeting."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "SDLC process models example - Unified Process",
     "maincontent" : "The unified process is developed by the Three Amigos - Ivar Jacobson, Grady Booch and James Rumbaugh (the creators of UML).\n\nThe unified process consists of four phases: inception, elaboration, construction and transition. The main purpose of each phase can be summarized as follows:\n\nGiven above is a visualization of a project done using the Unified process (source: Wikipedia). As the diagram shows, a phase can consist of several iterations. Each vertical column (labeled “I1” “E1”, “E2”, “C1”, etc.) represents a single iteration. Each of the iterations consists of a set of ‘workflows’ such as ‘Business modeling’, ‘Requirements’, ‘Analysis & Design’, etc. The shaded region indicates the amount of resources and effort spent on a particular workflow in a particular iteration.\n\nUnified process is a flexible and customizable process model framework rather than a single fixed process. For example, the number of iterations in each phase, definition of workflows, and the intensity of a given workflow in a given iteration can be adjusted according to the nature of the project. Take the Construction Phase: to develop a simple system, one or two iterations would be sufficient. For a more complicated system, multiple iterations will be more helpful. Therefore, the diagram above simply records a particular application of the UP rather than prescribe how the UP is to be applied. However, this record can be refined and reused for similar future projects."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "SDLC process models example - CMMI",
     "maincontent" : "CMMI (Capability Maturity Model Integration) is a process improvement approach defined by Software Engineering Institute at Carnegie Melon University. CMMI provides organizations with the essential elements of effective processes, which will improve their performance. -- adapted from http://www.sei.cmu.edu/cmmi/\n\nCMMI defines five maturity levels for a process and provides criteria to determine if the process of an organization is at a certain maturity level. The diagram below [taken from Wikipedia] gives an overview of the five levels."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - Single Responsibility Principle",
     "maincontent" : "Single responsibility principle (SRP): A class should have one, and only one, reason to change. -- Robert C. Martin\n\nIf a class has only one responsibility, it needs to change only when there is a change to that responsibility."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - The Open-Closed Principle",
     "maincontent" : "Open-closed principle (OCP): A module should be open for extension but closed for modification. That is, modules should be written so that they can be extended, without requiring them to be modified. -- proposed by Bertrand Meyer\n\nIn object-oriented programming, OCP can be achieved in various ways. This often requires separating the specification (i.e. interface) of a module from its implementation."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - Liskov substitution principle",
     "maincontent" : "Liskov substitution principle (LSP): Derived classes must be substitutable for their base classes. -- proposed by Barbara Liskov\n\nLSP sounds the same as substitutability but it goes beyond substitutability; LSP implies that a subclass should not be more restrictive than the behavior specified by the superclass. As you know, Java has language support for substitutability. However, if LSP is not followed, substituting a subclass object for a superclass object can break the functionality of the code."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - Interface Segregation Principle",
     "maincontent" : "Interface segregation principle (ISP): No client should be forced to depend on methods it does not use."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - Dependency Inversion Principle",
     "maincontent" : "Dependency inversion principle (DIP):\n\nHigh-level modules should not depend on low-level modules. Both should depend on abstractions.\nAbstractions should not depend on details. Details should depend on abstractions."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - SOLID Principles",
     "maincontent" : "The five OOP principles given below are known as SOLID Principles (an acronym made up of the first letter of each principle):\n\nSingle Responsibility Principle (SRP)\nOpen-Closed Principle (OCP)\nLiskov Substitution Principle (LSP)\nInterface Segregation Principle (ISP)\nDependency Inversion Principle (DIP)"
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - Separation of concerns principle",
     "maincontent" : "Separation of concerns principle (SoC): To achieve better modularity, separate the code into distinct sections, such that each section addresses a separate concern. -- Proposed by Edsger W. Dijkstra\n\nA concern in this context is a set of information that affects the code of a computer program.\n\nExamples for concerns:\n\nA specific feature, such as the code related to the add employee feature\nA specific aspect, such as the code related to persistence or security\nA specific entity, such as the code related to the Employee entity\n\nApplying SoC reduces functional overlaps among code sections and also limits the ripple effect when changes are introduced to a specific part of the system.\n\nIf the code related to persistence is separated from the code related to security, a change to how the data are persisted will not need changes to how the security is implemented.\n\nThis principle can be applied at the class level, as well as at higher levels.\n\nThe n-tier architecture utilizes this principle. Each layer in the architecture has a well-defined functionality that has no functional overlap with each other.\n\nThis principle should lead to higher cohesion and lower coupling."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - Law of Demeter",
     "maincontent" : "Law of Demeter (LoD):\n\nAn object should have limited knowledge of another object.\nAn object should only interact with objects that are closely related to it.\n\nAlso known as\n\nDon’t talk to strangers.\nPrinciple of least knowledge\n\nMore concretely, a method m of an object O should invoke only the methods of the following kinds of objects:\n\nThe object O itself\nObjects passed as parameters of m\nObjects created/instantiated in m (directly or indirectly) \nObjects from the direct association of O\n\nLoD aims to prevent objects from navigating the internal structures of other objects.\n\nAn analogy for LoD can be drawn from Facebook. If Facebook followed LoD, you would not be allowed to see posts of friends of friends, unless they are your friends as well. If Jake is your friend and Adam is Jake’s friend, you should not be allowed to see Adam’s posts unless Adam is a friend of yours as well."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - YAGNI",
     "maincontent" : "YAGNI (You Aren't Gonna Need It!) Principle: Do not add code simply because ‘you might need it in the future’.\n\nThe principle says that some capability you presume your software needs in the future should not be built now because chances are \"you aren't gonna need it\". The rationale is that you do not have perfect information about the future and therefore some of the extra work you do to fulfill a potential future need might go to waste when some of your predictions fail to materialize."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - DRY",
     "maincontent" : "DRY (Don't Repeat Yourself) principle: Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. -- The Pragmatic Programmer, by Andy Hunt and Dave Thomas\n\nThis principle guards against the duplication of information.\n\nA functionality being implemented twice is a violation of the DRY principle even if the two implementations are different.\nThe value of a system-wide timeout being defined in multiple places is a violation of DRY."
   },{
-    "week" : "Week 9",
+    "title": "Week 9",
     "header" : "Principles - Brooks' Law",
     "maincontent" : "Brooks' law: Adding people to a late project will make it later. -- Fred Brooks (author of The Mythical Man-Month)\n\nExplanation: The additional communication overhead will outweigh the benefit of adding extra manpower, especially if done near a deadline."
   },{
-    "week" : "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Requirements - Intro",
     "maincontent" : "A software requirement specifies a need to be fulfilled by the software product.\n\nA software project may be,\n\na brown-field project i.e., develop a product to replace/update an existing software product\na green-field project i.e., develop a totally new system with no precedent\nIn either case, requirements need to be gathered, analyzed, specified, and managed.\n\nRequirements come from stakeholders.\n\nIdentifying requirements is often not easy. For example, stakeholders may not be aware of their precise needs, may not know how to communicate their requirements correctly, may not be willing to spend effort in identifying requirements, etc."
   },{
-    "week" : "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Requirements - Non-functional Requirements",
     "maincontent" : "Requirements can be divided into two in the following way:\n\nFunctional requirements specify what the system should do.\nNon-functional requirements specify the constraints under which the system is developed and operated.\n\nYou may have to spend an extra effort in digging NFRs out as early as possible because,\n\nNFRs are easier to miss e.g., stakeholders tend to think of functional requirements first\nsometimes NFRs are critical to the success of the software. E.g. A web application that is too slow or that has low security is unlikely to succeed even if it has all the right functionality.\n"
   },{
-    "week" : "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Requirements - Quality of Requirements",
     "maincontent" : "Here are some characteristics of well-defined requirements:\n\nUnambiguous\nTestable (verifiable)\nClear (concise, terse, simple, precise)\nCorrect\nUnderstandable\nFeasible (realistic, possible)\nIndependent\nAtomic\nNecessary\nImplementation-free (i.e. abstract)\nBesides these criteria for individual requirements, the set of requirements as a whole should be\n\nConsistent\nNon-redundant\nComplete\n"
   },{
-    "week" : "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Requirements - Prioritizing Requirements",
     "maincontent" : "Requirements can be prioritized based on the importance and urgency, while keeping in mind the constraints of schedule, budget, staff resources, quality goals, and other constraints.\n\nA common approach is to group requirements into priority categories. Note that all such scales are subjective, and stakeholders define the meaning of each level in the scale for the project at hand.\n\nSome requirements can be discarded if they are considered ‘out of scope’.\n\n"
   },{
-    "week" : "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Gathering Requirements - Brainstorming",
     "maincontent" : "In a brainstorming session there are no \"bad\" ideas. The aim is to generate ideas; not to validate them. Brainstorming encourages you to \"think outside the box\" and put \"crazy\" ideas on the table without fear of rejection.\n\n"
   },{
-    "week" : "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Gathering Requirements - Product Surveys",
     "maincontent" : "Studying existing products can unearth shortcomings of existing solutions that can be addressed by a new product. Product manuals and other forms of documentation of an existing system can tell us how the existing solutions work.\n\n"
   },{
-    "week" : "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Gathering Requirements - Observation",
     "maincontent" : "Observing users in their natural work environment can uncover product requirements. Usage data of an existing system can also be used to gather information about how an existing system is being used, which can help in building a better replacement e.g. to find the situations where the user makes mistakes when using the current system.\n\n"
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header": "Requirements - Gathering Requirements - User Surveys",
     "maincontent": "Surveys can be used to solicit responses and opinions from a large number of stakeholders regarding a current product or a new product."
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header": "Requirements - Gathering Requirements - Interviews",
     "maincontent": "Interviewing stakeholders and domain experts can produce useful information about project requirements.\n\n"
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header": "Requirements - Gathering Requirements - Focus Groups",
     "maincontent": "Focus groups are a kind of informal interview within an interactive group setting. A group of people (e.g. potential users, beta testers) are asked about their understanding of a specific issue, process, product, advertisement, etc.\n\n"
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header": "Requirements - Gathering Requirements - Prototyping",
     "maincontent": "Prototyping can uncover requirements, in particular, those related to how users interact with the system. UI prototypes or mock ups are often used in brainstorming sessions, or in meetings with the users to get quick feedback from them.\n\n"
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header": "Requirements - Specifying Requirements - Prose - What",
     "maincontent": "A textual description (i.e. prose) can be used to describe requirements. Prose is especially useful when describing abstract ideas such as the vision of a product.\n\n"
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header": "Requirements - Specifying Requirements - Feature Lists - What",
     "maincontent": "Feature list: A list of features of a product grouped according to some criteria such as aspect, priority, order of delivery, etc.\n\n"
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header": "Requirements - Specifying Requirements - User Stories - Introduction",
     "maincontent": "User story: User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system. \nA common format for writing user stories is:\n\nUser story format: As a {user type/role} I can {function} so that {benefit}\n\nYou can write user stories on index cards or sticky notes, and arrange them on walls or tables, to facilitate planning and discussion. Alternatively, you can use a software (e.g., GitHub Project Boards, Trello, Google Docs, ...) to manage user stories digitally.\n\n "
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Specifying Requirements - User Stories - Details",
     "maincontent": "The {benefit} can be omitted if it is obvious.\n\n It is recommended to confirm there is a concrete benefit even if you omit it from the user story. If not, you could end up adding features that have no real benefit.\n\nYou can add more characteristics to the {user role} to provide more context to the user story.\n\nYou can write user stories at various levels. High-level user stories, called epics (or themes) cover bigger functionality. You can then break down these epics to multiple user stories of normal size.\n\nYou can add conditions of satisfaction to a user story to specify things that need to be true for the user story implementation to be accepted as ‘done’.\n\nOther useful info that can be added to a user story includes (but not limited to)\n\nPriority: how important the user story is\nSize: the estimated effort to implement the user story\nUrgency: how soon the feature is needed."
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Specifying Requirements - User Stories - Usage",
     "maincontent": "User stories capture user requirements in a way that is convenient for scoping, estimation, and scheduling.\n\nUser stories differ from traditional requirements specifications mainly in the level of detail. User stories should only provide enough details to make a reasonably low risk estimate of how long the user story will take to implement. When the time comes to implement the user story, the developers will meet with the customer face-to-face to work out a more detailed description of the requirements.\nUser stories can capture non-functional requirements too because even NFRs must benefit some stakeholder.\nGiven their lightweight nature, user stories are quite handy for recording requirements during early stages of requirements gathering.\n\nWhile use cases can be recorded on physical paper in the initial stages, an online tool is more suitable for longer-term management of user stories, especially if the team is not co-located.\n\n"
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Specifying Requirements - Glossary - What",
     "maincontent": "Glossary: A glossary serves to ensure that all stakeholders have a common understanding of the noteworthy terms, abbreviations, acronyms etc.\n\n"
   },{
-    "week": "Week 5",
+    "title": "Week 5",
     "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
     "maincontent": "A supplementary requirements section can be used to capture requirements that do not fit elsewhere. Typically, this is where most Non-Functional Requirements will be listed.\n\n"
-  }
-  ]
-=======
-  "content": [
-    {
+  },{
       "title": "Implementation",
       "header": "IDE: Introduction",
       "maincontent": "Professional software engineers often write code using Integrated Development Environments (IDEs). IDEs support most development-related work within the same tool (hence, the term integrated).\n\nAn IDE generally consists of:\n\nA source code editor that includes features such as syntax coloring, auto-completion, easy code navigation, error highlighting, and code-snippet generation.\nA compiler and/or an interpreter (together with other build automation support) that facilitates the compilation/linking/running/deployment of a program.\nA debugger that allows the developer to execute the program one step at a time to observe the run-time behavior in order to locate bugs.\nOther tools that aid various aspects of coding e.g. support for automated testing, drag-and-drop construction of UI components, version management support, simulation of the target runtime platform, and modeling support.\nExamples of popular IDEs:\n\nJava: Eclipse, Intellij IDEA, NetBeans\nC#, C++: Visual Studio\nSwift: XCode\nPython: PyCharm\nSome web-based IDEs have appeared in recent times too e.g., Amazon's Cloud9 IDE.\n\nSome experienced developers, in particular those with a UNIX background, prefer lightweight yet powerful text editors with scripting capabilities (e.g. Emacs) over heavier IDEs.\n\n"
-    },
-    {
+  },{
       "title": "Implementation",
       "header": "IDE: Debugging",
       "maincontent": "Debugging is the process of discovering defects in the program. Here are some approaches to debugging:\n\n Bad -- By inserting temporary print statements: This is an ad-hoc approach in which print statements are inserted in the program to print information relevant to debugging, such as variable values. e.g. Exiting process() method, x is 5.347. This approach is not recommended due to these reasons:\nIncurs extra effort when inserting and removing the print statements.\nThese extraneous program modifications increase the risk of introducing errors into the program.\nThese print statements, if not removed promptly after the debugging, may even appear unexpectedly in the production version.\n Bad -- By manually tracing through the code: Otherwise known as ‘eye-balling’, this approach doesn't have the cons of the previous approach, but it too is not recommended (other than as a 'quick try') due to these reasons:\nIt is a difficult, time consuming, and error-prone technique.\nIf you didn't spot the error while writing the code, you might not spot the error when reading the code either.\n Good -- Using a debugger: A debugger tool allows you to pause the execution, then step through the code one statement at a time while examining the internal state if necessary. Most IDEs come with an inbuilt debugger. This is the recommended approach for debugging."
@@ -1070,5 +1064,4 @@
       "header": "Principles - Brooks' Law",
       "maincontent": "Brooks' law: Adding people to a late project will make it later. -- Fred Brooks (author of The Mythical Man-Month)\n\nExplanation: The additional communication overhead will outweigh the benefit of adding extra manpower, especially if done near a deadline."
     }]
->>>>>>> 18eb021c80fc0697e95a55ced5af15cf66ae164e
 }
