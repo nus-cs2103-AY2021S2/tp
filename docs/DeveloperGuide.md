@@ -439,7 +439,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a passenger while all passengers are being shown.
 
-    1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list. Passengers to be deleted are not in a pool.
 
     1. Test case: `delete 1`.<br>
        Expected: First contact is deleted from the list. Name of the deleted contact shown in the status message.
@@ -452,7 +452,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting multiple passengers while all passengers are being shown.
 
-    1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list. Passengers to be deleted are not in a pool.
 
     1. Test case: `delete 1 2`.<br>
        Expected: First and second contact is deleted from the list. Names of deleted contacts are shown in the status message.
