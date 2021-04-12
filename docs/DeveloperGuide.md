@@ -176,6 +176,24 @@ It implements the following operations:
 * `View schedules` - View the list of appointments that is happening on the queried date.
 * `List all appointments` - Show an unfiltered list of the appointments.
 
+Diagram below shows the activity diagram of the `add_appointment` command.
+
+![Activity Diagram of Add Appointment](images/appointment/appointmentActivity.png)
+
+Steps for the execution of the `AddAppointmentCommand` (assuming that no errors are 
+encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddAppointmentCommandParser`.
+3. The `AddApppointmentCommandParser` will then parse the inputs, and then validate
+   the parameters and create an `Appointment` object.
+4. The `AddAppointmentCommandParser` will then create and `AddAppointmentCommand` 
+   with the created `Appointment` object.
+5. Assuming that the above steps are all successful, the `LogicManager` will call 
+   the `ModelManager`'s `addAppointment()`, then create a `CommandResult` object and 
+   return the result.
+
+![Sequence Diagram of Add Appointment](images/appointment/appointmentSequence.png)
+
 These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
 `ViewAppointmentCommand` and `ListAppointmentCommand`.
 
@@ -545,6 +563,26 @@ It supports the following operations:
 * `edit_budget budget_size` - edit_budget b/600
 * `delete_budget` - delete_budget
 * `view_budget` - view_budget
+
+The following activity diagram summarizes what happens when the `add_budget` command is 
+executed.
+
+![Activity Diagram of Add Budget](images/budget/budgetActivity.png)
+
+Steps for the execution of the `AddBudgetCommand` (assuming that no errors are 
+encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddBudgetCommandParser`.
+3. The `AddBudgetCommandParser` will then parse the inputs, validate the parameter, and 
+   create a new `Budget` object with the given budget value.
+4. The `AddBudgetCommandParser` will then create a 
+   new `AddBudgetCommand` with the `Budget` object created.
+5. Assuming that the above steps are all successful, the `LogicManager` will call 
+   the `ModelManager`'s `addBudget()`, then create a `CommandResult` object and return 
+   the result.
+
+
+![Sequence Diagram for Add Budget](images/budget/budgetSequence.png)
 
 
 Given below is example usage scenarios and how the reminder features behave.
