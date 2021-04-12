@@ -1,8 +1,3 @@
----
-layout: page
-title: Developer Guide
----
-
 <p align="center">
   <img src="./images/budget_baby.png" width="200px" />
   <h1 align="center" style="margin-top:15px;">BudgetBaby :baby: :money_with_wings: Team</h1>
