@@ -671,6 +671,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 1. User inputs tutor details.
 2. TutorTracker confirms that tutor details have been added to list.
+   
    Use case ends.
 
 **Extensions**
@@ -681,15 +682,30 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     
 * 2a. Tutor details already exists in list.
     * 2a1. TutorTracker shows an error message 
-      
-      Use case resumes at step 1.
+
+      Use case ends.
 
 <hr/>
 
-**Use Case UC0002: Edit tutor**
+**Use Case UC0002: List tutor(s)**
 
 **MSS**
-1. User __requests to list tutors (UC0003)__.
+1. User requests to list tutor(s).
+2. TutorTracker shows a list of tutor(s).
+
+    Use case ends.
+
+**Extension**
+* 1a. The list is empty. 
+    
+  Use case ends.
+  
+<hr/>
+
+**Use Case UC0003: Edit tutor**
+
+**MSS**
+1. User __requests to list tutors (UC0002)__.
 2. User inputs new tutor details of specific tutor they want to edit.
 3. TutorTracker confirms that tutor details have been edited.
 
@@ -708,21 +724,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0003: List tutor(s)**
-
-**MSS**
-1. User requests to list tutor(s).
-2. TutorTracker shows a list of tutor(s).
-
-    Use case ends.
-
-<hr/>
-
 **Use Case UC0004: Delete a tutor**
 
 **MSS**
 
-1.  User requests to list tutors.
+1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
 3.  User requests to delete a tutor in the list by index.
 4.  TutorTracker deletes the tutor.
@@ -732,10 +738,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **Extensions**
 
 * 1a. The list is empty.   
-    Use case ends.
+  Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.   
+    * 3a1. TutorTracker shows an error message.
+      
       Use case resumes at step 2.
 
 <hr/>
@@ -744,20 +751,22 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1.  User requests to list tutors.
+1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
 3.  User requests to favourite a tutor in the list by index.
 4.  Tutor added as favourite.
-
+    
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.   
-    Use case ends.
+* 1a. The list is empty.
+  
+   Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.    
+    * 3a1. TutorTracker shows an error message.
+      
       Use case resumes at step 2.
 
 <hr/>
@@ -766,35 +775,42 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1.  User requests to list tutors who were added as favourite.
+1.  User requests to list tutor(s) who were added as favourite.
 2.  TutorTracker shows a list of favourite tutor(s).
 
     Use case ends.
 
-**Extensions**
+**Extension**
 
 * 1a. The list is empty.
-  Use case ends.
+      
+     Use case ends.
 <hr/>
 
 **Use Case UC0007: Unfavourite a tutor**
 
 **MSS**
 
-1.  User requests to list tutors.
+1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
-3.  User requests to favourite a tutor in the list by index.
-4.  Tutor added as favourite.
+3.  User requests to unfavourite a tutor in the list by index.
+4.  Tutor removed from favourite.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.  
-Use case ends.
+      Use case ends.
 
 * 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
+      
+      Use case resumes at step 2.
+
+* 3b. The tutor is not a favourite so cannot be unfavourited.
+    * 3a1. TutorTracker shows an error message.
+      
       Use case resumes at step 2.
 
 <hr/>
@@ -803,10 +819,11 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to list tutors.
+1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
-3.  User requests to export a tutor's details and notes in the list by index.
-4.  Text file containing tutor's details and notes created.
+3.  User requests to export a tutor's details,subject list and notes in the list, by index.
+4.  Text file containing tutor's details,subject list and notes created.
+    
     Use case ends.
 
 **Extensions**
@@ -899,7 +916,7 @@ Use case ends.
 * 3a. No appointment matches the search value.
     * 3a1. TutorTracker displays an empty list.
       
-    Use case resumes at step 2.
+    Use case ends.
 
 <hr/>
 
@@ -1755,11 +1772,4 @@ Given below are instructions to test the app manually.
        Expected: Appointment Filter `Subject Name: English` is deleted and both appointments with Alex Yeoh and Bernice Yu are displayed. <br><br>
     4. Test Case: `delete_appointment_filter` <br>
        Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+       
