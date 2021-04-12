@@ -1,0 +1,96 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant "descriptor:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/jacob")
+activate LogicManager
+
+LogicManager -> DeliveryListParser : parseCommand("edit 1 n/jacob")
+activate DeliveryListParser
+
+create EditCommandParser
+DeliveryListParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> DeliveryListParser
+deactivate EditCommandParser
+
+DeliveryListParser -> EditCommandParser : parse("1 n/apple")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+create EditItemDescriptor
+EditCommand -> EditItemDescriptor
+activate EditItemDescriptor
+
+EditItemDescriptor --> EditCommand : descriptor
+deactivate EditItemDescriptor
+
+EditCommand --> EditCommandParser : descriptor
+deactivate EditCommand
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : command
+deactivate EditCommand
+
+EditCommandParser --> DeliveryListParser : command
+deactivate EditCommandParser
+
+EditCommandParser -[hidden]-> DeliveryListParser
+destroy EditCommandParser
+
+DeliveryListParser --> LogicManager : command
+deactivate DeliveryListParser
+
+LogicManager -> EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model : getFilteredLCustomerList()
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> EditCommand : createEditedCustomer(customerToEdit, editCustomerDescription)
+activate EditCommand
+
+EditCommand --> EditCommand
+deactivate EditCommand
+
+EditCommand -> Model : setCustomer(customerToEdit, editedCustomer)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand : result
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager : result
+deactivate LogicManager
+@enduml

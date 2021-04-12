@@ -88,7 +88,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 3` Command](images/DeleteDeliveryTaskSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -135,21 +135,22 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Delete Feature `delete`
 
-The delete feature allows drivers to delete a delivery tasks from the delivery list by using the task number in the displayed list.
+The delete feature allows drivers to delete a delivery task from the delivery list by using the index in the displayed list.
 
 Implementation 
-The Sequence Diagram below shows how the components interact when a user enters delete 3 to delete a delivey tasks with task number 3 in the delivery list:
+The Sequence Diagram below shows how the components interact when a user enters `delete 3` to delete a delivery tasks with task number 3 in the delivery list:
 
 
-Description:
-When the user keys in an input, execute method of LogicManager is called with the user input as the parameter.
-In the method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input.
-The DeliveryListParser parses the user input and identifies it as a DeleteCommand and instantiates a DeleteCommandParser object.
-DeleteListParser then invokes the parse method of the DeleteCommandParser object to further parse the arguments provided.
+**Description:**
+
+When the user keys in the input 'delete 3', execute method of LogicManager is called with the input as the parameter.
+In the method, LogicManager calls the parseCommand method of DeliveryListParser to parse the user input.
+The DeliveryListParser parses the input and identifies it as a DeleteCommand and instantiates a DeleteCommandParser object.
+DeliveryListParser then invokes the parse method of the DeleteCommandParser object to further parse the arguments provided.
 In the parse method, the DeleteCommandParser ensures that the input is of the correct format and identifies the input for the index of the item to be deleted.
-If the index specified by the user is valid, a new DeleteCommand instance will be created and returned to LogicManager via DeleteListParser.
+If the index specified by the user is valid, a new DeleteCommand instance will be created and returned to LogicManager via DeliveryListParser.
 The LogicManager will then invoke the overridden execute method of the DeleteCommand object with Model as the argument.
-Subsequently, the DeleteCommand object will invoke deleteItem method of Model with the index of the item to delete as the argument. It will then return a CommandResult object to LogicManager.
+Subsequently, the DeleteCommand object will invoke deleteCustomer method of Model with the index of the customer to delete as the argument. It will then return a CommandResult object to LogicManager.
 This CommandResult will be returned at the end by LogicManager.
 
 The following Activity Diagram summarizes what happens when a user executes the delete command:
@@ -158,6 +159,69 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 ![Delete Command Activity Diagram](images/DeleteDeliveryTaskActivityDiagram.png)
 
+**Design consideration**:
+
+**Aspect: How `Delete` delivery task executes**
+
+**Alternative 1 (current choice)**: Delete delivery task based on the index number shown on the delivery list.
+
+**Pros:** User can ensure that the correct delivery tasks is deleted as index number is unique to each delivery task
+
+**Cons:** User is required to look through the list first to find the index of the delivery tasks they wish to delete
+
+**Alternative 2:** Delete delivery task using name
+
+**Pros**: User may no longer need to look through the delivery list to find the index number of the task they wish to delete
+
+**Cons:** If there are duplicates in the name, the wrong delivery task might get deleted. Furthemore, the User has to type a longer command text if the name is long.
+
+Hence, Alternative 1 was chosen because it is less likely to be buggy when in production even though for a larger delivery list, the user may dislike deleting delivery task based on index
+
+### Edit Feature `edit`
+
+The edit feature allows drivers to edit the name, address, email, tag and date of a delivery task from the delivery list using the index/task number of the delivery task
+
+Implementation 
+The Sequence Diagram below shows how the components interact when a user enters `edit 1 n/Jacob` to change the name of the first delivery task in the delivery list:
+
+
+**Description:**
+
+When the user keys in the input 'edit 1 n/Jacob', execute method of LogicManager is called with the input as the parameter.
+In the method, LogicManager calls the parseCommand method of DeliveryListParser to parse the user input.
+The DeliveryListParser parses the input and identifies it as a EditCommand and instantiates a EditCommandParser object.
+DeliveryListParser then invokes the parse method of the EditCommandParser object to further parse the arguments provided.
+In the parse method, the EditCommandParser ensures that the input is of the correct format and identifies the index of the item to be edited.
+If both the index and attributes specified by the user is valid, a new EditCommand instance will be created and returned to LogicManager via DeliveryListParser.
+The LogicManager will then invoke the overridden execute method of the EditCommand object with Model as the argument.
+EditCommand calls the getFilteredCustomerList method of Model to get the customer list. It also calls the createEditedCustomer method to create an edited customer
+Using the index attribute of the EditCommand object, the customer to be edited from the customer list is retrieved and set to the edited customer.
+Then, EditCommand will create a CommandResult object and return it to LogicManager.
+This CommandResult will be returned at the end by LogicManager.
+
+The following Activity Diagram summarizes what happens when a user executes the delete command:
+
+![Delete Command Sequence Diagram](images/EditSequenceDiagram.png)
+
+![Delete Command Activity Diagram](images/EditSequenceDiagram.png)
+
+**Design consideration**:
+
+**Aspect: How `edit` delivery task executes**
+
+**Alternative 1 (current choice)**: Delete delivery task based on the index number shown on the delivery list.
+
+**Pros:** User can ensure that the correct delivery tasks is deleted as index number is unique to each delivery task
+
+**Cons:** User is required to look through the list first to find the index of the delivery tasks they wish to delete
+
+**Alternative 2:** Delete delivery task using name
+
+**Pros**: User may no longer need to look through the delivery list to find the index number of the task they wish to delete
+
+**Cons:** If there are duplicates in the name, the wrong delivery task might get deleted. Furthemore, the User has to type a longer command text if the name is long.
+
+Hence, Alternative 1 was chosen because it is less likely to be buggy when in production ev
 
 ### Find Feature `find KEYWORDS`
 
@@ -228,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Delivery driver | Add a delivery entry to the list.                           | Keep track of all the deliveries I am supposed to make.                   |
 | `* *`    | Delivery driver | Get the customer’s details of a delivery entry in the list. | Understand the customer of that delivery better.                          |
 | `* *`    | Delivery driver | Mark a delivery entry in the list as done.                  | Keep track of which deliveries I have done.                               |
-| `* * *`  | Delivery driver | Delete a delivery entry from the list.                      | Remove completed deliveries or unwanted deliveries I do not want to make. |
+| `* * *`  | Delivery driver | Delete a delivery entry from the list.                      | Remove completed deliveries or deliveries that I no longer require.       |
 | `* *`    | Delivery driver | Clear all delivery entries from the list.                   | Clean or reset my delivery list.                                          |
 | `* * *`  | Delivery driver | Edit a delivery entry in the list.                          | Make necessary changes to the delivery details.                           |
 | `* * *`  | Delivery driver | Exit the app.                                               | Close the app.                                                            |
@@ -242,6 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Delivery driver | Add a tag to a delivery entry in the list.                  | Add information categorising the parcel for that delivery.                |
 | `* *`    | Delivery driver | Delete a tag from a delivery entry in the list.             | Delete the information categorising the parcel for that delivery.         |
 | `* *`    | Delivery driver | Edit a tag of a delivery entry in the list.                 | Edit the information categorising the parcel for that delivery.           |
+| `* *`    | Delivery driver | View a summary of my current delivery workflow              | track my progress and plan my delivery schedule                           |
 
 *{More to be added}*
 
@@ -357,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees:**
 
-* Deleting the selected delivery entry from the list.
+* Deleting the delivery entry from the list.
 
 **MSS**
 
@@ -788,6 +853,27 @@ Below is an activity diagram to show a more simplified representation of the fin
 
   Use case resumes from step 6.
 
+
+**Use case: UC18 - View a summary of my current delivery workflow.**
+
+**Guarantees:**
+
+* Generating a delivery summary report showing useful statistics for the driver
+
+**MSS**
+
+1.  User requests to see a summary of his delivery workflow.
+2.  Delivery App lists out calculated figures for deliveries due/not due, deliveries done/not done and deliveries with tags
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that there is currently no data.
+
+  Use case ends.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -844,29 +930,41 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
-### Deleting a customer
+### Deleting a delivery task
 
-1. Deleting a customer while all customers are being shown
+1. Deleting a delivery task
 
-   1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+   1. Prerequisites: TimeforWheels sample data is loaded in the app. List all delivery task using the `list` command.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First delivery task is deleted from the list. Details of the deleted task shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No delivery task is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
-### Saving data
+### Editing a delivery task
 
-1. Dealing with missing/corrupted data files
+1. Editing a delivery task in the delivery list
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: TimeforWheels sample data is loaded in the app. List all delivery task using the `list` command.
 
-1. _{ more test cases …​ }_
+   1. Test case: `edit 1 n/Jacob`<br>
+      Expected: Name for the First delivery task is changed from Alex Yeoh to Jacob. Details of the edited task shown in the status message.
+      
+   1. Test case: `edit 1 p/87348970 e/jacob@example.com a/Blk 30 Bukit Batok 29 #05-40 `<br>
+         Expected: Phone, Email, Address of the first delivery task is changed to 87348970, jacob@example.com and Blk 30 Bukit Batok 29 #05-40 respectively.
+
+   1. Test case: `edit 0 n/John`<br>
+      Expected: No delivery task is edited. Error message shown in the status message.
+      
+   1. Test case: `edit 2 d/2021-13-05`<br>
+      Expected: No delivery task is edited. Error message indicating that Dates should be of the format YYYY-MM-DD is shown
+      
+   1. Other incorrect delete commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
