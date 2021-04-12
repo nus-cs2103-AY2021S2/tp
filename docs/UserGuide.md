@@ -76,6 +76,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 ### 2.2. StoreMando's layout
 
+![GUILayout](images/GUILayout.png)
+
 #### Command Box
 
 The command box is the long box at the top where you will be entering commands to be executed by StoreMando.
