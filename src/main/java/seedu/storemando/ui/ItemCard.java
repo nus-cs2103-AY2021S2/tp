@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import seedu.storemando.model.expirydate.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.predicate.ItemExpiringPredicate;
 import seedu.storemando.model.item.Item;
 
 /**

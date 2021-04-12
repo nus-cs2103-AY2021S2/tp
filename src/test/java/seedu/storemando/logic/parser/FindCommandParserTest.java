@@ -11,8 +11,8 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.logic.commands.FindCommand;
-import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
-import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsPartialKeywordsPredicate;
 
 public class FindCommandParserTest {
 

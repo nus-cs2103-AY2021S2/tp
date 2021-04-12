@@ -8,8 +8,8 @@ import java.util.Arrays;
 
 import seedu.storemando.logic.commands.ListCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
-import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
-import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.tag.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ListCommand object.

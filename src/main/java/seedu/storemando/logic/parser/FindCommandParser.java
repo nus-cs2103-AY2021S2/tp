@@ -8,8 +8,8 @@ import java.util.Arrays;
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.ItemName;
-import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
-import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsPartialKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object.

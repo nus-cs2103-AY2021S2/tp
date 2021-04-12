@@ -13,8 +13,8 @@ import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
-import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.tag.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Lists all items in the storemando to the user.
@@ -24,9 +24,11 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all items.";
-    public static final String MESSAGE_SUCCESS_TAG_PREDICATE = "Listed all items with the following tag %s";
-    public static final String MESSAGE_SUCCESS_LOCATION_PREDICATE = "Listed all items located in %s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the storemando.\n"
+    public static final String MESSAGE_SUCCESS_TAG_PREDICATE = "Listed all items with the following "
+        + "tag %s (if the tag exists).";
+    public static final String MESSAGE_SUCCESS_LOCATION_PREDICATE = "Listed all items located in %s "
+        + "(if the location exists).";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the StoreMando.\n"
         + "Parameters: "
         + "[" + PREFIX_LOCATION + "LOCATION] " + "/ [" + PREFIX_TAG + "TAG]\n"
         + "Example:\n"

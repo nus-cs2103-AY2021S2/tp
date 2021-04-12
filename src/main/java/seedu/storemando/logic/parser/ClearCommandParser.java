@@ -7,7 +7,7 @@ import seedu.storemando.logic.commands.ClearAllCommand;
 import seedu.storemando.logic.commands.ClearCommand;
 import seedu.storemando.logic.commands.ClearLocationCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
-import seedu.storemando.model.item.LocationContainsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsPredicate;
 
 /**
  * Parses input arguments and creates a new ClearCommand object.

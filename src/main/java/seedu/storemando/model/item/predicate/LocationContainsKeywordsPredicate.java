@@ -1,9 +1,10 @@
-package seedu.storemando.model.item;
+package seedu.storemando.model.item.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.storemando.commons.util.StringUtil;
+import seedu.storemando.model.item.Item;
 
 /**
  * Tests that a {@code Item}'s {@code location} matches any of the keywords given.

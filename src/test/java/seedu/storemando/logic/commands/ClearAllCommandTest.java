@@ -8,12 +8,11 @@ import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.StoreMando;
 import seedu.storemando.model.UserPrefs;
-import seedu.storemando.model.item.LocationContainsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsPredicate;
 
 public class ClearAllCommandTest {
 
@@ -21,7 +20,7 @@ public class ClearAllCommandTest {
     public void execute_emptyStoreMando_failure() {
         Model model = new ModelManager();
 
-        assertCommandFailure(new ClearAllCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
+        assertCommandFailure(new ClearAllCommand(), model, ClearCommand.MESSAGE_NO_ITEMS_IN_STOREMANDO);
     }
 
     @Test
