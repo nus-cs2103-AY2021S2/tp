@@ -273,7 +273,7 @@ Below is an example sequence diagram for a valid find command from the user.
 
 Here is a more specific breakdown of the command's execute method.
 
-![FindSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png) {: .center-image}
+![FindSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png){: .center-image}
 
 1. Upon calling the `execute()` method, the `FindCommand` updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter.
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order.
@@ -446,7 +446,7 @@ Here is a more specific breakdown of the command's `execute` method.
 1. The `DropCommand` will call the `updateFilteredEntityList` method of the existing `Model` object update the `IdMatchPredicate` object into Pawbook.
 1. The `DropCommand` then creates a `CommandResult` object and returns it, indicating the successful updating of the `IdMatchPredicate` object.
 
-### Alternate implementations for Enrol/Drop features
+#### Alternate Implementation: Enrol/Drop features
 
 As dogs and programs can also be identified by their respective names instead of IDs, another implementation could be replacing the parameters of `dogId` and `programId` with their respective names.
 
@@ -1232,3 +1232,19 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
 1. Test case: `exit` <br>
    Expected: The program should exit and close.
+   
+## Effort 
+
+Throughout the development, our team wanted to make Pawbook easy to use, intuitive and presentable. After countless group discussions, physical meetings and additional effort leading up to submission, we managed to pull through and present a usable and functioning product that we are proud of. Amassing over 14,000 lines of code combined, we had to stick to strict internal deadlines, manage conflicts and maintain a culture of open communication and transparency. We also took the liberty to call for group meetings whenever needed, going beyond just the usual meetings to make sure everyone is in sync. 
+
+The first step of development was abstracting the "entity" that was used in AddressBook. Instead of just a Person entity, we realised we needed to create three entities: Dog, Owner and Program. This included a great deal of refactoring and involved the abstraction of an Entity class that is inherited by all three classes. 
+
+The second challenge was deciding what type of data structure we wanted to use. Because of the relationship between owners, dogs and programs, we knew that there must be a way for the entities to call on each other. However, we did not want to store the related objects directly in each entity as that would lead to very high coupling. We came up with an ID system that allows us to refer to each entity by ID. However, we were stuck when trying to implement the hashmap data structure that we were initially thinking of using. This was because changing the internal data structure would greatly impact al aspects of the application, including UI, testing and functionality. We then decided to refactor the internal list structure to accept a Pair class, containing the ID as the key and the object as the value. This was another huge refactoring that we had to work through. 
+
+Once the bottleneck on the underlying data structure was finally completed, we had to think of how to refactor the functions such that they were able to accept all three entities. Additioanlly, we had to think of all the features that we wanted to accomplish to help us achieve our target proposition. With all of us taking one or more commands, we worked in parallel to push out new commands such as `list`, `view`, `schedule`, `enrol`, `drop` while heavily refactoring existing commands and improving on them to not just work with the three new entities, but also change the way the results are displayed. We decided that we wanted the display results not to follow numerical ordering, but in order of relevance and sense from the user perspective. 
+
+In terms of testing, we are proud to say that our test coverage has passed over the 77% mark, above the original coverage of AB3 which was 72%. This was because the team really pulled together to bring our coverage up leading to the final submission, ensuring that our tests were comprehensive enough to cover majority of the functional code. 
+
+We also placed emphasis on GUI, making sure that our GUI was suitable and aesthetically pleasing for users. Through the process, we also had to learn a great deal of fxml syntax as we did away with SceneBuilder which we thought was hard to use and inflexible. Hence, we directly edited the code instead. 
+
+Finally, the team made additional effort into making sure that the documentation was organised, comprehensive and easy to read. We all had to pick up PlantUML notation to create the UML diagrams such as activity diagrams and sequence diagram. Before submission, we made sure to standardise and make consistent the formatting, positioning of diagrams and overall flow and logic of the User Guide and this Developer Guide.
