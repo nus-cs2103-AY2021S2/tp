@@ -327,17 +327,40 @@ The sort mechanism is facilitated by `FavouriteCommand` and `FavouriteCommandPar
 
 Given below are some example usage scenario and how the favourite mechanism behaves at each step.
 
-Scenario 1: User enters `list` followed by `fav 2`.
-1. 
+Scenario 1: User enters `fav 3` after entering the `list` command.
 
-Scenario 2: User enters `find alice` followed by `fav 1`.
-1.
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`, 
+   which then parses the input into the command word and arguments, `3`. 
+   `2` is passed to `FavouriteCommandParser#parse(3)`.
 
-Scenario 3: User enters `list` followed by `fav 3 o/remove`.
-1.
+Step 2. `FavouriteCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+   The `index` of `3` and option fields are parsed out. Since no option is used in this scenario,
+   the `isFav` variable is set to `true`. A new `FavouriteCommand(3, true)` is returned.
+
+Step 3. `LogicManager#execute()` calls `FavouriteCommand#execute()`.
+   This creates an `EditContactDescriptor`, which is used to set the `favourite` attribute of the contact to `true`.
+   A new favourited `Contact` is created. The `model` is updated accordingly.
+
+Step 4. The success message and favourited `Contact` are returned to `LogicManager` via a `CommandResult`.
 
 The following sequence diagram shows how the favourite operation works:
 ![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
+
+Scenario 2: User enters `fav 3 o/remove` after entering the `list` command.
+
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `4 o/remove`.
+`4` is passed to `FavouriteCommandParser#parse(4 o/remove)`.
+
+Step 2. `FavouriteCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The `index` of `4` and option field `remove` are parsed out. Since the `remove` option is used in this scenario,
+the `isFav` variable is set to `false`. A new `FavouriteCommand(4, false)` is returned.
+
+Step 3. `LogicManager#execute()` calls `FavouriteCommand#execute()`.
+This creates an `EditContactDescriptor`, which is used to set the `favourite` attribute of the contact to `false`.
+A new unfavourited `Contact` is created. The `model` is updated accordingly.
+
+Step 4. The success message and unfavourited `Contact` are returned to `LogicManager` via a `CommandResult`.
 
 #### Design consideration:
 
