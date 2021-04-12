@@ -55,9 +55,7 @@ group sd EditBookingCommand, Model: how EditBookingCommand interacts with Model 
 
     EditBookingCommand -> bookingListToEdit: setBooking(bookingToEdit, editedBooking)
     deactivate bookingListToEdit
-    EditBookingCommand -> Model: setResidence(targetResidence, residenceToEdit)
     deactivate residenceToEdit
-    EditBookingCommand -> Model: updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES)
 
 
 end
