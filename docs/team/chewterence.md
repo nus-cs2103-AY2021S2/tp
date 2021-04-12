@@ -5,10 +5,7 @@ title: Chew Hong Wei Terence's Project Portfolio Page
 
 ## Project: Green Mileage Efforts
 
-Green Mileage Efforts (GME) is an efficient carpooling management solution designed to help corporations reduce their 
-carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees 
-looking to carpool to and from their office. These pools of employees can then carpool from the office 
-regularly on the specified days and times every week.
+GreenMileageEfforts (GME) is a platform that helps the HR executive of any company quickly arrange carpooling among its employees in order to lower the carbon footprint of the company.
 
 Given below are my contributions to the project.
 
