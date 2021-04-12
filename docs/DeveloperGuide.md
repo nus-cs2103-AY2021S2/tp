@@ -764,7 +764,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
@@ -782,17 +782,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. Dictionote shows an error message.
+    * 2a1. Dictionote shows an error message.
 
       Use case resumes at step 2.
-* 5a. The given index is invalid.
+* 4a. The given index is invalid.
 
-    * 3a1. Dictionote shows an error message.
+    * 4a1. Dictionote shows an error message.
 
       Use case resumes at step 4.
 
