@@ -1,7 +1,9 @@
-﻿# NuFash Guide
----
+﻿---
 layout: page
-title: NuFash Developer Guide
+title: Developer Guide
+---
+# NuFash Developer Guide
+
 ---
 * [Setting up, getting started](#setting-up-getting-started)
 * [Design](#design)
@@ -156,7 +158,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Completed] Default Sorting Order of Garments in Wardrobe
+### Default Sorting Order of Garments in Wardrobe
 
 #### Implementation
 
@@ -240,6 +242,8 @@ Given below is an example usage scenario of how the `find` mechanism works.
 The sequence diagram below shows how the find command works:
 ![Find Sequence Diagram](images/FindSequenceDiagram.png)
 
+**Note** ALL_PREFIXES in the above diagram refers to input the arguments as PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, 
+PREFIX_TYPE, PREFIX_DRESSCODE, PREFIX_DESCRIPTION
 The activity diagram below shows the flow of what happens when a user executes the find command:
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
@@ -247,7 +251,7 @@ The activity diagram below shows the flow of what happens when a user executes t
 #### Design Consideration:
 
 ##### Aspect: How many attributes Find can account for at a time
-* **Alternative 1 **: <br>
+* **Alternative 1**: <br>
   Finds with only one attribute at a time. <br>
   E.g. `find n/jeans c/blue` will only find entries whose Name attribute contains the keyword "jeans".
   * Pros: Easier to implement.
@@ -347,6 +351,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: User only requires a unique attribute, e.g. `Name` to be entered.
     * Cons: Harder to implement as the `Name` attribute has its own drawbacks, e.g `Name` could be
       a extremely long phrase, which could be hard for the user to remember or input into the application.
+
 
 ### <a name="view"></a> [Completed] View feature
 
