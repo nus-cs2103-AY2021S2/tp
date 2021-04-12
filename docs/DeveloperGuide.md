@@ -492,9 +492,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-
 **Use case: Request help**
 
 **MSS**
@@ -771,7 +768,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  JJIMY deletes the order
 
     Use case ends.
-
+    
 **Extensions**
 
 * 2a. The list is empty.
@@ -783,6 +780,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. JJIMY shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case: Complete an order**
+
+1. User requests to list orders
+2. JJIMY shows a list of orders
+3. User requests to mark a specific order as completed
+4. JJIMY moves the order from order list to order history and marks the order as completed.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+  
+* 3a. The given index is invalid.
+
+	* 3a1. JJIMY shows an error message.
+
+	Use case resumes at step 2.
 
 **Use case: Edit an order**
 
@@ -811,6 +827,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
 
+**Use case: Show order history***
+
+1. User requests to see order history
+2. History of orders is shown. Orders are either completed or cancelled.
+
+**Extensions**
+
+* 1a. The history is empty.
+
+  Use case ends.
+  
 **Use case: Find an order**
 
 **MSS**
