@@ -13,6 +13,7 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
+//Todo
 public class MergeNoteCommand extends Command {
     public static final String COMMAND_WORD = "mergenote";
 

@@ -19,7 +19,7 @@ import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddContactCommandParser implements Parser<AddContactCommand> {
 

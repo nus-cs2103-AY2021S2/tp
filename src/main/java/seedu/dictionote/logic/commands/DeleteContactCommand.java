@@ -28,6 +28,9 @@ public class DeleteContactCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteContactCommand to delete contact at a specified {@code Index}.
+     */
     public DeleteContactCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

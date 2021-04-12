@@ -13,7 +13,7 @@ import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.UserPrefs;
 
 /**
- * API of the Storage component
+ * API of the Storage component.
  */
 public interface Storage extends ContactsListStorage, UserPrefsStorage, NoteBookStorage,
         DictionaryStorage, DefinitionBookStorage {
