@@ -27,7 +27,7 @@ Interface Logic <<Interface>>
     Class LogicManager
 }
 
-package Model{
+package Model {
     Class HiddenModel #FFFFFF
 }
 

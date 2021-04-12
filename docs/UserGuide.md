@@ -843,6 +843,9 @@ To purge all sample user data from SmartLib, you may use the command
 
 * **Special characters**: Special characters refer to any characters that are not alphanumeric.
 
+* **Uniform Resource Locator (URL)**: This is a reference to a web resource that specifies its location on a computer
+    network and a mechanism for retrieving it.
+
 * **Web browser**: A web browser is a piece of application software for accessing the World Wide Web.
     Some examples include Google Chrome, Mozilla Firefox, and Safari.
 
