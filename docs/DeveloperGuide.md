@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all garments
 2. NuFash shows a list of garments
 3. User specifies a 3 garments they would like to view as an outfit.
-4. NuFash shows a list of garments that match the specified garments
+4. NuFash shows a list of garments with the specified garments    
    Use case ends.
 
 **Extensions**
@@ -535,8 +535,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given indexes are invalid.
-    * 3a1. NuFash shows an error message.  
-      Use case ends.
+    * 3a1. NuFash shows an error message.   
+    Use case ends.
+      
 <br><br>
       
 <a name="non-functional-requirements"></a>**Non-Functional Requirements:**
