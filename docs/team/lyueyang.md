@@ -3,8 +3,6 @@ layout: page
 title: Yue Yang's Project Portfolio Page
 ---
 
-## Yue Yang's Portfolio
-
 ## Project: GreenMileageEfforts
 
 ### Overview
