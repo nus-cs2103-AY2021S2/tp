@@ -161,7 +161,7 @@ This image below is a screenshot of the app displaying events sorted by upcoming
 * Parameters in `{}` represents mutually-exclusive parameters.<br>
   Each mutually-exclusive parameter is separated by a `|`.<br>
   e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
-  However `command foo bar` is an invalid command.
+  However, `command foo bar` is an invalid command.
 
 </div>
 
