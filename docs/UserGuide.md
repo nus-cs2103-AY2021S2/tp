@@ -227,37 +227,6 @@ Format: `deletenote INDEX`
 * The index refers to the index number shown in the displayed note list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-#### Mark a note as done: `markasdonenote`
-
-Marks a note in a list as done.
-
-Format: `markasdonenote INDEX`
-
-* Marks the note at the specified `INDEX` as done.
-* The index refers to the index number shown in the displayed note list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* After execution, the affected note will be marked with a green tick.
-
-#### Mark a note as undone: `markasundonenote`
-
-Marks a note in a list as undone.
-
-Format: `markasundonenote INDEX`
-
-* Marks the note at the specified `INDEX` as undone.
-* The index refers to the index number shown in the displayed note list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* After execution, the affected note will not be marked with a green tick.
-
-#### Mark all notes as undone: `markallasundonenote`
-
-Marks all notes in a list as undone.
-
-Format: `markallasundonenote`
-
-* Marks all the notes as undone.
-* After execution, all notes marked with a green tick will be reset.
-
 #### Editing a note : `editnote`
 
 Edits an existing note in the note list.
@@ -345,9 +314,10 @@ Examples:
 
 * `findnote c/CS2103` returns note containing `CS2103`
 * `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
+
 #### Edit a note in edit mode : `editmode`
 
-Edits a note in edit mode. 
+Edits a note in edit mode.
 
 Format: `editmode`
 
@@ -361,7 +331,7 @@ Format: `editmode`
 Examples:
 * `editmode`
   * Note Content will be editable
-![Ui Panel](images/EditModeExample.png)
+    ![Ui Panel](images/EditModeExample.png)
 
 <div markdown="span" class="alert alert-primary">
 
@@ -397,6 +367,59 @@ Examples:
 * `quit`
   * quit edit mode and discard all changes.
 
+#### Sort all notes : `sortnote`
+
+Sort every note on the note list alphabetically.
+
+Format: `sortnote`
+
+#### Find notes using a keyword : `findnote`
+
+Find notes whose names contain any of—or tags contain all of—the given keywords.
+
+Format: `findnote c/NAME_KEYWORD... [t/TAG_KEYWORD]...`
+
+* The search is case-insensitive. e.g `c/cs2103` will match the name `CS2103`
+* Only the content and tags are searched.
+* Notes and tags will be matched if they contain the given keywords e.g. `c/CS` will match the note containing `CS2103T`
+* Notes matching at least one content keyword will be returned (i.e. OR search). e.g. `c/CS c/Important` will return `CS Midterm`, `Important stuff`
+* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `t/urgent` will return all notes that are tagged with `urgent`.
+* When both `c/` and `t/` are used, notes that satisfy BOTH of the constraints will be returned. 
+Examples:
+
+* `findnote c/CS2103` returns note containing `CS2103`
+* `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
+
+#### Mark a note as done: `markasdonenote`
+
+Marks a note in a list as done.
+
+Format: `markasdonenote INDEX`
+
+* Marks the note at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* After execution, the affected note will be marked with a green tick.
+
+#### Mark a note as undone: `markasundonenote`
+
+Marks a note in a list as undone.
+
+Format: `markasundonenote INDEX`
+
+* Marks the note at the specified `INDEX` as undone.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* After execution, the affected note will not be marked with a green tick.
+
+#### Mark all notes as undone: `markallasundonenote`
+
+Marks all notes in a list as undone.
+
+Format: `markallasundonenote`
+
+* Marks all the notes as undone.
+* After execution, all notes marked with a green tick will be reset.
 
 ### Contact Features
 
