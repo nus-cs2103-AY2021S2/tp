@@ -182,6 +182,7 @@ Format: `showdc INDEX​`
 * If the list shown in the dictionary panel is the content's list, then the indexes will correspond to the content in the content list.   
   E.g. in the contents list, show the content of index 1:
   ![showdc content](images/Diagram-showdccontent.png)
+  <div style="page-break-after: always;"></div>
 * If the list shown in the dictionary panel is the definitions list, then the indexes will correspond to the content in the definitions list.  
   E.g. in the definitions list, show the definition of index 1:
   ![showdc defs](images/Diagram-showdcdef.png)
