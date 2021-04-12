@@ -632,12 +632,12 @@ There's only one existing group with the name `Colleagues` that only has the per
 2. Adding an existing group
     
     1. Test case: `add-group n/Colleagues p/2`<br>
-       Expected: A success message is shown in the status message. `Colleagues` will be selected with, showing all
-       two friends shown in the Friend Panel.
+       Expected: A success message is shown in the status message. Person at index 2 is added to `Colleagues`.
+       `Colleagues` will be selected, showing the two friends in the group on the Friend Panel.
    
     2. Test case: `add-group n/Colleagues p/2`<br>
-       Expected: A success message is shown in the status message. `Colleagues will be selected` with the
-       two friends that already exist shown in the Friend Panel.
+       Expected: A success message is shown in the status message. `Colleagues` will be selected. The
+       two friends that already exist in the `Colleagues` group will be shown in the Friend Panel.
        
 ### Adding a meeting: `add-meeting`
 
