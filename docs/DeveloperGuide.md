@@ -878,8 +878,6 @@ Challenges faced:
 * Although the individual project used JavaFx, we were not very familiar with the it. Hence, it took some
   trial and error was required to understand the JavaFx components and how they work.
 
-Effort required: ??
-
 Achievements of the project: 
 
 * The needs of the user are our first priority and hence we included features that satisfy almost
