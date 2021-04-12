@@ -14,6 +14,8 @@ Please refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 ### Architecture
@@ -54,6 +56,8 @@ Each of the four components,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
   API `interface` mentioned in the previous point).
+
+<div style="page-break-after: always;"></div>
 
 The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
@@ -109,6 +113,8 @@ limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -142,6 +148,8 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 ### Add Feature `add`
@@ -158,8 +166,6 @@ An item's name, quantity and location are compulsory fields that must be supplie
 
 The sequence diagram below shows how the components interact with each other for the scenario where the user
 issues the command `add n/apple q/2 l/kitchen`:
-
-<br>
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
@@ -179,8 +185,6 @@ From the diagram above:
 8. This `CommandResult` will be returned at the end by `LogicManager`.
 
 The following Activity Diagram summarizes what happens when a user executes the `add` command:
-
-<br>
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
@@ -208,8 +212,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
       save users from going through the hassle of distinguishing items by expiry date.
     * **Cons**: Users would not be able to store similar items that have different expiry dates as a result of being 
       produced in different batches.
-      
-<br>
 
 ### Edit Feature `edit`
 The edit feature allows users to edit an item's name, quantity, location, expiry date and tag.
@@ -224,12 +226,12 @@ Even though the edit command expects the user input to only have multiple tag pr
   item.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Actual Implementation
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `edit 1 n/apple`: 
-
-<br>
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
@@ -265,8 +267,6 @@ edited item.
 
 The following Activity Diagram summarizes what happens when a user executes the `edit` command:
 
-<br>
-
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
 #### Design consideration:
@@ -281,8 +281,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 * **Alternative 2:** Allow edited item to have the same fields as the original item.
     * **Pros**: Easy to implement.
     * **Cons**: May seem confusing that an edit with no changes result in a success.
-    
-<br>
 
 ### Delete Feature `delete`
 
@@ -292,8 +290,6 @@ The delete feature allows users to delete an item from the inventory by using th
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `delete 5` to delete the item with index 5 in the currently displayed list:
-
-<br>
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
@@ -313,9 +309,9 @@ a `CommandResult` object to `LogicManager`.
 
 The following Activity Diagram summarizes what happens when a user executes the `delete` command:
 
-<br>
-
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations:
 
@@ -329,8 +325,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
     * **Pros**: Will be easier for the user especially when there are many items in the list.
     * **Cons**: Items with the same name in different locations may cause confusion.
 
-<br>
-
 ### Find Feature `find`
 
 The find feature helps users find and display all items whose names
@@ -340,21 +334,17 @@ contain any of the given keywords, either in full or partial.
 
 `find */KEYWORD [MORE_KEYWORDS]` display all items whose names contain any of the given partial keywords .
 
+<div style="page-break-after: always;"></div>
+
 #### Actual Implementation
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find */cheese egg`:
 
-<br>
-
 ![FindPartialSequenceDiagram](images/FindPartialSequenceDiagram.png)
-
-<br>
 
 The sequence diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find Chocolate`:
-
-<br>
 
 ![FindFullSequenceDiagram](images/FindFullSequenceDiagram.png)
 
@@ -374,10 +364,9 @@ From the diagram above:
 9. Finally, a `CommandResult` object is created and returned to `LogicManager`.
 10. This `CommandResult` object will be returned in the end by `LogicManager`.
 
+<div style="page-break-after: always;"></div>
+
 The following Activity Diagram summarizes what happens when a user executes the `find` command:
-
-<br>
-
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
@@ -393,8 +382,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 * **Alternative 2:** Find items in the current list that matches the keyword, and an attribute e.g. tag.
     * **Pros**: Users would be able to retrieve a specific item more efficiently.
     * **Cons**: Users need to remember the items' attributes.
-    
-<br>
 
 ### List Feature `list`
 
@@ -408,9 +395,9 @@ or with a specific tag respectively.
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `list`:
 
-<br>
-
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 From the diagram above:
 
@@ -426,9 +413,9 @@ From the diagram above:
 8. Subsequently, a `CommandResult` object is created and returned to `LogicManager`.
 9. This `CommandResult` will be returned at the end by `LogicManager`.
 
-The following Activity Diagram summarizes what happens when a user executes the `list` command:
+<div style="page-break-after: always;"></div>
 
-<br>
+The following Activity Diagram summarizes what happens when a user executes the `list` command:
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
@@ -444,8 +431,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 * **Alternative 2:** List the entire inventory categorised in their specific locations.
     * **Pros**: More organised overview of all the items in the inventory.
     * **Cons**: Difficult to implement.
-    
-<br>
 
 ### Reminder Feature `reminder`
 
@@ -456,16 +441,12 @@ The reminder feature allows users to view items that are expiring within a certa
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `reminder 1 week`:
 
-<br>
-
 ![ReminderWeeksSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `reminder 3 days`:
-
-<br>
 
 ![ReminderDaysSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
 
@@ -493,8 +474,6 @@ From the diagrams above:
 
 The following Activity Diagram summarizes what happens when a user executes a `reminder` command:
 
-<br>
-
 ![ReminderActivityDiagram](images/ReminderActivityDiagram.png)
 
 #### Design consideration:
@@ -505,14 +484,11 @@ The following Activity Diagram summarizes what happens when a user executes a `r
     * **Pros**: Faster to type as compared to date in a particular format.
     * **Cons**: More cases to consider when parsing the command.
 
-
 * **Alternative 2** : Provide a date in the format of YYYY-MM-DD as input
     * **Pros**: Easier to compare between items as the input date can be used to create an `expiryDate` object
     which can be used to compare with all the items' expiry dates.
     * **Cons**: When the user wants to find items that are already expired, it is easier to key in a number then to
     find a particular date and key it in. This is more taxing on the user.
-
-<br>
 
 ### Sort Feature `sort`
 
@@ -528,8 +504,6 @@ view items in the displayed list in chronological order of their expiry date.
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `sort quantity asc`:
-
-<br>
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
@@ -557,10 +531,9 @@ From the diagram above:
     
 12. This `CommandResult` will be returned at the end by `LogicManager`.
 
+<div style="page-break-after: always;"></div>
 
 The following Activity Diagram summarizes what happens when a user executes a `sort quantity asc` command:
-
-<br>
 
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
@@ -579,28 +552,19 @@ The following Activity Diagram summarizes what happens when a user executes a `s
     * **Cons**: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components 
       that depend on filtered list implementation would have to be changed as well.
 
-<br>
-
 ### Clear Feature `clear`
 
 The clear feature allows users to either clear all items in the inventory or clear all items from a specific location.
-
 
 #### Actual Implementation 
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `clear`:
 
-<br>
-
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
-
-<br>
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `clear l/Kitchen`:
-
-<br>
 
 ![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
 
@@ -620,13 +584,11 @@ From the diagram above:
 9. Finally, a `CommandResult` object is created and is returned to `LogicManager`.
 10. The `CommandResult` object will be returned in the end by `LogicManager`.
 
+<div style="page-break-after: always;"></div>
+
 The following Activity Diagram summarizes what happens when a user executes the clear by location command:
 
-<br>
-
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
-
-<br>
 
 ### Help Feature `help`
 
@@ -642,12 +604,12 @@ Even though the help command expects the user input to contain the `help` comman
   append arguments. However, the arguments will not be parsed by StoreMando.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Actual Implementation
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `help`:
-
-<br>
 
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
 
@@ -664,9 +626,9 @@ From the diagram above:
    will be provided. `HelpCommand` will then create a `CommandResult` and pass to `LogicManager`.
 9. The `CommandResult` object will be returned in the end by `LogicManager`.   
 
-The following Activity Diagram summarizes what happens when a user executes a help command:
+<div style="page-break-after: always;"></div>
 
-<br>
+The following Activity Diagram summarizes what happens when a user executes a help command:
 
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
@@ -682,6 +644,8 @@ The following Activity Diagram summarizes what happens when a user executes a he
     * **Cons**: User has to copy and paste their link manually on their browser to get to the User guide.
     
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -711,6 +675,8 @@ The following Activity Diagram summarizes what happens when a user executes a he
 in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to
 physically search for an item to obtain information on it. Get everything you need from StoreMando - locations,
 quantities and expiry dates.
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -915,6 +881,8 @@ otherwise)
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC9 - List all items with a specific tag**
 
 **MSS**
@@ -965,6 +933,8 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC12 - Sort items by expiry date**
 
@@ -1039,6 +1009,8 @@ otherwise)
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -1061,9 +1033,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding an item
 
-    Prerequisites: 
-    Arguments are valid and compulsory parameters are provided. 
-    No duplicate item or similar item exists in the list.
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Prerequisites:**
+Arguments are valid and compulsory parameters are provided. No duplicate item or similar item exists in the list.
+
+</div>
 
 * Test case: `add n/Apple l/table q/1`<br>
    Expected: Item is added into the displayed list. Details of the added item shown in the status message.
@@ -1079,9 +1054,13 @@ testers are expected to do more *exploratory* testing.
   Expected: No item is added. Error details shown in the status message.
 
 ### Edit an item
-  
-    Prerequisites: 
-    There should be items in the inventory.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Prerequisites:**
+There should be items in the inventory.
+
+</div>
 
 * Test case: `edit 1 n/Apple`<br>
    Expected: The name of the first item is edited to `Apple`. Details of the edited item shown in the status message.
@@ -1091,8 +1070,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting an item
 
-        Prerequisites:
-        There should be items in the inventory.
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Prerequisites:**
+There should be items in the inventory.
+
+</div>
 
 * Test case: `delete 1`<br>
    Expected: First item from the list is deleted. Details of the deleted item shown in the status message.
@@ -1119,13 +1102,11 @@ testers are expected to do more *exploratory* testing.
 
     * Test case: `list`<br>
        Expected: All items are being displayed.
-      
 
 2. Listing items in a specific location.
    
     * Test case: `list l/Bedroom`<br>
        Expected: All items with `Bedroom` as the location are being displayed.
-
 
 3. Listing items with a specific tag. 
 
@@ -1141,7 +1122,6 @@ testers are expected to do more *exploratory* testing.
     * Test case: `reminder -7 days`<br>
      Expected: All items that have already expired for at least 7 days are shown.
 
-
 2. Showing items expiring within x weeks from today. 
 
     *  Test case: `reminder 7 weeks`<br>
@@ -1155,13 +1135,10 @@ testers are expected to do more *exploratory* testing.
 
     * Test case: `sort quantity asc`<br>
        Expected: All the items are sorted in order of ascending quantity.
-
     * Test case: `sort quantity desc`<br>
        Expected: All the items are sorted in order of descending quantity.
-
     * Incorrect sort commands to try: `sort`, `sort quantity`<br>
        Expected: Error details shown in the status message.
-
 
 2. Sorting items in the inventory in terms of expiry date.
 
@@ -1172,22 +1149,32 @@ testers are expected to do more *exploratory* testing.
 
 1. Clearing all the items in the inventory.
 
-        Prerequisite: 
-        Ensure there are items in the inventory.
-   
+    <div markdown="span" class="alert alert-warning"> 
+
+    :exclamation: **Prerequisites:**
+    Ensure there are items in the inventory.
+    
+    </div>
+
     * Test case: `clear`<br>
        Expected: All items are cleared from the inventory.
 
-
 2. Clearing all the items in a specific location. 
-   
-        Prerequisite: 
-        Ensure there is an item with the location "Bedroom" in the inventory.
-   
+
+    <div markdown="span" class="alert alert-warning">
+
+   :exclamation: **Prerequisites:**
+   Ensure there is an item with the location "Bedroom" in the inventory.
+
+    </div>
+
     * Test case: `clear l/Bedroom`<br>
        Expected: All items in the specified location are cleared.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Effort**
 
 This section explains the challenges faced as well as the effort required to develop StoreMando.
@@ -1228,5 +1215,3 @@ team member visualise the tasks remaining.
 
 With our dedicated members and good team spirit, we were able to overcome the challenges mentioned 
 above and produce a great product.
-
-
