@@ -272,6 +272,9 @@ As an example, consider running Dictionote as follows:
     * Pros: Zero modifications on the `Contact` class; `Contact` objects will not contain any attributes required by this feature.
     * Cons: Difficult to integrate with the other classes and methods related to `Contact` objects (e.g., deletion of a contact from the list must propagate to the `HashTable`).
 
+
+<div style="page-break-after: always;"></div>
+
 ### UI features
 #### Opening and closing UI through command result
 #####  Implementation
@@ -404,9 +407,6 @@ After typing in `mergenote 1 2` and executing it, the result would be:
 
 ![ConvertNoteToTxtEnd](images/MergeNoteAfter.png)
 
-
-<div style="page-break-after: always;"></div>
-
 #### Design Consideration
 
 * **Alternative 1 (current choice):** Implement MergeNoteCommand which extends Command.
@@ -441,8 +441,6 @@ The following is the sequence diagram for executing the `execute()` command in c
 ![CopyToNote](images/CopyToNoteDiagram.png)
 
 
-<div style="page-break-after: always;"></div>
-
 #### Design Consideration
 
 * **Alternative 1 (current choice):** Make use of the existing `Note` and `Content` models.
@@ -451,6 +449,9 @@ The following is the sequence diagram for executing the `execute()` command in c
 * Alternative 2: Create a new model that will contain a mix of the `Note` and `Content` models.
     * Pros: No constructors have to called and there won't be a need to worry about type casting failures.
     * Cons: Increasing workload and no other features will use this new model.
+
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -539,8 +540,6 @@ The following is the sequence diagram for executing the `execute()` command in c
 | `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Essential  |
 | `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Essential  |
 
-
-<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -775,6 +774,8 @@ The following is the sequence diagram for executing the `execute()` command in c
   Use case ends.
 
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 #### User Requirement
@@ -899,7 +900,6 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
     1. Other incorrect delete commands to try: `deletenote`, `deletenote x`, `...` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Showing a note
 
@@ -930,6 +930,8 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
 
   1. Other incorrect delete commands to try: `findcontent`, `findcontent `, `...` (where ` ` is a space)<br>
      Expected: Error message should be shown, stating that there is an 'invalid command format'.
+
+<div style="page-break-after: always;"></div>
 
 ### Showing content/definition
 
@@ -974,6 +976,8 @@ Available `OPTION` for open and close command : `-a`, `-c`, `-d`, `dc`, `dl`, `-
       
     1. Other incorrect open commands to try: `open`, `open x`, `...` (where x is not an `Option`)<br>
        Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 1. Close a panel through open command
 
