@@ -431,13 +431,6 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous App-Ointment home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Acceptable DateTime Formats
 Must be any of:
 ### Date:
@@ -468,6 +461,13 @@ Must be any of:
 * `next DAY` inputs must be spelt correctly and fully. Inputs such as`at/next MONDAYXX` or `at/next MON` is restricted. <br>
 
 </div><br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous App-Ointment home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
