@@ -521,7 +521,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br> 
+   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -532,22 +533,22 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a residence
 
-1. Adding a residence to the list of residence shown
+1. Adding a residence to the list of residences shown
 
     1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
     
     2. Test case: `add n/Amber Park a/22 Bedok Street` <br>
-    Expected: A residence named Amber Park and its address detail 22 Bedok Street to display in the list of residences. It is initialised with 'Clean' as its default status since this optional field is left empty.
+    Expected: A new residence named 'Amber Park' and with address '22 Bedok Street' will display in the list of residences. It is initialised with 'Clean' as its default status since this optional field is left empty.
     
     3. Test case: `add n/Midtown Modern a/18 Tan Quee Lan Street c/n t/popular` <br>
-    Expected: A residence named Midtown Modern with its address details 18 Tan Quee Lan Street to display in the list of residences. It should have 'Unclean' as its clean status and 'popular' as a tag.
+    Expected: A new residence named 'Midtown Modern' with address '18 Tan Quee Lan Street' will display in the list of residences. It should have 'Unclean' as its clean status and 'popular' as a tag.
     
     4. Test case: `add n/Capetown` <br>
     Expected: Invalid command format message displayed to indicate the required and optional parameters of the command.
 
 ### Deleting a residence
 
-1. Deleting a residence while all residence are being shown
+1. Deleting a residence while all residences are being shown
 
    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
 
@@ -631,10 +632,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
     
     2. Test case: `remind` <br>
-    Expected: residences with upcoming bookings happening in the next seven days (excluding today) will be displayed to the user.
+    Expected: residences with upcoming bookings starting in the next seven days (excluding the current day) will be displayed to the user. The list will be sorted to show unclean residences before clean residences.
     
     
-### Saving data
+### Modifying data files
 
 1. Dealing with corrupted data files
 
