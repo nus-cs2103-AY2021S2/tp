@@ -295,14 +295,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a task                                                | remove entries that I no longer need                         |
 | `* * *`  | user                                       | find a task by its moduleName                                      | locate a particular task in order to view its deadline and relevant details |
 | `* * *`  | user                                       | add priority tags (low, medium, high)                        | categorise my tasks and know which ones I should work on first |
+| `* * *` | user | be able to sort the tasks based on different categories | see which tasks requires more attention and know which are the tasks that I should work on first |
 | `* * *`  | user who has just finished a task | mark a task as done                                          | know which tasks I have completed                            |
+| ` * * * ` | user | have a separate list of daily tasks that I have to do | set achievable goal to clear a selection of tasks for that day so remain productive
 | `* *` | user | add notes to a particular task | jot down quick ideas or notes that I have for a particular task |
 | `* *` | user with many tasks in the App | sort tasks either by deadlines, module codes, or their priority tags | have different views of the App when I require them |
 | `* *` | user | edit task attributes | change the details of a task if the task requirements or details have changed |
+| `* * ` | user | be able to see every tasks | know what tasks I have on hand and start to work on the tasks |
+| ` * * ` | user | undo/redo a mistake when using semester.config | save time from deleting the wrong tasks, input a new tasks and checking whether the new task is correct |
 | `*` | user with many upcoming deadlines | be reminded of deadlines that are approaching | remember when my tasks are due and work on them |
 | `*` | user who just finished their semester | clear the application of all tasks | prepare for the next upcoming semester |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -410,10 +412,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  The source code should be open source.
 6.  An application should be able to have up to 1000 deadlines.
 7.  The user interface should be intuitive enough for users who are not IT-savvy.
-8.  The product is free.
-9.  The system should work on both `32-bit` and `64-bit` environments.
-10. The deadline should not contain tasks deemed offensive (terrorism, bombing, etc).
-11. The application can be used **without** internet.
+8.  The system should work on both `32-bit` and `64-bit` environments.
+9. The deadline should not contain tasks deemed offensive (terrorism, bombing, etc).
+10. The application can be used **without** internet.
 
 ### Glossary
 
