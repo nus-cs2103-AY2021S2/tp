@@ -32,7 +32,17 @@ Given below are my contributions to the project.
     reconsidering and conceptualizing how the user would use the product, the model was updated to include a list of pools which the `unpool` command would then delete from.
     Implementation of this command was the precursor that lead to the consideration of redesigning the model to include both a pool and passenger list.
 
-* **Enhancements implemented**:
+* **Project management**:
+  * Maintained issue tracker for the team by assigning tasks and linking pull requests.
+  * Ensure consistent java documentation at parts of the project.
+  * PRs reviewed (with non-trivial review comments):
+    [\#57](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/57)
+    [\#100](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/100)
+    [\#117](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/117)
+    [\#218](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/218)
+    [\#237](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/237)
+
+* **Enhancements to existing features**:
   * Updated `add` and `edit` commands to utilize the new fields added (Pull requests [\#52](https://github.com/AY2021S2-CS2103T-W10-1/tp/commit/cc6891e016c15be52a00996aa8a74f383efb2e7e))
     * What it does: The enhancement allows users to add and edit passengers with the new fields of TripDay, TripTime and Price.
     * Justification: TripDay, TripTime and Price fields were added to the model and thus the `add` and `edit` commands were required to
@@ -43,31 +53,22 @@ Given below are my contributions to the project.
       Moreover, the addition of the Price field proved to be far more challenging than expected, as it was an optional field that the user could enter.
       The Price field was thus implemented in a way that avoided the use of nulls as much as possible, thereby wrapping it in a java Optional.
 
-* **Contributions to User Guide**:
-  * Drafted initial version of the User Guide, added user guide introduction and quick start.
-  * Added documentation for the command summary and FAQ.
-  * Updated documentation for `add` and `edit` commands to match newly added fields of TripDay and TripTime.
-  * Added documentation for `pool` and `unpool` commands.
-  
-* **Contributions to Developer Guide**:
-  * Added documentation for `pool` and `unpool` commands (Pull requests [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234)).
-  * Added UML sequence and activity diagrams for `pool` and `unpool` commands (Pull requests [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234)).
-  * Added instructions for manual testing documentation for `pool` and `unpool` commands (Pull requests [\#277](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/277)).
-  * Added Effort Appendix page (Pull requests [\#280](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/280)).
-  * Updated glossary to contain descriptions of words that require an elaboration on.
-
-* **Contributions to Team based tasks**:
-  * Managed and assigned tasks for team members through the use of the issue tracker.
-  * PRs reviewed (with non-trivial review comments):
-    [\#57](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/57)
-    [\#100](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/100)
-    [\#117](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/117)
-    [\#218](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/218)
-    [\#237](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/237)
+* **Documentation**:
+  * User Guide:
+    * Drafted initial version of the User Guide, added user guide introduction and quick start.
+    * Added documentation for the command summary and FAQ.
+    * Updated documentation for `add` and `edit` commands to match newly added fields of TripDay and TripTime.
+    * Added documentation for `pool` and `unpool` commands.
+  * Developer Guide:
+    * Added documentation for `pool` and `unpool` commands (Pull requests [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234)).
+    * Added UML sequence and activity diagrams for `pool` and `unpool` commands (Pull requests [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234)).
+    * Added instructions for manual testing documentation for `pool` and `unpool` commands (Pull requests [\#277](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/277)).
+    * Added Effort Appendix page (Pull requests [\#280](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/280)).
+    * Updated glossary to contain descriptions of words that require an elaboration on.
 
 * **Contributions beyond the project team**:
   * Contributed to forum discussions
     * Facilitated a discussion on [streams versus loops](https://github.com/nus-cs2103-AY2021S2/forum/issues/145).
     * Started a discussion on [the use of optionals](https://github.com/nus-cs2103-AY2021S2/forum/issues/243).
     * Participated and responded to some forum posts.
-  * Reported [13 Bugs](https://github.com/chewterence/ped/issues) for team AY2021S2-CS2103T-W13-3 for the PE-D.
+  * Reported [13 Bugs](https://github.com/chewterence/ped/issues) for team AY2021S2-CS2103T-W13-3.
