@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=NiniJiaying&tabRepo=AY2021S2-CS2103-W17-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **New Feature**: Added the ability to add a booking record into the system.
-    * Justification: This feature improves the product by allowing users to add a valid booking record into the system. Every booking record consists of a compulsory valid venue and person. Checkings are done to ensure that a venue cannot be double booked. 
+    * Justification: This feature improves the product by allowing users to add a valid booking record into the system. Every booking record consists of a compulsory valid venue and person. Checkings are done to ensure that a venue cannot be double booked.
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
 * **New Feature**: Implemented multi-step prompting structure on `add_person`
