@@ -92,7 +92,7 @@ Given below are my contributions to the project.
         * Add sequence diagrams, activity diagrams and implementation for edit and help command
           (Pull requests [\#214](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/214))
         * Update the UiClassDiagram
-          (Pull requests [\#214](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/214))
+          (Pull requests [\#322](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/322))
     * About Us:
         * Update Chew Wei Hao's part. 
           (Pull requests [\#13](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/13))
@@ -103,7 +103,7 @@ Given below are my contributions to the project.
     * Change our success messages into a more meaningful message.
       (Pull requests [\#282](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/282))
     * Add javadocs to undocumented methods and classes
-      (Pull requests [\#355](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/355))
+      (Pull requests [\#335](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/335))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75)
