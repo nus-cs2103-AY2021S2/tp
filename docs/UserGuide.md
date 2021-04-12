@@ -165,6 +165,7 @@ Format: `finddef KEYWORD [MORE_KEYWORDS]`
 * Contents matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `some different` will return `some content`, `different thing`
 
+<div style="page-break-after: always;"></div>
 Examples:
 * `finddef programming` returns `Programming Language` and `Object-Oriented Programming` <br>
   ![finddef](images/Diagram-finddef.png)
