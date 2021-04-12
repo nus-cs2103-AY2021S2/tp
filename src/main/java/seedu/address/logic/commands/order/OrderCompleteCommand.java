@@ -22,7 +22,7 @@ public class OrderCompleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
             + ": Completes the order identified by the index number used in the displayed order list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: [INDEX]\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_COMPLETE_ORDER_SUCCESS = "Completed order: %1$s";

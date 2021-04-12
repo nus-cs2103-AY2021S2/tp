@@ -17,7 +17,7 @@ import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientNameContainsWordsPredicate;
-import seedu.address.model.ingredient.IngredientQuantityLessThanPredicate;
+import seedu.address.model.ingredient.IngredientQuantityLessThanEqualsPredicate;
 
 public class InventoryFindCommandParser implements Parser<InventoryFindCommand> {
 
@@ -68,7 +68,7 @@ public class InventoryFindCommandParser implements Parser<InventoryFindCommand> 
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         InventoryFindCommand.MESSAGE_USAGE), pe);
             }
-            predicates.add(new IngredientQuantityLessThanPredicate(quantity));
+            predicates.add(new IngredientQuantityLessThanEqualsPredicate(quantity));
         }
 
         return predicates;

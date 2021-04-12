@@ -18,7 +18,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
     + [Add a customers](#customer-add)
     + [Delete customer](#customer-delete)
     + [Edit customer information](#customer-edit)
-    + [Find contact](#customer-find)
+    + [Find customer](#customer-find)
       </span>
   * <span class="menu">[`Menu`](#menu)
     + [List all dishes](#menu-list)
@@ -211,7 +211,7 @@ component command prefix/[INPUT] -flag
          customer add n/Alan Tan p/81236789 e/alantan@nus.edu.sg a/21 Lower Kent Ridge Road, Singapore 119077 t/Gluten Allergy
          ```
 
-        The above command would add a new contact named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
+        The above command would add a new customer named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
         address "Lower Kent Ridge Road, Singapore 119077" and tagged with "Gluten Allergy".
         > Note: A known limitation of add is that customers with different names but exactly the same details (phone number, email, address) will not be marked as a duplicate.
         
@@ -230,7 +230,7 @@ component command prefix/[INPUT] -flag
         customer delete [INDEX] (-f)
         ```
 
-        In the event that there are uncompleted orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
+        In the event that there are uncompleted orders by the customer that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
         Examples:
         ```
@@ -269,7 +269,7 @@ component command prefix/[INPUT] -flag
         customer edit 2 n/George Tan
         ```
 
-        The above command changes the name of the second customer on the contacts pane to "George Tan".
+        The above command changes the name of the second customer on the customers pane to "George Tan".
 
         ```
         customer edit 2 n/George Tan p/80009999
@@ -301,7 +301,7 @@ component command prefix/[INPUT] -flag
         customer find n/George Michael Lim
         ```
 
-        The above command would display all contacts with names that contain either "George", "Michael", or "Lim". Note that at least 1 keyword must be specified, `customer find n/Thomas` is a valid command too with only 1 keyword ("Thomas").
+        The above command would display all customers with names that contain either "George", "Michael", or "Lim". Note that at least 1 keyword must be specified, `customer find n/Thomas` is a valid command too with only 1 keyword ("Thomas").
         
         <p>&nbsp;</p>
         
@@ -352,6 +352,11 @@ component command prefix/[INPUT] -flag
         ```
 
         Ingredient ID and quantity must come in pairs. At least one pair must be specified, but more can be added.
+
+        Example:
+        ```
+        menu add n/Chicken Chop p/5.10 i/2 q/1
+        ```
 
         <p>&nbsp;</p>
         
@@ -405,6 +410,11 @@ component command prefix/[INPUT] -flag
         ```
 
         At least one of the fields in round brackets must be specified.
+
+        Example:
+        ```
+        menu edit 1 p/4.20
+        ```
         
         <p>&nbsp;</p>
       
@@ -418,14 +428,20 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        menu find n/[KEYWORD] (MORE KEYWORDS) i/[KEYWORD]
+        menu find n/[KEYWORD] (MORE KEYWORDS) i/[NAME]
         ```
 
         At least one prefix must be specified. If both are specified, both conditions will be checked.
 
         - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `i/` - Finds all dishes with ingredient names that contain keyword (case-insensitive).
-        
+        - `i/` - Finds all dishes with ingredient names that contain this ingredient name (case-insensitive). This name can be multiple words.
+    
+        Example:
+        ```
+        menu find n/burger noodles i/soy sauce
+        ```
+        This will find any dishes that are burger or noodles and have an ingredient name containing "soy sauce".
+
         <p>&nbsp;</p>
       
         ---
@@ -489,6 +505,11 @@ component command prefix/[INPUT] -flag
         order delete [INDEX]
         ```
         The above command deletes the order based with that index.
+
+        Example:
+        ```
+        order delete 1
+        ```
       
         <p>&nbsp;</p>
         
@@ -506,6 +527,11 @@ component command prefix/[INPUT] -flag
         ```
 
         At least one of the fields in round brackets must be present in the edit command Only uncompleted orders can be edited. Uncompleted orders can be viewed with the `order list` command.
+
+        Example:
+        ```
+        order edit 1 dt/14-02-2021 18:30
+        ```
       
         <p>&nbsp;</p>
         
@@ -519,14 +545,20 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        order find n/[KEYWORD] (MORE KEYWORDS) d/[KEYWORD]
+        order find n/[KEYWORD] (MORE KEYWORDS) d/[NAME]
         ```
 
-        At least one prefix must be specified. If both are specified, both conditions will be checked.
+        At least one prefix must be specified. If both are specified, both conditions will be checked. 
 
         - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `d/` - Finds all orders with dish names that contain keyword (case-insensitive).
+        - `d/` - Finds all orders with dish names that contain specified name (case-insensitive). This name can be multiple words.
 
+        Example:
+        ```
+        order find n/Alex Sally d/Fried rice
+        ```
+        Finds orders made by Alex or Sally that have fried rice in them.
+        
         <p>&nbsp;</p>
         
         ---
@@ -540,6 +572,11 @@ component command prefix/[INPUT] -flag
         Format:
         ```
         order complete [INDEX]
+        ```
+
+        Example:
+        ```
+        order complete 1
         ```
         The above command would mark the order of that index as complete. Only uncompleted orders can be completed. Uncompleted orders can be viewed with the `order list` command. The order will no longer be in the order list. Instead, it will be in order history.        
         <p>&nbsp;</p>
@@ -599,6 +636,11 @@ component command prefix/[INPUT] -flag
         ```
         inventory add n/[INGREDIENT_NAME] q/[QUANTITY]
         ```
+
+        Example:
+        ```
+        inventory add n/Flour q/51
+        ```
         
         <p>&nbsp;</p>
         
@@ -613,6 +655,11 @@ component command prefix/[INPUT] -flag
         Format:
         ```
         inventory decrease [INDEX] [QUANTITY]
+        ```
+
+        Example:
+        ```
+        inventory decrease 1 q/2
         ```
         
         <p>&nbsp;</p>
@@ -667,6 +714,11 @@ component command prefix/[INPUT] -flag
         ```
 
         At least one of the fields in brackets must be present in the edit command.
+
+        Example:
+        ```
+        inventory edit 1 n/Sweetcorn
+        ```
         
         <p>&nbsp;</p>
         
@@ -680,13 +732,18 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        inventory find n/[KEYWORD] (MORE KEYWORDS) q/[LESS THAN QUANTITY]
+        inventory find n/[KEYWORD] (MORE KEYWORDS) q/[LESS THAN EQUALS TO QUANTITY]
         ```
 
         At least one prefix must be specified. If both are specified, both conditions will be checked.
 
         - `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `q/` - Finds all ingredients with less than specified quantity. Must be a non-negative whole number (>= 0).
+        - `q/` - Finds all ingredients with less than or equals to specified quantity. Must be a non-negative whole number (>= 0).
+
+        Example:
+        ```
+        inventory find n/tomato q/4
+        ```
 
         <p>&nbsp;</p>
         

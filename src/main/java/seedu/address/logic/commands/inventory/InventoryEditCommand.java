@@ -25,9 +25,9 @@ public class InventoryEditCommand extends Command {
             + ": Edits the details of the ingredient "
             + "identified by the index number used in the displayed ingredient list.\n"
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "INGREDIENT_NAME] "
-            + "[" + PREFIX_QUANTITY + "QUANTITY]\n"
+            + "Parameters: [INDEX] "
+            + "(" + PREFIX_NAME + "[INGREDIENT_NAME]) "
+            + "(" + PREFIX_QUANTITY + "[QUANTITY])\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Sweetcorn";
 
@@ -70,7 +70,7 @@ public class InventoryEditCommand extends Command {
         }
 
         model.setIngredient(ingredientToEdit, editedIngredient);
-        return new CommandResult(String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient),
+        return new CommandResult(String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient.getName()),
                 CommandResult.CRtype.PERSON);
     }
 

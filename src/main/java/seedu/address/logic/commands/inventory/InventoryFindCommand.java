@@ -14,6 +14,7 @@ import seedu.address.model.ingredient.Ingredient;
 
 public class InventoryFindCommand extends Command {
 
+    public static final String COMPONENT_WORD = "inventory";
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds ingredients. "
@@ -21,7 +22,7 @@ public class InventoryFindCommand extends Command {
             + "n/ - Look for names that contain any of the keywords (case-insensitive) \n"
             + "q/ - Look for ingredients that have less than specified quantity \n"
             + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... q/[LESS THAN QUANTITY]\n"
-            + "Example: " + COMMAND_WORD + " n/tomato q/4";
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " n/tomato q/4";
 
     private final Predicate<Ingredient> predicate;
 

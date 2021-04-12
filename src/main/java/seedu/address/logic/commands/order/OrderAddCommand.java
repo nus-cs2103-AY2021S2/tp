@@ -29,12 +29,12 @@ public class OrderAddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
-        + " Adds an order to the order list. "
+        + " Adds an order to the order list. \n"
         + "Parameters: "
-        + PREFIX_NAME + "CUSTOMER_ID "
-        + PREFIX_DATETIME + "DELIVERY_DATETIME (DD-MM-YYYY HH:MM) "
-        + "[" + PREFIX_DISH + "DISH "
-        + PREFIX_QUANTITY + " QUANTITY]...\n"
+        + PREFIX_NAME + "[CUSTOMER_ID] "
+        + PREFIX_DATETIME + "[DELIVERY_DATETIME] "
+        + PREFIX_DISH + "[DISH_ID]... "
+        + PREFIX_QUANTITY + " [QUANTITY]...\n"
         + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
         + PREFIX_NAME + "2 "
         + PREFIX_DATETIME + "14-02-2021 18:30 "

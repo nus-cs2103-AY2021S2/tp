@@ -20,8 +20,8 @@ public class InventoryDecreaseCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
             + ": Decrease the quantity of an existing ingredient in the inventory.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_QUANTITY + "QUANTITY\n"
+            + "Parameters: [INDEX] "
+            + PREFIX_QUANTITY + "[QUANTITY]\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
             + "1 "
             + PREFIX_QUANTITY + "2";

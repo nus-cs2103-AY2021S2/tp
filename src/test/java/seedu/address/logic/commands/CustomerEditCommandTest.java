@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.customer.CustomerCommandUtil.MESSAGE_DUPLICATE_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -42,7 +43,7 @@ public class CustomerEditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         CustomerEditCommand editCommand = new CustomerEditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(CustomerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(CustomerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getName());
 
         Model expectedModel = new ModelManager(new PersonBook(model.getPersonBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -63,7 +64,7 @@ public class CustomerEditCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         CustomerEditCommand editCommand = new CustomerEditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(CustomerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(CustomerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getName());
 
         Model expectedModel = new ModelManager(new PersonBook(model.getPersonBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
@@ -76,7 +77,7 @@ public class CustomerEditCommandTest {
         CustomerEditCommand editCommand = new CustomerEditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(CustomerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(CustomerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getName());
 
         Model expectedModel = new ModelManager(new PersonBook(model.getPersonBook()), new UserPrefs());
 
@@ -89,7 +90,7 @@ public class CustomerEditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         CustomerEditCommand editCommand = new CustomerEditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, CustomerEditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
@@ -101,7 +102,7 @@ public class CustomerEditCommandTest {
         CustomerEditCommand editCommand = new CustomerEditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editCommand, model, CustomerEditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test

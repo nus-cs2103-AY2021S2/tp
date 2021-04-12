@@ -47,6 +47,10 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+.text-filed .caret {
+    -fx-stroke : black;
+}
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }

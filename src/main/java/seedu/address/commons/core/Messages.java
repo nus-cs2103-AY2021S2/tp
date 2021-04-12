@@ -11,8 +11,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! Please see\n%1$s";
 
     // Items
-    public static final String ITEM_PERSON = "person";
-    public static final String ITEM_PERSONS = "persons";
+    public static final String ITEM_PERSON = "customer";
+    public static final String ITEM_PERSONS = "customers";
     public static final String ITEM_DISH = "dish";
     public static final String ITEM_DISHES = "dishes";
     public static final String ITEM_INGREDIENT = "ingredient";

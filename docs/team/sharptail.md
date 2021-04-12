@@ -66,5 +66,5 @@ Given below are my contributions to the project.
     * Created the template for Project Portfolio Page for the team and linked it with About Us page.
 
 * **Review/mentoring contributions**:
-    * PRs reviewed (with non-trivial review comments): [\#111](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/111)
+    * PRs reviewed (with non-trivial review comments): [\#111](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/111), [\#261](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/261)
     

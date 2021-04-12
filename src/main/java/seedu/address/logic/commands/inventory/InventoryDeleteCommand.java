@@ -24,12 +24,12 @@ public class InventoryDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
             + ": Deletes the ingredient identified by the index number used in the displayed inventory.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: [INDEX] (-f)\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_INGREDIENT_SUCCESS = "Deleted ingredient: %1$s";
     public static final String MESSAGE_DELETE_INGREDIENT_FAILURE =
-            "Failed to deleted ingredient: %1$s due to associated dishes, "
+            "Failed to delete ingredient: %1$s due to associated dishes, "
                     + "add -f flag to force delete the ingredient\n"
                     + "Warning: This will delete any dishes that contains %1$s\n"
                     + "\t\t   This will also mark associated orders as 'Cancelled'";
@@ -75,7 +75,7 @@ public class InventoryDeleteCommand extends Command {
         model.deleteIngredient(ingredientToDelete);
 
         // Delete dish here from model
-        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete),
+        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete.getName()),
                 CommandResult.CRtype.INGREDIENT);
     }
 

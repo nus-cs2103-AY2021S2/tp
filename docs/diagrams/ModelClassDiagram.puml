@@ -5,52 +5,67 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyBook<T extends Item> <<Interface>> MODEL_COLOR
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class UniqueItemList<T extends Item> MODEL_COLOR
 
 Package Person {
 Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Class PersonBook
 }
 
-Package Tag {
-Class Tag
+Package Dish {
+Class Dish
+Class DishBook
+}
+
+Package Ingredient {
+Class Ingredient
+Class IngredientBook
+}
+
+Package Order {
+Class Order
+Class OrderBook
 }
 }
 
-Class HiddenOutside #FFFFFF
+Class HiddenOutside<<hidden>>
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+PersonBook .down..|> ReadOnlyBook
+DishBook .down..|> ReadOnlyBook
+IngredientBook .down..|> ReadOnlyBook
+OrderBook .down..|> ReadOnlyBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager o--> "1" PersonBook
+ModelManager o--> "1" DishBook
+ModelManager o--> "1" IngredientBook
+ModelManager o--> "1" OrderBook
+
+ModelManager o-right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+PersonBook *-down-> "1" UniqueItemList
+UniqueItemList o-up-> "*" Person
+DishBook *-down-> "1" UniqueItemList
+UniqueItemList o-up-> "*" Dish
+IngredientBook *-down-> "1" UniqueItemList
+UniqueItemList o-up-> "*" Ingredient
+OrderBook *-down-> "1" UniqueItemList
+UniqueItemList o-up-> "*" Order
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ModelManager ---> "*" Person : > filtered list
+ModelManager ---> "*" Dish : > filtered list
+ModelManager ---> "*" Ingredient : > filtered list
+ModelManager ---> "*" Order : > filtered list
 
-ModelManager ----->" ~* filtered list" Person
+
 @enduml

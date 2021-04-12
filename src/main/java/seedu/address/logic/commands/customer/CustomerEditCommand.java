@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.customer;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.customer.CustomerCommandUtil.MESSAGE_DUPLICATE_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -30,22 +31,21 @@ public class CustomerEditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
-            + ": Edits the details of the person "
-            + "identified by the index number used in the displayed person list. "
+            + ": Edits the details of the customer "
+            + "identified by the index number used in the displayed customer list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Parameters: [INDEX] "
+            + "(" + PREFIX_NAME + "[NAME]) "
+            + "(" + PREFIX_PHONE + "[PHONE]) "
+            + "(" + PREFIX_EMAIL + "[EMAIL]) "
+            + "(" + PREFIX_ADDRESS + "[ADDRESS]) "
+            + "(" + PREFIX_TAG + "[TAG])...\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_NAME + "George Tan "
+            + PREFIX_PHONE + "80009999";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited customer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -80,7 +80,7 @@ public class CustomerEditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getName()),
                 CommandResult.CRtype.PERSON);
     }
 

@@ -25,14 +25,17 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_NONNEGATIVE_INT = "Non-negative integer must be specified.";
 
     public static final String MESSAGE_INVALID_NAME = "Invalid name specified.";
-    public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified.";
+    public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified. "
+                                                        + "Must be between 7 and 15 digits.";
     public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
     public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
     public static final String MESSAGE_INVALID_TAG = "Invalid tag specified.";
     public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
     public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
     public static final String MESSAGE_INVALID_PRICE = "Price must be a non-negative double.";
-    public static final String MESSAGE_INVALID_DATETIME = "Invalid datetime format specified.";
+    public static final String MESSAGE_INVALID_DATETIME = "Invalid datetime format specified. "
+            + "Format: DD-MM-YYYY HH:MM\n"
+            + "Example: 14-02-2021";
 
     public static final String MESSAGE_NO_KEYWORD = "No keyword specified.";
     public static final String MESSAGE_NO_KEYWORDS = "No keywords specified.";
@@ -44,7 +47,7 @@ public class ParserUtil {
     public static final String VALID_NAME_REGEX = "[^ ].*";
 
     // Phone validation: must contain numerical characters only.
-    public static final String VALID_PHONE_REGEX = "[0-9]+";
+    public static final String VALID_PHONE_REGEX = "[0-9]{7,15}";
 
     // Address validation: address cannot start with whitespace, or " " can be a valid address.
     public static final String VALID_ADDRESS_REGEX = "[^ ].*";

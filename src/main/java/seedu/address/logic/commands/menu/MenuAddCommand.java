@@ -25,16 +25,14 @@ public class MenuAddCommand extends Command {
     public static final String COMPONENT_WORD = "menu";
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD + ": Adds a dish to the menu. "
+    public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD + ": Adds a dish to the menu. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PRICE + "PRICE "
-            + PREFIX_INGREDIENT + "INGREDIENT_ID "
-            + PREFIX_QUANTITY + "INGREDIENT_QUANTITY "
-            + "[" + PREFIX_INGREDIENT + "INGREDIENT_ID "
-            + PREFIX_QUANTITY + "INGREDIENT_QUANTITY...]\n"
+            + PREFIX_NAME + "[NAME] "
+            + PREFIX_PRICE + "[PRICE] "
+            + PREFIX_INGREDIENT + "[INGREDIENT_ID]... "
+            + PREFIX_QUANTITY + "[INGREDIENT_QUANTITY]...\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Fries "
+            + PREFIX_NAME + "Chicken Chop "
             + PREFIX_PRICE + "5.10 "
             + PREFIX_INGREDIENT + "2 "
             + PREFIX_QUANTITY + "1";
@@ -69,7 +67,7 @@ public class MenuAddCommand extends Command {
             model.addDish(toAdd);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.DISH);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName()), CommandResult.CRtype.DISH);
     }
 
     @Override

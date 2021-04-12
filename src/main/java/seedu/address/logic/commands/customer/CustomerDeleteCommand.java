@@ -22,14 +22,14 @@ public class CustomerDeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the customer identified by the index number used in the displayed customer list.\n"
+            + "Parameters: [INDEX] (-f)\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted customer: %1$s";
     public static final String MESSAGE_DELETE_PERSON_FAILURE =
-            "Failed to deleted cusomter: %1$s due to outstanding orders, "
-                    + "add -f flag to force delete the cusomter\n"
+            "Failed to delete customer: %1$s due to outstanding orders, "
+                    + "add -f flag to force delete the customer\n"
                     + "Warning: This will delete any order that contains %1$s";
 
     private final Index targetIndex;
@@ -69,7 +69,7 @@ public class CustomerDeleteCommand extends Command {
         }
 
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete),
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete.getName()),
                 CommandResult.CRtype.PERSON);
     }
 

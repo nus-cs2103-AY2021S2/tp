@@ -32,11 +32,11 @@ public class OrderEditCommand extends Command {
             + ": Edits the details of the order "
             + "identified by the index number used in the displayed order list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_DATETIME + "DELIVERY_DATETIME (DD-MM-YYYY HH:MM)] "
-            + "[" + PREFIX_DISH + "DISH_NUMBER] "
-            + "[" + PREFIX_QUANTITY + "INGREDIENT_QUANTITY]...\n "
+            + "Parameters: [INDEX] "
+            + "(" + PREFIX_NAME + "[CUSTOMER_ID]) "
+            + "(" + PREFIX_DATETIME + "[DELIVERY_DATETIME) "
+            + "(" + PREFIX_DISH + "[DISH_ID])... "
+            + "(" + PREFIX_QUANTITY + "[INGREDIENT_QUANTITY])...\n "
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1 "
             + PREFIX_DATETIME + "14-02-2021 18:30";
 
