@@ -414,13 +414,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 ### Glossary
 
-- **Driver**: An employee that is in-charge of driving passengers within the pool to their location.
-- **GME**: GreenMileageEfforts, this software that is used to arrange carpooling.
-- **Mainstream OS**: Windows, Linux, Unix, MacOS.
-- **Pool**: A group of employees carpooling together. Consists of one driver and at least one passenger.
-- **Passenger**: An employee carpooling with at least one driver.
-- **Tag**: A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
-
+Term used | Meaning
+--------|------------------
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. Passenger | An employee carpooling with at least one driver.
+TripDay | Day of the intended carpooling trip.
+TripTime | Time of the intended carpooling trip.
+Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
+Price | The amount of money a passenger is willing to pay for the carpooling trip.
+Alphanumeric | A combination of letters and numbers only.
+Home Folder | The folder where the app's data will be stored
+GME | GreenMileageEfforts, this software that is used to arrange carpooling.
+Passenger | An employee carpooling with at least one driver.
+Driver | An employee that is in-charge of driving passengers within the pool to their location.
+Mainstream OS | Windows, Linux, Unix, MacOS.
+Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -567,7 +574,7 @@ testers are expected to do more *exploratory* testing.
     1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
        Expected: Similar to previous.
 
-1. Finding a pool while a filtered list of pools are being shown.
+1. Finding a pool while a filtered list of pools is being shown.
 
     1. Prerequisites: Multiple pools in the list. Filter list of pools following a valid input as shown above.
 
@@ -583,10 +590,3 @@ testers are expected to do more *exploratory* testing.
     1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
        Expected: Similar to previous.
        
-### Saving data
-
-1. Dealing with missing/corrupted data files.
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
