@@ -10,7 +10,9 @@ It is optimized for use via a Command Line Interface (CLI) with the benefits of 
 TimeForWheels aims to be your reliable delivery companion by simplifying the delivery administrative process and 
 improving productivity.
 
-Given below are my contributions to the project.
+Given below are my contributions to the project:
+
+<div style="page-break-after: always;"></div>
   
 * **New Feature**: Added the ability for drivers to sort their delivery tasks in the delivery list. (PR [\#68](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/68))
   * What it does: allows the driver to get the sorted list of their delivery tasks, ranked first by completion status
@@ -30,7 +32,9 @@ Given below are my contributions to the project.
   * Modified the existing Help window to display our application's features in an order based on importance and relevancy. Enhanced the readability of the Help window as well (PR [\#120](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/120))
   * Refactored the entire code base (functional code, test code and json files) to match the context and theme of our project (PR [\#43](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/43)) and (PR [\#107](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/107))
   * Revamped the existing sample data (sample shown to new users) to match the context and theme of our project (PR [\#108](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/108))
-  
+
+<div style="page-break-after: always;"></div>
+
 * **Documentation**:
   * User Guide:
     * Added the newly enhanced Tag feature with its description, usage, notes, examples and referencing images to the User Guide (PR [\#133](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/133))
