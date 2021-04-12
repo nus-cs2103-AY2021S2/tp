@@ -22,7 +22,7 @@ import seedu.address.model.customer.Customer;
  * Customer}.
  */
 public class FilterCombinator implements Predicate<Customer> {
-    public static final String MESSAGE_EFFECTIVELY_EMPTY = "Your string contains only space of brackets "
+    public static final String MESSAGE_EFFECTIVELY_EMPTY = "Your string contains only space or brackets "
         + "(either the entire string, or parts inside the backets) which is invalid.";
     public static final String MESSAGE_INVALID_BRACKETING = "The bracketing of the sequence is wrong - Make sure the "
         + "sequence is well bracketed!";
