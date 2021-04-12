@@ -84,7 +84,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 The various sections of the User Interface are described as in the picture below.
 ![Ui_labelled](images/Ui_labelled.png)
 
-### 3.1.1 Viewing help : `help`
+### 3.1.2 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -92,23 +92,23 @@ Shows a message explaining how to access the help page.
 
 **Format:** `help`
 
-### 3.1.2 Clearing all entries : `clear`
+### 3.1.3 Clearing all entries : `clear`
 
 Clears all entries from the passenger list and pool list.
 
 **Format:** `clear`
 
-### 3.1.3 Exiting the program : `exit`
+### 3.1.4 Exiting the program : `exit`
 
 Exits the program.
 
 **Format:** `exit`
 
-### 3.1.4 Saving the data
+### 3.1.5 Saving the data
 
 GME data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 3.1.5 Editing the data file
+### 3.1.6 Editing the data file
 
 GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
