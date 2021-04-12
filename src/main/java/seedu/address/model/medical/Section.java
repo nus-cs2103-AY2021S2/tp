@@ -1,5 +1,7 @@
 package seedu.address.model.medical;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Represents a Section of a Medical Record.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -17,6 +19,7 @@ public class Section {
      * Every field must be present and not null.
      */
     public Section(String title) {
+        requireAllNonNull(title);
         new Section(title, "");
     }
 
@@ -24,6 +27,7 @@ public class Section {
      * Every field must be present and not null.
      */
     public Section(String title, String body) {
+        requireAllNonNull(title, body);
         this.title = title;
         this.body = body;
     }
