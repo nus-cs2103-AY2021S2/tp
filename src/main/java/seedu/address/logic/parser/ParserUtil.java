@@ -350,11 +350,14 @@ public class ParserUtil {
      * Parses {@code String amount} into an {@code Offer}.
      */
     public static Offer parseOffer(String amount) throws ParseException {
-        requireNonNull(amount);
-        String trimmedAmount = amount.trim();
-        if (!Offer.isValidOffer(trimmedAmount)) {
-            throw new ParseException(Offer.MESSAGE_CONSTRAINTS);
+        if (amount == null) {
+            return null;
         }
-        return new Offer(trimmedAmount);
+        String trimmedOffer = amount.trim();
+        if (!Offer.isValidOffer(trimmedOffer)) {
+            throw new ParseException(AskingPrice.MESSAGE_CONSTRAINTS);
+        }
+        Long price = Offer.parse(trimmedOffer);
+        return new Offer(price);
     }
 }

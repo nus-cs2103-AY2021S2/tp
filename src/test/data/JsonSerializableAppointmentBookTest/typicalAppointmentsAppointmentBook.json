@@ -1,0 +1,33 @@
+{
+  "appointments": [
+    {
+      "name": "Meet Alex",
+      "remark": "Bring him around Bishan to look at the properties",
+      "date": "Dec 25, 2021",
+      "time": "3:00PM"
+    },
+    {
+      "name": "Meet Bob",
+      "remark": "To meet with interested client for viewing of his house",
+      "date": "Apr 30, 2021",
+      "time": "10:30AM"
+    },
+    {
+      "name": "Meet Caleb",
+      "remark": "For renegotiation of selling price",
+      "date": "Mar 07, 2021",
+      "time": "10:30AM"
+    },
+    {
+      "name": "Meet Darren",
+      "remark": "For signing of sales agreement at HDB",
+      "date": "Oct 12, 2021",
+      "time": "2:00PM"
+    },
+    {
+      "name": "Meet Emily",
+      "remark": "For initial evaluation of her house",
+      "date": "Jun 15, 2021",
+      "time": "11:00AM"
+    } ]
+}

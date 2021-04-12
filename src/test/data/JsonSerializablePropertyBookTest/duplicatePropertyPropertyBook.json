@@ -1,0 +1,31 @@
+{
+  "properties": [
+    {
+      "name": "Mayfair",
+      "propertyType": "Condo",
+      "address": "1 Jurong East Street 32, #08-111",
+      "remark": null,
+      "postalCode": "609477",
+      "deadline": "Dec 31, 2021",
+      "client": "Client Name: Bob; Client Contact: 98664535; Client Email: bob@gmail.com; Client Asking Price: $800,000",
+      "tagged": [
+        "4 bedrooms",
+        "No renovation"
+      ],
+      "status": null
+    }, {
+      "name": "Mayfair",
+      "propertyType": "Condo",
+      "address": "1 Jurong East Street 32, #08-111",
+      "remark": null,
+      "postalCode": "609477",
+      "deadline": "Dec 31, 2021",
+      "client": "Client Name: Bob; Client Contact: 98664535; Client Email: bob@gmail.com; Client Asking Price: $800,000",
+      "tagged": [
+        "4 bedrooms",
+        "No renovation"
+      ],
+      "status": null
+    }
+  ]
+}

@@ -41,7 +41,7 @@ import seedu.address.logic.commands.SortPropertyCommand;
 import seedu.address.logic.commands.SortPropertyCommand.SortPropertyDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.appointment.AppointmentPredicateList;
 import seedu.address.model.appointment.AppointmentRemarksPredicate;
 import seedu.address.model.property.Property;
@@ -149,7 +149,7 @@ public class PocketEstateParserTest {
         FindAppointmentCommand newCommand = new FindAppointmentCommand(new AppointmentPredicateList(
                 Arrays.asList(new AppointmentRemarksPredicate("bar")),
                                 Arrays.asList(new AppointmentPredicateList(Collections.singletonList(
-                                        new AppointmentContainsKeywordsPredicate(Collections.singletonList("foo")))))));
+                                        new AppointmentNamePredicate(Collections.singletonList("foo")))))));
         assertEquals(newCommand, command);
     }
 
@@ -172,7 +172,7 @@ public class PocketEstateParserTest {
                 FindClientCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindClientCommand(new PropertyClientNamePredicate(keywords),
-                new AppointmentContainsKeywordsPredicate(keywords)), command);
+                new AppointmentNamePredicate(keywords)), command);
     }
 
     @Test

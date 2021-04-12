@@ -16,7 +16,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
 
 /**
@@ -30,12 +30,12 @@ public class FindClientCommandTest {
     public void equals() {
         PropertyClientNamePredicate firstPredicate =
                 new PropertyClientNamePredicate(Collections.singletonList("first"));
-        AppointmentContainsKeywordsPredicate firstPredicateAppt =
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("first"));
+        AppointmentNamePredicate firstPredicateAppt =
+                new AppointmentNamePredicate(Collections.singletonList("first"));
         PropertyClientNamePredicate secondPredicate =
                 new PropertyClientNamePredicate(Collections.singletonList("second"));
-        AppointmentContainsKeywordsPredicate secondPredicateAppt =
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("second"));
+        AppointmentNamePredicate secondPredicateAppt =
+                new AppointmentNamePredicate(Collections.singletonList("second"));
 
         FindClientCommand findFirstCommand = new FindClientCommand(firstPredicate, firstPredicateAppt);
         FindClientCommand findSecondCommand = new FindClientCommand(secondPredicate, secondPredicateAppt);
@@ -59,7 +59,7 @@ public class FindClientCommandTest {
 
     @Test
     public void execute_zeroKeywords_noAppointmentsFound() {
-        AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment(" ");
+        AppointmentNamePredicate predicate = preparePredicateAppointment(" ");
         PropertyClientNamePredicate predicate2 = preparePredicateProperty(" ");
         FindClientCommand command = new FindClientCommand(predicate2, predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
@@ -71,7 +71,7 @@ public class FindClientCommandTest {
 
     @Test
     public void keywordSuccessTest() {
-        AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment("bob");
+        AppointmentNamePredicate predicate = preparePredicateAppointment("bob");
         PropertyClientNamePredicate predicate2 = preparePredicateProperty("bob");
         FindClientCommand command = new FindClientCommand(predicate2, predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
@@ -83,7 +83,7 @@ public class FindClientCommandTest {
 
     @Test
     public void unequalSuccessTest() {
-        AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment("alex");
+        AppointmentNamePredicate predicate = preparePredicateAppointment("alex");
         PropertyClientNamePredicate predicate2 = preparePredicateProperty("alex");
         FindClientCommand command = new FindClientCommand(predicate2, predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
@@ -95,7 +95,7 @@ public class FindClientCommandTest {
 
     @Test
     public void keywordFailTest() {
-        AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment("no one");
+        AppointmentNamePredicate predicate = preparePredicateAppointment("no one");
         PropertyClientNamePredicate predicate2 = preparePredicateProperty("no one");
         FindClientCommand command = new FindClientCommand(predicate2, predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
@@ -106,10 +106,10 @@ public class FindClientCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code AppointmentContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code AppointmentNamePredicate}.
      */
-    private AppointmentContainsKeywordsPredicate preparePredicateAppointment(String userInput) {
-        return new AppointmentContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private AppointmentNamePredicate preparePredicateAppointment(String userInput) {
+        return new AppointmentNamePredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     /**
