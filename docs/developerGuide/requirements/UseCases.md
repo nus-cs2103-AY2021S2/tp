@@ -43,10 +43,12 @@ MSS:
      Use case ends.
 Extensions:
   1a. User chooses a sort order from a list of possible sort orders.
-      1a1. PartyPlanet displays the list of all contacts in the given sort order.
+      1a1. PartyPlanet displays the list of all contacts in the<br>
+      given sort order.
            Use case ends.
   1b. User chooses a searching criteria from a list of possible criteria.
-      1b1. PartyPlanet displays the list of all contacts meeting the given criteria.
+      1b1. PartyPlanet displays the list of all contacts meeting the<br>
+      given criteria.
            Use case ends.
   1c. PartyPlanet <ins>detects an erroneous input (UC11)</ins>.
       Use case ends.
@@ -104,10 +106,12 @@ MSS:
      Use case ends.
 Extensions:
   1a. User chooses a sort order from a list of possible sort orders.
-      1a1. PartyPlanet displays the list of all events in the given sort order.
+      1a1. PartyPlanet displays the list of all events in the given sort<br>
+      order.
            Use case ends.
   1b. User chooses a searching criteria from a list of possible criteria.
-      1b1. PartyPlanet displays the list of all events meeting the given criteria.
+      1b1. PartyPlanet displays the list of all events meeting the<br>
+      given criteria.
            Use case ends.
   1c. PartyPlanet <ins>detects an erroneous input (UC11)</ins>.
       Use case ends.
@@ -147,7 +151,8 @@ MSS:
 Use case: UC13 - Undo an action
 MSS:
   1. User requests to undo an action.
-  2. PartyPlanet displays the details of the action that was undone and the list of contacts/events after the action is undone.
+  2. PartyPlanet displays the details of the action that was undone and<br>
+  the list of contacts/events after the action is undone.
      Use case ends.
 Extensions:
   1a. PartyPlanet <ins>detects an erroneous input (UC11)</ins>.
@@ -158,7 +163,8 @@ Extensions:
 Use case: UC14 - Redo an action
 MSS:
   1. User requests to redo an action.
-  2. PartyPlanet displays the details of the action that was redone and the list of contacts/events after the action is redone.
+  2. PartyPlanet displays the details of the action that was redone and<br>
+  the list of contacts/events after the action is redone.
      Use case ends.
 Extensions:
   1a. PartyPlanet <ins>detects an erroneous input (UC11)</ins>.
