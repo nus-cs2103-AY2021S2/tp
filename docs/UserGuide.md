@@ -87,7 +87,8 @@ Interface (GUI).
 
 ## Command summary
 
-**Note** : (pipe_char) means `|` below.
+**Note** : (pipe_char) means `|` below. 
+**Note** : All commands `add` `find` etc, and command prefixes `n/` `p/` etc are case-sensitive.
 
 Action | Format, Examples
 --------|------------------
@@ -103,18 +104,18 @@ Action | Format, Examples
 
 Prefix | Format
 --------|------------------
-**n/** | `n/NAME`
-**p/** | `p/PHONE_NUMBER`
-**e/** | `e/EMAIL`
-**a/** | `a/ADDRESS`
-**b/** | `b/DATE_OF_BIRTH`
-**t/** | `t/TAG`
-**c/** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE`
-**cp/** | `cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED`
-**ex/** | `ex/COE_EXPIRY_DATE`
-**/and** | `n/NAME /and a/ADDRESS`
-**/or** | `n/NAME /or a/ADDRESS`
-**/not** | `/not n/NAME`
+**n/** | `n/NAME` only prefix is case-sensitive.
+**p/** | `p/PHONE_NUMBER` only prefix is case-sensitive.
+**e/** | `e/EMAIL` only prefix is case-sensitive.
+**a/** | `a/ADDRESS` only prefix is case-sensitive.
+**b/** | `b/DATE_OF_BIRTH` only prefix is case-sensitive.
+**t/** | `t/TAG` only prefix is case-sensitive.
+**c/** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE` only prefix is case-sensitive.
+**cp/** | `cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED` only prefix is case-sensitive.
+**ex/** | `ex/COE_EXPIRY_DATE` only prefix is case-sensitive.
+**/and** | `n/NAME /and a/ADDRESS` only prefix is case-sensitive.
+**/or** | `n/NAME /or a/ADDRESS` only prefix is case-sensitive.
+**/not** | `/not n/NAME` only prefix is case-sensitive.
 **+** | `CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED` `CAR_BRAND_OWNED+CAR_TYPE_OWNED` <br> Joins car brand and car type
 **(pipe_char)** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED(pipe_char)COE_EXPIRY_DATE` <br> joins car with COE expiry date
 
@@ -148,29 +149,57 @@ Here `[op]` means `/and`, `/or`, `/not` as explained below. Note that two filter
 operator denoted by `[op]`. 
 Example : 
 - `find n/John /and e/weird@example.com` is valid, but
-- `find n/John e/weird@example.com` is **not** valid.
+- `find n/John e/weird@example.com` is **not** valid, as `n/John` and `e/weird@example.com` does not have an operator 
+   in between.
+![Ui](images/examples/findInvalideg.png)
 
 **Important** : All arguments are optional. In particular:
 
 - for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to
-  separate.
+  separate. phrases with spaces for specific car models are allowed e.g. `find c/honda civic`
+  The car brand and types are case-insensitive.
+![Ui](images/examples/findInvalideg.png)
+  Note: You will notice that if you set a more specific filter with car type, a list of customers that has more
+  general details that has the same brand but with different car type will be displayed. `find c/Ferrari 458+Weak`. 
+  This is intended as car sales person would see these customers as potential customers.
+![Ui](images/examples/findCloose.png)
+  
 - for `p/PHONE` any phone number starting with the given parameter string will be returned.
-    - `98776` will be matched with both `987` but not `776` for example.
+    - a person with phone number `123456789` will be matched with `123`.
+![Ui](images/examples/findPvalid.png)
+  Note: Filter requires a match from the start of customers number, or else this customer will be filtered out. e.g.
+      customer with phone number `123456789`will not be included with `234`.
+![Ui](images/examples/findPInvalid.png)
+
 - for `cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE` user can either give brand or type information, or both using the
-  `+` sign to separate.
+  `+` sign to separate. 
+  Note: Similar to `c/` command, if car type is given, customers with other car type preferences are included as intended.
+  The car brand and types are case-insensitive.
+  ![Ui](images/examples/findCPloose.png)
 
 - for `n/NAME` giving a partial name is also okay - all names which have the given parameter as a subsequence (Note
-  that `abc` is a subsequence of `addbddc`) will be matched. Note that this is the only field for which we match a
-  subsequence instead of a simple substring. Note that `n/John Smith` is treated the same as `n/John /AND n/Smith`.
-
-- for `e/EMAIL`, all email containing the given parameter will be valid.
-    - eg `find e/abc` will return profiles with the following emails:
+  that `Alx` is a subsequence of `Alex`) will be matched. Note that this is the only field for which we match a
+  subsequence instead of a simple substring. Note that `find n/Alex Yeoh` is treated the same as `find n/Alex /AND n/Yeoh`.
+  Name is case-insensitive. `find n/Alex` is same as `find n/alex`.
+  
+- for `e/EMAIL`, all email containing the given parameter consecutively will be valid. 
+  Emails are case-insensitive.
+    - eg `find e/gmail` will return profiles with the following emails:
         - `abcd@gmail.com`
         - `bbabc@gmail.com`
+![Ui](images/examples/findEloose.png)
+    - eg `find e/d@gmail` will return profiles with the following email:
+      - `abcd@gmail.com`
+        But does not return profile with following email:
+      - `bbabc@gmail.com`
+![Ui](images/examples/findErestrict.png)  
+        
 
 - for `ex/COE_EXPIRY_DATE`, using `ex/exp` will search for all customers with an expired COE on any of the cars they
   own. it is a special case alias for the search `ex/0`, where `ex/NON_NEGATIVE_NUMBER` will search for any customers
   with at least one car that will expire in `NON_NEGATIVE_NUMBER` years *or less*.
+![Ui](images/examples/findExp.png)
+![Ui](images/examples/findExpyears.png)
 
 - for `a/ADDRESS` partial addresses are also acceptable. However, the exact filter parameter must be contained in the
   Address field of the customer, there is no typo-tolerance.
@@ -179,9 +208,13 @@ Example :
         - `Tembusu`
         - `Temb`
         - `embus`
+![Ui](images/examples/findadd.png)
 
 - for `b/DATE_OF_BIRTH` partial dates also work. Note that `find b/1999` is a more generic search than `find b/1999 02`
   and hence will return more items.
+Note: As for now, there is no restriction to the parameters for `find b/`, the intended feature for this is to allow for
+  quick filtering of birth year or birth month.
+  
 
 - for `t/TAGS` all customers satisfying _any_ tag will be returned. In particular, `find t/TAG_A TAG_B TAG_C` is a more
   generic query than `find t/TAG_A`
@@ -253,6 +286,7 @@ Format: `list`
               again. [Note that you can just move to the beginning and type `/up` the rest of the portion doesn't matter! Hence, you can save keystrokes since you do not have to delete]
             - Now you will get `find e/John` appear.
             - you can type `/up` again and again to go up in the history.
+            Note: You do not need to delete the displayed text, as all texts after the /up will be ignored.
 
 Note that as soon as you enter a different string (either a valid or invalid command), the counter is reset and
 entering `/up` will again start from the latest command.

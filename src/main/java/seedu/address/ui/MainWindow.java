@@ -195,13 +195,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            System.out.println(commandText);
             if (commandText.trim().startsWith("/up")) {
                 CommandHistory commandHistory = CommandHistory.getInstance();
-                System.out.println("gfdgsdg s");
                 String result = commandHistory.retrievePreviousCommand();
                 resultDisplay.setFeedbackToUser("");
-                System.out.println(result);
                 commandBox.setCommandTextField(result);
                 return new CommandResult("");
             }

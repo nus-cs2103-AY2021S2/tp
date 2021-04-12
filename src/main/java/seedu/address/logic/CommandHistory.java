@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.util.ArrayList;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 public class CommandHistory {
@@ -31,6 +32,7 @@ public class CommandHistory {
      */
     public void addCommandToHistory(String command) {
         previousCommands.add(command);
+        LogsCenter.getLogger(CommandHistory.class).info("Added command : " + command);
         resetCounter();
     }
 
