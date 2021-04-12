@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ListPool command feature. (Pull requests [\#227](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/227))
     * What it does: Allows the user to list all existing pools.
-    * Justification: As there exists a feature to filter the pool list, the listPool command allows the user to remove all exisitng filters and view the full list.
+    * Justification: As there exists a feature to filter the pool list, the listPool command allows the user to remove all existing filters and view the full list.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=zechariah&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ZechariahTan&tabRepo=AY2021S2-CS2103T-W10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs)
 
