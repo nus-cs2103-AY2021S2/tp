@@ -31,11 +31,11 @@ public class MenuEditCommand extends Command {
             + ": Edits the details of the dish "
             + "identified by the index number used in the displayed dish list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRICE + "PRICE] "
-            + "[" + PREFIX_INGREDIENT + "INGREDIENT_NUMBER] "
-            + "[" + PREFIX_QUANTITY + "INGREDIENT_QUANTITY]...\n "
+            + "Parameters: [INDEX] "
+            + "(" + PREFIX_NAME + "[NAME]) "
+            + "(" + PREFIX_PRICE + "[PRICE]) "
+            + "(" + PREFIX_INGREDIENT + "[INGREDIENT_ID])... "
+            + "(" + PREFIX_QUANTITY + "[INGREDIENT_QUANTITY])...\n "
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1 "
             + PREFIX_PRICE + "4.20";
 
@@ -109,7 +109,7 @@ public class MenuEditCommand extends Command {
             model.decreaseIngredientByOrder(o);
         }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_DISH_SUCCESS, editedDish),
+        return new CommandResult(String.format(MESSAGE_EDIT_DISH_SUCCESS, editedDish.getName()),
                 CommandResult.CRtype.PERSON);
     }
 

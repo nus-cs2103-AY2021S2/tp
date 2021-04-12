@@ -32,7 +32,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
     public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
     public static final String MESSAGE_INVALID_PRICE = "Price must be a non-negative double.";
-    public static final String MESSAGE_INVALID_DATETIME = "Invalid datetime format specified.";
+    public static final String MESSAGE_INVALID_DATETIME = "Invalid datetime format specified. "
+            + "Format: DD-MM-YYYY HH:MM\n"
+            + "Example: 14-02-2021";
 
     public static final String MESSAGE_NO_KEYWORD = "No keyword specified.";
     public static final String MESSAGE_NO_KEYWORDS = "No keywords specified.";

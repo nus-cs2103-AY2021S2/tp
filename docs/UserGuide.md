@@ -353,6 +353,11 @@ component command prefix/[INPUT] -flag
 
         Ingredient ID and quantity must come in pairs. At least one pair must be specified, but more can be added.
 
+        Example:
+        ```
+        menu add n/Chicken Chop p/5.10 i/2 q/1
+        ```
+
         <p>&nbsp;</p>
         
         ---
@@ -405,6 +410,11 @@ component command prefix/[INPUT] -flag
         ```
 
         At least one of the fields in round brackets must be specified.
+
+        Example:
+        ```
+        menu edit 1 p/4.20
+        ```
         
         <p>&nbsp;</p>
       
@@ -425,7 +435,12 @@ component command prefix/[INPUT] -flag
 
         - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `i/` - Finds all dishes with ingredient names that contain keyword (case-insensitive).
-        
+    
+        Example:
+        ```
+        menu find n/burger steak i/beef
+        ```
+
         <p>&nbsp;</p>
       
         ---
@@ -489,6 +504,11 @@ component command prefix/[INPUT] -flag
         order delete [INDEX]
         ```
         The above command deletes the order based with that index.
+
+        Example:
+        ```
+        order delete 1
+        ```
       
         <p>&nbsp;</p>
         
@@ -506,6 +526,11 @@ component command prefix/[INPUT] -flag
         ```
 
         At least one of the fields in round brackets must be present in the edit command Only uncompleted orders can be edited. Uncompleted orders can be viewed with the `order list` command.
+
+        Example:
+        ```
+        order edit 1 dt/14-02-2021 18:30
+        ```
       
         <p>&nbsp;</p>
         
@@ -527,6 +552,11 @@ component command prefix/[INPUT] -flag
         - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `d/` - Finds all orders with dish names that contain keyword (case-insensitive).
 
+        Example:
+        ```
+        order find n/Alex Sally d/Burger
+        ```
+
         <p>&nbsp;</p>
         
         ---
@@ -540,6 +570,11 @@ component command prefix/[INPUT] -flag
         Format:
         ```
         order complete [INDEX]
+        ```
+
+        Example:
+        ```
+        order complete 1
         ```
         The above command would mark the order of that index as complete. Only uncompleted orders can be completed. Uncompleted orders can be viewed with the `order list` command. The order will no longer be in the order list. Instead, it will be in order history.        
         <p>&nbsp;</p>
@@ -599,6 +634,11 @@ component command prefix/[INPUT] -flag
         ```
         inventory add n/[INGREDIENT_NAME] q/[QUANTITY]
         ```
+
+        Example:
+        ```
+        inventory add n/Flour q/51
+        ```
         
         <p>&nbsp;</p>
         
@@ -613,6 +653,11 @@ component command prefix/[INPUT] -flag
         Format:
         ```
         inventory decrease [INDEX] [QUANTITY]
+        ```
+
+        Example:
+        ```
+        inventory decrease 1 q/2
         ```
         
         <p>&nbsp;</p>
@@ -667,6 +712,11 @@ component command prefix/[INPUT] -flag
         ```
 
         At least one of the fields in brackets must be present in the edit command.
+
+        Example:
+        ```
+        inventory edit 1 n/Sweetcorn
+        ```
         
         <p>&nbsp;</p>
         
@@ -687,6 +737,11 @@ component command prefix/[INPUT] -flag
 
         - `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `q/` - Finds all ingredients with less than specified quantity. Must be a non-negative whole number (>= 0).
+
+        Example:
+        ```
+        inventory find n/tomato q/4
+        ```
 
         <p>&nbsp;</p>
         

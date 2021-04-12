@@ -5,7 +5,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 public class CustomerCommandUtil {
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This customer already exists in the customer list";
 
     /**
      * Checks whether the Customer is a valid entry.

@@ -21,13 +21,13 @@ title: Developer Guide
             - [Deletion of Ingredient objects](#deletion-of-ingredient-objects)
             - [Logging of Order object](#logging-of-order-object)
         + [Concurrent list display](#concurrent-list-display)
-        + [\[Proposed\] Data archiving](#--proposed---data-archiving)
+        + [Data archiving](#data-archiving)
     * [Command enhancements](#command-enhancements)
         + [Add command](#add-command)
         + [Delete command](#delete-command)
         + [List command](#list-command)
-        + [\[Proposed\] Find command](#--proposed---find-command)
-        + [\[Proposed\] Edit command](#--proposed---edit-command)
+        + [Find command](#find-command)
+        + [Edit command](#edit-command)
 - [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
 - [**Appendix: Requirements**](#--appendix--requirements--)
     * [Product scope](#product-scope)
@@ -237,9 +237,9 @@ To increase the efficiency of adding food orders, the GUI has been improved to d
  
 Which component list is shown on the right will depend on the component of the last command input. For example, using a `menu add` command will cause the right side to display the menu list, whereas `order add` will show the right side to display the order list. However, using a command on the `customer` component will only update the left list and not affect the right list.
 
-#### \[Proposed\] Data archiving
+#### Data archiving
 
-It is proposed that the general use case for removing `Order` objects from the currently displayed list will become not to delete them, but to *archive* them for future reference (e.g. accounting purposes). This will be achieved with a `completed` field within each Order object, which will determine whether they are displayed in the currently active order list or in the archived order list.
+Removing `Order` objects from the currently displayed list will not delete them, but to *archive* them for future reference (e.g. accounting purposes). This will be achieved with a `completed` field within each Order object, which will determine whether they are displayed in the currently active order list or in the archived order list.
 
 ### Command enhancements
 
@@ -286,7 +286,7 @@ Unlike the other commands, the `list` command has no specific parsers beyond the
 The following sequence diagram shows how the GUI is updated from `MainWindow` after a `menu list` command is called by the user.
 ![Sequence diagram showing GUI update caused by a MenuListCommand](images/MenuListGUI.png)
 
-#### \[Proposed\] Find command
+#### Find command
 
 The `find` command will be implemented for all four components and can be called from the CLI input with the general form
 
@@ -296,7 +296,7 @@ The arguments of the `find` command will always be the keyword(s) to be searched
 
 The `find` command will be parsed in a similar way to other commands (see the [Component Parser description](#component-parser)). The `find` command will update the `FilteredList` object to only contain items that match the keywords and return a `CommandResult` object to update the GUI, in a similar fashion to the GUI update caused by the [add command](#add-command).
 
-#### \[Proposed\] Edit command
+#### Edit command
 
 The `edit` command will be implemented for all four components and can be called from the CLI input with the general form
 

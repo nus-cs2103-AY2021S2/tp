@@ -23,12 +23,12 @@ public class MenuDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
             + ": Deletes the dish identified by the index number used in the displayed menu.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: [INDEX] (-f)\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DISH_SUCCESS = "Deleted dish: %1$s";
     public static final String MESSAGE_DELETE_DISH_FAILURE =
-            "Failed to deleted dish: %1$s due to outstanding orders, "
+            "Failed to delete dish: %1$s due to outstanding orders, "
             + "add -f flag to force delete the dish\n"
             + "Warning: This will mark any order that contains %1$s as 'Cancelled'";
 
@@ -75,7 +75,7 @@ public class MenuDeleteCommand extends Command {
         }
         model.deleteDish(dishToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_DISH_SUCCESS, dishToDelete),
+        return new CommandResult(String.format(MESSAGE_DELETE_DISH_SUCCESS, dishToDelete.getName()),
                 CommandResult.CRtype.DISH);
     }
 

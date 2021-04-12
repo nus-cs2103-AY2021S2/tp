@@ -14,6 +14,8 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
 public class OrderFindCommand extends Command {
+
+    public static final String COMPONENT_WORD = "order";
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds orders. "
@@ -21,7 +23,7 @@ public class OrderFindCommand extends Command {
             + "n/ - Look for customer names that contain any of the keywords (case-insensitive) \n"
             + "d/ - Look for dish names that contain keyword (case-insensitive) \n"
             + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... d/[KEYWORD]\n"
-            + "Example: " + COMMAND_WORD + " n/alex sally d/burger";
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " n/Alex Sally d/Burger";
 
     private final Predicate<Order> predicate;
 
