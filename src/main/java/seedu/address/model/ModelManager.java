@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -177,7 +178,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updatePersonListByAttribute(List<Attribute> attributeTypes) {
+    public void updatePersonListByAttribute(Set<Attribute> attributeTypes) {
         List<Person> tempPersonsList = new ArrayList<>();
         for (int i = 0; i < filteredPersons.size(); i++) {
             Person person = filteredPersons.get(i);
@@ -223,6 +224,7 @@ public class ModelManager implements Model {
     public void updateSortedPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
         modifiedList.sort(comparator);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
     }
 
     //=========== Whole Person List Accessors =============================================================

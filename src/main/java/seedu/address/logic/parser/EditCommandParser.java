@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
@@ -8,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtil.checkIndicesInputContainsWords;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,7 +25,6 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditCommand.EditPolicyMode;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,9 +40,19 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        if (args.trim().length() == 0 || args.trim().equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING);
+
+        boolean doIndicesContainWords = checkIndicesInputContainsWords(argMultimap.getPreamble());
+
+        if (doIndicesContainWords || argMultimap.getPreamble().equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
 
         Index index;
 
@@ -49,6 +60,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(pe.getLocalizedMessage() + "\n" + EditCommand.MESSAGE_USAGE, pe);
+        }
+
+        if (argMultimap.getValue(PREFIX_MEETING).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -67,32 +82,34 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         List<String> inputPolicies = argMultimap.getAllValues(PREFIX_INSURANCE_POLICY);
+
         EditPolicyMode editPolicyMode = getEditPolicyMode(inputPolicies);
         List<String> policiesTrimmed = getPolicyListFromInput(inputPolicies);
-
-        boolean isModeReplaceOrAppendPolicies = editPolicyMode == EditPolicyMode.REPLACE
-                || editPolicyMode == EditPolicyMode.APPEND;
-        boolean isModeRemovePolicies = editPolicyMode == EditPolicyMode.REMOVE;
-        boolean isModeModifyPolicies = editPolicyMode == EditPolicyMode.MODIFY;
-
-        if (isModeReplaceOrAppendPolicies) {
-            parsePoliciesForEdit(policiesTrimmed).ifPresent(editPersonDescriptor::setPoliciesToAdd);
-        } else if (isModeRemovePolicies) {
-            parsePoliciesForEdit(policiesTrimmed).ifPresent(editPersonDescriptor::setPoliciesToRemove);
-        } else if (isModeModifyPolicies) {
-            List<List<String>> addAndRemovePairs = getPoliciesFromModifyPairs(policiesTrimmed);
-            parsePoliciesForEdit(addAndRemovePairs.get(1)).ifPresent(editPersonDescriptor::setPoliciesToAdd);
-            parsePoliciesForEdit(addAndRemovePairs.get(0)).ifPresent(editPersonDescriptor::setPoliciesToRemove);
-        }
-
-        parseMeetingsForEdit(argMultimap.getAllValues(PREFIX_MEETING))
-                .ifPresent(editPersonDescriptor::setMeetings);
+        parsePoliciesByEditMode(policiesTrimmed, editPolicyMode, editPersonDescriptor);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor, editPolicyMode);
+    }
+
+    private void parsePoliciesByEditMode(List<String> policies, EditPolicyMode editPolicyMode,
+                                         EditPersonDescriptor editPersonDescriptor) throws ParseException {
+        boolean isModeReplaceOrAppendPolicies = editPolicyMode == EditPolicyMode.REPLACE
+                || editPolicyMode == EditPolicyMode.APPEND;
+        boolean isModeRemovePolicies = editPolicyMode == EditPolicyMode.REMOVE;
+        boolean isModeModifyPolicies = editPolicyMode == EditPolicyMode.MODIFY;
+
+        if (isModeReplaceOrAppendPolicies) {
+            parsePoliciesForEdit(policies).ifPresent(editPersonDescriptor::setPoliciesToAdd);
+        } else if (isModeRemovePolicies) {
+            parsePoliciesForEdit(policies).ifPresent(editPersonDescriptor::setPoliciesToRemove);
+        } else if (isModeModifyPolicies) {
+            List<List<String>> addAndRemovePairs = getPoliciesFromModifyPairs(policies);
+            parsePoliciesForEdit(addAndRemovePairs.get(1)).ifPresent(editPersonDescriptor::setPoliciesToAdd);
+            parsePoliciesForEdit(addAndRemovePairs.get(0)).ifPresent(editPersonDescriptor::setPoliciesToRemove);
+        }
     }
 
     private List<List<String>> getPoliciesFromModifyPairs(List<String> modifyPairs) throws ParseException {
@@ -201,7 +218,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code policies} contain only one element which is an empty string, it will be parsed into a
      * {@code List<InsurancePolicy>} containing zero policies.
      */
-    private Optional<List<InsurancePolicy>> parsePoliciesForEdit(Collection<String> policyIds) throws ParseException {
+    private Optional<List<InsurancePolicy>> parsePoliciesForEdit(Collection<String> policyIds) {
         assert policyIds != null;
 
         if (policyIds.isEmpty()) {
@@ -212,24 +229,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ? Collections.emptySet()
                 : policyIds;
         return Optional.of(new ArrayList<>(ParserUtil.parsePolicies(policyList)));
-    }
-
-    /**
-     * Parses {@code Collection<String> meetings} into a {@code List<Meeting>} if {@code meetings} is non-empty.
-     * If {@code meetings} contain only one element which is an empty string, it will be parsed into a
-     * {@code List<Meeting>} containing zero meetings.
-     */
-    private Optional<List<Meeting>> parseMeetingsForEdit(Collection<String> meetings) throws ParseException {
-        assert meetings != null;
-
-        if (meetings.isEmpty()) {
-            return Optional.empty();
-        }
-
-        Collection<String> meetingList = meetings.size() == 1 && meetings.contains("")
-                ? Collections.emptySet()
-                : meetings;
-        return Optional.of(ParserUtil.parseMeetings(meetingList));
     }
 
 }

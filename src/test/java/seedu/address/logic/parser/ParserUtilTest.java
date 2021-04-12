@@ -29,9 +29,6 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_POLICYID_NO_URL = "Policy>123";
-    private static final String INVALID_POLICYID_VALID_URL = "Policy>12345>www.google.com";
-    private static final String INVALID_POLICYID_INVALID_URL = "Policy>12345>!@#$%^&*()";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -43,7 +40,6 @@ public class ParserUtilTest {
     private static final String VALID_POLICYID_2 = "Policy_1235";
     private static final String VALID_POLICY_URL = "www.google.com";
     private static final String VALID_POLICYID_NO_URL = "Policy_1234";
-    private static final String VALID_POLICYID_INVALID_URL = "Policy_1235>!@#$%^&*()";
     private static final String VALID_POLICYID_VALID_URL = "Policy_1235>www.google.com";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -247,34 +243,12 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePolicies_collectionWithInvalidPolicyId_throwsParseException() {
-        // Tests invalid policy ID with no URL
-        assertThrows(ParseException.class, InsurancePolicy.MESSAGE_CONSTRAINTS, ()
-            -> ParserUtil.parsePolicies(Arrays.asList(INVALID_POLICYID_NO_URL)));
-
-        // Tests invalid policy ID with valid URL
-        assertThrows(ParseException.class, InsurancePolicy.MESSAGE_CONSTRAINTS, ()
-            -> ParserUtil.parsePolicies(Arrays.asList(VALID_POLICYID_NO_URL, INVALID_POLICYID_VALID_URL)));
-
-        // Tests invalid policy ID with invalid URL
-        assertThrows(ParseException.class, InsurancePolicy.MESSAGE_CONSTRAINTS, ()
-            -> ParserUtil.parsePolicies(Arrays.asList(VALID_POLICYID_NO_URL, INVALID_POLICYID_INVALID_URL)));
-    }
-
-    @Test
-    public void parsePolicies_collectionWithInvalidPolicyUrl_throwsParseException() {
-        // Tests invalid policy URL with valid policy ID
-        assertThrows(ParseException.class, InsurancePolicy.MESSAGE_CONSTRAINTS, ()
-            -> ParserUtil.parsePolicies(Arrays.asList(VALID_POLICYID_NO_URL, VALID_POLICYID_INVALID_URL)));
-    }
-
-    @Test
-    public void parsePolicies_emptyCollection_returnsEmptySet() throws Exception {
+    public void parsePolicies_emptyCollection_returnsEmptySet() {
         assertTrue(ParserUtil.parsePolicies(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parsePolicies_collectionWithValidPolicies_returnsPoliciesList() throws Exception {
+    public void parsePolicies_returnsPoliciesList() {
         Set<InsurancePolicy> actualPolicySet = ParserUtil.parsePolicies(Arrays.asList(VALID_POLICYID_NO_URL,
             VALID_POLICYID_VALID_URL));
         Set<InsurancePolicy> expectedPolicyList = new HashSet<>(Arrays.asList(new InsurancePolicy(VALID_POLICYID_1),

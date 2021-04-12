@@ -4,17 +4,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Represents a command with hidden internal logic and the ability to be executed.
+ * Describes behaviour of commands which can be executed in batch.
  */
-public abstract class Command {
-
+public interface BatchOperation {
     /**
-     * Executes the command and returns the result message.
+     * Executes the command and returns the result message. Does not update the filtered list to show all the other
+     * client contacts.
      *
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display.
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException;
-
+    CommandResult executeBatch(Model model) throws CommandException;
 }

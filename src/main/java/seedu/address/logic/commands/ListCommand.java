@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -28,18 +28,18 @@ public class ListCommand extends Command {
             + " a for address or m for meeting)\n"
             + "Example: " + COMMAND_WORD + " -i -p";
 
-    private final List<Attribute> attributes;
+    private final Set<Attribute> attributes;
 
     /**
      * @param attributes that list will show
      */
-    public ListCommand(List<Attribute> attributes) {
+    public ListCommand(Set<Attribute> attributes) {
         requireNonNull(attributes);
         this.attributes = attributes;
     }
 
     public ListCommand() {
-        this.attributes = new ArrayList<>();
+        this.attributes = new HashSet<>();
     }
 
     public boolean isAttributeSpecified() {

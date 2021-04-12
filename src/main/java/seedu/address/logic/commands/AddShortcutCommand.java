@@ -14,8 +14,8 @@ public class AddShortcutCommand extends Command {
     public static final String COMMAND_WORD = "addshortcut";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a shortcut to the shortcut library.\n"
-            + "Parameters: sn/SHORTCUT_NAME (must be an existing shortcut name) "
-            + "sc/SHORTCUT_COMMAND (must be a valid command)\n"
+            + "Parameters: sn/SHORTCUT_NAME (must be alphanumeric without spacing and must not be an existing shortcut "
+            + "name) sc/SHORTCUT_COMMAND (must be a valid ClientBook command)\n"
             + "Example: " + COMMAND_WORD + " sn/sna sc/sort -n -asc";
 
     public static final String MESSAGE_SUCCESS = "New shortcut added: %1$s";

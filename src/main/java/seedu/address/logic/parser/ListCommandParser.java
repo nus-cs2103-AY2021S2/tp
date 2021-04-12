@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,7 +29,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (trimmedArgs.isEmpty()) {
             return new ListCommand();
         } else {
-            List<Attribute> attributes = ParserUtil.parseAttributes(splitArgs);
+            Set<Attribute> attributes = ParserUtil.parseAttributes(splitArgs);
             return new ListCommand(attributes);
         }
     }

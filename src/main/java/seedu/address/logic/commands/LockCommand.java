@@ -31,6 +31,9 @@ public class LockCommand extends Command {
 
     public static final String MESSAGE_FAILED_TO_STORE_PASSWORD = "Failed to store password file.";
 
+    public static final String MESSAGE_CURRENT_PASSWORD_PROVIDED_BUT_NOT_LOCKED = "ClientBook is not yet locked, "
+            + "please provide only the new password.";
+
 
     private final Optional<String> currentPassword;
     private final Optional<String> newPassword;
@@ -69,13 +72,19 @@ public class LockCommand extends Command {
         requireNonNull(model);
         Authentication authentication = model.getAuthentication();
 
-        //There is an existing password
+        //Verify current password if ClientBook is currently locked.
         if (authentication.isPasswordPresent()) {
             //Verify that the current password entered by user is the same as the existing password.
             if (this.currentPassword.isEmpty() || !authentication.getPassword().equals(this.currentPassword.get())) {
                 throw new CommandException(MESSAGE_ALREADY_LOCKED_INCORRECT_PASSWORD);
             }
+        } else {
+            //Current password provided even though ClientBook is not locked.
+            if (this.currentPassword.isPresent()) {
+                throw new CommandException(MESSAGE_CURRENT_PASSWORD_PROVIDED_BUT_NOT_LOCKED);
+            }
         }
+
         //If newPassword is not entered, check for password in password file.
         if (this.newPassword.isEmpty()) {
             useOldPassword(authentication);

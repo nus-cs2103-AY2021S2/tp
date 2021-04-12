@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.MeetCommand.ADD_MEETING;
 import static seedu.address.logic.commands.MeetCommand.CLEAR_MEETING;
 import static seedu.address.logic.commands.MeetCommand.DELETE_MEETING;
 import static seedu.address.logic.commands.MeetCommand.MEETING_EMPTY;
+import static seedu.address.logic.commands.MeetCommand.MESSAGE_INVALID_ACTION;
 import static seedu.address.logic.commands.MeetCommand.MESSAGE_USAGE;
 import static seedu.address.model.meeting.Meeting.errorInMeeting;
 import static seedu.address.model.meeting.Meeting.isValidMeeting;
@@ -37,6 +38,11 @@ public class MeetCommandParser implements Parser<MeetCommand> {
                     return new MeetCommand(index, ADD_MEETING,
                             splitArgs[1], splitArgs[2], splitArgs[3], splitArgs[4]);
                 } else {
+                    try {
+                        Integer.parseInt(String.valueOf(splitArgs[1].charAt(0)));
+                    } catch (NumberFormatException ex) {
+                        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_ACTION));
+                    }
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             errorInMeeting(splitArgs[1], splitArgs[2], splitArgs[3], splitArgs[4])));
                 }
