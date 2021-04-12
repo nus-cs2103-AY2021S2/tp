@@ -15,8 +15,6 @@ public class Tag {
     public static final String TAG_NON_EMPTY = "Tag field should not be empty.\n"
             + "To search for multiple tags, separate them with commas.\n";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static final String TAG_NON_EMPTY = "Tag field should not be empty.\n"
-            + "To search for multiple tags, separate them with commas.\n";
 
     public final String tagName;
     public final String tagNameLowerCase;
