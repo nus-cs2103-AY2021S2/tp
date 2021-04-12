@@ -202,7 +202,34 @@ Step 3. The command is parsed by `EditBookingCommandParser` and returns a `EditB
 Step 4. `Editbookingcommand#execute` checks if the residence and booking exists and if the edited end date is valid.
 
 Step 5. The method then calls `BookingList#setBooking` to set the edited booking before calling `Model#setResidence` to set the edited residence. Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
- 
+
+Below shows the sequence diagram of `EditBookingCommand`
+![EditBookingCommandSequenceDiagram](images/EditBookingSequenceDiagram.png)
+
+![EditBookingCommandSequenceDiagram2](images/EditBookingSequenceRefDiagram.png)
+
+And the activity diagram:
+![EditBookingCommandActivityDiagram](images/EditBookingActivityDiagram.png)
+
+
+
+
+
+
+###Design Consideration
+
+####How to check if the edited booking has dates that overlap with other bookings of the residence.
+
+Implementation of edit booking creates a `editedBooking` before calling `BookingList#setBooking` to replace `bookingToEdit` with `editedBooking`. There is a need to ensure that `editedBooking` has no overlap dates with other bookings. However, if `BookingList#contains` (method that checks if a booking overlaps with other bookings in the `bookingList`) is called, it is likely that it returns `true` because `editedBooking` has overlapping dates with `bookingToEdit` since at this point, `bookingToEdit`still exists in the `bookingList`.
+
+* **Alternative 1: After creating `editedBooking`, use `DeleteBookingCommand` on `bookingToEdit` and `AddBookingCommand` to add `editedBooking` back to the `bookingList`**
+    * Pros: `AddBookingCommand` handles the check for overlapping dates for `editedBooking`. Previous issue of `bookingToEdit`existing in the `bookingList` is solved by deletion.
+    * Cons: ties the implementation of `EditBookingCommand` to `AddBookingCommand` and `DeleteBookingCommand`.
+
+* **Alternative 2: Verify the validity of `BookingList#setBooking` by simulating the deletion of `bookingToEdit` and addition of `editedBooking` through a method in `BookingList`**
+    * Pros: allows the use of `BookingList#setBooking`, separating `EditBookingCommand` from `AddingBookingCommand` and `DeleteBookingCommand`.
+    * Cons: creating a method that is similar to `BookingList#contains`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

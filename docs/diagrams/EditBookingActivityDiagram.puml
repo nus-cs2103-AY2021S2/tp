@@ -10,27 +10,26 @@ if() then ([valid command format])
                 :Booking is updated;
                 :Edit booking success message;
             else([fields are not valid])
+                :checks which fields are invalid;
                 if()then([invalid name])
-                :invalid name error message;
+                    :invalid name error message;
                 elseif() then ([invalid phone])
-                :invalid phone error message;
+                    :invalid phone error message;
                 else([invalid date])
-                :invalid date error message;
+                    :invalid date error message;
                 endif
             endif
         else([if either index are not valid])
             if() then ([invalid residence index])
-            :invalid residence index error;
+            :invalid residence index error message;
             else([invalid booking index])
-            :invalid booking index error;
+            :invalid booking index error message;
             endif
         endif
 else([invalid command format])
 :incorrect command format message;
 endif
 stop
-
-
 
 
 
