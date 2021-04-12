@@ -194,7 +194,7 @@ Note: Whenever the appointments of a patient is requested, we look through the l
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `executeCommand("mrec 1")` API call. The interactions for creating a 
 medical record are similar to those for viewing one, which will not be elaborated on here. 
 
-![MedicalRecordCommandLogic](https://user-images.githubusercontent.com/59093518/114359004-20acbd00-9ba6-11eb-870e-3a0d347a2508.png)
+![MedicalRecordCommandLogic](https://user-images.githubusercontent.com/59093518/114359650-c829ef80-9ba6-11eb-8f3d-985c8159d34f.png)
 
 **How**
 
