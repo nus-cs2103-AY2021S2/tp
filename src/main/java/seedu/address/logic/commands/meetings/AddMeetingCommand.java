@@ -31,8 +31,8 @@ public class AddMeetingCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_START_TIME + "START TIME "
             + PREFIX_END_TIME + "END TIME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_PRIORITY + "PRIORITY "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" +PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_GROUP + "GROUP]..."
             + "[" + PREFIX_PERSON_CONNECTION + "INDEX OF PERSON RELATED]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -131,4 +131,3 @@ public class AddMeetingCommand extends Command {
                 && toAdd.equals(((AddMeetingCommand) other).toAdd));
     }
 }
-

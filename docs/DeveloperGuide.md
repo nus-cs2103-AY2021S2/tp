@@ -494,18 +494,6 @@ Users would be better able to manage their social and academic commitments by to
 
   Use case ends.
 
-<<<<<<< HEAD
-**Use case: Viewing meetings in the timetable**
-
-=======
->>>>>>> 6b3cdedcdc7d066e766ef5f4d6971efdb9916ac1
-
-New features on V1.2
-5.  Assign priorities to contacts
-6.  Notes about the contact.
-7.  Sort contacts by (priorities/personName/groups)
-8.  Last meetup date for each contact
-
 **Use case: Sort contact list**
 
 **MSS**
