@@ -129,7 +129,9 @@ The `Appointment`,
 
 * stores a `Appointment` class, which access `Patient` object and `Doctor` object via the `PatientMap` class and `DoctorMap` class.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) Person model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. Similar design can be applied to the Appointment model.<br>
+
 ![BetterPersonModelClassDiagram](images/BetterPersonModelClassDiagram.png)
+
 ![BetterAppointmentModelClassDiagram](images/BetterAppointmentModelClassDiagram.png)
 
 </div>
