@@ -130,7 +130,7 @@ or suggestions [here](https://github.com/AY2021S2-CS2103T-W14-4/tp/issues).
 
 * Adding a task in the `home` tab will display the full list of tasks.
 
-* A task is considered duplicated if it's name, description and date is the same.
+* A task is considered duplicated if it's name, description and date are the same.
 
 * For the `completed`, `uncompleted`, `expired` tabs, only the following commands work: `help`, `exit`, `uncompleted`, 
   `completed`, `expired` and `home`. Switch to the `home` tab to utilize the other commands.
