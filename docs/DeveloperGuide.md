@@ -923,7 +923,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TutorsPet` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new student contact**
+**Use case: UC01 - Add a new student contact**
 
 **MSS**
 
@@ -952,7 +952,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
      * 1c1. TutorsPet shows an error message. <br>
        Use case ends.
 
-**Use case: Editing an existing student contact**
+**Use case: UC02 - Editing an existing student contact**
 
 **MSS**
 
@@ -981,7 +981,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
        
-**Use case: Delete a student contact**
+**Use case: UC03 - Delete a student contact**
 
 **MSS**
 
@@ -1004,7 +1004,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Display a student contact details**
+**Use case: UC04 - Display a student contact details**
 
 **MSS**
 
@@ -1027,7 +1027,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 2.
 
-**Use case: Search for a student contact**
+**Use case: UC05 - Search for a student contact**
 
 **MSS**
 
@@ -1050,7 +1050,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Sort the list view**
+**Use case: UC06 - Sort the list view**
 
 **MSS**
 
@@ -1073,7 +1073,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
 
-**Use case: Increase level of all students**
+**Use case: UC07 - Increase level of all students**
 
 **MSS**
 
@@ -1096,7 +1096,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Decrease level of all students**
+**Use case: UC08 - Decrease level of all students**
 
 **MSS**
 
@@ -1119,7 +1119,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add a new important date**
+**Use case: UC09 - Add a new important date**
 
 **MSS**
 
@@ -1142,7 +1142,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Deletes an important date**
+**Use case: UC10 - Deletes an important date**
 
 **MSS**
 
@@ -1165,7 +1165,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 2.
 
-**Use case: Lists important dates**
+**Use case: UC11 - Lists important dates**
 
 **MSS**
 
@@ -1182,7 +1182,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Opens schedule window**
+**Use case: UC12 - Opens schedule window**
 
 **MSS**
 
@@ -1205,7 +1205,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-**Use case: Clears all entries contact**
+**Use case: UC13 - Clears all entries contact**
 
 **MSS**
 
@@ -1222,7 +1222,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
   
-**Use case: Exit TutorsPet**
+**Use case: UC14 - Exit TutorsPet**
 
 **MSS**
 
@@ -1266,6 +1266,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Novice**: A user that is new to using TutorsPet
+* **MSS**: Main Success Scenario
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
