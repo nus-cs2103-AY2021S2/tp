@@ -236,17 +236,21 @@ Below is a further breakdown of the logic component of the find command using a 
 
 ![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
 
-Description:
-When the user keys in an input, execute method of LogicManager is called with the user input as the parameter. In the
-method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input. The
-DeliveryListParser parses the user input and identifies it as a FindCommand and instantiates a FindCommandParser object.
-DeliveryistParser then invokes the parse method of the FindCommandParser object to further parse the arguments provided.
-In the parse method, the FindCommandParser ensures that the input is of the correct format and identifies the keywords.
-If the input specified by the user is valid, a new FindCommand instance will be created and returned to LogicManager via
-DeliveryListParser. The LogicManager will then invoke the overridden execute method of the FindCommand object with Model
-as the argument. Subsequently, the FindCommand object will take in the keywords and invoke the updateFilteredCustomersList method of Model that gets the
-entries with attributes that match the keyword(s). It will then return a CommandResult object to LogicManager. This
-CommandResult will be returned at the end by LogicManager.
+**Description:**
+
+* When the user keys in an input, execute method of LogicManager is called with the user input as the parameter. 
+* In the method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input. 
+* The DeliveryListParser parses the user input and identifies it as a FindCommand and instantiates a FindCommandParser object.
+* DeliveryistParser then invokes the parse method of the FindCommandParser object to further parse the arguments provided.
+* In the parse method, the FindCommandParser ensures that the input is of the correct format and identifies the keywords.
+* If the input specified by the user is valid, a new FindCommand instance will be created and returned to LogicManager via
+DeliveryListParser. 
+* The LogicManager will then invoke the overridden execute method of the FindCommand object with Model
+as the argument. 
+* Subsequently, the FindCommand object will take in the keywords and invoke the updateFilteredCustomersList method of Model that gets the
+entries with attributes that match the keyword(s). 
+* It will then return a CommandResult object to LogicManager. 
+* This CommandResult will be returned at the end by LogicManager.
 
 The following Activity Diagram summarizes what happens when a user executes the find command:
 
@@ -270,19 +274,25 @@ Below is a sequence diagram for the remark command.
 
 ![Remark Command Sequence Diagram](images/RemarkCommandSequenceDiagram.png)
 
-Description:
-When the user keys in an input, execute method of LogicManager is called with the user input as the parameter. In the
-method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input. The
-DeliveryListParser parses the user input and identifies it as a RemarkCommand and instantiates a RemarkCommandParser
-object. DeliveryListParser then invokes the parse method of the RemarkCommandParser object to further parse the
-arguments provided. In the parse method, the RemarkCommandParser ensures that the input is of the correct format and
-identifies the input for the index of the item for which remark needs to be added. If the index specified by the user is
-valid, a new RemarkCommand instance will be created and returned to LogicManager via DeliveryListParser. The
-LogicManager will then invoke the overridden execute method of the RemarkCommand object with Model as the argument.
-Subsequently, the RemarkCommand object will be created with the index of the item to add remark, and remark description
-as the argument and it will invoke the setCustomer method to replace old entry with the new one which contains the
-remark. It will then return a CommandResult object to LogicManager. This CommandResult will be returned at the end by
-LogicManager.
+**Description:**
+
+* When the user keys in an input, execute method of LogicManager is called with the user input as the parameter.
+* In the method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input.
+* The DeliveryListParser parses the user input and identifies it as a RemarkCommand and instantiates a
+  RemarkCommandParser object.
+* DeliveryListParser then invokes the parse method of the RemarkCommandParser object to further parse the arguments
+  provided.
+* In the parse method, the RemarkCommandParser ensures that the input is of the correct format and identifies the input
+  for the index of the item for which remark needs to be added.
+* If the index specified by the user is valid, a new RemarkCommand instance will be created and returned to LogicManager
+  via DeliveryListParser.
+* The LogicManager will then invoke the overridden execute method of the RemarkCommand object with Model as the
+  argument.
+* Subsequently, the RemarkCommand object will be created with the index of the item to add remark, and remark
+  description as the argument, and it will invoke the setCustomer method to replace old entry with the new one which
+  contains the remark.
+* It will then return a CommandResult object to LogicManager.
+* This CommandResult will be returned at the end by LogicManager.
 
 Below is an activity diagram for the remark command.
 
@@ -717,3 +727,18 @@ Expected : Delivery tasks with name "Bernice Yu","David Li","Roy Balakrishnan" s
       
       
 
+### Finding a delivery task
+
+1. Finding a delivery task in the delivery list
+
+    1. Prerequisites: TimeforWheels sample data is loaded in the app. List all delivery task using the `list` command.
+
+    2. Test case: `find `<br>
+       Expected: Invalid command format
+
+    3. Test case: `find Alex`<br>
+       Expected: Delivery Tasks with attributes matching the keyword Alex.
+       
+    4. Test case: `find Alex 2021-10-10`<br>
+       Expected: Delivery Tasks with attributes matching the keyword Alex and the date 10th October 2021.
+       

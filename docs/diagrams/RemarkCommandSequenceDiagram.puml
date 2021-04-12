@@ -7,7 +7,7 @@ participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
 participant ":RemarkCommandParser" as RemarkCommandParser LOGIC_COLOR
 participant ":RemarkCommand" as RemarkCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
-participant "descriptor:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
+participant "descriptor:EditCustomerDescriptor" as EditCustomerDescriptor LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -34,12 +34,12 @@ create RemarkCommand
 RemarkCommandParser -> RemarkCommand
 activate RemarkCommand
 
-create EditItemDescriptor
-RemarkCommand -> EditItemDescriptor
-activate EditItemDescriptor
+create EditCustomerDescriptor
+RemarkCommand -> EditCustomerDescriptor
+activate EditCustomerDescriptor
 
-EditItemDescriptor --> RemarkCommand : descriptor
-deactivate EditItemDescriptor
+EditCustomerDescriptor --> RemarkCommand : descriptor
+deactivate EditCustomerDescriptor
 
 RemarkCommand --> RemarkCommandParser : descriptor
 deactivate RemarkCommand
