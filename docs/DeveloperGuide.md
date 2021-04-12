@@ -149,7 +149,8 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are 
+in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -797,17 +798,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. ClientBook is already locked but user did not enter the current password.
+* 1a. ClientBook is already locked but user has not entered the current password.
   
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1. <br><br>
+    * 1a1. ClientBook shows an error message. 
+      
+        Use case resumes at step 1.
     
-* 1b. ClientBook is already locked and user entered the incorrect current password.
+* 1b. ClientBook is already locked and user enters the incorrect current password.
   
-    * 1b1. ClientBook shows an error message. Use case resumes at step 1.
+    * 1b1. ClientBook shows an error message. 
+      
+        Use case resumes at step 1.
 
 <br>
 
 **Use case 10: Unlock ClientBook**
+**Preconditions:** ClientBook is already locked.
 
 **MSS**
 
@@ -819,7 +825,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User enters the incorrect current password that is used to lock ClientBook.
+* 1a. User enters the incorrect password.
   
     * 1a1. ClientBook shows an error message. Use case resumes at step 1.
     
