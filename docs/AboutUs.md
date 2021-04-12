@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/knitidceladon23.png" width="200px">
 
 [[github](http://github.com/KnitidCeladon23)]
-[[portfolio](team/kennychew.md)]
+[[portfolio](team/knitidceladon23.md)]
 
 * Role: Developer
 * Responsibilities: Testing
