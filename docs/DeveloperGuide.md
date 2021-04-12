@@ -1426,7 +1426,7 @@ Given below are instructions to test the app manually.
 
 1. Deleting a Reminder
     1. Prerequisites:
-        1. List all reminder(s) using the `list_reminders` command. Multiple grades in the list.
+        1. List all reminder(s) using the `list_reminders` command. Multiple reminders in the list.
         2. The reminder to be deleted must exist.
         3. The index provided must be a positive integer index seen on the current window. <br><br>
     2. Test Case: `delete_reminder 1` <br>
