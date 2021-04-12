@@ -15,6 +15,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
+  <br><br>
 
 * **Enhancement to Existing Feature**: Added the ability to find clothings based on various attributes
   [\#63](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/63),
@@ -33,7 +34,7 @@ Given below are my contributions to the project.
   [\#97](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/97)
   * What it does: allows the user to find the list of garments that match his chosen garment 
   * Justification: This feature improves NuFash significantly as previously, it only outputs garments that have 
-    matching colour, but now it outputs garments that have the matching dresscode and type as well.
+    matching colour, but now it outputs garments that have the matching dresscode and type as well as the colour.
   * Highlights: This enhancement affects the list of matching garments viewed by the user, giving the user more 
     accurate garment suggestions.  
     <br>
@@ -56,7 +57,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `clear` and `find` 
       [\#89](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/a38810c24bc1cf61ff88c4d39e2610618eb9d77f)
-    * Added to relevant explanation to the existing documentation of the general UG: 
+    * Added relevant explanation to the existing documentation of the general UG: 
       [\#108](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/1d74d3847cb942b9be755fe970908f70e31e970c)
     * Edited the UG based on the bugs found by our peers in terms of phrasing and updated the screenshots of NuFash:
       [\#154](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/350935872a3f88b9934c607a5f00752162055fff),
