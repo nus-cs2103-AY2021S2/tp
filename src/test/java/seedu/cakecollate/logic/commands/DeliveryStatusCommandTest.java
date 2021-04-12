@@ -7,15 +7,19 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSucc
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
+import static seedu.cakecollate.testutil.TypicalOrders.ALICE;
+import static seedu.cakecollate.testutil.TypicalOrders.BOB;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
+import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.UserPrefs;
@@ -41,7 +45,7 @@ class DeliveryStatusCommandTest {
                 new DeliveryStatusCommand(indexList, orderToUpdate.getDeliveryStatus());
 
         String expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_SAME,
-                    String.format("\n%1$s", orderToUpdate));
+                String.format("\n%1$s", orderToUpdate));
 
         ModelManager expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         expectedModel.setOrder(expectedModel.getFilteredOrderList().get(0), orderToUpdate);
@@ -109,18 +113,22 @@ class DeliveryStatusCommandTest {
 
     @Test
     public void execute_validIndexesUnfilteredListWithDifferentStatus_success() {
-        Order orderToUpdateOne = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
-        Order orderToUpdateTwo = model.getFilteredOrderList().get(INDEX_SECOND_ORDER.getZeroBased());
+        Order order1 = new OrderBuilder(ALICE).withDeliveryStatus(Status.UNDELIVERED).build();
+        Order order2 = new OrderBuilder(BOB).withDeliveryStatus(Status.DELIVERED).build();
+        Order updatedOrder2 = new OrderBuilder(BOB).withDeliveryStatus(Status.UNDELIVERED).build();
 
-        Status status;
-        if (orderToUpdateOne.getDeliveryStatus().equals(orderToUpdateTwo.getDeliveryStatus())) {
-            if (orderToUpdateOne.getDeliveryStatus().equals(new DeliveryStatus())) {
-                status = Status.DELIVERED;
-            } else {
-                status = Status.UNDELIVERED;
-            }
-            orderToUpdateTwo = new OrderBuilder(orderToUpdateTwo).withDeliveryStatus(status).build();
-        }
+        List<Order> list = new ArrayList<Order>();
+        list.add(order1);
+        list.add(order2);
+        CakeCollate c = new CakeCollate();
+        c.setOrders(list);
+        Model modelWithTwoOrders = new ModelManager(c, new UserPrefs(), TypicalOrderItems.getTypicalOrderItemsModel());
+
+        Model expectedModel = new ModelManager(
+                modelWithTwoOrders.getCakeCollate(),
+                new UserPrefs(),
+                modelWithTwoOrders.getOrderItems());
+
 
         ArrayList<Index> indexArrayList = new ArrayList<Index>();
         indexArrayList.add(INDEX_FIRST_ORDER);
@@ -128,25 +136,19 @@ class DeliveryStatusCommandTest {
         IndexList indexList = new IndexList(indexArrayList);
 
         DeliveryStatusCommand deliveryStatusCommand =
-                new DeliveryStatusCommand(indexList, orderToUpdateOne.getDeliveryStatus());
+                new DeliveryStatusCommand(indexList, order1.getDeliveryStatus());
 
-        Order updatedOrderTwo = new OrderBuilder(orderToUpdateTwo)
-                .withDeliveryStatus(orderToUpdateOne.getDeliveryStatus().getDeliveryStatus())
-                .build();
 
         String expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_UPDATED,
-                String.format("\n%1$s", updatedOrderTwo));
+                String.format("\n%1$s", updatedOrder2));
 
         expectedMessage += "\n\n" + String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_SAME,
-                String.format("\n%1$s", orderToUpdateOne));
+                String.format("\n%1$s", order1));
 
-        ModelManager expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
-        expectedModel.setOrder(expectedModel.getFilteredOrderList().get(0), orderToUpdateOne);
-        expectedModel.setOrder(expectedModel.getFilteredOrderList().get(1), updatedOrderTwo);
+        expectedModel.setOrder(order1, order1);
+        expectedModel.setOrder(order2, updatedOrder2);
 
-        model.setOrder(expectedModel.getFilteredOrderList().get(1), orderToUpdateTwo);
-
-        assertCommandSuccess(deliveryStatusCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deliveryStatusCommand, modelWithTwoOrders, expectedMessage, expectedModel);
 
     }
 

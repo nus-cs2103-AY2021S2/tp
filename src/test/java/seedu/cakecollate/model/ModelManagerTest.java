@@ -11,6 +11,8 @@ import static seedu.cakecollate.testutil.TypicalOrderItems.CHOCOLATE;
 import static seedu.cakecollate.testutil.TypicalOrderItems.CHOCOLATE_MUD;
 import static seedu.cakecollate.testutil.TypicalOrders.ALICE;
 import static seedu.cakecollate.testutil.TypicalOrders.BENSON;
+import static seedu.cakecollate.testutil.TypicalOrders.BOB;
+import static seedu.cakecollate.testutil.TypicalOrders.CARL;
 import static seedu.cakecollate.testutil.TypicalOrders.ELLE;
 import static seedu.cakecollate.testutil.TypicalOrders.GEORGE;
 
@@ -25,7 +27,10 @@ import org.junit.jupiter.api.Test;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
+import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.order.Status;
 import seedu.cakecollate.testutil.CakeCollateBuilder;
+import seedu.cakecollate.testutil.OrderBuilder;
 import seedu.cakecollate.testutil.OrderItemsBuilder;
 
 public class ModelManagerTest {
@@ -164,5 +169,61 @@ public class ModelManagerTest {
         modelManager = new ModelManager(cakeCollate, userPrefs, orderItems);
         assertEquals(modelManager.getFilteredOrderList(),
                 Arrays.asList(GEORGE, ELLE));
+    }
+
+    /**
+     * Ensure that when an order with different status are added, they're always sorted by
+     * undelivered, cancelled and delivered.
+     */
+    @Test
+    public void getFilteredOrderList_addOrdersOutOfOrderStatus_modelShouldBeSorted() {
+        String s = "31/12/2022";
+
+        Order order1 = new OrderBuilder(ALICE).withDeliveryDate(s).withDeliveryStatus(Status.UNDELIVERED).build();
+        Order order2 = new OrderBuilder(BOB).withDeliveryDate(s).withDeliveryStatus(Status.CANCELLED).build();
+        Order order3 = new OrderBuilder(CARL).withDeliveryDate(s).withDeliveryStatus(Status.DELIVERED).build();
+
+        CakeCollate cakeCollate =
+                new CakeCollateBuilder().withOrder(order3).withOrder(order1).withOrder(order2).build();
+        UserPrefs userPrefs = new UserPrefs();
+        OrderItems orderItems = new OrderItems();
+
+        modelManager = new ModelManager(cakeCollate, userPrefs, orderItems);
+        assertEquals(modelManager.getFilteredOrderList(),
+                Arrays.asList(order1, order2, order3));
+
+    }
+
+    /**
+     * Ensures that when orders of different statuses, and some orders of the same status but different dates,
+     * are sorted correctly.
+     */
+    @Test
+    public void getFilteredOrderList_addOrdersOutOfOrderStatusAndDate_modelShouldBeSorted() {
+        String d1 = "31/12/2022";
+        String d2 = "01/04/2023";
+        String d3 = "01/05/2024";
+
+        Order order1 = new OrderBuilder(ALICE).withDeliveryDate(d1).withDeliveryStatus(Status.UNDELIVERED).build();
+        Order order2 = new OrderBuilder(ALICE).withDeliveryDate(d2).withDeliveryStatus(Status.UNDELIVERED).build();
+        Order order3 = new OrderBuilder(BOB).withDeliveryDate(d2).withDeliveryStatus(Status.CANCELLED).build();
+        Order order4 = new OrderBuilder(BOB).withDeliveryDate(d3).withDeliveryStatus(Status.CANCELLED).build();
+        Order order5 = new OrderBuilder(CARL).withDeliveryDate(d1).withDeliveryStatus(Status.DELIVERED).build();
+        Order order6 = new OrderBuilder(CARL).withDeliveryDate(d3).withDeliveryStatus(Status.DELIVERED).build();
+
+        CakeCollate cakeCollate = new CakeCollateBuilder()
+                .withOrder(order6)
+                .withOrder(order1)
+                .withOrder(order4)
+                .withOrder(order2)
+                .withOrder(order5)
+                .withOrder(order3)
+                .build();
+        UserPrefs userPrefs = new UserPrefs();
+        OrderItems orderItems = new OrderItems();
+
+        modelManager = new ModelManager(cakeCollate, userPrefs, orderItems);
+        assertEquals(modelManager.getFilteredOrderList(),
+                Arrays.asList(order1, order2, order3, order4, order5, order6));
     }
 }
