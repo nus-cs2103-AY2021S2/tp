@@ -1,3 +1,4 @@
+//@@author branzuelajohn
 package dog.pawbook.model.managedentity.dog;
 
 import static dog.pawbook.commons.util.AppUtil.checkArgument;
