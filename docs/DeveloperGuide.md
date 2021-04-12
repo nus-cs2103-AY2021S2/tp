@@ -117,9 +117,6 @@ The `UI` component,
 * `DictionaryContentPanel` use` DictionaryListPanelConfig` to detect `DictionaryListPanel`display status
 * Model Component can request for content change using `DictionaryContentConfig` and `NoteContentConfig`
 
-
-<div style="page-break-after: always;"></div>
-
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
