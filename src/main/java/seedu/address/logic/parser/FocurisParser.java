@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_EXTRA_ARGUMENTS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -24,7 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class FocurisParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -55,18 +56,22 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
+            ensureNoArguments(arguments);
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
+            ensureNoArguments(arguments);
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
+            ensureNoArguments(arguments);
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            ensureNoArguments(arguments);
             return new HelpCommand();
 
         case BackLogCommand.COMMAND_WORD:
@@ -82,10 +87,17 @@ public class AddressBookParser {
             return new DoneCommandParser().parse(arguments);
 
         case SwitchCommand.COMMAND_WORD:
+            ensureNoArguments(arguments);
             return new SwitchCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    private void ensureNoArguments(String arguments) throws ParseException {
+        if (!arguments.trim().isEmpty()) {
+            throw new ParseException(MESSAGE_EXTRA_ARGUMENTS);
         }
     }
 

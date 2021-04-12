@@ -1,4 +1,4 @@
----
+	---
 layout: page
 title: User Guide
 ---
@@ -54,7 +54,7 @@ and customise your experience with Focuris!
 
 <!-- AUTO-GENERATED TOC - END -->
 <!-- prettier-ignore-end -->
-i
+
 ---
 
 <div class="page-break-before"></div>
@@ -165,11 +165,6 @@ and [2.3](#23-event-commands).
 - You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
 - Events of the same name are treated as case-insensitive. <br>
   e.g. `CS2030` is the same name as `cs2030`.
-- Note that commands are case sensitive, so you must follow the format given closely! <br>
-  e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work. 
-- Also note that for the commands where square brackets `[ ]` appear, it indicates that those a optional fields, which means that you do not 
-necessarily have to type them in if you do not want to, as shown in the table above under <b>Format, Examples</b>.
-
 
 </div>
 
@@ -295,8 +290,7 @@ For the majority of event commands, you can simply execute them via these simple
 
 1. Type the command you desire in the command box with the specified format detailed below.
 2. Hit `enter` on your keyboard!
-3. The result of your command should be visible on the Result Box, while the outcome of your command should be 
-visible on the `KanBan` or `List` view (depending on your view) above the Result Box.
+3. The results and outcome of your command should be visible on the application just above the Command Box.
 
 Start discovering and using the Commands now by going to the Command Summary!
 
@@ -506,7 +500,7 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 
 ### 2.3.7 `find` Command
 
-Finds events whose names and description contain any of the given keywords.
+Finds events whose names contain any of the given keywords.
 
 **What you should type into the Command Box:**
 
@@ -620,21 +614,6 @@ switch
 
 # 3. FAQ
 
-As a new user to Focuris, you might have many unanswered queries. We hope that the Frequently Asked Questions (FAQ) addresses your concerns and you are able to start using Focuris to manage and keep track of all your work, deadlines and projects today!
-
-**Here are the areas covered in the FAQ:**
-
-- [3.1 Privacy and Data FAQ](#31-privacy-and-data-faq)
-- [3.2 Application User FAQ](#32-application-user-faq)
-
-<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
-
-<div class="page-break-before"></div>
-
-## 3.1 Privacy and Data FAQ
-
-As a user, you might be concerned about your privacy and data. We seek to address your privacy and data concerns in this section.
-
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
 
@@ -649,23 +628,6 @@ and thus we recommend keeping the text under **20 characters** for the event nam
 **Q**: Will my data be sent anywhere else or shared with third parties?<br>
 **A**: Your data is stored locally on your own computer. Focuris does not use any Internet connection so no data can be
 sent to any online servers.
-
-<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
-
-<div class="page-break-before"></div>
-
-## 3.2 Application User FAQ
-
-As a new user to Focuris, you might encounter have certain queries regarding how the application logic behind Focuris works. We seek to address your queries and help you get a better understanding of how Focuris works.
-
-**Q**: Why are multiple Events of the same name not allowed in our application?<br>
-**A**: We believe that tasks should be broken down into small components such that the title should be self-descriptive of the task. Therefore, we believe that Events of the same name are not allowed since you could probably break the task down into smaller parts or add unique descriptors to the name of the task to help yourself differentiate tasks even quicker.
-
-**Q**: Why are the identifiers of my Events not in counting order?<br>
-**A**: Identifiers are meant to be unique to each task. Whenever a new Event is created, the identifier counter increases. The counter does not decrease since this could potentially lead to issues whereby the identifier is no longer unique, which would cause the functionality of Focuris to be compromised. As such, we believe that an identifier that does not reset or decrease in a single session is best suited for such a task.
-
-**Q**: Why are identifiers not resetting when I run the `clear` command to clear all Events?<br>
-**A**: Identifiers are meant to be unique to each task. Therefore, during each of your sessions on Focuris, the identifiers will not be reset. However, when you restart the application, the identifiers will be reset as each Event is being added into Focuris from the data file. This ensures that identifiers assigned to new tasks are always unique, following the practices of GitHub and Jira.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 

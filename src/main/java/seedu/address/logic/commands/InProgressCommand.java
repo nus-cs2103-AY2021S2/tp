@@ -12,7 +12,7 @@ import seedu.address.model.event.Event;
 public class InProgressCommand extends Command {
     public static final String COMMAND_WORD = "prog";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Event with the status of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Event with the status of "
             + "IN-PROGRESS to Focuris. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -22,7 +22,7 @@ public class InProgressCommand extends Command {
             + PREFIX_NAME + "Household Chores" + " "
             + PREFIX_DESCRIPTION + "Clean my room and wash the dishes";
 
-    public static final String MESSAGE_SUCCESS = "New Event added with the Status of IN-PROGERSS: %1$s.";
+    public static final String MESSAGE_SUCCESS = "New Event added with the Status of IN-PROGRESS: %1$s.";
     public static final String MESSAGE_DUPLICATE_EVENT = "An Event with the same NAME already exists in Focuris.";
 
     private final Event toAdd;
