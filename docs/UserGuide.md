@@ -24,8 +24,8 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 <div markdown="block" class="alert-warning">
 
-**:warning: PartyPlanet will use its default Address Book and Event Book if it is unable to locate the
-JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
+**:warning: PartyPlanet will use its default Address (resp. Event) Book if it is unable to locate the
+JSON file for the Address (resp. Event) Book. It will start with an empty Address (resp. Event) Book if there is an error in the JSON file for the Address (resp. Event) Book.**
 
 </div>
 
@@ -43,7 +43,7 @@ purposes, these steps are split into a few categories.
    not important. For instance, the Welfare IC might want to store the address of a member to hold a surprise party.
 
 2. Add in vendors that are commonly contacted during party planning to allow for ease of reference when planning for
-   further parties. All fields are optional except name as it does not make sense for the welfare IC be forced to
+   further parties. All fields are optional except name as it does not make sense for the welfare IC to be forced to
    store information such as Birthdays. This gives the Welfare IC flexibility to decide on what information needs to
    be stored. For instance, the Welfare IC might want to store the email of a catering company, or the address of a bakery for cake pickups.
 
@@ -76,9 +76,9 @@ dates where event 6 is marked as done.
 #### Search and Sort through contacts and events
 
 6. Welfare ICs can search and sort people by criteria. This allows them to search for people by name, birthday month
-   and tag to allow for ease of searching for specific people even with lots of contacts. The sorting allows Welfare
-   ICs an easy way of organising the people. For example, they can sort by upcoming birthdays (according to day and
-   month only) with `list -s u` so that they can plan for the parties accordingly.
+   and tag to allow for ease of searching for specific people even with lots of contacts. The seraching and sorting 
+   allows Welfare ICs an easy way of organising the people. For example, they can search for all people with 
+   birthdays in the month September `list -b 9` so that they can plan for the parties accordingly.
 
 7. Welfare ICs can search and sort events by criteria. This allows them to search for events by event name and
    remark to allow for ease of searching for specific events even with lots of events. The sorting allows Welfare
@@ -106,16 +106,18 @@ This image below is a screenshot of the app displaying events sorted by upcoming
 |---|---|---|---|
 | `ADDRESS` | `-a` /<br>`--address` | Contact | Any value |
 | `BIRTHDAY` | `-b` /<br>`--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be a positive integer between 0001 and 9999 if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
+| `BIRTHDAY_MONTH` | `-b` /<br>`--birthday` | Contact | Any of the following: <li>A valid month represented by a string, e.g. `Jan`, `Jun`, `Dec` </li><li>An integer ranging from [0, 12]</li>|
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
 | `DATE` | `-d` /<br>`--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
-| `REMARK` | `-r` /<br>`--remark` | any | Any value |
 | `EMAIL` | `-e` /<br>`--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>_!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
 | `INDEX` | - | any | Positive integer between 0 and 2,147,483,647 inclusive, representing the ID present in the filtered list |
 | `NAME` | `-n` /<br>`--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) and not longer than 25 characters|
 | `PHONE` | `-p` /<br>`--phone` | Contact | Any number at least three digits long |
+| `REMARK` | `-r` /<br>`--remark` | any | Any value |
 | `SORT_FIELD` | `-s` /<br>`--sort` | any | Any valid option, specified below in `list` and `elist` commands |
 | `SORT_ORDER` | `-o` /<br>`--order` | any | Any of the following:{::nomarkdown}<ul><li><code>a</code>, <code>asc</code>, <code>ascending</code> (ascending order)</li><li><code>d</code>, <code>desc</code>, <code>descending</code> (descending order)</li></ul>{:/} |
 | `TAG` | `-t` /<br>`--tag` | Contact | Any value containing only alphanumeric characters and not longer than 40 characters|
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -251,18 +253,18 @@ Examples:
 
 Displays a list of contacts in the contact list, with optional search criteria.
 
-Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`
+Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY_MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]`
 1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
 List all contacts in contact list
-2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
+2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY_MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
 List all contacts matching the search criteria
 
 Search criteria, case-insensitive:
 * `-n`, `--name` filters the contacts by name
 * `-t`, `--tag` filters the contacts by tags
 * `-b`, `--birthday` filters contacts by birthday month
-  * If `BIRTHDAY` is "0" or unspecified, displays filtered contacts without birthday.
-  * Otherwise, `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
+  * If `BIRTHDAY_MONTH` is "0" or unspecified, displays filtered contacts without birthday.
+  * Otherwise, `BIRTHDAY_MONTH` must be one of the 12 months, represented either by the month value or string,
     i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
 
 Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches.
@@ -440,8 +442,7 @@ Note: Autocompleted Tags will be returned in alphabetical order and is case-sens
 
 Undoes the most recent action that changed PartyPlanet's Contact or Event List.
 
-Note: This means that only commands such, as `add`, `delete` etc.., can be undone.<br>
-Other command that only changes display, such as `theme`, `list` etc.., will not be affected.
+Note: This means that only the commands, `add`, `delete`, `edit`, `eadd`, `edelete`, `eedit`, `edone`, can be undone.
 
 Can be invoked repeatedly until there is no more history from the current session.
 
@@ -493,6 +494,7 @@ Retrieves previously entered input.
 #### Data path display :
 
 * Displays the absolute path to the folder where the data is stored at the bottom of PartyPlanet.
+* Data directory will only be created only upon the first command input. Fresh application start ups will not have the data folder.
 
 <div markdown="block" class="alert-warning">
 
