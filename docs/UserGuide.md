@@ -288,11 +288,11 @@ Example:
 2. Type in `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` 
    which includes all the essential information the application needs from the student and press <kbd>Enter</kbd>.
 
-![add_student_example](images/enhao/add_student%20-%20edited.png)
+  ![add_student_example](images/enhao/add_student%20-%20edited.png)
 
 3. Scrolling down to the end of the student list, you will see that **John Doe** has been added to TutorBuddy.
 
-![add_student_result_example](images/enhao/add_student_result%20-%20edited.png)
+  ![add_student_result_example](images/enhao/add_student_result%20-%20edited.png)
 
 ##### Locating student by name: `find_student`
 
