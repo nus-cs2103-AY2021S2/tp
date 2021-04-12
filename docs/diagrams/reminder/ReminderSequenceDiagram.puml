@@ -2,59 +2,16 @@
 !include ../style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":TutorTrackerParser" as TutorTrackerParser LOGIC_COLOR
-participant ":AddReminderCommandParser" as AddReminderCommandParser LOGIC_COLOR
 participant "a:AddReminderCommand" as AddReminderCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "r:Reminder" as Reminder MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 participant ":ReminderTracker" as ReminderTracker MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add_reminder \nds/Pay Tuition Fee d/2021-4-11")
-activate LogicManager
-
-LogicManager -> TutorTrackerParser : parseCommand("add_reminder \nds/Pay Tuition Fee d/2021-4-11")
-activate TutorTrackerParser
-
-create AddReminderCommandParser
-TutorTrackerParser -> AddReminderCommandParser
-activate AddReminderCommandParser
-
-AddReminderCommandParser --> TutorTrackerParser
-deactivate AddReminderCommandParser
-
-TutorTrackerParser -> AddReminderCommandParser : parse("Pay Tuition Fee", "2021-4-11")
-activate AddReminderCommandParser
-
-create Reminder
-AddReminderCommandParser -> Reminder : Reminder("Pay Tuition Fee", "2021-4-11")
-activate Reminder
-
-Reminder --> AddReminderCommandParser : r
-deactivate Reminder
-
-create AddReminderCommand
-AddReminderCommandParser -> AddReminderCommand : AddReminderCommand(r)
-activate AddReminderCommand
-
-AddReminderCommand --> AddReminderCommandParser : a
-deactivate AddReminderCommand
-
-AddReminderCommandParser --> TutorTrackerParser : a
-deactivate AddReminderCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddReminderCommandParser -[hidden]-> TutorTrackerParser
-destroy AddReminderCommandParser
-
-TutorTrackerParser --> LogicManager : a
-deactivate TutorTrackerParser
-
-LogicManager -> AddReminderCommand : execute()
+[-> AddReminderCommand : execute(m)
 activate AddReminderCommand
 
 AddReminderCommand -> AddReminderCommand : isBeforeToday()
@@ -87,12 +44,9 @@ create CommandResult
 AddReminderCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddReminderCommand
+CommandResult --> AddReminderCommand: r
 deactivate CommandResult
 
-AddReminderCommand --> LogicManager : result
+[<--AddReminderCommand
 deactivate AddReminderCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml

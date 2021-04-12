@@ -1,0 +1,53 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "a:FavouriteCommand" as FavouriteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":TutorBook" as TutorBook MODEL_COLOR
+participant ":ObservableList<Tutor>" as AppointmentList MODEL_COLOR
+end box
+
+[-> FavouriteCommand : execute(m)
+activate FavouriteCommand
+
+FavouriteCommand -> Model: getFilteredTutorList()
+activate Model
+Model -> AppointmentList: get(index)
+activate AppointmentList
+AppointmentList --> Model: t
+deactivate AppointmentList
+Model --> FavouriteCommand: t
+deactivate Model
+
+FavouriteCommand -> FavouriteCommand: isFavourite()
+activate FavouriteCommand
+FavouriteCommand --> FavouriteCommand
+deactivate FavouriteCommand
+
+FavouriteCommand -> FavouriteCommand: createEditedTutor()
+activate FavouriteCommand
+FavouriteCommand --> FavouriteCommand: e
+deactivate FavouriteCommand
+
+FavouriteCommand -> Model: setTutor(t, e)
+activate Model
+Model -> TutorBook: setTutor(t, e)
+activate TutorBook
+TutorBook --> Model
+deactivate TutorBook
+Model --> FavouriteCommand
+deactivate Model
+
+create CommandResult
+FavouriteCommand -> CommandResult
+activate CommandResult
+CommandResult --> FavouriteCommand: r
+deactivate CommandResult
+[<--FavouriteCommand: r
+deactivate FavouriteCommand
+@enduml
