@@ -4,8 +4,6 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":AddDateCommandParser" as AddDateCommandParser LOGIC_COLOR
-participant "date:ImportantDate" as ImportantDate LOGIC_COLOR
 participant "a:AddDateCommand" as AddDateCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -20,35 +18,7 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("add-date d/math exam dt/2022-03-03 0800")
 activate AddressBookParser
 
-create AddDateCommandParser
-AddressBookParser -> AddDateCommandParser
-activate AddDateCommandParser
-
-AddDateCommandParser --> AddressBookParser
-deactivate AddDateCommandParser
-
-AddressBookParser -> AddDateCommandParser : parse("d/math exam dt/2022-03-03 0800")
-activate AddDateCommandParser
-
-create ImportantDate
-AddDateCommandParser -> ImportantDate
-activate ImportantDate
-
-ImportantDate --> AddDateCommandParser : date
-deactivate ImportantDate
-
-create AddDateCommand
-AddDateCommandParser -> AddDateCommand
-activate AddDateCommand
-
-AddDateCommand --> AddDateCommandParser : a
-deactivate AddDateCommand
-
-AddDateCommandParser --> AddressBookParser : a
-deactivate AddDateCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddDateCommandParser -[hidden]-> AddressBookParser
-destroy AddDateCommandParser
+ref over AddressBookParser, AddDateCommand : create AddDateCommand
 
 AddressBookParser --> LogicManager : a
 deactivate AddressBookParser

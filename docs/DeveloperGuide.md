@@ -316,6 +316,7 @@ Step 6. If the delete command has been successfully executed, the success messag
 
 The sequence diagram below shows how the delete feature works:
 ![Sequence Diagram for Delete Command](images/DeleteSequenceDiagram.png)
+![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -669,6 +670,7 @@ Step 6. If the add important date command has been successfully executed, the su
 
 The sequence diagram below shows how the add important date feature works:
 ![Sequence Diagram for Add Important Date Command](images/AddImportantDateSequenceDiagram.png)
+![Sequence Diagram for ref CreateAddDateCommand](images/CreateAddDateCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -722,56 +724,81 @@ Step 6. If the delete important date command has been successfully executed, the
 
 #### Sequence Diagram
 
-The sequence diagram below shows how the delete feature works:
+The sequence diagram below shows how the delete important date feature works:
 ![Sequence Diagram for Delete Important Date Command](images/DeleteImportantDateSequenceDiagram.png)
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a delete important date command is executed:
 ![Activity Diagram for Delete Important Date Command](images/DeleteImportantDateActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Whether to delete the important date based on the order it has been input in or according to the order the dates are displayed in, which is sorted by details (time and date).
+##### Aspect: 
 
-* **Alternative 1 (current choice):** Deletes important date based on the order it is displayed in. 
-    * Pros: It is easier for the user to find and delete the correct important date by just scrolling through the list. 
-    * Cons: User will have to scroll through the list multiple times to obtain the correct index if user wants to delete multiple important dates that have been added in consecutively.
-
-* **Alternative 2:** Deletes important date based on the order it was added in.
-    * Pros: User can easily delete dates that have been added in consecutively. 
-    * Cons: The index displayed next to each of the dates in the important dates list must correspond to the sequence it has been added in. 
-      A separate command will have to be implemented in order to show the user the important dates sorted according to details (time and date).
+* **Alternative 1 (current choice):** 
+    * Pros: 
+    * Cons:  
+  
+* **Alternative 2:** 
+    * Pros: 
+    * Cons: 
+      
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### List important dates feature
 
 #### Implementation
-The list important dates mechanism is facilitated by `ImportantDatesCommand`.
+The list important dates mechanism is facilitated by `ImportantDatesCommand`, `MainWindow` and `ImportantDatesWindow`.
 
 `ImportantDatesCommand` extends `Command` and implements the following operation:
 
 * `ImportantDatesCommand#execute()` — lists the important dates stored in TutorsPet sorted according to the details (time and date), and returns a new
   `CommandResult` with a success message.
 
+`MainWindow` extends UiPart<Stage> and implements the following relevant operations:
+
+* `MainWindow#executeCommand()` — calls `LogicManager#execute()` to execute user command.
+
+* `MainWindow#handleImportantDates()` — calls `ImportantDatesWindow#show()` to open a new important dates window if it is not opened yet. 
+  Otherwise, call `ImportantDatesWindow#focus()` to focus on the already opened important dates window.
+  
+`ImportantDatesWindow` extends `UiPart<Stage>` and implements the following relevant operations:
+
+* `ImportantDatesWindow#show()` — adds all important dates in TutorsPet to the important dates UI, and opens up
+a new important dates window.
+  
+* `ImportantDatesWindow#focus()` — focuses on already opened important dates window.
+
 
 Given below is an example usage scenario and how the list important dates mechanism behaves at each step.
 
-Step 1. The user executes `list-date` command to view a list of important dates in TutorsPet.
+Step 1. All important dates are stored in an `ObservableList` named `internalList`. There is an additional `ObservableList` named 
+`transformedImportantDates` has the important dates sorted according to the dates' details.
 
-Step 2. The user input is parsed by `AddressBookParser`, which returns a new `ImportantDatesCommand`. 
+Step 2. The user executes `add-date d/math exam dt/2023-04-03 0800` command to add in an important date with details `2023-04-3 0800`. 
+The `add-date` command calls `Model#addImportantDate()` which adds the important date to the `internalList`, and updates `transformedImportantDates`.
 
-Step 3. `LogicManager` then calls `ImportantDatesCommand#execute()`.
+Step 3. The user now executes `list-date` command to open up the important dates window. The command is parsed by `AddressBookParser`, which returns a new `ImportantDatesCommand`.
 
-Step 4. `ImportantDatesCommand#execute()` calls `Model#updateSortedImportantDatesList()` and returns a new `CommandResult`.
+Step 4. `LogicManager` then calls `ImportantDatesCommand#execute()`.
 
-Step 5. If the list important dates command has been successfully executed, the success message will be displayed.
+Step 5. `ImportantDatesCommand#execute()` calls `Model#updateSortedImportantDatesList()` and returns a new `CommandResult` 
+whose `showImportantDates` boolean value is set to `true`.
+
+Step 6. `MainWindow#executeCommand()` then checks the value of `showImportantDates`, and since it is `true`,
+`MainWindow#handleImportantDates()` is called to open the important dates window. `ImportantDatesWindow#show()` is called, which will
+create a `dateListPanel`, containing the `ObservableList` of important dates.
+
+Step 7. If the list important dates command has been successfully executed, the success message will be displayed.
 
 #### Sequence Diagram
 
 The sequence diagram below shows how the list important dates feature works:
 ![Sequence Diagram for List Important Dates Command](images/ListImportantDatesSequenceDiagram.png)
+![Sequence Diagram for ref List Important Dates](images/ListImportantDatesCommandSequenceDiagram.png)
+![Sequence Diagram for ref Execute Important Dates Command](images/ExecuteImportantDatesCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -1024,31 +1051,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Display a student contact details**
-
-**MSS**
-
-1.  User requests to list student contacts.
-2.  TutorsPet shows a list of student contacts.
-3.  User requests to display a specific student contact from the list.
-4.  TutorsPet display the specified student contact in the details panel.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty
-
-  Use case ends.
-
-* 3a. The given index of the student contact in the list is invalid.
-
-  * 3a1. TutorsPet shows an error message.
-
-    Use case resumes from step 2.
-
-
-**Use case: Deletes a important date**
+**Use case: Deletes an important date**
 
 **MSS**
 
@@ -1087,6 +1090,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. TutorsPet shows an error message.
   
     Use case ends.
+
+**Use case: Display a student contact details**
+
+**MSS**
+
+1.  User requests to list student contacts.
+2.  TutorsPet shows a list of student contacts.
+3.  User requests to display a specific student contact from the list.
+4.  TutorsPet display the specified student contact in the details panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index of the student contact in the list is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
+
 
 **Use case: Opens schedule window**
 
