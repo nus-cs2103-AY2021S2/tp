@@ -17,6 +17,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
 import seedu.address.model.entry.exceptions.OverlappingEntryException;
 
+/**
+ * Contains unit tests for {@code NonOverlappingEntryList}.
+ */
 public class NonOverlappingEntryListTest {
 
     private final NonOverlappingEntryList nonOverlappingEntryList = new NonOverlappingEntryList();
@@ -146,5 +149,4 @@ public class NonOverlappingEntryListTest {
         nonOverlappingEntryList.clearOverdueEntries();
         assertEquals(expectedList, nonOverlappingEntryList);
     }
-
 }

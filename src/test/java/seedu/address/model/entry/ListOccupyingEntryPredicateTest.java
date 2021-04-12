@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.EntryBuilder;
 
 public class ListOccupyingEntryPredicateTest {
+
     @Test
     void test_intervalOccupiedFully_returnTrue() {
         EntryDate start = new EntryDate("2021-04-05 17:00");

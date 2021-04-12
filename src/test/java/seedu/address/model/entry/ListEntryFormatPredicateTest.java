@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.EntryBuilder;
 
+/**
+ * Contains unit tests for {@code ListEntryFormatPredicate}.
+ */
 public class ListEntryFormatPredicateTest {
 
     @Test void test_emptyPredicate_returnTrue() {

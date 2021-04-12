@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.ALICE;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactsTeachingAssistant;
+import static seedu.address.testutil.TypicalTeachingAssistant.AMY;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,6 +22,9 @@ import seedu.address.model.contact.exceptions.DuplicateContactException;
 import seedu.address.model.entry.Entry;
 import seedu.address.testutil.ContactBuilder;
 
+/**
+ * Contains unit tests for {@code TeachingAssistant}.
+ */
 public class TeachingAssistantTest {
 
     private final TeachingAssistant teachingAssistant = new TeachingAssistant();
@@ -38,7 +41,7 @@ public class TeachingAssistantTest {
 
     @Test
     public void resetData_withValidReadOnlyTeachingAssistant_replacesData() {
-        TeachingAssistant newData = getTypicalContactsTeachingAssistant();
+        TeachingAssistant newData = getTypicalTeachingAssistant();
         teachingAssistant.resetData(newData);
         assertEquals(newData, teachingAssistant);
     }
@@ -46,9 +49,9 @@ public class TeachingAssistantTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two contacts with the same identity fields
-        Contact editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Contact editedAmy = new ContactBuilder(AMY).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Contact> newContacts = Arrays.asList(ALICE, editedAlice);
+        List<Contact> newContacts = Arrays.asList(AMY, editedAmy);
         TeachingAssistantStub newData = new TeachingAssistantStub(newContacts);
 
         assertThrows(DuplicateContactException.class, () -> teachingAssistant.resetData(newData));
@@ -61,19 +64,19 @@ public class TeachingAssistantTest {
 
     @Test
     public void hasContact_personNotInTeachingAssistant_returnsFalse() {
-        assertFalse(teachingAssistant.hasContact(ALICE));
+        assertFalse(teachingAssistant.hasContact(AMY));
     }
 
     @Test
     public void hasContact_personInTeachingAssistant_returnsTrue() {
-        teachingAssistant.addContact(ALICE);
-        assertTrue(teachingAssistant.hasContact(ALICE));
+        teachingAssistant.addContact(AMY);
+        assertTrue(teachingAssistant.hasContact(AMY));
     }
 
     @Test
     public void hasContact_personWithSameIdentityFieldsInTeachingAssistant_returnsTrue() {
-        teachingAssistant.addContact(ALICE);
-        Contact editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        teachingAssistant.addContact(AMY);
+        Contact editedAlice = new ContactBuilder(AMY).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(teachingAssistant.hasContact(editedAlice));
     }
@@ -105,5 +108,4 @@ public class TeachingAssistantTest {
         }
 
     }
-
 }
