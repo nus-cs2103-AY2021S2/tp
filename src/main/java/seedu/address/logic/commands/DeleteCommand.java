@@ -49,7 +49,7 @@ public class DeleteCommand extends Command {
         model.deletePerson(patientToDelete);
         model.selectPatient(null);
         String displayMessage = MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX;
-        if (lastShownList.size() - 1 <= 0) {
+        if (lastShownList.size() - 1 < 0) {
             displayMessage = MESSAGE_NO_PATIENTS_LEFT;
         }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete),
