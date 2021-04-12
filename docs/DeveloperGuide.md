@@ -1080,8 +1080,93 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
+**Use Case UC0030: Add Tutor Filter**
 
-*{More to be added}*
+**MSS**
+1. User inputs details of new tutor filter(s).
+2. TutorTracker confirms that tutor filters have been added to list of tutor filters.
+3. TutorTracker displays tutors according to the updated list of tutor filters.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. Duplicate tutor filter exists in TutorTracker.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0031: Delete Tutor Filter**
+
+**MSS**
+1. User inputs details of tutor filter(s) to delete.
+2. TutorTracker confirms that tutor filters have been deleted from list of tutor filters.
+3. TutorTracker displays tutors according to the updated list of tutor filters.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. Tutor filter(s) do not exist in TutorTracker.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0032: Add Appointment Filter**
+
+**MSS**
+1. User inputs details of new appointment filter(s).
+2. TutorTracker confirms that appointment filters have been added to list of appointment filters.
+3. TutorTracker displays appointments according to the updated list of appointment filters.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. Duplicate appointment filter exists in TutorTracker.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0033: Delete Appointment Filter**
+
+**MSS**
+1. User inputs details of appointment filter(s) to delete.
+2. TutorTracker confirms that appointment filters have been deleted from list of appointment filters.
+3. TutorTracker displays appointments according to the updated list of appointment filters.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. Appointment filter(s) do not exist in TutorTracker.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case resumes at step 1.
+
+<hr/>
 
 ### Non-Functional Requirements
 **Technical Requirements**:
