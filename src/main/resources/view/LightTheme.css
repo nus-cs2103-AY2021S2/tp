@@ -1,6 +1,6 @@
 .background {
-    -fx-background-color: #fffff6;
-    background-color: #fffff6; /* Used in the default.html file */
+    -fx-background-color: #f5f4f0;
+    background-color: #f5f4f0; /* Used in the default.html file */
 }
 
 .label {
@@ -90,7 +90,7 @@
 .list-view {
     /*-fx-background-insets: 0;*/
     /*-fx-padding: 10;*/
-    -fx-background-color: #fffff6;
+    -fx-background-color: #f5f4f0;
 }
 
 .list-cell {
@@ -194,7 +194,7 @@
     -fx-margin-bottom: 10px;
 }
 .status-bar {
-    -fx-background-color: #868686;
+    -fx-background-color: #f5f4f0;
 }
 
 .result-display {
@@ -210,7 +210,7 @@
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
@@ -236,21 +236,21 @@
 }
 
 .context-menu {
-    -fx-background-color: #868686;
+    -fx-background-color: #f5f4f0;
 }
 
 .context-menu .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .menu-bar {
-    -fx-background-color: #868686;
+    -fx-background-color: transparent;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
@@ -398,7 +398,7 @@ TextField {
 
 #resultDisplay .content {
     /*-fx-background-color: transparent, #383838, transparent, #383838;*/
-    -fx-background-color: #fffff6;
+    -fx-background-color: #f5f4f0;
     -fx-background-radius: 0;
 }
 
