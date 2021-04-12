@@ -12,8 +12,6 @@ title: User Guide
 
 - [1 Introduction](#1-introduction)
 - [2 About](#2-about)
-  - [2.1 Strucutre of the User Guide](#21-structure-of-the-user-guide)
-  - [2.2 Understanding the User Guide](#22-understanding-the-user-guide)
 - [3 Quick Start](#3-quick-start)
 - [4 UI Overview](#4-ui-overview)
   - [4.1 Menu Bar](#41-menu-bar)
@@ -23,20 +21,22 @@ title: User Guide
   - [4.5 Result Display](#45-result-display)
   - [4.6 Status Bar](#46-status-bar)
 - [5 Features](#5-features) TODO
-  - [5.1 Viewing help : `help`](#viewing-help--help)
-  - [5.2 Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
-  - [5.3 Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
-  - [5.4 Editing a financial record : `edit-fr`](#editing-a-financial-record--edit-fr)
-  - [5.5 Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
-  - [5.6 Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
-  - [5.7 Finding financial records : `find-fr`](#finding-financial-records--find-fr)
-  - [5.8 Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
-  - [5.9 Exiting the program : `exit`](#exiting-the-program--exit)
-  - [5.10 Viewing top 5 categories spent for the current month](#viewing-top-5-categories-spent-for-the-current-month)
-  - [5.11 Viewing budget for the current month](#viewing-budget-for-the-current-month)
-  - [5.12 Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
-  - [5.13 Saving the data](#saving-the-data)
-  - [5.14 Editing the data file](#editing-the-data-file)
+  - [5.1 Viewing help : `help`](#51-viewing-help--help)
+  - [5.2 Adding a financial record : `add-fr`](#52-adding-a-financial-record--add-fr)
+  - [5.3 Deleting a financial record : `delete-fr`](#53-deleting-a-financial-record--delete-fr)
+  - [5.4 Editing a financial record : `edit-fr`](#54-editing-a-financial-record--edit-fr)
+  - [5.5 Setting monthly budget : `set-bg`](#55-setting-monthly-budget--set-bg)
+  - [5.6 Viewing a specific month : `view-month`](#56-viewing-a-specific-month--view-month)
+  - [5.7 Finding financial records : `find-fr`](#57-finding-financial-records--find-fr)
+  - [5.8 Resetting filters on financial records : `reset-filter`](#58-resetting-filters-on-financial-records--reset-filter)
+  - [5.9 Undoing commands : `undo`](#59-undoing-commands--undo)
+  - [5.10 Redoing commands : `redo`](#510-redoing-commands--redo)
+  - [5.11 Exiting the program : `exit`](#511-exiting-the-program--exit)
+  - [5.12 Viewing top 5 categories spent for the current month](#512-viewing-top-5-categories-spent-for-the-current-month)
+  - [5.13 Viewing budget for the current month](#513-viewing-budget-for-the-current-month)
+  - [5.14 Checking remaining budget for the current month](#514-checking-remaining-budget-for-the-current-month)
+  - [5.15 Saving the data](#515-saving-the-data)
+  - [5.16 Editing the data file](#516-editing-the-data-file)
 - [6 FAQ](#6-faq)
 - [7 Command Summary](#7-command-summary)
 - [8 Credits](#8-credits)
@@ -430,10 +430,12 @@ empty data file at the next run.
 | **Add a Financial Record**    | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…` <br> e.g., `add-fr d/Lunch a/10`                       |
 | **Delete a Financial Record** | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                                                                      |
 | **Edit a Financial Record**   | `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]…` <br> e.g., `edit-fr 1 d/new description` |
-| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                         |
+| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                      |
 | **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                |
 | **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/food`                                                                 |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
+| **Undo**                      | `undo`                                                                                                              |
+| **Redo**                      | `redo`                                                                                                              |
 | **Help**                      | `help`                                                                                                              |
 | **Exit**                      | `exit`                                                                                                              |
 
