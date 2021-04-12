@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_EDIT_COMMAND_ERROR;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
@@ -79,9 +80,14 @@ public class AddAppointmentCommand extends Command {
                     toAdd.getSubject()));
         }
 
-        DateTimeValidationUtil.validateDateTime(model, toAdd);
+        boolean isValidateSuccess = DateTimeValidationUtil.validateDateTime(model, toAdd);
 
-        model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.APPOINTMENT);
+        if (isValidateSuccess) {
+            model.addAppointment(toAdd);
+            model.resetPredicates();
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.APPOINTMENT);
+        } else {
+            throw new CommandException(MESSAGE_ADD_EDIT_COMMAND_ERROR);
+        }
     }
 }

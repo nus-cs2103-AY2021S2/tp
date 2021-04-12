@@ -36,7 +36,7 @@ The figure below shows the GUI of Tutor Tracker, annotated with a description of
 
 ## Features
 
-This section contains all the information about features of TutorTracker. You may enter a command into the Command Box to use each feature or sub-feature.
+This section contains all the information about the features of Tutor Tracker. You may enter a command into the Command Box to use each feature or sub-feature.
 
 <div markdown="block" class="alert alert-info">
 
@@ -54,7 +54,7 @@ This section contains all the information about features of TutorTracker. You ma
 * Items that have date as a parameter must strictly follow `YYYY-MM-DD` format.<br> 
   e.g. `2021-03-01`and `2021-04-20`.
 
-* Items that have time as parameter must strictly follow `HH:MM AM/PM` format.<br>
+* Items that have time as a parameter must strictly follow `HH:MM AM/PM` format.<br>
   e.g. `9:01 AM` and `10:30 PM`.
 
 * Parameters can be in any order.<br>
@@ -250,8 +250,9 @@ TutorTracker jar under the export folder, with the tutor's name as file name.
 
 Format:`export INDEX`
 
-Example: `export 1` If the jar is saved in C:\Users\user\Downloads, and first tutor name is Alex Yeoh,
-text file Alex_Yeoh.txt will be saved under the export folder. Full path in this case would be C:\Users\user\Downloads\export\Alex_Yeoh.txt
+Example: `export 1` If the jar is saved in `C:\Users\user\Downloads`, and first tutor name is Alex Yeoh,
+text file `Alex_Yeoh.txt` will be saved under the export folder. 
+Full path in this case would be `C:\Users\user\Downloads\export\Alex_Yeoh.txt`.
 
 #### Favourites
 This feature allows users to track and manage their favourite tutors.
@@ -282,7 +283,7 @@ English
 
 ##### Unfavourite a tutor: `unfavourite`
 
-Removes favourite status of a particular tutor that had been previously added as a favourite by using the index.
+Removes the favourite status of a particular tutor that had been previously added as a favourite by using the index.
 
 Format: `unfavourite INDEX`
 
@@ -617,10 +618,6 @@ Chapter 5 to 6
 Events represent a timetable, which comprises both `Appointment` and `Schedule`.
 This feature allows tutee to track and view their timetable easily.
 
-![Timetable Ui](images/ug-images/Timetable.png)
-
-* Green slots represent `Appointment` and blue slots represent `Schedule`.
-
 #### Opening timetable window : `timetable`
 
 Launch a timetable graphical representation of the tutee's appointment and schedule.
@@ -637,10 +634,19 @@ Format: `timetable [DATE]`
 
 </div>
 
+Example: `timetable 2021-4-1`
+
 Result Display Example Output:
 ```
 Opened timetable window.
 ```
+
+GUI Display Example:
+
+![Timetable Ui](images/ug-images/Timetable.png)
+
+* Green slots represent `Appointment` and blue slots represent `Schedule`.
+
 
 #### View events: `view_event`
 

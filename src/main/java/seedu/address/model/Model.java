@@ -511,4 +511,10 @@ public interface Model {
      * Returns the query date for Timetable Window.
      */
     LocalDate getTimeTableDate();
+
+    /**
+     * Reset the FilteredList predicates if there's any other operation after clicking on the calendar.
+     */
+    void resetPredicates();
+
 }

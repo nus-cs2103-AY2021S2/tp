@@ -1,33 +1,32 @@
 @startuml
 !include ../style.puml
-title Adding a Schedule
+title Favourite a Tutor
 
 start
-:User executes AddScheduleCommand;
+:User executes FavouriteCommand;
 
 if () then ([all required prefixes present])
       :Parses the prefixes;
 
       if () then ([all prefixes formatted correctly])
-      :Check if schedule already existed;
+      :Check if target index is valid;
 
-          if () then ([schedule do not exist])
-          :Check if time_from and time_to are valid;
+          if () then ([valid index])
+          :Check if the tutor is already favourite;
 
-              if () then ([time_from and time_to is valid])
-              :Add schedule to Schedule Tracker;
+              if () then ([tutor is not favourite yet])
+              :Add favourite the tutor;
               :Show success message;
 
               else ([else])
 
-              :Shows a invalid time slot
+              :Shows tutor is already favourite
               error message;
 
               endif
 
           else ([else])
-
-          :Shows a duplicate schedule
+          :Shows an invalid target index
           error message;
 
       endif
@@ -40,9 +39,9 @@ if () then ([all required prefixes present])
       endif
 
 else ([else])
-
     :Shows an invalid command error
     and command format message;
+
 endif
 
 stop

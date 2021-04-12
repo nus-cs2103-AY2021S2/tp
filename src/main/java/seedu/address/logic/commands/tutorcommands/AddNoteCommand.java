@@ -25,7 +25,7 @@ public class AddNoteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a note to a tutor specified by the index number. The tutor must not already have a note\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[NOTES] \n"
+            + "NOTES \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "This is a note";
 
@@ -84,6 +84,5 @@ public class AddNoteCommand extends Command {
                 || (other instanceof AddNoteCommand // instanceof handles nulls
                 && targetIndex.equals(((AddNoteCommand) other).targetIndex)
                 && editTutorDescriptor.equals(((AddNoteCommand) other).editTutorDescriptor));
-
     }
 }
