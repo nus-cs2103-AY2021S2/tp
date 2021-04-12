@@ -78,7 +78,7 @@ public class FindCommand extends Command {
             logger.info("Student with a matriculation number of " + predicate.getKeyword()
                     + "has no appointment");
             return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
-                    model.getFilteredStudentList().size()));
+                    predicate.getKeyword()));
         } else {
             return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     predicate.getKeyword()));
