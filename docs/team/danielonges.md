@@ -1,9 +1,9 @@
-#Overview
+# Overview
 
 **semester.config is a desktop application for managing your tasks.**
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-#Summary Of Contributions
+# Summary Of Contributions
 
 ## Code Contributed
 
@@ -13,12 +13,7 @@ You can see my code contributions [here](https://nus-cs2103-ay2021s2.github.io/t
 
 I implemented
 
-1. Sorting feature according to pre-defined parameters:
-   1. Date and time
-   2. Module code
-   3. Priority tag
-   4. Task name
-   5. Weightage
+1. Sorting feature according to pre-defined parameters
 2. Daily task list that allows users to add and remove existing tasks into a daily planner
 3. Ability to add notes to a task, which allows a user to jot down any quick remarks related to the task
 4. Weightage attribute that allows users to capture the percentage weightage of their tasks
