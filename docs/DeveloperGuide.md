@@ -181,7 +181,7 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
     * Cons:
         * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
 
-### Update Commands [Implemented in v1.3]
+### Update Commands
 
 CoLAB has several update commands for `Project`s, `Contact`s, `Event`s, `Deadline`s, `Todo`` and `Groupmate`s respectively. They are used to edit details of entities that have already been created.
 
