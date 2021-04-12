@@ -37,7 +37,7 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 [[portfolio]](team/ampan98.md)
 
 * Role: Developer
-* Responsibilities: Deliverables, Features
+* Responsibilities: Deliverables, Integration, Features
 
 ### Ryan Jee
 
