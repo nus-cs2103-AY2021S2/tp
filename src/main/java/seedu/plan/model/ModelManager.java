@@ -23,7 +23,6 @@ import seedu.plan.model.plan.Module;
 import seedu.plan.model.plan.Plan;
 import seedu.plan.model.plan.Semester;
 import seedu.plan.model.util.History;
-import seedu.plan.storage.JsonModule;
 
 /**
  * Represents the in-memory model of the address book data.
