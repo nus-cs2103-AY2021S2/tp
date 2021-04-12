@@ -1,0 +1,14 @@
+@startuml
+start
+:User clicks  on the 'Month Statistics' tab;
+:System attempts to search for 6 past months;
+
+if () then ([exists])
+
+
+else ([else])
+    :Adds the month to the application
+    with an empty financial record list;
+endif
+stop
+@enduml
