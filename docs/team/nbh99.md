@@ -25,7 +25,9 @@ Given below are my contributions to the project.
 <br><br>
 * **Project management**:
     * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
-<br><br>
+
+<div style="page-break-before:always"></div>
+
 * **Enhancements to existing features**:
     * Added ModifiableAddressBook interface for AddressBook to make modifying of the original list of clients in ClientBook easier: 
       [\#41](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/41)
