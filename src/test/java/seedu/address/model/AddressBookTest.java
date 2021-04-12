@@ -198,7 +198,7 @@ public class AddressBookTest {
                     .withAddress(VALID_ADDRESS_BOB)
                     .withTags(VALID_TAG_HR)
                     .build();
-            assertTrue(addressBook.hasPoolWithPassenger(newPassenger));
+            assertFalse(addressBook.hasPoolWithPassenger(newPassenger));
         }
     }
 
