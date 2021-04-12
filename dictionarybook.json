@@ -336,6 +336,146 @@
     "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
     "maincontent": "A supplementary requirements section can be used to capture requirements that do not fit elsewhere. Typically, this is where most Non-Functional Requirements will be listed.\n\n"
   },{
+    "title": "Design",
+    "header" : "Software Design - Introduction - What",
+    "maincontent": "Software design has two main aspects:\n\n1. Product/external design: designing the external behavior of the product to meet the users' requirements. This is usually done by product designers with input from business analysts, user experience experts, user representatives, etc.\n\n2. Implementation/internal design: designing how the product will be implemented to meet the required external behavior. This is usually done by software architects and software engineers.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Abstraction - What",
+    "maincontent": "Abstraction is a technique for dealing with complexity. It works by establishing a level of complexity we are interested in, and suppressing the more complex details below that level.\n\nThe guiding principle of abstraction is that only details that are relevant to the current perspective or the task at hand need to be considered. As most programs are written to solve complex problems involving large amounts of intricate details, it is impossible to deal with all these details at the same time. That is where abstraction can help.\n\nData abstraction: abstracting away the lower level data items and thinking in terms of bigger entities\n\nControl abstraction: abstracting away details of the actual control flow to focus on tasks at a higher level\n\nAbstraction can be applied repeatedly to obtain progressively higher levels of abstraction.\n\nAbstraction is a general concept that is not limited to just data or control abstractions.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Coupling - What",
+    "maincontent": "Coupling is a measure of the degree of dependence between components, classes, methods, etc. Low coupling indicates that a component is less dependent on other components. High coupling (aka tight coupling or strong coupling) is discouraged due to the following disadvantages:\n\n1. Maintenance is harder because a change in one module could cause changes in other modules coupled to it (i.e. a ripple effect).\n\n2. Integration is harder because multiple components coupled with each other have to be integrated at the same time.\n\n3. Testing and reuse of the module is harder due to its dependence on other modules.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Coupling - How",
+    "maincontent": "X is coupled to Y if a change to Y can potentially require a change in X.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Coupling - Types of Coupling",
+    "maincontent": "Some examples of different coupling types:\n\n1. Content coupling: one module modifies or relies on the internal workings of another module e.g., accessing local data of another module\n\n2. Common/Global coupling: two modules share the same global data\n\n3. Control coupling: one module controlling the flow of another, by passing it information on what to do e.g., passing a flag\n\n4. Data coupling: one module sharing data with another module e.g. via passing parameters\n\n5. External coupling: two modules share an externally imposed convention e.g., data formats, communication protocols, device interfaces.\n\n6. Subclass coupling: a class inherits from another class. Note that a child class is coupled to the parent class but not the other way around.\n\n7. Temporal coupling: two actions are bundled together just because they happen to occur at the same time e.g. extracting a contiguous block of code as a method although the code block contains statements unrelated to each other\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Cohesion - What",
+    "maincontent": "Cohesion is a measure of how strongly-related and focused the various responsibilities of a component are. A highly-cohesive component keeps related functionalities together while keeping out all other unrelated things.\n\nHigher cohesion is better. Disadvantages of low cohesion (aka weak cohesion):\n\n1. Lowers the understandability of modules as it is difficult to express module functionalities at a higher level.\n\nLowers maintainability because a module can be modified due to unrelated causes (reason: the module contains code unrelated to each other) or many modules may need to be modified to achieve a small change in behavior (reason: because the code related to that change is not localized to a single module).\n\nLowers reusability of modules because they do not represent logical units of functionality.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Fundamentals - Cohesion - How",
+    "maincontent": "Cohesion can be present in many forms. Some examples:\n\n1. Code related to a single concept is kept together, e.g. the Student component handles everything related to students.\n\n2. Code that is invoked close together in time is kept together, e.g. all code related to initializing the system is kept together.\n\n3. Code that manipulates the same data structure is kept together, e.g. the GameArchive component handles everything related to the storage and retrieval of game sessions.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Introduction - What",
+    "maincontent": "A model is a representation of something else.\n\nA model provides a simpler view of a complex entity because a model captures only a selected aspect. This omission of some aspects implies models are abstractions.\n\nMultiple models of the same entity may be needed to capture it fully.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Introduction - How",
+    "maincontent": "In software development, models are useful in several ways:\n\na. To analyze a complex entity related to software development.\n\nb. To communicate information among stakeholders. Models can be used as a visual aid in discussions and documentation.\n\nc. As a blueprint for creating software. Models can be used as instructions for building software.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Introduction - UML Models",
+    "maincontent": "Unified Modeling Language (UML) is a graphical notation to describe various aspects of a software system. UML is the brainchild of three software modeling specialists James Rumbaugh, Grady Booch and Ivar Jacobson (also known as the Three Amigos). Each of them had developed their own notation for modeling software systems before joining forces to create a unified modeling language (hence, the term ‘Unified’ in UML). UML is currently the de facto modeling notation used in the software industry.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - OO Structures",
+    "maincontent": "An OO solution is basically a network of objects interacting with each other. Therefore, it is useful to be able to model how the relevant objects are 'networked' together inside a software i.e. how the objects are connected together.\n\nNote that these object structures within the same software can change over time.\n\nHowever, object structures do not change at random; they change based on a set of rules, as was decided by the designer of that software. Those rules that object structures need to follow can be illustrated as a class structure i.e. a structure that exists among the relevant classes.\n\nUML Object Diagrams are used to model object structures and UML Class Diagrams are used to model class structures of an OO solution.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Class Diagrams (Basics, Part 1)",
+    "maincontent": "UML class diagrams describe the structure (but not the behavior) of an OOP solution. These are possibly the most often used diagrams in the industry and are an indispensable tool for an OO programmer.\n\nClasses form the basis of class diagrams.\n\nThe basic UML notations used to represent a class consists of three compartments: 'Class Name', 'Attributes', and 'Methods' ('Operations').\n\nThe 'Operations' compartment and/or the 'Attributes' compartment may be omitted if such details are not important for the task at hand. 'Attributes' always appear above the 'Operations' compartment. All operations should be in one compartment rather than each operation in a separate compartment. Same goes for attributes.\n\nThe visibility of attributes and operations is used to indicate the level of access allowed for each attribute or operation. The types of visibility and their exact meanings depend on the programming language used. Here are some common visibilities and how they are indicated in a class diagram:\n\n+ : public\n\n- : private\n\n# : protected\n\n~ : package private\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Class Diagrams (Basics, Part 2)",
+    "maincontent": "The notation format of generic classes is drawn as a box with a dashed outline on the top-right corner of the class's box.\n\nIn UML class diagrams, underlines denote class-level attributes and variables.\n\nAssociations are the main connections among the classes in a class diagram.\n\nThe most basic class diagram is a bunch of classes with some solid lines among them to represent associations.\n\nIn addition, associations can show additional decorations such as association labels, association roles, multiplicity and navigability to add more information to a class diagram.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Adding More Info to UML Models",
+    "maincontent": "UML notes can be used to add more info to any UML model.\n\nUML notes can augment UML diagrams with additional information. These notes can be shown connected to a particular element in the diagram or can be shown without a connection\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Class Diagrams (Intermediate)",
+    "maincontent": "A class diagram can also show different types of relationships between classes: inheritance, compositions, aggregations, dependencies.\n\nA class diagram can also show different types of class-like entities: enumerations, abstract classes, and interfaces.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Class Diagrams (Advanced)",
+    "maincontent": "A class diagram can show association classes too.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Object Diagrams",
+    "maincontent": "Object diagrams can be used to complement class diagrams. For example, you can use object diagrams to model different object structures that can result from a design represented by a given class diagram.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Object Oriented Domain Models",
+    "maincontent": "Class diagrams can also be used to model objects in the problem domain (i.e. to model how objects actually interact in the real world, before emulating them in the solution). Class diagrams that are used to model the problem domain are called conceptual class diagrams or OO domain models (OODMs).\n\nOODMs do not contain solution-specific classes (i.e. classes that are used in the solution domain but do not exist in the problem domain). For example, a class called DatabaseConnection could appear in a class diagram but not usually in an OO domain model because DatabaseConnection is something related to a software solution but not an entity in the problem domain.\n\nOODMs represents the class structure of the problem domain and not their behavior, just like class diagrams. To show behavior, use other diagrams such as sequence diagrams.\n\nOODM notation is similar to class diagram notation but omit methods and navigability.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Deployment Diagrams",
+    "maincontent": "A deployment diagram shows a system's physical layout, revealing which pieces of software run on which pieces of hardware.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Component Diagrams",
+    "maincontent": "A component diagram is used to show how a system is divided into components and how they are connected to each other through interfaces.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Package Diagrams",
+    "maincontent": "A package diagram shows packages and their dependencies. A package is a grouping construct for grouping UML elements (classes, use cases, etc.).\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Structures - Composite Structure Diagrams",
+    "maincontent": "A composite structure diagram hierarchically decomposes a class into its internal structure.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Activity Diagrams (Basic, Part 1)",
+    "maincontent": "Software projects often involve workflows. Workflows define the flow in which a process or a set of tasks is executed. Understanding such workflows is important for the success of the software project.\n\nUML  activity diagrams (AD) can model workflows.  Flow charts are another type of diagram that can model workflows. Activity diagrams are the UML equivalent of flow charts.\n\nAn activity diagram (AD) captures an activity through the actions and control flows that make up the activity.\n\nAn action is a single step in an activity. It is shown as a rectangle with rounded corners.\n\nA control flow shows the flow of control from one action to the next. It is shown by drawing a line with an arrow-head to show the direction of the flow.\n\nNote the slight difference between the start node and the end node which represent the start and the end of the activity, respectively, in which the end node is surrounded by a circle outline while the start node is not.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Activity Diagrams (Basic, Part 2)",
+    "maincontent": "A branch node shows the start of alternate paths. Each control flow exiting a branch node has a guard condition: a boolean condition that should be true for execution to take that path. Exactly one of the guard conditions should be true an any.\n\nA merge node shows the end of alternate paths.\n\nBoth branch nodes and merge nodes are diamond shapes. Guard conditions must be in square brackets.\n\nSome acceptable simplifications (by convention):\n\n1. Omitting the merge node if it doesn't cause any ambiguities.\n\n2. Multiple arrows can starting from the same corner of a branch node.\n\nOmitting the [Else] condition.\n\nFork nodes indicate the start of concurrent flows of control.\n\nJoin nodes indicate the end of parallel paths.\n\nBoth have the same notation: a bar.\n\nIn a set of parallel paths, execution along all parallel paths should be complete before the execution can start on the outgoing control flow of the join.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Activity Diagrams (Intermediate)",
+    "maincontent": "The rake notation is used to indicate that a part of the activity is given as a separate diagram.\n\nIt is possible to partition an activity diagram to show who is doing which action. Such partitioned activity diagrams are sometime called swimlane diagrams.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Sequence Diagrams (Basic)",
+    "maincontent": "A UML sequence diagram captures the interactions between multiple objects for a given scenario.\n\nArrows representing method calls should be solid arrows while those representing method returns should be dashed arrows.\n\nNote that unlike in object diagrams, the class/object name is not underlined in sequence diagrams.\n\nThe arrow that represents a constructor arrives at the side of the box representing the instance.\n\nThe activation bar represents the period the constructor is active.\n\nTo reduce clutter, activation bars and return arrows may be omitted if they do not result in ambiguities or loss of relevant information. Informal operation descriptions can be used, if more precise details are not required for the task at hand.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Sequence Diagrams (Intermediate)",
+    "maincontent": "UML uses an X at the end of the lifeline of an object to show its deletion.\n\nUML can show a method of an object calling another of its own methods.\n\nUML uses alt frames to indicate alternative paths.\n\nUML uses opt frames to indicate optional paths.\n\nMethod calls to static (i.e., class-level) methods are received by the class itself, not an instance of that class. You can use <<class>> to show that a participant is the class itself.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Use Case Diagrams",
+    "maincontent": "Use case diagrams model the mapping between features of a system and its user roles.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Timing Diagrams",
+    "maincontent": "A timing diagram focuses on timing constraints.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Interaction Overview Diagrams",
+    "maincontent": "Interaction overview diagrams are a combination of activity diagrams and sequence diagrams.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - Communication Diagrams",
+    "maincontent": "Communication diagrams are like sequence diagrams but emphasize the data links between the various participants in the interaction rather than the sequence of interactions.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Modeling - Modeling Behaviours - State Machine Diagrams",
+    "maincontent": "A State Machine Diagram models state-dependent behavior.\n\nOften, state-dependent behavior displayed by an object in a system is simple enough that it needs no extra attention; such a behavior can be as simple as a conditional behavior like if x > y, then x = x - y.\n\nOccasionally, objects may exhibit state-dependent behavior that is complex enough such that it needs to be captured in a separate model. Such state-dependent behavior can be modeled using UML state machine diagrams (SMD for short, sometimes also called ‘state charts’, ‘state diagrams’ or ‘state machines’).\n\nOccasionally, objects may exhibit state-dependent behavior that is complex enough such that it needs to be captured into a separate model. Such state-dependent behavior can be modelled using UML state machine diagrams (SMD for short, sometimes also called ‘state charts’, ‘state diagrams’ or ‘state machines’).\n\nAn SMD views the life-cycle of an object as consisting of a finite number of states where each state displays a unique behavior pattern. SMDs capture information such as the states an object can be in during its lifetime, how the object responds to various events while in each state, and how the object transits from one state to another. In contrast to sequence diagrams that capture object behavior one scenario at a time, SMDs capture the object’s behavior over its full life-cycle.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
+    "maincontent": "A supplementary requirements section can be used to capture requirements that do not fit elsewhere. Typically, this is where most Non-Functional Requirements will be listed.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
+    "maincontent": "A supplementary requirements section can be used to capture requirements that do not fit elsewhere. Typically, this is where most Non-Functional Requirements will be listed.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
+    "maincontent": "A supplementary requirements section can be used to capture requirements that do not fit elsewhere. Typically, this is where most Non-Functional Requirements will be listed.\n\n"
+  },{
       "title": "Implementation",
       "header": "IDE: Introduction",
       "maincontent": "Professional software engineers often write code using Integrated Development Environments (IDEs). IDEs support most development-related work within the same tool (hence, the term integrated).\n\nAn IDE generally consists of:\n\nA source code editor that includes features such as syntax coloring, auto-completion, easy code navigation, error highlighting, and code-snippet generation.\nA compiler and/or an interpreter (together with other build automation support) that facilitates the compilation/linking/running/deployment of a program.\nA debugger that allows the developer to execute the program one step at a time to observe the run-time behavior in order to locate bugs.\nOther tools that aid various aspects of coding e.g. support for automated testing, drag-and-drop construction of UI components, version management support, simulation of the target runtime platform, and modeling support.\nExamples of popular IDEs:\n\nJava: Eclipse, Intellij IDEA, NetBeans\nC#, C++: Visual Studio\nSwift: XCode\nPython: PyCharm\nSome web-based IDEs have appeared in recent times too e.g., Amazon's Cloud9 IDE.\n\nSome experienced developers, in particular those with a UNIX background, prefer lightweight yet powerful text editors with scripting capabilities (e.g. Emacs) over heavier IDEs.\n\n"
