@@ -945,47 +945,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TutorsPet` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new contact**
+**Use case: Add a new student contact**
 
 **MSS**
 
-1.  User keys in the contact to be added
-2.  TutorsPet shows the added contact into the list
+1.  User keys in the student's contact to be added
+2.  TutorsPet shows the added student into the list
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given details is in an incorrect format.
+* 1a. The given details are in an incorrect format.
 
     * 1a1. TutorsPet shows an error message.
 
       Use case ends.
+  
+* 1b. Details are in correct format, but the name already exists in TutorsPet.
 
-**Use case: Delete a student contact**
+    * 1b1. TutorsPet displays a message to notify the duplicate name and ask user whether to proceed with `y` or `n`.
+  
+    * 1b2. User enters `y`.<br>
+      Use case resumes from step 4.
 
-**MSS**
+* 1b. Details are in correct format, but the phone already exists in TutorsPet.
 
-1.  User requests to list contacts
-2.  TutorsPet shows a list of students’ contact
-3.  User requests to delete a specific contact from the list
-4.  TutorsPet deletes the person
+     * 1b1. TutorsPet shows an error message. <br>
+       Use case ends.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. TutorsPet shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Editing an existing contact**
+**Use case: Editing an existing student contact**
 
 **MSS**
 
@@ -1000,9 +989,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorsPet shows an error message.
+  * 1a1. TutorsPet shows an error message.
 
-      Use case ends.
+    Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes at step 2.
+       
+**Use case: Delete a student contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  TutorsPet shows a list of students’ contact
+3.  User requests to delete a specific contact from the list
+4.  TutorsPet deletes the student
+
+    Use case ends.
+
+**Extensions**
 
 * 2a. The list is empty.
 
@@ -1013,6 +1025,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Display a student contact details**
+
+**MSS**
+
+1.  User requests to list student contacts.
+2.  TutorsPet shows a list of student contacts.
+3.  User requests to display a specific student contact from the list.
+4.  TutorsPet display the specified student contact in the details panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index of the student contact in the list is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
 
 **Use case: Search for a student contact**
 
@@ -1168,30 +1203,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. TutorsPet shows an error message.
   
     Use case ends.
-
-**Use case: Display a student contact details**
-
-**MSS**
-
-1.  User requests to list student contacts.
-2.  TutorsPet shows a list of student contacts.
-3.  User requests to display a specific student contact from the list.
-4.  TutorsPet display the specified student contact in the details panel.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty
-
-  Use case ends.
-
-* 3a. The given index of the student contact in the list is invalid.
-
-  * 3a1. TutorsPet shows an error message.
-
-    Use case resumes from step 2.
-
 
 **Use case: Opens schedule window**
 
@@ -1431,41 +1442,6 @@ Add a student with his/her details
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Viewing the Schedule
-
-1. Viewing the schedule while all students are being shown.
-    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-    1. Test case: `schedule`<br>
-       Expected: Opens up the schedule window.
-    1. Test case: `schedulexyz`<br>
-       Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
-    1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
-       Expected: Similar to previous.
-1. Viewing the schedule window while adding or editing student contact.
-    1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
-    1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
-       Then enter `schedule`.<br>
-       Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
-    1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact) 
-       to edit the lesson to Monday 2000. Then enter `schedule`.<br>
-       Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
-1. Viewing the schedule window while schedule window is already opened.
-     1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
-     1. Test case: `schedule` <br>
-     1. Expected: Focuses back on the schedule window.
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
 ### Adding an important date
 
 1. Adding an important date while all important dates are being shown
@@ -1514,5 +1490,40 @@ Add a student with his/her details
        Expected: Opens window with a list of important dates. Success details is shown in the status message.
     
     1. Incorrect list important date commands include cases where the command entered is not `list-date`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Viewing the Schedule
+
+1. Viewing the schedule while all students are being shown.
+  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+  1. Test case: `schedule`<br>
+     Expected: Opens up the schedule window.
+  1. Test case: `schedulexyz`<br>
+     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
+  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
+     Expected: Similar to previous.
+1. Viewing the schedule window while adding or editing student contact.
+  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
+  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800.
+     Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
+  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact)
+     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
+1. Viewing the schedule window while schedule window is already opened.
+  1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
+  1. Test case: `schedule` <br>
+  1. Expected: Focuses back on the schedule window.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
