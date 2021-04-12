@@ -390,6 +390,9 @@ A new unfavourited `Contact` is created. The `model` is updated accordingly.
 
 Step 4. The success message and unfavourited `Contact` are returned to `LogicManager` via a `CommandResult`.
 
+The following activity diagram shows how the favourite operation works:
+![FavouriteActivityDiagram](images/FavouriteActivityDiagram.png)
+
 #### Design consideration:
 
 ##### Aspect: How to implement the favourite feature
@@ -433,7 +436,8 @@ As such, that is the alternative that was chosen.
     * Cons: Not standardised with other contact fields, 
       might not be as readable to have a random boolean variable appear.
 
-Alternative 1 was eventually chosen as
+Alternative 1 was eventually chosen as it was the most standardised way 
+and minimises the amount of clutter displayed to the user.
 As such, that is the alternative that was chosen.
 
 ### Add feature

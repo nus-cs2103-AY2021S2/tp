@@ -1,0 +1,26 @@
+@startuml
+
+start
+:User executes favourite command;
+:User input is parsed, check index and option;
+if () then ([Valid index])
+    if () then ([Remove option is present])
+      if () then ([Option remove])
+        :isFav is set to false;
+      else ([Option not remove])
+        :Throw error;
+      endif
+    else ([No option])
+      :isFav is set to true;
+     endif
+else ([Invalid index])
+  :Throw error;
+endif
+
+:Create FavouriteCommand object with index and isFav;
+:Create EditContactDescriptor and favouritedContact;
+:Display command result;
+
+stop
+
+@enduml
