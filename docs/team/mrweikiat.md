@@ -65,6 +65,3 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Helped to standardize UG and DG
 * Wrote test cases when possible
 * Approve and merge PRs when possible
-
-## Contributions beyond the project team
-
