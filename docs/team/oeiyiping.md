@@ -39,4 +39,4 @@ in Java, and has about 13 kLoC.
 	* [\#105](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/105), [\#269](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/269)
 
 ## Community
-Made numerous PR reviews and discussions. 
+Made numerous PR reviews and discussions.
