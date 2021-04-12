@@ -38,6 +38,4 @@ deactivate AddDateCommandParser
 AddDateCommandParser -[hidden]-> AddressBookParser
 destroy AddDateCommandParser
 
-
-
 @enduml
