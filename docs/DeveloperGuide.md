@@ -715,6 +715,86 @@ Prerequisites: Must have at least one person in the list to view the changes.
     1. Test case: `edit 1 -r`<br>
        Expected: First person's remark is now empty.
 
+### Alias
+
+1. Add alias
+
+    1. Test case: `alias add ls list`<br>
+       Expected: Executing `ls` will behave exactly like `list`.
+
+1. Delete alias
+
+    1. Prerequisites: Must have an alias named `ls` (e.g. `alias add ls list`).
+
+    1. Test case: `alias delete ls`<br>
+       Expected: `ls` alias deleted.
+
+1. List alias
+
+    1. Prerequisites: Must have a filter applied (e.g. `filter -a -p`).
+
+    1. Test case: `fitler`<br>
+       Expected: All fields are shown.
+
+### Tag
+
+1. Add tag
+
+    1. Prerequisites: Must have at least 1 person in the list.
+
+    1. Test case: `tag add shown -t Photoshop`<br>
+       Expected: All shown person(s) will have `Photoshop` tag added. If `Photoshop` tag exists
+       before execution, nothing will change for that person. The command result will display the
+       total number of persons the command have successfully executed on and not the total number of
+       persons the tags are added to.
+
+    1. Test case: `tag add selected -t Photoshop`<br>
+       Expected: All selected person(s) will have `Photoshop` tag added. If `Photoshop` tag exists
+       before execution, nothing will change for that person. The command result will display the
+       total number of persons the command have successfully executed on and not the total number of
+       persons the tags are added to.
+
+1. Delete tag
+
+    1. Test case: `tag delete shown -t Photoshop`<br>
+       Expected: All shown person(s) will have `Photoshop` tag removed. The command result will
+       display the total number of persons the command have successfully executed on and not the
+       total number of persons the tags are deleted from.
+
+### Autocomplete
+
+1. Command Autocomplete
+
+    1. Test case: `e`<kbd>tab</kbd><br>
+       Expected: `e` will be autocompleted to the next command in the command list panel (
+       e.g. `edit`).
+
+    1. Test case: `e`<kbd>tab</kbd> multiple times<br>
+       Expected: `e` will be autocompleted to the next command in the command list panel and will
+       cycle through the options.
+
+1. Flag Autocomplete
+
+    1. Test case: `add `<kbd>tab</kbd><br>
+       Expected: Pressing <kbd>tab</kbd> multiple times will cycle through all the flags available
+       for `add` command.
+
+    1. Test case: `edit 1 `<kbd>tab</kbd> multiple times<br>
+       Expected: Pressing <kbd>tab</kbd> multiple times will cycle through all the flags available
+       for `edit` command.
+
+### Find
+
+1. Find All Fields
+
+    1. Test case: `find coll`<br>
+       Expected: Names, emails, tags and remarks containing `coll` will be shown.
+
+1. Find by Specific Fields
+
+    1. Test case: `find -t coll`<br>
+       Expected: Tag(s) containing `coll` will be shown.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
