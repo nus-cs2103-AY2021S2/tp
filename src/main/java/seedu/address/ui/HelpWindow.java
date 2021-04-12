@@ -19,7 +19,7 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-t12-3.github.io/tp/UserGuide.html";
-    public static final String USERGUIDE_MSG = "Refer to the user guide: ";
+    public static final String USERGUIDE_MSG = "Refer to the user guide for more information: ";
     public static final String READ_FAIL_MSG = "Error getting local help, please view the user guide in the URL below.";
     private static String commandSummary;
 
