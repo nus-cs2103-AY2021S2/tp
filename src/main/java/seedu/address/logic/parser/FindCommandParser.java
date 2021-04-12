@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentMultimap.checkOnePrefixProvided;
+import static seedu.address.logic.parser.ArgumentMultimap.findPresentPrefixes;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
@@ -21,7 +23,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME_STRING;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
@@ -51,13 +52,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PRICE,
                         PREFIX_ALL, PREFIX_TRIPDAY, PREFIX_TRIPTIME);
 
-        if (!arePrefixesValid(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE,
+        if (!checkOnePrefixProvided(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE,
                 PREFIX_ALL, PREFIX_TRIPDAY, PREFIX_TRIPTIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         List<Prefix> presentPrefixes =
-                presentPrefixes(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE,
+                findPresentPrefixes(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE,
                         PREFIX_ALL, PREFIX_TRIPDAY, PREFIX_TRIPTIME);
         assert(presentPrefixes.size() == 1);
 
@@ -68,28 +69,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Returns true if only one of the prefixes are provided
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesValid(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return presentPrefixes(argumentMultimap, prefixes).size() == 1;
-    }
-
-    /**
      * Returns the prefixes that have values
      * {@code ArgumentMultimap}.
      */
     private static boolean doesPrefixHaveOneValue(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() <= 1);
-    }
-
-    /**
-     * Returns the prefixes that have values
-     * {@code ArgumentMultimap}.
-     */
-    private static List<Prefix> presentPrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).filter(prefix ->
-                argumentMultimap.getValue(prefix).isPresent()).collect(Collectors.toList());
     }
 
     /**
@@ -140,10 +124,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             String argument = "";
             switch (prefix.toString()) {
             case PREFIX_NAME_STRING:
-                argument = ParserUtil.parseName(s).toString();
+                String parsedName = ParserUtil.parseName(s).toString();
+                argument = parsedName.replaceAll("\\s+", " ");
                 break;
             case PREFIX_ADDRESS_STRING:
-                argument = ParserUtil.parseAddress(s).toString();
+                String parsedAddress = ParserUtil.parseAddress(s).toString();
+                argument = parsedAddress.replaceAll("\\s+", " ");
                 break;
             case PREFIX_PHONE_STRING:
                 argument = ParserUtil.parsePhone(s).toString();
@@ -155,7 +141,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 argument = ParserUtil.parsePrice(s).toString();
                 break;
             case PREFIX_ALL_STRING:
-                argument = s;
+                argument = s.replaceAll("\\s+", " ");
                 break;
             case PREFIX_TRIPDAY_STRING:
                 argument = ParserUtil.parseTripDay(s).toString();
@@ -168,7 +154,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
 
             if (argument.length() > 0) {
-                outputList.add(argument.trim());
+                String formattedArgument = argument.trim().toLowerCase();
+                outputList.add(formattedArgument);
             }
         }
 
