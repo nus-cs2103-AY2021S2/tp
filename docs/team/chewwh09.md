@@ -24,9 +24,12 @@ Given below are my contributions to the project.
 * **New Feature**: Added `reminder` feature to display expiring items in the list.
   (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98))
   (Pull requests [\#131](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/131))
-    * What it does:
-    * Justification:
-    * Highlights:
+    * What it does: This feature allows the user to filter items in the displayed list based on the difference of their
+      expiry date from today, to remind the user what items are expiring soon. It also gives the user the option of 
+      filtering it by days or weeks.
+    * Justification: This feature improves the product significantly because a user can view the items that are expiring
+      within the given specific amount of day. Since StoreMando is an application that is used to store a large number 
+      of items, this feature can help to display all the expiring items to the user.
 
 * **Enhancements to existing features**:
     * Modified the `List` feature to filter out items in the specific location
@@ -35,9 +38,19 @@ Given below are my contributions to the project.
 * **New GUI**: Added the expiring and expired table.
   (Pull requests [\#215](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/215))
   (Pull requests [\#304](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/304))
-    * What it does:
-    * Justification:
-    * Highlights:
+  (Pull requests [\#323](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/323))
+    * What it does: This feature allows the user to have an overview of all expired items and item that is expiring 
+      within 7 days.
+    * Justification: This feature improved the product significantly because it helps the user get an overview of the 
+      number of items that are expiring or has expired. This GUI pairs well with the `reminder` and `sort` command. 
+      After launching the application, the user will be notified by these tables about the number of items that have 
+      expired or are expiring. He/she can use the `reminder` or `sort` command to locate these items so he/she can 
+      remove the item or stock up the item.
+    * Highlights: This GUI implementation is a challenging task because Javafx is a new programming language for me and
+      there weren't many resources I can refer to. Everything that was used to implement the expiring and expired tables
+      is learned from the Internet. Furthermore, the API that was used to create these tables (TableView) wasn't part of
+      AB3 or our Individual Project. Hence, the implementation of this GUI learned from scratch, and also along the way,
+      I encountered many problems regarding this TableView GUI.
     
 * **Enhancement to GUI**
     * Color code the expiry date field 
@@ -50,10 +63,12 @@ Given below are my contributions to the project.
 * **Test**
     * Add `Reminder` feature's test
       (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98))
-    * Add `List` feature's tests 
-      (Pull requests [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
+      (Pull requests [\#131](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/131))
+    * Add `List` feature's tests
+      (Pull requests [\#73](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/73))
+      (Pull requests [\#122](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/122))
     * Add `Find` feature's tests 
-      (Pull requests [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
+      (Pull requests [\#122](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/122))
     * Add tests to uncovered methods and classes
       (Pull requests [\#305](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/305))
     
@@ -73,12 +88,13 @@ Given below are my contributions to the project.
           (Pull requests [\#42](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/42))
         * Add use cases
           (Pull requests [\#44](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/44))
-        * Add more use cases for `reminder` Feature
           (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98))
-        * Added sequence diagrams, activity diagrams and implementation for edit and help command
+        * Add sequence diagrams, activity diagrams and implementation for edit and help command
+          (Pull requests [\#214](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/214))
+        * Update the UiClassDiagram
           (Pull requests [\#214](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/214))
     * About Us:
-        * Updated Chew Wei Hao's part. 
+        * Update Chew Wei Hao's part. 
           (Pull requests [\#13](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/13))
     
 * **Addtitional Contributions**
@@ -86,6 +102,8 @@ Given below are my contributions to the project.
       (Pull requests [\#195](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/195))
     * Change our success messages into a more meaningful message.
       (Pull requests [\#282](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/282))
+    * Add javadocs to undocumented methods and classes
+      (Pull requests [\#355](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/355))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75)
@@ -94,5 +112,7 @@ Given below are my contributions to the project.
       , [\#101](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/101)
     * Contributed to forum discussions:
     * Reported bugs and suggestions for other teams in the class:
+      * Reported bugs and suggestions for other teams in the class:
+        * Reported [12 bugs](https://github.com/chewwh09/ped/issues)
     * Some parts of the history feature I added was adopted by several other classmates:
     
