@@ -1,8 +1,6 @@
 @startuml
 !include style.puml
 
-autoactivate on
-
 box Logic LOGIC_COLOR_T1
 
 participant "d:DropCommand" as DropCommand LOGIC_COLOR
@@ -28,7 +26,7 @@ deactivate Model
 create IdMatchPredicate
 DropCommand -> IdMatchPredicate
 activate IdMatchPredicate
-IdMatchPredicate --> DropCommand
+IdMatchPredicate --> DropCommand : imp
 deactivate IdMatchPredicate
 
 DropCommand -> Model : updateFilteredEntityList(imp)
@@ -39,7 +37,7 @@ deactivate Model
 create CommandResult
 DropCommand -> CommandResult
 activate CommandResult
-CommandResult --> DropCommand
+CommandResult --> DropCommand : cr
 deactivate CommandResult
 
 [<-- DropCommand : cr
