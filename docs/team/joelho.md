@@ -36,12 +36,21 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#16](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/16), [\#133](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/133)
   * Substantial number of code related PRs merged, with code quality comments taken offline (and sadly not on github)
-
 * **Tools**:
   * Patched security vulnerabilities in nokogiri and kramdown versions
   * Added [Codacy](https://app.codacy.com/gh/AY2021S2-CS2103T-W10-1/tp/dashboard) static analysis to repo
   * Setup Codecov check to PRs to ensure we attempt to maintain coverage
-
+* **Documentation**:
+  * User Guide:
+    * Added documentation for the features `drive` (PR [\#62](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/62) [\#32](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/32))
+    * Did cosmetic tweaks to existing documentation examples: (PR [\#62](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/62))
+    * Change layout to use Github pages functionality (PR [\#32](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/32))
+    * General cosmetic and formatting issues
+  * Developer Guide:
+    * Added diagrams for `Model`, `delete`
+    * Added implementation details for `Model`, `Storage`
+    * Added manual testing instructions for `edit`
+  
 <div style="page-break-after: always;"></div>
 
 ## **Excerpts from UG/DG**
