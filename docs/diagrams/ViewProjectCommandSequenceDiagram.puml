@@ -1,11 +1,12 @@
 @startuml
 !include style.puml
+skinparam defaultFontSize 24
 
 Participant ":MainWindow" as mainWindow UI_COLOR
 Participant ":LogicManager" as logic LOGIC_COLOR_T4
 Participant ":ViewProjectCommand" as command LOGIC_COLOR_T3
 Participant ":ViewProjectUiCommand" as uiCommand LOGIC_COLOR_T2
-Participant ":CommandResult" as commandResult LOGIC_COLOR_T1
+Participant ":CommandResult" as commandResult LOGIC_COLOR_T2
 
 
 --> mainWindow
@@ -26,9 +27,9 @@ deactivate uiCommand
 
 create commandResult
 command -[LOGIC_COLOR_T3]> commandResult
-activate commandResult LOGIC_COLOR_T1
+activate commandResult LOGIC_COLOR_T2
 
-commandResult --[LOGIC_COLOR_T1]> command
+commandResult --[LOGIC_COLOR_T2]> command
 deactivate commandResult
 
 command -[LOGIC_COLOR_T3]-> logic
@@ -38,20 +39,20 @@ logic --[LOGIC_COLOR_T4]> mainWindow
 deactivate logic
 
 mainWindow -[UI_COLOR]> commandResult : commandResult.getUiCommand()
-activate commandResult LOGIC_COLOR_T1
+activate commandResult LOGIC_COLOR_T2
 
-commandResult --[LOGIC_COLOR_T1]> mainWindow
+commandResult --[LOGIC_COLOR_T2]> mainWindow
 deactivate commandResult
 
 mainWindow -[UI_COLOR]> uiCommand : uiCommand.execute(this)
 activate uiCommand LOGIC_COLOR_T2
 
-uiCommand -[LOGIC_COLOR_T1]> mainWindow : selectProject(projectIndex)
+uiCommand -[LOGIC_COLOR_T2]> mainWindow : selectProject(projectIndex)
 activate mainWindow UI_COLOR
 
 mainWindow --[UI_COLOR]> uiCommand
 deactivate mainWindow
 
-uiCommand --[LOGIC_COLOR_T1]> mainWindow
+uiCommand --[LOGIC_COLOR_T2]> mainWindow
 deactivate uiCommand
 @enduml
