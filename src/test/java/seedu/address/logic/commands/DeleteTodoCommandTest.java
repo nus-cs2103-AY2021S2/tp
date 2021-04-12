@@ -29,6 +29,7 @@ import seedu.address.testutil.TodoBuilder;
 public class DeleteTodoCommandTest {
 
     private Model model;
+    private Todo todoToDelete;
     private Project projectToEdit;
     private Project editedProject;
 
@@ -36,18 +37,21 @@ public class DeleteTodoCommandTest {
     @BeforeEach
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
+        todoToDelete = new TodoBuilder().build();
         projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         editedProject = new ProjectBuilder(projectToEdit).build();
+        editedProject.addTodo(todoToDelete);
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Todo todoToDelete = new TodoBuilder().withDescription("a").build();
-        editedProject.addTodo(todoToDelete);
+        Todo todoToDelete1 = new TodoBuilder().withDescription("a").build();
+        Project editedProject1 = new ProjectBuilder(projectToEdit).build();
+        editedProject1.addTodo(todoToDelete1);
 
         model.setProject(
                 projectToEdit,
-                editedProject
+                editedProject1
         );
 
         Index firstTodoIndex = Index.fromOneBased(1); // todo is first in sorted list
@@ -65,9 +69,6 @@ public class DeleteTodoCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Todo todoToDelete = new TodoBuilder().build();
-        editedProject.addTodo(todoToDelete);
-
         model.setProject(
                 projectToEdit,
                 editedProject
@@ -86,9 +87,6 @@ public class DeleteTodoCommandTest {
 
     @Test
     public void execute_invalidTodoIndex_throwsCommandException() {
-        Todo todoToDelete = new TodoBuilder().build();
-        editedProject.addTodo(todoToDelete);
-
         model.setProject(
                 projectToEdit,
                 editedProject
@@ -107,9 +105,6 @@ public class DeleteTodoCommandTest {
 
     @Test
     public void equals() {
-        Todo todoToDelete = new TodoBuilder().build();
-        editedProject.addTodo(todoToDelete);
-
         model.setProject(
                 projectToEdit,
                 editedProject
