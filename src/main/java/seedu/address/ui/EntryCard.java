@@ -47,7 +47,7 @@ public class EntryCard extends UiPart<Region> {
                 + entry.getEndDate().format(DEFAULT_FORMATTER));
 
         if (entry.isOverdue()) {
-            cardPane.setStyle("-fx-background-color: derive(#FF0000, 40%)");
+            cardPane.setStyle("-fx-background-color: derive(#B22222, 20%)");
         }
 
         entry.getTags().stream()

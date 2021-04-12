@@ -21,7 +21,7 @@ public class ListEntryCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getTeachingAssistant(), new UserPrefs());
 
     }
 

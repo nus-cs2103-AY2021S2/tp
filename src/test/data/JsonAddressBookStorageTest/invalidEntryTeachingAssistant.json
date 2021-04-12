@@ -1,9 +1,0 @@
-{
-  "persons": [ ],
-  "entries" : [ {
-    "entryName" : "Invalid entry name field !@#$#$%",
-    "startDate" : "2021-05-22 15:00",
-    "endDate" : "2021-05-22 14:59",
-    "tagged" : [ "Fiona", "Benson", "Biology" ]
-  } ]
-}

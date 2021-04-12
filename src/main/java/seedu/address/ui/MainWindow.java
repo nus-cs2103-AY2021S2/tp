@@ -31,7 +31,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ContactListPanel contactListPanel;
     private EntryListPanel entryListPanel;
 
@@ -43,9 +42,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane contactListPanelPlaceholder;
@@ -119,29 +115,16 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        //to be added once person class is deleted
-        //contactListPanel = new ContactListPanel(logic.getFilteredContactList());
-        //contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
 
         entryListPanel = new EntryListPanel(logic.getFilteredEntryList());
         entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
 
-        //To be deleted
-        /*
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
-        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
-        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
-         */
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTeachingAssistantFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -188,8 +171,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ContactListPanel getContactListPanel() {
+        return contactListPanel;
     }
 
     /**

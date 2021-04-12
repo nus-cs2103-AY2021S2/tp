@@ -21,8 +21,6 @@ public class JsonAdaptedEntryTest {
     public static final String INVALID_ENTRY_NAME = "consultation!!!!!!!!";
     public static final String INVALID_START_DATE = "2021 02 31 18:00";
     public static final String INVALID_END_DATE = "2021-02-31 1800";
-    public static final String INVALID_START_DATE_PAIR = "2021-02-31 18:00";
-    public static final String INVALID_END_DATE_PAIR = "2021-02-31 17:59";
     public static final String INVALID_TAG_NOT_SINGLE_WORD = "hello world";
 
     private static final String VALID_ENTRY_NAME = CONSULTATION.getEntryName().toString();
