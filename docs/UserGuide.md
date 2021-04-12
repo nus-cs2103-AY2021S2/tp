@@ -440,8 +440,7 @@ Note: Autocompleted Tags will be returned in alphabetical order and is case-sens
 
 Undoes the most recent action that changed PartyPlanet's Contact or Event List.
 
-Note: This means that only commands such, as `add`, `delete` etc.., can be undone.<br>
-Other command that only changes display, such as `theme`, `list` etc.., will not be affected.
+Note: This means that only the commands, `add`, `delete`, `edit`, `eadd`, `edelete`, `eedit`, `edone`, can be undone.
 
 Can be invoked repeatedly until there is no more history from the current session.
 
