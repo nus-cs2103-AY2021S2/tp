@@ -114,7 +114,7 @@ Although most of the buttons you see on the screen are clickable, the UI has bee
 Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app.
+Most commands require all the fields (e.g. project index and deadline index when updating a deadline) so that you can run the command from anywhere within the app.
 </div>
 
 When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
@@ -332,7 +332,7 @@ Project names that are too long may be truncated in the side panel. Simply view 
 Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To switch between the overview and todo pages, you can use the `overview` and `todo` commands respectively.
+To switch between the overview and todo pages, you can use the `overview` and `todos` commands respectively.
 </div>
 
 Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.

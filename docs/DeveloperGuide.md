@@ -321,13 +321,16 @@ This section explains the implementation of the Delete Todo feature. As the impl
 
 The `DeleteTodoCommand` results in the specified todo being removed from the application. This command requires two compulsory fields Project Index & Todo Index to specify which project the todo is to be deleted from.
 
-This is done through the use of the `ParserUtil#parseIndex` method inside the `seedu.address.logic.parser` package, which checks and extracts the index field from the provided command string.
+This is done through the use of the `ParserUtil#parseIndex` method inside the `seedu.address.logic.parser` package, which checks and extracts the index field from the provided command string. As depicted in the sequence diagram below, the `ParserUtil#parseIndex` method is called twice for Project Index & Todo Index respectively.
 
 If the provided project index and todo index are valid, then `DeleteTodoCommandParser` creates a `DeleteTodoCommand` object. The sequence diagram below shows how the `DeleteTodoCommand` object is created.
 
 For a better understanding, take a look at the Logic Class Diagram in the [Logic Component](#logic-component) section of the DG where you can see `DeleteTodoCommandParser` being represented as `XYZCommandParser`.
 
 ![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`. 
 
@@ -802,9 +805,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder.
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample entries. The window size may not be optimum.
+    1. Double-click the jar file.<br>
+       Expected: Shows the GUI with a set of sample entries. The window size may not be optimum.
 
 1. Saving window preferences
 
