@@ -690,14 +690,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample properties and appointments. The window size may not be optimum.
 
-1. Saving window preferences
+
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-      
-1. Exiting
+  
+    
+3. Exiting
 
    1. Prerequisites: The application is running.
 
@@ -721,7 +723,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add property commands to try: `add property n/Bishan`, `add property t/Condo` <br>
       Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
 
-1. Adding a duplicate property.
+
+2. Adding a duplicate property.
 
    1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app.
 
@@ -745,7 +748,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect add appointment commands to try: `add appointment n/Meet Jacob`, `add appointment d/19-05-2021 t/1930` <br>
        Expected: No appointment is added. An error message `Invalid command format!` is shown in the result display.
 
-1. Adding a duplicate appointment.
+
+2. Adding a duplicate appointment.
 
     1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app.
 
@@ -774,7 +778,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find`<br>
         Expected: Both lists are not updated, error message showing the two types of `find` commands is shown. 
         
-1. Finding properties
+
+2. Finding properties
     
     1. Prerequisites: Using default example data (or make sure when `list property` is entered, you can see the property `Woodlands Crescent` that has type `hdb` and price at `$800,000`). 
     
@@ -793,7 +798,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect find property commands to try: `find property x/ `, where x is any of the permissible options. 
         Expected: Similar to previous. 
         
-1. Finding appointments
+
+3. Finding appointments
     
     1. Prerequisites: Using default example data (or make sure when `list appointment` is entered, you can see the appointment `Meet Emily` that has remarks `At Mayfair Gardens`, date at `Jun 15 2021`, and time at `11:00AM`). 
     
@@ -812,7 +818,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect find property commands to try: `find appointment x/ `, where x is any of the permissible options. 
         Expected: Similar to previous. 
 
-1. Finding clients
+
+4. Finding clients
 
     1. Prerequisite: Using default example data (or make sure when `list all` is entered, you can see the appointment `Meet Alice` and the property with `Alice` as client name). 
     
@@ -821,6 +828,30 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case: `find client`
         Expected: Both lists are not updated. Error details shown in the status message. 
+
+### Listing all properties and appointments
+
+1. List all properties and appointments in the property list and appointment list after a `find client [KEYWORD]` command.
+
+    1. Prerequisites: There exists at least one property and one appointment in the property list and appointment list respectively.
+    
+    1. Perform a `find client [KEYWORD]` command that returns filtered property and appointment lists with client name as per input keyword.
+   
+    1. Test case: `list all`
+       
+       Expected: Filter from `find` command will be cleared, and all properties and appointments in the property list and appointment list are displayed,
+       with a result message showing `Listed all properties and appointments`.
+  
+     
+2. List all properties and appointments in the property and appointment lists after a `clear` command.
+
+    1. Prerequisites: There exists at least one property and one appointment in the property list and appointment list respectively.
+    
+    1. Perform a `clear all` command such that all properties and appointments are cleared from the lists.
+   
+    1. Test case: `list all`
+       
+       Expected: No properties and appointments are displayed, with a result message showing: `No existing properties and appointments available`
 
 ### Editing a property
 
@@ -837,7 +868,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit property commands to try: `edit property n/Bishan Village`, `edit property +1` <br>
        Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
 
-1. Editing to a duplicate property.
+
+2. Editing to a duplicate property.
 
     1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app that is not the first property in the property list.
 
@@ -859,7 +891,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit appointment commands to try: `edit appointment n/Meet Nathaniel`, `edit appointment +1 n/Meet Nathaniel`<br>
        Expected: No appointment is edited. An error message `Invalid command format!` is shown in the result display.
 
-1. Editing to a duplicate appointment.
+
+2. Editing to a duplicate appointment.
 
     1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app that is not the first appointment in the appointment list.
 
@@ -873,7 +906,7 @@ testers are expected to do more *exploratory* testing.
 ### Introduction
 AB3 only dealt with one entity type, but PocketEstate took twice the effort since it involved 2 entity types - Properties & Appointments. The number of commands and attributes implemented were doubled in PocketEstate, signifying greater parsing, storage and tests effort due to the numerous different commands and data types involved.
 
-To support all of that, we greatly expanded the application, increasing the lines of code from 6k to 16k. 
+To support all of that, we greatly expanded the application, increasing the lines of code from 6k to 19k. 
 
 ### New Features
 **1. Update Command**
@@ -903,7 +936,7 @@ The user interface for original AddressBook was only optimised to display only o
 
 We found our original implementation of displaying one list at a time to be less user friendly as the user had to use `list property` or `list appointment` command before using other commands.
 
-We overcame this by displaying both properties and appointments side by side for easy referral, without having to call `list property` or `list appointment` prior to a sort or filter. This design was also optimal in allowing find features that are simultaneously done on both lists. Eg. `find client [keyword]` where keyword is searched from both property and appointment lists.
+We overcame this by displaying both properties and appointments side by side for easy referral, without having to call `list property` or `list appointment` prior to a sort or filter. This design was also optimal in allowing find features that are simultaneously done on both lists. Eg. `find client [KEYWORD]` where keyword is searched from both property and appointment lists.
 
 The new UI structure of a side by side property and appointment list required a redesign of the user interface that was more complex, where we faced some sizing issues such as text wrapping, window issues due to the large amount of data displayed. In doing so, we also changed the colour scheme of the UI to be a light themed one in order to allow greater emphasis on some data (bolding of words) and less focus on other data Eg. Greying out of properties and appointments with expired deadlines. The original UI that was dark themed would not allow colour play with the different shades of black.
 
