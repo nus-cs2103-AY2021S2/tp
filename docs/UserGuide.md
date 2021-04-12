@@ -264,9 +264,10 @@ Format: `converttxtnote INDEX`
 
 * Merge two notes in the specified index into one note.
 * The two notes that are merged are deleted.
+* The file name will be the content of the note itself. Also, it can be found in the `data` folder of the `Dictionote`.
 
 Examples:
-* `mergenote 2 5` Merges the note in the second and fifth position. 
+* `converttxtnote 2` Converts the second note in the list into a text file. 
 
 #### Show a note : `shownote`
 
