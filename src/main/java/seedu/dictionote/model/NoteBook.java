@@ -22,7 +22,7 @@ public class NoteBook implements ReadOnlyNoteBook {
     public NoteBook() {}
 
     /**
-     * Makes a notebook.
+     * Makes a notebook.  //Todo change
      * @param toBeCopied ReadOnlyNotebook
      */
 
