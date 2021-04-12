@@ -5,6 +5,7 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_BIRTHDAY = "abc";
+    private static final LocalDate INVALID_BIRTHDAY = LocalDate.now().plusDays(1);
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DEBT = "a";
@@ -32,7 +33,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_BIRTHDAY = BENSON.getBirthday().toString();
+    private static final LocalDate VALID_BIRTHDAY = BENSON.getBirthday().getDate();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_DEBT = BENSON.getDebt().toString();
     private static final JsonAdaptedPicture VALID_PICTURE = null;
