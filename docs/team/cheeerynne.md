@@ -65,7 +65,7 @@ Given below are my contributions to the project.
         * Updated the Storage UML Diagram in the DG. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191), [\#273](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/273))
         * Added implementation explanation for `clearAssignees` command. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191), [\#291](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/291))
         * Added and updated use cases in the Developer Guide. (Pull Requests: [\#143](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/143), [\#171](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/171))
-        * Added manual testing instructions for `deleteMember`, `editMember`, `findMembers` and `findTasks`. (Pull Requests: [\#284](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/284))
+        * Added manual testing instructions for various commands. (Pull Requests: [\#284](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/284))
 
 * **Community**:
     * PRs reviewed (Pull requests: [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#276](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/276), [\#283](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/283))
