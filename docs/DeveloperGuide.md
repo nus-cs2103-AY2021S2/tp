@@ -635,7 +635,7 @@ Use case ends.
 
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **CCA**: Co-curricular Activities 
+* **CCA**: Co-curricular activities 
 * **CCA / Club head**: A person who has a position in a Club / CCA and is required to manage the tasks and members within the club
 
 --------------------------------------------------------------------------------------------------------------------
