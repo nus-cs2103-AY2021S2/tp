@@ -34,8 +34,24 @@ Given below are my contributions to the project.
         * Modified UML diagrams to include classes associated with the `shortcut` feature: [\#185](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/185)
         * Added implementation details of the `shortcut` feature including sequence diagram: [\#185](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/185)
         * Added use cases for the `shortcut` feature: [\#185](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/185)
+        * Converted Developer Guide into a neater PDF format
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#21](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/21), [\#45](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/45), [\#55](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/55), [\#61](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/61), [\#85](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/85), [\#95](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/95), [\#99](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/99)
+    * PRs reviewed (with non-trivial review comments): 
+      [\#21](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/21), 
+      [\#45](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/45), 
+      [\#55](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/55), 
+      [\#61](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/61), 
+      [\#85](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/85), 
+      [\#95](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/95), 
+      [\#99](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/99),
+      [\#170](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/170),
+      [\#173](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/173),
+      [\#179](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/179),
+      [\#185](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/185),
+      [\#187](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/187),
+      [\#197](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/197),
+      [\#199](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/199),
+      [\#213](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/213)
     * Reported bugs and suggestions for other teams in the class (example: [1](https://github.com/wongkokian/ped/issues))
     
