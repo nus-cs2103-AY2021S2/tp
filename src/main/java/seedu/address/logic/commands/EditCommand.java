@@ -112,7 +112,7 @@ public class EditCommand extends Command {
                 editedPassenger.getTripTime(),
                 editedPassenger)
         ) {
-            throw new CommandException(MESSAGE_PASSENGER_ALREADY_DRIVING);
+            throw new CommandException(String.format(MESSAGE_PASSENGER_ALREADY_DRIVING, editedPassenger.getName()));
         }
 
         model.setPassenger(passengerToEdit, editedPassenger);

@@ -129,9 +129,8 @@ public class UniquePoolList implements Iterable<Pool> {
      */
     public boolean containsDriver(Person driver) {
         return internalList.stream().anyMatch(pool ->
-                pool.getPassengers().stream().anyMatch(pass -> pass.isSamePerson(driver)
+                pool.getPassengers().stream().anyMatch(pass -> pass.isSamePerson(driver))
                         && pool.getDriver().isSamePerson(driver)
-                )
         );
     }
 
