@@ -5,8 +5,29 @@ title: Developer Guide
 # NuFash Developer Guide
 
 ---
-* Table of Contents
-  {:toc}
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+    * [UI Component](#ui-component)
+    * [Logic Component](#logic-component)
+    * [Model Component](#model-component)
+    * [Storage Component](#storage-component)
+* [Implementation](#implementation)
+    * [Default Sorting Order](#completed-default-sorting-order-of-garments-in-wardrobe)
+    * [Find feature](#find-feature)
+    * [Match feature](#match-feature)
+    * [Select feature](#select-feature)
+    * [View feature](#view)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product Scope](#product-scope)
+        * [Target User Profile](#target-user-profile)
+        * [Value Proposition](#value-proposition)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Funtional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -85,7 +106,7 @@ The `UI` component,
 
 1. `Logic` uses the `WardrobeParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. deleting a garment).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -93,7 +114,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source:  **Note:**  The lifeline for `DeleteCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -190,25 +212,24 @@ The command is parsed from `WardrobeParser` to the `FindCommandParser`, where th
 object of the input is then created with `argMultiMap` as the argument for the constructor. 
 
 Finding the correct garment is achieved through the creation of new `Predicate` classes (in addition to the existing 
-`NameContainsKeywordsPredicate`) which checks if a :
-* `ContainsKeywordsPredicate`
-* `SizeContainsKeywordsPredicate`
-* `ColourContainsKeywordsPredicate`
-* `TypeContainsKeywordsPredicate`
-* `DressCodeContainsKeywordsPredicate`
-* `DescriptionContainsKeywordsPredicate`
-* `AttributesContainsKeywordsPredicate`
+`NameContainsKeywordsPredicate`):
+* `ContainsKeywordsPredicate` parent class
+* `SizeContainsKeywordsPredicate` child class
+* `ColourContainsKeywordsPredicate` child class
+* `TypeContainsKeywordsPredicate` child class
+* `DressCodeContainsKeywordsPredicate` child class
+* `DescriptionContainsKeywordsPredicate` child class
 
-`AttributesContainsKeywords` looks through each of the other types of `ContainsKeywordsPredicate` to return 
-true for garments that pass each predicate, and false otherwise. 
+`AttributesContainsKeywordsPredicate` class is used which looks through each of the other `ContainsKeywordsPredicate` 
+child classes to return true for garments that pass each predicate, and false otherwise. 
 
 The object of `AttributesContainsKeywordsPredicate` is passed to an object of `FindCommand`. The `execute` method of 
 `FindCommand` object is then called with `model`, which then calls the `updateFilteredGarmentList` method of `model`.
-This then displays all matching garments in the data to the front end of the nufash application.
+This then displays all matching garments in the data to the front end of the NuFash application.
 
 Given below is an example usage scenario of how the `find` mechanism works.
 
-1. The user launches the nufash application for the first time and is presented with a list of all garments 
+1. The user launches the NuFash application for the first time and is presented with a list of all garments 
    retrieved from local storage `wardrobe.json` (if applicable)
 
 2. The user executes `find n/Shirt shorts s/23 22 c/blue` command to find the garments that has name containing 
@@ -221,6 +242,8 @@ Given below is an example usage scenario of how the `find` mechanism works.
 The sequence diagram below shows how the find command works:
 ![Find Sequence Diagram](images/FindSequenceDiagram.png)
 
+**Note** ALL_PREFIXES in the above diagram refers to input the arguments as PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, 
+PREFIX_TYPE, PREFIX_DRESSCODE, PREFIX_DESCRIPTION
 The activity diagram below shows the flow of what happens when a user executes the find command:
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
@@ -228,7 +251,7 @@ The activity diagram below shows the flow of what happens when a user executes t
 #### Design Consideration:
 
 ##### Aspect: How many attributes Find can account for at a time
-* **Alternative 1 **: <br>
+* **Alternative 1**: <br>
   Finds with only one attribute at a time. <br>
   E.g. `find n/jeans c/blue` will only find entries whose Name attribute contains the keyword "jeans".
   * Pros: Easier to implement.
@@ -329,7 +352,8 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Harder to implement as the `Name` attribute has its own drawbacks, e.g `Name` could be
       a extremely long phrase, which could be hard for the user to remember or input into the application.
 
-### View feature
+
+### <a name="view"></a> [Completed] View feature
 
 #### Implementation
 The `view` mechanism extends the `list` mechanism from `AddressBook`. It is facilitated by the `ViewCommand` class.
@@ -373,7 +397,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Product Scope
 
-**Target User Profile:**
+<a name="target-user-profile"></a>**Target User Profile:**
 
 * Students currently in tertiary educational institutions
 
@@ -385,9 +409,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * Users who have a hard time organising their wardrobe
 <br><br>
-  
 
-**Value Proposition:**
+
+<a name="value-proposition"></a>**Value Proposition:**
 
 * Ability to organise garments based on attributes such as colour, size, material, type of clothing
 
@@ -514,12 +538,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. NuFash shows an error message.  
       Use case ends.
 <br><br>
-
-**Non-Functional Requirements:**
+      
+<a name="non-functional-requirements"></a>**Non-Functional Requirements:**
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2.  Should be able to hold up to 1000 articles of clothing without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 <br><br>
-    
-**Glossary:**
+
+<a name="glossary"></a>**Glossary:**
 * **Mainstream OS**: Windows, Linux, Unix, OS-X

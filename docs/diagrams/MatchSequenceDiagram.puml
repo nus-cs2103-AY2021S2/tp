@@ -1,6 +1,6 @@
 @startuml
 !include style.puml
-Box Match Command LOGIC_COLOR_T1
+Box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":WardrobeParser" as WardrobeParser LOGIC_COLOR
 participant ":MatchCommandParser" as MatchCommandParser LOGIC_COLOR
