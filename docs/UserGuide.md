@@ -10,6 +10,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -28,7 +29,7 @@ title: User Guide
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -58,7 +59,7 @@ title: User Guide
 
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Guide Feature
 #### Viewing help : `help`
 
@@ -94,6 +95,7 @@ Shows a list of available contact command with description
 
 Format: `commanddetailc`
 
+<div style="page-break-after: always;"></div>
 ##### Viewing Ui command details : `commanddetailu`
 
 Shows a list of available Ui command with description
@@ -104,6 +106,7 @@ Format: `commanddetailu`
 This section will introduce to you the commands to be used in the Dictionary Panel.
 ![dictionary](images/dictionaryoverview.png)
 
+<div style="page-break-after: always;"></div>
 #### Listing all content : `listcontent`
 
 Shows a list of all contents in the Dictionary.
@@ -137,7 +140,7 @@ Examples:
 * `findcontent program` will return the following 2 contents:
   ![demo findcontent](images/Diagram-findcontent.png)
 
-
+<div style="page-break-after: always;"></div>
 #### Listing all definitions : `listdef`
 
 Shows a list of all the definitions in the Dictionary.
@@ -162,6 +165,7 @@ Format: `finddef KEYWORD [MORE_KEYWORDS]`
 * Contents matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `some different` will return `some content`, `different thing`
 
+<div style="page-break-after: always;"></div>
 Examples:
 * `finddef programming` returns `Programming Language` and `Object-Oriented Programming` <br>
   ![finddef](images/Diagram-finddef.png)
