@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE;
 
@@ -10,6 +11,7 @@ import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.PlanCommand;
 import seedu.address.logic.commands.RemovePlanCommand;
+import seedu.address.logic.parser.exceptions.InvalidIntegerException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.insurance.InsurancePlan;
 
@@ -36,15 +38,18 @@ public class PlanCommandParser implements Parser<Command> {
         }
         assert singlePrefix != null : "Unexpected null value";
 
+        if (argMultimap.getValue(PREFIX_INSURANCE).isEmpty() && argMultimap.getValue(PREFIX_CLEAR).isEmpty()) {
+            throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (InvalidIntegerException pe) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (ParseException pe) {
-            throw new ParseException("The client index provided is invalid.");
-        }
-
-        if (argMultimap.getValue(PREFIX_INSURANCE).isEmpty() && argMultimap.getValue(PREFIX_CLEAR).isEmpty()) {
-            throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PlanCommand.MESSAGE_USAGE));
         }
 
         if (singlePrefix.equals(PREFIX_INSURANCE)) {

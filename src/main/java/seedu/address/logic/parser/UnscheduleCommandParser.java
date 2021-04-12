@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnscheduleCommand;
+import seedu.address.logic.parser.exceptions.InvalidIntegerException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,9 +31,13 @@ public class UnscheduleCommandParser implements Parser<UnscheduleCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(args);
+        } catch (InvalidIntegerException pe) {
+            throw new ParseException(MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnscheduleCommand.MESSAGE_USAGE));
         }
+
         return new UnscheduleCommand(index, false, false);
     }
 
