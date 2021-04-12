@@ -427,19 +427,20 @@ Options:
 
     Searches for properties with names that contain the keywords in `NAME`, i.e. "Mayfair" matches `find property n/mayfair` but not `find property n/may`. 
 
-* `[pm/PRICE_UPPER_LIMIT]`
+* `[pl/PRICE_UPPER_LIMIT]`
 
-    Searches for properties with prices more than `[PRICE_UPPER_LIMIT]`.
+    Searches for properties with prices less than `[PRICE_UPPER_LIMIT]`.
 
-* `[pl/PRICE_LOWER_LIMIT]`
+* `[pm/PRICE_LOWER_LIMIT]`
 
-    Searches for properties with prices less than `[PRICE_LOWER_LIMIT]`.
+    Searches for properties with prices more than `[PRICE_LOWER_LIMIT]`.
     
 * `[t/PROPERTY_TYPE]`
 
     Searches for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
 
-    The following property types are supported: Hdb, Condo, Landed
+    The following property types are supported:<br>
+    Hdb, Condo, Landed
     
 * `[a/ADDRESS]`
     
@@ -473,6 +474,7 @@ Options:
 
     Searches for properties whose tags contains tags in `[TAGS_SEPARATED_BY_COMMAS]`. `TAGS_SEPARATED_BY_COMMAS` consists of all tags you wish to search for, all separated with comma. 
 
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find property n/mayfair`
