@@ -74,12 +74,12 @@ Head over to our [Quickstart](#quickstart) to start learning about NuFash.
 
 3. Copy the file to the folder you want to use as the _home folder_ for the NuFash application.
 
-4. Double-click the file to start the app. A GUI similar to one depicted below should launch in a few seconds.<br>
-
- <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="500">
+4. Double-click the file to start the app. A GUI similar to one depicted below should launch in a few seconds.
 
 5. You may refer to the [User Interface Overview](#user-interface-overview) for further details on the application's interface or
    [NuFash Features](#nufash-features) to try out our commands.
+
+ <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="500">
 
 <div style="page-break-after: always;"></div>
 
@@ -127,6 +127,7 @@ You can cycle through the previously entered commands by using the `up` and `dow
 
 You may refer to the [NuFash Features](#nufash-features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
 
 ### Feedback Box
 
@@ -267,6 +268,8 @@ Example:<br>
 * `delete 7`<br>
 Removes the 7th Garment in list of clothes currently shown.
 <br><br>
+
+<div style="page-break-after: always;"></div>
   
 #### <a name="clear"></a> Clearing all Garments in Wardrobe : `clear`
 Clears all existing garments in the wardrobe.
@@ -275,6 +278,8 @@ Clears all existing garments in the wardrobe.
 
 Format: `clear`
 <br><br>
+
+<div style="page-break-after: always;"></div>
 
 #### <a name="edit"></a> Editing a singular Garment in Wardrobe: `edit`
 Edits an existing garment in the wardrobe.<br>
@@ -297,6 +302,8 @@ Example:
 * `list` followed by `edit 1 c/red s/30`<br>
   Edits the colour and size of the 1st garment in the wardrobe to be red and 30 respectively.
   <br><br>
+
+<div style="page-break-after: always;"></div>
   
 #### <a name="find"></a> Finding Garments in Wardrobe by keywords: `find`
 Finds all garments that matched specified keywords during search.<br>
@@ -381,6 +388,8 @@ Example:
 Updates the Last Used date, and places this garment at the end of the list
 <br><br>
 
+<div style="page-break-after: always;"></div>
+
 #### <a name="view"></a> Viewing a valid outfit: `view`
 View a set of 3 garments associated with the given indexes that create an outfit.<br>
 
@@ -419,8 +428,6 @@ Advanced users are welcome to update data directly by editing the data file at [
   If your changes to the data file makes its format invalid, NuFash will discard all data and start with an empty data file at the next run.
 <br><br>
 
-<div style="page-break-after: always;"></div>
-
 ---
 ## FAQ
 Q: How do I transfer my data to another Computer?<br>
@@ -429,6 +436,8 @@ the data of your previous NuFash folder.
 
 Q: Who do I contact if I face any issues?<br>
 A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp), or better yet, submit a pull request with a way to solve it!
+
+<div style="page-break-after: always;"></div>
 
 ---
 ## Command Summary
@@ -447,6 +456,8 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 | **Clearing all Garments**           | `clear`                                                                                                                         |
 | **Help**                            | `help`                                                                                                                          |
 | **Exiting the application**         | `exit`                                                                                                                          |
+
+<div style="page-break-after: always;"></div>
 
 ---
 ## Credits
