@@ -389,6 +389,8 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: Does Taskify only work for university Students? <br>
@@ -413,6 +415,8 @@ Term | Explanation
 **GUI** | Abbreviation for Graphical User Interface. The graphical user interface is a form of user interface that allows users to interact with Taskify through graphical icons.   
 **UI**  | Abbreviation for User Interface
 
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
