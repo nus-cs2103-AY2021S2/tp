@@ -436,12 +436,10 @@ The updated filtered person list with the search results will then be displayed.
 
 Step 6. If the `search` command has been successfully executed, a message will be displayed indicating the number of person listed.
 
-#### Sequence Diagram
 The sequence diagram below shows how the `search` feature works:
 
 ![Sequence Diagram for Search Command](images/SearchSequenceDiagram.png)
 
-#### Activity Diagram
 The activity diagram shows the workflow when a `search` command is executed:
 
 ![Activity Diagram for Search Command](images/SearchActivityDiagram.png)
