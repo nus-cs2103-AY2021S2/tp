@@ -3,13 +3,22 @@ layout: page
 title: User Guide
 ---
 
-# BudgetBaby User Guide :baby: :money_with_wings:
+<p align="center">
+  <img src="./images/budget_baby.png" width="200px" />
+  <h1 align="center" style="margin-top:15px;">BudgetBaby :baby: :money_with_wings: User Guide</h1>
+</p>
+
+<br>
 
 **BudgetBaby** is a **budget and expenses tracking desktop app for University students and/or those who are looking to
 better manage their finances**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and
 editing financial records and budgets can be done faster by typing in commands while still having the benefits of a
-Graphical User Interface (GUI). This document aims to guide users in using BudgetBaby, providing a complete summary of
+Graphical User Interface (GUI).
+
+This document aims to guide users in using BudgetBaby, providing a complete summary of
 the functions and intended usage of the application.
+
+## Table of Content
 
 - [Quick Start](#quick-start)
 - [UI Overview](#ui-overview)
@@ -131,6 +140,12 @@ To find out more about how the data file is being managed, please refer to [Savi
   they will be ignored.<br>
   For example, if you specify `reset-filter 123`, it will be interpreted as `reset-filter`.
 
+- If you key in extraneous spaces before or after an argument, these spaces will be trimmed.
+  If you key in multiple spaces in the middle of an argument that takes in text (such as `FR_DESCRIPTION` and `CATEGORY`),
+  these multiple spaces will be compressed into one space.<br>
+  For example, if you specify `add-fr d/ bubble tea a/10.0 c/ food `,
+  it will be interpreted as `add-fr d/bubble tea a/10.0 c/food`.
+
 </div>
 
 ### Viewing help : `help`
@@ -162,12 +177,15 @@ Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`
 
 **:bulb: Tips:** <br>
 
-- You must replace `FR_DESCRIPTION` with the description of your financial record. The description should not exceed 100 characters.
-- You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places** (additional decimal places will be rounded to two decimal places). The upper limit for `FR_AMOUNT`is 1,000,000.
+- You must replace `FR_DESCRIPTION` with the description of your financial record. The description should not exceed 100 characters and it should contain special character "/".
+- You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places**. The upper limit for `FR_AMOUNT`is 1,000,000.
+- If you key in additional decimal places for `FR_AMOUNT`, it will be rounded to two decimal places, and the value after rounding
+  must be within the valid range (between 0 to 1,000,000). For example, `0.001` will be rejected, as it will be rounded to `0.00`(not positive).
 - You may include more than 1 `CATEGORY`, but each of it should not exceed 20 characters
-- The date you input must follow the format `DD-MM-YYYY` and it should be between 01-01-1970 and 31-12-2100. (e.g. 31-12-2020)
-- `DD` is the numeric value of the date, `MM` is the numeric value of the month and `YYYY` is the numeric value of the year
-- You must use a date number with 2 digits, a month number with 2 digits, and a year number with 4 digits
+- You may replace `Date` following the format `DD-MM-YYYY` and it must be a date between 01-01-1970 and 31-12-2100. (e.g. 31-12-2020)
+- In the above format for the date `DD-MM-YYYY`, `DD` is the numeric value of the date, `MM` is the numeric value of the month
+  and `YYYY` is the numeric value of the year. You must use a date number `DD` with 2 digits, a month number `MM` with 2 digits,
+  and a year number `YYYY` with 4 digits.
 
 </div>
 
@@ -214,7 +232,8 @@ Format: `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]
 - You must replace `FR_INDEX` with the index of the financial record you want to delete.
 - `FR_INDEX` refers to the index number shown in the displayed financial record list.
 - `FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
-- Existing values will be overwritten by the input values
+- Existing values will be overwritten by the input values. For example, if you include `c/` in your `èdit-fr`
+  command, all existing categories will be replaced by the new input categories.
 - Use `c/` (leave `CATEGORY` blank) to completely remove existing categories of a record.
 - For the specifications on `FR_DESCRIPTION`, `FR_AMOUNT`, `DATE` and `CATEGORY`, please refer to `add-fr` command.
 
@@ -237,6 +256,10 @@ Format: `set-bg BG_AMOUNT`
 **:bulb: Tips:**<br>
 
 - You must replace `BG_AMOUNT` with a **positive number** containing up to **two decimal places**.
+- You must replace `BG_AMOUNT` with a **positive number** containing up to **two decimal places**. The upper limit for `BG_AMOUNT`is 1,000,000.
+- If you key in additional decimal places for `BG_AMOUNT`, it will be rounded to two decimal places, and the value after rounding
+must be within the valid range (between 0 to 1,000,000).
+For example, `0.001` will be rejected, as it will be rounded to `0.00`(not positive).
 </div>
 
 Examples:
@@ -264,8 +287,8 @@ Format: `view-month MM-YYYY`
 **:bulb: Tips:**<br>
 
 - The month you input must follow the format `MM-YYYY` (e.g. 09-2020)
-- `MM` is the numeric value of the month and `YYYY` is the numeric value of the year
-- You must use a month number with 2 digits, and a year number with 4 digits
+- `MM` is the numeric value of the month and `YYYY` is the numeric value of the year.
+You must use a month number `MM` with 2 digits, and a year number `YYYY` with 4 digits.
 </div>
 
 Examples:
@@ -285,6 +308,7 @@ Format: `find-fr [d/FR_DESCRIPTION] [a/FR_AMOUNT] [c/FR_CATEGORY]`
 - `d/FR_DESCRIPTION`, `a/FR_AMOUNT` and `c/FR_CATEGORY` are optional fields, but the command expects at least 1 field present.
 - `c/FR_CATEGORY` accepts multiple categories (i.e. `c/Food c/Picnic c/Family`)
 - The function only filters records that satisfies all the fields provided.
+- For the specifications on `FR_DESCRIPTION`, `FR_AMOUNT` and `CATEGORY`, please refer to `add-fr` command.
 
 Examples:
 

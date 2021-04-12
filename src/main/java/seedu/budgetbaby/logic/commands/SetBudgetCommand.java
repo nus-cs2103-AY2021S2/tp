@@ -16,7 +16,8 @@ public class SetBudgetCommand extends BudgetBabyCommand {
             + "Note the BG_AMOUNT must be a positive number up to two decimal places.";
     public static final String MESSAGE_SUCCESS = "New budget set: %s";
 
-    public static final String MESSAGE_FAILURE = "The budget amount set must be positive up to two decimal places.";
+    public static final String MESSAGE_FAILURE = "The budget amount set must be positive up to two decimal places.\n"
+            + "Note that the upper limit for the budget amount is 1000000.";
 
     private final Budget toSet;
 
@@ -33,7 +34,7 @@ public class SetBudgetCommand extends BudgetBabyCommand {
     @Override
     public CommandResult execute(BudgetBabyModel model) throws CommandException {
         requireNonNull(model);
-        if (toSet.getAmount() <= 0) {
+        if (toSet.getAmount() <= 0 || toSet.getAmount() > 1000000) {
             return new CommandResult(MESSAGE_FAILURE, false, false);
         }
         model.setBudget(toSet);

@@ -10,8 +10,10 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Financial record description should not be blank, "
-            + "and it should contain less than 100 characters (including space).";
+        "Financial record description should not be blank. "
+            + "It should contain less than 100 characters (including space) in total "
+            + "and it should not contain special character \"/\".";
+    public static final String VALIDATION_REGEX = "^((?!/).)*$";
 
     public final String description;
 
@@ -30,7 +32,7 @@ public class Description {
      * Returns true if a given string is a valid description (not blank).
      */
     public static boolean isValidDescription(String test) {
-        return !test.isBlank() && test.length() <= 100;
+        return !test.isBlank() && test.matches(VALIDATION_REGEX) && test.length() <= 100;
     }
 
 

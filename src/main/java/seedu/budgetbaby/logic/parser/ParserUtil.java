@@ -78,7 +78,7 @@ public class ParserUtil {
      */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
-        String trimmedDescription = description.trim();
+        String trimmedDescription = description.trim().replaceAll(" +", " ");
         if (!Description.isValidDescription(description)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
@@ -130,7 +130,7 @@ public class ParserUtil {
      */
     public static Category parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
+        String trimmedTag = tag.trim().replaceAll(" +", " ").toLowerCase();
         if (!Category.isValidTagName(trimmedTag)) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }

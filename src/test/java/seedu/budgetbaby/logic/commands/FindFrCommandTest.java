@@ -45,7 +45,7 @@ public class FindFrCommandTest {
 
     @Test
     public void execute_findC() throws ParseException, CommandException {
-        find.parse(" c/Food").execute(model);
+        find.parse(" c/food").execute(model);
         String actualOutput = model.getFilteredFinancialRecordList().toString();
         assertEquals(MESSAGE_TYPICAL_BUDGET_TRACKER_FILTER_FOOD, actualOutput);
     }
@@ -59,21 +59,21 @@ public class FindFrCommandTest {
 
     @Test
     public void execute_findDC() throws ParseException, CommandException {
-        find.parse(" d/Lunch c/Food").execute(model);
+        find.parse(" d/Lunch c/food").execute(model);
         String actualOutput = model.getFilteredFinancialRecordList().toString();
         assertEquals(MESSAGE_TYPICAL_BUDGET_TRACKER_FILTER_LUNCH, actualOutput);
     }
 
     @Test
     public void execute_findAC() throws ParseException, CommandException {
-        find.parse(" a/6 c/Food").execute(model);
+        find.parse(" a/6 c/food").execute(model);
         String actualOutput = model.getFilteredFinancialRecordList().toString();
         assertEquals(MESSAGE_TYPICAL_BUDGET_TRACKER_FILTER_LUNCH, actualOutput);
     }
 
     @Test
     public void execute_findAll() throws ParseException, CommandException {
-        find.parse(" d/Lunch a/6 c/Food").execute(model);
+        find.parse(" d/Lunch a/6 c/food").execute(model);
         String actualOutput = model.getFilteredFinancialRecordList().toString();
         assertEquals(MESSAGE_TYPICAL_BUDGET_TRACKER_FILTER_LUNCH, actualOutput);
     }

@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.core.GuiSettings;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
@@ -69,6 +70,8 @@ public interface BudgetBabyModel {
      */
     void addMonth(Month month);
 
+    void findMonth(YearMonth month);
+
     /**
      * Deletes the given month.
      * The month must exist in the address book.
@@ -91,6 +94,7 @@ public interface BudgetBabyModel {
 
     /**
      * Returns the full month list currently stored in the application.
+     *
      * @return full month list.
      */
     ObservableList<Month> getFullMonthList();
@@ -128,13 +132,13 @@ public interface BudgetBabyModel {
     /**
      * Adds the given financial record.
      */
-    void addFinancialRecord(FinancialRecord record);
+    void addFinancialRecord(FinancialRecord record) throws CommandException;
 
     /**
      * Replaces the given financial record {@code target} with {@code editedRecord}.
      * {@code target} must exist in the address book.
      */
-    void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord);
+    void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) throws CommandException;
 
     /**
      * Iterates through the financial records and searches for the {@code description} {@code amount} {@code category}.

@@ -21,16 +21,16 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to view an overview of their expenditure over the past few months.
   * What it does: allows the user to view the total expenditure that they have spent from the current month, up to the past 6 months.
   * Justification: This feature improves the product significantly because a user is able to get a quick glance on their expenditure for the past few months, and is able to view their progress.
-  
+
 * **Documentation**:
     * User Guide:
         * Added details on every feature related to obtaining user statistics in the application [\#125](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/125/files)
         * Elaborated usage of every single function in the application [\#129](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/129)
         * Formatted all tips in the document to reflect accurate notes on parameters and command formatting for every function [\#119](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/119/files)
-        * Made corrections for language and minor mistakes in the user guide 
+        * Made corrections for language and minor mistakes in the user guide
 
     * Developer Guide:
-        * Added implementation details of statistics features. 
+        * Added implementation details of statistics features.
         * Added the documentation for Architecture component [\#96](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/96)
 
 
