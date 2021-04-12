@@ -17,5 +17,6 @@ package Logic {
 
 FindCommand -up-|>Command
 FindCommandParser .up.|> Parser
+FindCommandParser .right.> FindCommand
 
 @enduml
