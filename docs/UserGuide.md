@@ -167,7 +167,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
     * 23112021
 * The year should be a non-negative number between 0000 and 9999.
 * The date should be a valid date.
-* When the day or month part of date only have 1 digit, a prefix 0 should be added.
+* When the day or month part of date only has 1 digit, a prefix 0 should be added.
   e.g. if the day is 1, the day input should be `01` instead of just `1`.
 
 ##### `DESCRIPTION`
@@ -641,11 +641,11 @@ At least one of the optional fields must be provided.
 Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
-* [`EVENT_INDEX`](#index) The index of an event.
-* [`DESCRIPTION`](#description) The updated description of an event.
-* [`DATE`](#date) The updated date of the event, or the starting date of the event if the event repeats every week.
+* [`EVENT_INDEX`](#index) The index of the event.
+* [`DESCRIPTION`](#description) The updated description of the event.
+* [`DATE`](#date) The updated date of the event, or the updated starting date of the event if the event repeats every week.
 * [`TIME`](#time) The updated time of the event.
-* [`REPEAT_WEEKLY`](#repeat_weekly) Updates indicating whether the event repeats every week.
+* [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
 
@@ -812,11 +812,11 @@ Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 
 Parameters:
 
-* [`NAME`](#name) The updated name of contact.
-* [`PHONE_NUMBER`](#phone_number) The updated phone number of contact.
-* [`EMAIL`](#email) The updated email of contact.
-* [`ADDRESS`](#address) The updated address of contact.
-* [`TAG`](#tag) The updated tag associated with contact.
+* [`NAME`](#name) The updated name of the contact.
+* [`PHONE_NUMBER`](#phone_number) The updated phone number of the contact.
+* [`EMAIL`](#email) The updated email of the contact.
+* [`ADDRESS`](#address) The updated address of the contact.
+* [`TAG`](#tag) The updated tag of the contact.
 
 Examples:
 
