@@ -60,15 +60,15 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added a section pertaining to the explanation of the User Interface to users.
-    [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
+    [\#102](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/102)
     * Neatened the syntax and presentation of each feature and the corresponding command to make it consistent with the
-    usage of the command in our app. [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
-    * Explained the rationale of each feature and function very clearly. [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
+    usage of the command in our app. [\#102](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/102)
+    * Explained the rationale of each feature and function very clearly. [\#102](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/102)
   * Developer Guide:
-    * Added Ui Inforamtion and Class Diagram. [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
+    * Added Ui Information and Class Diagram. [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
     * Added implementation details, sequence and activity diagrams, and manual testing for the `edit` and `help` feature.
     [\#212](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/212)
-    * Added Challeneges Faced & Rationale Section aggregated from the team, throughout the entire TP process.
+    * Added Challenges Faced & Rationale Section aggregated from the team, throughout the entire TP process.
     [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
     * Cleaned up the entire DG. [\#224](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/224)
 
