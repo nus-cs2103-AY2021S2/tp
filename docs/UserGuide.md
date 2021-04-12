@@ -230,8 +230,8 @@ Deletes the specific passenger from the GME terminal.
 </div>
 
 **Examples:**
-* `list` followed by `delete 3` deletes the 3rd passenger in the passenger list.
-* `delete 1 2 5` deletes the 1st, 2nd and 5th passenger in the passenger list. 
+* `list` followed by `delete 3` deletes the *3rd* passenger in the passenger list.
+* `delete 1 2 5` deletes the *1st*, *2nd* and *5th* passenger in the passenger list. 
 
 
 ## 3.3 Pool features
