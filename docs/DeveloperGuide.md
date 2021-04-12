@@ -349,24 +349,48 @@ The following activity diagram summarizes what happens when the `add_grade` comm
 
 ![Activity Diagram of Add Grade](images/grade/GradeActivityDiagram_updated.png)
 
-### [Proposed] Filter Feature
-This Filter feature would allow users to manage filters and apply them to the list of tutors
-and appointments. This would facilitate filtering of tutors by attributes such as personal
-information as well as the subjects they teach, as well as filter appointments by appointment attributes.
+### Filter Feature
 
-The following commands would be added:
-* Add filter - Add a new filter to the filter list, updating the visible tutors and appointments
-* Delete filter - Delete a filter from the filter list
-* Edit filter - Edit a filter from the filter list (including whether it is active)
-* List filters - List all filters currently used
+The Filter feature allows users to manage filters and apply them to the list of tutors and appointments. This allows filtering of tutors by attributes such as personal information as well as the subjects they teach, as well as filter appointments by appointment attributes.
 
-#### Proposed Implementation
-A new `Filter` class would be implemented, along with a list to store them. Each `Filter` object
-would contain predicates that filter the attribute classes, which would be combined and used to
-filter the lists of tutors and appointments.
+#### Rationale
 
-These filters would be shown in the UI along the top of the list of tutors and appointments, showing
-the active and inactive filters.
+In order to facilitate efficient management of tutors and appointments, there needs to be a way to search through the lists quickly and easiler. While a search function is possible, filtering is a better option as it allows users to add and remove different filters according to their needs.
+
+#### Implementation
+
+The Filter Feature comprises of 4 commands:
+* Add a Tutor Filter
+* Delete a Tutor Filter
+* Add an Appointment Filter
+* Delete an Appointment Filter
+
+The activity diagram for the Add Tutor Filter command is shown:
+
+![Activity Diagram of Add Tutor Filter command](images/filter/FilterActivityDiagram.png)
+
+The activity flow for the Add Appointment Filter command is similar. For the Delete commands, the activity flow also follow a similar format, except that instead of checking for duplicate filters, they instead check if the filters input exist in the system.
+
+The Tutor Filters and Appointment Filters are represented by the `TutorFilter` and `AppointmentFilter` classes respectively. Both contain multiple `FilterSet` each of which is a set of filters for each attribute in `Tutor` and `Appointment`, labeled as `XYZFilter` for convenience, where `XYZ` is a placeholder for the attribute name. (eg. a `TutorFilter` would contain a `FilterSet` of `NameFilter`). The class diagram is as shown:
+
+![Class Diagram of Filter Feature](images/filter/FilterClassDiagram.png)
+
+Each `XYZFilter` tests the respective attribute in Tutor or Appointment according to rules specified in the user guide. The filters are combined together in each `FilterSet`, determined by whether it is a `InclusiveFilterSet` or `ExclusiveFilterSet`, with the combined filter returning a boolean value when testing attributes. `TutorFilter` and `AppointmentFilter` use each respective `FilterSet` on all attributes when testing a `Tutor` or `Appointment`, returning a boolean value.
+
+Testing thus follows the following steps:
+
+1. `Tutor` is passed to `TutorFilter` to test
+2. Each attribute in `Tutor` is passed to the respective `FilterSet` to test
+3. Each `FilterSet` returns true or false according to its combined filters
+4. `TutorFilter` combines the results from all `FilterSet`s according to the rules specified in the user guide and returns true or false
+
+Steps are similar for `AppointmentFilter`.
+
+When adding or deleting from each `FilterSet`, the combined filter must be recreated. This process is shown in the following sequence diagram:
+
+![Sequence Diagram of Add Filter](images/filter/FilterSequenceDiagram.png)
+
+The difference for exclusive filters is that an `and` is used instead of `or` to compose the filters. The sequence for deletion is similar, except that filters are removed from the set before composing the filters.
 
 ### Schedule Tracker
 Tutor Tracker's Schedule Tracker allows users to create schedules to track their ongoing or upcoming timed-sensitive tasks.
