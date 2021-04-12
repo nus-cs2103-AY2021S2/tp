@@ -22,7 +22,7 @@ title: Developer Guide
             - [Deletion of Dish objects](#deletion-of-dish-objects)
             - [Editiing of Dish objects](#editing-of-dish-objects)
             - [Deletion of Ingredient objects](#deletion-of-ingredient-objects)
-            - [Editing of Ingredient objects](#editing-of-ingredient-objects)  
+            - [Editing of Order objects](#editing-of-order-objects)  
             - [Logging of Order object](#logging-of-order-object)
         + [Concurrent list display](#concurrent-list-display)
         + [Data archiving](#data-archiving)
