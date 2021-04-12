@@ -172,9 +172,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * If the displayed patient list is the main list, then `find` will only match patients from the main list.
 * If the displayed patient list is the archived list, then `find` will only match patients from the archived list.
 
-Examples:
+Example:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
+Output for `find alex david`:
+
+![image](https://user-images.githubusercontent.com/48408342/114421078-82d9e200-9be7-11eb-8e6c-884864d880fa.png)
+
 
 ### Editing a patient's information : `edit`
 
