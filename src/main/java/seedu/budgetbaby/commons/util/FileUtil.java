@@ -69,7 +69,9 @@ public class FileUtil {
      * Assumes file exists
      */
     public static String readFromFile(Path file) throws IOException {
-        return new String(Files.readAllBytes(file), CHARSET);
+        String data = new String(Files.readAllBytes(file), CHARSET);
+        String trimmedData = data.trim();
+        return EncodeUtil.getDecodedString(trimmedData);
     }
 
     /**
@@ -77,7 +79,9 @@ public class FileUtil {
      * Will create the file if it does not exist yet.
      */
     public static void writeToFile(Path file, String content) throws IOException {
-        Files.write(file, content.getBytes(CHARSET));
+        String data = EncodeUtil.getEncodedString(content);
+        String trimmedData = data.trim();
+        Files.write(file, trimmedData.getBytes(CHARSET));
     }
 
 }
