@@ -1,6 +1,7 @@
 package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 
 import java.util.List;
 
@@ -34,6 +35,11 @@ public class CopyContentToNoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.onEditModeNote()) {
+            throw new CommandException(MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+        }
+
         List<? extends DisplayableContent> lastShownList = model.getFilteredCurrentDictionaryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

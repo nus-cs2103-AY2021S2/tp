@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -60,7 +61,7 @@ public class AddNoteCommandTest {
         AddNoteCommandTest.ModelStub modelStub = new AddNoteCommandTest.ModelStubWithNote(validNote);
 
         assertThrows(CommandException.class,
-                AddNoteCommand.MESSAGE_DUPLICATE_NOTE, () -> addNoteCommand.execute(modelStub));
+            AddNoteCommand.MESSAGE_DUPLICATE_NOTE, () -> addNoteCommand.execute(modelStub));
     }
 
     @Test
@@ -88,17 +89,29 @@ public class AddNoteCommandTest {
         assertFalse(addNoteCommand.equals(addOtherNoteCommand));
     }
 
+    @Test
+    public void execute_onEditMode_fail() {
+        ModelStubEditMode modelStub = new ModelStubEditMode();
+
+        Note validNote = new NoteBuilder().build();
+        AddNoteCommand addNoteCommand = new AddNoteCommand(validNote);
+
+        assertThrows(CommandException.class,
+            MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE, () -> addNoteCommand.execute(modelStub));
+
+    }
+
     /**
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -148,12 +161,12 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public void setContactsList(ReadOnlyContactsList newData) {
+        public ReadOnlyContactsList getContactsList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyContactsList getContactsList() {
+        public void setContactsList(ReadOnlyContactsList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -163,12 +176,27 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public void setNoteBookFilePath(Path path) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getDictionaryFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void setDictionaryFilePath(Path path) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getDefinitionBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDefinitionBookFilePath(Path path) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -189,21 +217,6 @@ public class AddNoteCommandTest {
 
         @Override
         public void setContact(Contact target, Contact editedContact) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setNoteBookFilePath(Path path) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setDictionaryFilePath(Path path) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setDefinitionBookFilePath(Path path) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -401,4 +414,16 @@ public class AddNoteCommandTest {
         }
     }
 
+    /**
+     * A Model stub with edit mode
+     */
+    private class ModelStubEditMode extends ModelStub {
+        final ArrayList<Note> noteAdded = new ArrayList<>();
+
+        @Override
+        public boolean onEditModeNote() {
+            return true;
+        }
+    }
 }
+

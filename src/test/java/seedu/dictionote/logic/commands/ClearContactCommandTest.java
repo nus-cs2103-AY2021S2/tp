@@ -8,6 +8,8 @@ import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
@@ -20,7 +22,8 @@ public class ClearContactCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS,
+            UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
     @Test
@@ -31,7 +34,8 @@ public class ClearContactCommandTest {
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.setContactsList(new ContactsList());
 
-        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS,
+            UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
 }

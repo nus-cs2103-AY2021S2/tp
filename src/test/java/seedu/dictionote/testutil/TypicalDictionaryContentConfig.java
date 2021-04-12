@@ -25,7 +25,7 @@ public class TypicalDictionaryContentConfig {
 
         @Override
         public boolean isContentVisible() {
-            return false;
+            return true;
         }
 
         @Override

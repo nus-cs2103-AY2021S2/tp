@@ -33,7 +33,7 @@ public class DictionaryListDefinitionCard extends UiPart<Region> {
     private Label content;
 
     /**
-     * Creates a {@code NoteCard} with the given {@code Note} and index to display.
+     * Creates a {@code DictionaryListDefinitionCard} with the given {@code Definition} and index to display.
      */
     public DictionaryListDefinitionCard(Definition definition, int displayedIndex) {
         super(FXML);

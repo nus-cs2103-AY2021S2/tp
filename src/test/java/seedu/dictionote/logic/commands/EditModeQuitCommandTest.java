@@ -1,5 +1,7 @@
 package seedu.dictionote.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 
@@ -33,5 +35,23 @@ public class EditModeQuitCommandTest {
         CommandResult expectedCommandResult = new CommandResult(EditModeQuitCommand.MESSAGE_EDIT_MODE_EXIT_SUCCESS,
             UiAction.EDITMODEEXIT);
         assertCommandSuccess(new EditModeQuitCommand(), model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void equal() {
+        EditModeQuitCommand editModeQuitCommand1 = new EditModeQuitCommand();
+        EditModeQuitCommand editModeQuitCommand2 = new EditModeQuitCommand();
+
+        // same object -> returns true
+        assertTrue(editModeQuitCommand1.equals(editModeQuitCommand1));
+
+        // same values -> returns true
+        assertTrue(editModeQuitCommand1.equals(editModeQuitCommand2));
+
+        // different types -> returns false
+        assertFalse(editModeQuitCommand1.equals(1));
+
+        // null -> returns false
+        assertFalse(editModeQuitCommand1.equals(null));
     }
 }

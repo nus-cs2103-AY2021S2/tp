@@ -83,7 +83,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Request focus on input command box
+     * Requests focus on input command box.
      */
     public void requestFocus() {
         commandTextField.requestFocus();;

@@ -4,9 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_DEFINITION;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_HEADER;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_MAINCONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TERM;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_WEEK;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTENT;
@@ -22,18 +28,27 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
+import seedu.dictionote.logic.commands.AddContentCommand;
+import seedu.dictionote.logic.commands.AddDefinitionCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearContactCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
+import seedu.dictionote.logic.commands.ConvertTxtNoteCommand;
+import seedu.dictionote.logic.commands.CopyContentToNoteCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
+import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
 import seedu.dictionote.logic.commands.EditModeCommand;
 import seedu.dictionote.logic.commands.EditModeQuitCommand;
 import seedu.dictionote.logic.commands.EditModeSaveCommand;
+import seedu.dictionote.logic.commands.EditNoteCommand;
 import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
+import seedu.dictionote.logic.commands.FindContentCommand;
+import seedu.dictionote.logic.commands.FindDefinitionCommand;
+import seedu.dictionote.logic.commands.FindNoteCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListCommandContactCommand;
@@ -41,6 +56,14 @@ import seedu.dictionote.logic.commands.ListCommandDictionaryCommand;
 import seedu.dictionote.logic.commands.ListCommandNoteCommand;
 import seedu.dictionote.logic.commands.ListCommandUiCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
+import seedu.dictionote.logic.commands.ListContentCommand;
+import seedu.dictionote.logic.commands.ListDefinitionCommand;
+import seedu.dictionote.logic.commands.ListNoteCommand;
+import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
+import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
+import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
+import seedu.dictionote.logic.commands.MergeNoteCommand;
+import seedu.dictionote.logic.commands.MostFreqContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.SetContactDividerPositionCommand;
 import seedu.dictionote.logic.commands.SetDictionaryDividerPositionCommand;
@@ -48,6 +71,8 @@ import seedu.dictionote.logic.commands.SetMainDividerPositionCommand;
 import seedu.dictionote.logic.commands.SetNoteDividerPositionCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.SortNoteByTimeCommand;
+import seedu.dictionote.logic.commands.SortNoteCommand;
 import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
 import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
@@ -277,7 +302,124 @@ public class DictionoteParserTest {
         assertTrue(parser.parseCommand(
             ToggleDictionaryOrientationCommand.COMMAND_WORD) instanceof ToggleDictionaryOrientationCommand);
         assertTrue(parser.parseCommand(
-            ToggleDictionaryOrientationCommand.COMMAND_WORD + " 3") instanceof ToggleDictionaryOrientationCommand);
+            ToggleDictionaryOrientationCommand.COMMAND_WORD + " 3")
+            instanceof ToggleDictionaryOrientationCommand);
+    }
+
+    @Test
+    public void parseCommand_editNote() throws Exception {
+        assertTrue(parser.parseCommand(EditNoteCommand.COMMAND_WORD + " 1 " + PREFIX_CONTENT + "1")
+            instanceof EditNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_findNoteCommand() throws Exception {
+        assertTrue(parser.parseCommand(FindNoteCommand.COMMAND_WORD + " c/1")
+            instanceof FindNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_findDefinition() throws Exception {
+        assertTrue(parser.parseCommand(FindDefinitionCommand.COMMAND_WORD + " 1")
+            instanceof FindDefinitionCommand);
+    }
+
+    @Test
+    public void parseCommand_findContent() throws Exception {
+        assertTrue(parser.parseCommand(FindContentCommand.COMMAND_WORD + " 1")
+            instanceof FindContentCommand);
+    }
+
+    @Test
+    public void parseCommand_copyContentToNote() throws Exception {
+        assertTrue(parser.parseCommand(CopyContentToNoteCommand.COMMAND_WORD + " 1")
+            instanceof CopyContentToNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_mostFreqContactCommand() throws Exception {
+        assertTrue(parser.parseCommand(MostFreqContactCommand.COMMAND_WORD)
+            instanceof MostFreqContactCommand);
+    }
+
+
+    @Test
+    public void parseCommand_listNoteCommand() throws Exception {
+        assertTrue(parser.parseCommand(ListNoteCommand.COMMAND_WORD)
+            instanceof ListNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_listContentCommand() throws Exception {
+        assertTrue(parser.parseCommand(ListContentCommand.COMMAND_WORD)
+            instanceof ListContentCommand);
+    }
+
+    @Test
+    public void parseCommand_listDefinitionCommand() throws Exception {
+        assertTrue(parser.parseCommand(ListDefinitionCommand.COMMAND_WORD)
+            instanceof ListDefinitionCommand);
+    }
+
+    @Test
+    public void parseCommand_markAllAsUndoneNoteCommand() throws Exception {
+        assertTrue(parser.parseCommand(MarkAllAsUndoneNoteCommand.COMMAND_WORD)
+            instanceof MarkAllAsUndoneNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_markAsDoneNoteCommand() throws Exception {
+        assertTrue(parser.parseCommand(MarkAsDoneNoteCommand.COMMAND_WORD + " 1")
+            instanceof MarkAsDoneNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_markAsUndoneNoteCommand() throws Exception {
+        assertTrue(parser.parseCommand(MarkAsUndoneNoteCommand.COMMAND_WORD + " 1")
+            instanceof MarkAsUndoneNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_convertTxtNoteCommand() throws Exception {
+        assertTrue(parser.parseCommand(ConvertTxtNoteCommand.COMMAND_WORD + " 1")
+            instanceof ConvertTxtNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_sortNoteCommand() throws Exception {
+        assertTrue(parser.parseCommand(SortNoteCommand.COMMAND_WORD)
+            instanceof SortNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_sortNoteByTimeCommand() throws Exception {
+        assertTrue(parser.parseCommand(SortNoteByTimeCommand.COMMAND_WORD)
+            instanceof SortNoteByTimeCommand);
+    }
+
+    @Test
+    public void parseCommand_mergeNoteCommand() throws Exception {
+        assertTrue(parser.parseCommand(MergeNoteCommand.COMMAND_WORD + " 1 1")
+            instanceof MergeNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteNote() throws Exception {
+        assertTrue(parser.parseCommand(DeleteNoteCommand.COMMAND_WORD + " 1") instanceof DeleteNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_addDefinitionCommand() throws Exception {
+        assertTrue(parser.parseCommand(AddDefinitionCommand.COMMAND_WORD + " " + PREFIX_TERM + "1 "
+            + PREFIX_DEFINITION + "1")
+            instanceof AddDefinitionCommand);
+    }
+
+    @Test
+    public void parseCommand_addContentCommand() throws Exception {
+        assertTrue(parser.parseCommand(AddContentCommand.COMMAND_WORD + " " + PREFIX_WEEK + "1 "
+            + PREFIX_HEADER + "1 " + PREFIX_MAINCONTENT + "1")
+            instanceof AddContentCommand);
     }
 
     @Test
