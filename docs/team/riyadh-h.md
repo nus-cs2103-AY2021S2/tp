@@ -24,23 +24,23 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.3b` (1 release) on GitHub
-  * Managed weekly Zoom meetings during Weeks 4 to 12.
+  * Managed weekly Zoom meetings during Weeks 4 to 13.
 
 * **Enhancements to existing features**:
-  * Updated the 'find' command to allow for users to search their contacts lists by tags or email. (Pull requests [\#65](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/65), [\#137](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/137))
-  * Fixed a bug in the original implementation of the contacts list (i.e., AddressBook) where two contacts could share the same phone number or email, but not the name. (Pull request [\#250](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/250))
+  * Updated the `find` (now known as `findcontact`) command to allow for users to search their contacts lists by tags or email. (Pull requests [\#65](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/65), [\#137](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/137))
+  * Fixed a bug in the original implementation of the contacts list (i.e., AB3) where two contacts could share the same phone number or email, but not the name. (Pull request [\#250](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/250))
 
-* **Documentation (to be updated)**:
+* **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `emailcontact` and `mostfreqcontact`: [\#96](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/96), [\#145](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/145).
+	* Updated documentation for the exisiting `Contact` (also known as `Person` in AB3) features: [\#96](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/96).
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Updated the description and class diagram of `Storage`: [\#265](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/265), [\#282](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/282).
+    * Added implementation details of the `emailcontact` and `mostfreqcontact` features: [\#133](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/133), [\#277](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/277).
+	* Added use cases for the `deletecontact`, `clearcontact`, and `emailcontact` features: [\#277](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/277)
+	* Added a manual testing guide for the `addcontact` and `editcontact` features: [\#282](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/282/files).
 
-* **Community (to be updated)**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* _{you can add/remove categories in the list above}_
+* **Community**:
+  * Examples of PRs reviewed (with non-trivial review comments): [\#60](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/60),  [\#143](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/143),  [\#268](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/268),  [\#269](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/269).
+  * Reported bugs found in the textbook's content: [\#2](https://github.com/nus-cs2103-AY2021S2/forum/issues/2).
+  * Highlighted potential bugs in the developer guide of AddressBook3: [\#309](https://github.com/nus-cs2103-AY2021S2/forum/issues/309).
