@@ -752,19 +752,19 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 1b. Duplicate item exists in the inventory.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
     
-* 1c. User inputs a quantity number smaller than 0 or larger than 1,000,000.
+* 1c. User inputs a quantity number smaller than 1 or larger than 1,000,000.
 
     * 1c1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC2 - Delete an item from the entire inventory**
 
@@ -783,7 +783,7 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC3 - Delete an item from a specific location**
 
@@ -802,7 +802,7 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
     
 * 2a. There are no items in the specified location.
 
@@ -812,7 +812,7 @@ otherwise)
 
     * 3a1. StoreMando shows an error message.
 
-      Use case resumes at step 3.
+      Use case ends.
 
 **Use case: UC4 - Find an item**
 
@@ -829,7 +829,7 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC5 - Edit an item**
 
@@ -846,26 +846,26 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 1b. The new details keyed in by the user is the same as the existing details of the item.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-* 1c. User inputs a quantity number smaller than 0 or larger than 1,000,000.
+* 1c. User inputs a quantity number smaller than 1 or larger than 1,000,000.
 
     * 1c1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
     
 **Use case: UC6 - Check for expiring items**
 
 **MSS**
 
-1. User wants to search for items that are expiring within a specific number of days.
-2. StoreMando displays a list of items that have either expired or are expiring within the specified number of days.
+1. User wants to search for items that are expiring within a specific number of days/weeks.
+2. StoreMando displays a list of items that have either expired or are expiring within the specified number of days/weeks.
 
    Use case ends.
 
@@ -875,19 +875,19 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 1b. User inputs a number smaller than -365 or larger than 365.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 1c. Time unit input is neither day(s) or week(s)
 
     * 1c1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC7 - List all items**
 
@@ -913,7 +913,7 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC9 - List all items with a specific tag**
 
@@ -930,7 +930,7 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC10 - Sort items in ascending order of quantity**
 
@@ -947,7 +947,7 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC11 - Sort items in descending order of quantity**
 
@@ -964,7 +964,7 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC12 - Sort items by expiry date**
 
@@ -981,7 +981,7 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC13 - Clear all items**
 
@@ -1007,13 +1007,13 @@ otherwise)
 
     * 1a1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 1b. The location keyed in by the user does not exist in the inventory.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 ### Non-Functional Requirements
 
