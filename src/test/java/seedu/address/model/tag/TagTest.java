@@ -35,4 +35,13 @@ public class TagTest {
         assertEquals(COMMON_TAG, new Tag(COMMON_TAG_STRING.toLowerCase()));
     }
 
+    @Test
+    public void hashCode_sameIdentityTag_returnsTrue() {
+        // same tag -> returns true
+        assertEquals(COMMON_TAG.hashCode(), COMMON_TAG.hashCode());
+
+        // tag with same name, different case -> returns true
+        assertEquals(COMMON_TAG.hashCode(), new Tag(COMMON_TAG_STRING.toLowerCase()).hashCode());
+    }
+
 }

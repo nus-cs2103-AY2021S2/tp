@@ -132,7 +132,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getObservableStringAliases_withAliases_returnsSameAliases() {
+    public void getCommandAliasesStringList_withCommandAliases_returnsSameCommandAliases() {
         modelManager.addAlias(ADD_COMMAND_ALIAS);
         modelManager.addAlias(DELETE_COMMAND_ALIAS);
         modelManager.addAlias(EDIT_COMMAND_ALIAS);
@@ -146,13 +146,13 @@ public class ModelManagerTest {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
-        UniqueAliasMap aliases = new UniqueAliasMapBuilder().withCommandAlias(ADD_COMMAND_ALIAS)
+        UniqueAliasMap aliasMap = new UniqueAliasMapBuilder().withCommandAlias(ADD_COMMAND_ALIAS)
                 .withCommandAlias(DELETE_COMMAND_ALIAS).build();
-        UniqueAliasMap differentAliases = new UniqueAliasMap();
+        UniqueAliasMap differentAliasMap = new UniqueAliasMap();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, aliases);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, aliases);
+        modelManager = new ModelManager(addressBook, userPrefs, aliasMap);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, aliasMap);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -172,15 +172,15 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, aliases)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, aliasMap)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, aliases)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, aliasMap)));
 
         // different aliases -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, differentAliases)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, differentAliasMap)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -188,6 +188,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, aliases)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, aliasMap)));
     }
 }
