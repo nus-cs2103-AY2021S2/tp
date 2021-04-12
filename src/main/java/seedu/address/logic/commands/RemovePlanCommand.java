@@ -35,7 +35,7 @@ public class RemovePlanCommand extends PlanCommand {
         Index targetIndex = getTargetIndex();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException("The client index provided is invalid.");
         }
 
         Person personToSchedule = lastShownList.get(targetIndex.getZeroBased());
