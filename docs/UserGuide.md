@@ -392,6 +392,22 @@ the data of your previous TimeforWheels home folder.
 **Q**: Where can I find the data stored in TimeforWheels?<br>
 **A**: All delivery list data is stored in a file named deliverylist.json and can be found in the same directory where TimeforWheels.jar file is saved.
 
+**Q**: Can we have multiple entries of the same customer in the delivery list?<br>
+**A**: Yes, you can as long as the deliveries are due on a different date.
+
+**Q**: What if a customer has multiple deliveries on the same date?<br>
+**A**: We do not allow multiple entries on the same date but a suggestion we have is to add the
+delivery information together using our remark and tag features under the same delivery task.
+
+**Q**: Why do the application allow delivery tasks to be added with dates in the past?<br>
+**A**: This is to allow users to track their past deliveries just in cause they accidentally missed or deleted a delivery task.
+
+**Q**: Why are the tags limited to the few specified?<br>
+**A**: We believe that these tags are sufficient to group the common items delivered but we are open to suggestions from the users.
+
+**Q**: How do we add extra information such as customer's request to the delivery task?<br>
+**A**: Using the remark feature, you are able to add any extra information you want to the delivery task.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -419,7 +435,7 @@ Term | Definition,<br>
 --------|------------------
 **ATTRIBUTE** | `A key detail of a delivery task`<br> e.g., `name`
 **TASK_NUMBER** | `The delivery task number shown in the delivery list`
-**PREFIX** | `Refers to the letter representing the respective attribute.` <br> e.g., Letter a for attribute ADDRESS`
+**PREFIX** | `Refers to the letter representing the respective attribute.` <br> e.g., `Letter a for attribute ADDRESS`
 
 
 
