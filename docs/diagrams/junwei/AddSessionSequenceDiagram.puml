@@ -71,6 +71,9 @@ deactivate CommandResult
 AddSessionCommand --> LogicManager : result
 deactivate AddSessionCommand
 
+AddSessionCommand -[hidden]-> LogicManager
+destroy AddSessionCommand
+
 [<--LogicManager
 deactivate LogicManager
 @enduml
