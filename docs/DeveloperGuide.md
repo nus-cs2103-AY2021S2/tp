@@ -947,8 +947,6 @@ testers are expected to do more *exploratory* testing.
   1. Other incorrect delete commands to try: `showdc`, `showdc x`, `...` (where `x` is larger than the list size)<br>
      Expected: Similar to previous.
 
-<div style="page-break-after: always;"></div>
-
 ### Modifying the UI through command
 
 For more information regarding the panel layout and divider position, 
@@ -996,8 +994,6 @@ Available `OPTION` for open and close command : `-a`, `-c`, `-d`, `dc`, `dl`, `-
 
     1. Other incorrect open commands to try: `close`, `close x`, `...` (where x is not an `Option`)<br>
        Expected: Similar to previous.
-
-<div style="page-break-after: always;"></div>
 
 #### Setting divider position via command
 
