@@ -41,6 +41,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/mabel-kang)]
 
+[[Project Portfolio Page](team/mabel-kang.md)]
+
 * Role: Scheduling and tracking, Testing
 * Responsibilities:  Defining, assigning, and tracking project tasks
 
