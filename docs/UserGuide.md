@@ -6,6 +6,8 @@ title: User Guide
 {:toc}
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 ### 1.1. About StoreMando
@@ -51,6 +53,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick start
 
 ### 2.1. Installation
@@ -73,8 +77,6 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 1. Type the command in the [command box](#command-box) and press Enter on your keyboard to execute it.
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
-
-<div style="page-break-after: always;"></div>
 
 ### 2.2. StoreMando's layout
 
@@ -142,6 +144,8 @@ t/ | TAG | `t/TAG` | Each TAG must only be one word long.
 */ | PARTIAL_WORD | `*/PARTIAL_WORD` | PARTIAL_WORD must have at least one word.
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Features
 
@@ -548,6 +552,8 @@ restart with an empty data file at the next run. Proceed with caution!!
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
@@ -567,6 +573,8 @@ to this user guide to provide you with the help you need.
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 5. Command summary
 
 Action | Format, Examples 
@@ -583,6 +591,8 @@ Action | Format, Examples
 **[“Exit"](#310-exiting-storemando--exit)** | `exit`
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 6. Glossary
 
