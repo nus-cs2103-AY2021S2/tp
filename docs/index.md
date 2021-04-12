@@ -17,7 +17,7 @@ CakeCollate promises to be an efficient desktop application that allows user to 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI applications.
 
-* If you are interested in using CakeCollate, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested in using CakeCollate, head over to the [Quick Start](UserGuide.html#quick-start) section of the [**User Guide**](UserGuide.html).
 * If you are interested about developing CakeCollate, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
