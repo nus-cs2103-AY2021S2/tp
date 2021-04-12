@@ -16,7 +16,7 @@ public class DobFilter extends Filter {
      * @param filterString the birthdate to match. No particular format needed.
      */
     public DobFilter(String filterString) {
-        super(filterString.trim());
+        super(filterString);
     }
 
     /**

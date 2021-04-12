@@ -1,4 +1,4 @@
-package seedu.address.logic;
+package seedu.address.testutil;
 
 import java.util.function.Predicate;
 
