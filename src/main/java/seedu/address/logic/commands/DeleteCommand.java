@@ -46,7 +46,7 @@ public class DeleteCommand extends Command {
         model.updateFilteredPersonList();
         model.updateUpcomingDates();
 
-        // TODO: check current tab and only switch if user is on PersonDetailsTab
+        // Check current tab and only switch if user is on PersonDetailsTab
         if (model.getDetailedPerson().contains(personToDelete)) {
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete.toUi()),
                     DetailsPanelTab.UPCOMING_EVENTS);
