@@ -30,8 +30,8 @@ Given below are my contributions to the project.
   * Prevent Passengers from being deleted if they are being referenced by a Pool (PR [\#132](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/132))
   * Fix Index being parsed incorrectly, resulting in wrong error message (PR [\#269](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/269))
   * Refactored the serialisation of Drivers and Pools such that they are stored as proper JSON (PR [\#125](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/125), [\#117](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/117))
-  * Refactor toModelType of Passenger to better fit SLAP (PR [\#117](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/117))
-  * Add sanity checking for JSON read to ensure manually edited files have no errors (PR [\#256](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/256), [\#298](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/298))
+  * Refactored toModelType of Passenger to better fit SLAP (PR [\#117](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/117))
+  * Added sanity checking for JSON read to ensure manually edited files have no errors (PR [\#256](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/256), [\#298](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/298))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#16](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/16), [\#133](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/133)
