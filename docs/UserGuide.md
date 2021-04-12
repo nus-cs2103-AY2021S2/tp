@@ -405,7 +405,7 @@ Action | Format, Examples
 **Add** | `addp n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `addp n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
 **Delete** | `deletep INDEX`<br> e.g., `deletep 3` <br> <br> `deletem INDEX`<br> e.g., `deletem 3`
 **Edit** | `editp INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com` <br> <br> `editm INDEX [n/NAME] [st/START TIME] [ed/END TIME] [desc/DESCRIPTION] [pr/PRIORITY] [p/PERSON RELATED INDEX] [g/GROUP]...​`<br> e.g.,`editm 2 n/CS2103 Lecture`
-**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>
+**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>  <br> `findm [n/NAME] [time/TIME] [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]...[p/INDEX OF PERSON RELATED]...`<br> e.g., `findm n/CS pr/3` <br>
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
