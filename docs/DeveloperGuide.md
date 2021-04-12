@@ -866,14 +866,14 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all contacts using the `list` command. 
        Multiple contacts in the list.
     1. Test case: `sort o/name` \
-       Expected: List of contacts get sorted in alphabetical order.
+       Expected: List of contacts get sorted in alphabetical order. Success message is shown in the status message.
     1. Test case: `sort o/date` \
-       Expected: List of contacts get sorted in chronological order.
+       Expected: List of contacts get sorted in chronological order. Success message is shown in the status message.
     1. Test case: `sort` \
        Expected: List does not get sorted. Invalid command format error details shown in the status message.
     1. Other incorrect sort commands to try: `sort   `, `sort 1`, `sort aaa` \
        Expected: Similar to previous.
-    1. Test case: `sort o/jskdnks`
+    1. Test case: `sort o/jskdnks` \
        Expected: List does not get sorted. Invalid option error details shown in the status message.
 2. Sorting contacts on a found list
     1. Prerequisites: Multiple contacts in the list sharing a keyword.
@@ -884,7 +884,23 @@ testers are expected to do more *exploratory* testing.
        Expected: Found list of contacts get sorted in chronological order.
 
 #### Favourite a contact
-      
+1. Favourite a contact while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command.
+    1. Test case: `fav 1` \
+       Expected: First contact in the list is favourited. Details of favourited contact is shown in status message.
+    1. Test case: `fav 1 o/remove` \
+       Expected: First contact in the list is unfavourited. Details of unfavourited contact is shown in status message.
+    1. Test case: `fav` \
+       Expected: Invalid command format error details shown in the status message.
+    1. Other incorrect sort commands to try: `fav   ` \
+       Expected: Similar to previous.
+    1. Test case: `fav aaa`
+       Expected: Invalid index error details shown in the status message.
+    1. Other incorrect sort commands to try: `fav x` (where x is larger than list size) \
+       Expected: Similar to previous.
+    1. Test case: `fav 1 o/jskdnks` \
+       Expected: Invalid option error details shown in the status message.
+
 ### Testing Appointment Book Features
 
 #### Add an appointment
