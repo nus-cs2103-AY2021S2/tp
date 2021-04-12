@@ -173,11 +173,11 @@ The following activity diagram summaries the flow of events when a user executes
 #### Design Consideration
 
 ##### Aspect: Whether entry class should have a list of Reviews or a single Review as an attribute (for adding on reviews to an existing entry)
-* **Alternative 1 (current choice):** Entry containing a list of Reviews as an attribute
+* **Alternative 1 (current choice):** Entry containing a list of Reviews as an attribute.
     * Pro: Looks neater from a design perspective, as additional reviews added on will just be appended to the list of reviews.
       Easily extendable in the future (e.g. deleting a specific review in an entry).
     * Con: A lot of refactoring will be needed. Time-consuming.
-* **Alternative 2:** Entry containing a single Review attribute 
+* **Alternative 2:** Entry containing a single Review attribute.
     * Pro: Easy to implement, as additional reviews can be concatenated as a string to the current review
     * Con: This cannot be easily extended in the future (e.g. the capability to delete a specific
     review in an entry without deleting other reviews).
@@ -229,9 +229,9 @@ implementation is largely the same.
 
 #### Design Considerations
 
-##### Aspect: Whether the syntax used for the find command should be similar to the add command.
+##### Aspect: Whether the syntax used for the find command should be similar to the add command
 * **Alternative 1 (current choice):** Implement the `find` command without using similar syntax to the `add`
-  command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`)
+  command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`).
     * Pro: Less syntax required, making the command more user-friendly (**Important as the `find` command
       will likely be executed by the user many more times as compared to the `add` command**).
     * Con: Makes the implementation less standardised across different commands.
@@ -292,7 +292,7 @@ command:
 
 #### Design Consideration
 
-##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature.
+##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature
 * **Alternative 1 (current choice):** Implement the FindAll feature as a separate command.
     * Pro: Easier to implement, and more user-friendly as less syntax is required.
     * Con: User has to utilise 2 different commands despite them both performing a similar search function.
@@ -327,7 +327,7 @@ The following activity diagram summarises the events that take place when a user
 
 #### Design Consideration
 
-##### Aspect: Whether to revise entry in command line or in a new Ui window.
+##### Aspect: Whether to revise entry in command line or in a new Ui window
 * **Alternative 1 (current choice):** Revise entry in a new Ui window.
     * Pro: View all details of an entry and easily revise them with keyboard shortcuts.
     * Con: Revise is not done purely in command line, but rather in a separate Ui window.
@@ -363,12 +363,12 @@ command:
 
 ##### Design Consideration
 
-##### Aspect: Whether to edit a command in the command line or in a new Ui window.
+##### Aspect: Whether to edit a command in the command line or in a new Ui window
 * **Alternative 1 (current choice):** Edit entry in command line. 
   * Pro: View all details of an entry and easily revise them with keyboard shortcuts.
   * Con: For entries with lengthy details, typing long commands in the command line fills up the text field space
   and makes it difficult for editing.
-* **Alternative 2:** Edit the entry in a new Ui window. 
+* **Alternative 2:** Edit the entry in a new Ui window.
   * Pro: Edit is purely done in the command line, which might be convenient for minor changes a user want s to make.
   * Con: Edit is not done purely in command line, but rather in a Ui window. This might pose an inconvenience
   for the user given the added step to edit a field of an entry.
@@ -590,7 +590,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UC01: Add an Entry**
 
-Preconditions: There are lesser than 1 000 000 entries in the Food Diary application.
+Preconditions: There are less than 1,000,000 entries in the Food Diary application.
 
 **MSS**
 
@@ -630,7 +630,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 * 2a. No entries to display.
 
     * 2a1. Tells users that there are no entries.
-    * 1a2. User enters correct syntax.
+    * 2a2. User enters correct syntax.
 
       Use case ends.
 
@@ -665,6 +665,8 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 2. Food Diary checks for the specified entry.
 3. Food Diary adds review(s) and/or a price to the specified entry.
 
+    Use case ends.
+
 **Extensions**:
 
 * 1a. Food Diary detects invalid command from user.
@@ -683,10 +685,12 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **MSS**
 
 1. User requests to delete a Food Diary entry.
-2. Food diary removes the entry from its database.
+2. Food Diary removes the entry from its database.
+
+    Use case ends.
 
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about invalid command syntax.
     * 1a2. User enters a valid command.
 
@@ -700,8 +704,8 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **UC06: Find entry(-ies)**
 
 **MSS**
-1. User enters keywords to be used to search for entries.
-2. Food Diary shows all entries matching user requirements (if any).
+1. User enters keyword(s) to be used to search for entry(-ies).
+2. Food Diary shows entry/all entries matching user requirement(s).
 
    Use case ends.
 
@@ -710,14 +714,14 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
-  Use case resumes from step 2.
+   Use case resumes from step 2.
 
 
 **UC07: Find specific entry(-ies)**
 
 **MSS**
-1. User enters keywords to specify requirements for entry(-ies).
-2. Food Diary shows all entries matching user requirements (if any).
+1. User enters keyword(s) to specify requirement(s) for entry(-ies).
+2. Food Diary shows entry/all entries matching user requirement(s).
 
    Use case ends.
 
@@ -726,7 +730,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
-  Use case resumes from step 2.
+   Use case resumes from step 2.
   
 **UC08: Get Help**
 
@@ -737,8 +741,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 4. User requests to close help guide after use.
 5. Food Diary closes help guide.
 
+    Use case ends.
+
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
@@ -755,16 +761,18 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **MSS**
 1. User requests to view a specific entry.
 2. Food Diary checks requested entry.
-3. Food diary shows specified entry details.
+3. Food Diary shows specified entry details.
+
+    Use case ends.
 
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
       Use case resumes from step 2.
 
-* 2a. No entry found
+* 2a. Food Diary detect a non-existent index in list.
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
@@ -774,7 +782,9 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **MSS**
 1. User requests to revise a specific entry.
 2. Food Diary checks requested entry.
-3. Food diary allows user to make revisions to the entry.
+3. Food Diary allows user to make revisions to the entry.
+
+    Use case ends.
 
 **Extensions**:
 * 1a. Food diary detects invalid command from user.
@@ -783,7 +793,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case resumes from step 2.
 
-* 2a. User key in a non-existent index in list
+* 2a. Food Diary detect a non-existent index in list.
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
@@ -794,8 +804,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 1. User requests to edit entry field(s) of a specific entry due to minor errors.
 2. Food Diary edits the entry with the updated field(s).
 
+    Use case ends.
+
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
@@ -812,8 +824,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 1. User requests to clear all entries.
 2. Food Diary clears all entries.
 
+      Use case ends.
+
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
@@ -825,8 +839,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 1. User exits.
 2. Food Diary closes and data is saved.
 
+      Use case ends.
+
 **Extensions**:
-* 1a. Food diary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
@@ -835,8 +851,8 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 ## **Appendix E: Non-Functional Requirements**
 
 Non-functional requirements specify the constraints under which the system for The Food Diary is developed and operated.
-The Food Diary system is made up of the front-end, which is interchangeably referred to as the User Interface (UI),
-and the back-end, which handles data management and operations.
+The Food Diary system is made up of the front-end, which is interchangeably referred to as the User interface (Ui),
+and the back-end, which handles data management and operations. The app is interchangeably referred to as the system.
 
 ### Technical requirements
 
@@ -860,12 +876,12 @@ and the back-end, which handles data management and operations.
 * The system would not be responsible for features involving multiple users.
 
 ### Scalability requirements
-* The system can handle a larger user base with many more food reviews being added to it.
+* The system can handle a larger user base with many more food diary entries being added to it.
 * Program is extendable for future addition of features easily.
 
 ### Other Noteworthy Points
 
-* The system should preserve data keyed in by the user.
+* The system should preserve data keyed in by the user upon exiting.
 
 ## **Appendix F: Glossary**
 The glossary serves to ensure that all stakeholders, including users, have a common understanding of the noteworthy terms, and abbreviations.
