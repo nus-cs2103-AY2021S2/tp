@@ -397,6 +397,8 @@ keys in the command `list`:
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 From the diagram above:
 
 1. When the user keys in an input, `execute` method of `LogicManager` is called with the user input as the parameter.
@@ -1147,8 +1149,8 @@ There should be items in the inventory.
 
 1. Clearing all the items in the inventory.
 
-    <div markdown="span" class="alert alert-warning">
-    
+    <div markdown="span" class="alert alert-warning"> 
+
     :exclamation: **Prerequisites:**
     Ensure there are items in the inventory.
     
