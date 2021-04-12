@@ -7,6 +7,8 @@ title: Developer Guide
 </p>
 
 ---
+## Table of Contents
+
 * [Setting up, getting started](#setting-up-getting-started)
 * [Design](#design)
   * [Architecture](#architecture)
