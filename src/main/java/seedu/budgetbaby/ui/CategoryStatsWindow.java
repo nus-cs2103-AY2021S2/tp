@@ -17,6 +17,8 @@ public class CategoryStatsWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(CategoryStatsWindow.class);
     private static final String FXML = "CategoryStatsWindow.fxml";
+    private static final String DEFAULT_BAR_CLASS = ".default-color0.chart-bar";
+    private static final String DEFAULT_BAR_COLOUR = "-fx-bar-fill: #557571;";
 
     @FXML
     private BarChart<String, Double> statsBarChart;
@@ -56,6 +58,8 @@ public class CategoryStatsWindow extends UiPart<Stage> {
         }
 
         statsBarChart.getData().add(series);
+        statsBarChart.lookupAll(DEFAULT_BAR_CLASS)
+                .forEach(n -> n.setStyle(DEFAULT_BAR_COLOUR));
     }
 
     /**

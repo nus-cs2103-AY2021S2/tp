@@ -38,6 +38,7 @@ public class SetBudgetCommand extends BudgetBabyCommand {
             return new CommandResult(MESSAGE_FAILURE, false, false);
         }
         model.setBudget(toSet);
+        model.commitBudgetTracker();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toSet), false, false);
     }
 
