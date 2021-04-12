@@ -31,11 +31,11 @@ Given below are my contributions to the project.
   sense to the operations of a Food Diary. Each entry features a restaurant name, rating, price, address, review and tags.
 
 * **Help Window**: Dedicated a resizable window for the Help guide that users can have local access to on the app.
-  * What was done: Implemented a separate window that contains a succint help guide with examples for users to
+  * What was done: Implemented a separate window that contains a succinct help guide with examples for users to
   conveniently access and learn what and how each perform performs.
   * Justification: Having access to a help guide while using the app allows new users (and testers) to quickly comprehend
   the set of features in the app.
-  * Highlights: The help guide features 3 main sections: A succint list of commands, all options for Food categories,
+  * Highlights: The help guide features 3 main sections: A succinct list of commands, all options for Food categories,
   and for School Location categories. The information provided is presented neatly, and a url to the full user guide
   is provided to users for users to get the complete guide.
   
