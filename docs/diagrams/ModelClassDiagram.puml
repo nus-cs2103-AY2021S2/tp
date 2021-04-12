@@ -8,11 +8,12 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyDietLah <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
+Interface ReadOnlyUserPrefs <<Interface>>
 Class DietLah
 Class Model
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
+
 
 Package Diet {
 Class DietPlan

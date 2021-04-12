@@ -185,7 +185,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ## Date Format
-DietLAH! uses the following date format for command inputs: `d Mmm yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
+DietLAH! uses the following date format for command inputs: `dd Mmm yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
 
 Legend | Description
 -------|-------------
@@ -459,13 +459,13 @@ The following activity diagram summarizes what happens when a user executes a `f
 For the user's convenience, there are 3 scenarios for recording food intake.
 
 1. Add `FoodIntake` for new `Food` not currently in the `UniqueFoodList`.<br/>
-Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+Example: `food_intake_add d/dd Mmm yyy n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 2. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` and update its nutrient values.<br/>
-Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrient value>`
+Example: `food_intake_add d/dd Mmm yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrient value>`
 
 3. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` without updating its values.<br/>
-Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME`
+Example: `food_intake_add d/dd Mmm yyy n/FOOD_NAME`
 
 #### Implementation:
 
@@ -505,7 +505,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 
 The user can delete food intakes already added to the application by providing the food name, and date of intake.
 
-Example: `food_intake_delete d/dd MMM yyy n/FOOD_NAME`
+Example: `food_intake_delete d/dd Mmm yyy n/FOOD_NAME`
 
 #### Implementation:
 
@@ -523,7 +523,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 
 The user can update the nutrient values of previously recorded food intakes. At least 1 nutrient value must be provided to be updated and values not provided will remain unchanged.
 
-Example: `food_intake_update d/dd MMM yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrient value>`
+Example: `food_intake_update d/dd Mmm yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrient value>`
 
 #### Implementation:
 
