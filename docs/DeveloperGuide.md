@@ -102,7 +102,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete_booking 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteBookingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 3.4 Model component
@@ -120,7 +120,9 @@ The `Model`,
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `BookingSystem`, which `Person` references. This allows `BookingSystem` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+<br>
 
 </div>
 
@@ -149,14 +151,14 @@ This section describes some noteworthy details on how certain features are imple
 BookCoin allows users to narrow down the search of persons, venues and bookings through filters. 
 
 #### 4.1.1 Implementation details
-The find functionality is implemented through an FindCommand and FindCommandParser for Person, Venue and Booking. Corner cases such as searching for non-existent entries are also handled properly with suitable notifications displayed to the user. For example, if a search returns with no results, the corresponding notice that there are no persons/ venues/ bookings is displayed. The find feature is implemented with FindPersonCommand/ FindVenueCommand/ FindBookingCommand and their respective parsers FindPersonCommandParser/ FindVenueCommandParser/ FindBookingCommandParser.
+The find functionality is implemented through an FindCommand and FindCommandParser for Person, Venue and Booking. Corner cases such as searching for non-existent entries are also handled properly with suitable notifications displayed to the user. For example, if a search returns with no results, the corresponding notice that there are no persons/ venues/ bookings is displayed. The find feature is implemented with `FindPersonCommand`/ `FindVenueCommand`/ `FindBookingCommand` and their respective parsers `FindPersonCommandParser`/ `FindVenueCommandParser`/ `FindBookingCommandParser`. Below is a class diagram of the find command:
 <br>
 ![Class Diagram of Find Command](images/FindCommandClassDiagram.png)
 
-Since the functionality for all three classes are similar, we can focus our discussion here on the Person class here without loss of generality. The `find_person` command has the following format:
+Since the functionality for all three classes are similar, we can focus our discussion here on the Person class without loss of generality. The `find_person` command has the following format:
 `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`, where at least one field must be provided.
 
-Given below is a sequence diagram how the `find_person` command behaves in BookCoin after user input is parsed if a user wishes to find all persons by the name of "Anna" and inputs `find_person n/Anna`.
+Given below is a sequence diagram how the `find_person` command behaves in BookCoin after user input is parsed if a user wishes to find all persons by the name of "Anna" by inputting `find_person n/Anna`.
 ![Sequence Diagram of Find Command](images/FindCommandSequenceDiagram.png)
 
 #### 4.1.2 Design considerations:
@@ -270,9 +272,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ## **Appendix A: Requirements**
 
-### A.1 Product scope
+### A.1 Product Scope
 
-**Target user profile**:
+**Target User Profile**:
 
 * needs to manage a large number of bookings
 * has to ensure bookings abide by restrictions
@@ -283,12 +285,19 @@ The following activity diagram summarizes what happens when a user executes a ne
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**:
+**Value Proposition**:
 
 * manage bookings faster than a typical mouse/GUI driven app
 * ease of managing bookings since it is a centralised system
 * automatically keeps track of room usage, conflicts and rule violations
 * clear and structured way to avoid ambiguity
+
+### A.2 Non-functional Requirements
+1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  Should be able to hold up to 1000 venues and bookings without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to perform queries quickly even with significant amounts of data present.
+5.  Should be easy to download and use without the need of other tools or installers.
 
 
 ## **Appendix B: User Stories**
@@ -479,21 +488,14 @@ This use case is similar to UC13 - Edit a venue, except that venues are replaced
     Use case ends.
 
 
-## **Appendix E: Non-Functional Requirements**
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 venues and bookings without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be able to perform queries quickly even with significant amounts of data present.
-
-## **Appendix F: Glossary**
+## **Appendix E: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Booking**: A person's request to occupy a venue for a specified duration
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix G: Instructions for Manual Testing**
+## **Appendix F: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -502,7 +504,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### G.1 Launch and shutdown
+### F.1 Launch and shutdown
 
 1. Initial launch
 
@@ -517,7 +519,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### G.2 Adding a person
+### F.2 Adding a person
 1. A multi-step command to add a person to the booking system
     1. Prerequisites: list all persons using the `list_person` command. A person with the same email address and/or phone number cannot already exist. If it is present as a record in the system, delete it.
 
@@ -537,9 +539,9 @@ testers are expected to do more *exploratory* testing.
        Expected: The multi-step command should terminate and exit, and users can now input other commands.
 
 
-### G.3 Adding a venue
+### F.3 Adding a venue
 1. A multi-step command to add a venue to the booking system
-    1. Prerequisites: list all venues using the `list_venue` command. A venue by the same name cannot already exist. If it is present as a record in the system, delete it.
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. List all venues using the `list_venue` command, and verify that a venue by the same name cannot already exist. If it is present as a record in the system, delete it.
 
     2. Test case: `add_venue v/Victoria Hall`<br>
     Expected: Victoria Hall should appear in the list of venues. The default capacity should be set to 10 as it was unspecified in the command, and there should be no description or tag.
@@ -554,9 +556,9 @@ testers are expected to do more *exploratory* testing.
     Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50, a description "Popular concert hall", and a tag "indoors".
        
 
-### G.4 Adding a booking
+### F.4 Adding a booking
 1. A multi-step command to add a booking for Victoria Hall
-    1. Prerequisites: a venue by the same name already exists, and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly, for the email of a person booking, create one if not present
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. A venue by the name "Victoria Hall" already exists, and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly, for the email of a booker, create one if not present.
 
     2. Test case: `add_booking` followed by `example@gmail.com` followed by `Hall` followed by `For FYP Meeting` followed by `2012-01-31 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
     Expected: There should be an error stating that the venue does not exist in the system
@@ -567,11 +569,11 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `add_booking` followed by `example@gmail.com` followed by `Victoria Hall` followed by `For FYP Meeting` followed by `2012-01-31 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
     Expected: A booking for Victoria Hall should appear in the list of bookings with a description "For FYP Meeting.", a date range from 31st Jan 2012, 22:59 to 23:59 and a tag "meeting".
 
-### G.5 Deleting a person
+### F.5 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list_person` command. 
+   1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. List all persons using the `list_person` command. 
       Multiple persons in the list. Person with email `johndoe@gmail.com` is in the list.
       Person with email `nonexistent@gmail.com` is not in the list.
 
@@ -587,11 +589,11 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 
-### G.6 Deleting a venue
+### F.6 Deleting a venue
 
 1. Deleting a venue while all venues are being shown
 
-    1. Prerequisites: List all venues using the `list_venue` command.
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. List all venues using the `list_venue` command.
        Multiple venues in the list. Venue with venue name `Victoria Hall` is in the list.
        Venue with venue name `NonExistent Venue` is not in the list.
 
@@ -606,11 +608,11 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 
-### G.7 Deleting a booking
+### F.7 Deleting a booking
 
 1. Deleting a booking while all bookings are being shown
 
-    1. Prerequisites: At least one booking record in the system (use list_booking to verify). Booking with booking index 1 is in the list.
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. At least one booking record in the system (use list_booking to verify). Booking with booking index 1 is in the list.
        Booking with booking index 22 is not in the list.
 
     1. Test case: `delete_booking 1`<br>
@@ -623,13 +625,11 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete booking commands to try: `delete_booking`, `delete_booking x`, `delete_booking 1032309` (where the input digit exceeds the current index of the booking system) <br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
-### G.8 Editing a person
+### F.8 Editing a person
 
 1. Editing a person's information
 
-    1. Prerequisites: At least one person's record is in the booking system (use list_person to verify). Add a person with email `johndoe@gmail.com` to the system using `add_person` if the entry does not already exist. Person with email `nonexistent@gmail.com` is not in the list, or delete the entry if it exists using the command `delete_person e/nonexistent@gmail.com`.
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. At least one person's record is in the booking system (use list_person to verify). Add a person with email `johndoe@gmail.com` to the system using `add_person` if the entry does not already exist. Person with email `nonexistent@gmail.com` is not in the list, or delete the entry if it exists using the command `delete_person e/nonexistent@gmail.com`.
 
     1. Test case: `edit_person eo/johndoe@gmail.com p/90398472`<br>
        Expected: Person with email `johndoe@gmail.com` has his/her phone number edited to 90398472.
@@ -644,7 +644,7 @@ testers are expected to do more *exploratory* testing.
        
 
 
-### G.9 Accessing help
+### F.9 Accessing help
 
 1. Accessing help feature
 
@@ -652,10 +652,16 @@ testers are expected to do more *exploratory* testing.
     Expected: An additional pop up help window should appear with a url to the user guide for Bookcoin.
 
 
-### G.10 Saving data
+### F.10 Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: corrupt the file `bookingsystem.json` under ./data/. There are many ways to do so, such as inputting invalid values for fields (e.g. adding digits in name fields that can only take in alphabetic characters and spaces). 
+    1. Open the jar file by running `java -jar bookingapp.jar` on your terminal.
+    Expected: GUI starts up with no data populated.
 
-1. _{ more test cases …​ }_
+    1. Test case: delete the current save file under ./data/.
+    1. Open the jar file by running `java -jar bookingapp.jar` on your terminal.
+    Expected: GUI starts up with no data populated.
+
+
