@@ -228,7 +228,7 @@ Format: `deletenote INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletenote 1` Delete the note at the first position.
+* `deletenote 1` Deletes the note at the first position.
 
 #### Editing a note : `editnote`
 
