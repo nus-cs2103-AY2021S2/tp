@@ -23,7 +23,7 @@ effectively.
 ## 2. **About**
 This user guide provides documentation on the installation and usage of TutorBuddy.
 It also provides a comprehensive description of features available to you and
-includes a [quick-start](#3-quick-start) section that helps you get started.
+includes a [quick start](#3-quick-start) section that helps you get started.
 
 This guide uses the following features to make it easier for you to navigate around:
 
