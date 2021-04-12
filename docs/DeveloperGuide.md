@@ -139,12 +139,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the data for `Dictionote`, including `ContactsList`, `NoteBook`, `DictionaryBook` and `DefinitionBook`.
+* exposes an unmodifiable `ObservableList<Contact>`,`ObservableList<Note>`,`ObservableList<Content>`,`ObservableList<Definition>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changed.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+The `ContactsList` stores the `Contact` of the user. A `Contact` consists of `Name`, `Email`, `Phone`, `Address`, `FrequencyCounter`, and a custom `Tag` class.
+The `NoteBook` stores the `Notes` of the user. A `Note` also has a `Tag` class. The `Dictionary` stores both the `Definition` and `Content` in the `Dictionote`. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ContactList` and `NoteBook`, which `Contact` and `Note` references, respectively. This allows `ContactList` and `NoteBook` to only require one `Tag` object per unique `Tag` in each "Book", instead of each `Contact` and  `Note` needing their own `Tag` object, respectively.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -163,6 +164,7 @@ The `Storage` component,
     * `NoteBook`.
     * `Dictionary`.
     * `DefinitionBook`.
+* depends on a few classes in the `Model` component; however, such dependencies are not shown in the diagram for simplicity's sake.
 
 ### Common classes
 
@@ -230,7 +232,7 @@ As an example, consider running Dictionote as follows:
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
 
-![ContactEmailFeatureInitState](images/ContactMostFreqFeatureInitState.png)
+![ContactMostFreqFeatureInitState](images/ContactMostFreqFeatureInitState.PNG)
 
 * In addition, assume the successful execution of the following commands:
     * `emailcontact 3` three times.
@@ -239,7 +241,7 @@ As an example, consider running Dictionote as follows:
 
 * After typing in `mostfreqcontact` and executing it, the result would be:
 
-![ContactEmailFeatureExecute](images/ContactMostFreqFeatureExecute.png)
+![ContactMostFreqFeatureExecute](images/ContactMostFreqFeatureExecute.PNG)
 
 * Note that the ordering of the contacts in the contacts list had changed, with Charlie (formerly with index number 3) being the first on the list, followed by Alice (formerly with index number 1) and finally Bob (formerly with index number 2).
 
@@ -255,7 +257,7 @@ As an example, consider running Dictionote as follows:
 
 ### UI features
 
-#### Opening and Closing UI through Command
+#### Opening and closing UI through command result
 #####  Implementation
 Dictionote has an interactive user interface that allows the user to open and close any panel through command.
 Furthermore, when any command is executed, 
@@ -286,7 +288,7 @@ The following is the sequence diagram for executing a command to open a panel.
     * Pros: Only the class that requires to change the UI will be needed to call the method.
     * Cons: Increasing coupling.
     
-#### Manipulation UI Settings through Command
+#### Command that manipulation UI settings
 #####  Implementation
 While all `Command` has the ability to open and close the UI. There are some UI settings that are more specific.
 In this case, we don't want all commands to implement its behavior, so using `CommandResult` isn't ideal.
@@ -535,52 +537,54 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-#### User Stories : Main/UI
-
 | Priority | As a …​                                                   | I want to …​                                          | So that I can…​                                            | Category               |
 | -------- | -------------------------------------------------------------| -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------- |
-|***Main***| | | |
-| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy dictionary content to note                        | Main/UI/UX         |
-| `* *`    | CS2103 Student                                               | Open and close Contact panel                             | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Dictionary Content panel                  | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Dictionary List panel                     | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Note Content panel                        | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Note List  panel                          | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjusting the Ui everytime I open the app  | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Change my UI configuration                               | Do no need to adjust the UI using mouse                       | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | Use the space available more efficiently                      | Main/Non-essential |
-|***Dictionary*** | -- | -- | --  | -- |
-| `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Dictionary/Essential|
-| `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Dictionary/Essential|
-| `* * *`  | CS2103T student                                              | List all the contents in the dictionary                  | View the extensive list of contents                           | Dictionary/Essential|
-| `* * *`  | CS2103T student                                              | List all the definitions in the dictionary               | View the extensive list of contents                           | Dictionary/Essential|
-| `* *`    | CS2103T student                                              | Copy specific contents in the dictionary to the notes    | Keep track of the important content on my personal note list  | Dictionary/Non-essential|
+|***UI***| | | |
+| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy dictionary content to note                        | Essential     |
+| `* *`    | CS2103 Student                                               | Open and close Contact panel                             | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary Content panel                  | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary List panel                     | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note Content panel                        | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note List  panel                          | Have more space for other content                             | Non-essential |
+| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjusting the Ui everytime I open the app  | Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI configuration                               | Do no need to adjust the UI using mouse                       | Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | Use the space available more efficiently                      | Non-essential |
+|***Dictionary*** | | | | |
+| `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Essential|
+| `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Essential|
+| `* * *`  | CS2103T student                                              | List all the contents in the dictionary                  | View the extensive list of contents                           | Essential|
+| `* * *`  | CS2103T student                                              | List all the definitions in the dictionary               | View the extensive list of contents                           | Essential|
+| `*`      | CS2103T student                                              | Track my progress when reading through a summary         | Continue my preparation from where I left off                 | Non-essential|
+| `* *`    | CS2103T student                                              | Copy specific contents in the dictionary to the notes    | Keep track of the important content on my personal note list  | Non-essential|
 |***Note*** |  |  |  | |
-| `* * *`  | CS2103T student                                              | Take a new note                                          | Have easy access to my materials whenever I need them         | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Delete an existing note                                  | Remove out-of-date notes.                                     | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Edit a note                                              | Revise a small typo in the note.                              | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Look at all notes                                        | Remember what is the content of the note                      | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Show a specific note                                     | To read the content of a specific note in detail              | Note/Essential  |
-| `* * * ` | CS2103T student                                              | Edit a note in edit mode                                 | Modify the content of the note easily.                        | Note/Essential  |
-| `* * `   | CS2103T student                                              | Tag a note                                               | I can access notes easily.                                    | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Track the date and time the note is created              | Find the note according to the time created                   | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Sort a note alphabetically                               | I can read the notes in order.                                | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Search a note using keyword                              | Find out what notes contain the specific keyword.             | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Mark a note as undone                                    | Remember which part of the notes I have not done yet.         | Note/Non-Essential  |
-| `* * `   | CS2103T student                                              | Mark all notes as undone                                 | Reset all the features I have marked as done.                 | Note/Non-Essential  |
-| `* `     | CS2103T student                                              | Track the date and time the note is last modified        | Find the note according to the time last modify.              | Note/Non-Essential  |
-| `* `     | CS2103T student                                              | Mark a content of a note as done                         | Remember which part of the notes I have done.                 | Note/Non-Essential  |
+| `* * *`  | CS2103T student                                              | Take a new note                                          | Have easy access to my materials whenever I need them         | Essential  |
+| `* * * ` | CS2103T student                                              | Delete an existing note                                  | Remove out-of-date notes.                                     | Essential  |
+| `* * * ` | CS2103T student                                              | Edit a note                                              | Revise a small typo in the note.                              | Essential  |
+| `* * * ` | CS2103T student                                              | Look at all notes                                        | Remember what is the content of the note                      | Essential  |
+| `* * * ` | CS2103T student                                              | Show a specific note                                     | To read the content of a specific note in detail              | Essential  |
+| `* * * ` | CS2103T student                                              | Edit a note in edit mode                                 | Modify the content of the note easily.                        | Essential  |
+| `* * `   | CS2103T student                                              | Tag a note                                               | I can access notes easily.                                    | Non-Essential  |
+| `* * `   | CS2103T student                                              | Track the date and time the note is created              | Find the note according to the time created                   | Non-Essential  |
+| `* * `   | CS2103T student                                              | Sort a note alphabetically                               | I can read the notes in order.                                | Non-Essential  |
+| `* * `   | CS2103T student                                              | Search a note using keyword                              | Find out what notes contain the specific keyword.             | Non-Essential  |
+| `* * `   | CS2103T student                                              | Mark a note as undone                                    | Remember which part of the notes I have not done yet.         | Non-Essential  |
+| `* * `   | CS2103T student                                              | Mark all notes as undone                                 | Reset all the features I have marked as done.                 | Non-Essential  |
+| `* `     | CS2103T student                                              | Track the date and time the note is last modified        | Find the note according to the time last modify.              | Non-Essential  |
+| `* `     | CS2103T student                                              | Mark a content of a note as done                         | Remember which part of the notes I have done.                 | Non-Essential  |
 |***Contact***| | | | |
-| `* * *`  | CS2103T Student                                              | Add my contacts                                          | Easily manage the contacts list                               | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Edit my contacts                                         | Easily manage the contacts list                               | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Delete my contacts                                       | Easily manage the contacts list                               | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Look at all contacts                                     | Easily manage the contacts list                               | Contact/Essential     |
-| `* *`    | CS2103T Student                                              | Tag a contact with a word                                | Find contacts based on their tags                             | Contact/Non-essential |
-| `* *`    | CS2103T Student                                              | Search for contacts using tags                           | Contact anyone from a particular tag                          | Contact/Non-essential |
-| `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list                       | Ask questions, discuss topics, or exchange notes with them    | Contact/Non-essential |
+| `* * *`  | CS2103T Student                                              | Add my contacts                                          | Easily manage the contacts list                               | Essential     |
+| `* * *`  | CS2103T Student                                              | Edit my contacts                                         | Easily manage the contacts list                               | Essential     |
+| `* * *`  | CS2103T Student                                              | Delete my contacts                                       | Easily manage the contacts list                               | Essential     |
+| `* * *`  | CS2103T Student                                              | Look at all contacts                                     | Easily manage the contacts list                               | Essential     |
+| `* *`    | CS2103T Student                                              | Tag a contact with a word                                | Find contacts based on their tags                             | Non-essential |
+| `* *`    | CS2103T Student                                              | Search for contacts using tags                           | Contact anyone from a particular tag                          | Non-essential |
+| `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list                       | Ask questions, discuss topics, or exchange notes with them    | Non-essential |
+| `* *`    | Extroverted student who likes to discuss things with friends | Locate the contacts whom I frequently contact                       | Save time having to look for them in my address book    | Non-essential |
+| `* *`    | CS2103T student | Send a note by email                       | Easily discuss the contents of a particular note with one of my contacts    | Non-essential |
+| `* *`    | CS2103T Student | Search the email of my friends             | I can easily find for whom a particular email address is.    | Non-essential |
 |***Guide*** | | | | |
-| `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Guide/Essential  |
-| `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Guide/Essential  |
+| `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Essential  |
+| `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Essential  |
 
 
 ### Use cases
@@ -672,7 +676,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
   
@@ -747,7 +751,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
   Use case ends.
 
-
 **Use case: UC08 -  Find Content in the Dictionary**
 
 **MSS**
@@ -777,8 +780,6 @@ _{Explain here how the data archiving feature will be implemented}_
 5.  User requests to content the content at a specific index to a note.
 6.  Dictionte adds a new note with the note body being the content at that index.
 
-    Use case ends.
-
 **Extensions**
 
 * 2a. The list is empty.
@@ -794,6 +795,30 @@ _{Explain here how the data archiving feature will be implemented}_
     * 3a1. Dictionote shows an error message.
 
       Use case resumes at step 4.
+
+**Use case: UC10 -  List all notes**
+
+**MSS**
+
+1.  User requests to list notes.
+2.  Dictionote shows a list of notes which might or might not be empty.
+
+    Use case ends.
+
+**Use case: UC11 -  Show a specific note**
+
+**MSS**
+
+1.  User requests to show a specific note.
+2.  Dictionote shows note requested by the user in the rightmost panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The requested index is out of bounds. Then an index invalid exception will arise.
+
+  Use case ends.
 
 
 ### Non-Functional Requirements
@@ -847,7 +872,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. Note that some tests use specific data in their examples, which might need to be inserted first using CRUD commands; however, it is possible to replace such specific data with already-existing ones found by default in the application.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -871,27 +896,156 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a contact
 
-1. Deleting a person while all persons are being shown
+1. Adding a contact that shares its phone number with another existing contact.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: At least one contact is present in the list.
+	
+	1. Assumptions: One contact is present with the phone number `11223344`.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `addcontact p/11223344 n/<ANY_NAME> a/<ANY_ADDRESS> e/<ANY_UNIQUE_EMAIL>`<br>
+       Expected: An error message is displayed, telling that another existing contact already has the specified phone number or email.
+	   
+	* Note that this behavior should apply for any phone number that is already used for another contact in the list.
+	
+1. Adding a contact that shares its email with another existing contact.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Prerequisites: At least one contact is present in the list.
+	
+	1. Assumptions: One contact is present with the email `taken@email.com`.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Test case: `addcontact e/taken@email.com n/<ANY_NAME> a/<ANY_ADDRESS> p/<ANY_UNIQUE_PHONE_NUMBER>`<br>
+       Expected: An error message is displayed, telling that another existing contact already has the specified phone number or email.
+	   
+	* Note that this behavior should apply for any email that is already used for another contact in the list.
+	
+### Editing a contact
+
+Similar to *Adding a contact* above (shared phone numbers and/or emails).
+
+### Deleting a note
+
+1. Deleting a note while all notes are being shown
+
+    1. Prerequisites: List all notes using the `listnote` command. Multiple notes in the list.
+
+    1. Test case: `deletenote 1`<br>
+       Expected: First note is deleted from the list. Details of the deleted note shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `deletenote 0`<br>
+       Expected: No note is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `deletenote`, `deletenote x`, `...` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Showing a note
+1. Showing a specific note
+
+    1. Prerequisites: List all notes using the `listnote` command. Multiple notes in the list.
+
+    1. Test case: `shownote 1`<br>
+       Expected: First note is shown on the rightmost panel. Details of the showed note is shown there.
+
+    1. Test case: `shownote 0`<br>
+       Expected: No note is showed. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `shownote`, `shownote x`, `...` (where `x` is larger than the list size)<br>
+       Expected: Similar to previous.
+
+
+### Modifying the UI through command
+For more information regarding the panel layout and divider position, 
+please refer to the user guide - UI section for more details.
+
+
+#### Opening and closing display panel
+
+Available `OPTION` for open and close command : `-a`, `-c`, `-d`, `dc`, `dl`, `-n`, `-nc`, `nl`, `-l`
+
+1. Opening a panel through open command 
+    
+    1. Prerequisites: Close all panel using `close -a` for better visibility
+
+    1. Test Case : `open -c`
+       <br> Expected : Contact panel will be open
+
+    1. Test Case : `open -c`
+      <br> Expected : Contact will remain open
+
+    1. Repeat the previous steps for all `OPTION` 
+       <br> (check user guide for more detail about the option.)
+       
+    1. Test Case : `open -x`
+      <br> Expected : Invalid command messages will be shown
+      
+    1. Other incorrect open commands to try: `open`, `open x`, `...` (where x is not an `Option`)<br>
+       Expected: Similar to previous.
+
+1. Close a panel through open command
+
+    1. Prerequisites: Close all panel using `open -a` for better visibility
+
+    1. Test Case : `close -c`
+       <br> Expected : Contact panel will be close
+
+    1. Test Case : `close -c`
+       <br> Expected : Contact will remain close
+
+    1. Repeat the previous steps for all `OPTION`
+       <br> (check user guide for more detail about the option.)
+
+    1. Test Case : `close -x`
+       <br> Expected : Invalid command messages will be shown
+
+    1. Other incorrect open commands to try: `close`, `close x`, `...` (where x is not an `Option`)<br>
+       Expected: Similar to previous.
+
+#### Setting divider position via command
+List of availble set divider position command : `setdividerc`, `setdividerd`, `setdividern`, `setdividerm`
+<br> Range of valid `POSITION` for set divider command :  1 to 9 (Inclusively)
+
+1. Setting position of a panel through open command
+
+    1. Prerequisites: Close all panel using `close -c` for better visibility
+
+    1. Test Case : `setdividerc 5`
+       <br> Expected : contact divider will be set at the halfway mark. contact panel should be open.
+       <br> (check user guide for more detail for where each position represent.)
+
+    1. Test Case : `setdividerc 5`
+       <br> Expected : Contact will remain open
+
+    1. Test Case : `setdividerc 0`
+       <br> Expected : Invalid command messages will be shown
+
+    1. Other incorrect open commands to try: `setdividerc`, `setdividerc x`, `...` (where x is not within the valid range)
+       <br> Expected: Similar to previous.
+       
+2. Repeat the previous test case with `setdivider`, `setdividerd`, and `setdividerm`.
+
+#### Toggling divider orientation via command
+List of availble toggle divider orientation command : `toggledividerd`, `toggledividern`
+
+1. Setting position of a panel through open command
+
+    1. Test Case : `toggledividerd`
+       <br> Expected : Dictionary divider orientation will change to horizontal if it vertical, vice-verse. 
+       if note list panel or note content panel is closed, it will be open.
+
+    1. Test Case : `toggledividerd`
+      <br> Expected : Dictionary divider  orientation will change to horizontal if it vertical, vice-verse.
+
+    1. Test Case : `toggledividerd`
+      <br> Expected : Dictionary divider  orientation will change to horizontal if it vertical, vice-verse.
+
+2. Repeat the previous test case with `toggledividern`.
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+    1. If the data files are corrupted. The data will be wiped clean and an empty data file will be generated.

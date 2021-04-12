@@ -28,6 +28,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class FrequencyCounter
 Class UniqueContactList
 }
 
@@ -48,8 +49,14 @@ Class UniqueDefinitionList
 Class UniqueContentList
 }
 }
+
+Package UI{
+
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
+ModelManager .up.> UI
 
 ContactsList .up.|> ReadOnlyContactsList
 NoteBook .up.|> ReadOnlyNoteBook
@@ -72,6 +79,7 @@ Contact *--> Name
 Contact *--> Phone
 Contact *--> Email
 Contact *--> Address
+Contact *--> FrequencyCounter
 Contact *--> "*" Tag
 
 NoteBook *--> "1" UniqueNoteList
