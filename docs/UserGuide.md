@@ -286,26 +286,25 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
     <td> Insurance Policies </td>
     <td> <code>i</code> </td>
     <td><ul><li>Optional</li></ul>
-        <ul><li>Should be of the form <code>PolicyId>URL</code> or <code>PolicyId</code></li></ul>
-        <ul><li><code>PolicyId</code> part should not contain the <code>></code> character</li></ul>
-        <ul><li><code>URL</code> part should not contain the <code>></code> character (not a valid website link if it contains <code>></code>)</li></ul>
+        <ul><li>Should be of the form <code>POLICY_ID>POLICY_URL</code> or <code>POLICY_ID</code></li></ul>
+        <ul><li>Anything after the <code>></code> character will be considered as the <code>POLICY_URL</code>
+            <ul><li>Due to the huge range of possibilities for the <code>POLICY_URL</code>, it is <b>possible that invalid URLs will also be accepted</b></li></ul>
+            <ul><li><b>Do check the <code>POLICY_URL</code> before entering the input!</b></li></ul>
+        </li></ul>
         <ul><li>A client should not have duplicate insurance policies</li></ul>
         <ul><li>If duplicate insurance policies are entered in a command, only 1 will be added to the client</li></ul>
-        <ul><li><code>URL</code> part should be of the form minimally be of the form <code>xxx.yyy</code>
-            <ul><li>Other basic URL formats will also be accepted, e.g. <code>https://www.xxx.yyy/page/?q=query</code></li></ul>
-        </li></ul> 
-        <ul><li>Due to the huge range of possibilities for the URL, we will have made the acceptable URL formats flexible rather than restrictive. <b>Do check your URL before entering the input!</b></li></ul>
     </td>
   </tr>
   <tr>
     <td> Meeting </td>
     <td> <code>m</code> </td>
     <td><ul><li>Optional</li></ul> 
-        <ul><li>Should be of the form <code>DATE START END PLACE</code></li></ul> 
-        <ul><li><code>DATE</code> part should be in <code>dd.MM.yyyy</code> format</li></ul>
-        <ul><li><code>START</code> and <code>END</code> parts should be in <code>HH:mm</code> format</li></ul>
-        <ul><li><code>END</code> of a meeting must be after <code>START</code> of the same meeting on the same <code>DATE</code></li></ul>
-        <ul><li><code>START</code> of a meeting cannot be the same as <code>END</code> of another meeting on the same <code>DATE</code></li></ul>
+        <ul><li>Can only be modified by using the <code>meet</code> command</li></ul> 
+        <ul><li>Should be of the form <code>DATE START_TIME END_TIME PLACE</code></li></ul>
+        <ul><li><code>DATE</code> part should be in <code>dd.MM.yyyy</code> format, for example <code>20.05.2021</code></li></ul>
+        <ul><li><code>START_TIME</code> and <code>END_TIME</code> parts should be in <code>HH:mm</code> format, for example <code>15:30</code></li></ul>
+        <ul><li><code>END_TIME</code> of a meeting must be after <code>START_TIME</code> of the same meeting on the same <code>DATE</code></li></ul>
+        <ul><li><code>START_TIME</code> of a meeting cannot be the same as <code>END_TIME</code> of another meeting on the same <code>DATE</code></li></ul>
         <ul><li><code>PLACE</code> should not be empty and can have space between characters</li></ul>
     </td>
   </tr>
@@ -333,10 +332,6 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
 
 * **Parameters can be in any order**. 
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-
-* **If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.**
-  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
 * **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `listshortcut`) **will be ignored**. 
@@ -371,6 +366,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 * It is optional to include the `POLICY_URL` for the specified `POLICY_ID`.
 * To include the URL, remember to use `>` to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
+* Meetings of a client cannot be added with this command.
 
 **Examples**:
 * Example of a client with insurance policy but no URL associated with insurance policy
@@ -390,12 +386,13 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​ [m/MEETING]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
     * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
+* Meetings of a client cannot be modified with this command.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
@@ -472,33 +469,32 @@ If a parameter is expected only once in the command, but you specified it multip
 
 **Purpose**: Schedules a meeting on a particular date, start time, end time and place with a client in ClientBook.
 
-**Format**: `meet INDEX [-ACTION] DATE START END PLACE`
+**Format**: `meet INDEX [-ACTION] DATE START_TIME END_TIME PLACE`
 
 * Schedules a meeting with the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 * `ACTION` can be `add` to add a meeting, `delete` to delete a meeting, `clear` to clear all meetings of a client.
-* If `-ACTION` is empty, the default action for the command is to add a meeting.
-* Past meeting is allowed to be added for archive purposes.
-* There is a check for clashes between meetings when adding a new meeting with `meet` command.
-* Meetings can be modified with the `edit` command, but there will be no check for clashes between meetings.
+    * If `-ACTION` is empty, the default action for the command is to add a meeting.
+* Past meetings are allowed to be added to clients for archival purposes.
+* There will be a check for clashes between meetings when adding a new meeting.
 
 **Examples**:
-* Add a meeting and there are no clashes.
-    * `meet 1 20.05.2021 15:00 16:00 MRT`
-    
-      ![meet-add](images/meet-add.png)
-  <br><br>
-* Add a meeting but there are clashes.
-    * `meet 3 -add 20.05.2021 15:30 17:30 MRT`
-    
+* Add a meeting for a specific client and there are no clashes.
+    * `meet 5 -add 20.05.2021 15:00 16:00 MRT`
+      
+      ![meet-clash](images/meet-add.png)
+<br><br>
+* Add a meeting for a specific client but there are clashes.
+    * `meet 3 20.02.2021 12:00 15:00 KENT RIDGE MRT`
+      
       ![meet-clash](images/meet-clash.png)
 <br><br>
-* Delete a meeting.
-    * `meet 5 -delete 20.05.2021 15:00 16:00 KENT RIDGE MRT`
+* Delete a meeting of a specific client.
+    * `meet 4 -delete 23.08.2021 09:00 12:00 CLEMENTI MRT`
 <br><br>
-* Clear all meetings.
-    * `meet 2 -clear`
+* Clear all meetings of a specific client.
+    * `meet 1 -clear`
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -601,16 +597,16 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 **Format**: `sort -IDENTIFIER -DIRECTION`
 
 * Sorts the list of clients according to the specified `IDENTIFIER` and `DIRECTION`.
-* The specified `IDENTIFIER` can be `-n` to sort your clients by name alphabetically or `-i` to sort by number of insurance policies, but not both.
-* The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
+* The specified `IDENTIFIER` can be `n` to sort your clients by name alphabetically or `i` to sort by number of insurance policies, but not both.
+* The specified `DIRECTION` can be `asc` for ascending order or `des` for descending order, but not both.
 
 **Examples**:
-* If you want to see which of your clients have the most policies with you, sort the current list of clients 
-  by **descending** number of insurance policies owned.
-    * `sort -i -des`
+* If you want to see which of your clients have the least policies with you, sort the current list of clients 
+  by **ascending** number of insurance policies owned.
+    * `sort -i -asc`
       <br><br>
-* You can also sort the current list of clients by name in **ascending** alphabetical order.
-    * `sort -n -asc`
+* You can also sort the current list of clients by name in **descending** alphabetical order.
+    * `sort -n -des`
 
       ![sort](images/sort-des-annotate.png)
 
@@ -621,19 +617,55 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 We understand that you might have commands that you frequently use. You may use shortcuts to abbreviate
 those commands to make using ClientBook more convenient.
 
+### <span style="color:#c9a500">Example Usage</span>
+<p><b>Scenario:</b></p> 
+
+You are an insurance agent and you have many client contacts stored inside of ClientBook. Your work mainly requires 
+you to manage your clients' policies and you would like a way to view all your clients' policies while hiding other 
+additional information (e.g. address, email, phone). You know that you can do so with the `list -i` command. However, 
+you would like a faster way to do it because you have to use it frequently, so you decided to create a 
+shortcut named `li` to perform the same action as `list -i`.
+
+<br>
+
+<p><b>Step 1.</b></p> 
+
+**Adding the shortcut using the command** `addshortcut sn/li sc/list -i`.
+
+This command creates a shortcut which performs `list -i` everytime you type `li` in the command box, and it is saved to 
+your shortcut library.
+
+<br>
+
+<p><b>Step 2.</b></p> 
+
+**Using the shortcut using the command** `li`.
+
+As you have saved this shortcut in the shortcut library, you may now use `li` to perform the command `list -i` anytime 
+and as many times as you want, which will save you from the hassle of having to type `list -i` everytime.
+
+<p align="center"><img src="images/shortcut-example.png"></p>
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
 ### <span style="color:#c9a500"><code>addshortcut</code>: Add shortcut</span>
 
 **Purpose**: Adds a command shortcut to the shortcut library.
 
 **Format**: `addshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
 
-* Adds a shortcut named `SHORTCUT_NAME` to the shortcut library and assigns a valid command `SHORTCUT_COMMAND` to it.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must not already exist the shortcut library.
-* The specified `SHORTCUT_COMMAND` must be a valid command.
+* Adds a shortcut named `SHORTCUT_NAME` to the shortcut library and assigns a valid ClientBook command `SHORTCUT_COMMAND` to it.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must not already exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid ClientBook command (e.g. `find n/alex`).
 
 **Examples**:
-* Add a shortcut named `sna` to represent the command `sort -n -asc` (sort list by name in ascending order) in the shortcut library.
-    * `addshortcut sn/sna sc/sort -n -asc`
+* Add a shortcut named `li` to represent the command `list -i` (filter all client information to show policy details 
+  only) in the shortcut library.
+    * `addshortcut sn/li sc/list -i`
+
+![addshortcut](images/addshortcut.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -641,13 +673,13 @@ those commands to make using ClientBook more convenient.
 
 ### <span style="color:#c9a500"><code>editshortcut</code>: Edit shortcut</span>
 
-**Purpose**: Edits the command of a shortcut in the existing shortcut library.
+**Purpose**: Edits the command of a shortcut in the shortcut library.
 
 **Format**: `editshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
 
-* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and replaces its existing command with the provided valid command `SHORTCUT_COMMAND`.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must exist the shortcut library.
-* The specified `SHORTCUT_COMMAND` must be a valid command.
+* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and replaces its existing command with the provided valid ClientBook command `SHORTCUT_COMMAND`.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid ClientBook command (e.g. `find n/alex`).
 
 **Examples**:
 * Edit a shortcut named `ls` in the shortcut library such that it takes on a new command `list`.
@@ -664,7 +696,7 @@ those commands to make using ClientBook more convenient.
 **Format**: `deleteshortcut SHORTCUT_NAME`
 
 * Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and deletes it from the shortcut library.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must exist in the shortcut library.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must exist in the shortcut library.
 
 **Examples**:
 * Delete a shortcut named `ls` in the shortcut library.
@@ -676,8 +708,10 @@ those commands to make using ClientBook more convenient.
 
 ### <span style="color:#c9a500"><code>listshortcut</code>: List all shortcuts</span>
 
-**Purpose**: Lists all shortcuts in the existing shortcut library in case you want to view the shortcuts that you have previously
+**Purpose**: Lists all shortcuts in the shortcut library in case you want to view the shortcuts that you have previously
 created.
+
+![listshortcut](images/listshortcut.png)
 
 **Format**: `listshortcut`
 
@@ -687,7 +721,7 @@ created.
 
 ### <span style="color:#c9a500"><code>clearshortcut</code>: Delete all shortcuts</span>
 
-**Purpose**: Deletes all shortcuts in the existing shortcut library.
+**Purpose**: Deletes all shortcuts in the shortcut library.
 
 **Format**: `clearshortcut`
 
@@ -848,7 +882,7 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Edit**](#edit-edit-client-contact) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
 [**Delete**](#delete-delete-client-contact) | `delete INDEX` | `delete 3` |
 [**Batch**](#batch-execute-commands-in-batch) | `batch COMMAND INDICES [ARGUMENTS]` | `batch edit 1, 2, 4 p/91234567 a/Hougang Green t/TanFamily i/FamPol#111` |
-[**Meet**](#meet-schedule-a-meeting-with-a-client) | `meet INDEX [-ACTION] DATE START END PLACE` | `meet 1 20.05.2021 15:00 16:00 MRT` |
+[**Meet**](#meet-schedule-a-meeting-with-a-client) | `meet INDEX [-ACTION] DATE START_TIME END_TIME PLACE` | `meet 1 -add 20.05.2021 15:00 16:00 KENT RIDGE MRT` |
 |<span style="color:#c93640">**Contact Viewing**</span>|
 [**List**](#list-list-all-clients) | `list [-IDENTIFIER]` | `list -i` |
 [**Find**](#find-search-for-client-contact-based-on-keywords) | `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​` | `find a/Bedok & Clementi -p` |

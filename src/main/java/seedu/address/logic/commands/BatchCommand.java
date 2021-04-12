@@ -75,25 +75,34 @@ public class BatchCommand<T extends BatchOperation> extends Command {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
         if (other instanceof BatchCommand) {
-            BatchCommand otherBatchCommand = (BatchCommand) other;
+            BatchCommand<T> otherBatchCommand = (BatchCommand<T>) other;
 
-            boolean areListsSame = true;
-            for (int i = 0; i < listOfCommands.size(); i++) {
-                BatchOperation fromMainList = listOfCommands.get(i);
-                BatchOperation fromOtherList = (BatchOperation) otherBatchCommand.listOfCommands.get(i);
-                areListsSame &= fromMainList.equals(fromOtherList);
-            }
-
-            return areListsSame;
+            return compareLists(listOfCommands, otherBatchCommand.listOfCommands);
         }
 
         return false;
+    }
+
+    private boolean compareLists(List<T> firstList, List<T> secondList) {
+        if (firstList.size() != secondList.size()) {
+            return false;
+        }
+
+        boolean areListsSame = true;
+        for (int i = 0; i < firstList.size(); i++) {
+            BatchOperation fromMainList = firstList.get(i);
+            BatchOperation fromOtherList = secondList.get(i);
+            areListsSame &= fromMainList.equals(fromOtherList);
+        }
+
+        return areListsSame;
     }
 
 }

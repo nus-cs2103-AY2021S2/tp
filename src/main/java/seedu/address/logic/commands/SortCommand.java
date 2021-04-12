@@ -26,13 +26,13 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS_NAME_ASCENDING = "Sorted all clients by name in ascending order.";
     public static final String MESSAGE_SUCCESS_NAME_DESCENDING = "Sorted all clients by name in descending order.";
     public static final String MESSAGE_SUCCESS_INSURANCE_POLICY_ASCENDING =
-            "Sorted all clients by insurance policy in ascending order.";
+            "Sorted all clients by number of insurance policy in ascending order.";
     public static final String MESSAGE_SUCCESS_INSURANCE_POLICY_DESCENDING =
-            "Sorted all clients by insurance policy in descending order.";
+            "Sorted all clients by number of insurance policy in descending order.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of clients by "
-            + "the specified property in the order of the specified direction.\n"
-            + "Parameters: -ATTRIBUTE (n or i) -DIRECTION (asc or des)\n"
+            + "the attribute of the specified identifier in the order of the specified direction.\n"
+            + "Parameters: -IDENTIFIER (n for name or i for number of insurance policies) -DIRECTION (asc or des)\n"
             + "Example: " + COMMAND_WORD + " -n -asc";
 
     private final String attribute;

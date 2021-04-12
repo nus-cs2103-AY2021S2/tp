@@ -33,14 +33,15 @@ public class MeetCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedule a meeting with a client.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[-ACTION] (add, delete, clear) "
-            + "DATE (DD.MM.YYYY) START (HH:MM) END (HH:MM) PLACE\n"
-            + "END must be after START on the same DATE.\n"
+            + "DATE (dd.MM.yyyy) START_TIME (HH:mm) END_TIME (HH:mm) PLACE\n"
+            + "END_TIME must be after START_TIME on the same DATE.\n"
             + "Example: " + COMMAND_WORD + " 3 -add 18.05.2021 15:00 18:00 MRT";
     public static final String MESSAGE_INVALID_DATE =
-            "DATE in meeting should be in dd.MM.yyyy format and should be valid.\n"
+            "DATE should be in dd.MM.yyyy format and should be valid.\n"
             + "Example: 18.05.2021";
     public static final String MESSAGE_INVALID_TIME =
-            "START and END in meeting should be in HH:mm format and END must be after START on the same DATE.\n"
+            "START_TIME and END_TIME should be in HH:mm format and "
+            + "END_TIME must be after START_TIME on the same DATE.\n"
             + "Example: 15:00 18:00";
 
     public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with \n%1$s";
