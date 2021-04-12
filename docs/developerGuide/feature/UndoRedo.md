@@ -12,19 +12,19 @@ These operations are exposed in the `Model` interface as `Model#addState()`, `Mo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `StateHistory` will be initialized with the initial address and event book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `StateHistory` will be initialized with the initial address and event book state, and the `currentStatePointer` pointing to that single `State`.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#addState()`, causing the modified state of the address book after the `delete 5` command executes to be saved in a new `State`, which is stored in `StateHistory`, and the `currentStatePointer` is shifted to the newly inserted state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#addState()`, causing the modified state of the address book after the `delete 5` command executes to be saved in a new `State`, which is stored in `StateHistory`, and the `currentStatePointer` is shifted to the newly inserted `State`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David` to add a new person. The `add` command also calls `Model#addState()`, causing another state to be saved into the `StateHistory`.
+Step 3. The user executes `add -n David` to add a new person. The `add` command also calls `Model#addState()`, causing another `State` to be saved into the `StateHistory`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addState()`, so the state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addState()`, so the state will not be saved into the `StateHistory`.
 
 </div>
 
@@ -32,8 +32,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial state, then there are no previous states to restore. The `undo` command catches an `IndexOutOfBoundsException` thrown by `Model#undo()` if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial state, then there are no previous states to restore. The `Model#undo()` command catches an `IndexOutOfBoundsException` thrown by `StateHistory#previousState()` if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
 
@@ -45,9 +44,9 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redo()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redo()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address and event books to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command catches an `IndexOutOfBoundsException` thrown by `Model#redo()` if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at the last index, pointing to the latest state, then there are no undone states to restore. The `Model#redo()` command catches an `IndexOutOfBoundsException` thrown by `StateHistory#nextState()` if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
@@ -55,7 +54,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#addState()`. Since the `currentStatePointer` is not pointing at the end of the `StateHistory`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#addState()`. Since the `currentStatePointer` is not pointing at the end of the `StateHistory`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add -n David` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
