@@ -34,8 +34,9 @@ public class EditBookingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified "
             + "by the index number used in the displayed booking list.\n"
-            + "At least one parameter to be changed must be specified. "
+            + "At least one parameter to be changed must be specified.\n"
             + "Existing values will be overwritten by the input values.\n"
+            + "At least one of the optional fields must be provided.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_EMAIL + "BOOKER EMAIL] "
             + "[" + PREFIX_VENUE + "VENUE NAME] "

@@ -44,7 +44,7 @@ public class EditVenueCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the venue identified "
             + "by the venue name used in the displayed venue list.\n"
-            + "At least one parameter to be changed must be specified."
+            + "At least one parameter to be changed must be specified.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "At least one of the optional fields must be provided.\n"
             + MESSAGE_FIELDS;
