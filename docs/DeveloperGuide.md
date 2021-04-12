@@ -466,7 +466,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find n/bernice`.<br>
        Expected: Details of passenger named `Bernice Yu` is shown. Status message shows 1 passenger listed.
 
-    1. Test case: `find n/alex`.<br>
+    1. Test case: `find n/bob`.<br>
        Expected: No passengers are shown. Status message shows 0 passenger listed.
 
     1. Test case: `find n/ROY n/lEnny`.<br>
@@ -484,7 +484,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Details of `Bernice Yu` and `Roy Balakrishnan` are shown. Status message shows 2 passengers listed.
 
     1. Test case: `find tag/marketing tag/sales`.<br>
-       Expected: Details of `Bernice Yu`, `Irfan Ibrahim` and `Turner Peck` are shown. Status message shows 3 passengers listed.
+       Expected: Details of `Alex Yeoh`, `Bernice Yu`, `Irfan Ibrahim` and `Turner Peck` are shown. Status message shows 4 passengers listed.
 
     1. Test case: `find tag/marketing sales`.<br>
        Expected: Passengers are shown are same as previous. Status message shows tag provided is invalid.
