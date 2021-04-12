@@ -234,9 +234,6 @@ Each client attribute such as name and address have been assigned identifiers so
 the entire attribute when using ClientBook. For example, name has been abbreviated to n. Listed below are all the identifiers
 which correspond to client attributes as well as restrictions that have to be followed when they are used as part of a command.
 
-Please note that clients may have the same name (two different clients with the same name), phone number (e.g. company phone number), address (e.g. company address),
-email (e.g. company email address) and insurance policies (co-owner of the same policy).
-
 <table>
   <tr>
     <td> <b>Attribute</b> </td>
@@ -246,7 +243,7 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td> Should only contain alphanumeric characters and spaces </td>
+    <td> Must only contain <a href=#glossary>alphanumeric</a> characters and spaces </td>
   </tr>
   <tr>
     <td> Phone number </td>
