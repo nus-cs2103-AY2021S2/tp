@@ -540,8 +540,7 @@ testers are expected to do more *exploratory* testing.
 1. Type `add` into the command bar<br>
    Expected: A list of commands with `add` in their command words show up.
    
-2. Navigate with the up/down arrow keys and press `enter` to verify if the word sele
-   cted will be entered automatically into the command bar. 
+2. Navigate with the up/down arrow keys and press `enter` to verify if the word selected will be entered automatically into the command bar. 
 
 ### Saving data
 
