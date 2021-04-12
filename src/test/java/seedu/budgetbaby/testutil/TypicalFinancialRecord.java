@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.YearMonthParser;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
@@ -65,9 +66,14 @@ public class TypicalFinancialRecord {
         Month m = new MonthBuilder().withMonth(
             YearMonthParser.getYearMonth("01-2021")
         ).build();
-        for (FinancialRecord record : getTypicalFinancialRecords1()) {
-            m.addFinancialRecord(record);
+        try {
+            for (FinancialRecord record : getTypicalFinancialRecords1()) {
+                m.addFinancialRecord(record);
+            }
+        } catch (CommandException e) {
+            return null;
         }
+
         return m;
     }
 
@@ -79,8 +85,12 @@ public class TypicalFinancialRecord {
         Month m = new MonthBuilder().withMonth(
             YearMonthParser.getYearMonth("02-2021")
         ).build();
-        for (FinancialRecord record : getTypicalFinancialRecords2()) {
-            m.addFinancialRecord(record);
+        try {
+            for (FinancialRecord record : getTypicalFinancialRecords2()) {
+                m.addFinancialRecord(record);
+            }
+        } catch (CommandException e) {
+            return null;
         }
         return m;
     }

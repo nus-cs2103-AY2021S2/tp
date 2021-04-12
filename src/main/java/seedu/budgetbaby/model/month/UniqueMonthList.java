@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.YearMonthParser;
 import seedu.budgetbaby.model.Budget;
 import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
@@ -174,7 +175,7 @@ public class UniqueMonthList implements Iterable<Month> {
     /**
      * Adds a financial record to the budget tracker.
      */
-    public void addFinancialRecord(FinancialRecord r) {
+    public void addFinancialRecord(FinancialRecord r) throws CommandException {
         requireNonNull(r);
         Month month = findFinancialRecordMonth(r);
         month.addFinancialRecord(r);
@@ -184,7 +185,7 @@ public class UniqueMonthList implements Iterable<Month> {
      * Replaces the given financial record {@code target} in the list with {@code editedRecord}.
      * {@code target} must exist in the budget tracker.
      */
-    public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
+    public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) throws CommandException {
         requireNonNull(editedRecord);
         Month targetMonth = findFinancialRecordMonth(target);
         Month editedMonth = findFinancialRecordMonth(editedRecord);
