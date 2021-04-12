@@ -89,7 +89,7 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG] [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]` <br> e.g., `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe(pipe_char)2030 01 01 c/Porsche+SUV(pipe_char)2030 01 01 cp/MercedesBenz+SUV`
-**find** | `find [e/bob /AND p/98761234] /OR b/1999 10 11`
+**find** | `find [e/bob /and p/98761234] /or b/1999 10 11`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
 **clear** | `clear` Clears the contact list, erasing all saved data.
@@ -110,9 +110,9 @@ Prefix | Format
 **c/** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE`
 **cp/** | `cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED`
 **ex/** | `ex/COE_EXPIRY_DATE`
-**/and** | `n/NAME AND/ a/ADDRESS`
-**/or** | `n/NAME OR/ a/ADDRESS`
-**/not** | `NOT/ n/NAME`
+**/and** | `n/NAME /and a/ADDRESS`
+**/or** | `n/NAME /or a/ADDRESS`
+**/not** | `/not n/NAME`
 **+** | `CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED` `CAR_BRAND_OWNED+CAR_TYPE_OWNED` <br> Joins car brand and car type
 **(pipe_char)** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED(pipe_char)COE_EXPIRY_DATE` <br> joins car with COE expiry date
 
@@ -175,11 +175,11 @@ Further details about the search options are as follows:
 **COMBINING FIND PARAMETERS**
 
 We can combine in the following way : 
--   `find a/Orchard /AND n/John /AND /NOT t/CRIMINAL`
--   `find a/Orchard /AND n/John /AND [ t/RICH /OR /NOT t/CRIMINAL ]`
+-   `find a/orchard /and n/John /and /not t/CRIMINAL`
+-   `find a/orchard /and n/John /and [ t/RICH /or /not t/CRIMINAL ]`
 
-Note that for `find A /AND B /OR C /OR D /AND E` , the implicit bracketing considered is `find A /AND [B /OR [C /OR [D 
-/AND E]]]`
+Note that for `find A /and B /or C /or D /and E` , the implicit bracketing considered is `find A /and [B /or [C /or [D 
+/and E]]]`
 
 ## Deleting a customer : `delete`
 
