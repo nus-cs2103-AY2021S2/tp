@@ -540,6 +540,41 @@ testers are expected to do more *exploratory* testing.
 
 2. Navigate with the up/down arrow keys and press `enter` to verify if the word selected will be entered automatically into the command bar.
 
+### Saving data
+
+1. Limited file system permission
+
+    1. Test case: restricting read access to data file:
+    
+        1. Start FriendDex and allow it to generate sample data.
+    
+        2. Exit FriendDex.
+    
+        3. Remove read permission for data file
+           * (macOS/*nix OS): Execute `chmod 333 [path of frienddex.jar]/data/frienddex.json` in terminal.
+           * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove read 
+             permission.
+    
+        5. Start FriendDex.
+           
+        4. Expected: FriendDex is loaded with no information.
+    
+    2. Test case: restricting write access to data file:
+    
+       1. Start FriendDex and allow it to generate sample data.
+          
+       2. Exit FriendDex.
+
+       3. Remove write permission for data file
+           * (macOS/*nix OS): Execute `chmod 555 [path of frienddex.jar]/data/frienddex.json` in terminal.
+           * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove write
+             permission.
+    
+        4. Start FriendDex.
+    
+        5. Expected: FriendDex loads with no issue but any attempt at modifying its data will show an error message.
+           FriendDex will not save any new data on exit.
+
 ### Adding a person: `add`
 
 1. Adding a person into FriendDex
@@ -609,6 +644,28 @@ person on the list is born before 12-12-2020.
 
 ### Adding a friend group: `add-group`
 
+Prerequisites: List all person using the list command. There is at least 2 persons present in the list. 
+There's only one existing group with the name `Colleagues` that only has the person of index 1 inside it.
+
+1. Adding a non-existing group
+    
+    1. Test case: `add-group n/Close Friends p/1`<br>
+       Expected: A success message is shown in the status message. `Close Friends` will be selected
+       with the person who was previously index `1` being the only one shown in the Friend Panel.
+   
+    2. Test case: `add-group n/Close Friends p/0`(Invalid index)<br>
+       Expected: Group is not added. Error details will be shown in the status message. 
+       
+2. Adding an existing group
+    
+    1. Test case: `add-group n/Colleagues p/2`<br>
+       Expected: A success message is shown in the status message. Person at index 2 is added to `Colleagues`.
+       `Colleagues` will be selected, showing the two friends in the group on the Friend Panel.
+   
+    2. Test case: `add-group n/Colleagues p/2`<br>
+       Expected: A success message is shown in the status message. `Colleagues` will be selected. The
+       two friends that already exist in the `Colleagues` group will be shown in the Friend Panel.
+       
 ### Adding a meeting: `add-meeting`
 
 Prerequisites: List all person using the `list` command. There is at least a person present in the list. The first
@@ -794,12 +851,12 @@ Prerequisites: List all person using the `list` command. There is at least a per
     1. Editing a person with valid fields provided
        * `edit 1 n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends` (all fields provided)
        * `edit 1 p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends` (some fields provided, any combination of fields can be used here)
-       * `edit 1 b/01-01-1998` (one field provided, any field can be used here)
+       * `edit 1 b/01-01-1998` (one field provided, any field can be used here)<br>
 
        Expected: The first person in the friend panel is updated with the newly provided information.
-       A success message is shown in the status message.
+       A success message is shown in the status message.<br>
 
-    2. Editing a person's name to a different case
+    2. Editing a person's name to a different case<br>
        * Prerequisite: The first person's name should be `John Doe`.
        * Test case: `edit 1 n/john doe`
 
@@ -811,9 +868,9 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
        Expected: No person is edited. Error details shown in the status message.
 
-    4. Editing a person with no fields provided <br>
-       Test case: `edit 1` <br>
-       Expected: Similar to previous
+    4. Editing a person with no fields provided
+       Test case: `edit 1`
+       Expected: Similar to previous<br><br>
 
 2. Editing an existing person in FriendDex with invalid fields
 
@@ -854,34 +911,34 @@ Prerequisites: List contains the default data included in FriendDex.
 
 1. Finding contacts with naive string search
 
-    2. Test case: `find alex`<br>
+    1. Test case: `find alex`<br>
        Expected: All contact with the token `alex` will be listed. A success message is shown to the user.
 
-    3. Test case: `find yeoh li yu`<br>
+    2. Test case: `find yeoh li yu`<br>
        Expected: All contact with name containing at least one token from the set of tokens `yeoh`, `li`, `yu` will be
        listed. A success message is shown to the user.
 
-    4. Naive search with empty keyword. <br>
+    3. Naive search with empty keyword. <br>
        Test case: `find`<br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 2. Finding contacts wth pattern matching
 
-    2. Test case: `find p/`<br>
+    1. Test case: `find p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
-    3. Test case: `find .* p/`<br>
+    2. Test case: `find .* p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
-    4. Test case: `find alex p/`<br>
+    3. Test case: `find alex p/`<br>
        Expected: All contacts with names containing substring `alex` regardless of case will be listed. A success
        message is shown to the user.
 
-    5. Test case: `find ^a.*h p/`<br>
+    4. Test case: `find ^a.*h p/`<br>
        Expected: All contacts with names that starts with `a` and ends with `h` regardless of case will be listed. A
        success message is show to the user.
 
-    6. Pattern search with invalid Regex. <br>
+    5. Pattern search with invalid Regex. <br>
        Test case: `find [ p/` <br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
@@ -890,6 +947,23 @@ Prerequisites: List contains the default data included in FriendDex.
 1. Execute the `help` command. A new window will be opened with the URL to the User Guide.     
 
 ### Listing all persons: `list`
+
+Prerequisites: There is only one existing group, `Colleagues` that exist in FriendDex with some 
+friends that are already inside it.
+
+1. List all persons in FriendDex
+   
+    1. Test case: `list`<br>
+       Expected: All persons in FriendDex will be listed in the Friend Panel.
+       
+2. List persons by group.
+   
+    1. Test case: `list n/Colleagues`<br>
+       Expected: All persons in group `Colleagues` will be listed in the Friend Panel.
+       
+    2. Test case: `list n/Close Friends`<br> (Non-existing group)
+       Expected: Friend Panel will not be changed. Error details shown in the status message
+    
 
 ### Setting meeting goal: `set-goal`
 
@@ -948,6 +1022,29 @@ Prerequisites: List contains the default data included in FriendDex.
        Error details shown in the status message.
 
 ### Subtracting Debt: `subtract-debt`
+
+Prerequisites: List all person using the `list` command. There is at least 2 persons present in the list. 
+The person with index 1 has no debt. The person with index 2 has its debt as `-$999999999999.00`.
+
+1. Subtracting debt
+
+    1. Test case: `subtract-debt 1 10` <br>
+       Expected: Debt of first person will be updated to `-$10.00`.
+       
+    2. Subtracting debt beyond debt range. <br>
+       Test case: `subtract-debt 2 0.01` <br>
+       Expected: No debt is subtracted. No updates to FriendDex information. <br>
+       Error details shown in the status message.
+       
+    3. Subtracting debt with invalid amount. <br>
+       Test case: `subtract-debt 1 1.001` <br>
+       Expected: No debt is subtracted. No updates to FriendDex information. <br>
+       Error details shown in the status message.
+       
+    4. Subtracting debt with invalid index. <br>
+       Test case: `subtract-debt 0 1.01` <br>
+       Expected: No debt is subtracted. No updates to FriendDex information. <br>
+       Error details shown in the status message. 
 
 ### Styling the application: `theme`
 
