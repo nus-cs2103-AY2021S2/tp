@@ -34,13 +34,25 @@ public class OrderTest {
         // null -> returns false
         assertFalse(ALICE.isSameOrder(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, address, order description, delivery date, all other attributes different -> returns true
         Order editedAlice = new OrderBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameOrder(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new OrderBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.isSameOrder(editedAlice));
+
+        // different address, all other attributes same -> returns false
+        editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(ALICE.isSameOrder(editedAlice));
+
+        // different order description, all other attributes same -> returns false
+        editedAlice = new OrderBuilder(ALICE).withOrderDescriptions(VALID_BERRY_ORDER).build();
+        assertFalse(ALICE.isSameOrder(editedAlice));
+
+        // different delivery date, all other attributes same -> returns false
+        editedAlice = new OrderBuilder(ALICE).withDeliveryDate(VALID_DELIVERY_DATE_BOB).build();
         assertFalse(ALICE.isSameOrder(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
@@ -87,9 +99,9 @@ public class OrderTest {
         editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns true
+        // different tags -> returns false
         editedAlice = new OrderBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.equals(editedAlice));
+        assertFalse(ALICE.equals(editedAlice));
 
         // different order description -> returns false
         editedAlice = new OrderBuilder(ALICE).withOrderDescriptions(VALID_BERRY_ORDER).build();
