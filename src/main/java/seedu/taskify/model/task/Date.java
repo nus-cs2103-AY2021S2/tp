@@ -18,8 +18,8 @@ public class Date {
     public static final String CORRECT_FORMAT_BUT_INVALID_DATE =
             "Maybe check if your specified date is an actual date and time?";
     public static final String MESSAGE_CONSTRAINTS = "Date should be of the format \"yyyy-mm-dd hh:mm\"";
-    public static final String MESSAGE_CONSTRAINTS_WITHOUT_TIME = "For the view command, Date should " +
-            "be of the format \"yyyy-mm-dd\"";
+    public static final String MESSAGE_CONSTRAINTS_WITHOUT_TIME = "For the view command, Date should "
+            + "be of the format \"yyyy-mm-dd\"";
     public static final String NOT_LEAP_YEAR_ERROR = "Oops! The specified date is not a leap year!";
     private static final String END_OF_DAY_TIME = "23:59";
     public final String value;
