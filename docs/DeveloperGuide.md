@@ -545,4 +545,36 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Finding clients by name
+
+1. Finding clients using (a) name(s) as keyword
+
+  1. Test case: `find Alex` <br>
+    Expected: All clients with that has "Alex" in their name will be displayed in the list
+
+  1. Test case: `find Alex Bernice` <br>
+    Expected: All clients with that has "Alex" OR "Bernice" in their name will be displayed in the list
+
+  1. Test case: `find` <br>
+    Expected: Error message "Invalid command format!" followed by instructions on how to properly use the find 
+command
+
+## Filtering clients using attributes. Attributes include a/ADDRESS, g/GENDER, t/TAG, age/[AGE] or 
+age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
+
+  1. Test case: `filter a/Clementi g/M t/medical i/Protecc age/23-30` <br>
+    Expected: Returns a list of clients who have "Clementi" in their address, or <br>
+      clients who are Male, or <br>
+      clients with the "medical" tag, or <br>
+      clients with the insurance plan "Protecc", or <br>
+      clients aged between 23 and 30 years old, inclusive
+
+  1. Test case: `filter`, `filter 20`, `filter Clementi` <br>
+    Expected: Error message "Invalid command format!" followed by instructions on how to properly use the filter 
+command
+
+  1. Test case: `filter age/abc`, `filter age/-1`, `filter age/30-20`, `filter age/ab-20`, `filter age/-1-20` <br>
+    Expected: Error message "Invalid age (range) input!" followed by instructions on how to properly use the filter 
+command
 -->
