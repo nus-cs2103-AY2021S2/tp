@@ -15,14 +15,21 @@ import org.junit.jupiter.api.Test;
 
 import dog.pawbook.logic.commands.AddDogCommand;
 import dog.pawbook.logic.commands.AddOwnerCommand;
+import dog.pawbook.logic.commands.AddProgramCommand;
 import dog.pawbook.logic.commands.DeleteDogCommand;
 import dog.pawbook.logic.commands.DeleteOwnerCommand;
+import dog.pawbook.logic.commands.DeleteProgramCommand;
+import dog.pawbook.logic.commands.EditDogCommand;
+import dog.pawbook.logic.commands.EditDogCommand.EditDogDescriptor;
 import dog.pawbook.logic.commands.EditOwnerCommand;
 import dog.pawbook.logic.commands.EditOwnerCommand.EditOwnerDescriptor;
+import dog.pawbook.logic.commands.EditProgramCommand;
+import dog.pawbook.logic.commands.EditProgramCommand.EditProgramDescriptor;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.commands.ListCommand;
+import dog.pawbook.logic.commands.ViewCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 import dog.pawbook.model.managedentity.dog.Dog;
@@ -30,9 +37,13 @@ import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.program.Program;
 import dog.pawbook.testutil.DogBuilder;
 import dog.pawbook.testutil.DogUtil;
+import dog.pawbook.testutil.EditDogDescriptorBuilder;
 import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
+import dog.pawbook.testutil.EditProgramDescriptorBuilder;
 import dog.pawbook.testutil.OwnerBuilder;
 import dog.pawbook.testutil.OwnerUtil;
+import dog.pawbook.testutil.ProgramBuilder;
+import dog.pawbook.testutil.ProgramUtil;
 
 public class PawbookParserTest {
 
@@ -53,6 +64,13 @@ public class PawbookParserTest {
     }
 
     @Test
+    public void parseCommand_addProgram() throws Exception {
+        Program program = new ProgramBuilder().build();
+        AddProgramCommand command = (AddProgramCommand) parser.parseCommand(ProgramUtil.getAddCommand(program));
+        assertEquals(new AddProgramCommand(program), command);
+    }
+
+    @Test
     public void parseCommand_deleteOwner() throws Exception {
         DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
                 DeleteOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + ID_ONE);
@@ -67,12 +85,37 @@ public class PawbookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_deleteProgram() throws Exception {
+        DeleteProgramCommand command = (DeleteProgramCommand) parser.parseCommand(
+                DeleteProgramCommand.COMMAND_WORD + " " + Program.ENTITY_WORD + " " + ID_ONE);
+        assertEquals(new DeleteProgramCommand(ID_ONE), command);
+    }
+
+    @Test
+    public void parseCommand_editOwner() throws Exception {
         Owner owner = new OwnerBuilder().build();
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(owner).build();
         EditOwnerCommand command = (EditOwnerCommand) parser.parseCommand(EditOwnerCommand.COMMAND_WORD + " "
                 + Owner.ENTITY_WORD + " " + ID_ONE + " " + OwnerUtil.getEditOwnerDescriptorDetails(descriptor));
         assertEquals(new EditOwnerCommand(ID_ONE, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editDog() throws Exception {
+        Dog dog = new DogBuilder().build();
+        EditDogDescriptor descriptor = new EditDogDescriptorBuilder(dog).build();
+        EditDogCommand command = (EditDogCommand) parser.parseCommand(EditDogCommand.COMMAND_WORD + " "
+                + Dog.ENTITY_WORD + " " + ID_ONE + " " + DogUtil.getEditDogDescriptorDetails(descriptor));
+        assertEquals(new EditDogCommand(ID_ONE, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editProgram() throws Exception {
+        Program program = new ProgramBuilder().build();
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder(program).build();
+        EditProgramCommand command = (EditProgramCommand) parser.parseCommand(EditProgramCommand.COMMAND_WORD + " "
+                + Program.ENTITY_WORD + " " + ID_ONE + " " + ProgramUtil.getEditProgramDescriptorDetails(descriptor));
+        assertEquals(new EditProgramCommand(ID_ONE, descriptor), command);
     }
 
     @Test
@@ -101,6 +144,30 @@ public class PawbookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Program.ENTITY_WORD) instanceof ListCommand);
+
+        // plural works too
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + "s")
+                instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD + "s")
+                instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Program.ENTITY_WORD + "s")
+                instanceof ListCommand);
+
+        // and so does many trailing s, it's a hidden feature
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + "sssss")
+                instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD + "sssss")
+                instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Program.ENTITY_WORD + "sssss")
+                instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), (
+                ) -> parser.parseCommand(ViewCommand.COMMAND_WORD));
+
+        assertEquals(parser.parseCommand(ViewCommand.COMMAND_WORD + " " + ID_ONE), new ViewCommand(ID_ONE));
     }
 
     @Test
