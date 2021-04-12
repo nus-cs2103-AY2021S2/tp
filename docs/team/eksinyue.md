@@ -50,8 +50,8 @@ Given below are my contributions to the project.
   - Developer Guide:
 
     - Added design details for Model component of the project [\#89](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/89)
-    - Added implementation details for financal record related feature [\#256](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/256)
-    - Added implementation details for month related feature [\#256](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/256)
+    - Added implementation details for financal record related feature [\#256](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/256) and add [AddFrActivityDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/AddFrActivityDiagram.png)
+    - Added implementation details for month related feature [\#256](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/256) and add [ViewMonthSequenceDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/ViewMonthSequenceDiagram.png) and [ViewMonthActivityDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/ViewMonthActivityDiagram.png)
 
   - Volunteered to make cosmetic changes to all documentations [\#243](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/246/files), [\#246](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/246/files)
 
