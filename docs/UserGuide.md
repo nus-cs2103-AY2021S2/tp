@@ -561,7 +561,7 @@ Clears the contacts list from all contacts.
 
 Format: `clearcontact`
 
-
+<div style="page-break-after: always;"></div>
 ### User Interface Feature
 Dictionote allows the user to manipulate the user-interface via command.
 The following are the 5 region where the user can manipulate
@@ -758,7 +758,7 @@ Dictionote will discard all data and start with an empty data file at the next r
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## FAQ
 
 **My data is missing after I edited my JSON file.**
@@ -774,7 +774,7 @@ _Details coming soon ..._
   Refer to [this](https://nus-cs2103-ay2021s2.github.io/website/se-book-adapted/chapters/gitAndGithub.html#creating-prs) 
   for details on how to do a pull request.
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Command summary
 
 Action | Format, Examples
