@@ -3,8 +3,14 @@ package seedu.plan.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.plan.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.plan.commons.core.LogsCenter;
 import seedu.plan.model.Model;
 import seedu.plan.storage.JsonModule;
+
+
 
 /**
  * Finds and list module information to the user.
@@ -25,6 +31,8 @@ public class InfoCommand extends Command {
     public static final String MESSAGE_NOT_FOUND = "No such module in the module list";
 
     public static final String MESSAGE_FOUND = "Specified module information displayed";
+
+    public static final Logger LOGGER = LogsCenter.getLogger(InfoCommand.class);
 
     private String moduleCode;
 
@@ -48,18 +56,24 @@ public class InfoCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        LOGGER.log(Level.INFO, "----------------[EXECUTE][START][INFOCOMMAND]");
         JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
         assert informationOfModules != null : "Module.json is not found";
 
         JsonModule foundModule = findMatchingModule(informationOfModules);
         if (noArgument()) {
+            LOGGER.log(Level.INFO, "[EXECUTION SUCCESS][DISPLAY ALL MODULE INFO]");
             model.setCurrentCommand(COMMAND_WORD);
             return new CommandResult(MESSAGE_SUCCESS);
         } else if (foundModule == null) {
+            LOGGER.log(Level.INFO, "[EXECUTION SUCCESS][MODULE NOT FOUND]");
             return new CommandResult(MESSAGE_NOT_FOUND);
         } else {
+            LOGGER.log(Level.INFO, "[FOUND MODULE INFORMATION]");
             model.setCurrentCommand(COMMAND_WORD_SINGLE_MODULE);
+            LOGGER.log(Level.INFO, "[CURRENT COMMAND SET]");
             model.getPlans().setFoundModule(foundModule);
+            LOGGER.log(Level.INFO, "[EXECUTION SUCCESS][MODULE FOUND]");
             return new CommandResult(MESSAGE_FOUND);
         }
 
@@ -80,11 +94,13 @@ public class InfoCommand extends Command {
      */
     public JsonModule findMatchingModule(JsonModule[] informationOfModules) {
         assert informationOfModules != null : "Module information not found";
+        LOGGER.log(Level.INFO, "[LOOKING FOR MODULE INFORMATION]");
         for (int i = 0; i < informationOfModules.length; i++) {
             if (informationOfModules[i].getModuleCode().equals(this.moduleCode)) {
                 return informationOfModules[i];
             }
         }
+        LOGGER.log(Level.INFO, "[SEARCH FOR MODULE INFORMATION COMPLETE]");
         return null;
     }
 
