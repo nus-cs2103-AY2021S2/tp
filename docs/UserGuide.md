@@ -242,7 +242,7 @@ You can use the sample data pre-loaded in the application to play around and get
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#4-features) section below for details of each command.
+6. Refer to the [Features](#4-commands-and-features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
