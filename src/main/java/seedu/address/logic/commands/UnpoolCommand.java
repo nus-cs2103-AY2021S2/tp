@@ -27,6 +27,7 @@ public class UnpoolCommand extends Command {
 
     /**
      * Creates an UnpoolCommand to delete the pool at the specified {@code targetIndex}.
+     *
      * @param targetIndex Target index of the pool to be deleted.
      */
     public UnpoolCommand(Index targetIndex) {

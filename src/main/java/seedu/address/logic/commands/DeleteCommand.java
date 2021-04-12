@@ -33,6 +33,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Creates a DeleteCommand to remove passengers at the specified {@code targetIndexes}.
+     *
      * @param targetIndexes The list of target indexes for passengers to be deleted.
      */
     public DeleteCommand(List<Index> targetIndexes) {

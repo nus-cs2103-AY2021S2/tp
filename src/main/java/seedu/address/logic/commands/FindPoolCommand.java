@@ -26,6 +26,7 @@ public class FindPoolCommand extends Command {
 
     /**
      * Creates a FindPoolCommand to filter the list of pools with the specified {@code predicate}.
+     *
      * @param predicate Predicate provided to filter the list of pools with.
      */
     public FindPoolCommand(Predicate<Pool> predicate) {

@@ -59,6 +59,7 @@ public class EditCommand extends Command {
 
     /**
      * Creates an EditCommand to edit passengers at the specified {@code index}.
+     *
      * @param index Index of the passenger in the filtered passenger list to edit.
      * @param editPassengerDescriptor Details to edit the passenger with.
      */

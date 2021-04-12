@@ -68,6 +68,7 @@ public class PoolCommand extends Command {
     /**
      * Creates a PoolCommand that adds a pool specified by {@code driver}, {@code tripDay}, {@code tripTime},
      * {@code tags}, and with passengers specified by {@code indexes}.
+     *
      * @param driver Driver of the pool added.
      * @param indexes Indexes of the passengers to be added to the pool.
      * @param tripDay Trip day of the pool added.
