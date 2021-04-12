@@ -35,11 +35,11 @@ at all times.
 ## **Value Proposition**
 
 In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training,
-grooming and workshops. With many moving parts daily, managing operations  can get overwhelming.
-PawBook is an all-in-one management system to help dog school managers to maintain organisation of their dog schools.
-Besides keeping track of all the dogs under their care, it also allows users to plan their schedule and manage programs
-and classes. At present, there is no such application to help dog school owners to organise and manage their dog school
-currently. This application serves to increase the effectiveness and efficacy of dog schools managers.
+grooming and workshops. With many moving parts daily, managing operations can get overwhelming.
+Pawbook is an all-in-one management system to help dog school managers to maintain organization of their dog schools.
+Besides keeping track of all the dogs under their care, it also allows dog school managers to plan their schedule and 
+manage programs and classes. At present, there is no such application that helps dog school managers organize and manage 
+their school. This application serves to increase the efficacy of dog schools. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -197,7 +197,7 @@ Step 1. The user launches the application and executes `add owner n/BRUCE p/9201
 
 Step 2. The owner is added to the model.
 
-Below is an example activity diagram for a valid add command from the user.
+Below is an example activity diagram for a valid delete command from the user.
 
 ![AddActivityDiagram](images/DeleteActivityDiagram.png){: .center-image}
 
@@ -223,23 +223,21 @@ The various add commands will similarly perform the reverse of the delete comman
 
 ### Edit feature
 
-Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit` some features of an owner. By entering the edit command with the correct identification number of the owner to be edited, the specified features of the owner will be modified accordingly.
+Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit` some attribute of an owner. By entering the edit command with the target owner ID, the attributes of the owner will be modified accordingly.
 
-In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `edit` command keyword to indicate the correct entity type to be edited. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
+In order to generate the edit command, the user indicates the entity type to be edited, followed by the ID number. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
 
-Below is an example activity diagram for a valid view command from the user.
+Below is an example activity diagram for a valid edit command from the user.
 
 ![EditActivityDiagram](images/EditActivityDiagram.png){: .center-image}
 
-Figure 3.1: Activity diagram for edit command in main page view.
+Below is the sequence diagram for the Edit Command. 
 
 ![EditActivityDiagram](images/EditSequenceDiagram.png){: .center-image}
 
-Figure 3.2: Sequence diagram for EditOwnerCommand in main page view.
+Below is a more detailed look at execute method of the EditCommand.
 
 ![EditOwnerDetailedSequenceDiagram](images/EditOwnerDetailedSequenceDiagram.png){: .center-image}
-
-Figure 3.3: More-detailed sequence diagram for EditOwnerCommand in main page view.
 
 1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
 2. The `PawbookParser` identifies the user command and creates a `EditOwnerCommandParser` object. It then calls the `EditOwnerCommandParser`'s `parse()`method with user input as the parameter.
@@ -249,11 +247,11 @@ Figure 3.3: More-detailed sequence diagram for EditOwnerCommand in main page vie
 
 ### Find feature
 
-Pawbook allows the users to `find` an entity based on keyword searches. The `find` function entertains multiple keyword
-searches and reveals the entire list of commands that match one or more of the results.
+Pawbook allows the users to `find` an entity based on keyword searches. The `find` function allows for multiple keyword
+searches and reveals the entire list of entities that match one or more of the results.
 
-When the user enters a valid command with the keyword searches, the arguments are parsed by the `FindCommmandParser` that
-converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` object
+When the user enters a valid command with the search keywords, the arguments are parsed by the `FindCommmandParser` which
+converts the string of arguments into a list. The list is subsequently passed on to a `NameContainsKeywordsPredicate` object
 that uses the list of keywords to find the search results based on the supplied keywords. Take note that Find Command supports
 substring searching, so for example if there is an Alice in the program, searching "Ali" will also return Alice as result.
 
@@ -526,9 +524,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Missing mandatory dog/owner/program details.
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies missing details. <br>
-    Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 * 1b. Entity already exists in the program.
     * 1b1. Pawbook shows an error message.
@@ -798,7 +796,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file <br>
+    1. Double-click the jar file. <br>
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
@@ -819,7 +817,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
 1. Adding a dog
 
-    1. Prerequisites: Pawbook is launched and running.
+    1. Prerequisites: Pawbook is launched and running. Ensure that an owner with ID 1 is present. 
 
     1. Test case: `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active` <br>
        Expected: If database does not already contain a Bruce, a successful command result should show.
