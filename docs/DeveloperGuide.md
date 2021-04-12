@@ -293,6 +293,7 @@ The following sequence diagram shows how deleting a session works:
 ![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
+Note that: this feature is shared below, in deletion of an entire recurring session.
 
 ### Recurring Session
 Recurring Session is facilitated by the `RecurringSession` class which stores specific details of
@@ -300,13 +301,15 @@ a tuition session with one student, that recurs. Similar to `Session` each recur
 and a `Student` can have multiple `RecurringSession`s. <br>
 The class `RecurringSession` inherits from `Session`, albeit with additional properties `Interval` and `LastSessionDate`.
 This is because a recurring session can be defined a session that recurs, by given intervals, and up till a last date of session. <br>
-
+![SessionAndRecurringSessionClassDiagram](images/shion/SessionAndRecurringClassDiagram.png) <br>
 Note that:
 - `SessionDate` property inherited from `Session`, now serves as the `FirstSessionDate` in `RecurringSession`
 - Creation of a `RecurringSession` with zero recurrence is not allowed by the user. <br>
   i.e. The first and last dates cannot be the same.<br>
   This is so that from the perspective of the user, the notion of a `Session` and `RecurringSession` will not overlap; 
   a recurring session must strictly recur once or more.
+- `delete_session` as mentioned [above](#delete-session-feature) applies on subclass recurring sessions as well, to delete the entire
+recurring session.
 
 #### Add Recurring Session Feature
 The add recurring session feature allows users to add tuition sessions that recur by a given interval, at least once.

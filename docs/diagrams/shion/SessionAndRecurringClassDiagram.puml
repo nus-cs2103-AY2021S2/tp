@@ -1,0 +1,29 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR_T1
+show members
+Session <|--- RecurringSession
+        class Session {
+            - sessionDate : SessionDate
+            - duration : Duration
+            - subject : Subject
+            - fee : Fee
+            + isPossibleEndTime()
+            + isDateTimeOverlapping()
+            +isOverlapping()
+        }
+
+        class RecurringSession {
+            - interval: Interval
+            - lastSessionDate : SessionDate
+            + isValidEnd()
+            + lastValidEndOnOrBefore()
+            + hasSessionOnDate()
+            + buildSessionOnDate()
+            + lastSessionOnOrBefore()
+            + numOfSessionsBetween()
+            + isOverlapping()
+        }
+@enduml
