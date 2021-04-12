@@ -442,7 +442,7 @@ in the `smartLibStateList`, and the `currentStatePointer` is shifted to the newl
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addreader n/David …​` to add a new reader. The `addreader` command also calls `Model#commitSmartLib()`,
+Step 3. The user executes `addreader r/Tom p/81688168 e/tom@email.com a/Queenstown` to add a new reader. The `addreader` command also calls `Model#commitSmartLib()`,
 causing another modified SmartLib state to be saved into the `smartLibStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -492,7 +492,7 @@ will usually not call `Model#commitSmartLib()`, `Model#undoSmartLib()` or `Model
 
 Step 6. The user executes `clear-everything-in-my-smartlib`, which calls `Model#commitSmartLib()`. Since the `currentStatePointer` is not pointing
 at the end of the `smartLibStateList`, all SmartLib states after the `currentStatePointer` will be purged. Reason: It no
-longer makes sense to redo the `addreader r/Tom p/81688168 e/tom@email.com a/Queestown` command. This is the behavior that most modern desktop applications
+longer makes sense to redo the `addreader r/Tom p/81688168 e/tom@email.com a/Queenstown` command. This is the behavior that most modern desktop applications
 follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
