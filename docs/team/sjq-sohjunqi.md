@@ -27,7 +27,7 @@ Given below are my contributions to the project.
 <div style="page-break-after: always;"></div>
 
 * **New Feature**: Implemented progress report feature
-    * What it does: Users are able to use this feature to generate a progress report based on their food intakes and their current diet plan. 
+    * What it does: Users are able to use this feature to generate a progress report based on their food intakes and their current diet plan.
     * Justification: This helps users to track their progress and see how much they have or have not adhered to the diet plan's requirements.
 
 * **Project management**:

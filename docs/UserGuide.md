@@ -383,7 +383,7 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 </div>
 
 <div markdown="span" class="alert alert-primary">
-  ✏️ <strong>Note:</strong> The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places. 
+  ✏️ <strong>Note:</strong> The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places.
 </div>
 
 **Expected output:**
@@ -568,7 +568,7 @@ This plan is aimed at individuals who are intending to gain healthy weight in a 
 
 ### A1.4 Clean Bulk
 
-The clean bulk is a process which bodybuilders use to gain lean muscle mass. The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and 
+The clean bulk is a process which bodybuilders use to gain lean muscle mass. The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and
 processed foods to hit the calorie intake.
 
 **Classification:** `Weight Gain`

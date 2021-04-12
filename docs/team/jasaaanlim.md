@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     * Justification: This is required as we want our users to be able to save their food intake lists and regain them when they reopen the application.
 
 * **New Feature**: Implemented part of `TemplateInitializer` alongside Soon Wee + `reset` command
-    * What it does: The TemplateInitializer initialises a set of default sample template data used during the first load or when the reset command is used. The reset command resets the data in the application to blank, or the provided sample data. 
+    * What it does: The TemplateInitializer initialises a set of default sample template data used during the first load or when the reset command is used. The reset command resets the data in the application to blank, or the provided sample data.
     * Justification: When the user loads DietLAH! for the first time or without an existing data, sample data will be loaded to the application to give the user a feel of how it works and test the functionalities. Reset command: At any time, the user may wish to reset the data in the application to either the blank state, or to the sample data provided (e.g. to test out the application for the first time). This provides an easy way to do so, without having to manually edit the .json files which may be unfamiliar to some.
 
 * **Project management**:
