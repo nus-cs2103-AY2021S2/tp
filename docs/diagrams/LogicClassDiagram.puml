@@ -19,8 +19,10 @@ Class Prefix
 
 package Command {
 Class XYZCommand
+Class XYZPromptCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Class CommandState
 }
 
 package CommandState {
@@ -35,6 +37,7 @@ Class XYZIntermediate
 
 Interface Logic <<Interface>>
 Class LogicManager
+Class StatefulLogicManager
 }
 
 package Model{
@@ -45,20 +48,24 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
+StatefulLogicManager --> "1" BookingSystemParser
 LogicManager -->"1" BookingSystemParser
 BookingSystemParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
+XYZCommandParser ..> XYZPromptCommand : creates >
+XYZPromptCommand .down.> CommandState
 XYZCommandParser ..|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
-ArgumentTokenizer .left.> ArgumentMultimap
+ArgumentTokenizer .right.> ArgumentMultimap
 XYZCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
 XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
+XYZPromptCommand -right-|> Command
 LogicManager .left.> Command : executes >
 
 XYZCommandState -up-|> CommandState
@@ -76,6 +83,7 @@ note left of XYZCommand: XYZCommandState = AddBookingCommandState, \nAddPersonCo
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
+StatefulLogicManager -down-> CommandState
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
 @enduml

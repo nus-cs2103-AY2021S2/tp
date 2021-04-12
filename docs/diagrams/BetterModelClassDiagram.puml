@@ -18,16 +18,20 @@ NonOverlappingBookingList o-right-> Booking
 UniqueVenueList o-right-> Venue
 
 Person -up-> "*" Tag
+Venue -up-> "*" Tag
+Booking -up-> "*" Tag
 
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 
-Booking *--> Person
-Booking *--> Venue
+Booking *--> Email
+Booking *--> VenueName
 Booking *--> DateTimeRange
 
 Venue *--> VenueName
 Venue *--> Capacity
+Venue *--> Description
+
 @enduml

@@ -20,10 +20,12 @@ public class DeletePersonCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the email used in the displayed person list.\n"
+            + "All bookings by this person will also be deleted.\n"
             + "Parameters: e/EMAIL\n"
             + "Example: " + COMMAND_WORD + " e/pam@example.com";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s \n"
+            + "All relevant bookings are deleted.\n";
 
     private final Email email;
 

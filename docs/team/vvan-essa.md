@@ -20,9 +20,9 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can make mistakes in the addition of venue details, and the app should provide a convenient way to rectify them.
 
 * **New Feature**: Added the ability to find venues by any of their attributes.
-  * What it does: allows the user to find any previously added venues by their attributes.
-  * Justification: This feature improves the product significantly because a user can efficiently search for a venue with the specified attribute(s).
-
+  * What it does: allows the user to filter any previously added venues by their attributes.
+  * Justification: This feature improves the product significantly because a user can efficiently search for a venue with the specified field.
+  
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=vvan-essa&tabRepo=AY2021S2-CS2103-W17-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false).
 
 * **Project management**:
