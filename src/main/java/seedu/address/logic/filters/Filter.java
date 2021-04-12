@@ -1,14 +1,20 @@
 package seedu.address.logic.filters;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import seedu.address.model.customer.Customer;
 
-public abstract class AbstractFilter {
+public abstract class Filter {
     protected final String filterString;
 
-    public AbstractFilter(String filterString) {
+    public Filter(String filterString) {
+        Objects.requireNonNull(filterString);
+        if (filterString.isEmpty()) {
+            throw new IllegalArgumentException("Search string cannot be empty!");
+        }
+
         this.filterString = filterString.trim();
     }
 
