@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
 
             // Check if lastFlag has content
             if ((lastFlag.split(" ").length > 1
-                    || lastFlag.equals(AddCommand.COMMAND_WORD + " "))
+                    || lastFlag.startsWith(AddCommand.COMMAND_WORD + " "))
                     && !availFlags.isEmpty()) {
 
                 commandBox.setAndAppendFlag(availFlags.get(0) + " ");
