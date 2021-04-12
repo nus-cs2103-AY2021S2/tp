@@ -631,7 +631,7 @@ Use case ends.
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 100 members and tasks without a noticeable sluggishness in performance for typical usage.
 3. Application data should be saved locally.
-4. Application should be able to run normally without any internet
+4. Application should be able to run normally without any internet.
 
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
