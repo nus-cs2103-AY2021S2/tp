@@ -955,6 +955,33 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
     1. Other incorrect delete commands to try: `shownote`, `shownote x`, `...` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
+### Finding Content
+1. Finding a specific Content in the Dictionary.
+
+  1. Prerequisites: List all contents using the `listcontent` command. Multiple contents in the list.
+
+  1. Test case: `findcontent hello`<br>
+     Expected: No content is shown. The panel should be empty.
+
+  1. Test case: `findcontent implement`<br>
+     Expected: 4 contents should be shown in the Dictionary list panel.
+
+  1. Other incorrect delete commands to try: `findcontent`, `findcontent `, `...` (where ` ` is a space)<br>
+     Expected: Error message should be shown, stating that there is an 'invalid command format'.
+
+### Showing content/definition
+1. Showing a specific content/definition
+
+  1. Prerequisites: Have some contents available in the Dictionary List Panel, commands to facilitate that will be `listcontent`, `findcontent programming`, `listdef`, etc.
+
+  1. Test case: `showdc 1`<br>
+     Expected: First content in the Dictionary List Panel is shown on the Dictionary Content Panel. Details of the showed content is shown there.
+
+  1. Test case: `showdc 0`<br>
+     Expected: No content is showed. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect delete commands to try: `showdc`, `showdc x`, `...` (where `x` is larger than the list size)<br>
+     Expected: Similar to previous.
 
 ### Modifying the UI through command
 For more information regarding the panel layout and divider position, 
