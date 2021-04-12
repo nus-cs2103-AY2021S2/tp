@@ -13,10 +13,8 @@ We target JC/Secondary school teachers as they are the teachers who have a great
 compared to primary school schools, yet do not have a standardised platform for communication unlike teachers
 in tertiary schools.
 
-_Teaching Assistant_ mainly uses a Command Line Interface (CLI). This means that a user can use the application by
-typing into a Command Box. For users who type fast, they can use this application more efficiently than other
-applications that heavily use Graphical User Interface (GUI), where a user uses the application by interacting with
-graphical features such as buttons.
+_Teaching Assistant_ mainly uses a Command Line Interface ([CLI](#terminology)). For users who type fast, they can use
+this application more efficiently than other applications that heavily use Graphical User Interface ([GUI](#terminology)).
 
 If you are interested, jump to [Quick Start](#quick-start) to learn how to learn how to start using 
 _Teaching Assistant_.
@@ -28,6 +26,10 @@ An image of our UI is shown below!
 ---
 
 - [Quick Start](#quick-start)
+- [Structure of User Guide](#structure-of-the-user-guide)
+    - [Reading this User Guide](#reading-this-user-guide)
+        - [Terminology](#terminology)
+        - [General Syntax and Symbols](#general-symbols-and-syntax)
 - [Features](#features)
     - [Viewing help: `help`](#viewing-help-help)
     - [Contact](#adding-a-contact-cadd)
@@ -64,10 +66,54 @@ An image of our UI is shown below!
 1. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
    * **`clist`**: Lists all contacts in Teaching Assistant.
-   * **`cadd n/Danny p/98765432 e/danny@email.com`**: Adds a contact named `Danny` to Teaching Assistant.
-   * **`efind consultation 1`**: Finds an entry named `consultation 1' in Teaching Assistant.
+   * **`cadd n/Danny Tan p/98765432 e/danny@email.com`**: Adds a contact named `Danny` to Teaching Assistant.
+   * **`efind consultation`**: Finds an entry named `consultation` or entries that have `consultation` in their names 
+     in Teaching Assistant.
    * **`exit`**: Exits the app.
 1. Refer to the [Features](#features) below for details of each command.
+
+---
+
+## Structure of the User Guide
+
+Worried about how tedious it will be to read this document? Not to worry! We have structured this User Guide in a way
+that makes it easy and quick for you to find what you need. In this next subsection,
+[Reading this User Guide](#reading-this-user-guide), you can find some tips we have on how to read this guide. The
+next section, [Features](#features), documents the main functionalities of _Teaching Assistant_ and how to use them.
+
+The main functions of _Teaching Assistant_ can be summmarised as the following:
+* Contact management
+* Entry (schedules) management
+
+If you prefer a brief overview of all the commands, head over to [command summary](#command-summary) which provides you
+with a table of all available commands.
+
+### Reading this User Guide
+This section introduces you to some technical terms and syntax that will be used throughout the User Guide.
+You may want to read through this section thoroughly first before moving on to the next sections.
+
+##### Terminology
+The image of our GUI is shown below, annotated with descriptions of each GUI component we refer to in this User Guide.
+
+![Annotated GUI](images/annotatedUi.png)
+
+The table below defines some technical terminology used throughout the User Guide.
+
+Terms | Meaning
+----------------- | -------------------
+CLI | Command Line Interface. In the context of _Teaching Assistant_, this refers to the command box where you can type your commands.
+GUI | Graphical User Interface. It refers to the part of the application you interact with through graphical features such as buttons.
+JSON | JavaScript Object Notation. Your Teaching Assistant data is stored as a JSON file format. You can find out more on their official website [here](https://www.json.org/json-en.html)!
+
+##### General Syntax
+The table below explains the general syntax used throughout the User Guide.
+
+Syntax | Meaning
+----------------- | -------------------
+`command` | This markup is used to specify text that can be entered into the command box.
+:bulb: | This icon indicates that the following text is a tip.
+:exclamation: | This icon indicates that the following text is a warning.
+:information_source: | This icon indicates that the following text is a note.
 
 ---
 
@@ -76,11 +122,11 @@ An image of our UI is shown below!
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `cadd n/NAME`, `NAME` is a parameter which
-  can be used as `cadd n/John Doe`.
+  can be used as `cadd n/Danny Tan`.
 * Items in the square brackets are optional. Users can choose to leave the field empty.
 * Items with `...` after them can be used multiple times including zero times. e.g. `[t/TAG]...` can be used as `  ` 
   (i.e. 0 times), t/friend, t/friend t/family etc.
-* Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also
+* Parameters can be in any order. e.g. if the command specifies `n/NAME p/NUMBER`, `p/NUMBER n/NAME` is also
   acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
   the parameter will be taken. e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -121,8 +167,8 @@ An entry's name can be tagged to a contact to easily filter for contacts related
 
 Example(s):
 
-* `cadd n/Danny Tan p/98765432 e/danny@email.com t/student t/english t/consultation 1`
-* `cadd n/Amy Yeoh p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
+* `cadd n/Danny Tan p/98765432 e/danny@email.com t/student t/english t/consultation1`
+* `cadd n/Amy Yeoh p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting1`
 
 Scenario:
 You want to save the contact details of your students so that you can easily obtain their details when you want to
