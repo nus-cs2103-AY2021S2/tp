@@ -545,6 +545,7 @@ Format: `mostfreqcontact`
 * Each successful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
 * The ordering of the contacts list after sorting will replace the original ordering. (i.e., the sorted ordering is stored by Dictionote)
 
+<div style="page-break-after: always;"></div>
 Example:
 * Assume the following:
     * Five emails were sent to `Charlotte Oliveiro`.
