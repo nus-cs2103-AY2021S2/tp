@@ -87,7 +87,7 @@ Given below are my contributions to the project.
 1. Commented on the following PRs: [#50](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/50)
    , [#52](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/52)
    , [#54](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/54), as well as issues assigned to me,
-   as well as some that were not. Link to issues provided below.
+   and some that were not. Link to issues provided below.
    
 2. Issues: 
    [#71](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/71),
