@@ -17,7 +17,7 @@ Given below are my contributions to the project.
     * Highlights: This feature has a similar nature to the find feature in terms of implementation, however the implementation of searches via attributes was tricky since there are different parsing methods to implement for different attributes.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=knitidceladon23&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=KnitidCeladon23&tabRepo=AY2021S2-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code&authorshipIsBinaryFileTypeChecked=false)
-  , [Pull requests](https://github.com/AY2021S2-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+author%3AKnitidCeladon23) 
+  , [Pull requests](https://github.com/AY2021S2-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+author%3AKnitidCeladon23)
   , [Commits](https://github.com/AY2021S2-CS2103T-W12-3/tp/commits?author=knitidceladon23)
 
 * **Documentation**:
@@ -36,13 +36,13 @@ Given below are my contributions to the project.
       [\#60](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/60),
       [\#136](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/136)
     * Reported bugs and suggestions for other teams in the class (e.g.
-    [\#236](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/236),
-    [\#237](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/237),
-    [\#238](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/238),
-    [\#239](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/239),
-    [\#240](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/240),
-    [\#241](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/241),
-    [\#242](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/242),
+      [\#236](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/236),
+      [\#237](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/237),
+      [\#238](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/238),
+      [\#239](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/239),
+      [\#240](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/240),
+      [\#241](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/241),
+      [\#242](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/242),
       [\#243](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/243),
       [\#244](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/244),
       [\#245](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/245)

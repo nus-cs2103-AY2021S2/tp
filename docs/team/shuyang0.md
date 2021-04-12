@@ -47,18 +47,18 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
   * Added documentation for the `note` feature: [\#46](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/46)
   * Added functionalities overview table: [\#46](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/46)
   * Proofreading and general formatting: [\#145](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/145)
-  
+
 
 * **Developer Guide:**
   * Added all user stories: [\#22](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/22)
   * Added implementation details of the `note` feature: [\#143](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/143)
   * Added implementation details of the `Gender` and `Birthdate` fields: [\#143](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/143)
   * Added 2 sequence diagrams and updated 2 class diagrams: [\#143](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/143)
-  
+
 
 * **Others:**
   * Added initial UI mockup: [\#12](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/12)
 
 ### Community
-  * Contributed to forum discussions (example: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/281))
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/207), [2](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/208), [3](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/210), [4](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/212), [5](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/213))
+* Contributed to forum discussions (example: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/281))
+* Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/207), [2](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/208), [3](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/210), [4](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/212), [5](https://github.com/AY2021S2-CS2103-T16-3/tp/issues/213))
