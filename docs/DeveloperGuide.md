@@ -191,14 +191,15 @@ additional parameter in the `NoteCommand`.
 Upon executing a `NoteCommand`, a different sequence of actions is performed by the `NoteCommand`, depending on the
 `Prefix` stored in the `NoteCommand`. 
 
+Viewing notes will simply create and return a `CommandResult`. This `CommandResult` contains the `Person` object
+representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
+`Person` in the `NotesWindow`.
+
 Recording and clearing notes will call the respective methods of the appropriate
 `Person` that the user has indicated. The `Person` will return an updated `Person` object, and `NoteCommand`
 will proceed to call the `ModelManager` to replace the original `Person` with the updated `Person`. A `CommandResult`
 is then created and returned.
 
-Viewing notes will simply create and return a `CommandResult`. This `CommandResult` contains the `Person` object
-representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
-`Person` in the `NotesWindow`.
 
 ### Listing, Finding and filtering clients
 
