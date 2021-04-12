@@ -152,7 +152,7 @@ As Tutor Tracker is an application to aid users in viewing a tutor's profile, ha
 The proposed tutor features is to facilitate the user to keep track of his/her list of tutors.
 It implements the following operations:
 * `Add tutor` - Adds a tutor to the list of tutors.
-* `Edit tutor` - Edit a tutor from the list of tutors.
+* `Edit tutor` - Edit an existing tutor from the list of tutors.
 * `Delete tutor` - Delete a tutor from the list of tutors.
 * `Find tutor` - Find a tutor from the list of tutors by name.
 * `View tutor` - View a tutor by index from the list of tutors.
@@ -176,23 +176,6 @@ It implements the following operations:
 * `View schedules` - View the list of appointments that is happening on the queried date.
 * `List all appointments` - Show an unfiltered list of the appointments.
 
-Diagram below shows the activity diagram of the `add_appointment` command.
-
-![Activity Diagram of Add Appointment](images/appointment/appointmentActivity.png)
-
-Steps for the execution of the `AddAppointmentCommand` (assuming that no errors are 
-encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddAppointmentCommandParser`.
-3. The `AddApppointmentCommandParser` will then parse the inputs, and then validate
-   the parameters and create an `Appointment` object.
-4. The `AddAppointmentCommandParser` will then create and `AddAppointmentCommand` 
-   with the created `Appointment` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call 
-   the `ModelManager`'s `addAppointment()`, then create a `CommandResult` object and 
-   return the result.
-
-![Sequence Diagram of Add Appointment](images/appointment/appointmentSequence.png)
 
 These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
 `ViewAppointmentCommand` and `ListAppointmentCommand`.
@@ -264,9 +247,9 @@ The proposed note feature is to facilitate the user to keep track of his/her own
 The notes feature consists of the following operations that can be performed on tutors:
 * `Add note` - Adds a note to a tutor
 * `Delete note` - Deletes the note of a tutor
-* `Edit note` - Edits a note of a tutor
+* `Edit note` - Edits an existing note of a tutor
 * `List note` - List tutor(s) that has a note
-* `Export tutor` - Exports the details and attached notes into a text file 
+* `Export tutor` - Exports the tutor's details, subject list and attached notes into a text file 
 
 These operations are exposed in the `Logic` interface by parsing respective `AddNoteCommand`,
 `DeleteNoteCommand`, `EditNoteCommand`, `ListNoteCommand` and `ExportCommand`.
@@ -348,7 +331,7 @@ Steps for the execution of the `AddGradeCommand` (assuming that no errors are en
 4. The `AddGradeCommand` will then validate the parameters and creates a `Grade` object.
 5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addGrade()`, 
 then create a `CommandResult` object and return the result.
-6. The `Ui` component will detect this cahnge and update the GUI.
+6. The `Ui` component will detect this change and update the GUI.
 ![Sequence Diagram of Add Grade](images/grade/GradeSequenceDiagram.png)
 
 #### Design Consideration
@@ -424,9 +407,6 @@ Option 1 was chosen as it does not require retyping a long command in the event 
 ### Appointment Book
 Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
 
-#### Rationale
-As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, allowing user to store a list of his/her tuition appointment is core of Tutor Tracker.
-
 The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
 It implements the following operations:
 * `Add appointment` - Adds an appointment to the list of appointments.
@@ -436,8 +416,36 @@ It implements the following operations:
 * `View appointments` - View the list of appointments that is happening on the queried date.
 * `List all appointments` - Show an unfiltered list of the appointments.
 
+
+Diagram below shows the activity diagram of the `add_appointment` command.
+
+![Activity Diagram of Add Appointment](images/appointment/appointmentActivity.png)
+
+Steps for the execution of the `AddAppointmentCommand` (assuming that no errors are
+encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddAppointmentCommandParser`.
+3. The `AddApppointmentCommandParser` will then parse the inputs, and then validate
+   the parameters and create an `Appointment` object.
+4. The `AddAppointmentCommandParser` will then create and `AddAppointmentCommand`
+   with the created `Appointment` object.
+5. Assuming that the above steps are all successful, the `LogicManager` will call
+   the `ModelManager`'s `addAppointment()`, then create a `CommandResult` object and
+   return the result.
+
+![Sequence Diagram of Add Appointment](images/appointment/appointmentSequence.png)
+
+
 These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
 `ViewAppointmentCommand` and `ListAppointmentCommand`.
+
+### Event Class
+
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition 
+appointments, schedules are naturally created, and the event class helps determine
+the hierarchy of schedule.
+
 
 #### Implementation
 The class and commands are re-used from the `AddressBook Level-3`'s `Person` class.
@@ -605,8 +613,8 @@ The following activity diagram summarizes what happens when the `timetable` comm
 
 ![Activity Diagram of View TimeTable](images/timetable/TimetableWindowActivityDiagram.png)
 
-### [Proposed] Budget Feature
-#### Proposed Implementation
+### Budget Feature
+#### Implementation
 The proposed budget feature is to facilitate the user to keep track of the total
 cost of all of his own appointments and whether it is within the budget he has set for
 himself. The budget is an optional feature, and can easily be added through
@@ -676,12 +684,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority| As a …​                                 | I want to …​                 | So that I can…​                                                    |
 | --------| ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
-| `* * *` | User | Delete tutor details                               | Remove tutors that I no longer need the details of              |
-| `* * *` | User | List all tutors                                    | See all known tutors                                            |
+| `* * *` | User | Delete tutor details                               | Remove tutor that I no longer need the details of              |
+| `* * *` | User | List all tutor(s)                                  | See all known tutor(s)                                            |
 | `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
 | `* * *` | User | Add tuition appointment                            | Keep track of appointments I have made                          |
-| `* * *` | User | View my tuition appointments                       | Keep track of appointments                                      |
-| `* * *` | User | Delete a tuition appointment                       | Remove canceled appointments                                    |
+| `* * *` | User | View my tuition appointment(s)                       | Keep track of appointment(s)                                      |
+| `* * *` | User | Delete a tuition appointment                       | Remove canceled appointment                                    |
 | `* * *` | User | Check my own tuition appointments list             | Know the timing of ALL my appointments in order                 |
 | `* *` | User | Filter tutors by their name | Find a tutor by name |
 | `* *` | User | Filter tutors by their gender | Find a tutor of my preferred gender |
@@ -699,7 +707,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `  | Tech-savvy user| Export tutor's details into a text file  | Share the tutor's details with others                           |
 | `* *`   | User | Keep track of the details of my favourite tutors   | Contact them and set up an appointment with them                |
 | `* *`   | User | Unfavourite a tutor                                | Remove the tutor from my list of favourites                     |
-| `* *`   | User | List all the tutors that were added to favourites  | Access the details of the favourite tutor(s) fast               |
+| `* *`   | User | List all the tutor(s) that were added to favourites  | Access the details of the favourite tutor(s) fast               |
 | `* *`   | Meticulous user| Add note to tutor                        | Remind myself of some additional details of the tutor           |
 | `* *`   | User | Delete note from tutor                             | Remove note from tutor that are no longer relevant              |
 | `* *`   | User | List tutors with note                              | Keep track which tutor has note added                           |
@@ -707,18 +715,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | Careless user   | Edit grade record details               | Correct typos or update the details of my academic records            |
 | `* *`   | User  | Delete outdated grade records                     | Remove past grades if they are no longer needed                    |
 | `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook      
-| `* *`   | User  | add_budget                                        | Add a personal budget to keep track of
-| `*`     | User  | delete_budget                                     | Delete an existing budget that I have and no longer need
-| `* *`   | User  | edit_budget                                       | Change an existing budget that I have   
-| `* *`   | User  | view_budget                                       | View an existing budget and cost of total appointments of user
+| `* *`   | User  | Add a budget                                      | Add a personal budget to keep track of
+| `*`     | User  | Delete a budget                                   | Delete an existing budget that I have and no longer need
+| `* *`   | User  | Edit a budget                                     | Change an existing budget that I have   
+| `* *`   | User  | View a budget                                     | View an existing budget and cost of total appointments of user
 | `* *`   | User | Add a schedule                                         | Keep track of tuition-related schedules                          |
-| `* *`   | User | View my schedules on a particular date               | Know what schedules do I have on a particular day                                      |
+| `* *`   | User | View my schedule(s) on a particular date               | Know what schedule(s) do I have on a particular day                                      |
 | `* *`   | User | Delete a schedule                                    | Remove canceled schedules                                    |
-| `* *`   | User | Check my own schedule list                           | Know the timing of all my schedules in order                 |
+| `* *`   | User | Check my own schedule list                           | Know the timing of all my schedule(s) in order                 |
 | `* *`   | Careless user  | Edit schedule details                       | Fix typos or add in details that I forgot to enter of the schedule |
-| `* *`   | Meticulous user  | View my timetable that consist of both appointments and schedules                       | Keep track of appointments and schedules happening on a particular week |
-| `* *`   | User | Add a reminder                                         | Keep track and manage personal reminders                          |
-| `* *`   | User | Delete a reminder                                    | Remove unnecessary reminders                                    |
+| `* *`   | Meticulous user  | View my timetable that consist of both appointment(s) and schedule(s)                       | Keep track of appointment(s) and schedule(s) happening on a particular week |
+| `* *`   | User | Add a reminder                                         | Keep track and manage personal reminder(s)                          |
+| `* *`   | User | Delete a reminder                                    | Remove unnecessary reminder                                    |
 | `* *`   | User | Check my own reminder list                           | Know the dates of all my reminders in order                 |
 | `* *`   | Careless user  | Edit reminder details                       | Fix typos or add in details that I forgot to enter of the reminder |
 
@@ -734,6 +742,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 1. User inputs tutor details.
 2. TutorTracker confirms that tutor details have been added to list.
+   
    Use case ends.
 
 **Extensions**
@@ -744,15 +753,30 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     
 * 2a. Tutor details already exists in list.
     * 2a1. TutorTracker shows an error message 
-      
-      Use case resumes at step 1.
+
+      Use case ends.
 
 <hr/>
 
-**Use Case UC0002: Edit tutor**
+**Use Case UC0002: List tutor(s)**
 
 **MSS**
-1. User __requests to list tutors (UC0003)__.
+1. User requests to list tutor(s).
+2. TutorTracker shows a list of tutor(s).
+
+    Use case ends.
+
+**Extension**
+* 1a. The list is empty. 
+    
+  Use case ends.
+  
+<hr/>
+
+**Use Case UC0003: Edit tutor**
+
+**MSS**
+1. User __requests to list tutors (UC0002)__.
 2. User inputs new tutor details of specific tutor they want to edit.
 3. TutorTracker confirms that tutor details have been edited.
 
@@ -771,21 +795,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0003: List tutor(s)**
-
-**MSS**
-1. User requests to list tutor(s).
-2. TutorTracker shows a list of tutor(s).
-
-    Use case ends.
-
-<hr/>
-
 **Use Case UC0004: Delete a tutor**
 
 **MSS**
 
-1.  User requests to list tutors.
+1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
 3.  User requests to delete a tutor in the list by index.
 4.  TutorTracker deletes the tutor.
@@ -795,10 +809,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **Extensions**
 
 * 1a. The list is empty.   
-    Use case ends.
+  Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.   
+    * 3a1. TutorTracker shows an error message.
+      
       Use case resumes at step 2.
 
 <hr/>
@@ -807,20 +822,22 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1.  User requests to list tutors.
+1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
 3.  User requests to favourite a tutor in the list by index.
 4.  Tutor added as favourite.
-
+    
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.   
-    Use case ends.
+* 1a. The list is empty.
+  
+   Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.    
+    * 3a1. TutorTracker shows an error message.
+      
       Use case resumes at step 2.
 
 <hr/>
@@ -829,35 +846,42 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1.  User requests to list tutors who were added as favourite.
+1.  User requests to list tutor(s) who were added as favourite.
 2.  TutorTracker shows a list of favourite tutor(s).
 
     Use case ends.
 
-**Extensions**
+**Extension**
 
 * 1a. The list is empty.
-  Use case ends.
+      
+     Use case ends.
 <hr/>
 
 **Use Case UC0007: Unfavourite a tutor**
 
 **MSS**
 
-1.  User requests to list tutors.
+1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
-3.  User requests to favourite a tutor in the list by index.
-4.  Tutor added as favourite.
+3.  User requests to unfavourite a tutor in the list by index.
+4.  Tutor removed from favourite.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.  
-Use case ends.
+      Use case ends.
 
 * 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
+      
+      Use case resumes at step 2.
+
+* 3b. The tutor is not a favourite so cannot be unfavourited.
+    * 3a1. TutorTracker shows an error message.
+      
       Use case resumes at step 2.
 
 <hr/>
@@ -866,10 +890,11 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to list tutors.
+1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
-3.  User requests to export a tutor's details and notes in the list by index.
-4.  Text file containing tutor's details and notes created.
+3.  User requests to export a tutor's details,subject list and notes in the list, by index.
+4.  Text file containing tutor's details,subject list and notes created.
+    
     Use case ends.
 
 **Extensions**
@@ -962,7 +987,7 @@ Use case ends.
 * 3a. No appointment matches the search value.
     * 3a1. TutorTracker displays an empty list.
       
-    Use case resumes at step 2.
+    Use case ends.
 
 <hr/>
 
@@ -1462,6 +1487,29 @@ Given below are instructions to test the app manually.
     1. Other incorrect delete commands to try: `delete_tutor`, `delete_tutor x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
        
+### Viewing a tutor
+
+1. Viewing a tutor 
+
+   1. Prerequisites: 
+      1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+      2. Arguments are valid and compulsory parameters are provided.
+      3. The index provided must be a positive integer must be smaller or equal to the largest index seen on the current window.
+    
+   2. Test Case: `view_tutor 1` <br>
+      Expected: The Tutor List Panel updates and displays the tutor at index 1.
+      
+   3. Test Case: `view_tutor -1` <br>
+      Expected: The Tutor List Panel does not update. An error message of invalid command format is shown.
+      
+### Listing all tutors
+
+1. List all tutors
+    1. Test Case: `list_tutors` <br>
+       Expected: The Tutor List Panel displays the all the existing tutors. <br><br>
+    2. Test Case: `list_tutors abcdefg` <br>
+       Expected: The Tutor List Panel displays the all the existing tutors. <br><br>
+       
 ### Adding a Note
 
 1. Adding a Note
@@ -1615,48 +1663,48 @@ Given below are instructions to test the app manually.
 1. Editing a schedule
     1. Prerequisites:
         1. Arguments are valid and compulsory parameters are provided.
-        1. The schedule to be edited must not be in the past.
-        1. The date must be in the form `yyyy-mm-dd`.
-        1. The time must be in the form ` hh:mm a`.
-        1. The edited schedule date and time must be a future datetime.
-        1. If any of the following parameter: `DATE`, `TIME_FROM` or `TIME_TO` are edited, all three parameters **must be** provided.
-        1. TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
-        1. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
-        1. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
-        1. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
-        1. The schedule's timeslot must not clash with existing appointments & schedules.
-        1. The index provided must be a task index seen on the current window.<br><br>
-    1. Test Case: `edit_schedule 1 t/New Schedule Name` <br>
+        2. The schedule to be edited must not be in the past.
+        3. The date must be in the form `yyyy-mm-dd`.
+        4. The time must be in the form ` hh:mm a`.
+        5. The edited schedule date and time must be a future datetime.
+        6. If any of the following parameter: `DATE`, `TIME_FROM` or `TIME_TO` are edited, all three parameters **must be** provided.
+        7. TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+        8. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
+        9. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
+        10. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
+        11. The schedule's timeslot must not clash with existing appointments & schedules.
+        12. The index provided must be a task index seen on the current window.<br><br>
+    2. Test Case: `edit_schedule 1 t/New Schedule Name` <br>
        Expected: The schedule's title changes to `New Schedule Name` <br><br>
-    1. Test Case: `edit_schedule 1 ds/New Schedule Description` <br>
+    3. Test Case: `edit_schedule 1 ds/New Schedule Description` <br>
        Expected: The schedule's description changes to `New Schedule Description` <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-2 fr/5:00pm to/7:00pm` <br>
+    4. Test Case: `edit_schedule 1 d/2021-6-2 fr/5:00pm to/7:00pm` <br>
        Expected: The schedule's time_from changes to `Jun 02 2021 05:00 PM` and time_to changes to `Jun 02 2021 07:00 PM`. <br><br>
-    1. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
+    5. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
        Assuming the schedule to be edited is in the past,  
        Expected: The schedule is not updated. An error message saying that past schedules cannot be edited. <br><br>
-    1. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
+    6. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
        Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
-    1. Test Case: `edit_schedule 1 to/7:00pm` <br>
+    7. Test Case: `edit_schedule 1 to/7:00pm` <br>
       Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-2` <br>
+    8. Test Case: `edit_schedule 1 d/2021-6-2` <br>
       Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
-    1. Test Case: `edit_schedule 1 d/2/5/2021 fr/5:00pm to/7:00pm` <br>
+    9. Test Case: `edit_schedule 1 d/2/5/2021 fr/5:00pm to/7:00pm` <br>
        Expected: The schedule is not updated. An error message saying that the date is in the wrong format is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/15:00pm to/7:00pm` <br>
+    10. Test Case: `edit_schedule 1 d/2021-6-10 fr/15:00pm to/7:00pm` <br>
        Expected: The schedule is not updated. An error message saying that the time is in the wrong format is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/7:00pm to/5:00pm` <br>
+    11. Test Case: `edit_schedule 1 d/2021-6-10 fr/7:00pm to/5:00pm` <br>
        Expected: The schedule is not updated. An error message saying that the time range is invalid is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:00am to/10:00am` <br>
+    12. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:00am to/10:00am` <br>
        Expected: The schedule is not updated. An error message saying that the start time is invalid is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/10:00pm to/1:00am` <br>
+    13. Test Case: `edit_schedule 1 d/2021-6-10 fr/10:00pm to/1:00am` <br>
        Expected: The schedule is not updated. An error message saying that the end time is invalid is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:31pm to/8:46pm` <br>
+    14. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:31pm to/8:46pm` <br>
         Expected: The schedule is not updated. An error message saying that the time minutes are not in blocks of 30 or 60 minutes is shown <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-6-2 fr/4:00pm to/8:00pm` <br>
+    15. Test Case: `edit_schedule 1 d/2021-6-2 fr/4:00pm to/8:00pm` <br>
         Expected: The schedule is not updated. An error message saying that the schedule clashes with another appointment or schedule (assuming you did the first
         test case) is shown <br><br>
-    1. Test Case: `edit_schedule -1 t/New Schedule Name` <br>
+    16. Test Case: `edit_schedule -1 t/New Schedule Name` <br>
         Expected: The schedule is not updated. An error message about the invalid index is shown. <br><br>
 
 ### Viewing Schedules
@@ -1697,8 +1745,8 @@ Given below are instructions to test the app manually.
 1. Adding a reminder
     1. Prerequisites:
         1. Arguments are valid and compulsory parameters are provided
-        1. The date must be in the form `yyyy-mm-dd`.
-        1. The new reminder date must be a future date. <br><br>
+        2. The date must be in the form `yyyy-mm-dd`.
+        3. The new reminder date must be a future date. <br><br>
     2. Test Case: `add_reminder ds/Science Tuition Payment Due d/2021-6-2` <br>
        Expected: Adds a reminder by the name `Science Tuition Payment Due`, to be reminded on `Jun 02 2021` <br><br>
     3. Test Case: `add_reminder ds/Maths Tuition Payment Due d/2021-6-21` <br>
@@ -1714,18 +1762,18 @@ Given below are instructions to test the app manually.
 1. Editing a reminder
     1. Prerequisites:
         1. Arguments are valid and compulsory parameters are provided.
-        1. The reminder to be edited must not be in the past.
-        1. The date must be in the form `yyyy-mm-dd`.
-        1. The edited reminder date must be a future date.
-        1. The index provided must be a positive integer index seen on the current window. <br><br>
-    1. Test Case: `edit_reminder 1 ds/New Reminder Description` <br>
+        2. The reminder to be edited must not be in the past.
+        3. The date must be in the form `yyyy-mm-dd`.
+        4. The edited reminder date must be a future date.
+        5. The index provided must be a positive integer index seen on the current window. <br><br>
+    2. Test Case: `edit_reminder 1 ds/New Reminder Description` <br>
        Expected: The reminder's description changes to `New Reminder Description` <br><br>
-    1. Test Case: `edit_reminder 1 d/2021-6-5` <br>
+    3. Test Case: `edit_reminder 1 d/2021-6-5` <br>
        Expected: The schedule's date changes to `Jun 05 2021` <br><br>
-    1. Test Case: `edit_schedule 1 d/2021-1-5` <br>
+    4. Test Case: `edit_schedule 1 d/2021-1-5` <br>
        Assuming the reminder to be edited is in the past,  
        Expected: The reminder is not updated. An error message saying that past reminders cannot be edited. <br><br>
-    1. Test Case: `edit_reminder -1 ds/New Reminder Description` <br>
+    5. Test Case: `edit_reminder -1 ds/New Reminder Description` <br>
        Expected: The reminder is not updated. An error message about the invalid index is shown. <br><br>
 
 ### Listing All Reminders
@@ -1754,27 +1802,29 @@ Given below are instructions to test the app manually.
 
 1. Adding a grade
     1. Prerequisites:
-        1. Arguments are valid and compulsory parameters are provided
-        2. There should not be any duplicate grade (equal `subject` and equal `graded item`) existing in the list.
+        1. Arguments are valid and compulsory parameters are provided.
+        2. There should not be any duplicate grade (same `subject` and same `graded item`) existing in the list.
         3. `grade letter` must follow the [Singapore-GCE O'Level grading system](#Glossary).
     2. Test Case: `add_grade s/Geography gi/CA1 gr/A1` <br>
        Expected: Adds a grade with subject `Geography`, graded item `CA1` and a grade `A1` <br><br>
     3. Test Case: `add_grade s/Geography gi/CA1 gr/A1`  <br>
        Expected: The grade is not added. An error message saying that the grade already exists (assuming you did the previous
        test case) is shown <br><br>
-    3. Test Case: `add_grade s/Geography gi/CA1 gr/A2`  <br>
+    4. Test Case: `add_grade s/Geography gi/CA1 gr/A2`  <br>
        Expected: The grade is not added. An error message saying that the grade already exists (assuming you did the first
        test case) is shown <br><br>
     5. Test Case: `add_grade s/Geography gi/Final Exam gr/A3` <br>
        Expected: The grade is not added. An error message saying that the grade letter is in the wrong format is shown <br><br>
-
+   5. Test Case: `add_grade s/Secondary 4 Geography gi/Final Exam gr/B3` <br>
+      Expected: The grade is not added. An error message saying that the graded item is in the wrong format is shown <br><br>
+      
 ### Deleting a Grade
 
-1. Deleting a Reminder
+1. Deleting a grade
     1. Prerequisites:
         1. List all grade(s) using the `list_grades` command. Multiple grades in the list.
         2. The grade to be deleted must exist.
-        3. Index must be a positive integer and must be smaller or equal to the largest index of the list.
+        3. Index must be a positive integer and must be smaller or equal to the largest index seen on the current window.
     2. Test Case: `delete_grade 1` <br>
        Expected: The first grade displayed in the list is deleted. <br><br>
     3. Test Case: `delete_grade` <br>
@@ -1782,6 +1832,35 @@ Given below are instructions to test the app manually.
     4. Test Case: `delete_grade -1` <br>
        Expected: An error message about the invalid command format is shown. <br><br>
 
+### Editing a Grade
+
+1. Editing a grade
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided.
+        2. The grade to be edited must not be in the past.
+        3. The index provided must be a positive integer must be smaller or equal to the largest index seen on the current window.
+        4. There should not be any duplicate grade (same `subject` and same `graded item`) existing in the list.
+        5. `grade letter` must follow the [Singapore-GCE O'Level grading system](#Glossary).  <br><br>
+    2. Test Case: `edit_grade 1 s/New Subject` <br>
+       Expected: The grade's subject changes to `New Subject` <br><br>
+    3. Test Case: `edit_grade 1 gi/New Graded Item` <br>
+       Expected: The grade's graded item changes to `New Graded Item` <br><br>
+    4. Test Case: `edit_grade 1 gr/C5` <br>
+       Expected: The grade's grade letter changes to `C5` <br><br>
+    5. Test Case: `edit_grade 2 s/New Subject gi/New Graded Item` <br>
+       Assuming there are at least 2 grades in the list and you did the previous two test cases.
+       Expected: The grade is not updated. An error message saying that duplicate grade exists in the list. <br><br>
+    6. Test case: `edit_grade -1 s/New Subject` <br>
+       Expected: The grade is not updated. An error message of invalid command format is shown. <br><br>
+
+### Listing All Grades
+
+1. List all grades
+    1. Test Case: `list_grades` <br>
+       Expected: The Grade List Panel displays the all the existing grades. <br><br>
+    2. Test Case: `list_grades abcdefg` <br>
+       Expected: The Grade List Panel displays the all the existing grades. <br><br>
+       
 ### Adding a Tutor Filter
 
 1. Adding a Tutor Filter
@@ -1834,11 +1913,4 @@ Given below are instructions to test the app manually.
        Expected: Appointment Filter `Subject Name: English` is deleted and both appointments with Alex Yeoh and Bernice Yu are displayed. <br><br>
     4. Test Case: `delete_appointment_filter` <br>
        Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+       
