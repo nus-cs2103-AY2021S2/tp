@@ -104,8 +104,8 @@ MeetBuddy data are saved in the hard disk automatically after any command that c
 ### Editing the data file
 
 Person Contact data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Users are not suggested updating data directly by editing that data file.
-Meeting data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Users are not suggested updating data directly by editing that data file.
-
+Meeting data are saved as a JSON file `[JAR file location]/data/meetingbook.json`. Users are not suggested updating data directly by editing that data file.
+Person Meeting Connection data are saved as a JSON file `[JAR file location]/data/connctions.json`. Users are not suggested updating data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MeetBuddy will discard all data and start with an empty data file at the next run.
 </div>
