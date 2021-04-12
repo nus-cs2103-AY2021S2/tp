@@ -28,6 +28,10 @@ title: Developer Guide
         + [List command](#list-command)
         + [Find command](#find-command)
         + [Edit command](#edit-command)
+    * [New Commands](#new-commands)
+        + [order complete command](#order-complete-command)
+        + [order history command](#order-history-command)
+        
 - [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
 - [**Appendix: Requirements**](#--appendix--requirements--)
     * [Product scope](#product-scope)
@@ -308,6 +312,11 @@ The `edit` command will be parsed in a similar way to other commands (see the [C
 
 This new object will replace an object in the current book and return a `CommandResult` object to update the GUI from `MainWindow`, in a similar fashion to the GUI update caused by the [add command](#add-command).
 
+### New Comamnds
+
+#### Order complete command
+
+#### Order history command
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
