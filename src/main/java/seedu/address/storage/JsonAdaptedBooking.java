@@ -39,7 +39,7 @@ class JsonAdaptedBooking {
      */
     public JsonAdaptedBooking(Booking source) {
         tenantName = source.getTenantName().toString();
-        phone = source.getPhone().value;
+        phone = source.getPhone().toString();
         start = source.getStart();
         end = source.getEnd();
     }
