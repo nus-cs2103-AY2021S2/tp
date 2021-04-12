@@ -532,7 +532,7 @@ Action | Format, Examples
 **EDone** | `edone INDEX [INDEX]...` <br> e.g. `edone 2 3 5`
 **Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]...}`<br> e.g. `edit 2 -n James Lee -e jameslee@example.com`<br> e.g. `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
-**List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g. `list`<br> e.g. `list -s date`
+**List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY_MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g. `list`<br> e.g. `list -s date`
 **EList** | `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o SORT_ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Undo** | `undo`
 **Redo** | `redo`
