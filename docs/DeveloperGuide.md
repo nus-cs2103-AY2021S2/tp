@@ -944,6 +944,8 @@ otherwise)
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC9 - List all items with a specific tag**
 
 **MSS**
@@ -994,8 +996,6 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC12 - Sort items by expiry date**
 
