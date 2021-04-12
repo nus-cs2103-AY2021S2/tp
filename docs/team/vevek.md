@@ -9,20 +9,20 @@ CoLAB (Collaboration Lab) is a desktop app for university students to manage the
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added  todo/deadline commands.
-  * What it does: This feature allows the user to delete a todo/deadline from a project.
+* **New Feature**: Added add & delete todo/deadline/event commands.
+  * What it does: This feature allows the user to add or delete a todo/deadline/event from a project.
   * Justification: This feature improves the product significantly as it is a core part of the application.
   * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because it involved the index of the project and the todo/deadline/event within the project as well as thinking through the implementation of todo/deadline/event models.
 
 * **New Feature**: Added mark todo/deadline commands.
   * What it does: This feature allows the user to mark a todo/deadline in a project as done.
   * Justification: This feature improves the product significantly as it is a core part of the application.
-  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because it involved thinking through the implementation of todo/deadline models as well as the implications of having a todo/deadline marked as done within the context of a project.
+  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because it involved thinking through the implementation of todo/deadline models as well as considering the implications of having a todo/deadline marked as done within the context of a project.
 
 * **New Feature**: Added the ability for events to repeat weekly.
   * What it does: This feature allows the user to create an event that repeats weekly with a specified start date and start time.
   * Justification: This feature improves the product significantly as it is a core part of the application.
-  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because it involved thinking through the implementation of event model.
+  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because it involved thinking through the implementation of the event model.
 
 * **Enhancements implemented**:
   * Commons
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     * Added TimeConversionException.
   * Model
     * Added CompletableTodo, CompletableDeadline, Repeatable, Todo, Deadline and Event classes to the model to allow for further extension of previous versions.
-    * Refactored existing code to fit new model format.
+    * Refactored existing code to fit the new model format.
   * Logic
     * Add todo/deadline command.
     * Delete todo/deadline/event command.
@@ -67,4 +67,4 @@ Given below are my contributions to the project.
   * Reviewed issues to close duplicates.
 
 * **Contribution to Other Projects**:
-  * I helped to find bugs for Team CS2103-W16-4 during the PE dry run, during which I found and reported more than 16 errors and gave various suggestions regarding design and documentation.
+  * Helped to find bugs for Team CS2103-W16-4 during the PE dry run, during which I found and reported more than 16 errors and gave various suggestions regarding design and documentation.
