@@ -10,8 +10,9 @@ features a Graphical User Interface (GUI) but is optimized for use via a Command
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added command history feature ([\#63](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/63) and 
-  [\#107](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/107))
+* **New Feature**: Added command history feature and tests ([\#63](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/63),
+  [\#107](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/107) and
+  [\#175](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/175)).
   * **What it does**: The `history [COUNT]` command displays (from most to least recent) successful commands previously
     executed. If the `COUNT` parameter is not specified, the entire history is displayed. Otherwise, the `COUNT` most
     recent entries are displayed. This history is saved to a file, and loaded back upon app startup. Lastly, the `UP`
@@ -69,12 +70,15 @@ Given below are my contributions to the project.
   * Added manual testing instructions for command history and undo/redo:
     [\#333](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/333).
   * Updated [logic component](https://ay2021s2-cs2103-t14-1.github.io/tp/DeveloperGuide.html#logic-component)
-    descriptions and diagrams: [\#386](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/386).
+    descriptions and diagrams: [\#386](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/386) and
+    [\#429](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/429).
   * Added implementation details and diagrams for command history:
-    [\#109](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/109) and
-    [\#317](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/317).
+    [\#109](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/109),
+    [\#317](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/317) and
+    [\#417](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/417).
   * Added introductory sections explaining audience and diagrams:
-    [\#345](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/345).
+    [\#345](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/345) and
+    [\#408](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/408).
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
@@ -89,21 +93,22 @@ Given below are my contributions to the project.
     [\#156](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/156),
     [\#289](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/289);
     and a comprehensive list of all PRs reviewed
-    [here](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Abenedictkhoomw+).
-  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/54),
-    [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/207),
-    [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/250)).
+    [here](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+reviewed-by%3Abenedictkhoomw+-author%3Abenedictkhoomw+).
+  * Contributed to forum discussions: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/243#issuecomment-817067120),
+    [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/301#issuecomment-817068673),
+    [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/293#issuecomment-817065231).
   * Bug reports for my team:
     [\#60](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/60),
     [\#67](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/67),
-    [\#68](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/68),
-    [\#70](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/70),
     [\#105](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/105),
     [\#124](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/124),
     [\#125](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/125),
-    [\#126](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/126),
-    [\#127](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/127) and
-    [\#154](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/154).
+    [\#127](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/127),
+    [\#154](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/154),
+    [\#387](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/387),
+    [\#391](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/391);
+    and a comprehensive list
+    [here](https://github.com/AY2021S2-CS2103-T14-1/tp/issues?q=is%3Aissue+author%3Abenedictkhoomw+-assignee%3Abenedictkhoomw+bug+).
   * Bug reports made for other teams (9/9 accepted): [PE-D](https://github.com/benedictkhoomw/ped/issues).
   
 * **Team Tasks**:
@@ -118,3 +123,6 @@ Given below are my contributions to the project.
   * Created SunRez logo: [\#19](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/19).
   * Created [PE-D bug triage spreadsheet](https://docs.google.com/spreadsheets/d/1mXHfqkTdQwbmS0mEdQXIWZdkCLMxEFyW35C4lfsnoDY/edit?usp=sharing) and collated 33 PE-D issues.
   * Updated sample SunRez data: [\#172](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/172).
+  * Updated product image: [\#153](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/153),
+    [\#309](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/309),
+    [\#400](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/400).
