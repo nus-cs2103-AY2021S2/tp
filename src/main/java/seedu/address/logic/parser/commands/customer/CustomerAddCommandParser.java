@@ -41,9 +41,8 @@ public class CustomerAddCommandParser implements Parser<CustomerAddCommand> {
         String email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         String address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         List<String> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        List<String> deduplicatedTagList = ParserUtil.deduplicateStringList(tagList);
 
-        Person person = new Person(name, phone, email, address, deduplicatedTagList);
+        Person person = new Person(name, phone, email, address, tagList);
 
         return new CustomerAddCommand(person);
     }

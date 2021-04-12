@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
@@ -132,17 +133,6 @@ public class ParserUtil {
     }
 
     /**
-     * Removes duplicate items from a list of strings.
-     * @param stringList
-     * @return A copy of the original list, but with duplicates removed.
-     */
-    public static List<String> deduplicateStringList(List<String> stringList) {
-        HashSet<String> deduplicatedSet = new HashSet<>(stringList);
-        List<String> deduplicatedList = new ArrayList<>(deduplicatedSet);
-        return deduplicatedList;
-    }
-
-    /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
@@ -231,7 +221,11 @@ public class ParserUtil {
      */
     public static List<String> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        return new ArrayList<>(tags);
+        ArrayList<String> tagList = new ArrayList<>(tags);
+        HashSet<String> deduplicatedSet = new HashSet<>(tagList);
+        List<String> deduplicatedTagList = new ArrayList<>(deduplicatedSet);
+        Collections.sort(deduplicatedTagList);
+        return deduplicatedTagList;
     }
 
     // ========== INGREDIENT ==========
