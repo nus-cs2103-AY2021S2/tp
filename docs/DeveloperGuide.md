@@ -65,6 +65,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -72,6 +74,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -91,6 +95,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -104,12 +110,16 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
