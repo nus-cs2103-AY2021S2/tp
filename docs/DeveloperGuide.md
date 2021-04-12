@@ -565,7 +565,30 @@ testers are expected to do more *exploratory* testing.
         Expected: Error details will be shown in the status message
         
 ### Sorting a task 
-1. Recommended to use the tasks from the previous command `find` to be used here for `sort` command
+1. Recommended to use the tasks from the previous command `find` to be used here for `sort` command. Following instructions will be based off the tasks provided previously.
+1. Use `sort` command to Sort tasks in task list.
+    1. Test case: `sort dateTime`.<br>
+        Expected: All the tasks on the task list will be sorted accordingly to the dataTime in ascending calendar order.
+    1. Test case: `sort moduleCode`.<br>
+        Expected: All the tasks on the task list will be sorted accordinngly to ascending lexicographical order.
+    1. Test case: `sort priorityTag`.<br>
+        Expected: All the tasks on the task list will be sorted in decreasing priority levels (LOW>MEDIUM>HIGH). Highest priority will be shown at the top of the task list.
+    1. Test case: `sort weightage`.<br>
+        Expected: All the tasks on the task list will be sorted in decreasing weightage order, with the heaviest weightage at the top of the task list.
+    1. Test case: `sort taskName`.<br>
+        Expected: All the tasks on the task list will be sorted in the lexicographical order.
+    1. Invalid test cases to try: `sort datetime`, `sort prioritytag`, `sort`, `sort weight`, `sort weight PriorityTag`.<br>
+        Expected: Error will be thrown for all these test cases.
+        
+### Using command `done`
+
+### Using command `dueIn`
+
+### Using command `doToday`
+
+### Undo a command
+
+### Redo a command 
 
 
 ## **Appendix: Effort**
