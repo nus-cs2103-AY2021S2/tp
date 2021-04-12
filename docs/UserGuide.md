@@ -15,8 +15,8 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
   - [Listing all persons: `list`](#listing-all-persons--list)
   - [Editing a person: `edit`](#editing-a-person--edit)
   - [Adding a remark: `remark`](#adding-a-remark--remark)
-  - [Blacklisting a contact: `blist`](#blacklisting-a-contact--blist)
-  - [Blacklisting or unblacklisting multiple contacts: `massblist`](#blacklisting-or-un-blacklisting-multiple-contacts--massblist)
+  - [Blacklisting or un-blacklisting a contact: `blist`](#blacklisting-or-un-blacklisting-a-contact--blist)
+  - [Blacklisting or un-blacklisting multiple contacts: `massblist`](#blacklisting-or-un-blacklisting-multiple-contacts--massblist)
   - [Deleting a contact: `delete`](#deleting-a-contact--delete)
   - [Deleting multiple contacts: `massdelete`](#deleting-multiple-contacts--massdelete)
   - [Clearing all entries: `clear`](#clearing-all-entries--clear)
@@ -239,6 +239,7 @@ Collects the specified details of all contacts in the displayed person list. Thi
 is for ease of copying contact details into recipient lists.
 The type of detail is specified by the prefix provided. Details will be separated
 by the given separator, or by a semicolon if unspecified.
+Collected details end with the separator to allow further manual addition of details.
 
 Format: `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`
 

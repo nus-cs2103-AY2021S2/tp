@@ -10,6 +10,7 @@ title: Developer Guide
   - [Logic](#logic-component)
   - [Model](#model-component)
   - [Storage](#storage-component)
+  - [Common classes](#common-classes)
 - [Implementation](#implementation)
   - [Blacklist](#blacklist-feature)
   - [Collect](#collect-feature)
@@ -187,7 +188,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Blacklist feature
 The blacklist mechanism is facilitated by `Person`.
 It represents if a `Person` is blacklisted or not, stored internally by adding a `Blacklist` object to the parameters of `Person`.
-Blacklist status is displayed externally via `PersonListCard#blacklist`.
+Blacklist status is displayed externally via the background colour of a contact (black represents blacklisted, non-black represents un-blacklisted).
 
 Given below is an example usage scenario.
 
