@@ -3,7 +3,7 @@ layout: page
 title: Dan's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: Vax@NUS
 
 Vax@NUS is a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students. It is a desktop app optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
