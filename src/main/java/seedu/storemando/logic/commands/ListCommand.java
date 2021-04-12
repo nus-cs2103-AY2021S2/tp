@@ -13,8 +13,8 @@ import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
-import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.tag.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Lists all items in the storemando to the user.
@@ -24,9 +24,11 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all items.";
-    public static final String MESSAGE_SUCCESS_TAG_PREDICATE = "Listed all items with the following tag %s";
-    public static final String MESSAGE_SUCCESS_LOCATION_PREDICATE = "Listed all items located in %s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the storemando.\n"
+    public static final String MESSAGE_SUCCESS_TAG_PREDICATE = "Listed all items with the following "
+        + "tag %s (if the tag exists).";
+    public static final String MESSAGE_SUCCESS_LOCATION_PREDICATE = "Listed all items located in %s "
+        + "(if the location exists).";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the inventory.\n"
         + "Parameters: "
         + "[" + PREFIX_LOCATION + "LOCATION] " + "/ [" + PREFIX_TAG + "TAG]\n"
         + "Example:\n"
@@ -35,7 +37,13 @@ public class ListCommand extends Command {
         + "3. " + COMMAND_WORD + " t/favourite\n";
     public static final List<String> NO_KEYWORD = new ArrayList<>();
 
+    /**
+     * The predicate that list command uses to filter the items.
+     */
     private final Predicate<Item> predicate;
+    /**
+     * The list of keywords that will be use to filter on.
+     */
     private final List<String> keywords;
 
     /**
@@ -79,6 +87,10 @@ public class ListCommand extends Command {
         return new CommandResult(message);
     }
 
+    /**
+     * Get the success message based on how the user list the item list.
+     * @return The success message.
+     */
     private String getMessage() {
         if (this.predicate instanceof LocationContainsKeywordsPredicate) {
             return String.format(MESSAGE_SUCCESS_LOCATION_PREDICATE, String.join(" ", keywords));

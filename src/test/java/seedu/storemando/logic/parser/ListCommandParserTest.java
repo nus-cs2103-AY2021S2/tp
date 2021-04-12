@@ -9,8 +9,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.logic.commands.ListCommand;
-import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
-import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.tag.predicate.TagContainsKeywordsPredicate;
 
 public class ListCommandParserTest {
 

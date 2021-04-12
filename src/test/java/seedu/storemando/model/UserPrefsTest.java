@@ -1,5 +1,6 @@
 package seedu.storemando.model;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -18,4 +19,11 @@ public class UserPrefsTest {
         assertThrows(NullPointerException.class, () -> userPrefs.setStoreMandoFilePath(null));
     }
 
+    @Test
+    public void equals() {
+        UserPrefs userPref = new UserPrefs();
+
+        assertTrue(userPref.equals(userPref));
+        assertTrue(!userPref.equals(null));
+    }
 }

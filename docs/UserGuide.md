@@ -6,6 +6,8 @@ title: User Guide
 {:toc}
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 ### 1.1. About StoreMando
@@ -51,6 +53,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick start
 
 ### 2.1. Installation
@@ -74,7 +78,11 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2. StoreMando's layout
+
+![GUILayout](images/GUILayout.png)
 
 #### Command Box
 
@@ -138,6 +146,8 @@ t/ | TAG | `t/TAG` | Each TAG must only be one word long.
 */ | PARTIAL_WORD | `*/PARTIAL_WORD` | PARTIAL_WORD must have at least one word.
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Features
 
@@ -313,6 +323,8 @@ Do you want to view all your items? What about items at a specific location or w
 you to do just that.
 
 You can use this command in 3 different ways.
+
+<div style="page-break-after: always;"></div>
 
 * #### 3.5.1. Listing all items in StoreMando
 
@@ -551,7 +563,7 @@ restart with an empty data file at the next run. Proceed with caution!!
 the data of your previous StoreMando home folder.
 
 **Q**: Can I have two or more inventories in one computer?<br>
-**A**: Download and install StoreMando in two different folders on your computer so that you will have two different
+**A**: Yes. Download and install StoreMando in two different folders on your computer so that you will have two different
 data files in separate locations. You can have as many inventories as you want using this method.
 
 **Q**: What if I want to have more features implemented in the product?<br>
@@ -562,6 +574,8 @@ data files in separate locations. You can have as many inventories as you want u
 to this user guide to provide you with the help you need.
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
@@ -579,6 +593,8 @@ Action | Format, Examples
 **[“Exit"](#310-exiting-storemando--exit)** | `exit`
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 6. Glossary
 

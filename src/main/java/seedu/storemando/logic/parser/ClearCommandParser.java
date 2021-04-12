@@ -7,17 +7,20 @@ import seedu.storemando.logic.commands.ClearAllCommand;
 import seedu.storemando.logic.commands.ClearCommand;
 import seedu.storemando.logic.commands.ClearLocationCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
-import seedu.storemando.model.item.LocationContainsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsPredicate;
 
 /**
- * Parses input arguments and creates a new ClearCommand object
+ * Parses input arguments and creates a new ClearCommand object.
  */
 public class ClearCommandParser implements Parser<ClearCommand> {
 
     /**
-     * @param args Parses the given {@code String} of arguments in the context of the ClearCommand
+     * Parses the given {@code String} of arguments in the context of ClearCommand
+     * and returns a ClearCommand object for execution.
+     *
+     * @param args Parses the given {@code String} of arguments in the context of the ClearCommand.
      * @return a ClearCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public ClearCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
