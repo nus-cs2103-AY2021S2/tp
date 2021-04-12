@@ -852,7 +852,7 @@ CTRL + S | `sort` |
 ClientBook saves its data file `clientbook.json` in a zip file `clientbook.zip` inside the `data` folder in the [home folder](#quick-start).
 Data is saved automatically after any command that changes the data. There is no need to save manually.
 
-* If you have previously set a `lock` for ClientBook, the zip folder can be unzipped with that same password.
+* If ClientBook is locked with a password, the zip folder can be unzipped with that same password.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**:
