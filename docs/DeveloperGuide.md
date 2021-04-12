@@ -343,6 +343,8 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Find Feature `find`
 
 The find feature helps users find and display all items whose names
@@ -351,8 +353,6 @@ contain any of the given keywords, either in full or partial.
 `find KEYWORD [MORE_KEYWORDS]` displays items whose names contain any of the given keywords in full.
 
 `find */KEYWORD [MORE_KEYWORDS]` display all items whose names contain any of the given partial keywords .
-
-<div style="page-break-after: always;"></div>
 
 #### Actual Implementation
 
@@ -369,6 +369,8 @@ The sequence diagram below shows how the components interact with each other for
 keys in the command `find Chocolate`:
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ![FindFullSequenceDiagram](images/FindFullSequenceDiagram.png)
 
@@ -441,8 +443,6 @@ From the diagram above:
    `Model` to retrieve the current predicate. The retrieved predicate is then used to update the list by calling on `updateFilteredItemList` method of `Model`.  
 8. Subsequently, a `CommandResult` object is created and returned to `LogicManager`.
 9. This `CommandResult` will be returned at the end by `LogicManager`.
-
-<div style="page-break-after: always;"></div>
 
 <div style="page-break-after: always;"></div>
 
@@ -690,6 +690,8 @@ From the diagram above:
 8. A new tab of the user guide will be opened if there is Internet connection. Otherwise, the URL link of the user guide
    will be provided. `HelpCommand` will then create a `CommandResult` and pass to `LogicManager`.
 9. The `CommandResult` object will be returned in the end by `LogicManager`.   
+
+<div style="page-break-after: always;"></div>
 
 The following Activity Diagram summarizes what happens when a user executes a help command:
 
