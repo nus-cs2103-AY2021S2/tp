@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.COMMUTER_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.COMMUTER_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMMUTER;
@@ -168,7 +169,7 @@ public class PoolCommandParserTest {
         // invalid commuter
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
                         + TRIPTIME_DESC_MORNING + INVALID_COMMUTER + COMMUTER_DESC_2 + TAG_DESC_FRIEND,
-                ParserUtil.MESSAGE_INVALID_INDEX);
+                MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
