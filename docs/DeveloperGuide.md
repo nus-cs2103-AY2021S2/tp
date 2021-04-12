@@ -64,8 +64,9 @@ To make the Developer Guide more comprehensible, certain labelling and highlight
 Legend | Description
 -------|-------------
 `Inline code` | Highlights Objects, Classes and Code segments
-[Tips] | Useful tips
-[Important] | Important information to take note of
+<span class="alert alert-inline alert-tip">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
+<span class="alert alert-inline alert-note">✏️ <strong>Note</strong></span> | Note - Important things to take note of
+<span class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
 
 ## Design
 
@@ -74,6 +75,7 @@ Legend | Description
 <img src="images/ArchitectureDiagram.png" width="450" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+
 
 <div markdown="span" class="alert alert-primary"></div>
 
@@ -101,7 +103,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `food_delete n\grape`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -114,7 +116,9 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
+
 The UI consists of a `MainWindow` that is made up of the two parts: `CommandBox` and `ResultDisplay`. Both of these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -130,17 +134,17 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `DietLahParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a Food item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("food_delete n/grape")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `food_delete n/grape` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteFoodItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -244,11 +248,45 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
   * Flexible to changes since only an update command is called to change the value
 * Cons:
   * More prone to bugs as the components can be changed freely
-* Alternative 1: Make Food components immutable.
+* Alternative 1: Make `Food` components immutable.
   * Pros:
     * Less prone to bugs
   * Cons:
     * More overhead to update items as a new object is created every time
+
+### UniqueFoodList Object
+
+<img src="images/UniqueFoodListClassDiagram.png" width="287" />
+
+The UniqueFoodList class represents a list of unique food recorded by the user.
+
+<img src="images/UniqueFoodListFoodAssociationClassDiagram.png" width="287" />
+
+The UniqueFoodList class stores an ObservableList of Food:
+1. `ObservableList<Food>`: Represents the list of recorded `Food`
+
+Additionally, here are some information to note:
+1. `Food` with similar names to existing items will not be allowed to be added in. More information on the information is provided in the section below.
+
+#### Design consideration
+
+##### Aspect: A single `UniqueFoodList` used for the program
+
+* Current Choice:
+    * A single `UniqueFoodList` is used to store all the `Food` item(s) by the user
+
+* Pros:
+    * Easier management for all the `Food` items
+    * No duplicated record for a certain `Food` item
+
+* Cons:
+    * Reduces the convenience of storing multiple nutrients' value for a certain `Food` item
+
+* Alternative 1: Keep multiple `UniqueFoodList`
+    * Pros:
+        * Similar `Food` items can store multiple nutrients' value across many list
+    * Cons:
+        * Referencing a particular value from multiple lists can be quite complicated and buggy
 
 ### Add food item feature
 
@@ -277,9 +315,13 @@ Diagram flow to be inserted here
 
 ### Update food item feature
 
+The following activity diagram summarizes what happens when a user executes a `food_update` command:
+
+<img src="images/UpdateFoodItemActivityDiagram.png" width="415" />
+
 #### Description:
 
-This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and nutrient values specified has to be different from original before an update is permitted.
+This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and at least one nutrients' value specified has to be different from original before an update is permitted.
 
 Example: `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
@@ -296,6 +338,10 @@ Step 2: The food item specified will have its value(s) updated to the new value(
 The following sequence diagram shows how the update operation works:
 
 ### List food item feature
+
+The following activity diagram summarizes what happens when a user executes a `food_list` command:
+
+<img src="images/ListFoodItemActivityDiagram.png" width="415" />
 
 #### Description:
 
@@ -316,6 +362,10 @@ Step 2: The food item(s) in the food list will be displayed.
 The following sequence diagram shows how the delete operation works:
 
 ### Delete food item feature
+
+The following activity diagram summarizes what happens when a user executes a `food_delete` command:
+
+<img src="images/DeleteFoodItemActivityDiagram.png" width="415" />
 
 #### Description:
 
@@ -430,6 +480,12 @@ Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrie
 Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME`
 
 #### Implementation:
+
+The following sequence diagram shows how the food intake command works when adding a new food not in the `UniqueFoodList`:
+
+<img src="images/AddFoodIntakeSequenceDiagram.png" width="3060" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Since the 3 scenarios will have roughly similar sequence diagrams, we have only included one detailed diagram showcasing the more complex scenario (when a food is not in the `UniqueFoodList`) </div>
 
 The `AddFoodIntakeParser` first verifies that the expected format is met and then calls the `AddFoodIntakeCommand()` method which checks whether an existing `Food` exists in the `UniqueFoodList`.
 

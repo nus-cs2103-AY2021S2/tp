@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+:Parse command input;
+if () then ([Food exists in UniqueFoodList])
+  :Check differences for Food nutrient values;
+  if () then ([At least 1 difference in nutrient value(s) in Food])
+  :Update Food;
+  :Display result;
+  else ([else])
+  :Display error message;
+  endif
+else ([else])
+  :Display error message;
+endif
+stop
+
+@enduml

@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DietLahParser" as DietLahParser LOGIC_COLOR
 participant ":DeleteFoodItemCommandParser" as DeleteFoodItemCommandParser LOGIC_COLOR
 participant "d:DeleteFoodItemCommand" as DeleteFoodItemCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("food_delete n/grape")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("food_delete n/grape")
-activate AddressBookParser
+LogicManager -> DietLahParser : parseCommand("food_delete n/grape")
+activate DietLahParser
 
 create DeleteFoodItemCommandParser
-AddressBookParser -> DeleteFoodItemCommandParser
+DietLahParser -> DeleteFoodItemCommandParser
 activate DeleteFoodItemCommandParser
 
-DeleteFoodItemCommandParser --> AddressBookParser
+DeleteFoodItemCommandParser --> DietLahParser
 deactivate DeleteFoodItemCommandParser
 
-AddressBookParser -> DeleteFoodItemCommandParser : parse("grape")
+DietLahParser -> DeleteFoodItemCommandParser : parse("grape")
 activate DeleteFoodItemCommandParser
 
 create DeleteFoodItemCommand
@@ -36,14 +36,14 @@ activate DeleteFoodItemCommand
 DeleteFoodItemCommand --> DeleteFoodItemCommandParser : d
 deactivate DeleteFoodItemCommand
 
-DeleteFoodItemCommandParser --> AddressBookParser : d
+DeleteFoodItemCommandParser --> DietLahParser : d
 deactivate DeleteFoodItemCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteFoodItemCommandParser -[hidden]-> AddressBookParser
+DeleteFoodItemCommandParser -[hidden]-> DietLahParser
 destroy DeleteFoodItemCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+DietLahParser --> LogicManager : d
+deactivate DietLahParser
 
 LogicManager -> DeleteFoodItemCommand : execute()
 activate DeleteFoodItemCommand

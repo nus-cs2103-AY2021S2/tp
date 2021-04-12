@@ -1,18 +1,16 @@
 package seedu.address.storage;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyDietLah;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends DietLahStorage, UniqueFoodListStorage,
+public interface Storage extends UniqueFoodListStorage,
         FoodIntakeListStorage, DietPlanListStorage, UserStorage, UserPrefsStorage {
 
     @Override
@@ -21,7 +19,7 @@ public interface Storage extends DietLahStorage, UniqueFoodListStorage,
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
-    @Override
+    /*@Override
     Path getDietLahFilePath();
 
     @Override
@@ -29,5 +27,5 @@ public interface Storage extends DietLahStorage, UniqueFoodListStorage,
 
     @Override
     void saveDietLah(ReadOnlyDietLah dietLah) throws IOException;
-
+*/
 }

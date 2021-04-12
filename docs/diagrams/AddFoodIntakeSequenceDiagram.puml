@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DietLahParser" as DietLahParser LOGIC_COLOR
+participant ":AddFoodIntakeCommandParser" as AddFoodIntakeCommandParser LOGIC_COLOR
+participant "d:AddFoodIntakeCommand" as AddFoodIntakeCommand LOGIC_COLOR
+participant ":Food" as Food LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("food_intake_add d/1 Apr 2021\nn/apple p/10 f/10 c/10")
+activate LogicManager
+
+LogicManager -> DietLahParser : parseCommand("food_intake_add d/1 Apr 2021\nn/apple p/10 f/10 c/10")
+activate DietLahParser
+
+create AddFoodIntakeCommandParser
+DietLahParser -> AddFoodIntakeCommandParser
+activate AddFoodIntakeCommandParser
+
+AddFoodIntakeCommandParser --> DietLahParser
+deactivate AddFoodIntakeCommandParser
+
+DietLahParser -> AddFoodIntakeCommandParser : parse("d/1 Apr 2021\nn/apple p/10 f/10 c/10")
+activate AddFoodIntakeCommandParser
+
+create AddFoodIntakeCommand
+AddFoodIntakeCommandParser -> AddFoodIntakeCommand
+activate AddFoodIntakeCommand
+
+AddFoodIntakeCommand --> AddFoodIntakeCommandParser : d
+deactivate AddFoodIntakeCommand
+
+AddFoodIntakeCommandParser --> DietLahParser : d
+deactivate AddFoodIntakeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddFoodIntakeCommandParser -[hidden]-> DietLahParser
+destroy AddFoodIntakeCommandParser
+
+DietLahParser --> LogicManager : d
+deactivate DietLahParser
+
+LogicManager -> AddFoodIntakeCommand : execute()
+activate AddFoodIntakeCommand
+
+create Food
+AddFoodIntakeCommand -> Food
+activate Food
+Food --> AddFoodIntakeCommand : f
+
+AddFoodIntakeCommand -> Model : addFoodItem(f)
+Model --> AddFoodIntakeCommand
+AddFoodIntakeCommand -> Model : addFoodIntake(date, f)
+activate Model
+
+Model --> AddFoodIntakeCommand : addedFood
+deactivate Model
+
+create CommandResult
+AddFoodIntakeCommand -> CommandResult : addedFood
+activate CommandResult
+
+CommandResult --> AddFoodIntakeCommand
+deactivate CommandResult
+
+AddFoodIntakeCommand --> LogicManager : result
+deactivate AddFoodIntakeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

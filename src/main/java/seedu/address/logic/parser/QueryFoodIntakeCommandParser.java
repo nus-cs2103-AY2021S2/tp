@@ -12,13 +12,15 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.QueryFoodIntakeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new QueryFoodIntakeCommand object
+ */
 public class QueryFoodIntakeCommandParser implements Parser<QueryFoodIntakeCommand> {
+
     /**
-     * Parses the given {@code String} of arguments in the context of the Update Command
-     * and returns an UpdateFoodItemCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the QueryFoodIntakeCommand
+     * and returns a QueryFoodIntakeCommand object for execution.
      *
-     * @param args arguments passed in
-     * @return an UpdateFoodItemCommand instance
      * @throws ParseException if the user input does not conform the expected format
      */
     public QueryFoodIntakeCommand parse(String args) throws ParseException {

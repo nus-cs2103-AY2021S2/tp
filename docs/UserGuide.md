@@ -319,7 +319,7 @@ For your convenience, there are a few ways to input a food intake. Refer to the 
 
 <div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> If there are multiple food intakes with the same date and name, the food name will be <strong>automatically renamed</strong> to include a duplicate count for easy identification. This is because there can be multiple food intakes for the same food in the given day, and they may contain different nutrient values. <br/><br/>
-E.g. when you record two 'Chicken rice' in the food intake, they will appear as Chicken rice and Chicken rice #2 respectively.
+E.g. when you record two 'chicken rice' in the food intake, they will appear as chicken rice and Chicken rice #2 respectively.
 </div>
 
 
@@ -383,7 +383,7 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 </div>
 
 <div markdown="span" class="alert alert-primary">
-  ✏️ <strong>Note:</strong> At least one nutrient value is required. The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places. 
+  ✏️ <strong>Note:</strong> The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places. 
 </div>
 
 **Expected output:**

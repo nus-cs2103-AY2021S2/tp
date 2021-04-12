@@ -9,11 +9,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.DietLah;
@@ -27,7 +25,6 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
-import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 import seedu.address.testutil.FoodBuilder;
 
@@ -92,22 +89,12 @@ public class AddFoodItemCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setDietLah(ReadOnlyDietLah newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyDietLah getDietLah() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -212,27 +199,12 @@ public class AddFoodItemCommandTest {
         }
 
         @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void resetToBlank() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean equals(Object object) {
             throw new AssertionError("This method should not be called.");
         }
 

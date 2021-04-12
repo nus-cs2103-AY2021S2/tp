@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
 
+/**
+ * Updates Food Item command to the nutrients tracker by its name.
+ */
 public class UpdateFoodItemCommand extends Command {
 
     public static final String COMMAND_WORD = "food_update";

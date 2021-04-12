@@ -3,15 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.user.User;
 import seedu.address.model.util.TemplateInitializer;
 
@@ -19,8 +15,6 @@ import seedu.address.model.util.TemplateInitializer;
  * Wraps all data at the DietLah level
  */
 public class DietLah implements ReadOnlyDietLah {
-    private final UniquePersonList persons;
-
     private User user;
 
     private UniqueFoodList foodList;
@@ -28,11 +22,9 @@ public class DietLah implements ReadOnlyDietLah {
     private FoodIntakeList foodIntakeList;
     //Used to have an old comment here, removed due to checkstyle error. Refer to old template for more.
     {
-        persons = new UniquePersonList();
         foodList = new UniqueFoodList();
         foodIntakeList = new FoodIntakeList();
-
-
+        user = new User();
     }
 
     public DietLah() {
@@ -50,12 +42,10 @@ public class DietLah implements ReadOnlyDietLah {
      * Creates an DietLah using the Persons in the {@code toBeCopied}. Adds
      * the associated {@code FoodList} {@code FoodIntakeList}.
      */
-    public DietLah(ReadOnlyDietLah toBeCopied,
-                       UniqueFoodList uniqueFoodList,
-                       FoodIntakeList foodIntakeList,
-                       User user) {
+    public DietLah(UniqueFoodList uniqueFoodList,
+                   FoodIntakeList foodIntakeList,
+                   User user) {
         this();
-        resetData(toBeCopied);
         this.foodList = uniqueFoodList;
         this.foodIntakeList = foodIntakeList;
         this.user = user;
@@ -64,82 +54,28 @@ public class DietLah implements ReadOnlyDietLah {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
-    /**
      * Resets the existing data of this {@code DietLah} with {@code newData}.
      */
     public void resetData(ReadOnlyDietLah newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
-    }
-
-    //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code DietLah}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
+        this.foodList = newData.getFoodList();
+        this.foodIntakeList = newData.getFoodIntakeList();
+        this.user = newData.getUser();
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return "DietLah object";
         // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DietLah // instanceof handles nulls
-                && persons.equals(((DietLah) other).persons));
-    }
-
-    @Override
-    public int hashCode() {
-        return persons.hashCode();
+                || (other instanceof DietLah);
     }
 
     /**

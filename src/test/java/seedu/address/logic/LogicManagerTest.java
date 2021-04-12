@@ -1,9 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,13 +16,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyDietLah;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.user.User;
-import seedu.address.storage.JsonDietLahStorage;
 import seedu.address.storage.JsonDietPlanListStorage;
 import seedu.address.storage.JsonFoodIntakeListStorage;
 import seedu.address.storage.JsonUniqueFoodListStorage;
@@ -44,8 +40,6 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() throws CommandException, ParseException {
-        JsonDietLahStorage dietLahStorage =
-                new JsonDietLahStorage(temporaryFolder.resolve("dietLah.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonUniqueFoodListStorage uniqueFoodListStorage =
                 new JsonUniqueFoodListStorage(temporaryFolder.resolve("uniqueFoods.json"));
@@ -54,7 +48,7 @@ public class LogicManagerTest {
         JsonDietPlanListStorage dietPlanListStorage =
                 new JsonDietPlanListStorage(temporaryFolder.resolve("dietPlans.json"));
         JsonUserStorage userStorage = new JsonUserStorage(temporaryFolder.resolve("user.json"));
-        StorageManager storage = new StorageManager(dietLahStorage, uniqueFoodListStorage, foodIntakeListStorage,
+        StorageManager storage = new StorageManager(uniqueFoodListStorage, foodIntakeListStorage,
                 dietPlanListStorage, userPrefsStorage, userStorage);
         logic = new LogicManager(model, storage);
 
@@ -76,16 +70,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonDietLahIoExceptionThrowingStub
-        JsonDietLahStorage dietLahStorage =
-                new JsonDietLahIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionDietLah.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonUniqueFoodListStorage uniqueFoodListStorage =
@@ -95,7 +81,7 @@ public class LogicManagerTest {
         JsonFoodIntakeListStorage foodIntakeListStorage =
                 new JsonFoodIntakeListStorage(temporaryFolder.resolve("ioExceptionFoodIntakeList.json"));
         JsonUserStorage userStorage = new JsonUserStorage(temporaryFolder.resolve("ioExceptionUser.json"));
-        StorageManager storage = new StorageManager(dietLahStorage, uniqueFoodListStorage, foodIntakeListStorage,
+        StorageManager storage = new StorageManager(uniqueFoodListStorage, foodIntakeListStorage,
                 dietPlanListStorage, userPrefsStorage, userStorage);
         logic = new LogicManager(model, storage);
 
@@ -109,11 +95,6 @@ public class LogicManagerTest {
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);*/
 
         //TODO Implement storage throws IOException testing
-    }
-
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
     /**
@@ -152,7 +133,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getDietLah(), new UniqueFoodList(),
+        Model expectedModel = new ModelManager(new UniqueFoodList(),
                 new FoodIntakeList(), new DietPlanList(), new UserPrefs(), new User());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
@@ -169,20 +150,6 @@ public class LogicManagerTest {
         // TODO Fix ParseException in line commented below
         //assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
-    }
-
-    /**
-     * A stub class to throw an {@code IOException} when the save method is called.
-     */
-    private static class JsonDietLahIoExceptionThrowingStub extends JsonDietLahStorage {
-        private JsonDietLahIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
-        }
-
-        @Override
-        public void saveDietLah(ReadOnlyDietLah dietLah, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
-        }
     }
 
 }

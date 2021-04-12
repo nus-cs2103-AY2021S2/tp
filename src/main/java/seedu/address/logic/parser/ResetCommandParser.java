@@ -9,13 +9,15 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ResetCommand object
+ */
 public class ResetCommandParser implements Parser<ResetCommand> {
+
     /**
-     * Parses the given {@code String} of arguments in the context of the reset Command
+     * Parses the given {@code String} of arguments in the context of the ResetCommand
      * and returns a ResetCommand for execution.
      *
-     * @param args arguments passed in
-     * @return an ViewPlanCommand instance
      * @throws ParseException if the user input does not conform the expected format
      */
     public ResetCommand parse(String args) throws ParseException {
