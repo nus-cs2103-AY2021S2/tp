@@ -5,9 +5,9 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Commands <<Rectangle>>{
-Abstract SelectCommand
-SelectIndexCommand -up-|> SelectCommand
-SelectClearCommand -up-|> SelectCommand
-SelectShowCommand -up-|> SelectCommand
+Abstract AliasCommand
+AddAliasCommand -up-|> AliasCommand
+DeleteAliasCommand -up-|> AliasCommand
+ListAliasCommand -up-|> AliasCommand
 }
 @enduml
