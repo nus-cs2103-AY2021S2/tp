@@ -16,11 +16,11 @@ Given below are my contributions to the project.
 * **New Feature**: Implemented parser support for `bmi`, `update_bmi` and `bmi_query` commands
     * What it does: Users will use the `bmi` command and `bmi_update` commands to enter their Body Mass Index (BMI) information into DietLAH! Subsequently, they can use the `bmi_query` command to view the data they have entered.
     * Justification: This feature allows users to provide the application with the required information in order to calculate the necessary macronutrient requirements for their goals.
-    
+
 * **New Feature**: Implemented parser support for `plan_list`, `plan`,`plan_set` and `plan_current` commands
     * What it does: Users will use the `plan_list` command to view a list of diet plans that they can choose from. The `plan` command provides additional information on the selected plan. The `plan_set` command allows users to set an active diet plan to emabark on. The `plan_current` command allows users to see their active diet plan.
     * Justification: This feature allows users to view and select a diet plan for them to monitor their food intake against.
-    
+
 * **New Feature**: Implemented plan recommendation feature
     * What it does: Users are able to use this feature to get a recommendation of diet plans based on their BMI (whether thye need to lose weight, gain weight or maintain weight)
     * Justification: This helps users who are unsure of what plans are suitable for them to find the appropriate diet plan for their BMI.
@@ -38,11 +38,11 @@ Given below are my contributions to the project.
         * Added documentation for `progress` command and updated table of contents
     * Developer Guide:
         * Added explanation of design decisions when implementing calculations of macronutrient requirements e.g using Mifflin-St Joer formula instead of others
-    
+
 * **Contributions to team-based tasks**:
     * Set up of issues for user stories
 	* Reviewing and approving of teammates' pull requests
 	* Removal of existing AB3 code for parser
-    
+
 * **Community**:
     * Reported bugs for other teams such as https://github.com/AY2021S2-CS2103T-W15-4/tp/issues/129 and https://github.com/AY2021S2-CS2103T-W15-4/tp/issues/127
