@@ -49,7 +49,7 @@ deactivate ResidenceTrackerParser
 LogicManager -> EditBookingCommand : execute()
 activate EditBookingCommand
 
-ref over EditBookingCommand, Model: how EditBookingCommand interacts with Model to edit the booking
+ref over EditBookingCommand, Model: How EditBookingCommand interacts with Model to edit the booking
 EditBookingCommand -> Model: SetResidence(targetResidence, EditedResidence)
 activate Model
 

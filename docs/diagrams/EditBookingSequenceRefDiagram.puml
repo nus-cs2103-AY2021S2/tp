@@ -13,7 +13,7 @@ participant "lastShownList: ObservableList<Residence>" as lastShownList MODEL_CO
 participant ":Model" as Model MODEL_COLOR
 end box
 
-group sd EditBookingCommand, Model: how EditBookingCommand interacts with Model to edit the booking
+group sd How EditBookingCommand interacts with Model to edit the booking
     activate EditBookingCommand
     activate Model
     EditBookingCommand -> Model: getFilteredResidenceList()
