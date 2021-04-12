@@ -1,0 +1,69 @@
+@startuml
+!include ../style.puml
+
+box Model MODEL_COLOR_T1
+
+participant ":TutorFilter" as TutorFilter MODEL_COLOR
+participant ":InclusiveFilterSet<XYZ>" as FilterSet MODEL_COLOR
+participant ":LinkedHashSet<XYZFilter>" as Set MODEL_COLOR
+participant ":XYZFilter" as Filter MODEL_COLOR
+participant ":ObservableList<String>" as StringList MODEL_COLOR
+
+[-> TutorFilter : add(tutorFilter)
+activate TutorFilter
+
+TutorFilter -> FilterSet : addAll(XYZFilters)
+activate FilterSet
+
+FilterSet -> Set : addAll(XYZFilters)
+activate Set
+FilterSet <-- Set
+deactivate Set
+
+FilterSet -> FilterSet : composeFilters()
+activate FilterSet
+
+FilterSet -> Set: stream().reduce()
+activate Set
+
+loop number of filters in set
+Set -> Filter : or(filter)
+activate Filter
+Set <-- Filter : filter
+deactivate Filter
+end
+
+FilterSet <-- Set : filter
+deactivate Set
+
+FilterSet <-- FilterSet
+deactivate FilterSet
+TutorFilter <-- FilterSet
+deactivate FilterSet
+
+TutorFilter -> TutorFilter : buildStringList()
+activate TutorFilter
+
+TutorFilter -> StringList : clear()
+activate StringList
+TutorFilter <-- StringList
+deactivate StringList
+
+TutorFilter -> FilterSet : toStringList()
+activate FilterSet
+TutorFilter <-- FilterSet : stringList
+deactivate FilterSet
+
+TutorFilter -> StringList : addAll(stringList)
+activate StringList
+TutorFilter <-- StringList
+deactivate StringList
+
+TutorFilter <-- TutorFilter
+deactivate TutorFilter
+
+[<-- TutorFilter : tutorFilter
+
+end box
+
+@enduml

@@ -14,8 +14,8 @@ if () then ([all required prefixes present])
           if () then ([valid index])
           :Check if the tutor is already favourite;
 
-              if () then ([tutor is not favourite yet])
-              :Add favourite the tutor;
+              if () then ([tutor is not favourite])
+              :Favourite the tutor;
               :Show success message;
 
               else ([else])

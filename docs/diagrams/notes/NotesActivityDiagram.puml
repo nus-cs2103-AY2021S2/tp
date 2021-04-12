@@ -14,13 +14,13 @@ if () then ([all required prefixes present])
           if () then ([valid index])
           :Check if a note already existed;
 
-              if () then ([tutor does not have notes])
-              :Add notes to tutor;
+              if () then ([tutor does not have a note])
+              :Add note to tutor;
               :Show success message;
 
               else ([else])
 
-              :Shows a notes already exist
+              :Shows note already exist
               error message;
 
               endif

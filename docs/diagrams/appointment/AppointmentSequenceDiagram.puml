@@ -1,0 +1,78 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TutorTrackerParser" as TutorTrackerParser LOGIC_COLOR
+participant ":AddAppointmentCommandParser" as AddAppointmentCommandParser LOGIC_COLOR
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "a:Appointment" as Appointment LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("add_appointment n/David Li \ns/Physics d/2021-5-1 \nfr/10:00am to/11:30am l/Clementi")
+activate LogicManager
+
+LogicManager -> TutorTrackerParser : parseCommand("add_appointment n/David Li \ns/Physics d/2021-5-1 \nfr/10:00am to/11:30am l/Clementi")
+activate TutorTrackerParser
+
+create AddAppointmentCommandParser
+TutorTrackerParser -> AddAppointmentCommandParser
+activate AddAppointmentCommandParser
+
+AddAppointmentCommandParser --> TutorTrackerParser
+deactivate AddAppointmentCommandParser
+
+TutorTrackerParser -> AddAppointmentCommandParser : parse("David Li", "Physics", \n"2021-5-1" "10:00am" "11:30am" "Clementi")
+activate AddAppointmentCommandParser
+
+create Appointment
+AddAppointmentCommandParser -> Appointment : Appointment("David Li", "Physics", \n"2021-5-1 10:00AM", "2021-5-1 11:30AM", "Clementi")
+activate Appointment
+
+Appointment --> AddAppointmentCommandParser : a
+deactivate Appointment
+
+create AddAppointmentCommand
+AddAppointmentCommandParser -> AddAppointmentCommand : AddAppointmentCommand(a)
+activate AddAppointmentCommand
+
+AddAppointmentCommand --> AddAppointmentCommandParser : a
+deactivate AddAppointmentCommand
+
+AddAppointmentCommandParser --> TutorTrackerParser : a
+deactivate AddAppointmentCommandParser
+
+AddAppointmentCommandParser -[hidden]-> TutorTrackerParser
+destroy AddAppointmentCommandParser
+
+TutorTrackerParser --> LogicManager : a
+deactivate TutorTrackerParser
+
+LogicManager -> AddAppointmentCommand : execute()
+activate AddAppointmentCommand
+
+AddAppointmentCommand -> Model : addAppointment(a)
+activate Model
+
+Model --> AddAppointmentCommand
+deactivate Model
+
+create CommandResult
+AddAppointmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddAppointmentCommand
+deactivate CommandResult
+
+AddAppointmentCommand --> LogicManager : result
+deactivate AddAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
