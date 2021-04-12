@@ -363,9 +363,9 @@ The `deleteItem` command enables users to delete predefined order items (also kn
 
 The `deleteItem` command utilises the `IndexList` class to enable the deletion of multiple items at once. The `IndexList` parser takes in a string of multiple indexes separated by spaces, parses them to `Index` and stores them in an `ArrayList<Index>`.
 
-The underlying functionality for the `deleteItem` command utilises the `DeleteOrderItemCommand::execute` method which sorts the provided `Index List` in descending order. All the `OrderItem`s pertaining to the indexes input by the user are removed from the `UniqueOrderItemList` using the `Model::deleteOrderItem` method.
+The underlying functionality for the `deleteItem` command utilises the `DeleteOrderItemCommand::execute` method which sorts the provided `Index List` in descending order. All the order items pertaining to the indexes input by the user are removed from the `UniqueOrderItemList` using the `Model::deleteOrderItem` method.
 
-If the user wants to delete an order items at index `1` and `2` in the order items table, they can use the command `deleteItem 1 2`.
+If the user wants to delete order items at index `1` and `2` in the order items table, they can use the command `deleteItem 1 2`.
 
 Given below is an example usage scenario and how the `deleteItem` mechanism works.
 
@@ -560,8 +560,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 1.  User requests to list orders
 2.  CakeCollate shows a list of orders
-3.  User requests to set a specific order, or a list of orders in the above list as undelivered/delivered/cancelled.
-4.  CakeCollate updates the order and sets the delivery status to undelivered/delivered/cancelled.
+3.  User requests to set a specific order, or a list of orders in the above list as undelivered/delivered/cancelled
+4.  CakeCollate updates the order and sets the delivery status to undelivered/delivered/cancelled
 
     Use case ends.
 
@@ -587,8 +587,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests to add an order item to the order items table.
-2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI.
+1.  User requests to add an order item to the order items table
+2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI
 
     Use case ends.
 
@@ -604,8 +604,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests to delete a specific list of order items.
-2.  CakeCollate deletes the specified order items.
+1.  User requests to delete a specific list of order items
+2.  CakeCollate deletes the specified order items
 
     Use case ends.
 
@@ -633,8 +633,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests for help.
-2.  CakeCollate shows a list of commands, their formats, descriptions, and examples.
+1.  User requests for help
+2.  CakeCollate shows a list of commands, their formats, descriptions, and examples
 
     Use case ends.
 
