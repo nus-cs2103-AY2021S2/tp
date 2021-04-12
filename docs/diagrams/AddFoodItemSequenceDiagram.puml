@@ -26,7 +26,7 @@ activate AddFoodItemCommandParser
 AddFoodItemCommandParser --> DietLahParser
 deactivate AddFoodItemCommandParser
 
-DietLahParser -> AddFoodItemCommandParser : parse(n/grape c/10 f/10 p/10)
+DietLahParser -> AddFoodItemCommandParser : parse("n/grape c/10 f/10 p/10")
 activate AddFoodItemCommandParser
 
 create AddFoodItemCommand
