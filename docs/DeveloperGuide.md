@@ -286,7 +286,10 @@ This feature not only allows the command and index to be autocompleted, but allo
 The current implementation is such that `Remark` is added as an attribute of the `Person` class. `Remark` is intended 
 as a way to allow users to add any kind of comment about a specified contact, and therefore does not require any 
 validity check (an empty remark is also valid). Accordingly, `Remark` is an optional field that can be specified when 
-adding/editing a contact. 
+adding/editing a contact. When editing a person's `Remark` and no value is provided, said person's `Remark` will be set 
+as empty.
+
+![EditRemarkActivityDiagram](images/EditRemarkActivityDiagram.png)
 
 Initially, an alternative implementation was considered: to introduce a new `Remark` command which would be used to add
 remarks to a contact. However the current implementation is used instead, in favour of consistency. `Remark` is 
