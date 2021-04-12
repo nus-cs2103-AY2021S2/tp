@@ -17,11 +17,13 @@ public class DeleteVenueCommand extends Command {
     public static final String COMMAND_WORD = "delete_venue";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the venue identified by the venue name used in the displayed list.\n"
+            + ": Deletes the venue identified by the venue name used in the displayed list. \n"
+            + "All bookings of this venue will also be deleted.\n"
             + "Parameters: v/VENUE NAME\n"
             + "Example: " + COMMAND_WORD + " v/Sports Hall";
 
-    public static final String MESSAGE_DELETE_VENUE_SUCCESS = "Deleted Venue: %1$s";
+    public static final String MESSAGE_DELETE_VENUE_SUCCESS = "Deleted Venue: %1$s \n"
+            + "All relevant bookings are deleted.\n";
 
     private final Venue targetVenue;
 
