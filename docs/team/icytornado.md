@@ -26,16 +26,20 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    - Added documentation on `edit-appt` feature.
+    - Added documentation on `edit-appt` and `edit-patient` feature.
+        - Pull request [#50](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/50)
   * Developer Guide:
-    - Updated the UML diagrams for the Model component under the Design section:
+    - Updated the UML diagrams and description for the Model component under the Design section:
       * [Model Class Diagram](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/docs/diagrams/ModelClassDiagram.puml)
       * [Better Person Model Class Diagram](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/docs/diagrams/BetterPersonModelClassDiagram.puml)
       * [Better Appointment Model Class Diagram](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/docs/diagrams/BetterAppointmentModelClassDiagram.puml)
-    - Updated description for the Model component under the Design section.
-    - Added user stories.
-    - Added documentation on `edit-patient`, `find-patient`, `delete-doctor`, `edit-doctor`, `find-doctor`, `edit-appt` features.
+        - Pull request [#163](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/163)
+    - Added user stories for some command features.
+       - Pull request [#154](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/154)
+    - Added Use Case documentation on `edit-patient`, `find-patient`, `delete-doctor`, `edit-doctor`, `find-doctor`, `edit-appt` features.
+       - Pull request [#162](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/162)
     - Added Instructions for Manual Testing for `edit-patient`, `find-patient`, `delete-doctor`, `edit-doctor`, `find-doctor`, `edit-appt` features.
+       - Pull request [#169](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/169)
 
 
 * **Project management**:
