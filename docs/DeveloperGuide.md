@@ -318,6 +318,7 @@ Step 6. If the delete command has been successfully executed, the success messag
 
 The sequence diagram below shows how the delete feature works:
 ![Sequence Diagram for Delete Command](images/DeleteSequenceDiagram.png)
+![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -491,7 +492,7 @@ a new `CommandResult` is returned.
 Step 7. If the sort command has been successfully executed, the success message will be displayed.
 
 #### Sequence Diagram
-The sequence diagram below shows how the `search` feature works:
+The sequence diagram below shows how the `sort` feature works:
 
 ![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
 
@@ -513,10 +514,10 @@ The activity diagram shows the workflow when a `sort` command is executed:
   * Pros: List shows all the students every time.
   * Cons: Might clutter the GUI with people the user does not want to see.
 
-### Advance levels feature
+### Level Up feature
 
 #### Implementation
-The advancing levels mechanism is facilitated by `LevelUpCommand` and `LevelUpCommandParser`.
+The advancing education levels mechanism is facilitated by `LevelUpCommand` and `LevelUpCommandParser`.
 
 `LevelUpCommand` extends `Command` and implements the following operation:
 
@@ -571,10 +572,10 @@ The activity diagram shows the workflow when a levelup command is executed:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Demote levels feature
+### Level Down feature
 
 #### Implementation
-The demoting levels mechanism is facilitated by `LevelDownCommand` and `LevelDownCommandParser`.
+The demoting education levels mechanism is facilitated by `LevelDownCommand` and `LevelDownCommandParser`.
 
 `LevelDownCommand` extends `Command` and implements the following operation:
 
@@ -615,16 +616,15 @@ The activity diagram shows the workflow when a leveldown command is executed:
 
 #### Design consideration:
 
-##### Aspect: Whether to combine the leveldown command with the levelup command
+##### Aspect: Whether to have a leveldown command at all
 
-* **Alternative 1 (current choice):** Separate the leveldown command from the levelup command
-  * Pros: Clearly separates the two commands, because they have different purposes; levelup is meant to be used
-    at the start of the school year, while leveldown is mostly to undo levelup if a mistake is made
-  * Cons: Redundant code.
+* **Alternative 1 (current choice):** Have a leveldown command to mass demote students
+  * Pros: Undoes the levelup command if the user applies the levelup command wrongly
+  * Cons: No other situation to mass demote all the students
 
-* **Alternative 2:** Combine the two commands to have one levelchange command.
-  * Pros: Neater code, since the two commands manipulate the same data.
-  * Cons: Messy, because the two commands have different purposes.
+* **Alternative 2:** Do not have a leveldown command
+  * Pros: Less code to maintain
+  * Cons: If levelup is applied wrongly, reverting all the education levels using the edit command only is time-consuming
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -671,6 +671,7 @@ Step 6. If the add important date command has been successfully executed, the su
 
 The sequence diagram below shows how the add important date feature works:
 ![Sequence Diagram for Add Important Date Command](images/AddImportantDateSequenceDiagram.png)
+![Sequence Diagram for ref CreateAddDateCommand](images/CreateAddDateCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -724,56 +725,81 @@ Step 6. If the delete important date command has been successfully executed, the
 
 #### Sequence Diagram
 
-The sequence diagram below shows how the delete feature works:
+The sequence diagram below shows how the delete important date feature works:
 ![Sequence Diagram for Delete Important Date Command](images/DeleteImportantDateSequenceDiagram.png)
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a delete important date command is executed:
 ![Activity Diagram for Delete Important Date Command](images/DeleteImportantDateActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Whether to delete the important date based on the order it has been input in or according to the order the dates are displayed in, which is sorted by details (time and date).
+##### Aspect: 
 
-* **Alternative 1 (current choice):** Deletes important date based on the order it is displayed in. 
-    * Pros: It is easier for the user to find and delete the correct important date by just scrolling through the list. 
-    * Cons: User will have to scroll through the list multiple times to obtain the correct index if user wants to delete multiple important dates that have been added in consecutively.
-
-* **Alternative 2:** Deletes important date based on the order it was added in.
-    * Pros: User can easily delete dates that have been added in consecutively. 
-    * Cons: The index displayed next to each of the dates in the important dates list must correspond to the sequence it has been added in. 
-      A separate command will have to be implemented in order to show the user the important dates sorted according to details (time and date).
+* **Alternative 1 (current choice):** 
+    * Pros: 
+    * Cons:  
+  
+* **Alternative 2:** 
+    * Pros: 
+    * Cons: 
+      
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### List important dates feature
 
 #### Implementation
-The list important dates mechanism is facilitated by `ImportantDatesCommand`.
+The list important dates mechanism is facilitated by `ImportantDatesCommand`, `MainWindow` and `ImportantDatesWindow`.
 
 `ImportantDatesCommand` extends `Command` and implements the following operation:
 
 * `ImportantDatesCommand#execute()` — lists the important dates stored in TutorsPet sorted according to the details (time and date), and returns a new
   `CommandResult` with a success message.
 
+`MainWindow` extends UiPart<Stage> and implements the following relevant operations:
+
+* `MainWindow#executeCommand()` — calls `LogicManager#execute()` to execute user command.
+
+* `MainWindow#handleImportantDates()` — calls `ImportantDatesWindow#show()` to open a new important dates window if it is not opened yet. 
+  Otherwise, call `ImportantDatesWindow#focus()` to focus on the already opened important dates window.
+  
+`ImportantDatesWindow` extends `UiPart<Stage>` and implements the following relevant operations:
+
+* `ImportantDatesWindow#show()` — adds all important dates in TutorsPet to the important dates UI, and opens up
+a new important dates window.
+  
+* `ImportantDatesWindow#focus()` — focuses on already opened important dates window.
+
 
 Given below is an example usage scenario and how the list important dates mechanism behaves at each step.
 
-Step 1. The user executes `list-date` command to view a list of important dates in TutorsPet.
+Step 1. All important dates are stored in an `ObservableList` named `internalList`. There is an additional `ObservableList` named 
+`transformedImportantDates` has the important dates sorted according to the dates' details.
 
-Step 2. The user input is parsed by `AddressBookParser`, which returns a new `ImportantDatesCommand`. 
+Step 2. The user executes `add-date d/math exam dt/2023-04-03 0800` command to add in an important date with details `2023-04-3 0800`. 
+The `add-date` command calls `Model#addImportantDate()` which adds the important date to the `internalList`, and updates `transformedImportantDates`.
 
-Step 3. `LogicManager` then calls `ImportantDatesCommand#execute()`.
+Step 3. The user now executes `list-date` command to open up the important dates window. The command is parsed by `AddressBookParser`, which returns a new `ImportantDatesCommand`.
 
-Step 4. `ImportantDatesCommand#execute()` calls `Model#updateSortedImportantDatesList()` and returns a new `CommandResult`.
+Step 4. `LogicManager` then calls `ImportantDatesCommand#execute()`.
 
-Step 5. If the list important dates command has been successfully executed, the success message will be displayed.
+Step 5. `ImportantDatesCommand#execute()` calls `Model#updateSortedImportantDatesList()` and returns a new `CommandResult` 
+whose `showImportantDates` boolean value is set to `true`.
+
+Step 6. `MainWindow#executeCommand()` then checks the value of `showImportantDates`, and since it is `true`,
+`MainWindow#handleImportantDates()` is called to open the important dates window. `ImportantDatesWindow#show()` is called, which will
+create a `dateListPanel`, containing the `ObservableList` of important dates.
+
+Step 7. If the list important dates command has been successfully executed, the success message will be displayed.
 
 #### Sequence Diagram
 
 The sequence diagram below shows how the list important dates feature works:
 ![Sequence Diagram for List Important Dates Command](images/ListImportantDatesSequenceDiagram.png)
+![Sequence Diagram for ref List Important Dates](images/ListImportantDatesCommandSequenceDiagram.png)
+![Sequence Diagram for ref Execute Important Dates Command](images/ExecuteImportantDatesCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -891,19 +917,20 @@ window continues to display the correct list of lessons for each day.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                              |
-| -------- | ------------------------------------------ | ------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   |
-| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering             | 
-| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed.    |
-| `* *`    | user                                       | find a student by name          | locate details of students without having to go through the entire list|
-| `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        |
-| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     |
-| `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes  |
-| `*`      | expert user                                | add customized subjects to contacts | I will be able to access each group of students more easily        |
-| `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program|
-| `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        
+| -------- | ------------------------------------------ | ------------------------------- | ---------------------------------------------------------------------- 
+| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 
+| `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   
+| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering                                  
+| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed.    
+| `* *`    | user                                       | find a student by name          | locate details of students without having to go through the entire list
+| `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        
+| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     
+| `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes
+| `*`      | user                                       | mass update all student levels  | I can keep my contacts up to date at the start of a new year
+| `*`      | expert user                                | add customized subjects to contacts | I will be able to access each group of students more easily
+| `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program
+| `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                
 
 *{More to be added}*
 
@@ -1003,6 +1030,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Sort the list view**
+
+**MSS**
+
+1. User requests to sort the list with a particular criteria
+2. TutorsPet sorts the list by the criteria and indicates success.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user uses an invalid sorting criteria
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+* 1b. The given sort command has more than one valid sorting criteria specified.
+
+  * 1b1. TutorsPet executes the command while taking in the last occurrence of the parameters only.
+    
+    Use case resumes at step 2.
+
+**Use case: Increase level of all students**
+
+**MSS**
+
+1. User enters levelup command into command prompt
+2. TutorsPet increases all students' levels by one and indicates success.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user enters levelup command and excludes some students
+
+  * 1a1. TutorsPet increases all students' levels by one except the specified students and indicates success.
+
+    Use case resumes at step 2.
+
+* 1b. The user enters levelup command and excludes a student using an invalid index
+
+  * 1b1. TutorsPet shows an error message.
+
+    Use case ends.
+
+**Use case: Decrease level of all students**
+
+**MSS**
+
+1. User enters leveldown command into command prompt
+2. TutorsPet decreases all students' levels by one and indicates success.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user enters leveldown command and excludes some students
+
+  * 1a1. TutorsPet decreases all students' levels by one except the specified students and indicates success.
+
+    Use case resumes at step 2.
+
+* 1b. The user enters leveldown command and excludes a student using an invalid index
+
+  * 1b1. TutorsPet shows an error message.
+
+    Use case ends.
+
 **Use case: Add a new important date**
 
 **MSS**
@@ -1026,31 +1122,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Display a student contact details**
-
-**MSS**
-
-1.  User requests to list student contacts.
-2.  TutorsPet shows a list of student contacts.
-3.  User requests to display a specific student contact from the list.
-4.  TutorsPet display the specified student contact in the details panel.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty
-
-  Use case ends.
-
-* 3a. The given index of the student contact in the list is invalid.
-
-  * 3a1. TutorsPet shows an error message.
-
-    Use case resumes from step 2.
-
-
-**Use case: Deletes a important date**
+**Use case: Deletes an important date**
 
 **MSS**
 
@@ -1089,6 +1161,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. TutorsPet shows an error message.
   
     Use case ends.
+
+**Use case: Display a student contact details**
+
+**MSS**
+
+1.  User requests to list student contacts.
+2.  TutorsPet shows a list of student contacts.
+3.  User requests to display a specific student contact from the list.
+4.  TutorsPet display the specified student contact in the details panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index of the student contact in the list is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
+
 
 **Use case: Opens schedule window**
 

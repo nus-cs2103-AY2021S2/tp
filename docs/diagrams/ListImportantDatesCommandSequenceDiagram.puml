@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+mainframe "sd list important date command"
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "d:ImportantDatesCommand" as ImportantDatesCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list-date")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("list-date")
+activate AddressBookParser
+
+create ImportantDatesCommand
+AddressBookParser -> ImportantDatesCommand
+activate ImportantDatesCommand
+
+ImportantDatesCommand --> AddressBookParser : d
+deactivate ImportantDatesCommand
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> ImportantDatesCommand : execute()
+activate ImportantDatesCommand
+
+ref over ImportantDatesCommand, Model :  execute method of important dates command
+
+ImportantDatesCommand --> LogicManager : result
+deactivate ImportantDatesCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

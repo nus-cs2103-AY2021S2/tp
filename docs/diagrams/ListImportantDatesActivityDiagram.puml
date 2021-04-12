@@ -4,9 +4,13 @@
 start
 :User inputs a list important date command;
 :Command parsed by AddressBookParser;
+if () then ([command word is valid])
 :Returns ImportantDatesCommand;
 :Model updates the sorted important dates list;
-:Displays the important dates list;
+:Opens the important dates window;
+else ([else])
+    :ParseException is thrown;
+endif
 stop
 
 @enduml
