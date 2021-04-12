@@ -29,15 +29,15 @@ public class Statistics {
     }
 
 
-    private void fillPastMonths() {
-        List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
-        List<YearMonth> months = monthList.stream().map(m -> m.getMonth()).collect(Collectors.toList());
+    protected boolean fillPastMonths() {
         for (int i = 1; i < 6; i++) {
             YearMonth curr = this.monthList.get(0).getMonth().minusMonths(i);
             model.findMonth(curr);
         }
+        return true;
     }
-    private List<Month> getPastMonths() {
+
+    protected List<Month> getPastMonths() {
         fillPastMonths();
         List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
         monthList = monthList.stream()
@@ -60,7 +60,7 @@ public class Statistics {
         return list;
     }
 
-    private List<CategoryStatistics> allCategories() {
+    protected List<CategoryStatistics> allCategories() {
         assert monthList.size() == 1;
         Month currMonth = monthList.get(0);
 
