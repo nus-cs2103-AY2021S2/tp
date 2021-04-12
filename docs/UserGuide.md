@@ -142,7 +142,8 @@ Format: <br>
 <br> `filter FACULTY`
 <br> `filter SCHOOL_RESIDENCE`
 
-* Only one filter condition should be specified at a time. 
+* Only one condition should be specified at a time. In this case, a condition refers to `VACCINATION_STATUS`, `FACULTY` or `SCHOOL_RESIDENCE`
+
 
 > For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding the input accepted by the filter command.
 
@@ -163,7 +164,8 @@ Format: <br>
 <br> `stats NUS`
 <br> `stats all`
 
-* Only one condition should be specified at a time. 
+* Only one condition should be specified at a time.  In this case, a condition refers to `FACULTY`, `SCHOOL_RESIDENCE`, `NUS` or `all`
+
 * If there is no available data for the specified faculty or school residence, a message will be displayed to inform
   users that the specified faculty or school residence has no available data.
 
