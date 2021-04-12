@@ -50,6 +50,7 @@ in workload management.
     * Tag Display : This shows all the available tags that the tasks have been categorised within PlanIT.
     * Task Display : This shows all the tasks currently saved within the PlanIT app.
 
+
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
    pressing Enter will display a list of commonly used commands for first time users.<br>
    Some example commands you can try:
@@ -80,13 +81,13 @@ Tasks can have the following attributes:
 
 | Attribute | Prefix | Description |
 |---|---|---|
-| Title | `t/` | A short description or name for the task. {::nomarkdown}<ul><li>Titles can only contain alphanumeric values and have at most 40 characters.</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/} <br> <div markdown="span" class="alert alert-info">:information_source:  Every task must have a title. </div>|
+| Title | `n/` | A short description or name for the task. {::nomarkdown}<ul><li>Titles can only contain alphanumeric values and have at most 40 characters.</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/} <br> <div markdown="span" class="alert alert-info">:information_source:  Every task must have a title. </div>|
 | Date | `set/` | A date to represent the deadline of a task or to represent the day that the task will be carried out. {::nomarkdown}<ul><li> Dates should be of the format dd/mm/yyyy e.g 02/06/2021</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}|
 | Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. {::nomarkdown}<ul><li>Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}|
 | Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>:exclamation: **Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] <br> e.g [23/10/2021][mon][weekly]**<br><br>{::nomarkdown}<ul><li>END DATE should be in the format dd/mm/yyyy, any date that is 6 months after the current date will be considered invalid.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}<br>:information_source: **Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>:information_source: **Existing recurring dates that has passed the current date will be removed automatically from the existing task upon application startup.**|
 | Description | `d/` | A text description of the task. Your description can be any value.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed unless otherwise stated in the command description.</li></ul>{:/}|
 | Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed unless otherwise stated in the command description.</li></ul> <br><div markdown="span" class="alert alert-primary">:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. </div> {:/}|
-| Status | `st/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul> <br><div markdown="block" class="alert alert-info"><br>:information_source:   Your task's status will be set to 'not done' by default. Status cannot be removed. </div> {:/}|
+| Status | `st/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul> <br><div markdown="block" class="alert alert-info">:information_source:   Your task's status will be set to 'not done' by default. Status cannot be removed. </div> {:/}|
 
 
 ## Constraints
@@ -201,8 +202,7 @@ Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
 Examples:
 *  `edit 1 set/10/10/2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
    `10/10/2021` and `Remember to update User Guide` respectively.
-*  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
-   and the date.
+*  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook`.
    
 ### Postpone a task's date : `snooze` ----- Max
 
@@ -382,6 +382,8 @@ so that you know how much time you have left to work on the task.
 Format: `count INDEX`
 
 * Counts the number of days until the date of the task at `INDEX`.
+* Number of days is solely dependent on the system date only irrespective of system timing e.g if the current
+  date is 12/05/2021 and the task has date 13/05/2021, the result displayed will be 1.
 * The index refers to the index number shown in the displayed planner.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The task at the index must have a date, otherwise countdown cannot be done.
@@ -397,6 +399,7 @@ Displays the statistics of the planner
 so that you can check the current task progression and determine your own work efficiency conveniently. 
 
 Statistics include:
+
 1) The total number of tasks in the planner.
    
 2) The percentage of tasks completed (marked as done).
@@ -406,6 +409,10 @@ Statistics include:
 Format: `stat`
 
 * Planner must consist of at least one task.
+
+Examples:
+* `ls` followed by `stat` displays the statistics for all the tasks in the planner.
+* `find cs2103` followed by `stat` displays the statistics for all the tasks with `cs2103` in their title.
 
 ### View tasks on a date : `view` ----- Jun Xue
 

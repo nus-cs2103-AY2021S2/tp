@@ -28,11 +28,16 @@ public class DoneCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
+    public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Please check that your index is positive and within the"
+            + " range of the list.";
+
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Task: %1$s marked as done.";
 
     public static final String MESSAGE_TASK_ALREADY_DONE = "Task: %1$s is already done. Did you type the wrong index?";
 
     private final Index index;
+
+    private Task taskStatusSetToDone;
 
     public DoneCommand(Index index) {
         this.index = index;
@@ -43,14 +48,19 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        ConditionLogic.verifyIndex(index, lastShownList);
-
-        Task taskToSetAsDone = retrieveSelectedTask(lastShownList);
-        verifyTaskStatusNotDone(lastShownList);
-
-        Task taskStatusSetToDone = setTaskStatusAsDone(taskToSetAsDone);
-        updateModel(model, taskToSetAsDone, taskStatusSetToDone);
+        verifyTask(lastShownList);
+        updateModel(model);
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskStatusSetToDone));
+    }
+
+    private void verifyTask(List<Task> lastShownList) throws CommandException {
+        try {
+            ConditionLogic.verifyIndex(index, lastShownList);
+        } catch (CommandException ce) {
+            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE);
+        }
+
+        verifyTaskStatusNotDone(lastShownList);
     }
 
     private void verifyTaskStatusNotDone(List<Task> list) throws CommandException {
@@ -67,7 +77,11 @@ public class DoneCommand extends Command {
         return list.get(index.getZeroBased());
     }
 
-    private void updateModel(Model model, Task taskToSetAsDone, Task taskStatusSetToDone) throws CommandException {
+    private void updateModel(Model model) throws CommandException {
+        List<Task> lastShownList = model.getFilteredTaskList();
+        Task taskToSetAsDone = retrieveSelectedTask(lastShownList);
+        taskStatusSetToDone = setTaskStatusAsDone(taskToSetAsDone);
+
         model.setTask(taskToSetAsDone, taskStatusSetToDone);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.resetCalendarDate();

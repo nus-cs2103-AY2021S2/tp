@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -10,6 +8,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new DoneCommand object.
  */
 public class DoneCommandParser implements Parser<DoneCommand> {
+    public static final String MESSAGE_DONE_FORMAT = "Invalid command format! Note that index must be positive and "
+            + "within the range of the displayed list. There should also be no additional parameters.\n\n"
+            + DoneCommand.MESSAGE_USAGE;
 
     /**
      * Parses the given {@code String} of arguments in the context of the DoneCommand
@@ -21,8 +22,7 @@ public class DoneCommandParser implements Parser<DoneCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new DoneCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_DONE_FORMAT);
         }
     }
 
