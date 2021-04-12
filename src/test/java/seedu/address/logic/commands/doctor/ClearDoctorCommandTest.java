@@ -72,5 +72,4 @@ public class ClearDoctorCommandTest {
         assertCommandFailure(new ClearDoctorCommand(), nonEmptyPatientRecordsModel,
                 MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED);
     }
-
 }
