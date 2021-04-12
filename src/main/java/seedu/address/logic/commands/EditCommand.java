@@ -24,7 +24,6 @@ import seedu.address.model.TripDay;
 import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;

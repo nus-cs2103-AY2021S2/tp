@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.exceptions.DuplicatePoolException;
 import seedu.address.model.pool.exceptions.PoolNotFoundException;

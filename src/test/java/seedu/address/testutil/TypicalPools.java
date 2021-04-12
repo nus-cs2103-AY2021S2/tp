@@ -29,7 +29,7 @@ public class TypicalPools {
     public static final List<Passenger> WORKPOOL_PASSENGERS = new ArrayList<>(Arrays.asList(ALICE, GEORGE, HILARY));
 
     public static final Pool HOMEPOOL = new PoolBuilder()
-            .withDriver(TypicalDrivers.DRIVER_ALICE)
+            .withDriver(TypicalDrivers.DRIVER_DANIEL)
             .withTripDay(DayOfWeek.FRIDAY)
             .withTripTime(LocalTime.of(18, 0))
             .withPassengers(HOMEPOOL_PASSENGERS)

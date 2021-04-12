@@ -7,7 +7,6 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.UniquePassengerList;
 import seedu.address.model.pool.Pool;
