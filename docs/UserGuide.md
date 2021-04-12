@@ -632,7 +632,7 @@ component command prefix/[INPUT] -flag
 
         In the event that there are ingredients that is needed by certain dishes that is being attempted to be deleted,
         a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from
-        accidentally deleting dishes unknowingly and leads to invalid orders! 
+        accidentally deleting dishes unknowingly and leads to invalid orders! Orders that use the dishes will hence be cancelled!
 
         Examples:
         ```

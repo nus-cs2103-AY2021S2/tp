@@ -18,7 +18,11 @@ title: Developer Guide
         + [Parser validation](#parser-validation)
         + [Data consistency](#data-consistency)
             - [Deletion of Person objects](#deletion-of-person-objects)
+            - [Editiing of Person objects](#editing-of-person-objects)
+            - [Deletion of Dish objects](#deletion-of-dish-objects)
+            - [Editiing of Dish objects](#editing-of-dish-objects)
             - [Deletion of Ingredient objects](#deletion-of-ingredient-objects)
+            - [Editing of Ingredient objects](#editing-of-ingredient-objects)  
             - [Logging of Order object](#logging-of-order-object)
         + [Concurrent list display](#concurrent-list-display)
         + [\[Proposed\] Data archiving](#--proposed---data-archiving)
@@ -525,6 +529,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. JJIMY shows an error message.
 
       Use case resumes at step 2.
+    
+* 3b. The given contact has pending orders
+    
+    * 3b1. JJIMY prompts the user to append `-f` to the end of his command to confirm the cascading deletion of pending orders for the conact as well
+      
+      User case resumes at step 2.
 
 **Use case: Find a contact**
 
@@ -597,7 +607,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. JJIMY shows an error message.
 
       Use case resumes at step 2.
+    
+* 3b. The given menu item has pending orders
 
+    * 3b1. JJIMY prompts the user to append `-f` to the end of his command to confirm the cascading deletion of pending 
+      orders that contain the menu item
+
+      User case resumes at step 2.
+    
 **Use case: Find a menu item**
 
 **MSS**
@@ -736,6 +753,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 3b. The given inventory item has pending orders
+
+    * 3b1. JJIMY prompts the user to append `-f` to the end of his command to confirm the cascading cancellation of 
+      pending orders that have dishes that use the ingredient and also the deletion of those affected dishes.
+
+      User case resumes at step 2.
+    
 **Use case: Decrease the quantity of an inventory item**
 
 **MSS**
