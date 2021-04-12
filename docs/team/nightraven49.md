@@ -3,6 +3,8 @@ layout: page
 title: Warren Ng's Project Portfolio Page
 ---
 
+<h1 class="post-title">{{ page.title | escape }}</h1>
+
 ### Project: imPoster
 
 imPoster is a desktop application for beginners of API development to easily grasp the basics. The application is optimized for fast typists and can be fully operated through a Command Line Interface. My contributions to the project are as listed below:
@@ -23,10 +25,12 @@ imPoster is a desktop application for beginners of API development to easily gra
   - Justification: The original MenuBar from AB3 only had help and exit, which are already accessible through the command box, so it was deemed redundant and thus replaced with a more useful UI component.
   - Highlights: A special font is used for the banner when using the Imposter theme.
 
-- **Enhancement**: Added GIFs suited for different themes ([\#338](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/338), [\#397](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/397), [\#409](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/409))
+- **Enhancement**: Added GIFs suited for different themes ([\#338](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/338), [\#397](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/397), [\#409](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/409)).
 
   - What it does: Have GIFs with different coloured text appear for different themes.
   - Justification: The GIFs that were originally used had white text and hence were suitable for dark themes similar to the original AB3. However, when light themes were implemented, the white text would be difficult to read against a light background. Thus, GIFs with black text was required for such light themes.
+
+<div style="page-break-after: always;"></div>
 
 #### Documentation
 
