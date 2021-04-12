@@ -28,6 +28,14 @@ layout: page title: Developer Guide
   - [Filtering contacts via tags](#filtering-contacts-via-tags)
   - [Editing a contact](#editing-a-contact)
   - [Deleting a contact](#deleting-a-contact)
+  - [Adding an entry](#adding-an-entry)
+  - [Finding an entry](#finding-an-entry)
+  - [Filtering entries via tags](#filtering-tags)
+  - [Editing an entry](#editing-an-entry)
+  - [Listing entries](#listing-entries)
+  - [Checking if interval is free](#checking-if-interval-is-free)
+  - [Deleting entries](#deleting-entries)
+  - [Clearing overdue entries](#clearing-overdue-entries)
 
 --------------------------------------------------------------------------------------------------------------------
 
