@@ -484,7 +484,7 @@ Example:
 ![add_session_example](images/choonwei/add_session.png)
 
 <ol start="3">
-    <li>You will now see that a new session is added in the session list under <b>John Doe</b> and is marked with a green letter <b>"I"</b> to indicate an individual session.</li>
+    <li>You will now see that a new session is added in the session list under <b>John Doe</b> and is marked with a light blue letter <b>"I"</b> to indicate an individual session.</li>
 </ol>
 
 ![add_session_result_example](images/choonwei/add_session_result.png)
