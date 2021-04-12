@@ -314,7 +314,7 @@ In order to enrol a dog into a program, the raw input needs to be parsed first. 
 
 Below is an example activity diagram for a valid enrol command from the user.
 
-![<img src="images/EnrolActivityDiagram.png" height="429" width="370"/>](images/EnrolActivityDiagram.png){: .center-image}
+![<img src="images/EnrolActivityDiagram.png" width="50%"/>](images/EnrolActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid enrol command from the user.
 
@@ -347,7 +347,7 @@ To drop a dog from a program, the raw input is parsed and goes through several c
 
 Below is an example activity diagram for a valid drop command from the user.
 
-![<img src="images/DropActivityDiagram.png" height="429" width="370"/>](images/DropActivityDiagram.png){: .center-image}
+![<img src="images/DropActivityDiagram.png" width="50%"/>](images/DropActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid drop command from the user.
 
