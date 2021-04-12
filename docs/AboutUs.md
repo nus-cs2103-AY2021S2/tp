@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/xinditian.png" width="200px">
 
 [[github](http://github.com/XindiTian)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/xinditian.md)]
 
 * Role: Member
 * Responsibilities: Development, testing, and documentation of `Dictionary` Features.
