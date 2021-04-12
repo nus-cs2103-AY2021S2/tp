@@ -446,7 +446,7 @@ Here is a more specific breakdown of the command's `execute` method.
 1. The `DropCommand` will call the `updateFilteredEntityList` method of the existing `Model` object update the `IdMatchPredicate` object into Pawbook.
 1. The `DropCommand` then creates a `CommandResult` object and returns it, indicating the successful updating of the `IdMatchPredicate` object.
 
-### Alternate implementations
+### Alternate implementations for Enrol/Drop features
 
 As dogs and programs can also be identified by their respective names instead of IDs, another implementation could be replacing the parameters of `dogId` and `programId` with their respective names.
 
