@@ -1,4 +1,3 @@
-@startuml
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
