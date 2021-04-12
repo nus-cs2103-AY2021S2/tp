@@ -84,11 +84,11 @@ public class ExportUtils {
         text.append("\n");
         text.append("===== SUBJECT LIST =====" + "\n\n");
         for (TutorSubject subject: tutor.getSubjectList()) {
-            text.append(subject.getName().toString().toUpperCase());
-            text.append("  Level: ").append(subject.getLevel().toString()).append("\n");
-            text.append("  Rate:  ").append(subject.getRate().toString()).append("\n");
-            text.append("  Exp:   ").append(subject.getExperience().toString()).append("\n");
-            text.append("  Qual:  ").append(subject.getQualification().toString()).append("\n");
+            text.append(subject.getName().toString().toUpperCase()).append("\n");
+            text.append("  Level:          ").append(subject.getLevel().toString()).append("\n");
+            text.append("  Rate:           ").append(subject.getRate().toString()).append("\n");
+            text.append("  Experience:     ").append(subject.getExperience().toString()).append("\n");
+            text.append("  Qualification:  ").append(subject.getQualification().toString()).append("\n");
             text.append("\n");
         }
         return text.toString();
