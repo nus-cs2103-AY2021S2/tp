@@ -2,33 +2,18 @@
 layout: page
 title: User Guide
 ---
+* Table of Contents
+{:toc}
+
+# Intoduction
 Welcome fellow drivers!<br>
 TimeForWheels is a delivery task management app for delivery drivers to manage and track their own workflow. 
-It is optimized for use via a Command Line Interface while still having the benefits of a Graphical User Interface(GUI). 
+It is optimized for use via a [Command Line Interface](#Glossary) while still having the benefits of a Graphical User Interface(GUI). 
 Overall, TimeForWheels aims to be your perfect delivery companion by improving productivity and simplifying the delivery planning process.
-
-* **Table of Contents**
-    * Quick Start
-    * Features
-        * Viewing help
-        * Add a delivery task
-        * Add a remark to a delivery task
-        * Edit a delivery task
-        * Find delivery task(s) using keyword matching any attribute  
-        * Delete a delivery task
-        * Clear all delivery tasks
-        * List all delivery tasks
-        * Mark a delivery task as done
-        * Tag a delivery task
-        * View all completed delivery tasks
-        * View all uncompleted delivery tasks
-        * Sort all delivery tasks (completion status, urgency then date)
-        * Statistics of delivery workflow
-        * Exit application
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -59,13 +44,13 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
 **Notes about the command format**<br>
 
-* Attributes of a delivery tasks includes name, phone number, address, email, date, tags, date.
+* [Attributes](#Glossary) of a delivery tasks includes name, phone number, address, email, date, tags, date.
 
 * Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
@@ -138,7 +123,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 **Note:** 
   * You can edit multiple attributes.
   * Remark can be edited separately through the remark command.
-  * TASK_NUMBER refers to the number shown in front of each delivery
+  * [TASK_NUMBER](#Glossary) refers to the number shown in front of each delivery
 
 **Format:** `edit TASK_NUMBER PREFIX/ATTRIBUTE`
 
@@ -383,7 +368,7 @@ then urgency tags (only applicable for incomplete tasks), and lastly date.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -410,7 +395,7 @@ delivery information together using our remark and tag features under the same d
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 Action | Format,<br> Example(s)
 --------|------------------
@@ -429,11 +414,12 @@ Action | Format,<br> Example(s)
 **Exit** | `exit`<br> e.g., `exit`
 
 
-## Glossary
+# Glossary
 
 Term | Definition,<br>
 --------|------------------
 **ATTRIBUTE** | `A key detail of a delivery task`<br> e.g., `name`
+**Command Line Interface** | `An interface that accepts user input in lines of text.`<br> e.g., `name`
 **TASK_NUMBER** | `The delivery task number shown in the delivery list`
 **PREFIX** | `Refers to the letter representing the respective attribute.` <br> e.g., `Letter a for attribute ADDRESS`
 
