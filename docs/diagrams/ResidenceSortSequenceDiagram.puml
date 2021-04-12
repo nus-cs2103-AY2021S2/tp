@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+participant ":FilteredList" as FilteredList MODEL_COLOR
+participant ":ResidenceTracker" as ResidenceTracker MODEL_COLOR
+participant ":UniqueResidenceList" as UniqueResidenceList MODEL_COLOR
+end box
+
+[-> Model : updateFilteredResidenceList(predicate)
+activate Model
+
+Model -> FilteredList : setPredicate(predicate)
+activate FilteredList
+
+FilteredList --> Model
+deactivate FilteredList
+
+Model -> ResidenceTracker : sortResidenceList()
+activate ResidenceTracker
+
+ResidenceTracker -> UniqueResidenceList : sortResidenceList()
+activate UniqueResidenceList
+
+UniqueResidenceList --> ResidenceTracker
+deactivate UniqueResidenceList
+
+ResidenceTracker --> Model
+deactivate ResidenceTracker
+
+[<- Model
+deactivate Model
+@enduml

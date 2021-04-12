@@ -152,9 +152,14 @@ Step 3. The user executes `remind` to list all residences with upcoming bookings
 
 Step 4. Any successful execution of commands `add`, `addb`, `edit`, `editb`, `delete`, `deleteb` or `list` will return to the previous display of the full residence list.
 
-The following sequence diagram shows how the operation works:
+The following sequence diagram shows how the operation works, notice how this differs from the delete operation sequence diagram above as there is no `CommandParser` class involved:
 
 ![RemindSequenceDiagram](images/RemindSequenceDiagram.png)
+
+The `Model` in the diagram above refers to the Model API interface that the `Logic` component interacts with. The sequence diagram below shows what happens under the hood in the `Model` component to sort residences:
+
+![ResidenceSortSequenceDiagram](images/ResidenceSortSequenceDiagram.png)
+
 
 #### Design consideration:
 
@@ -166,7 +171,7 @@ The following sequence diagram shows how the operation works:
 
 * **Alternative 2:** Residences are automatically displayed with residences having upcoming bookings on top.
     * Pros: Users will be able to see the residences that need the most urgent attention on top of their list without interacting with the app.
-    * Cons: The users will not be able to tell how many in the list will need to be cleaned immediately for the next 7 days. 
+    * Cons: The users will not be able to tell how many in the list will need to be cleaned urgently for the next 7 days. 
       Using colour codes to differentiate these residences from the rest will make it visually more unpleasant for the users as it already uses colour coding for bookings.
 
 ### Status feature

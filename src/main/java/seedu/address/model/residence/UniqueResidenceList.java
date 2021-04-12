@@ -112,7 +112,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
     /**
      * Sorts the backing list as described in Residence's {@code compareTo} method.
      */
-    public void sortUnmodifiableObservableList() {
+    public void sortResidenceList() {
         FXCollections.sort(internalList);
     }
 
@@ -145,9 +145,5 @@ public class UniqueResidenceList implements Iterable<Residence> {
             }
         }
         return true;
-    }
-
-    public void sortResidenceList() {
-        FXCollections.sort(internalList);
     }
 }
