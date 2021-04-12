@@ -613,7 +613,7 @@ implementing A-Bash Book in the subsequent sections.
     length and screen size.
 - **Attempt at WebView**
   - An attempt was made to include the WebView into our application for the user to have quick access to our user guide.
-    However, after v1.3 was tested during PE-D, much issues surfaces from rendering issues when users use the webview to
+    However, after v1.3 was tested during PE-D, much issues surfaced from rendering issues when users use the webview to
     navigate outside the expected websites. It was eventually decided to scrap the WebView for a simple text based summary
     together with the existing link to our user guide.
 - **Keyboard overrides**
