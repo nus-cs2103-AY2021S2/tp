@@ -288,20 +288,19 @@ Two new commands, `LockCommand` and `UnlockCommand` were created to interface th
 
 Below is an example usage scenario involving the locking of ClientBook and how the information and data are passed around at each step.
 
-**During program launch:** An Authentication object is created and attached as an attribute in `ModelManager`.
+**During program launch:** An `Authentication` object is created and attached as an attribute in `ModelManager`.
 
-**Step 1.** 
-The user is locking ClientBook for the first time. The user enters `lock 1234` into the command box and presses enter.
+**Step 1.**  The user locks ClientBook for the first time and enters `lock 1234` into the command box and presses enter.
 
 **Step 2.** `MainWindow` receives the `commandText` (`lock 1234`), which is then executed by `LogicManager`.
 
 **Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a
 `LockCommand`, which would contain the password that the user wants to use to lock ClientBook (in this case, 1234).
 
-**Step 4.** `LogicManager` then excecutes `LockCommand` which makes use of `Authentication` to lock ClientBook. A `CommandResult` is returned.
+**Step 4.** `LogicManager` then executes `LockCommand` which makes use of `Authentication` to lock ClientBook. A `CommandResult` is returned.
 The `CommandResult` describes whether the locking process was successful.
 
-**Step 5.** This `CommandResult` is passed back to MainWindow to reflect the result of the lock command to the user.
+**Step 5.** This `CommandResult` is passed back to `MainWindow` to reflect the result of the lock command to the user.
 
 Below is a sequence diagram illustrating the flow of this entire process.
 
