@@ -527,6 +527,173 @@ Opening the Focuris's `help` window in two ways.
     1. Close the `help` window using the mouse<br>
        Expected: only the `help` window will be closed.
        
+### Adding an event 
+
+Adding a event using the various `log`, `prog`, `todo` commands.
+
+1. Prerequisites: Launch Focuris successfully and clear all the events.
+
+1. Test case 1:
+
+    1. Switch to Kanban View or List View.
+    
+    1. Execute `log n/My Event d/Text`<br>
+       Expected: a new event with the name "My Event", description "Text" and
+       priority "low" should be added. (Since the priority is by default "low" if not specified) <br>
+       
+       For the Kanban view, it is added into in the `Backlog` column.
+       For the List view, the `Backlog` tag will be shown. 
+       
+    1. Execute `todo n/Event d/Des p/high`<br>
+       Expected: a new event with the correct fields should be added. <br>
+       
+       For the Kanban view, it is added in the `Todo` column.
+       For the List view, the `todo` tag will be shown.
+       
+    
+1. Test case 2:
+   
+    1. Execute `prog n/Event1 d/des`<br>
+       Expected: a new event with the correct fields should be added.
+    
+    1. Execute `log n/b`<br>
+       Expected: No event is added. The app should response with "Invalid command format! ..."
+       (since the `description` field is missing).
+    
+    1. Execute `todo n/Event1 d/Description`<br>
+       Expected: No event is added. The app should response with "An Event with the same NAME ..."
+       (since an event with the same name already exists).
+
+### Deleting an event
+
+Deleting an event while all events are being shown.
+
+1. Prerequisites: List all events using the `list` command. 
+Ensure that an event with the name "Event1" and identifier "1" is present (this may require you to `clear` and `exit` and restart the app)
+
+1. Test case 1:
+
+   1. Switch to List view or Kanban view.
+
+   1. Execute `delete 1`<br>
+      Expected: Event with identifier "1" is deleted from the list. 
+      Details of the deleted event shown in the status message. 
+
+   1. Execute `delete 0`<br>
+      Expected: No event is deleted. The app should response with 
+      "Identifier should be non-zero ...". 
+
+   1. Execute `delete x` where x is an identifier that does not exist in the in the list<br>
+      Expected: No event is deleted. 
+      The app should response with "The event with an identifier of x does not exist.". 
+
+   1. Execute `delete 1 n/Event1`<br>
+      Expected: No event is deleted. The app should response with 
+      "Please ensure your command matches with the guide ..." 
+      
+### Editing events
+
+Editing an event using the `edit` command.
+
+1. Prerequisite: Ensure that a backlog event with the name "Event1", 
+description "des", priority "low", and identifier "1" is present (this may 
+require you to `clear` and `exit` and restart the app)
+
+1. Test case 1:
+
+    1. Switch to Kanban view or List view.
+    
+    1. Execute `edit 1 n/First Event p/high`<br>
+       Expected: The event will have a new name, priority according to the command. Details of the event are shown in the status message.
+       
+    1. Execute `edit 1 d/Description s/todo`<br>
+       Expected: The event will have a new description, 
+       and status according to the command. Details of the event are shown in the 
+       status message.
+       
+       For the Kanban View, the event will be moved to the `todo` column. For the List View,
+       the tag will be updated from `Backlog` to `todo` accordingly.
+                                            
+    1. Execute `edit n/name `<br>
+       Expected: No event is edited. The app should respond with 
+       "Identifier was not provided ...".
+       
+    1. Execute `edit 1`<br>
+           Expected: No event is edited. The app should respond with 
+           "At least one field to edit must be provided.".
+           
+    1. Execute `edit x p/medium` where x is an identifier that does not exist in the in the list<br>
+          Expected: No event is edited. 
+          The app should response with "The event with an identifier of x does not exist.".
+
+### Completing an event using the `done` command.
+
+Setting an event to the status `done`.
+
+1. Prerequisite: 
+Ensure that a backlog event with the identifier "1" is present (this may 
+require you to `clear` and `exit` and restart the app)
+
+1. Test case 1:
+
+    1. Switch to Kanban view or List view.
+    
+    1. Execute `done 1`<br>
+       Expected: The event will have an updated status of DONE. Details of the event are shown in the 
+       status message.
+       
+       For the Kanban View, the event will be moved to the `done` column. For the List View,
+       the tag will be updated from `Backlog` to `done` accordingly.
+                                            
+    1. Execute `done 1` again <br>
+       Expected: No event is moved. The app should respond with 
+       "This event is already Done.".
+       
+    1. Execute `done `<br>
+           Expected: No event is moved. The app should respond with 
+           "Identifier was not provided ...".
+           
+    1. Execute `done x ` where x is an identifier that does not exist in the in the list<br>
+          Expected: No event is moved. 
+          The app should response with "The event with an identifier of x does not exist.".
+
+
+### Finding events based on keyword
+
+Finding events using the `find` command.
+
+1. Prerequisite: The app has 3 events: an event named "name1" with 
+    description "des1", an event named "me12" with description "description" and 
+    an event named "event12" with description "description".
+    
+1. Test case:
+
+    1. Execute `find name1`<br>
+       Expected: the event "name1" is listed.
+    
+    1. Execute `find w`<br>
+       Expected: no events are listed.
+    
+    1. Execute `find description`<br>
+       Expected: the event "me12" and the event "event12" are listed.
+       
+### Listing all events
+
+Listing all events using the `list` command.
+
+1. Prerequisite: Same prerequisite used above for finding events.
+
+1. Test case:
+
+    1. Execute `find name1`, now 1 event should be listed.
+    
+    1. Execute `list`<br>
+       Expected: all 3 events are listed.
+    
+    1. Execute `list` again<br>
+       Expected: all 3 events are still listed.
+       
+       
 ### Clearing all events
 
 Clearing all current events in the view.
@@ -540,8 +707,8 @@ Clearing all current events in the view.
        
     1. Add some events to the app.
        
-    1. Execute `clear` again <br>
-       Expected: No bug is deleted. The app response with "Please remove extra 
+    1. Execute `clear all` again <br>
+       Expected: No event is deleted. The app response with "Please remove extra 
        irrelevant arguments!".
        
 ### Exiting Focuris
@@ -558,8 +725,24 @@ Exiting the app and closing the window.
               
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Prerequisite: The app have some events.
 
-1. _{ more test cases …​ }_
+1. Test case 1:
+
+   1. Close the app.
+   
+   1. Edit the `eventbook.json` file by editing the description field of some event into "event description".
+   
+   1. Open the app again<br>
+      Expected: The change should be reflected in the app.
+   
+1. Test case 2:
+
+   1. Close the app.
+   
+   1. Edit the `eventbook.json` file by editing the eventName field of some event into "@".
+   
+   1. Open the app again<br>
+      Expected: The app now will have no event on it (since "@" is not a valid name for the event).

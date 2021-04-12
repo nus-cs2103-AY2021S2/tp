@@ -55,8 +55,6 @@ and customise your experience with Focuris!
 <!-- AUTO-GENERATED TOC - END -->
 <!-- prettier-ignore-end -->
 
-## i
-
 <div class="page-break-before"></div>
 
 # 1. Quick start
@@ -118,9 +116,8 @@ Continue reading for more ways to improve your productivity with Focuris!
 - If a [parameter](#parameters) is expected only once in the command but you specified it multiple times, only the last occurrence of the [parameter](#parameters) will be taken.<br>
   e.g. if you specify `d/walk d/run`, only `d/run` will be taken.
 
-- Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will be ignored.<br>
-  e.g. if you type `help 123`, Focuris will only read it as `help`.
-
+- Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will be result in an error message.<br>
+e.g. if you type `help 123`, Focuris will show an error that says `Please remove extra irrelevant arguments!`.
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
