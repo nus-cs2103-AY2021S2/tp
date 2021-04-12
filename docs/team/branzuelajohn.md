@@ -21,6 +21,7 @@ Given below are my contributions to the project.
 * **New Feature**: Delete Command
   * Implemented the `DeleteProgramCommand` that deletes program from the database.
   * In the process, I had to build `DeleteProgramCommandParser`
+  
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=branzuelajohn&tabRepo=AY2021S2-CS2103T-T10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=)
 
@@ -55,5 +56,5 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions to other teams during [PE dry-run](https://github.com/branzuelajohn/ped)
 
 * **Tools**:
-* Used JavaFX library and CSS for Graphic User Interface for HelpWindow
+  * Used JavaFX library and CSS for Graphic User Interface for HelpWindow
 
