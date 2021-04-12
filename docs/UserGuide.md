@@ -76,9 +76,9 @@ dates where event 6 is marked as done.
 #### Search and Sort through contacts and events
 
 6. Welfare ICs can search and sort people by criteria. This allows them to search for people by name, birthday month
-   and tag to allow for ease of searching for specific people even with lots of contacts. The sorting allows Welfare
-   ICs an easy way of organising the people. For example, they can sort by upcoming birthdays (according to day and
-   month only) with `list -s u` so that they can plan for the parties accordingly.
+   and tag to allow for ease of searching for specific people even with lots of contacts. The seraching and sorting 
+   allows Welfare ICs an easy way of organising the people. For example, they can search for all people with 
+   birthdays in the month September `list -b 9` so that they can plan for the parties accordingly.
 
 7. Welfare ICs can search and sort events by criteria. This allows them to search for events by event name and
    remark to allow for ease of searching for specific events even with lots of events. The sorting allows Welfare
