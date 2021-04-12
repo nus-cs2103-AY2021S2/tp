@@ -216,25 +216,34 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Filtering PersonCard
 
 ![Sequence Diagram of Filtering Display](images/FilterDisplaySequenceDiagram.png)
 
 A new `DisplayFilterPredicate` is added in `Model`.
-When the `FilterCommand` is executed, `Model` will be updated with the latest `DisplayFilterPredicate`.
 
 Executing a `FilterCommand` will trigger an update of the `DisplayFilterPredicate` that is stored in
 `PersonListPanel`.
 
 `PersonListView` will need to be re-drawn since certain UI elements will have its visibility updated.
-Re-drawing of the `PersonListView` will re-create all the `PersonCard`,
-allowing it to show or hide UI elements based on the `DisplayFilterPredicate`.
-This has to be done so that the dimension of the hidden UI element will not be included during the
-layoutBounds calculations.
+Re-drawing of the `PersonListView` will re-create all the `PersonCard`, allowing it to show or hide
+UI elements based on the `DisplayFilterPredicate`. This has to be done so that the dimension of the
+hidden UI element will not be included during the layoutBounds calculations.
+
+#### Design Considerations
+
+##### Aspect: Implementation for predicate
+
+* **Alternative 1 (current choice):** Store the predicate in `Model` and expose it
+  to `UI (MainWindow)` via `Logic`
+    * Pros: Separation of Concerns principle (SoC) is applied here to improve modularity.
+      The `Model` deals with the creation of the predicate while the `UI (MainWindow)` retrieves the
+      predicate from `Model` via `Logic`.
+    * Cons: Will require new getter methods to the `Logic` and `Model` class as long as
+* **Alternative 2:** Store the predicate as a global variable
+    * Pros: Simple to implement as a global variable is accessible by both the UI components and
+      Model.
+    * Cons: Creates implicit links between code segments.
 
 ### Autocomplete
 
@@ -392,7 +401,7 @@ will be initialised and returned from their respective `Parser` classes and exec
     * Pros: `add alias` compared to `alias add` might be more intuitive for users.
     * Cons: Will require huge changes to `AddCommand`. `AddCommand` will require more testing and debugging.
 
-#### Selecting Persons
+### Selecting Persons
 
 SelectCommand allows a user to select Person object(s) to apply actions on.
 
@@ -409,8 +418,43 @@ When `SelectShowCommand` is called, a predicate will be applied onto the `filter
 only the selected list of `Person` objects. The application of predicate follows the same method as
 `FindCommand` and `ListCommand`.
 
+#### Design Considerations
+
+##### Aspect: Implementation for `select` command
+
+* Alternative 1 (current choice): Use a separate `List<Person>` to store the selected person
+  objects.
+    * Pros: Simple implementation with Separation of Concerns (SoC) principle applied as the `Model`
+      stores the selected persons while `UI` retrieves a predicate to act upon (which will be
+      updated everytime the user makes a new selection).
+    * Cons: Model will have to ensure that after a person object is deleted, the object reference
+      has to be deleted.
+* Alternative 2: Use a global static `List<Person>` to store the selected person objects.
+    * Pros: Simple to implement and access by both the `UI` and `Model` components.
+    * Cons: Create implicit links between code segments.
+
 ### Email Person(s)
 
+The email command allows the user to open the operating system's email client with the 'to' field
+filled up with the email of contacts.
+
+#### Implementation
+
+The current implementation consists of using
+the ['mailto' URI scheme](https://tools.ietf.org/html/rfc6068) to trigger the operating system's
+email client.
+
+#### Design Considerations
+
+##### Aspect: Implementation for `email` command
+
+* Alternative 1 (current choice): Use 'mailto' URI scheme
+    * Pros: Simple implementation as the operating system will be in charge of resolving and opening
+      the email client.
+    * Cons: Impossible to determine if the operating system has opened the email client
+      successfully.
+
+No other possible alternatives as it would be overly complex at this point in time.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -538,12 +582,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  A-Bash Book data must be encrypted and unbreakable by quantum computers in the next 100 years.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for
+   typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin
+   commands) should be able to accomplish most of the tasks faster using commands than using the
+   mouse.
+4. Should work without any internet connection.
 
 ### Glossary
 
