@@ -374,17 +374,17 @@ Format of keyword:
 * age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]`
 * insurance plan name: `i/PLAN_NAME`
 
-Lists all of your clients that has attributes that match your search keywords.
+Lists all of your clients that has one of their attributes that match your search keywords.
 
 Only attributes that are exactly the same will be matched.
 
 Examples:
 
 `filter a/Clementi g/M t/medical i/Protecc age/23-30` returns:
-* clients that has "Clementi" in their address, or
-* clients that are Male, or
-* clients with the "medical" tag, or
-* clients with the insurance plan "Protecc", or
+* clients that has "Clementi" in their address, OR
+* clients that are Male, OR
+* clients with the "medical" tag, OR
+* clients with the insurance plan "Protecc", OR
 * clients aged between 23 and 30 years old, inclusive
 
 

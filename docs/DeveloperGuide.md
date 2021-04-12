@@ -170,7 +170,7 @@ use `LocalDate.parse()` to check for the validity of dates, as well as restricti
 #### Proposed Extension
 One of the planned features is to alert the user if the birthday of a client is occurring in the upcoming week. This 
 requires us to check through each person stored within the app to see whether their birthday (derived from their 
-birthdate) occurs before `LocalDate.now().plusDays(7)`. This check will be done upon launching the app. If >=1 persons
+birthdate) occurs before `LocalDate.now().plusDays(7)`. This check will be done upon launching the app. If >=1 clients
 have upcoming birthdays, a pop-up box will be served to the user to remind them of the birthdays.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                            | add the current insurance plan of each client               | be aware of their current insurance requirements and coverage                |
 | `* * *`  | insurance agent                            | schedule meetings with people or groups of people           | keep track of upcoming meetings                                              |
 | `* * `   | insurance agent                            | check the age of each client                                | know if their insurance plan should be updated/ changed, as they get older   |
-| `* * `   | user with many persons in the address book | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
+| `* * `   | user with many clients in the address book | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
 | `* * `   | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                       |
 | `* * `   | first-time user                            | see sample entries already in the app                       | get a good idea of the functionalities of the app before deciding to use it  |
 | `* * `   | forgetful insurance agent                  | reminders when clients' important dates are approaching     | prepare a meaningful greeting/ gift                                          |
@@ -256,7 +256,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1.  User adds a person with corresponding information.
-2.  AddressBook shows the list of persons.
+2.  AddressBook shows the list of clients.
 3.  Use case ends.
 
 **Extensions**
@@ -272,8 +272,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Edit a person**
 
 **MSS**
-1.  User requests to list persons
-2.  AddressBook shows the list of persons
+1.  User requests to list clients
+2.  AddressBook shows the list of clients
 3.  User requests to edit a specific person in the list
 4.  AddressBook edits the person 
 5.  Use case ends.
@@ -299,8 +299,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Delete a person**
 
 **MSS**
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list clients
+2.  AddressBook shows a list of clients
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 5.  Use case ends.
@@ -343,27 +343,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       and asks the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
   * If Y, use case continues to step 4. If N, user case resumes at step 2.
 
-**Use case: Filter according to tag**
+**Use case: Filter according to attributes**
 
 **MSS**
-1.  User requests to search for persons according to tag.
-2.  AddressBook shows the list of persons
+1.  User requests to search for clients with corresponding attribute information (at least one parameter is required)
+    * address: a/ADDRESS
+    * gender: g/GENDER 
+    * tag: t/TAG
+    * age: age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]
+    * insurance plan name: i/PLAN_NAME
+2.  AddressBook shows the list of clients which has at least one attribute matching the user's search keywords
 3.  Use case ends.
 
 **Extensions**
-* 1a. The list is empty. 
-  * Use case ends.
 
-* 2a. The given tag is invalid/nonexistent.
-  * 2a1. AddressBook shows an error message.
+* 1a. The user inputs an invalid prefix.
+  * 1a1. AddressBook shows an error message.
   * Use case resumes at step 1.
+    
+* 1b. The user inputs an invalid age parameter or age range as an attribute to filter
+    * 1b1. AddressBook shows an error message
+    * Use case resumes at step 1.
+    
+* 1c. The user inputs an invalid gender parameter (must be 'M', 'F' or 'N')
+    * 1c1. AddressBook shows an error message
+    * Use case resumes at step 1.
+    
+* 1d. The user does not input any filter parameters (eg. `filter ` instead of `filter age/25`)
+    * 1d1. AddressBook shows an error message
+    * Use case resumes at step 1.
+
+* 2a. The filtered list is empty.
+    * Use case ends.
+
+**Use case: Filter according to attributes**
+
+**MSS**
+1.  User requests to search for clients by name
+2.  AddressBook shows the list of clients whose name matches the user's search keywords
+3.  Use case ends.
+
+**Extensions**
+
+* 1a. The user does not input any parameter (eg. `find ` instead of `find Alex`)
+    * 1d1. AddressBook shows an error message
+    * Use case resumes at step 1.
+
+* 2a. The search result list is empty.
+    * Use case ends.
     
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The software should not use any OS-dependent libraries and OS-specific features.
-3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  The software should work without requiring an installer.
 6.  The software should not depend on a remote server.
@@ -373,7 +407,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. The project JAR file should not exceed 100MB.
 11. Project PDF files should not exceed 15MB each.
 12. The Developer Guide and User Guide should be PDF-friendly and should not contain expandable panels, embedded videos and animated GIFs.
-
+    
 
 ### Glossary
 
@@ -411,9 +445,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while all clients are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
