@@ -988,7 +988,7 @@ otherwise)
 **MSS**
 
 1. User requests to clear all items in the inventory.
-2. StoreMando deletes all items in the inventory.
+2. StoreMando clears all items in the inventory.
 
     Use case ends.
 
@@ -996,8 +996,8 @@ otherwise)
 
 **MSS**
 
-1. User requests to delete all items in a specific location.
-2. StoreMando deletes all items in that location.
+1. User requests to clears all items in a specific location.
+2. StoreMando clears all items in that location.
 
     Use case ends.
 
@@ -1006,12 +1006,6 @@ otherwise)
 * 1a. The command keyed in by the user has an invalid command format.
 
     * 1a1. StoreMando shows an error message.
-
-      Use case ends.
-
-* 1b. The location keyed in by the user does not exist in the inventory.
-
-    * 1b1. StoreMando shows an error message.
 
       Use case ends.
 
