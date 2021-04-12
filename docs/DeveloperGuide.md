@@ -1,6 +1,5 @@
 ---
-layout: page
-title: Developer Guide
+layout: page title: Developer Guide
 ---
 
 - [Getting Started](#getting-started)
@@ -41,11 +40,17 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 # Design
 
 ## Architecture
+
 ![Architecture Diagram](images/ArchitectureDiagram.png)
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of
+each component.
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes
+called [`Main`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
+is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -61,13 +66,15 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
+  API `interface` mentioned in the previous point.
 
 ---
 
 **How the architecture components interact with each other**
 
-The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `cdelete 1`.
+The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user
+issues the command `cdelete 1`.
 
 ![Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
@@ -82,9 +89,14 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ContactListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ContactListPanel`
+, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
+in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified
+in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -104,9 +116,11 @@ The `UI` component,
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
+   help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("cdelete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("cdelete 1")` API
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -116,13 +130,15 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**
+API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores Teaching Assistant data.
-* exposes an unmodifiable `ObservableList<Contact>` and `ObservableList<Entry>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Contact>` and `ObservableList<Entry>` that can be 'observed' e.g. the UI can
+  be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other components.
 
 ---
@@ -131,9 +147,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
+
 * can save `UserPref` objects in json format and read it back.
 * can save Teaching Assistant data in json format and read it back.
 
@@ -155,19 +173,16 @@ The command immediately responsible for this is the 'DeleteContactCommand'
 
 An outline of the implementation is as follows:
 
-The `TeachingAssistantParser` should accept the command 
-word `cdelete`. It will then get the `DeleteContactCommandParser`
-to parse and return the `DeleteContactCommand`. Subsequently, it
-returns `CommandResult` which is shown on the command result
-field of the GUI as the information of the user that is deleted.
+The `TeachingAssistantParser` should accept the command word `cdelete`. It will then get
+the `DeleteContactCommandParser`
+to parse and return the `DeleteContactCommand`. Subsequently, it returns `CommandResult` which is shown on the command
+result field of the GUI as the information of the user that is deleted.
 
-The following activity diagram summarizes what happens when a 
-user executes the cdelete command:
+The following activity diagram summarizes what happens when a user executes the cdelete command:
 
 ![Delete Contact Command Activity Diagram](images/DeleteContactCommandActivityDiagram.png)
 
-The following sequence diagram summarizes what happens when a
-user executes the cdelete command:
+The following sequence diagram summarizes what happens when a user executes the cdelete command:
 
 ![Delete Contact Command Sequence Diagram](images/DeleteContactCommandSequenceDiagram.png)
 
@@ -223,8 +238,8 @@ Below, we can see the before and after activity diagrams involving this merger.
 
 ### Filtering entries via tags
 
-Following the proposal above, there were no commands that utilise the tags attached to the objects. Hence,
-this proposal aims to allow filtering these entries via their tags.
+Following the proposal above, there were no commands that utilise the tags attached to the objects. Hence, this proposal
+aims to allow filtering these entries via their tags.
 
 The Model class will be required to implement the `updateFilteredEntryList` which can incorporate
 `updateFilteredTaskList` or `updateFilteredScheduleList` implemented in the previous two classes. This method will then
@@ -246,8 +261,8 @@ The list entry mechanism allows users to see all of their entries, or see them b
 An outline of the proposed implementation is as follows:
 
 The `TeachingAssistantParser` should accept command word `elist` and eventually return a `ListEntryCommand`
-back to `LogicManager`. This command can take in one of these three arguments: an empty string, the string “day” or
-the string “week”. The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of
+back to `LogicManager`. This command can take in one of these three arguments: an empty string, the string “day” or the
+string “week”. The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of
 `ListEntryFormatPredicate`. Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the
 `ListEntryFormatPredicate` as an argument.
 
@@ -262,15 +277,16 @@ The following sequence diagram (Fig 2.3.2) shows how the list entry operation wo
 Fig 2.3.2
 
 ### Clear overdue entry feature
-Clear overdue entry feature allows users to quickly discard entries that are no longer relevant. i.e. entries with end dates
-that have passed.
+
+Clear overdue entry feature allows users to quickly discard entries that are no longer relevant. i.e. entries with end
+dates that have passed.
 
 An outline of the implementation is as follows:
 
 The `TeachingAssistantParser` should accept another case of command word `eclear` which eventually returns a
 `ClearOverdueEntryCommand` back to `LogicManager`. This command has no arguments and will immediately call
-`clearOverdueEntries` method in `Model` interface. Finally, a new `CommandResult` is created to handle the result
-of this command.
+`clearOverdueEntries` method in `Model` interface. Finally, a new `CommandResult` is created to handle the result of
+this command.
 
 The following sequence diagram (Fig 2.3.3) shows how clear overdue entry command works:
 
@@ -285,6 +301,7 @@ The following activity diagram (Fig 2.3.4) shows how `Model` executes `clearOver
 ---
 
 # Documentation, logging, testing, configuration, dev-ops
+
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -344,7 +361,9 @@ low | first time user | clear all my contacts and entries from teaching assistan
 ---
 
 ## Use Cases
-(For all use cases below, the **System** is the `Teaching Assistant` and the **Actor** is the `user`, unless specified otherwise)
+
+(For all use cases below, the **System** is the `Teaching Assistant` and the **Actor** is the `user`, unless specified
+otherwise)
 
 ### Use case: UC01 - Add a contact
 
@@ -359,8 +378,8 @@ low | first time user | clear all my contacts and entries from teaching assistan
 
 * 2a. The given field(s) are invalid.
 
-    * 2a1. Teaching Assistant shows an error message 
-      
+    * 2a1. Teaching Assistant shows an error message
+
       Use case ends.
 
 
@@ -380,19 +399,19 @@ low | first time user | clear all my contacts and entries from teaching assistan
 2. Teaching Assistant shows a list of entries
 3. User requests to delete a specific entry in the list
 4. Teaching Assistant deletes the specified entry
-   
+
    Use case ends.
 
 **Extensions**
 
 * 2a. The list of entries is empty.
-  
-    Use case ends.
+
+  Use case ends.
 
 * 3a. The given index is invalid
     * 3a1. Teaching Assistant shows an error message.
-    
-        Use case ends.
+
+      Use case ends.
 
 <br>
 
@@ -402,7 +421,7 @@ low | first time user | clear all my contacts and entries from teaching assistan
 
 1. User requests to list entries.
 2. Teaching Assistant shows a list of entries.
-   
+
    Use case ends.
 
 **Extensions**
@@ -410,20 +429,20 @@ low | first time user | clear all my contacts and entries from teaching assistan
 * 1a. User requests to list entries that occurs today.
 
     * 1a1. Teaching Assistant shows a list of entries that happen today.
-      
+
       Use case ends.
 
 * 1b. User requests to list entries that occurs this week.
 
     * 1b1. Teaching Assistant shows a list of entries that occurs this week
 
-        Use case ends.
-    
+      Use case ends.
+
 * 1c. The given parameter is invalid.
 
     * 1c1. Teaching Assistant shows an error message.
-    
-        Use case ends.
+
+      Use case ends.
 
 <br>
 
@@ -434,21 +453,21 @@ low | first time user | clear all my contacts and entries from teaching assistan
 1. User requests to if he/she is free on a given timeslot.
 2. Teaching Assistant replies that the user is free.
 
-    Use case ends.
+   Use case ends.
 
 * 1a. The given timeslot is invalid.
 
     * 1a1. Teaching Assistant shows an error message.
-    
-        Use case ends
-    
+
+      Use case ends
+
 * 1b. The user is not free on the given timeslot.
 
     * 1b1. Teaching Assistant replies that the user is not free.
-      
+
     * 1b2. Teaching Assistant shows a list of entries that coincide with the given timeslot.
-    
-        Use case ends
+
+      Use case ends
 
 ### Use case: UC05 - Find a contact
 
@@ -462,7 +481,7 @@ low | first time user | clear all my contacts and entries from teaching assistan
 * 1a. The given keyword(s) are invalid
 
     * 1a1. Teaching Assistant shows an error message.
-    
+
       Use case ends
 
 * 2a. No contact matches the specified keyword(s).
@@ -504,6 +523,94 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
 ---
 
 # Appendix: Instructions for manual testing
+
+### Adding an entry
+
+1. Adding an entry while all entries are being shown.
+    1. Prerequisites: The entry should not already exist in the entry list and the new entry's start and end datetime
+       should not overlap with existing entries. List all entries using the `elist` command.
+    1. Test case: `eadd n/Meeting sd/2021-12-12 13:00 ed/2021-12-12 14:00`<br>
+       Expected: The entry is added to the entry list. Success message with details of the added entry is shown in the
+       result window.
+    1. Test case: `eadd n/Meeting sd/2021-12-12 19:00 ed/2021-12-12 13:00`<br>
+       Expected: The entry is not added. Error message is shown in the result display indicating that start datetime has
+       to be before end datetime.
+
+### Finding an entry
+
+1. Finding an entry while all entries are being shown.
+    1. Prerequisites: There should be entries present in the entry list. List all entries using the `elist` command.
+    1. Test case: `efind Meeting`<br>
+       Expected: Assuming that there is an entry named "Meeting", a message indicating how many entries are listed is
+       shown in the result window. Entry list will only list the entry with the matching name.
+    1. Test case: `efind Random`<br>
+       Expected: Assuming that there are no entries named Random, a message shown in the result display will indicate 0
+       entries being listed. Entry list will be empty.
+
+### Filtering tags
+
+1. Filtering tags while all entries are being shown.
+    1. Prerequisites: There should be entries with tags present. List all entries using the `elist` command.
+    1. Test case: `efilter consultation`<br>
+       Expected: Assuming there is only one entry that has the tag `consultation`, a message is shown in the result
+       display indicating 1 entry is being listed. Entry list will only list the entry with the matching tag.
+    1. Test case: `efilter CCA Tennis`<br>
+       Expected: Assuming there is only one entry that has both tags `CCA` and `Tennis`, a message is shown in the
+       result display indicating 1 entry is being listed. Entry list will only list the entry with the matching tags.
+
+### Editing an entry
+
+1. Editing an existing entry while all entries are being shown.
+    1. Prerequisites: There should be entries present in the entry list. List all entries using the `elist` command.
+    1. Test case: `eedit 1 p/97865534`<br>
+       Expected: The entry that is numbered "1." is edited such that the previous phone number is now changed to the new
+       one specified. Details of the edited entry is shown in the result display.
+    1. Test case: `eedit 1`<br>
+       Expected: No entry is edited. Error details shown in the result display indicating at least one field should be
+       given.
+
+### Listing entries
+
+1. Listing entries while there are entries present and are not currently all listed.
+    1. Prerequisites: There should be entries present in the entry list but not all of them are seen.
+    1. Test case: `elist` <br>
+       Expected: Success message indicating how many entries are listed is shown in the result display. All entries that
+       are present are shown in the entry list.
+    1. Test case: `elist day`<br>
+       Expected: A message indicating how many entries are listed is shown in the result display. All entries that have
+       the same date as the current date are shown in the entry list.
+    1. Test case: `elist week`<br>
+       Expected: A message indicating how many entries are listed is shown in the result display. All entries that have
+       date 6 days from the current date or same date as current date are shown in the entry list.
+
+### Checking if interval is free
+
+1. Checking if an interval is free while there are entries present.
+    1. Prerequisites: There should be entries present in the entry list. The start and end datetime field provided
+       should fall within the datetime of at least one entry to test the "Not free" response.
+    1. Test case: `free sd/2021-12-12 13:00 ed/2021-12-12 14:00`<br>
+       Expected: Assuming there is only one entry that falls within this interval, message indicating the interval is
+       not free is shown in the result display. Entry list will only list the entry that occupies the interval.
+    1. Test case: `free sd/2021-11-13 13:00 ed/2021-11-13 14:00`<br>
+       Expected: Assuming there are no entries that falls within this interval, message indicating the interval is free
+       is shown in the result display. Entry list will be empty.
+
+### Deleting entries
+
+1. Deleting an entry while all entries are being shown.
+    1. Prerequisites: List all entries using the `elist` command. Multiple entries in the list.
+    1. Test case: `edelete 0` <br>
+       Expected: No entry is deleted. Error details shown in the result display. Entry list remains the same.
+    1. Test case: `edelete 1` <br>
+       Expected: The entry that is numbered "1." is deleted from the entry list. Details of the deleted entry is shown
+       in the result display.
+
+### Clearing overdue entries
+
+1. Clearing overdue entries while there are overdue entries present.
+    1. Prerequisites: There should be overdue entries (shown as a red entry box) in the entry list.
+    1. Test case: `eclear`<br>
+       Expected: Success message is shown. All entries that are before current date and time should be deleted.
 
 ### Adding a contact
 
