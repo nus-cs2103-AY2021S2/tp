@@ -48,7 +48,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited item: %1$s.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in inventory.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory.";
     public static final String MESSAGE_NO_CHANGE = "Item not edited! Specified change in item details same as "
         + "original.";
     public static final String MESSAGE_ITEM_EXPIRED_WARNING = "\nWarning: Item has already expired!";
