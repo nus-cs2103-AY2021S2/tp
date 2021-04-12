@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.booking.commons.core.index.Index;
-import seedu.booking.logic.commands.DeleteBookingCommand;
 import seedu.booking.logic.commands.EditBookingCommand;
 import seedu.booking.logic.commands.EditBookingCommand.EditBookingDescriptor;
 import seedu.booking.logic.parser.exceptions.ParseException;

@@ -62,12 +62,12 @@ public class ParserUtil {
         try {
             Integer formattedIndex = Integer.parseInt(trimmedIndex);
             if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
+                throw new ParseException(Messages.INVALID_INDEX);
             }
             return Index.fromOneBased(formattedIndex);
         } catch (NumberFormatException e) {
             String numericRegex = "^(?:[+\\-\\d][0-9]*)$";
-            if (oneBasedIndex.matches(numericRegex)) {
+            if (trimmedIndex.matches(numericRegex)) {
                 throw new ParseException(Messages.MESSAGE_BOOKING_INDEX_OUT_OF_RANGE);
             } else {
                 throw new ParseException(Messages.INVALID_INDEX);

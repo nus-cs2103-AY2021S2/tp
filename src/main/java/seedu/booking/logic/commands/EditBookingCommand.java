@@ -80,7 +80,7 @@ public class EditBookingCommand extends Command {
         List<Booking> lastShownList = model.getFilteredBookingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_BOOKING_INDEX_OUT_OF_RANGE);
         }
 
         Booking bookingToEdit = lastShownList.get(index.getZeroBased());

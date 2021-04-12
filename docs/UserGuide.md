@@ -264,7 +264,7 @@ Shows a list of venues that match the specified field(s).
 Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 * The fields that can be specified include the venue's `VENUE_NAME`, `CAPACITY`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
-* Only for the `NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
+* Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as the venue's name/description contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
@@ -329,13 +329,13 @@ Format: `list_booking`
 Shows a list of bookings that match the specified field(s).
 
 Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION] [t/TAG]`
-* The fields that can be specified include the booking's `BOOKER_EMAIL`, `DATE`, ,`VENUE_NAME`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
+* The fields that can be specified include the booking's `BOOKER_EMAIL`, `DATE`, `VENUE_NAME`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
-* Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
+* Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a booking's venue name/description contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
-* `find_booking e/johnd@gmail.com date/2020-02-12` shows a list of bookings booked by a person with the email `johnd@gmail.com`. The booking duration must also contain the date `2020-02-12`.
+* `find_booking e/johnd@gmail.com date/2020-02-12` shows a list of bookings booked by a person with the email `johnd@gmail.com`. The booking date must also contain the specified date `2020-02-12`.
 * `find_booking d/` shows a list of bookings that do not have descriptions.
 
 ### 3.6. Upcoming
@@ -377,7 +377,7 @@ Action | Format, Example
 **add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
 **delete booking** | `delete_booking INDEX` <br> e.g. `delete_booking 1`
 **edit booking** | `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking 1 e/doe@gmail.com`
-**find booking** | `find_booking INDEX` <br> e.g., `find_booking 1`
+**find booking** | `find_booking [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `find_booking b/jane@example.com`
 **list booking** | `list_booking`
 **help** | `help`
 **clear** | `clear`

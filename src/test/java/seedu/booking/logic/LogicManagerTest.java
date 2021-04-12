@@ -1,7 +1,6 @@
 package seedu.booking.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_PERSON_EMAIL;
 import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.NAME_DESC_AMY;

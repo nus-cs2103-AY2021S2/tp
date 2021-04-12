@@ -139,7 +139,7 @@ class EditBookingCommandTest {
                 .withBookerEmail(VALID_EMAIL_BOB).build();
         EditBookingCommand editCommand = new EditBookingCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_BOOKING_INDEX_OUT_OF_RANGE);
     }
 
     @Test

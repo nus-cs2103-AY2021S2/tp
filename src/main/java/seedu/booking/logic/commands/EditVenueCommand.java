@@ -80,8 +80,8 @@ public class EditVenueCommand extends Command {
         Venue venueToEdit = getVenueByVenueName(venueName, lastShownList);
         Venue editedVenue = createEditedVenue(venueToEdit, editVenueDescriptor);
 
-        if (!venueToEdit.getVenueName().isSameVenueName(editedVenue) &&
-                model.hasVenueWithVenueName(editedVenue.getVenueName())) {
+        if (!venueToEdit.getVenueName().isSameVenueName(editedVenue)
+                && model.hasVenueWithVenueName(editedVenue.getVenueName())) {
             throw new CommandException(MESSAGE_DUPLICATE_VENUE);
         }
 
