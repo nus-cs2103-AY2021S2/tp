@@ -76,6 +76,6 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (Pull requests: [\#247](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/247), [\#268](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/268))
   * Contributed to forum discussions (Examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/182))
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/rachelljt/ped/issues/4), [2](https://github.com/rachelljt/ped/issues/1), [3](https://github.com/rachelljt/ped/issues/6))
+  * Reported bugs and suggestions for other teams in the class (Examples: [1](https://github.com/rachelljt/ped/issues/4), [2](https://github.com/rachelljt/ped/issues/1), [3](https://github.com/rachelljt/ped/issues/6))
   
 
