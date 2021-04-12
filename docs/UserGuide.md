@@ -8,7 +8,7 @@ title: User Guide
 </p>
 
 <center><h1>User Guide</h1></center>
-
+<div style="page-break-after: always;"></div>
 ## Table of Contents
 
 <!--ts-->
