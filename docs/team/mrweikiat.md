@@ -37,8 +37,8 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks.
 * Worked on the PriorityTag files and Sorting files, but are not restricted to:
         1. `PriorityTagComparator`
-        2. `SortCommand`
-        3. `SortCommandParser`
+        1. `SortCommand`
+        1. `SortCommandParser`
 
 ### Enhancement 3
 * Ensure testing can be properly function after every deliverables to identify any possible bugs.
