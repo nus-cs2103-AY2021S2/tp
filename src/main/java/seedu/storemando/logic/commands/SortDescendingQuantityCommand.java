@@ -15,8 +15,7 @@ import seedu.storemando.model.item.comparator.ItemComparatorByDecreasingQuantity
  * Sort the item in descending order based on the item's quantity.
  */
 public class SortDescendingQuantityCommand extends SortCommand {
-    public static final String MESSAGE_SUCCESS_QUANTITY_DESC = "Sorted all items based on their quantity in a"
-        + " descending order.";
+    public static final String MESSAGE_SUCCESS_QUANTITY_DESC = "Sorted all items in descending order of quantity.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
