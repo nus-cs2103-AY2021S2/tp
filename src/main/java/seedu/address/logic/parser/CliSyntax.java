@@ -17,5 +17,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_AND = new Prefix("/AND");
     public static final Prefix PREFIX_OR = new Prefix("/OR");
     public static final Prefix PREFIX_NOT = new Prefix("/NOT");
-    public static final Prefix PREFIX_COE_EXPIRY = new Prefix("ex/");
+    public static final Prefix PREFIX_COE_EXPIRY = new Prefix("coe/");
 }

@@ -8,6 +8,6 @@ public class EmailFilter extends AbstractFilter {
     }
 
     @Override public boolean test(Customer customer) {
-        return customer.getEmail().getEmailIdWithoutDomain().toLowerCase().contains(filterString.toLowerCase());
+        return customer.getEmail().value.toLowerCase().contains(filterString.toLowerCase());
     }
 }

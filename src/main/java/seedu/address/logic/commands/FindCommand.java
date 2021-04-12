@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all customers whose names contain any of "
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-        + "Example: " + COMMAND_WORD + " alice bob charlie";
+        + "Example: " + COMMAND_WORD + " \' find n/Raj /AND [ p/9876 /OR /NOT b/1998 ] \'";
 
     public static final String MESSAGE_SYNTAX_ERROR = "There is a syntax error in the given find command : syntax "
         + "should be a well bracketed sequence like \' find n/Raj /AND [ p/9876 /OR /NOT b/1998 ] \'";
