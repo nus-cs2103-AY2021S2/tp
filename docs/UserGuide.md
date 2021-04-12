@@ -199,7 +199,7 @@ To see/edit the note/carry out other commands, please view the detailed commands
 
 ### Note Features
 
-#### Add a new note: `addnote`
+#### Adding a new note: `addnote`
 
 Adds a note equipped with some tags.
 
@@ -217,13 +217,13 @@ Examples:
 * `addnote c/Study for Midterms t/CS2103`
 * `addnote c/Go to school t/Panic t/Confused`
 
-#### List all notes : `listnote`
+#### Listing all notes : `listnote`
 
 Lists every note on the note list.
 
 Format: `listnote​`
 
-#### Show a note : `shownote`
+#### Showing a note : `shownote`
 
 Showcases a note.
 
@@ -255,7 +255,7 @@ Examples:
 * `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
 * `editnote 1 c/Hi` Edits the content of the 1st contact to be `Hi` and keep the tags. 
 
-#### Edit a note in edit mode : `editmode`
+#### Editing a note in edit mode : `editmode`
 
 Edits a note in edit mode.
 
@@ -279,7 +279,7 @@ Examples:
 
 </div>
 
-#### Quit edit mode : `quit`
+#### Quiting edit mode : `quit`
 
 Quit edit mode and discard all changes.
 
@@ -293,7 +293,7 @@ Examples:
 * `quit`
   * quit edit mode and discard all changes.
 
-#### Save and exit edit mode: `save`
+#### Saving and exiting edit mode: `save`
 
 Save edited content and exit edit mode.
 
@@ -307,7 +307,7 @@ Examples:
 * `save`
   * exit edit mode and save all changes.
 
-#### Find notes using a keyword : `findnote`
+#### Finding notes using a keyword : `findnote`
 
 Find notes whose names contain any of—or tags contain all of—the given keywords.
 
@@ -324,7 +324,7 @@ Examples:
 * `findnote c/CS2103` returns note containing `CS2103`
 * `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
 
-#### Delete a new note: `deletenote`
+#### Deleting a new note: `deletenote`
 
 Deletes the specified note from the note list.
 
@@ -337,19 +337,19 @@ Format: `deletenote INDEX`
 Examples:
 * `deletenote 1` Deletes the note at the first position.
 
-#### Sort all notes : `sortnote`
+#### Sorting all notes : `sortnote`
 
 Sort every note on the note list alphabetically.
 
 Format: `sortnote`
 
-#### Sort all notes based on last edit time: `sortnotebytime`
+#### Sorting all notes based on last edit time: `sortnotebytime`
 
 Sort every note on the note list based on last edit time.
 
 Format: `sortnotebytime`
 
-#### Mark a note as done: `markasdonenote`
+#### Marking a note as done: `markasdonenote`
 
 Marks a note in a list as done.
 
@@ -364,7 +364,7 @@ Format: `markasdonenote INDEX`
 Examples:
 * `markasdonenote 1` Marks note at the first position as done.
 
-#### Mark a note as undone: `markasundonenote`
+#### Marking a note as undone: `markasundonenote`
 
 Marks a note in a list as undone.
 
@@ -379,7 +379,7 @@ Format: `markasundonenote INDEX`
 Examples:
 * `markasundonenote 1` Marks note at the first position as undone.
 
-#### Mark all notes as undone: `markallasundonenote`
+#### Marking all notes as undone: `markallasundonenote`
 
 Marks all notes in a list as undone.
 
@@ -388,7 +388,7 @@ Format: `markallasundonenote`
 * Marks all the notes as undone.
 * After execution, all notes marked with a green tick will be reset.
 
-#### Merge two notes into one : `mergenote`
+#### Merging two notes into one : `mergenote`
 
 Merge two notes into one note.
 
@@ -400,7 +400,7 @@ Format: `mergenote INDEX_1 INDEX_2`
 Examples:
 * `mergenote 2 5` Merges the note in the second and fifth position. 
 
-#### Convert a note into a .txt file : `converttxtnote`
+#### Converting a note into a .txt file : `converttxtnote`
 
 Converts a note into a text file.
 
