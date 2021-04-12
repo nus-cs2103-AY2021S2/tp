@@ -33,6 +33,10 @@ Package Subject {
 Class Subject
 }
 
+Package Level {
+Class Level
+}
+
 Package Lesson {
 Class Lesson
 Class Day
@@ -70,6 +74,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> School
+Person *--> Level
 Person *--> "*" Subject
 Person *--> "*" Lesson
 
@@ -88,6 +93,6 @@ Lesson *--> Day
 Lesson *--> Time
 Lesson *--> "*" Person
 
-ModelManager ----->" ~* filtered and observable list" Person
-ModelManager ----->" ~* filtered and observable list" Lesson
+ModelManager ----->" ~* observable list" Person
+ModelManager ----->" ~* observable list" Lesson
 @enduml

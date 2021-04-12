@@ -503,6 +503,7 @@ The sequence diagram below shows how the `sort` feature works:
 The activity diagram shows the workflow when a `sort` command is executed:
 
 ![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
+![Activity Diagram for Execute Sort Command](images/ExecuteSortActivityDiagram.png)
 
 #### Design consideration:
 
@@ -553,6 +554,7 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 The sequence diagram below shows how the levelup feature works:
 ![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
+![Activity Diagram for Execute LevelUp Command](images/ExecuteLevelUpActivityDiagram.png)
 
 #### Activity Diagram
 
@@ -616,6 +618,7 @@ The sequence diagram below shows how the leveldown feature works:
 
 The activity diagram shows the workflow when a leveldown command is executed:
 ![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
+![Activity Diagram for Execute LevelDown Command](images/ExecuteLevelDownActivityDiagram.png)
 
 #### Design consideration:
 

@@ -9,8 +9,21 @@ if () then ([command word is valid])
     :Argument parsed by SortCommandParser;
     if () then ([argument is valid])
         :Returns SortCommand with sorting prefix as argument;
+        if (sorting criteria is name) then
+            :Assign name comparator and predicate to
+            comparator and predicate field;
+        elseif (sorting criteria is school) then
+            :Assign school comparator and predicate to
+            comparator and predicate field;
+        elseif (sorting criteria is subject) then
+            :Assign subject comparator and predicate to
+            comparator and predicate field;
+        else ([else])
+        :Assign lesson comparator and predicate to
+        comparator and predicate field;
+        endif
         :Model filters and sorts the transformed persons list
-         using the appropriate predicate and comparator;
+         using the assigned predicate and comparator;
         :Displays the filtered and sorted persons list;
     else ([else])
         :ParseException is thrown;
