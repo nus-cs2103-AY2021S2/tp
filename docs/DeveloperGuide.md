@@ -26,7 +26,7 @@ ClientBook would not be complete without a set of features that help our end-use
 We have also seen the problems that come with overly complicated user interfaces - users tend to get confused easily and might hence not take full advantage of what the program can do for them.
 ClientBook thus aims to keep things simple, by only providing what is essential, so as not to confused our end-users.
 
-### Going forward,
+### Going forward
 These 3 design ideals should be adhered to as much as possible when implementing new features for your version of the application.
 This Developer Guide aims to provide insights for other developers on how the initial functionalities and system architecture were designed and implemented.
 
@@ -657,15 +657,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The user input does not follow the format required.
+* 1a. One or more of the given arguments are invalid.
 
-  * 1a1. ClientBook shows an error message.
-
-    Use case resumes at step 1.
-
-* 1b. One or more of the given arguments are invalid.
-
-    * 1b1. ClientBook shows an error message.
+    * 1a1. ClientBook shows an error message.
 
       Use case resumes at step 1.
 
@@ -689,9 +683,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 2a. One or more of the given arguments are invalid.
+* 2a. The user input does not follow the format required.
 
     * 2a1. ClientBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. One or more of the given arguments are invalid.
+
+    * 2b1. ClientBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -749,9 +749,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. One or more of the given arguments are invalid.
+* 1a. The user input does not follow the format required.
 
     * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. One or more of the given arguments are invalid.
+
+    * 1b1. ClientBook shows an error message.
 
       Use case resumes at step 1.
 
@@ -943,7 +949,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. <ins>User lists clients (Use case 1).</ins>
 
-2. User <ins>views insurance policies of selected client (Use case 16)</ins>.
+2. <ins>User views insurance policies of selected client (Use case 16)</ins>.
 
 3. User retrieves URL from ClientBook.
 
@@ -955,7 +961,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. <ins>User lists clients (UC1).</ins>
+1. <ins>User lists clients (Use case 1).</ins>
 
 2. User requests to change the details of several clients.
 
@@ -1016,9 +1022,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
+<div markdown="span" class="alert alert-secondary">
 :information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
+</div>
 
 ### Launch and shutdown
 
