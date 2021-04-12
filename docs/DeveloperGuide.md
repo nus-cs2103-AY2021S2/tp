@@ -5,7 +5,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The command immediately responsible for this is the 'DeleteContactCommand'
 
-An outline of the proposed implementation is as follows:
+An outline of the implementation is as follows:
 
 The `TeachingAssistantParser` should accept the command 
 word `cdelete`. It will then get the `DeleteContactCommandParser`
@@ -22,7 +22,7 @@ The following sequence diagram summarizes what happens when a
 user executes the cdelete command:
 
 ![Delete Contact Command Sequence Diagram](images/DeleteContactCommandSequenceDiagram.png)
-###[Proposed] Enquire if time interval is free
+### [Proposed] Enquire if time interval is free
 
 The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
 
