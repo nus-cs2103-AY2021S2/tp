@@ -142,27 +142,25 @@ Classes used by multiple components are in the `seedu.ta.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Deleting a contact in the address book. 
+### Deleting a contact in the address book.
 
 The command immediately responsible for this is the 'DeleteContactCommand'
 
 An outline of the implementation is as follows:
 
-The `TeachingAssistantParser` should accept the command 
-word `cdelete`. It will then get the `DeleteContactCommandParser`
-to parse and return the `DeleteContactCommand`. Subsequently, it
-returns `CommandResult` which is shown on the command result
-field of the GUI as the information of the user that is deleted.
+The `TeachingAssistantParser` should accept the command word `cdelete`. It will then get
+the `DeleteContactCommandParser`
+to parse and return the `DeleteContactCommand`. Subsequently, it returns `CommandResult` which is shown on the command
+result field of the GUI as the information of the user that is deleted.
 
-The following activity diagram summarizes what happens when a 
-user executes the cdelete command:
+The following activity diagram summarizes what happens when a user executes the cdelete command:
 
 ![Delete Contact Command Activity Diagram](images/DeleteContactCommandActivityDiagram.png)
 
-The following sequence diagram summarizes what happens when a
-user executes the cdelete command:
+The following sequence diagram summarizes what happens when a user executes the cdelete command:
 
 ![Delete Contact Command Sequence Diagram](images/DeleteContactCommandSequenceDiagram.png)
+
 ### Enquire if time interval is free
 
 The free command mechanism provides users a quick way to find out if certain time intervals are available.
@@ -238,8 +236,8 @@ The list entry mechanism allows users to see all of their entries, or see them b
 An outline of the proposed implementation is as follows:
 
 The `TeachingAssistantParser` should accept command word `elist` and eventually return a `ListEntryCommand`
-back to `LogicManager`. This command can take in one of these three arguments: an empty string, the string “day” or
-the string “week”. The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of
+back to `LogicManager`. This command can take in one of these three arguments: an empty string, the string “day” or the
+string “week”. The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of
 `ListEntryFormatPredicate`. Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the
 `ListEntryFormatPredicate` as an argument.
 
@@ -278,6 +276,7 @@ The following activity diagram (Fig 2.3.4) shows how `Model` executes `clearOver
 ---
 
 # Documentation, logging, testing, configuration, dev-ops
+
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -457,7 +456,7 @@ otherwise)
 * 1a. The given keyword(s) are invalid
 
     * 1a1. Teaching Assistant shows an error message.
-    
+
       Use case ends
 
 * 2a. No contact matches the specified keyword(s).
@@ -503,7 +502,8 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
 ### Adding an entry
 
 1. Adding an entry while all entries are being shown.
-    1. Prerequisites: The entry should not already exist in the entry list. List all entries using the `elist` command.
+    1. Prerequisites: The entry should not already exist in the entry list and the new entry's start and end datetime
+       should not overlap with existing entries. List all entries using the `elist` command.
     1. Test case: `eadd n/Meeting sd/2021-12-12 13:00 ed/2021-12-12 14:00`<br>
        Expected: The entry is added to the entry list. Success message with details of the added entry is shown in the
        result window.
