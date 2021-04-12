@@ -498,15 +498,8 @@ public class ModelManager implements Model {
     public boolean canFulfilOrders(List<Order> orders) {
         HashMap<Ingredient, Integer> ingredientsTable = new HashMap<>();
         for (Order target : orders) {
-            List<Pair<Dish, Integer>> dishesList = target.getDishQuantityList();
-            for (Pair<Dish, Integer> p : dishesList) {
-                for (Pair<Ingredient, Integer> d : p.getKey().getIngredientQuantityList()) {
-                    if (!ingredientsTable.containsKey(d.getKey())) {
-                        ingredientsTable.put(d.getKey(), 0);
-                    }
-                    ingredientsTable.put(d.getKey(), ingredientsTable.get(d.getKey()) + d.getValue() * p.getValue());
-                }
-            }
+            List<Pair<Dish, Integer>> dishesQtyList = target.getDishQuantityList();
+            collateIngredientsFromDishes(ingredientsTable, dishesQtyList);
         }
         for (Ingredient i : ingredientsTable.keySet()) {
             if (!ingredientBook.hasSufficientIngredients(i, ingredientsTable.get(i))) {
@@ -514,6 +507,24 @@ public class ModelManager implements Model {
             }
         }
         return true;
+    }
+
+    private static void collateIngredientsFromDishes(HashMap<Ingredient, Integer> ingredientsTable,
+                                      List<Pair<Dish, Integer>> dishesQtyList) {
+        for (Pair<Dish, Integer> dishQtyPair : dishesQtyList) {
+            for (Pair<Ingredient, Integer> ingredientQtyPair : dishQtyPair.getKey().getIngredientQuantityList()) {
+                collateIngredients(ingredientsTable, ingredientQtyPair);
+            }
+        }
+    }
+
+    private static void collateIngredients(HashMap<Ingredient, Integer> ingredientsTable,
+                                                   Pair<Ingredient, Integer> ingredientQtyPair) {
+        if (!ingredientsTable.containsKey(ingredientQtyPair.getKey())) {
+            ingredientsTable.put(ingredientQtyPair.getKey(), 0);
+        }
+        ingredientsTable.put(ingredientQtyPair.getKey(), ingredientsTable.get(ingredientQtyPair.getKey())
+                + ingredientQtyPair.getValue() * ingredientQtyPair.getValue());
     }
 
     @Override

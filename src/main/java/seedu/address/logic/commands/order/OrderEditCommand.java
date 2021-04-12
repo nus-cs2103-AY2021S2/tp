@@ -90,10 +90,11 @@ public class OrderEditCommand extends Command {
             model.addOrder(orderToEdit);
             model.decreaseIngredientByOrder(orderToEdit);
             throw exception;
+        } finally {
+            Comparator<Order> comparator = new OrderChronologicalComparator();
+            model.updateFilteredOrderList(comparator);
         }
 
-        Comparator<Order> comparator = new OrderChronologicalComparator();
-        model.updateFilteredOrderList(comparator);
 
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder),
                 CommandResult.CRtype.PERSON);
