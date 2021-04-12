@@ -316,13 +316,13 @@ will also be in the results display.
 
 Example: <br>
 
+During start up, the details panel could be empty
+
+![BeforeDetail](images/DemoBeforeDetailCommand.png)
+
 `detail 2` display the details of the 2nd student in the List.
 
-![detail](images/detail command.png)
-
-Command     | Result                   
------------ |---------------------------------------------------
-detail 2    | displays the details of the 1st student in the list
+![AfterDetail](images/DemoAfterDetailCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -345,9 +345,12 @@ Format: `delete INDEX`
 </div>
 Example: <br>
 
-`list` followed by `delete 2` deletes the 2nd student in TutorsPet.
+before deleting 7th student in the list.
+![BeforeDelete](images/DemoBeforeDeleteCommand.png)
 
-![delete](images/delete command.png)
+`list` followed by `delete 7` deletes the 7th student in the list.
+
+![AfterDelete](images/DemoAfterDeleteCommand.png)
 
 Other examples: <br>
 
@@ -393,9 +396,15 @@ Prefix | Searching Criteria
 </div>
 
 Example:
+
+before keying in the search command
+
+![BeforeSearch](images/DemoBeforeSearchCommand.png)
+
 `search n/yeoh alex s/xyz t/cn` displays a list of students who has the name `yeoh alex`, order does not matter, or with
 the school `xyz` or with subjects `cn`.
-![Search command](images/Search%20Command.png)
+
+![AfterSearch](images/DemoAfterSearchCommand.png)
 
 Other examples:
 
@@ -489,10 +498,19 @@ Once `ex/` prefix is used, the index field cannot be left blank.
 </div>
 
 Example:
-`levelup ex/1` advances all students by one level, excluding the 1st student in the list 
+
+before `levelup ex/1` command, the first student is primary 5 whereas the 2nd student is secondary 3.
+
+![BeforeLevelUp1](images/DemoBeforeLevelUpCommand1.png)
+![BeforeLevelUp2](images/DemoBeforeLevelUpCommand2.png)
+
+after entering `levelup ex/1`, it advances all students by one level, excluding the 1st student in the list 
 (and `grad` students).
 
-![LevelUp Command](images/DemoLevelUpCommand.png)
+![AfterLevelUp1](images/DemoAfterLevelUpCommand1.png)
+![AfterLevelUp2](images/DemoAfterLevelUpCommand2.png)
+
+1st student in the list still remains primary 5 whereas the rest of the student advances by one level/
 
 Other examples:
 
@@ -534,10 +552,18 @@ Format: `leveldown ex/[INDEX]...`
 </div>
 
 Example:
-`leveldown ex/5` demotes all students by one level, excluding the 5th student in the list
+
+before `leveldown ex/1` command, the first student is secondary 4 whereas the 6th student is secondary 5.
+
+![BeforeLevelUp1](images/DemoBeforeLevelDownCommand1.png)
+![BeforeLevelUp2](images/DemoBeforeLevelDownCommand2.png)
+
+after entering `leveldown ex/1`, it demotes all students by one level, excluding the 1st student in the list
 (and `grad` students).
 
-![LevelDown Command](images/DemoLevelDownCommand.png)
+![AfterLevelUp1](images/DemoAfterLevelDownCommand1.png)
+![AfterLevelUp2](images/DemoAfterLevelDownCommand2.png)
+
 
 Other examples:
 
@@ -569,11 +595,9 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 
 Example: <br>
 
-Command     | Result
------------ |---------------------------------------------------
-`add-date d/math exam dt/2021-11-03 0800`  | adds an important date with description `math exam` and details `2021-11-03 0800`
+`add-date d/math exam dt/2021-11-03 0800` adds an important date with description `math exam` and details `2021-11-03 0800`
 
-![add-date](images/add-date command.png)
+![add-date](images/DemoAddDateCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -583,7 +607,7 @@ Shows a list of all important dates in TutorsPet.
 
 Format: `list-date`
 
-![list-date](images/list-date command.png)
+![list-date](images/DemoListDateCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -606,11 +630,9 @@ Format: `delete-date INDEX`
 
 Example: <br>
 
-Command     | Result
------------ |---------------------------------------------------
-`list-date` followed by `delete-date 2` |  deletes the 2nd important date in TutorsPet
+`list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet
 
-![delete-date](images/delete-date command.png)
+![delete-date](images/DemoDeleteDateCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
