@@ -26,7 +26,7 @@ import seedu.storemando.logic.commands.SortCommand;
 import seedu.storemando.logic.commands.SortDescendingQuantityCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsKeywordsPredicate;
 import seedu.storemando.testutil.EditItemDescriptorBuilder;
 import seedu.storemando.testutil.ItemBuilder;
 import seedu.storemando.testutil.ItemUtil;

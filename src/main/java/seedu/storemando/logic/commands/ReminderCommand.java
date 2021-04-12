@@ -7,9 +7,9 @@ import java.util.List;
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
-import seedu.storemando.model.expirydate.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.predicate.ItemExpiringPredicate;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemComparatorByExpiryDate;
+import seedu.storemando.model.item.comparator.ItemComparatorByExpiryDate;
 
 /**
  * Finds and lists all items in storemando whose item's expiry date is within a certain days/weeks from today.

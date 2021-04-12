@@ -21,8 +21,8 @@ import org.junit.jupiter.api.Test;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
-import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
-import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsPartialKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

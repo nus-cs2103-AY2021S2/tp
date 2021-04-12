@@ -1,13 +1,15 @@
-package seedu.storemando.model.item;
+package seedu.storemando.model.item.comparator;
 
 import java.util.Comparator;
 
-public class ItemComparatorByDecreasingQuantity implements Comparator<Item> {
+import seedu.storemando.model.item.Item;
+
+public class ItemComparatorByIncreasingQuantity implements Comparator<Item> {
 
     @Override
     public int compare(Item firstItem, Item secondItem) {
-        if (firstItem.compareByDecreasingQuantity(secondItem) != 0) {
-            return firstItem.compareByDecreasingQuantity(secondItem);
+        if (firstItem.compareByIncreasingQuantity(secondItem) != 0) {
+            return firstItem.compareByIncreasingQuantity(secondItem);
         } else if (firstItem.compareByLocation(secondItem) != 0) {
             return firstItem.compareByLocation(secondItem);
         } else {

@@ -1,6 +1,8 @@
-package seedu.storemando.model.item;
+package seedu.storemando.model.item.comparator;
 
 import java.util.Comparator;
+
+import seedu.storemando.model.item.Item;
 
 public class ItemComparatorByExpiryDate implements Comparator<Item> {
 
