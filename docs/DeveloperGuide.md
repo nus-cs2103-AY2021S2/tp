@@ -152,11 +152,16 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Command Feature
 
-A key functionality of CakeCollate is the ability to add cake items into an order (better known as order items or order descriptions for this app). The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
+A key functionality of CakeCollate is the ability to add cake order items into an order. The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
 
-However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and map one input to the other. 
+However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and the other input had to be mapped. We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model so that the `Order` object is complete and does not rely on indexes or the model. 
 
-We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model. Prior to this feature, the `AddCommand` was initialised using an `Order` object created by the `AddCommandParser`, the `AddCommand::execute` method took in a model, and the `AddCommandParser::parse` method did not take in a model. Given this, there were two main options to implement the mapping:
+Prior to this feature, there were three relevant implementation details
+* the `AddCommand` was initialised using an `Order` object created by the `AddCommandParser`
+* the `AddCommand::execute` method took in a model, 
+* and the `AddCommandParser::parse` method did not take in a model.
+
+Given this, there were two main options to implement the mapping:
 
 1. Refactor `AddCommandParser::parse` to have access to the Model. 
 
@@ -179,17 +184,6 @@ Hence, based on this implementation, here is the sequence diagram containing the
 **Sequence diagram depicting the `AddCommand::execute` method:**
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
-
-
-[comment]: <> (### Sorting displayed list by delivery date)
-
-[comment]: <> (The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date)
-
-[comment]: <> (&#40;insert sequence diagram&#41;)
-
-[comment]: <> (To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList&#40;&#41; command.)
-
-[comment]: <> (&#40;explain with more code later&#41;)
 
 
 ### Find feature
@@ -363,94 +357,9 @@ The following sequence diagram shows how this works:
     * Cons:
       * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedCakeCollate`. It extends `CakeCollate` with an undo/redo history, stored internally as an `cakeCollateStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedCakeCollate#commit()` — Saves the current cakecollate state in its history.
-* `VersionedCakeCollate#undo()` — Restores the previous cakecollate state from its history.
-* `VersionedCakeCollate#redo()` — Restores a previously undone cakecollate state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitCakeCollate()`, `Model#undoCakeCollate()` and `Model#redoCakeCollate()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedCakeCollate` will be initialized with the initial cakecollate state, and the `currentStatePointer` pointing to that single cakecollate state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th order in the cakecollate. The `delete` command calls `Model#commitCakeCollate()`, causing the modified state of the cakecollate after the `delete 5` command executes to be saved in the `cakeCollateStateList`, and the `currentStatePointer` is shifted to the newly inserted cakecollate state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new order. The `add` command also calls `Model#commitCakeCollate()`, causing another modified cakecollate state to be saved into the `cakeCollateStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCakeCollate()`, so the cakecollate state will not be saved into the `cakeCollateStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the order was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCakeCollate()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous cakecollate state, and restores the cakecollate to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CakeCollate state, then there are no previous CakeCollate states to restore. The `undo` command uses `Model#canUndoCakeCollate()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoCakeCollate()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the cakecollate to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `cakeCollateStateList.size() - 1`, pointing to the latest cakecollate state, then there are no undone CakeCollate states to restore. The `redo` command uses `Model#canRedoCakeCollate()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the cakecollate, such as `list`, will usually not call `Model#commitCakeCollate()`, `Model#undoCakeCollate()` or `Model#redoCakeCollate()`. Thus, the `cakeCollateStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitCakeCollate()`. Since the `currentStatePointer` is not pointing at the end of the `cakeCollateStateList`, all cakecollate states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design considerations:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire cakecollate.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the order being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -460,7 +369,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **6. Appendix: Requirements**
+## **5. Appendix: Requirements**
 
 ### Product scope
 
@@ -761,6 +670,12 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### Adding orders 
+1. Add an order to the database 
+    1. Prerequisites: none
+    1. Test case: `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2022 o/Chocolate Cake o/chocolate cake o/Mochi Cake t/friend t/daughter` <br>
+    Expected: A new entry corresponding to the details of this order is added to the Order Box. Details of the successful input is shown in the status box. If `Mochi Cake` and `Chocolate Cake` are not in the Order Items table previously, they should be added to it now.
 
 ### Deleting multiple orders
 
