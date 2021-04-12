@@ -71,8 +71,8 @@ Given below are my contributions to the project.
         * Added documentation for the commands `findTasks`, `findMembers` and `clearAssignees`. (Pull Requests: [\#137](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/137), [\#166](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/166))
         * Categorized and organized the User Guide. (Pull Requests: [\#166](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/166))
         * Added introduction and mockup of application. (Pull Requests: [\#23](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/23))
-          
-      * Developer Guide:
+      
+    * Developer Guide:
         * Updated the Storage UML Diagram in the Developer Guide. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191), [\#273](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/273))
         * Added implementation explanation for `clearAssignees` command. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191), [\#291](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/291))
         * Added and updated use cases in the Developer Guide. (Pull Requests: [\#143](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/143), [\#171](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/171))
