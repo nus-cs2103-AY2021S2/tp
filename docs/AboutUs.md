@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/OhJunMing)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/OhJunMing.md)]
 
 * Role: Deciding, we will allocate equally, everyone gets a chance
 
