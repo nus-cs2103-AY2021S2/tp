@@ -314,7 +314,7 @@ In order to enrol a dog into a program, the raw input needs to be parsed first. 
 
 Below is an example activity diagram for a valid enrol command from the user.
 
-![EnrolActivityDiagram](images/EnrolActivityDiagram.png){: .center-image}
+![<img src="images/EnrolActivityDiagram.png" height="429" width="370"/>](images/EnrolActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid enrol command from the user.
 
@@ -450,6 +450,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies missing details. <br>
     Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
     Use case resumes at step 2.
       
 
@@ -457,6 +458,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Pawbook shows an error message. 
     * 1b2. User supplies an entity with different details. <br>
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
       
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
