@@ -159,7 +159,9 @@ public class TimetableView extends UiPart<Region> {
     }
 
     /**
-     * Splits each Schedulable in a list of Schedulables into parts, where each part can be scheduled on the same day
+     * Splits a Schedulable in a list of Schedulables into parts, where each
+     * part can be scheduled on the same day. This does not modify the original List of Scheudulabes
+     * but creates a new list.
      * in the timetable.(Placed in the same column).
      * See {@link#timetablePlacementPolicy ::breakIntoDayUnits (Schedulable)}
      * @return

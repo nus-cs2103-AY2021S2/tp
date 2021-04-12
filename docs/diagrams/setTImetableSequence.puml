@@ -1,71 +1,102 @@
-@startuml
-'https://plantuml.com/sequence-diagram
 
+@startuml
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MeetBuddyParser" as MeetBuddyParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":setTimetableCommandParser" as setTimetableCommandParser LOGIC_COLOR
+participant "setTimetableCommand" as setTimetableCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":TimetablePrefs" as TimetablePrefs MODEL_COLOR
+participant "timetableStartDate: SimpleObjectProperty" as timetableStartDate MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+box Ui UI_COLOR_T1
+participant ":TimetableView" as TimetableView UI_COLOR
+end box
+
+[-> LogicManager : execute("setTimetable 2021-04-01")
 activate LogicManager
 
-LogicManager -> MeetBuddyParser : parseCommand("delete 1")
+LogicManager -> MeetBuddyParser : parseCommand\n("setTimetable 2021-04-01")")
 activate MeetBuddyParser
 
-create DeleteCommandParser
-MeetBuddyParser -> DeleteCommandParser
-activate DeleteCommandParser
+create setTimetableCommandParser
+MeetBuddyParser -> setTimetableCommandParser
+activate setTimetableCommandParser
 
-DeleteCommandParser --> MeetBuddyParser
-deactivate DeleteCommandParser
+setTimetableCommandParser --> MeetBuddyParser
+deactivate setTimetableCommandParser
 
-MeetBuddyParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+MeetBuddyParser -> setTimetableCommandParser : parse\n("2021-04-01")
+activate setTimetableCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create setTimetableCommand
+setTimetableCommandParser -> setTimetableCommand
+activate setTimetableCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+setTimetableCommand --> setTimetableCommandParser : d
+deactivate setTimetableCommand
 
-DeleteCommandParser --> MeetBuddyParser : d
-deactivate DeleteCommandParser
+setTimetableCommandParser --> MeetBuddyParser : d
+deactivate setTimetableCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> MeetBuddyParser
-destroy DeleteCommandParser
+setTimetableCommandParser -[hidden]-> MeetBuddyParser
+destroy setTimetableCommandParser
 
 MeetBuddyParser --> LogicManager : d
 deactivate MeetBuddyParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> setTimetableCommand : execute()
+activate setTimetableCommand
 
-DeleteCommand -> Model : deletePerson(1)
+setTimetableCommand -> Model : setTimetableStartDate\n(date)
 activate Model
 
-Model --> DeleteCommand
+Model -> TimetablePrefs: setTimetableStartDate\n(date)
+activate TimetablePrefs
+
+TimetablePrefs -> timetableStartDate : setValue(date)
+activate timetableStartDate
+
+timetableStartDate -> TimetableView : changed(obs, oldValue, newValue)
+activate TimetableView
+note right : Updates the Ui \n with new timetable
+
+TimetableView --> timetableStartDate
+deactivate TimetableView
+
+timetableStartDate --> TimetablePrefs
+deactivate timetableStartDate
+
+TimetablePrefs --> Model
+deactivate TimetablePrefs
+
+Model --> setTimetableCommand
+deactivate Model
+
+
+
+
+
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+setTimetableCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> setTimetableCommand : result
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+setTimetableCommand --> LogicManager : result
+deactivate setTimetableCommand
 
 [<--LogicManager
 deactivate LogicManager
 @enduml
+
