@@ -346,16 +346,16 @@ The sequence diagram below depicts the execution path when an `AddPictureCommand
 
 **Target user profile**:
 
-* is a young programmer studying in NUS Computer Science
-* prefers typing to mouse interactions
-* has difficulty maintaining personal relationships
-* cannot recall previous conversations with others
+* is a university student.
+* prefers typing to mouse interactions.
+* has difficulty maintaining personal relationships.
+* cannot recall previous conversations with others.
 * is a goal-driven individual and seeks new challenges.
 
 **Value proposition**:
 
-* makes relationship management easier for the user
-* keeps track of personal relationship with users' friends
+* makes relationship management easier for the user.
+* keeps track of personal relationship with users' friends.
 * manages relationship faster than a mouse-driven app.
 
 ### User stories
