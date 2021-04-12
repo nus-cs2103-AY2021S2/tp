@@ -21,5 +21,11 @@ public class AgeTest {
         assertFalse(Age.isValidAge("9999"));
     }
 
+    @Test
+    public void equals_checkEquality() {
+        assertTrue(new Age(15).equals(new Age(15)));
+        assertFalse(new Age(15).equals(new Age(14)));
+    }
+
 
 }
