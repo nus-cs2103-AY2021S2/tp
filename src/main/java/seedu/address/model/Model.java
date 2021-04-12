@@ -73,7 +73,7 @@ public interface Model {
     /**
      * Returns true if a task's deadline is already over.
      */
-    boolean dateOver(Task task);
+    boolean isDateOver(Task task);
 
     /**
      * Deletes the given task.

@@ -122,7 +122,7 @@ public class Date implements Attribute {
      * Indicates whether the date is already over
      * @return boolean to indicate whether date is over
      */
-    public boolean over() {
+    public boolean isOver() {
         LOGGER.log(Level.INFO, "Checking if the date is after today");
         LocalDate now = LocalDate.now();
         return now.isAfter(value);

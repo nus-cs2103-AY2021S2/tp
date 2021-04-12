@@ -153,7 +153,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean dateOver(Task task) {
+        public boolean isDateOver(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
