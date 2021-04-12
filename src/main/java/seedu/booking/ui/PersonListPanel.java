@@ -3,7 +3,6 @@ package seedu.booking.ui;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -29,15 +28,10 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
 
-        personListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>() {
-            @Override
-            public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {
-                System.out.println("ListView selection changed from oldValue = "
-                        + oldValue + " to newValue = " + newValue);
-            }
-        });
-
+    public void addListener(ChangeListener<Person> listener) {
+        personListView.getSelectionModel().selectedItemProperty().addListener(listener);
     }
 
     /**

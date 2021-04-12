@@ -147,6 +147,24 @@
     -fx-text-fill: #010504;
 }
 
+.big_cell_title {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #010504;
+    -fx-padding: 10 10 10 10;
+}
+
+.big_cell_heading {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-padding: 10 10 10 10;
+}
+
+.big_cell_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-padding: 10 10 10 10;
+}
+
+
 .stack-pane {
      -fx-background-color: #868686;
 }

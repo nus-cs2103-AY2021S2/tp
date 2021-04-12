@@ -4,6 +4,8 @@ import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PREVIOUS
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,6 +23,9 @@ import seedu.booking.logic.commands.CommandResult;
 import seedu.booking.logic.commands.CommandShowType;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.booking.Booking;
+import seedu.booking.model.person.Person;
+import seedu.booking.model.venue.Venue;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -139,8 +144,35 @@ public class MainWindow extends UiPart<Stage> {
         bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
+        ChangeListener<Person> personListener = new ChangeListener<Person>() {
+            @Override
+            public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {
+                cardDisplayPlaceholder.getChildren().clear();
+                cardDisplayPlaceholder.getChildren().add(new PersonCardBig(newValue).getRoot());
+            }
+        };
 
-        resultListPanelPlaceholder.getChildren().removeAll();
+        ChangeListener<Venue> venueListener = new ChangeListener<Venue>() {
+            @Override
+            public void changed(ObservableValue<? extends Venue> observable, Venue oldValue, Venue newValue) {
+                cardDisplayPlaceholder.getChildren().clear();
+                cardDisplayPlaceholder.getChildren().add(new VenueCardBig(newValue).getRoot());
+            }
+        };
+
+        ChangeListener<Booking> bookingListener = new ChangeListener<Booking>() {
+            @Override
+            public void changed(ObservableValue<? extends Booking> observable, Booking oldValue, Booking newValue) {
+                cardDisplayPlaceholder.getChildren().clear();
+                cardDisplayPlaceholder.getChildren().add(new BookingCardBig(newValue).getRoot());
+            }
+        };
+
+        venueListPanel.addListener(venueListener);
+        personListPanel.addListener(personListener);
+        bookingListPanel.addListener(bookingListener);
+
+        resultListPanelPlaceholder.getChildren().clear();
         resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -210,6 +242,7 @@ public class MainWindow extends UiPart<Stage> {
         switch(commandType) {
         case COMMAND_SHOW_BOOKINGS:
             resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+
             break;
         case COMMAND_SHOW_VENUES:
             resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());

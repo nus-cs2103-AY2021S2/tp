@@ -40,11 +40,27 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        populatePerson(person, displayedIndex);
+    }
+    /**
+     * Creates a {@code PersonCard} with the given {@code FXML}, {@code Person} and index to display.
+     * This is for subclassing to allow different FXML fies.
+     */
+    public PersonCard(String fxml, Person person, int displayedIndex) {
+        super(fxml);
+        this.person = person;
+        populatePerson(person, displayedIndex);
+    }
+
+    /**
+     * Populates {@code PersonCard} with the given {@code Person} and index to display.
+     */
+    public void populatePerson(Person person, int displayedIndex) {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -53,7 +69,6 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

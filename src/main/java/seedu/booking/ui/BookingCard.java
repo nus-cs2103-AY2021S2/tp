@@ -35,6 +35,8 @@ public class BookingCard extends UiPart<Region> {
     @FXML
     private Label booker;
     @FXML
+    private Label venue;
+    @FXML
     private Label startTime;
     @FXML
     private Label endTime;
@@ -49,6 +51,23 @@ public class BookingCard extends UiPart<Region> {
     public BookingCard(Booking booking, int displayedIndex) {
         super(FXML);
         this.booking = booking;
+        populateBooking(booking, displayedIndex);
+    }
+
+    /**
+     * Creates a {@code BookingCard} with the given {@code FXML}, {@code Booking} and index to display.
+     * This is so that subclasses can share the same code but different FXML files
+     */
+    public BookingCard(String fxml, Booking booking, int displayedIndex) {
+        super(fxml);
+        this.booking = booking;
+        populateBooking(booking, displayedIndex);
+    }
+
+    /**
+     * Populates {@code BookingCard} with the given {@code Booking} and index to display.
+     */
+    public void populateBooking(Booking booking, int displayedIndex) {
         id.setText(displayedIndex + ". ");
         title.setText(booking.getVenueName().venueName);
         booker.setText(booking.getBookerEmail().value);

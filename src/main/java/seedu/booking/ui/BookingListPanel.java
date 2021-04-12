@@ -2,6 +2,7 @@ package seedu.booking.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -28,6 +29,10 @@ public class BookingListPanel extends UiPart<Region> {
         super(FXML);
         bookingListView.setItems(bookingList);
         bookingListView.setCellFactory(listView -> new BookingListViewCell());
+    }
+
+    public void addListener(ChangeListener<Booking> listener) {
+        bookingListView.getSelectionModel().selectedItemProperty().addListener(listener);
     }
 
     /**

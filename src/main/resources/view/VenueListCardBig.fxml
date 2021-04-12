@@ -11,28 +11,24 @@
 
 <HBox id="venueCardPane" fx:id="bookingCardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" text="\$name" styleClass="cell_big_label" />
-      </HBox>
-      <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-      <HBox>
-        <Label fx:id="capacity_title" styleClass="cell_small_label" text="Capacity: " />
-        <Label fx:id="capacity" styleClass="cell_small_label" text="\$capacity" />
+        <Label fx:id="id" text="\$id" styleClass="big_cell_id" visible="false"/>
+        <Label fx:id="name" text="\$name" styleClass="big_cell_title" />
       </HBox>
       <FlowPane fx:id="tags" />
+      <GridPane HBox.hgrow="ALWAYS">
+        <children>
+          <Label styleClass="big_cell_heading" text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+          <Label fx:id="description" styleClass="cell_small_label" text="\$description" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+          <Label styleClass="big_cell_heading" text="Capacity:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+          <Label fx:id="capacity" styleClass="cell_small_label" text="\$capacity" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        </children>
+      </GridPane>
     </VBox>
   </GridPane>
 </HBox>

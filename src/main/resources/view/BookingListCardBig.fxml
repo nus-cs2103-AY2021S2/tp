@@ -11,28 +11,30 @@
 
 <HBox id="bookingCardBigPane" fx:id="bookingCardBigPane" styleClass="card-big-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="title" text="\$title" styleClass="cell_big_label" />
+        <Label fx:id="id" text="\$id" styleClass="big_cell_id" visible="false"/>
+        <Label fx:id="title" text="\$title" styleClass="big_cell_title" />
       </HBox>
-      <Label fx:id="booker" styleClass="cell_small_label" text="\$booker" />
-      <Label fx:id="startTime" styleClass="cell_small_label" text="\$startTime" />
-      <Label fx:id="endTime" styleClass="cell_small_label" text="\$endTime" />
-      <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-      <Label fx:id="bookingId" styleClass="cell_small_label" text="\$bookingId" />
       <FlowPane fx:id="tags" />
+      <GridPane HBox.hgrow="ALWAYS">
+        <children>
+          <Label styleClass="big_cell_heading" text="Booked By:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+          <Label fx:id="booker" styleClass="big_cell_label" text="\$booker" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+          <Label styleClass="big_cell_heading" text="Booking Start:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+          <Label fx:id="startTime" styleClass="big_cell_label" text="\$startTime" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+          <Label styleClass="big_cell_heading" text="Booking End:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+          <Label fx:id="endTime" styleClass="big_cell_label" text="\$endTime" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+          <Label styleClass="big_cell_heading" text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+          <Label fx:id="description" styleClass="big_cell_label" text="\$description" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </children>
+      </GridPane>
     </VBox>
   </GridPane>
 </HBox>

@@ -40,14 +40,31 @@ public class VenueCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code BookingCard} with the given {@code Booking} and index to display.
+     * Creates a {@code VenueCard} with the given {@code Venue} and index to display.
      */
     public VenueCard(Venue venue, int displayedIndex) {
         super(FXML);
         this.venue = venue;
+        populateVenue(venue, displayedIndex);
+    }
+
+    /**
+     * Creates a {@code VenueCard} with the given {@code FXML}, {@code Venue} and index to display.
+     * This is for subclassing to allow different FXML files.
+     */
+    public VenueCard(String fxml, Venue venue, int displayedIndex) {
+        super(fxml);
+        this.venue = venue;
+        populateVenue(venue, displayedIndex);
+    }
+
+    /**
+     * Populates {@code VenueCard} with the given {@code Venue} and index to display.
+     */
+    public void populateVenue(Venue venue, int displayedIndex) {
         id.setText(displayedIndex + ". ");
         name.setText(String.valueOf(venue.getVenueName()));
-        capacity.setText("Capacity: " + String.valueOf(venue.getCapacity()));
+        capacity.setText(String.valueOf(venue.getCapacity()));
         description.setText(String.valueOf(venue.getDescription()));
         venue.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

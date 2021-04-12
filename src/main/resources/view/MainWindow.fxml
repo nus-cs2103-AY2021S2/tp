@@ -67,7 +67,7 @@
 
             <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
           </VBox>
-          <Separator ></Separator>
+          <Separator orientation="VERTICAL"></Separator>
           <VBox fx:id="cardDisplayPlaceholder">
           </VBox>
         </HBox>
