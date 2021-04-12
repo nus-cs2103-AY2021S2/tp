@@ -35,6 +35,7 @@ public class DeleteEventCommand extends Command {
 
     /**
      * Creates a DeleteEventCommand to delete the specified {@code Event} from {@code Project}.
+     *
      * @param projectIndex Index of project that {@code Event} is to be deleted from.
      * @param targetEventIndex Index of event that is to be deleted form {@code Project}.
      */

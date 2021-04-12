@@ -28,6 +28,7 @@ public class TimeUtil {
 
     /**
      * Encodes a time passed as a String into a LocalTime.
+     *
      * @param time Time in the HHmm or HH:mm format.
      * @return A LocalTime object.
      * @throws TimeConversionException Occurs when a date had been passed in with the wrong format.
@@ -43,6 +44,7 @@ public class TimeUtil {
 
     /**
      * Decodes a time passed as a LocalTime into a String in the HHmm format.
+     *
      * @param time A LocalTime object.
      * @return A time String in the HHmm format.
      */
