@@ -60,7 +60,7 @@ public class EditCommand extends Command implements BatchOperation {
     public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found.";
     public static final String MESSAGE_POLICY_EMPTY = "Policy field cannot be empty.";
     public static final String MESSAGE_EXCESS_BATCH_ARGUMENTS = "Batch edit can only edit tags or insurance policies.\n"
-            + "Please check that you have not entered other prefixes.";
+            + "Please check that you have not entered other fields.";
 
 
     private final Index index;
