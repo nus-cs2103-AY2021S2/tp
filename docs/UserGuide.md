@@ -246,7 +246,7 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td> NA </td>
+    <td> Should only contain alphanumeric characters and spaces </td>
   </tr>
   <tr>
     <td> Phone number </td>
@@ -367,6 +367,7 @@ A person can have any number of tags and insurance policies (including 0).
 * It is optional to include the `POLICY_URL` for the specified `POLICY_ID`.
 * To include the URL, remember to use `>` to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
 * Meetings of a client cannot be added with this command.
+* Adding duplicate persons (having the same information for all attributes) is not allowed.
 
 **Examples**:
 * Example of a client with insurance policy but no URL associated with insurance policy
