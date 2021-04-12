@@ -3,6 +3,8 @@ package seedu.address.logic.filters;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
+
 import seedu.address.model.customer.Customer;
 
 
@@ -49,18 +51,16 @@ public class NameFilter extends AbstractFilter {
 
         return potentialPointer == potentialName.length();
     }
+    private boolean testSearchToken(String searchToken, String[] customerTokenList) {
+        return Arrays.stream(customerTokenList)
+                     .anyMatch(customerToken -> (isSubsequence(customerToken, searchToken)));
+    }
 
     @Override
     public boolean test(Customer customer) {
         requireNonNull(customer);
         String[] customerNameTokens = customer.getName().fullName.split("\\s+");
-        for (String token : customerNameTokens) {
-            for (String possibleName : nameList) {
-                if (isSubsequence(token.toLowerCase(), possibleName.toLowerCase())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return Arrays.stream(nameList)
+                     .allMatch(searchToken -> testSearchToken(searchToken, customerNameTokens));
     }
 }
