@@ -301,28 +301,158 @@ The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 * `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList`
   and updating the `model` accordingly.
 
-Sorting by name is done by comparing `Contact` objects, which implement `Comparable<Contact>`.
+Sorting by name is done using the `NameComparator`,by comparing `Contact` objects, which implement `Comparable<Contact>`.
 
 Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Contact` objects.
 
-Given below is an example usage scenario and how the sort mechanism behaves at each step.
+The comparator is saved in `AddressBookSettings` so that the list stays sorted in the chosen order.
 
-Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
-The `Contact` objects created will be timestamped with the `TimeAdded` attribute.
+Given below are some example usage scenario and how the sort mechanism behaves at each step.
+
+Scenario 1: The user executes `sort o/name` after executing `list`.
+
+Note: The `Contact` objects have been timestamped with the `TimeAdded` attribute.
 By default, they will be displayed on in the order in which they were added.
 
-[comment]: <> (add UML diagram)
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `o/name`.
+`o/name` is passed to `SortCommandParser#parse(o/name)`.
 
-Step 2. The user executes `sort o/name`.
+Step 2. `SortCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The option field `name` is parsed out. A new `SortCommand("name")` is returned.
 
-(Add more steps)
+Step 3. `LogicManager#execute()` calls `SortCommand#execute()`.
+The `model` is sorted accordingly using the `sortContactList` method,
+which will use the `NameComparator` on `setAddressBookComparator`.
 
-[comment]: <> (add UML diagram)
+Step 4. The success message is returned to `LogicManager` via a `CommandResult`.
+The displayed list would be sorted in alphabetical order.
 
 The following sequence diagram shows how the sort operation works:
-
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
-Note: Style of diagram to be updated.
+
+Scenario 2: The user executes `sort o/date` after executing `find john`, followed by `list`.
+
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `o/date`.
+`o/date` is passed to `SortCommandParser#parse(o/date)`.
+
+Step 2. `SortCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The option field `date` is parsed out. A new `SortCommand("date")` is returned.
+
+Step 3. `LogicManager#execute()` calls `SortCommand#execute()`.
+The `model` is sorted accordingly using the `sortContactList` method, 
+which will use the `DateComparator` on `setAddressBookComparator`.
+
+Step 4. The success message is returned to `LogicManager` via a `CommandResult`.
+The displayed found list would be sorted in chronological order.
+
+Step 5. When the user executes `list`, the displayed list will still be in chronological order as the `DateComparator` 
+is stored in `AddressBookSettings`.
+
+### Favourite feature
+
+#### Implementation
+
+The favourite mechanism is facilitated by `FavouriteCommand` and `FavouriteCommandParser`.
+
+`FavouriteCommandParser` implements the following operation:
+* `FavouriteCommandParser#parse(String args)` — Parses the arguments using `ArgumentTokenizer#tokenize`
+  and checks for `option`.
+* If there are no options specified in `args`, it means the user is simply favouriting a contact, so `isFav` is set to true.
+* If the `remove` option specified in `args`, it means the user is unfavouriting a contact, so `isFav` is set to false.
+
+`FavouriteCommand` extends `Command`, and implements the following operation:
+* `FavouriteCommand#execute(Model model)` — Executes the favourite command by creating an edited contact and 
+  setting the `favourite` attribute using `EditCommand.EditContactDescriptor` based on `isFav`. 
+  The `model` is then updated accordingly.
+
+Given below are some example usage scenario and how the favourite mechanism behaves at each step.
+
+Scenario 1: User enters `fav 3` after entering the `list` command.
+
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`, 
+   which then parses the input into the command word and arguments, `3`. 
+   `3` is passed to `FavouriteCommandParser#parse(3)`.
+
+Step 2. `FavouriteCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+   The `index` of `3` and option fields are parsed out. Since no option is used in this scenario,
+   the `isFav` variable is set to `true`. A new `FavouriteCommand(3, true)` is returned.
+
+Step 3. `LogicManager#execute()` calls `FavouriteCommand#execute()`.
+   This creates an `EditContactDescriptor`, which is used to set the `favourite` attribute of the contact to `true`.
+   A new favourited `Contact` is created. The `model` is updated accordingly.
+
+Step 4. The success message and favourited `Contact` are returned to `LogicManager` via a `CommandResult`.
+
+The following sequence diagram shows how the favourite operation works:
+![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
+
+Scenario 2: User enters `fav 3 o/remove` after entering the `list` command.
+
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `4 o/remove`.
+`4` is passed to `FavouriteCommandParser#parse(4 o/remove)`.
+
+Step 2. `FavouriteCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The `index` of `4` and option field `remove` are parsed out. Since the `remove` option is used in this scenario,
+the `isFav` variable is set to `false`. A new `FavouriteCommand(4, false)` is returned.
+
+Step 3. `LogicManager#execute()` calls `FavouriteCommand#execute()`.
+This creates an `EditContactDescriptor`, which is used to set the `favourite` attribute of the contact to `false`.
+A new unfavourited `Contact` is created. The `model` is updated accordingly.
+
+Step 4. The success message and unfavourited `Contact` are returned to `LogicManager` via a `CommandResult`.
+
+The following activity diagram shows how the favourite operation works:
+![FavouriteActivityDiagram](images/FavouriteActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to implement the favourite feature
+
+* **Alternative 1 (current choice):** Favouriting contacts is done using its own `FavouriteCommand`.
+    * Pros: Most intuitive from a user's point of view. 
+      In a clickable GUI, users would typically click on a star button to star the contacts.
+      For a CLI, having a favourite command would be the most similar to that.
+    * Cons: This involves editing the contact, which means it should use some implementation of the `EditCommand`.
+
+* **Alternative 2:** Favouriting contacts is done as a subset of `EditCommand`.
+    * Pros: Makes sense because we are essentially editing a field of the contact.
+    * Cons: Does not look intuitive from the perspective of a user. 
+      In a clickable GUI, users would not go to the edit contacts page just to favourite a contact.
+      The editing is usually only for fields directly related to the details of the contact, 
+      such as their name, phone or email.
+
+* **Alternative 2:** Favouriting contacts is done as a subset of `TagCommand`.
+    * Pros: Makes sense if we add favourite as a tag.
+    * Cons: This could add clutter to the interface as there are already a lot of tags, and there are also child tags.
+
+Alternative 1 was eventually chosen as being user-centric is a key aspect of software engineering.
+Making the app intuitive to users is important, and in this case, it does not sacrifice too much in terms of implementation.
+As such, that is the alternative that was chosen.
+
+##### Aspect: How to save the favourite
+
+* **Alternative 1 (current choice):** Create a `Favourite` class, each contact has a `favourite` attribute 
+  and favourited contacts have a star icon next to their name.
+    * Pros: Standardised with other fields that the contacts have.
+    * Cons: More troublesome to implement.
+
+* **Alternative 2:** Favourite is saved and shown as a special tag.
+    * Pros: Standardised style as the child tag, can be implemented the same way.
+    * Cons: Might add unnecessary clutter when we have the word "favourite", as it could be easily represented by an icon.
+    This is in contrast to tags which are best represented as text.
+
+* **Alternative 3:** Favourite is saved as a boolean value under each contact,
+  and favourited contacts have a star icon next to their name.
+    * Pros: Simple to implement.
+    * Cons: Not standardised with other contact fields, 
+      might not be as readable to have a random boolean variable appear.
+
+Alternative 1 was eventually chosen as it was the most standardised way 
+and minimises the amount of clutter displayed to the user.
+As such, that is the alternative that was chosen.
 
 ### Add feature
 
