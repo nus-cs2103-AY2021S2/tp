@@ -106,9 +106,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean dateOver(Task task) {
+    public boolean isDateOver(Task task) {
         requireNonNull(task);
-        return planner.dateOver(task);
+        return planner.isDateOver(task);
     }
 
     @Override

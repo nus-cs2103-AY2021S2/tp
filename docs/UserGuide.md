@@ -84,8 +84,8 @@ Tasks can have the following attributes:
 | Title | `n/` | A short description or name for the task. {::nomarkdown}<ul><li>Titles can only contain alphanumeric values and have at most 40 characters.</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/} <br> <div markdown="span" class="alert alert-info">:information_source:  Every task must have a title. </div>|
 | Date | `set/` | A date to represent the deadline of a task or to represent the day that the task will be carried out. {::nomarkdown}<ul><li> Dates should be of the format dd/mm/yyyy e.g 02/06/2021</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}|
 | Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. {::nomarkdown}<ul><li>Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}|
-| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>:exclamation:**Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly]**<br><br>{::nomarkdown}<ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}<br><br>:information_source:**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br>**Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date 06/04/2021 will not be included in the recurring dates and only recurring dates from the following Tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>:information_source: **Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.**|
-| Description | `d/` | A text description of the task. Your description can be of any value.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed unless otherwise stated in the command description.</li></ul>{:/}|
+| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>:exclamation: **Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] <br> e.g [23/10/2021][mon][weekly]**<br><br>{::nomarkdown}<ul><li>END DATE should be in the format dd/mm/yyyy, any date that is 6 months after the current date will be considered invalid.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}<br>:information_source: **Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>:information_source: **Existing recurring dates that has passed the current date will be removed automatically from the existing task upon application startup.**|
+| Description | `d/` | A text description of the task. Your description can be any value.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed unless otherwise stated in the command description.</li></ul>{:/}|
 | Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed unless otherwise stated in the command description.</li></ul> <br><div markdown="span" class="alert alert-primary">:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. </div> {:/}|
 | Status | `st/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul> <br><div markdown="block" class="alert alert-info">:information_source:   Your task's status will be set to 'not done' by default. Status cannot be removed. </div> {:/}|
 
@@ -174,7 +174,7 @@ A task can have any number of tags (including 0)
 Examples:
 * `mk n/eat dinner`<br>Makes a task titled 'eat dinner'.
 * `mk n/do project r/[29/06/2021][thu][Biweekly]` <br>Makes a task titled 'do project' and will 
-  generate recurring dates that is on thursday, biweekly until 29th Jun 2021. Recurring dates will be truncated like this:
+  generate recurring dates that is on thursday, biweekly until 29th Jun 2021. Only the upcoming 3 recurring dates will be shown on the task display:
   ![mkExample](images/MkExample.png)
 
 Example of making a task with multiple lines of description:
@@ -207,9 +207,10 @@ Examples:
 ### Postpone a task's date : `snooze` ----- Max
 
 Postpones your task's date by a specified number of days so that you have the flexibility
-to push back the deadline of task when necessary. Calendar will be reset.
+to push back the deadline of task when necessary.
 
 Format: `snooze INDEX [DAYS]`
+
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
  The index **must be a positive integer** e.g 1, 2, 3, …​
 * DAYS must be a positive integer and at most 365 (1 year).
@@ -224,10 +225,9 @@ Examples:
 
 
 Sets a task's status to 'done' so that you can track the tasks that have completed easily.
- Calendar will be reset.
-
 
 Format: `done INDEX`
+
 * Sets the task at the specified `INDEX` to be done. The index refers to the index number shown in the displayed list.
 * If the task's status is already 'done', the planner will give a warning.
 

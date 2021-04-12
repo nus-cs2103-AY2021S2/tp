@@ -32,6 +32,7 @@ public class Date implements Attribute {
 
     public final LocalDate value;
     public final boolean isOverdued;
+    private boolean isValidDate;
 
     /**
      * Constructs a {@code Date}.
@@ -41,6 +42,10 @@ public class Date implements Attribute {
     public Date(String date) {
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = parseDate(date);
+        if (!date.equals("")) {
+            isValidDate = ValidDateFormatter.isValid(date);
+        }
+
         if (date.length() != 0) {
             LocalDate today = LocalDate.now();
             LocalDate parsedDate = LocalDate.parse(date,
@@ -76,14 +81,20 @@ public class Date implements Attribute {
     public static boolean isValidDate(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        boolean isValidDate;
-        if (test.length() != 0) {
-            isValidDate = ValidDateFormatter.isValid(test);
-        } else {
-            isValidDate = false;
-        }
-        return m.matches() && isValidDate || test.isEmpty();
 
+        return m.matches() || test.isEmpty();
+
+    }
+
+    /**
+     * Used to check whether the input date is valid
+     *  A input date is considered valid if months of Feb does not have more than 28 days except leap years and
+     *  Days did not exceed for months of 30 days (Apr, Jun, Nov, Sep) and 31 days (Jan, Mar, May, Jul, Aug, Oct, Dec)
+     *
+     * @return Boolean result of whether the input Date is valid
+     */
+    public boolean isInvalidDate() {
+        return !isValidDate && !isEmptyValue();
     }
 
     /**
@@ -111,7 +122,7 @@ public class Date implements Attribute {
      * Indicates whether the date is already over
      * @return boolean to indicate whether date is over
      */
-    public boolean over() {
+    public boolean isOver() {
         LOGGER.log(Level.INFO, "Checking if the date is after today");
         LocalDate now = LocalDate.now();
         return now.isAfter(value);

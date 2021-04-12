@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_UNDONE_TASKS;
@@ -48,5 +50,23 @@ public class ListCommandTest {
         expectedModel.updateFilteredTaskList(PREDICATE_SHOW_UNDONE_TASKS);
         assertCommandSuccess(command, expectedModel,
                 ListCommand.MESSAGE_UNDONE_TASKS_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        ListCommand firstCommand = new ListCommand(false);
+        ListCommand secondCommand = new ListCommand(true);
+
+        // Same object
+        assertTrue(firstCommand.equals(firstCommand));
+
+        // not null
+        assertFalse(firstCommand.equals(null));
+
+        // Different type
+        assertFalse(firstCommand.equals("testing"));
+
+        // Different object
+        assertFalse(firstCommand.equals(secondCommand));
     }
 }

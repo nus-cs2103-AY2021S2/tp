@@ -32,25 +32,46 @@ public class AttributeManager {
     }
 
     public boolean dateOver() {
-        return date.over();
+        return date.isOver();
+    }
+
+
+    /**
+     * Checks if the given end date in recurring schedule has expired.
+     *
+     * @return Boolean indicating whether the end date has expired.
+     */
+    public boolean hasExpiredEndDate() {
+        return recurringSchedule.isExpiredEndDate();
     }
 
     /**
-     * Checks if the Recurring schedule end date given by the user has expired.
+     * Checks whether there are any matching recurring dates being generated.
      *
-     * @return Boolean indicating if the end date is before the current system date.
+     * @return Boolean indicating whether there are any matching recurring dates.
      */
-    public boolean hasExpired() {
-        return recurringSchedule.isExpired();
+    public boolean hasNoMatchingRecurringDates() {
+        return recurringSchedule.isNoMatchingRecurringDates();
     }
 
     /**
-     * Checks if the Recurring schedule end date is valid considering leap years and months of 30, 31 as well
+     * Checks if the given end date in recurring schedule has been more than 6 months of current system date.
      *
-     * @return Boolean if the end date in Recurring Schedule is valid
+     * @return Boolean indicating whether the end date in recurring date has been more than 6 months.
      */
-    public boolean hasInvalidDateRange() {
-        return recurringSchedule.isInvalidDateRange();
+    public boolean hasEndDateMoreThan6Months() {
+        return recurringSchedule.isEndDateMoreThan6Months();
+    }
+
+    /**
+     * Checks if either the Date input or the Recurring schedule end date input is valid
+     * A valid date is where months of Feb does not have more than 28 days except leap years and
+     * Days did not exceed for months of 30 days (Apr, Jun, Nov, Sep) and 31 days (Jan, Mar, May, Jul, Aug, Oct, Dec)
+     *
+     * @return Boolean indicating whether the Date input or the end date input in Recurring Schedule is valid.
+     */
+    public boolean hasInvalidDate() {
+        return recurringSchedule.isInvalidDate() || date.isInvalidDate();
     }
 
     /**

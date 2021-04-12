@@ -161,11 +161,11 @@ public class RecurringScheduleTest {
         RecurringSchedule recurringSchedule = new RecurringSchedule("[31/06/2021][Mon][biweekly]");
 
         // month of june only has 30 days
-        assertTrue(recurringSchedule.isInvalidDateRange());
+        assertTrue(recurringSchedule.isInvalidDate());
 
         recurringSchedule = new RecurringSchedule("[29/02/2022][Mon][biweekly]");
         // month of feb in non-leap year only has 28 days
-        assertTrue(recurringSchedule.isInvalidDateRange());
+        assertTrue(recurringSchedule.isInvalidDate());
     }
 
     @Test

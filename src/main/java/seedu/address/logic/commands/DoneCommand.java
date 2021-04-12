@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Set;
@@ -31,7 +30,7 @@ public class DoneCommand extends Command {
     public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Please check that your index is positive and within the"
             + " range of the list.";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task: %1$s marked as done.";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task successfully marked as done. \n\n Task: %1$s ";
 
     public static final String MESSAGE_TASK_ALREADY_DONE = "Task: %1$s is already done. Did you type the wrong index?";
 
@@ -83,8 +82,6 @@ public class DoneCommand extends Command {
         taskStatusSetToDone = setTaskStatusAsDone(taskToSetAsDone);
 
         model.setTask(taskToSetAsDone, taskStatusSetToDone);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        model.resetCalendarDate();
     }
 
     /**

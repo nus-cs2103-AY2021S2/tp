@@ -106,9 +106,12 @@ public class EditCommand extends Command {
 
     private void verifyTask(Task task) throws CommandException {
         ConditionLogic conditionLogic = new ConditionLogic(task);
-        conditionLogic.checkInvalidDateRange();
-        conditionLogic.checkForExpiredDate();
         conditionLogic.enforceAttributeConstraints();
+        conditionLogic.checkInvalidDate();
+        conditionLogic.checkInvalidEndDateRecurringSchedule();
+        conditionLogic.checkExpiredEndDate();
+        conditionLogic.checkEndDateMoreThan6Months();
+        conditionLogic.checkMatchingRecurringDates();
         conditionLogic.enforceTitleLength();
     }
 
