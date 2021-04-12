@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.GuiSettings;
@@ -62,7 +61,6 @@ public class LogicManager implements Logic {
         }
 
         try {
-            //storage.saveDietLah(model.getDietLah());
             storage.saveFoodList(model.getUniqueFoodList());
             storage.saveFoodIntakeList(model.getFoodIntakeList());
             if (model.getUser() == null) {
@@ -70,7 +68,6 @@ public class LogicManager implements Logic {
             } else {
                 storage.saveUser(model.getUser());
             }
-            //storage.saveDietPlanList(model.getDietPlanList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -81,11 +78,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyDietLah getDietLah() {
         return model.getDietLah();
-    }
-
-    @Override
-    public Path getDietLahFilePath() {
-        return model.getDietLahFilePath();
     }
 
     @Override

@@ -269,7 +269,7 @@ public class ModelManager implements Model {
         while (iterator.hasNext()) {
             DietPlan dietPlan = iterator.next();
             if (dietPlan.getPlanType() == planType) {
-                recommendedDiets.put(new Integer(counter), dietPlan);
+                recommendedDiets.put((Integer) counter, dietPlan);
             }
             counter++;
         }
