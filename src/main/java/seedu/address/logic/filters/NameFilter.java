@@ -16,8 +16,6 @@ public class NameFilter extends AbstractFilter {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private static final int MISTAKE_THRESHOLD = 3;
-
     private final String[] nameList;
 
     /**
