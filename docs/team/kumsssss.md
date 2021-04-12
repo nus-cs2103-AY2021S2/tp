@@ -41,8 +41,6 @@ Given below are my contributions to the project.
       (Pull request [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75))
     * Updated the ExpiryDate class to take in a LocalDate attribute which stores the expiry date of an item.
       (Pull request [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75))
-    * Wrote additional tests for existing features to increase coverage
-      (Pull request [\#119](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/119))
     * Update implementation of reminder, list and find command so that they are executed on the displayed sublist
       instead of the entire inventory. 
       (Pull request [\#158](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/158))
@@ -50,7 +48,7 @@ Given below are my contributions to the project.
       methods. (Pull request [\#159](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/159))
     * Modified list feature to make the search
       case-sensitive (Pull request [\#201](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/201))
-    * Added test for classes under logic component (Pull request [\#292](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/292))  
+    
 
 * **Documentation**:
     * User Guide:
@@ -79,6 +77,11 @@ Given below are my contributions to the project.
     * About Us:
         * Updated Kumaran's part (Pull request [\#18](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/18))
         * Updated team members' responsibilities. (Pull request [\#296](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/296))
+
+* **Tests**:
+    * Wrote additional tests for existing features to increase coverage
+      (Pull request [\#119](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/119))
+    * Added tests for classes under logic component (Pull request [\#292](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/292))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): (Pull requests
