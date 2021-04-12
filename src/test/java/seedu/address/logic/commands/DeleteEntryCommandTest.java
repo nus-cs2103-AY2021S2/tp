@@ -18,6 +18,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.entry.Entry;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteEntryCommand}.
+ */
 public class DeleteEntryCommandTest {
 
     private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
@@ -64,7 +67,7 @@ public class DeleteEntryCommandTest {
         showEntryAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of the entry list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTeachingAssistant().getEntryList().size());
 
         DeleteEntryCommand deleteEntryCommand = new DeleteEntryCommand(outOfBoundIndex);
@@ -93,6 +96,7 @@ public class DeleteEntryCommandTest {
         //different entry -> false
         assertFalse(deleteFirstEntryCommand.equals(deleteSecondEntryCommand));
     }
+
     /**
      * Update the {@code model}'s filtered list to show no entry.
      * @param model

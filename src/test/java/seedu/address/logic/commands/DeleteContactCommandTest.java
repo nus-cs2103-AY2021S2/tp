@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showContactAtIndex;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactsTeachingAssistant;
 import static seedu.address.testutil.TypicalIndices.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndices.INDEX_SECOND;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,12 +19,11 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteContactCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteContactCommand}.
  */
 public class DeleteContactCommandTest {
 
-    private Model model = new ModelManager(getTypicalContactsTeachingAssistant(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -68,7 +67,7 @@ public class DeleteContactCommandTest {
         showContactAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of the contact list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTeachingAssistant().getContactList().size());
 
         DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);

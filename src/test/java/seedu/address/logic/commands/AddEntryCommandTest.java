@@ -6,13 +6,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntries.CLASS_MEETING;
 import static seedu.address.testutil.TypicalEntries.CONSULTATION;
 import static seedu.address.testutil.TypicalEntries.EXTRA_CLASS;
-import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
+import static seedu.address.testutil.TypicalTeachingAssistant.getEmptyTypicalTeachingAssistant;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.TeachingAssistant;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.exceptions.OverlappingEntryException;
@@ -22,8 +22,9 @@ import seedu.address.testutil.EntryBuilder;
  * Contains integration tests (interaction with the Model) for {@code AddEntryCommand}.
  */
 public class AddEntryCommandTest {
-    private Model emptyModel = new ModelManager(new TeachingAssistant(), new UserPrefs());
-    private Model model = new ModelManager(getTypicalEntriesList(), new UserPrefs());
+
+    private Model emptyModel = new ModelManager(getEmptyTypicalTeachingAssistant(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
 
     @Test
     public void constructor_nullArgument_throwsNullPointerException() {
@@ -105,5 +106,4 @@ public class AddEntryCommandTest {
                 .build();
         emptyModel.addEntry(overdueEntry);
     }
-
 }

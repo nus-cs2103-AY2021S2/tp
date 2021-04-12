@@ -124,7 +124,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String entryDate} into a {@code EntryDate}
+     * Parses a {@code String entryDate} into a {@code EntryDate}.
      */
     public static EntryDate parseEntryDate(String entryDate) throws ParseException {
         requireNonNull(entryDate);
