@@ -22,10 +22,14 @@ import seedu.address.model.person.driver.Driver;
 import seedu.address.model.tag.Tag;
 
 public class PoolCommandParser implements Parser<PoolCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the PoolCommand
      * and returns an PoolCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments to be parsed.
+     * @return The PoolCommand created from parsing the arguments.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public PoolCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
