@@ -14,7 +14,9 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
 
-//Todo
+/**
+ * Copies content over from the Dictionary to new Note.
+ */
 public class CopyContentToNoteCommand extends Command {
     public static final String COMMAND_WORD = "copytonote";
 
@@ -29,7 +31,9 @@ public class CopyContentToNoteCommand extends Command {
 
     private final Index targetIndex;
 
-    //Todo
+    /**
+     * Creates an CopyContentToNoteCommand to carry out the transfer of data at a specified {@code targetIndex}.
+     */
     public CopyContentToNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

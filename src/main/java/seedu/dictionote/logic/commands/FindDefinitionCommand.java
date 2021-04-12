@@ -23,7 +23,11 @@ public class FindDefinitionCommand extends Command {
 
     private final DefinitionContainsKeywordsPredicate predicate;
 
-    //Todo
+    /**
+     * Creates a new {@code FindDefinitionCommand} with a predicate (i.e., conditions):
+     * which references to the content of the definition in the Dictionary.
+     * @param predicate The predicate to be evaluated against the Dictionary's definition's content body.
+     */
     public FindDefinitionCommand(DefinitionContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
