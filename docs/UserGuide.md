@@ -190,7 +190,7 @@ Format: `addb RESIDENCE_INDEX n/TENANT_NAME p/TENANT_PHONE s/START_DATE e/END_DA
 * The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 * The `TENANT_NAME` follows the format expected for `RESIDENCE_NAME` as specified in `add`.
 * The phone must only include numbers and must be at least 3 characters long. e.g `p/999` `p/12345678`
-* The dates must follow the format DD-MM-YYYY. e.g `s/01-02-2021`
+* The dates must be valid dates in a year and follow the format DD-MM-YYYY. e.g `s/01-02-2021`
 * The `START_DATE` has to be before than the `END_DATE`.
 * The booking period `START_DATE` to `END_DATE` should not overlap with the booking period of other bookings for the given residence.
 

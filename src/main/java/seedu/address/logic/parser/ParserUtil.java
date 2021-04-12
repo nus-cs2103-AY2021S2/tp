@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "The date is not in the expected format: DD-MM-YYYY";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Given date is not a valid date in the year that follows format: DD-MM-YYYY";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -131,7 +132,8 @@ public class ParserUtil {
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         try {
-            return LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("dd-MM-uuuu"));
+            return LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT));
         } catch (Exception e) {
             throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
