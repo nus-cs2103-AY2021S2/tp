@@ -7,8 +7,6 @@ title: User Guide
   <img alt="logo" src="images/tutorbuddy_logo.png">
 </div>
 
-# TutorBuddy - User Guide
-
 * Table of Contents
 {:toc}
 
