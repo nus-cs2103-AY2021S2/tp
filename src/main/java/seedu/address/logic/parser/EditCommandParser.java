@@ -202,7 +202,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code policies} contain only one element which is an empty string, it will be parsed into a
      * {@code List<InsurancePolicy>} containing zero policies.
      */
-    private Optional<List<InsurancePolicy>> parsePoliciesForEdit(Collection<String> policyIds) throws ParseException {
+    private Optional<List<InsurancePolicy>> parsePoliciesForEdit(Collection<String> policyIds) {
         assert policyIds != null;
 
         if (policyIds.isEmpty()) {

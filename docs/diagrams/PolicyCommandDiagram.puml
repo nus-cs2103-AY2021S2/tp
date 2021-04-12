@@ -59,7 +59,7 @@ alt Person has no policies
     PolicyCommand -> CommandResult
     activate CommandResult
 
-    CommandResult --> PolicyCommand
+    CommandResult --> PolicyCommand : result
     deactivate CommandResult
 
 else Person has policies
@@ -73,7 +73,7 @@ else Person has policies
     PolicyCommand -> CommandResult
     activate CommandResult
 
-    CommandResult --> PolicyCommand
+    CommandResult --> PolicyCommand : result
     deactivate CommandResult
 
 end
