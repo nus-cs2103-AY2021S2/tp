@@ -13,15 +13,15 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit owner 1 n/John Doe t/friend")
+[-> LogicManager : execute("edit owner 1 n/John")
 
-LogicManager -> PawbookParser : parseCommand("edit owner 1 n/John Doe t/friend")
+LogicManager -> PawbookParser : parseCommand("edit owner 1 n/John")
 
 create EditOwnerCommandParser
 PawbookParser -> EditOwnerCommandParser
 return
 
-PawbookParser -> EditOwnerCommandParser : parse("1 n/John Doe t/friend")
+PawbookParser -> EditOwnerCommandParser : parse("1 n/John")
 
 create EditOwnerDescriptor
 EditOwnerCommandParser -> EditOwnerDescriptor
