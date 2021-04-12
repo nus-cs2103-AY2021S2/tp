@@ -1,13 +1,13 @@
 package seedu.address.model.person;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.group.Group;
+import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.group.Group;
 
 /**
  * Wraps all data at the address-book level
@@ -85,7 +85,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         persons.setPerson(target, editedPerson);
     }
-
+    /**
+     * This method will return a set of person that is in the group specified.
+     */
     public Set<Person> findPersonsInGroup(Group group) {
         Set<Person> personInGroup = new HashSet<>();
         for (Person person: persons) {

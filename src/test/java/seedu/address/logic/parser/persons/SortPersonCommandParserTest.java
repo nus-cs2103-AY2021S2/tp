@@ -1,19 +1,14 @@
 package seedu.address.logic.parser.persons;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_DIRECTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.persons.FindPersonCommand;
 import seedu.address.logic.commands.persons.SortPersonCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PersonSortDirection;
 import seedu.address.model.person.PersonSortOption;
 

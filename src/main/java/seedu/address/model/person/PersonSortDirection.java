@@ -6,7 +6,9 @@ public enum PersonSortDirection {
 
     private final String sortString;
 
-    PersonSortDirection(String sortString) {this.sortString = sortString;}
+    PersonSortDirection(String sortString) {
+        this.sortString = sortString;
+    }
 
     public String getValue() { return sortString; }
 

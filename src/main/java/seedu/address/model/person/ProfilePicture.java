@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
 
-import javafx.scene.image.Image;
-
 import static java.util.Objects.requireNonNull;
+
+import javafx.scene.image.Image;
 
 /**
  * A class representing a person's profile picture in the model.

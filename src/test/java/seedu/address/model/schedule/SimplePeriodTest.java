@@ -1,12 +1,11 @@
 package seedu.address.model.schedule;
 
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
 
 public class SimplePeriodTest {
     private static LocalDateTime startTimeOne =

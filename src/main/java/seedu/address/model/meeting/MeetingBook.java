@@ -1,14 +1,14 @@
 package seedu.address.model.meeting;
 
 
-import javafx.collections.ObservableList;
-import seedu.address.model.connection.PersonMeetingConnection;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.connection.PersonMeetingConnection;
 
 public class MeetingBook implements ReadOnlyMeetingBook {
     private final UniqueMeetingList meetings;
@@ -81,7 +81,9 @@ public class MeetingBook implements ReadOnlyMeetingBook {
         requireNonNull(editedMeeting);
         meetings.setMeeting(target, editedMeeting);
     }
-
+    /**
+     * Updates a meeting.
+     */
     public void updateMeeting(Meeting target, Meeting editedMeeting) {
         requireNonNull(editedMeeting);
         meetings.updateMeeting(target, editedMeeting);

@@ -1,5 +1,14 @@
 package seedu.address.model;
 
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -14,15 +23,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
-
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -163,7 +163,7 @@ public interface Model {
      */
     ObservableList<Meeting> getUnmodifiableMeetingList();
 
-        // ============= Clashing Meetings  ========================================================
+    // ============= Clashing Meetings  ========================================================
 
     /**
      * Checks if there is a clash in meeting times within the model.
