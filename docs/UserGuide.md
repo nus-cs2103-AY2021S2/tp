@@ -129,7 +129,7 @@ Output:
 
 <div markdown="block" class="alert alert-info">
    
-**Quick tip**: You can always change these details later on using the `edit` command!
+**Quick tip**: Tags are highly useful for you to label your patients with their conditions or symptoms! Also, you can always change any the above details later on using the `edit` command!
 </div>
 
 ### Listing out all patients : `list`
