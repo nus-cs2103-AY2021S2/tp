@@ -659,4 +659,16 @@ testers are expected to do more *exploratory* testing.
        Expected: The residence tracker will start with only the sample data.
        
 
-1. _{ more test cases …​ }_
+## Effort
+ResidenceTracker is a brownfield project that builds on the existing code base of AddressBook3. It contains around 7k LOC of additional implementation, testing, documentation and refactoring as logged by reposense. <br>
+
+The person class was refactored into a residence class with some different parameters. We added some parameters such as BookingList and clean status tag. <br>
+
+Quite some time was spent on the refactoring of classes due to changes in variable naming and implementation, and the fixing of broken tests caused by the refactoring.
+
+The bulk of our features is based on the implementation of BookingList. Since this app is designed to help manage a user's residences for rent, the key point of this app would be to help keep track of the residences' bookings. <br>
+
+There was careful consideration and discussion on how best information should processed and displayed from the user's perspective. As such, this results in minor changes to user experience such as sorting the residences based on clean status, bookings based on timing and colour indicators for bookings to signify the different statuses (expired, ongoing, upcoming).
+
+The Ui was also also redesigned to add a additonal column of bookings for each residences, including other changes to the design and color scheme of the application.
+
