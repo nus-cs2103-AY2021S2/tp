@@ -230,7 +230,7 @@ As an example, consider running Dictionote as follows:
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
 
-![ContactEmailFeatureInitState](images/ContactMostFreqFeatureInitState.png)
+![ContactMostFreqFeatureInitState](images/ContactMostFreqFeatureInitState.png)
 
 * In addition, assume the successful execution of the following commands:
     * `emailcontact 3` three times.
@@ -239,7 +239,7 @@ As an example, consider running Dictionote as follows:
 
 * After typing in `mostfreqcontact` and executing it, the result would be:
 
-![ContactEmailFeatureExecute](images/ContactMostFreqFeatureExecute.png)
+![ContactMostFreqFeatureExecute](images/ContactMostFreqFeatureExecute.png)
 
 * Note that the ordering of the contacts in the contacts list had changed, with Charlie (formerly with index number 3) being the first on the list, followed by Alice (formerly with index number 1) and finally Bob (formerly with index number 2).
 
