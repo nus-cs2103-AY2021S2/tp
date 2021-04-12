@@ -43,7 +43,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-![ArchitectureDiagram](images/ArchitectureDiagram.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ArchitectureDiagram.png" alt="alt text" width="400">
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
