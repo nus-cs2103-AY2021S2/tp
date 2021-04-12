@@ -5,11 +5,9 @@ title: Ian's Project Portfolio Page
 
 ## Project: SunRez
 
-**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI). It is written in Java, and has about 19 kLoC.
+**SunRez** is a resident management system for use in hostels and residential colleges (RCs). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 19 kLoC.
 
 Given below are my contributions to the project.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=stein414&tabRepo=AY2021S2-CS2103-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **New Feature**: Added support for issues
   * What it does: The issue feature allows the user to track issues that pertain to certain rooms in SunRez.
@@ -19,6 +17,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Allow text to wrap when it is too long in the ListPanel [#326](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/326).
   * Limit tag lengths to prevent tags from being too long does being unreadable [#329](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/329).
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=stein414&tabRepo=AY2021S2-CS2103-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Contributions to User Guide**:
   * Added documentation for the issue features `iadd`, `ilist`, `ifind`, `iedit`, `iclo` and `idel`. [#62](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/62)
