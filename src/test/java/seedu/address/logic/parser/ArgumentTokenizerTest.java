@@ -138,11 +138,11 @@ public class ArgumentTokenizerTest {
 
     @Test
     public void tokenize_multipleArgumentsJoined() {
-        String argsString = "SomePreambleStringp/ pSlash joined-tjoined -t not joined^Qjoined";
+        String argsString = "SomePreambleStringp/ pSlash joined-tjoined -t not joined ^Qjoined joined^Q joined";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreamblePresent(argMultimap, "SomePreambleStringp/ pSlash joined-tjoined");
         assertArgumentAbsent(argMultimap, pSlash);
-        assertArgumentPresent(argMultimap, dashT, "not joined^Qjoined");
+        assertArgumentPresent(argMultimap, dashT, "not joined ^Qjoined joined^Q joined");
         assertArgumentAbsent(argMultimap, hatQ);
     }
 
@@ -155,24 +155,24 @@ public class ArgumentTokenizerTest {
 
     @Test
     public void getLastPrefix_oneArgument_returnsPresentOptionalPrefix() {
-        String argsString = "SomePreambleString p/ pSlash joined";
+        String argsString = "SomePreambleString p/ pSlash not joined";
         Optional<Prefix> optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
         assertOptionalPrefixPresent(optionalPrefix);
 
-        argsString = "SomePreambleString -t joined";
+        argsString = "SomePreambleString -t not joined";
         optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
         assertOptionalPrefixPresent(optionalPrefix);
 
-        argsString = "SomePreambleString ^Q joined";
+        argsString = "SomePreambleString ^Q not joined";
         optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
         assertOptionalPrefixPresent(optionalPrefix);
     }
 
     @Test
     public void getLastPrefix_multipleArguments_returnsPresentOptionalPrefix() {
-        String argsString = "SomePreambleString p/ pSlash joined -t joined -t not joined ^Qjoined";
+        String argsString = "SomePreambleString p/ pSlash not joined -t not joined -t not joined ^Q not joined";
         Optional<Prefix> optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
-        assertOptionalPrefixPresent(optionalPrefix);
+        assertEquals(hatQ, optionalPrefix.get());
     }
 
     @Test
