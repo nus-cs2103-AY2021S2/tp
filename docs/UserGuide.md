@@ -108,7 +108,7 @@ to manage tasks which can be identified by their unique list indexes.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[a/ASSIGNEE]…​` can be used as ` ` (i.e. 0 times), `a/Duncan`, `a/Daniel a/Benson` etc.
 
-* Parameters can be in any order.<br>
+* Parameters with prefixes can be in any order.<br>
   e.g. if the command specifies `e/EMAIL p/PHONE_NUMBER`, `p/PHONE_NUMBER e/EMAIL` is also acceptable.
   
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
