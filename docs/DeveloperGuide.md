@@ -216,8 +216,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
       save users from going through the hassle of distinguishing items by expiry date.
     * **Cons**: Users would not be able to store similar items that have different expiry dates as a result of being 
       produced in different batches.
-      
-<br>
 
 ### Edit Feature `edit`
 The edit feature allows users to edit an item's name, quantity, location, expiry date and tag.
@@ -291,8 +289,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 * **Alternative 2:** Allow edited item to have the same fields as the original item.
     * **Pros**: Easy to implement.
     * **Cons**: May seem confusing that an edit with no changes result in a success.
-    
-<br>
 
 ### Delete Feature `delete`
 
@@ -340,8 +336,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 * **Alternative 2:** Delete item by item name.
     * **Pros**: Will be easier for the user especially when there are many items in the list.
     * **Cons**: Items with the same name in different locations may cause confusion.
-
-<br>
 
 <div style="page-break-after: always;"></div>
 
@@ -396,7 +390,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 <br>
 
-
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design consideration:
@@ -411,8 +404,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 * **Alternative 2:** Find items in the current list that matches the keyword, and an attribute e.g. tag.
     * **Pros**: Users would be able to retrieve a specific item more efficiently.
     * **Cons**: Users need to remember the items' attributes.
-    
-<br>
 
 ### List Feature `list`
 
@@ -532,8 +523,6 @@ The following Activity Diagram summarizes what happens when a user executes a `r
     * **Cons**: When the user wants to find items that are already expired, it is easier to key in a number then to
     find a particular date and key it in. This is more taxing on the user.
 
-<br>
-
 ### Sort Feature `sort`
 
 The sort feature allows users to view the items in the displayed list of items in a specific order.
@@ -600,12 +589,9 @@ The following Activity Diagram summarizes what happens when a user executes a `s
     * **Cons**: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components 
       that depend on filtered list implementation would have to be changed as well.
 
-<br>
-
 ### Clear Feature `clear`
 
 The clear feature allows users to either clear all items in the inventory or clear all items from a specific location.
-
 
 #### Actual Implementation 
 
@@ -648,8 +634,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
 <br>
 
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
-
-<br>
 
 ### Help Feature `help`
 
