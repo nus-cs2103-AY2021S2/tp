@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 
 import seedu.address.commons.core.index.Index;
@@ -28,8 +28,7 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ScheduleCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         if (argMultimap.getValue(PREFIX_MEETING).isEmpty()) {

@@ -117,7 +117,7 @@ call.
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores Link.me data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -132,7 +132,7 @@ API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/maste
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save Link.me data in json format and read it back.
 
 ### Common classes
 
@@ -243,7 +243,6 @@ second part of the implementation, the `MainWindow` handles the notification com
 `Logic`, which in turn requests from model. The `MainWindow` then sends the notification string to the `NotifWindow` to
 be displayed.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -293,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                            | add the current insurance plan of each client               | be aware of their current insurance requirements and coverage                |
 | `* * *`  | insurance agent                            | schedule meetings with people or groups of people           | keep track of upcoming meetings                                              |
 | `* * `   | insurance agent                            | check the age of each client                                | know if their insurance plan should be updated/ changed, as they get older   |
-| `* * `   | user with many clients in the address book | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
+| `* * `   | user with many clients in Link.me | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
 | `* * `   | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                       |
 | `* * `   | first-time user                            | see sample entries already in the app                       | get a good idea of the functionalities of the app before deciding to use it  |
 | `* * `   | forgetful insurance agent                  | reminders when clients' important dates are approaching     | prepare a meaningful greeting/ gift                                          |
@@ -328,7 +327,6 @@ otherwise)
 **Use case: Add a client**
 
 **MSS**
-
 1.  User adds a client with corresponding information.
 2.  AddressBook shows the list of clients.
 3.  Use case ends.
@@ -423,21 +421,54 @@ otherwise)
       the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
     * If Y, use case continues to step 4. If N, user case resumes at step 2.
 
-**Use case: Filter according to tag**
+**Use case: Filter according to attributes**
 
 **MSS**
-1.  User requests to search for clients according to tag.
-2.  AddressBook shows the list of clients
+1.  User requests to search for clients with corresponding attribute information (at least one parameter is required)
+    * address: a/ADDRESS
+    * gender: g/GENDER 
+    * tag: t/TAG
+    * age: age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]
+    * insurance plan name: i/PLAN_NAME
+2.  AddressBook shows the list of clients which has at least one attribute matching the user's search keywords
 3.  Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The user inputs an invalid prefix.
+  * 1a1. AddressBook shows an error message.
+  * Use case resumes at step 1.
+    
+* 1b. The user inputs an invalid age parameter or age range as an attribute to filter
+    * 1b1. AddressBook shows an error message
+    * Use case resumes at step 1.
+    
+* 1c. The user inputs an invalid gender parameter (must be 'M', 'F' or 'N')
+    * 1c1. AddressBook shows an error message
+    * Use case resumes at step 1.
+    
+* 1d. The user does not input any filter parameters (eg. `filter ` instead of `filter age/25`)
+    * 1d1. AddressBook shows an error message
+    * Use case resumes at step 1.
+
+* 2a. The filtered list is empty.
     * Use case ends.
 
-* 2a. The given tag is invalid/nonexistent.
-    * 2a1. AddressBook shows an error message.
+**Use case: Find by name**
+
+**MSS**
+1.  User requests to search for clients by name
+2.  AddressBook shows the list of clients whose name matches the user's search keywords
+3.  Use case ends.
+
+**Extensions**
+
+* 1a. The user does not input any parameter (eg. `find ` instead of `find Alex`)
+    * 1d1. AddressBook shows an error message
     * Use case resumes at step 1.
+
+* 2a. The search result list is empty.
+    * Use case ends.
 
 ### Non-Functional Requirements
 

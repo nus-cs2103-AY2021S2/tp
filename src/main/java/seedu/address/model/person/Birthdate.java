@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Person's birthdate in the address book.
+ * Represents a Person's birthdate in Link.me
  */
 public class Birthdate {
 
