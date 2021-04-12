@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_FIRST_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LAST_NAME_MIXED_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import java.util.Arrays;

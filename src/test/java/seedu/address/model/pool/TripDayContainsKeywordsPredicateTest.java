@@ -2,9 +2,6 @@ package seedu.address.model.pool;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CASSANDRA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_AMY_LOWER_CASE;
@@ -33,14 +30,17 @@ public class TripDayContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList(VALID_TRIPDAY_STR_MONDAY);
         List<String> secondPredicateKeywordList = Arrays.asList(VALID_TRIPDAY_STR_MONDAY, VALID_TRIPDAY_STR_FRIDAY);
 
-        TripDayContainsKeywordsPredicate firstPredicate = new TripDayContainsKeywordsPredicate(firstPredicateKeywordList);
-        TripDayContainsKeywordsPredicate secondPredicate = new TripDayContainsKeywordsPredicate(secondPredicateKeywordList);
+        TripDayContainsKeywordsPredicate firstPredicate = new
+                TripDayContainsKeywordsPredicate(firstPredicateKeywordList);
+        TripDayContainsKeywordsPredicate secondPredicate = new
+                TripDayContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TripDayContainsKeywordsPredicate firstPredicateCopy = new TripDayContainsKeywordsPredicate(firstPredicateKeywordList);
+        TripDayContainsKeywordsPredicate firstPredicateCopy =
+                new TripDayContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

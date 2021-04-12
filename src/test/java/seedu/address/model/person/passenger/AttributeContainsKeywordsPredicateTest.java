@@ -83,7 +83,8 @@ public class AttributeContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_BOB).build()));
 
         // Mixed-case keywords
-        predicate = new AttributeContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY_FIRST_NAME_MIXED_CASE.toLowerCase(),
+        predicate = new AttributeContainsKeywordsPredicate(
+                Arrays.asList(VALID_NAME_AMY_FIRST_NAME_MIXED_CASE.toLowerCase(),
                 VALID_NAME_AMY_LAST_NAME_MIXED_CASE.toLowerCase()));
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
     }
@@ -109,7 +110,8 @@ public class AttributeContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new PassengerBuilder().withTags(VALID_TAG_FEMALE).build()));
 
         // Multiple keywords
-        predicate = new AttributeContainsKeywordsPredicate(Arrays.asList(VALID_TAG_IT_LOWER_CASE, VALID_TAG_FEMALE_LOWER_CASE));
+        predicate = new AttributeContainsKeywordsPredicate(Arrays.asList(VALID_TAG_IT_LOWER_CASE,
+                VALID_TAG_FEMALE_LOWER_CASE));
         assertTrue(predicate.test(new PassengerBuilder().withTags(VALID_TAG_IT).build()));
         assertTrue(predicate.test(new PassengerBuilder().withTags(VALID_TAG_FEMALE).build()));
         assertTrue(predicate.test(new PassengerBuilder().withTags(VALID_TAG_FEMALE, VALID_TAG_IT).build()));
