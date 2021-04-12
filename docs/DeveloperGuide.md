@@ -47,7 +47,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-Each of the four components,
+Each of the four components
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
@@ -71,9 +71,9 @@ The sections below give more details of each component.
 **API**:
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ContactListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ContactListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layouts of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -97,7 +97,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `deleteP 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser`  and `DeleteProjectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser`  and `DeleteProjectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 ### Model Component
@@ -131,8 +131,8 @@ A `Project` stores an `EventList`, `DeadlineList`, `TodoList` and a `GroupmateLi
 **API**: [`Storage.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the user's data in json format and read it back.
+* can save `UserPref` objects in JSON format and read them back.
+* can save the user's data in JSON format and read it back.
 
 ### Common Classes
 
@@ -148,7 +148,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### View Projects Feature
 
-This section explains the implementation of the View Project feature. The implementation of other commands that opens panels or tabs are similar.
+This section explains the implementation of the View Project feature. The implementations of other commands that open panels or tabs are similar.
 
 The `ViewProject` command results in the UI displaying the specified project together with all its related information.
 
@@ -158,14 +158,14 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 ![View Project Sequence Diagram](images/ViewProjectCommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ViewProjectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ViewProjectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 <div style="text-align: left">
 
 **Step 1.** The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
 
-**Step 2.** A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
+**Step 2.** A `CommandResult` object is created (see the section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
 
 **Step 3.** The `CommandResult` is passed to the `MainWindow`, which gets the `UiCommand` by calling `CommandResult#getUiCommand`.
 
@@ -183,8 +183,8 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 * **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
     * Pros:
-        * Design allows behaviour of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommand`s.
-        * `UiCommand` encapsulates all information needed to execute the instruction (e.g. `Index` of project). It is easy to add new commands that store different types of information.
+        * Design allows behavior of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommand`s.
+        * `UiCommand` encapsulates all information needed to execute the instruction (e.g. `Index` of the project). It is easy to add new commands that store different types of information.
         * Easy to support complex `UiCommand`s that perform multiple instructions or contain more complex logic.
 
     * Cons:
@@ -225,7 +225,7 @@ Below is a sequence diagram and explanation of how the `AddEventCommand` is exec
 
 **Step 4.** Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
 
-**Step 5.** From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
+**Step 5.** From this project list, we can find the correct `Project` to add `Event` by calling `get` function with a specified `Index`.
 
 **Step 6.** This `Project` will add the `Event` to its `EventList` by calling `addEvent` function.
 
@@ -241,7 +241,7 @@ Below is a sequence diagram and explanation of how the `AddEventCommand` is exec
 
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
     * Pros:
-        * This implementation requires no additional time and space (for creation of new `Project` and `EventList` object).
+        * This implementation requires no additional time and space (for the creation of new `Project` and `EventList` object).
     * Cons:
         * This implementation will not work with an immutable implementation of `EventList`.
 
@@ -249,7 +249,7 @@ Below is a sequence diagram and explanation of how the `AddEventCommand` is exec
     * Pros:
         * If the implementation of `EventList` becomes immutable, this implementaion still works.
     * Cons:
-        * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
+        * This implementation requires more time and space (for the creation of new 'Project` and `EventList` objects).
 
 </div>
 
@@ -329,7 +329,7 @@ For a better understanding, take a look at the Logic Class Diagram in the [Logic
 
 ![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`. 
@@ -338,7 +338,7 @@ Depicted below is another sequence diagram that shows the interaction between `S
 
 ![Delete Todo Sequence Diagram](images/DeleteTodoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 As shown, the original todo in CoLAB's Model Component has been deleted. Moreover, the updated list of todos has been saved to the Storage Component of CoLAB. As the operation comes to an end, the `CommandResult` object returned is used for UI purposes, where a message is displayed to the user to inform him/her about the status of their input command and the deleted todo.
@@ -376,11 +376,11 @@ Our target users are students currently enrolled in a university who,
 
 **Value proposition**:
 
-* Organise information by projects
-    * Unlike other similar applications, CoLAB organises our users' tasks by project rather than by week. We believe this is better as students are likely already familiar with their weekly schedule. Grouping it by project allows us to give more emphasis to project tasks and deadlines rather than weekly recurring classes.
+* Organize information by projects
+    * Unlike other similar applications, CoLAB organizes our users' tasks by project rather than by week. We believe this is better as students are likely already familiar with their weekly schedule. Grouping it by project allows us to give more emphasis to project tasks and deadlines rather than weekly recurring classes.
 
 * Minimalistic and Designed for Students
-    * CoLAB is designed to be simple and clutter free. We only add features students are likely to use and use terms that are appropriate for students. This improves the user experience for students.
+    * CoLAB is designed to be simple and clutter-free. We only add features students are likely to use and use terms that are appropriate for students. This improves the user experience for students.
 
 * Faster compared to other applications
     * Users who are comfortable with using a CLI can potentially do their project management tasks much faster than traditional applications as they can do everything from the keyboard.
@@ -392,31 +392,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​ | I want to …​ | So that I can…​ |
 | -------- | ---------- | --------------- | ------------------ |
 | `* * *` | University Student | add a new project| keep track of my projects |
-| `* * *` | University Student | edit a project's details | update the project's details when there is change |
+| `* * *` | University Student | edit a project's details | update the project's details when there is a change |
 | `* * *` | University Student | delete a project | remove projects that I no longer need |
 | `* * *` | University Student | view a project | see details of that project |
 | `* * *` | University Student | view the overview of a project | see my deadlines, events and groupmates of that project |
 | `* * *` | University Student | view todos of a project| see my todos of that project |
 | `* * *` | University Student | add a new todo to a project| keep track of my project's todos |
 | `* * *` | University Student | delete a todo from a project | remove todos that I no longer need |
-| `* * *` | University Student | edit a todo's details| update the todo's details when there is change |
+| `* * *` | University Student | edit a todo's details| update the todo's details when there is a change |
 | `* * *` | University Student | mark a todo as done| know when a todo is done |
 | `* * *` | University Student | add a new deadline to a project| keep track of my project's deadline |
 | `* * *` | University Student | delete a deadline from a project | remove deadlines that I no longer need |
-| `* * *` | University Student | edit a deadline's details| update the deadline's details when there is change |
+| `* * *` | University Student | edit a deadline's details| update the deadline's details when there is a change |
 | `* * *` | University Student | mark a deadline as done| know when a deadline is done |
 | `* * *` | University Student | keep track of a deadline's date| know when the deadline is due |
-| `* * *` | University Student | add an new event to a project| keep track of my project's events |
+| `* * *` | University Student | add a new event to a project| keep track of my project's events |
 | `* * *` | University Student | delete an event from a project | remove events that I no longer need |
-| `* * *` | University Student | edit an event's details| update the event's details when there is change |
+| `* * *` | University Student | edit an event's details| update the event's details when there is a change |
 | `* *` | University Student | indicate an event as weekly| have events that repeat weekly |
 | `* * *` | University Student | keep track of an event's date| know when the event is |
 | `* * *` | University Student | add a new groupmate to a project | keep track of my project's groupmates |
 | `* * *` | University Student | delete a groupmate from a project| remove groupmates that I no longer need |
-| `* * *` | University Student | edit a groupmate's details | update the groupmate's details when there is change |
+| `* * *` | University Student | edit a groupmate's details | update the groupmate's details when there is a change |
 | `* * *` | University Student | add roles to a groupmate | easily keep track of the groupmate's roles |
 | `* * *` | University Student | add a new contact| keep track of details from peers I have crossed paths with |            
-| `* * *` | University Student | edit a contact's details | update the contact's details when there is change |
+| `* * *` | University Student | edit a contact's details | update the contact's details when there is a change |
 | `* * *` | University Student | delete a contact | remove contacts that I no longer need |
 | `* * *` | University Student | find a contact by name | locate details of contacts without having to go through an entire list |
 | `* * *` | University Student | tag a contact with tags| easily keep track of who the contact is |
@@ -775,7 +775,7 @@ document.addEventListener('DOMContentLoaded', () => {
     * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
     * CoLAB must be open source under the [MIT License](https://raw.githubusercontent.com/AY2021S2-CS2103T-T11-2/tp/master/LICENSE).
 * Quality requirements:
-    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+    * A user with above-average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
     * A user familiar with CLI tools should find CoLAB commands very intuitive.
     * A user who has no experience with CLI tools should be able to find CoLAB easy to use with the help of the [_User Guide_](UserGuide.md).
 * Process requirements:
@@ -815,7 +815,7 @@ testers are expected to do more *exploratory* testing.
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected: The most recent window size and location are retained.
 
 ### Deleting a Contact
 
@@ -852,7 +852,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Open `./data/colab.json` in a text editor (preferably not Windows Notepad).
 
-    1. Remove the starting `{` character of the json file and save the file.
+    1. Remove the starting `{` character of the JSON file and save the file.
 
     1. Launch the app by runing `java -jar CoLAB.jar` in the console.<br>
        Expected: The GUI should pop up with no entry. The console output should give warnings about incorrect data file format.
@@ -883,11 +883,11 @@ Our team has put in a significant amount of effort to get CoLAB to the current s
 
     Compared to AB3, CoLAB has more than double the number of UI components. Each of these components had to be painstakingly designed and styled.
 
-    In addition, in line with our focus on user experience, we had to design a new `UiCommand` class to allow each command to display their own combination of UI components.
+    In addition, in line with our focus on user experience, we had to design a new `UiCommand` class to allow each command to display its own combination of UI components.
 
-    We also had to implement a combination of listeners to ensure CoLAB's UI is also navigable using a mouse. This involved a complex combination of event listeners to ensure that the behaviour of each button is consistent with the corresponding command, and the correct buttons or list cells are highlighted in the side panel.
+    We also had to implement a combination of listeners to ensure CoLAB's UI is also navigable using a mouse. This involved a complex combination of event listeners to ensure that the behavior of each button is consistent with the corresponding command, and the correct buttons or list cells are highlighted in the side panel.
 
-    Each of the Ui components are also responsive and work on a large range of screen sizes. To handle edge cases, we had to find a way to allow horizontal scrolling of each component individually without affecting the ability to scroll the entire window vertically.
+    Each of the Ui components is also responsive and works on a large range of screen sizes. To handle edge cases, we had to find a way to allow horizontal scrolling of each component individually without affecting the ability to scroll the entire window vertically.
 
 3. **Automated GUI Testing**
 
@@ -908,4 +908,4 @@ Our team has put in a significant amount of effort to get CoLAB to the current s
 
 6. **Command History**
 
-    Keeping in mind that CoLAB is a CLI based application, we implemented the `Command History` feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition, our solution had to take into account the current command the user was typing in order to better mimic a real command line.
+    Keeping in mind that CoLAB is a CLI-based application, we implemented the `Command History` feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition, our solution had to take into account the current command the user was typing in order to better mimic a real command line.
