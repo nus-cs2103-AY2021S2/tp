@@ -165,7 +165,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `ADDRESS`
 
 * The address of a contact.
-* An addresses can take any value, but it should not be blank.
+* An address can take any value, but it should not be blank.
 
 ##### `DATE`
 
@@ -663,7 +663,7 @@ Parameters:
 
 Examples:
 
-* `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y` updates the first event of the first project to be weekly event with a new description `Project Meeting` starting on `24-04-2021`.
+* `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y` updates the first event of the first project to be a weekly event with a new description `Project Meeting` starting on `24-04-2021`.
 * `updateE 2 i/2 on/14-04-2021 at/1015` updates the second event of the second project to a new date `14-04-2021` at `1015`.
 
 ##### Deleting an Event From a Project: `deleteE`
@@ -718,7 +718,7 @@ A groupmate can have any number of roles (including 0).
 Examples:
 
 * `addG 1 n/John Doe` adds a groupmate with the name `John Doe` to the first project.
-* `addG 2 n/Betsy Crowe r/developer` adds a groupmate with the name `Betsy Crowe` and role `developer` to the second project.
+* `addG 2 n/Betsy Crowe r/developer` adds a groupmate with the name `Betsy Crowe` and the role `developer` to the second project.
 
 ##### Updating a Groupmate: `updateG`
 
@@ -769,7 +769,7 @@ Example:
 
 ### **4.2 Contacts**
 
-Contact is used in CoLAB to store contact information about a person, to help you keep track of people you contact frequently.
+Contacts are used in CoLAB to store contact information about a person, to help you keep track of people you contact frequently.
 
 ![Ui](images/contacts.png)
 
