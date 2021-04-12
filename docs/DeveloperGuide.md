@@ -596,6 +596,51 @@ testers are expected to do more *exploratory* testing.
     1. Other correct notif commands to try: `notif x`(where x is any string appended)<br>
        Expected: Similar to previous.
 
+### Recording a note for a client
+
+* Recording a note for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+    
+    1. Test case: `note 1 r/TEST DATA`<br>
+     Expected: New note is added to the first client. Updated number of notes is shown in the client information. Message of the note and client name shown in the status message. 
+    
+    1. Test case: `note 0 r/TEST DATA`<br>
+     Expected: No note is added. Error details shown in the status message.
+    
+    1. Other incorrect recording note commands to try: `note r/`, `note n r/` (where n is larger than the list size)<br>
+     Expected: Similar to previous.
+
+### Viewing notes for a client
+
+* Viewing notes for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+
+    1. Test case: `note 1 v/`<br>
+       Expected: Popup window appears, displaying all notes recorded for that client. Client name shown in the status message.
+
+    1. Test case: `note 0 v/`<br>
+       Expected: No popup window appears. Error details shown in the status message.
+
+    1. Other incorrect viewing note commands to try: `note v/`, `note n v/` (where n is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Clearing notes for a client
+
+* Clearing notes for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+
+    1. Test case: `note 1 c/`<br>
+       Expected: Notes are cleared for the first client. Client information shows `You have no notes`. Client name shown in the status message.
+
+    1. Test case: `note 0 c/`<br>
+       Expected: Notes are not cleared. Error details shown in the status message.
+
+    1. Other incorrect clearing note commands to try: `note c/`, `note n c/` (where n is larger than the list size)<br>
+       Expected: Similar to previous.
+       
 ### Listing all clients
 
 * Get a list of all clients
