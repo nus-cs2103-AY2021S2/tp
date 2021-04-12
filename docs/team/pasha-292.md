@@ -39,7 +39,7 @@ Given below are my contributions to the project.
    * Add the date field to the GUI.(
      PR: [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47),
      [#48](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/48))
-   * Change icon for the app. (
+   * Change logo for the app. (
      PR: [#118](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/118))
 
 * **Tests**:
