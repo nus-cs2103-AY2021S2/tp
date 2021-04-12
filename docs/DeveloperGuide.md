@@ -186,8 +186,8 @@ Tutor Tracker's Favourite feature allows users to create a list of favourites tu
 As Tutor Tracker is an application to aid users in viewing a tutor's personal profile, we have also considered that users may also wish to keep a favourite tutor list for easier personal reference instead of performing a search or filtering every time.
 
 #### Implementation
-The proposed note feature is to facilitate the user to keep track of his/her own note of different tutors and export them.
-The notes feature consists of the following operations that can be performed on tutors:
+The favourite feature is to facilitate the user to keep track of his/her favourites out of the entire list of tutors. 
+It implements the following operations:
 * `Favourite tutor` - Add a tutor to the list of favourite tutors.
 * `Unfavourite tutor` - Delete the tutor from the list of favourite.
 * `List favourites` - Show the list of the favourite tutor.
