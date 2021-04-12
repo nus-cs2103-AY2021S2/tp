@@ -696,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case resumes at step 1.
 
-* 2a. The list of todos is empty.
+* 2a. The list of todos/deadlines is empty.
 
   Use case ends.
 
