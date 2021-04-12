@@ -195,20 +195,29 @@ The notes feature consists of the following operations that can be performed on 
 These operations are exposed in the `Logic` interface by parsing respective `FavouriteCommand`,
 `UnfavouriteCommand` and `ListFavouriteCommand`.
 
+When the user enters any of the aforementioned commands,
+the user input command undergoes the same command
+parsing as described in the [Logic component](#logic-component).
+
 Given below are example usage scenarios and how the favourite feature behaves at each step.
+
+To add, delete or edit the `favourite` attribute of a `Tutor`, we use of an `EditTutorDescriptor`. The `EditTutorDescriptor` describes the
+attributes of a tutor to be edited. To `favourite` to a `Tutor`, we can simply create an `EditTutorDescriptor` which a
+`Favourite` descriptor, and edit the corresponding `Tutor` with this descriptor. The following shows an example of how an
+`FavouriteCommand` is executed.
 
 When the user enters any of the aforementioned commands, the user input command undergoes the same command parsing as described in the [Logic component](#logic-component).
 
-Steps for the execution of the `FavouriteCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `FavouriteCommandParser`.
-3. The `FavouriteCommandParser` will then parse and validate the inputs, and creates a `FavouriteCommandParser` with a target index number,
-   and an `EditTutorDescriptor` with a `Favourite` descriptor.
-4. The `execute()` method of the created `FavouriteCommand` will be called.
-5. The `FavouriteCommand` will validate both the index number and the `EditTutorDescriptor` and call the `ModelManager`'s
-   `setTutor()` method, followed by `TutorBook`'s `setTutor()` method which will add the `Favourite` attribute to the existing tutor.
-6. After the new `Notes` has been successfully added to a tutor, it will update the GUI with the `Favourite` indicator (a star) beside the tutor's name, and return
-   a `CommandResult` to provide feedback of the command's execution.
+Steps for the execution of the `FavouriteCommand` (assuming that no errors are encountered during parsing of inputs):
+1. When the `execute()` method of the `FavouriteCommand` is called, the `Model`’s `getFilteredTutorList()` method is called.
+1. The `get()` method of the `ObservableList` is called returning the tutor at the index specified by the user. 
+1. The `isFavourite()` method of the `Tutor`, which was retrieved from the previous step, is called to check if the tutor specified by index is already a favourite.
+1. Assuming that the above validation passes, the `FavouriteCommand`'s `createEditedTutor()` method is called to create a `Tutor` object with a `favourite` attribute while retaining existing information from the tutor specified by index.
+1. The `Model`'s `setTutor()` method is called, which will then call the `TutorBook`'s `setTutor()` method.
+1. The `Ui` component will detect this change and update the GUI with the `favourite` indicator (a star) beside the tutor's name.
+1. Assuming that the above steps are all successful, the `FavouriteCommand` will then create a `CommandResult` object and return the result.
+
+The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sequence Diagram of Favourite Tutor](images/favourite/FavouriteSequenceDiagram.png)
 
@@ -249,29 +258,29 @@ The notes feature consists of the following operations that can be performed on 
 These operations are exposed in the `Logic` interface by parsing respective `AddNoteCommand`,
 `DeleteNoteCommand`, `EditNoteCommand`, `ListNoteCommand` and `ExportCommand`.
 
-Given below are example usage scenarios and how the note feature behaves at each step.
-
-When the user enters any of the aforementioned commands, 
-the user input command undergoes the same command 
+When the user enters any of the aforementioned commands,
+the user input command undergoes the same command
 parsing as described in the [Logic component](#logic-component).
+
+Given below are example usage scenarios and how the note feature behaves at each step.
 
 To add, delete or edit a `Notes` of a `Tutor`, we use of an `EditTutorDescriptor`. The `EditTutorDescriptor` describes the 
 attributes of a tutor to be edited. To add a `Notes` to a `Tutor`, we can simply create an `EditTutorDescriptor` which a 
 `Notes` descriptor, and edit the corresponding `Tutor` with this descriptor. The following shows an example of how an
 `AddNoteCommand` is executed.
 
-Steps for the execution of the `AddNoteCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddNoteCommandParser`.
-3. The `AddNoteCommandParser` will then parse and validate the inputs, and creates a `AddNoteCommand` with a target index number, 
-   and an `EditTutorDescriptor` with a `Notes` descriptor.
-4. The `execute()` method of the created `AddNoteCommand` will be called.
-5. The `AddNoteCommand` will validate both the index number and the `EditTutorDescriptor` and call the `ModelManager`'s 
-   `setTutor()` command which will add a new `Notes` to the existing tutor. 
-6. After the new `Notes` has been successfully added to a tutor, it will update the GUI with the new `Notes`, and return
-   a `CommandResult` to provide feedback of the command's execution.
+Steps for the execution of the `AddNoteCommand` (assuming that no errors are encountered during parsing of inputs):
+1. When the `execute()` method of the `AddNoteCommand` is called, the `Model`’s `getFilteredTutorList()` method is called.
+1. The `get()` method of the `ObservableList` is called returning the tutor at the index specified by the user.
+1. The `hasNotes()` method of the `Tutor`, which was retrieved from the previous step, is called to check if the tutor specified by index have an existing note.
+1. Assuming that the above validation passes, the `AddNoteCommand`'s `createEditedTutor()` method is called to create a `Tutor` object with a `note` attribute while retaining existing information from the tutor specified by index.
+1. The `Model`'s `setTutor()` method is called, which will then call the `TutorBook`'s `setTutor()` method.
+1. The `Ui` component will detect this change and update the GUI with the `notes` panel attached beside the tutor's profile.
+1. Assuming that the above steps are all successful, the `AddNoteCommand` will then create a `CommandResult` object and return the result.
 
-![Sequence Diagram of Add Schedule](images/notes/NotesSequenceDiagram.png)
+The following Sequence Diagram summarises the aforementioned steps.
+
+![Sequence Diagram of Add Notes](images/notes/NotesSequenceDiagram.png)
 
 #### Design Consideration
 
@@ -290,7 +299,7 @@ Reason for choosing option 1:
   
 The following activity diagram summarizes what happens when the `add_note` command is executed.
 
-![Activity Diagram of Add Schedule](images/notes/NotesActivityDiagram.png)
+![Activity Diagram of Add Note](images/notes/NotesActivityDiagram.png)
 
 To export the details and notes of a `Tutor` into a text file, we use the `export` command. The `export` command would
 create a new folder `/export` in the root directory. Details and notes of a `Tutor` would be converted into human-readable
@@ -391,16 +400,19 @@ Schedule Tracker consist of the following operations that can be performed on sc
 These operations are exposed in the `Logic` interface by parsing respective `AddScheduleCommand`,
 `DeleteScheduleCommand`, `EditScheduleCommand` and `ViewScheduleCommand`.
 
-When the user enters the `add_schedule` command to add a new schedule, the user input command undergoes the same command parsing as described in
-[Logic component](#logic-component).
+When the user enters any of the aforementioned commands,
+the user input command undergoes the same command
+parsing as described in the [Logic component](#logic-component).
 
-Steps for the execution of the `AddScheduleCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddScheduleCommandParser`.
-3. The `AddScheduleCommandParser` will then parse the inputs, and creates a `AddScheduleCommand`.
-4. The `AddScheduleCommand` will then validates the parameters and creates a `Schedule` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addSchedule()`, then create a `CommandResult` object and return the result.
-6. The `Ui` component will detect this change and update the GUI.
+Steps for the execution of the `AddScheduleCommand` (assuming that no errors are encountered during parsing of inputs):
+1. When the `execute()` method of the `AddScheduleCommand` is called, it will perform two-steps of validation. 
+    1. The first validation method called is the `Model`’s `hasSchedule()`. 
+    1. Assuming the previous step's validation is successful, it will then call `DateTimeValidationUtil`'s `validateDateTime()` method.
+1. Assuming that the above validations passes, the `Model`'s `addSchedule()` method is called, which will then call the `TutorTracker`'s `addSchedule()` method.
+1. The `Ui` component will detect this change and update the GUI.
+1. Assuming that the above steps are all successful, the `AddScheduleCommand` will then create a CommandResult object and return the result.
+
+The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sequence Diagram of Add Schedule](images/schedule/ScheduleSequenceDiagram.png)
 
@@ -465,16 +477,19 @@ Reminder Tracker consist of the following operations that can be performed on re
 These operations are exposed in the `Logic` interface by parsing respective `AddReminderCommand`,
 `DeleteReminderCommand` and `EditReminderCommand`.
 
-When the user enters the `add_schedule` command to add a new schedule, the user input command undergoes the same command parsing as described in
-[Logic component](#logic-component).
+When the user enters any of the aforementioned commands,
+the user input command undergoes the same command
+parsing as described in the [Logic component](#logic-component).
 
-Steps for the execution of the `AddReminderCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddReminderCommandParser`.
-3. The `AddReminderCommandParser` will then parse the inputs, and creates a `AddReminderCommand`.
-4. The `AddReminderCommand` will then validates the parameters and creates a `Reminder` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addReminder()`, then create a `CommandResult` object and return the result.
-6. The `Ui` component will detect this change and update the GUI.
+Steps for the execution of the `AddReminderCommand` (assuming that no errors are encountered during parsing of inputs):
+1. When the `execute()` method of the `AddReminderCommand` is called, it will perform two-steps of validation.
+    1. The first validation method called is the `AddReminderCommand`’s `Reminder`'s object `isBeforeToday()`.
+    1. Assuming the previous step's validation is successful, it will then call `Model`'s `hasReminder()` method.
+1. Assuming that the above validations passes, the `Model`'s `addReminder()` method is called, which will then call the `ReminderTracker`'s `addReminder()` method.
+1. The `Ui` component will detect this change and update the GUI.
+1. Assuming that the above steps are all successful, the `AddReminderCommand` will then create a `CommandResult` object and return the result.
+
+The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sequence Diagram of Add Reminder](images/reminder/ReminderSequenceDiagram.png)
 
@@ -697,8 +712,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **Extensions**
 
 * 1a. The list is empty.
-  
-      Use case ends.
+  Use case ends.
 
 * 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
@@ -719,9 +733,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-
-      Use case ends.
+* 1a. The list is empty. 
+    Use case ends.
 
 * 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
@@ -769,7 +782,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0008: Export tutor's details **
+**Use Case UC0008: Export tutor's details**
 
 **MSS**
 
@@ -781,8 +794,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **Extensions**
 
 * 1a. The list is empty.
-
-      Use case ends.
+  Use case ends.
 
 * 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
@@ -823,7 +835,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0011: View tuition appointment**
+**Use Case UC0011: View tuition appointments**
 
 **MSS**
 
@@ -843,8 +855,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
-
-    Use case ends.
+      
+    Use case resumes at step 2.
 
 <hr/>
 
@@ -868,8 +880,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 * 3a. No appointment matches the search value.
     * 3a1. TutorTracker displays an empty list.
-
-  Use case ends.
+      
+    Use case resumes at step 2.
 
 <hr/>
 
@@ -1057,7 +1069,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
 
-  Use case ends.
+  Use case resumes at step 2.
 
 <hr/>
 
@@ -1072,10 +1084,9 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 3a. The index is out of bound.
+* 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
-
-  Use case ends.
+      Use case resumes at step 2.
 
 <hr/>
 
@@ -1123,10 +1134,10 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 3a. The index is out of bound.
+* 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
+      Use case resumes at step 2.
 
-  Use case ends.
 
 <hr/>
 
@@ -1150,6 +1161,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     Use case ends.
 
 <hr/>
+
 
 ### Non-Functional Requirements
 **Technical Requirements**:
