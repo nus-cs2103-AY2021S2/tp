@@ -1,8 +1,6 @@
 @startuml
 !include style.puml
 
-autoactivate on
-
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PawbookParser" as PawbookParser LOGIC_COLOR

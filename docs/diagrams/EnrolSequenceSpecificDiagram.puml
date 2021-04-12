@@ -1,8 +1,6 @@
 @startuml
 !include style.puml
 
-autoactivate on
-
 box Logic LOGIC_COLOR_T1
 
 participant "e:EnrolCommand" as EnrolCommand LOGIC_COLOR
@@ -20,7 +18,7 @@ mainframe **sd** enrol dog with ID 2 into program with ID 3
 
 activate EnrolCommand
 
-EnrolCommand -> Model : check ID validitiy
+EnrolCommand -> Model : check ID validity
 activate Model
 Model --> EnrolCommand
 deactivate Model
@@ -28,7 +26,7 @@ deactivate Model
 create IdMatchPredicate
 EnrolCommand -> IdMatchPredicate
 activate IdMatchPredicate
-IdMatchPredicate --> EnrolCommand
+IdMatchPredicate --> EnrolCommand : imp
 deactivate IdMatchPredicate
 
 EnrolCommand -> Model : updateFilteredEntityList(imp)
@@ -39,7 +37,7 @@ deactivate Model
 create CommandResult
 EnrolCommand -> CommandResult
 activate CommandResult
-CommandResult --> EnrolCommand
+CommandResult --> EnrolCommand : cr
 deactivate CommandResult
 
 [<-- EnrolCommand : cr
