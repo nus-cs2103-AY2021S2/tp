@@ -14,9 +14,9 @@ If this is your first time using/contributing to **SunRez**, check out our guide
 
 ## Site Map
 
-* [User Guide](docs/UserGuide.md)
-* [Developer Guide](docs/DeveloperGuide.md)
-* [About Us](docs/AboutUs.md)
+* [User Guide](https://ay2021s2-cs2103-t14-1.github.io/tp/UserGuide.html)
+* [Developer Guide](https://ay2021s2-cs2103-t14-1.github.io/tp/DeveloperGuide.html)
+* [About Us](https://ay2021s2-cs2103-t14-1.github.io/tp/AboutUs.html)
 * [Github](https://github.com/AY2021S2-CS2103-T14-1/tp)
 
 ## Acknowledgements
