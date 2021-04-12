@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.parser.commandhistory.ViewHistoryCommandParser;
 
+/**
+ * Contains unit tests for {@code ViewHistoryCommandParser}.
+ */
 public class ViewHistoryCommandParserTest {
     private static final String VALID_ARG_FIVE = "5";
     private static final String VALID_ARG_TWENTY_TWO = "22";

@@ -64,8 +64,9 @@ public class TypicalCommandHistoryEntries {
 
     /**
      * Returns a {@code CommandHistory} with some typical command history entries.
+     * Guarantees at least 3 entries.
      *
-     * @return A {@code CommandHistory} with some typical command history entries.
+     * @return A {@code CommandHistory} with at least 3 typical command history entries.
      */
     public static CommandHistory getTypicalCommandHistory() {
         CommandHistory ch = new CommandHistory();
@@ -77,8 +78,9 @@ public class TypicalCommandHistoryEntries {
 
     /**
      * Returns a list of some typical command history entries.
+     * Guarantees at least 3 entries.
      *
-     * @return A list of some typical command history entries.
+     * @return A list of at least 3 typical command history entries.
      */
     public static List<CommandHistoryEntry> getTypicalEntries() {
         return new ArrayList<>(Arrays.asList(HELP, HISTORY_ALL, HELP, HISTORY_FIVE, HISTORY_FIVE));

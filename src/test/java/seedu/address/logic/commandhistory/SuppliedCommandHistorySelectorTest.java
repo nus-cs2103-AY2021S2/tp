@@ -14,6 +14,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.commandhistory.CommandHistory;
 import seedu.address.model.commandhistory.CommandHistoryEntry;
 
+/**
+ * Contains unit tests for {@code SuppliedCommandHistorySelectorTest}.
+ */
 public class SuppliedCommandHistorySelectorTest {
     private CommandHistory emptyHistory;
     private CommandHistory typicalHistory;

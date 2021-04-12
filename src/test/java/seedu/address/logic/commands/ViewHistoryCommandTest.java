@@ -33,21 +33,21 @@ public class ViewHistoryCommandTest {
         ViewHistoryCommand viewAllCommand = new ViewHistoryCommand();
         ViewHistoryCommand viewFiveCommand = new ViewHistoryCommand(lastFiveEntries);
 
-        // same object -> returns true
+        // EP: same object -> returns true
         assertTrue(viewAllCommand.equals(viewAllCommand));
         assertTrue(viewFiveCommand.equals(viewFiveCommand));
 
-        // same values -> returns true
+        // EP: same values -> returns true
         assertTrue(viewAllCommand.equals(new ViewHistoryCommand()));
         assertTrue(viewFiveCommand.equals(new ViewHistoryCommand(lastFiveEntries)));
 
-        // different types -> returns false
+        // EP: different types -> returns false
         assertFalse(viewFiveCommand.equals(lastFiveEntries));
 
-        // null -> returns false
+        // EP: null -> returns false
         assertFalse(viewAllCommand.equals(null));
 
-        // different commands -> returns false
+        // EP: different commands -> returns false
         assertFalse(viewAllCommand.equals(viewFiveCommand));
     }
 

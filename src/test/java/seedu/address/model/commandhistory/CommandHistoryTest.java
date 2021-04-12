@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.commandhistory.CommandHistoryTestUtil.getEntries;
 
 import java.util.List;
 
@@ -11,6 +12,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TypicalCommandHistoryEntries;
 
+/**
+ * Contains unit tests for {@code CommandHistory}.
+ */
 public class CommandHistoryTest {
 
     @Test
@@ -28,22 +32,6 @@ public class CommandHistoryTest {
     }
 
     @Test
-    public void appendEntry_insertsCorrectEntry() {
-        CommandHistory commandHistory;
-        CommandHistoryEntry entry;
-
-        commandHistory = new CommandHistory();
-        entry = TypicalCommandHistoryEntries.HELP;
-        commandHistory.appendEntry(entry);
-        assertEquals(entry, commandHistory.get(0));
-
-        commandHistory = new CommandHistory();
-        entry = TypicalCommandHistoryEntries.HISTORY_ALL;
-        commandHistory.appendEntry(entry);
-        assertEquals(entry, commandHistory.get(0));
-    }
-
-    @Test
     public void constructor_takingListOfEntries_isMakingACopyOfTheList() {
         List<CommandHistoryEntry> typicalEntries1 = TypicalCommandHistoryEntries.getTypicalEntries();
         CommandHistory commandHistory = new CommandHistory(typicalEntries1);
@@ -53,12 +41,7 @@ public class CommandHistoryTest {
 
         // check that the entries in CommandHistory have not changed
         List<CommandHistoryEntry> typicalEntries2 = TypicalCommandHistoryEntries.getTypicalEntries();
-        assertEquals(typicalEntries2.size(), commandHistory.size());
-        for (int i = 0; i < commandHistory.size(); i++) {
-            CommandHistoryEntry entry = commandHistory.get(i);
-            CommandHistoryEntry correspondingEntry = typicalEntries2.get(i);
-            assertEquals(entry, correspondingEntry);
-        }
+        assertHistoryHasEntries(commandHistory, typicalEntries2);
     }
 
     @Test
@@ -66,16 +49,12 @@ public class CommandHistoryTest {
         CommandHistory typicalHistory = TypicalCommandHistoryEntries.getTypicalCommandHistory();
         CommandHistory copy = new CommandHistory(typicalHistory);
 
-        assertEquals(typicalHistory.size(), copy.size());
-        for (int i = 0; i < copy.size(); i++) {
-            CommandHistoryEntry entry = copy.get(i);
-            CommandHistoryEntry correspondingEntry = typicalHistory.get(i);
-            assertEquals(entry, correspondingEntry);
-        }
+        assertHistoryHasEntries(copy, getEntries(typicalHistory));
     }
 
     @Test
     public void equals() {
+        // Set up
         CommandHistory typicalHistory = TypicalCommandHistoryEntries.getTypicalCommandHistory();
 
         CommandHistory copy = new CommandHistory();
@@ -99,53 +78,75 @@ public class CommandHistoryTest {
             differentEntriesButSameSize.appendEntry(TypicalCommandHistoryEntries.getRandomEntry());
         }
 
-        // same object -> return true
+        // EP: same object -> return true
         assertTrue(typicalHistory.equals(typicalHistory));
 
-        // different type -> return false
-        assertFalse(typicalHistory.equals("hi there"));
-
-        // same entries -> return true
+        // EP: same entries -> return true
         assertTrue(typicalHistory.equals(copy));
 
-        // one missing entry -> return false
+        // EP: different type -> return false
+        assertFalse(typicalHistory.equals("hi there"));
+
+        // EP: one missing entry -> return false
         assertFalse(typicalHistory.equals(oneMissingEntry));
 
-        // one extra entry -> return false
+        // EP: one extra entry -> return false
         assertFalse(typicalHistory.equals(oneExtraEntry));
 
-        // different entries -> return false
+        // EP: different entries, same size -> return false
         assertFalse(typicalHistory.equals(differentEntriesButSameSize));
     }
 
     @Test
     public void get_withInvalidIndex_throwsIndexOutOfBoundsException() {
         CommandHistory empty = new CommandHistory();
+        // EP: index < 0
         assertThrows(IndexOutOfBoundsException.class, () -> empty.get(-1));
         assertThrows(IndexOutOfBoundsException.class, () -> empty.get(-1235));
+        // EP: index >= size
         assertThrows(IndexOutOfBoundsException.class, () -> empty.get(0));
         assertThrows(IndexOutOfBoundsException.class, () -> empty.get(1));
 
         CommandHistory typical = TypicalCommandHistoryEntries.getTypicalCommandHistory();
+        // EP: index >= size
         assertThrows(IndexOutOfBoundsException.class, () -> typical.get(typical.size()));
+        // EP: index < 0
         assertThrows(IndexOutOfBoundsException.class, () -> typical.get(-1));
     }
 
     @Test
     public void get_withValidIndex_returnsCorrectEntry() {
-        CommandHistory commandHistory = TypicalCommandHistoryEntries.getTypicalCommandHistory();
+        // Typical entries guarantees at least 3 entries
         List<CommandHistoryEntry> typicalEntries = TypicalCommandHistoryEntries.getTypicalEntries();
+        CommandHistory commandHistory = new CommandHistory(typicalEntries);
 
-        for (int i = 0; i < typicalEntries.size(); i++) {
-            CommandHistoryEntry entry = commandHistory.get(i);
-            CommandHistoryEntry correspondingEntry = typicalEntries.get(i);
-            assertEquals(entry, correspondingEntry);
-        }
+        // BVA: test first index, last index and somewhere in-between (assumes at least 3 entries).
+        final int firstIndex = 0;
+        final int lastIndex = commandHistory.size() - 1;
+        final int middleIndex = 1;
+        assertEquals(typicalEntries.get(firstIndex), commandHistory.get(firstIndex));
+        assertEquals(typicalEntries.get(lastIndex), commandHistory.get(lastIndex));
+        assertEquals(typicalEntries.get(middleIndex), commandHistory.get(middleIndex));
     }
 
     @Test
     public void size_ofNewCommandHistory_isZero() {
         CommandHistory commandHistory = new CommandHistory();
         assertEquals(0, commandHistory.size());
+    }
+
+    /**
+     * Asserts that the given command history has the same entries in the same order as a given list of entries.
+     *
+     * @param commandHistory The command history to check.
+     * @param entries The entries to check against.
+     */
+    private void assertHistoryHasEntries(CommandHistory commandHistory, List<CommandHistoryEntry> entries) {
+        assertEquals(entries.size(), commandHistory.size());
+        for (int i = 0; i < commandHistory.size(); i++) {
+            CommandHistoryEntry entry = commandHistory.get(i);
+            CommandHistoryEntry correspondingEntry = entries.get(i);
+            assertEquals(entry, correspondingEntry);
+        }
     }
 }
