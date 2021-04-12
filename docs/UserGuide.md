@@ -336,7 +336,7 @@ Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/GENRE`
 
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 * The book's name is case sensitive, e.g. `Secret` and `secret` are two different books.
-* Note that SmartLib uses book ISBN to uniquely identify a book. Hence,
+* Note that SmartLib uses book ISBN to uniquely identify a unique edition and variation of a book. Hence,
   * There may be multiple copies of a book with the same name and ISBN.
   * Books with different names cannot share the same ISBN.
   * Books with the same name can have different ISBNs,
