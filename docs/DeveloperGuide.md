@@ -751,6 +751,8 @@ The following is the sequence diagram for executing the `execute()` command in c
 
       Use case resumes at step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC10 -  List all notes**
 
 **MSS**
@@ -792,6 +794,8 @@ The following is the sequence diagram for executing the `execute()` command in c
 1. File Size
     * file sizes of the deliverables should not exceed the `100MB`
 
+
+<div style="page-break-after: always;"></div>
 
 #### Dependency Requirement
 
@@ -854,9 +858,9 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+<div style="page-break-after: always;"></div>
 
-### Adding a contact
+### Adding and editing a contact
 
 1. Adding a contact that shares its phone number with another existing contact.
 
@@ -879,10 +883,8 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message is displayed, telling that another existing contact already has the specified phone number or email.
 	   
 	* Note that this behavior should apply for any email that is already used for another contact in the list.
-	
-### Editing a contact
 
-Similar to *Adding a contact* above (shared phone numbers and/or emails).
+1. Editing a contact is similar to *Adding a contact* above (shared phone numbers and/or emails).
 
 ### Deleting a note
 
@@ -899,6 +901,8 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
     1. Other incorrect delete commands to try: `deletenote`, `deletenote x`, `...` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
+
+<div style="page-break-after: always;"></div>
 
 ### Showing a note
 
@@ -976,8 +980,6 @@ Available `OPTION` for open and close command : `-a`, `-c`, `-d`, `dc`, `dl`, `-
     1. Other incorrect open commands to try: `open`, `open x`, `...` (where x is not an `Option`)<br>
        Expected: Similar to previous.
 
-<div style="page-break-after: always;"></div>
-
 1. Close a panel through open command
 
     1. Prerequisites: Close all panel using `open -a` for better visibility
@@ -996,6 +998,8 @@ Available `OPTION` for open and close command : `-a`, `-c`, `-d`, `dc`, `dl`, `-
 
     1. Other incorrect open commands to try: `close`, `close x`, `...` (where x is not an `Option`)<br>
        Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 #### Setting divider position via command
 
