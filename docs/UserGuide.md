@@ -122,8 +122,8 @@ An entry's name can be tagged to a contact to easily filter for contacts related
 
 Example(s):
 
-* `cadd n/Danny Tan p/98765432 e/danny@email.com t/student t/english t/consultation 1`
-* `cadd n/Amy Yeoh p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
+* `cadd n/Danny Tan p/98765432 e/danny@email.com t/student t/english t/consultation1`
+* `cadd n/Amy Yeoh p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting1`
 
 Scenario:
 You want to save the contact details of your students so that you can easily obtain their details when you want to
