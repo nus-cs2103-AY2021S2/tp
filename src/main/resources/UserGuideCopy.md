@@ -226,8 +226,7 @@ Currently available options for the `[OPTION]` field include:
 * `tag` Find by tags of the contact (only exact tags will be matched)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-When using the `tag` option `t/` needs to be placed in front of the tag 
-you are searching for. Also, please note that only exact matches will be returned for find by tag.<br>
+When using the `tag` option `t/` needs to be placed in front of the tag you are searching for. Also, please note that only exact matches will be returned for find by tag.
 Example: `find o/tag t/first t/second`
 </div>
 
@@ -249,14 +248,17 @@ Examples:
 
 Deletes the specified contact from the address book.
 
-Format: `delete INDEX`
+Format: `delete INDEX [MORE_INDEXES]`...
 
-* Deletes the contact at the specified `INDEX`.
+* Deletes the contact at the specified `INDEX` or multiple `INDEXES`.
 * The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, ...
+* The index/indexes **must be a positive integer/integers** 1, 2, 3, ...
+* If deleting multiple contacts by multiple indexes, the indexes *must* be separated by whitespace and must all be valid.
+
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
+* `list` followed by `delete 1 2 3` deletes the 1st, 2nd and 3rd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -477,7 +479,7 @@ Action | Format, Examples
 ​ | **Address Book Commands**
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]... [t/TAG]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear [t/TAG]...`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX [MORE_INDEXES]...`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]... [t/TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
 **Find** | `find [o/OPTION] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find John`

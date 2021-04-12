@@ -827,6 +827,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 3. Subsequent launch    
+   
     1. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
        Expected: Shows the GUI with data loaded from the json files.
 
@@ -834,14 +835,95 @@ testers are expected to do more *exploratory* testing.
 ### Testing General Features
 
 #### Help 
+1. Retrieving a full list of available commands
+   
+    1. Test case: `help`\
+        Expected: Help window is opened and full list of available general, address book and appointment book commands are displayed in it.
+       
+1. Retrieving information about a specific command
+   
+    1. Test case: `help find`\
+        Expected: Help window is opened and information about the `find` command is displayed in it.
+   
+    1. Test case: `help find add`\
+        Expected: Help window is opened and information about the `add` command is displayed in it.
+       
+    1. Test case: `help invalid`\
+        Expected: Help window is not opened. Error details shown in the status message.
 
 #### Change ParentPal's theme
+1. Changing theme to light theme when dark theme
+   
+    1. Prerequisites: Set theme to dark by `theme o/dark`.
+       
+    1. Test case: `theme o/light` \
+       Expected: Theme will change to the light theme.
+       Success message is shown in the status message.
+       
+    1. Test case: `theme o/dark` \
+       Expected: Theme will remain in dark theme.
+       Success message is shown in the status message.
+       
+    1. Test case: `theme` \
+       Expected: No change to theme.
+       Invalid command format error details shown in the status message.
+       
+    1. Other incorrect sort commands to try: `theme   `, `theme 1`, `theme aaa`, `theme o/lol` \
+       Expected: Similar to previous.
+       
+    1. Test case: `theme o/dark o/light` \
+       Expected: Theme will change to the light theme as last parameter will be taken.
 
+2. Change theme to dark theme when light theme
+   
+    1. Prerequisites: Set theme to light by `theme o/light`.
+       
+    1. Test case: `theme o/dark` \
+       Expected: Theme will change to dark theme.
+       Success message is shown in the message.
+       
+    1. Test case: `theme o/dark` \
+       Expected: Theme will remain in dark theme.
+       Success message is shown in the status message.
 
+3. Check that theme is saved successfully after changing theme.
+   
+    1. Prerequisites: Set theme to light by `theme o/light`.
+       
+    2. Exit the application.
+       
+    3. Open the application again.
+       
+    4. Expected: Theme is still light.
+    
+4. Check that help window has same theme as main window.
+   
+    1. Prerequisites: Set theme to light by `theme o/light`.
+       
+    1. Open help window with `help` command.
+       
+    1. Expected: Theme of help window is also the light theme.
+    
+  
 ### Testing Address Book Features
+
+#### Add a contact
+1. Add a contact while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+    
+    1. Test case: `add n/Alice` \
+       Expected: Contact with name 'Alice' will be added. Should only see name in the Contact card for Alice in scrolling list.
+
+    1. Test case: `add n/Alice p/99091109 e/apple@gmail.com` \
+       Expected: Contact with name 'Alice', phone number '99091109' and email 'apple@gmail.com' will be added.
+    
+    1. Test case: `add n/Alice p/99091109 e/apple@gmail.com tc/Anna tc/Bob t/math` \
+       Expected: Contact with name 'Alice', phone number '99091109' and email 'apple@gmail.com', child tags 'Anna' and 'Bob' and tag 'math' will be added.     
 
 #### Tag a contact
 1. Append tags to a contact
+   
     1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
        
     2. Input `tag 2 tc/alice t/kovanSecSch` into the command box and press enter.
@@ -851,6 +933,7 @@ testers are expected to do more *exploratory* testing.
 ![Append tags example](images/AppendTagExample.png)
 
 2. Replace tags of a contact
+   
     1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
     
     2. Input `tag 2 o/replace tc/alice` into the command box and press enter.<br>
@@ -858,89 +941,198 @@ testers are expected to do more *exploratory* testing.
        ChildTag `alice` as seen below.
        
 ![Replace tags example](images/ReplaceTagExample.png)
+
+#### Clear contacts
+1. Clear all contacts while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
     
-#### Clear tags
+    1. Test case: `clear` \
+       Expected: All contacts are cleared.
+    
+#### Clear by tags
 1. Clearing contacts by tag
+   
     1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
     
     2. Input `clear t/psg` into the command box and press enter.<br>
        Expected: The contacts with a psg tag, *'Charlotte Oliveiro'* and *'Annie Li'* are deleted from the address book.
 
 #### Delete a contact
+1. Deleting a contact while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list, with some contacts tagged in appointments.
+    
+    1. Test case: `delete 1` (where the 1st contact is not tagged in any appointment) \
+       Expected: 1st contact is deleted from the list. Details of the deleted contact are shown in the status message.
+    
+    1. Test case: `delete 0` \
+       Expected: No contact is deleted. Error details shown in the status message.
+    
+    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size). \
+       Expected: Similar to the previous.
+    
+    1. Test case: `delete y` (where the contact at index y is tagged in an appointment) \
+       Expected: Contact is not deleted. Error message is shown in status message.
 
 #### Delete multiple contacts
-
-#### Clear contacts
-
+1. Deleting multiple contacts while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list, with some contacts tagged in appointments.
+       
+    1. Test case: `delete 1 2` (where the 1st, 2nd contact is not tagged in any appointment) \
+       Expected: 1st, 2nd contact is deleted from the list. Details of the deleted contacts are shown in the status message.
+    
 #### Edit a contact
 
-#### Find a contact
+1. Editing optional fields of a contact while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list.
+       Some contacts have optional fields not yet filled in (e.g. `phone`, `email`, `address`),
+       and some have optional fields already filled in.
+       
+    1. Test case: `edit x e/johndoe@example.com` 
+       (where contact at index x does not have optional email filled in yet) \
+       Expected: Contact at index x is edited to have email `johndoe@example.com`. 
+       Details of edited contact is shown in status message.
+       
+    1. Test case: `edit y p/`
+       (where contact at index y already has optional phone filled in) \
+       Expected: Contact at index x is edited to have its optional phone field removed.
+       Details of edited contact is shown in status message.
+
+2. Editing name of a contact involved in an appointment.
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       Second contact is tagged in at least one appointment.
+       
+    1. Test case: `edit 2 n/Annie` \
+       Expected: Second contact in the list is edited to have name `Annie`.
+       Details of edited contact is shown in status message.
+       Appointments that have been tagged with the second contact will have their respective contact tags updated to `Annie`.
+
+#### Find contacts
+1. Find contacts with given option
+   
+    1. Prerequisites: There is at least an existing contact that fit the search criteria.
+       
+    1. Test case: `find Alice Bob`\
+       Expected: Returns all contacts which contains 'Alice' or 'Bob' in any of its fields
+    
+    1. Test case: `find o/name Alice`\
+       Expected: Returns all contacts whose name contains 'Alice'.
+       
+    1. Test case: `find o/phone 123`\
+       Expected: Returns all contacts whose phone number contains '123'.
+       
 
 #### Sort contacts
 1. Sorting contacts while all contacts are being shown
+   
     1. Prerequisites: List all contacts using the `list` command. 
        Multiple contacts in the list.
+       
     1. Test case: `sort o/name` \
        Expected: List of contacts get sorted in alphabetical order. 
        Success message is shown in the status message.
+       
     1. Test case: `sort o/date` \
        Expected: List of contacts get sorted in chronological order. 
        Success message is shown in the status message.
+       
     1. Test case: `sort` \
        Expected: List does not get sorted. 
        Invalid command format error details shown in the status message.
+       
     1. Other incorrect sort commands to try: `sort   `, `sort 1`, `sort aaa` \
        Expected: Similar to previous.
+       
     1. Test case: `sort o/jskdnks` \
        Expected: List does not get sorted. 
        Invalid option error details shown in the status message.
 
 2. Sorting contacts on a found list
+   
     1. Prerequisites: Multiple contacts in the list sharing a keyword.
        Find contacts related to keyword using the `find` command.
+       
     1. Test case: `sort o/name` \
        Expected: Found list of contacts get sorted in alphabetical order.
        Executing the `list` command after this should show the full contact list in alphabetical order.
+    
     1. Test case: `sort o/date` \
        Expected: Found list of contacts get sorted in chronological order.
        Executing the `list` command after this should show the full contact list in chronological order.
 
 #### Favourite a contact
 1. Favourite a contact while all contacts are being shown
+   
     1. Prerequisites: List all contacts using the `list` command.
+       
     1. Test case: `fav 1` \
        Expected: First contact in the list is favourited. 
        Details of favourited contact is shown in status message.
        The star next to the first contact's name becomes filled.
+       
     1. Test case: `fav 1 o/remove` \
        Expected: First contact in the list is unfavourited. 
        Details of unfavourited contact is shown in status message.
        The star next to the first contact's name becomes empty.
+       
     1. Test case: `fav` \
        Expected: Invalid command format error details shown in the status message.
+       
     1. Other incorrect sort commands to try: `fav   ` \
        Expected: Similar to previous.
+       
     1. Test case: `fav aaa`
        Expected: Invalid index error details shown in the status message.
+       
     1. Other incorrect sort commands to try: `fav x` (where x is larger than list size) \
        Expected: Similar to previous.
+       
     1. Test case: `fav 1 o/jskdnks` \
        Expected: Invalid option error details shown in the status message.
        
 2. Favourite a contact while a found list is being shown
+   
     1. Prerequisites: Multiple contacts in the list sharing a keyword.
        Find contacts related to keyword using the `find` command.
+       
     1. Test case: `fav 2` \
        Expected: Second contact in the list is favourited.
        Details of favourited contact is shown in status message.
        The star next to the second contact's name becomes filled.
+       
     1. Test case: `fav 1 o/remove` \
        Expected: First contact in the list is unfavourited.
        Details of unfavourited contact is shown in status message.
        The star next to the first contact's name becomes empty.
 
 #### List all contacts
-
+1. List all contacts
+   
+    1. Prerequisites: Multiple contacts in the list.
+       
+    1. Test case: `list`
+       Expected: Full list of contacts will be displayed.
+       Success message is shown in the status message.
+       
+    1. Test case: `list ajkndskjn`
+       Expected: Invalid command format error details shown in the status message.
+       
+2. List favourited contacts
+    1. Prerequisites: Multiple contacts in the list, some being favourited contacts.
+       
+    1. Test case: `list o/fav`
+       Expected: List of favourited contacts will be displayed.
+       Success message is shown in the status message.
+       
+    1. Test case: `list o/random`
+       Expected: Invalid option error details shown in the status message.
 
 ### Testing Appointment Book Features
 
@@ -957,8 +1149,38 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `addAppt n/PTM` \
        Expected: No appointment is added. Error details shown in the status message.
 
+#### Delete an appointment
+1. Deleting a appointment while all contacts are being shown
+   
+    1. Prerequisites: List all appointments using the `listAppt` command.
+       Multiple appointments in the list.
+       
+    1. Test case: `delete 1`\
+       Expected: 1st appointment is deleted from the list. Details of the deleted appointment are shown in the status message.
+    
+    1. Test case: `delete 0` \
+       Expected: No appointment is deleted. Error details shown in the status message.
+   
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size). \
+       Expected: Similar to the previous.
+       
+#### Find appointments
+1. Find appointments with given option
+   
+    1. Prerequisites: There is at least an existing appointment that fit the search criteria.
+    
+    1. Test case: `findAppt Alice meeting`\
+       Expected: Returns all appointments which contains 'Alice' or 'meeting' in any of its fields
+    
+    1. Test case: `findAppt o/name meeting`\
+       Expected: Returns all appointments with name containing 'meeting'.
+    
+    1. Test case: `findAppt o/address jurong`\
+       Expected: Returns all appointments with address containing 'jurong'.
+
 #### Edit an appointment
 1. Edit all fields
+   
     1. Prerequisites: There is an existing appointment and existing contact in ParentPal.
     
     2. Input `editAppt 1 n/Math Tuition a/Sunshine Tuition Center d/20/10/2021 13:00 c/1 tc/alice` and press enter.<br>
@@ -968,13 +1190,10 @@ testers are expected to do more *exploratory* testing.
 A reordering of the appointment list may occur.
 </div>
 
-#### Find an appointment
-
-
-
 ### Saving data
 
 1. Dealing with missing data files
+   
     1. Prerequisites: some commands that triggers saving data have been performed.
        
     2. Delete the `addressbook.json` and `appointmentbook.json` files found in the directory 
@@ -985,6 +1204,7 @@ A reordering of the appointment list may occur.
 
 
 2. Dealing with corrupted address book data
+   
     1. Prerequisites: some commands that triggers saving data have been performed.
     
     2. Open the `addressbook.json` file with a text editor found at `[JAR file location]/data/addressbook.json`.
@@ -997,6 +1217,7 @@ A reordering of the appointment list may occur.
 
 
 3. Dealing with corrupted appointment book data
+   
     1. Prerequisites: some commands that triggers saving data have been performed.
 
     2. Open the `appointmentbook.json` file with a text editor found at `[JAR file location]/data/appointmentbook.json`.

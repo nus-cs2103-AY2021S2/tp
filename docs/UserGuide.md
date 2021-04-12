@@ -46,6 +46,14 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 
 ## Understanding ParentPal
 
+### Interface of ParentPal 
+ParentPal makes it easy for you to manage your contacts and appointments with a command. 
+
+Enter the command in the command box, a success message will be displayed when the action has been executed successfully.
+Otherwise, an error will be displayed.
+
+![ParentPalExplanation](images/ParentPalExplanation.png)
+
 ### Expired appointments
 ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
 
@@ -119,9 +127,11 @@ Changes the theme of ParentPal.
 
 Format: `theme o/OPTION`
 
-Currently available options for the [OPTION] field include: 
+Currently available options for the `[OPTION]` field include: 
 * `light` Light theme
+  ![LightTheme](images/lightTheme.png)
 * `dark` Dark theme
+  ![DarkTheme](images/Ui.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 ParentPal's theme is set to dark by default.
@@ -472,6 +482,9 @@ Congratulations! You have successfully transferred your data to a new device.
 if you have multiple children. ChildTags will always appear at the front of the list of tags
 for each contact and are displayed in a different color to differentiate them. Any command
 that works with regular Tags such as `find` will also work with ChildTags.
+
+**Q**: Why is your application named *ParentPal*? <br>
+**A**: It is named *ParentPal* because it aims to be a 'pal' to the busy parents who need help managing their kids' schedules and important contacts.
 
 --------------------------------------------------------------------------------------------------------------------
 
