@@ -39,7 +39,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
             matriculationNumber = ParserUtil.parseMatric(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE));
+                    MatriculationNumber.MESSAGE_CONSTRAINTS));
         }
 
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());

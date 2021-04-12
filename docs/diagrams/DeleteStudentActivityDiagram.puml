@@ -1,12 +1,12 @@
 @startuml
 start
-:User executes Delete command;
-
+:User enters Delete command;
+:Parse user input;
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
 if () then ([user input is valid])
-    :Parse Command;
+    : Create and execute Delete command;
     if () then ([student exists in StudentBook])
         :Delete student from StudentBook;
     else ([else])

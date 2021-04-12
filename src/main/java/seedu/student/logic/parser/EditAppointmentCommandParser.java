@@ -33,7 +33,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             matriculationNumber = ParserUtil.parseMatric(args.trim().split(" ")[INDEX_OF_MATRIC]);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MatriculationNumber.MESSAGE_CONSTRAINTS), pe);
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();

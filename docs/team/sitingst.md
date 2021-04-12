@@ -14,6 +14,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product because a user can now find the respective student's appointment without scrolling through the list of appointments. 
   * Highlights: This feature works in tandem with find students in the "find" command. It was challenging to show the particular appointment found as the user interface for appointment list consisted nested lists. The appointment list consisted  of all appointments which contains another list of same day appointment. 
 
+
 * **New Feature**: Added the ability to filter appointment.
   * What it does: allow users to see a list of student record for faculty/school residence, all vaccinated or unvaccination student.
   * Justification: This feature improves the product because it allows the user to see a filtered view of the student record to better track vaccination. For i.e. users can see a list of students who are unvaccinated and thus able to schedule appointment for them. 
@@ -26,20 +27,21 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
 
-  * Edited help message to show a list of existing command Pull requests [\#165](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/165))
-  * Upgrade find to find student with matriculation number Pull requests [\#84](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/84))
-  * Update storage validation for JSON file Pull requests Pull requests [\#114](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/144))
-  * Refactor all instance of "addressbook" to "studentbook" in storage Pull requests [\#115](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/115))
-  * Refactor all instance of person to students in storage Pull requests [\#115](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/115))
-  * Update log file name to "studentbook.json" Pull requests [\#170](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/170))
-  * Wrote relevant testcases to test features Pull requests [\#90](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/90))
+  * Edited help message to show a list of existing command [\#165](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/165))
+  * Upgrade find to find student with matriculation number [\#84](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/84))
+  * Update storage validation for JSON file [\#114](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/144))
+  * Refactor all instance of "addressbook" to "studentbook" in storage [\#115](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/115))
+  * Refactor all instance of person to students in storage  [\#115](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/115))
+  * Update log file name to "studentbook.json" [\#170](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/170))
+  * Wrote relevant testcases to test features [\#90](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/90))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `find`, `filter` and `filter`
-    * Reformat the order in which features are listed  and command summary 
+    * Added documentation for the features `find`, `filter` and `saving data` [\#151](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/151), [\#268](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/268)
+    * Reformat the order in which features are listed  and command summary  [\#177](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/177)
   * Developer Guide:
-    * Added implementation details of the `find` and `filter` feature.
+    * Added implementation details of the `find` and `filter` feature. [\#124](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/124))
+    * Updated documentation for storage model [\#90](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/295))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#143](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/143), [\#148](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/148), [\#159](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/159), [\#239](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/239)

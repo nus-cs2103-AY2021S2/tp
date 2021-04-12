@@ -4,6 +4,7 @@ import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.student.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.student.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIRST_STUDENT;
+import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_THIRD_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,8 +29,59 @@ public class DeleteStudentCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_validArgsTwo_returnsDeleteCommand() {
+        assertParseSuccess(parser, MATRIC_NUMBER_THIRD_STUDENT,
+                new DeleteStudentCommand(new MatriculationNumber(MATRIC_NUMBER_THIRD_STUDENT)));
+    }
+
+    @Test
+    public void parse_invalidSingularCharArgs_throwsParseException() {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidMultipleCharArgs_throwsParseException() {
+        assertParseFailure(parser, "abc def",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidSingularNumericArgs_throwsParseException() {
+        assertParseFailure(parser, "7",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidMultipleNumericArgs_throwsParseException() {
+        assertParseFailure(parser, "1 23 4",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidMatricNumber_throwsParseException() {
+        assertParseFailure(parser, "A12345678X",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidSingularArgs_throwsParseException() {
+        assertParseFailure(parser, "a12nh45./?",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidCaseSensitiveArgs_throwsParseException() {
+        // A1234567X exists in the StudentBook
+        assertParseFailure(parser, "a1234567X",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidSpacingArgs_throwsParseException() {
+        // A1234567X exists in the StudentBook
+        assertParseFailure(parser, "A123 4567X",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
+    }
+
 }

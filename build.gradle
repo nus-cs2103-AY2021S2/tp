@@ -73,7 +73,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'Vax@NUS.jar'
 }
 
 defaultTasks 'clean', 'test'

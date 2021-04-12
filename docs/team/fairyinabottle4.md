@@ -18,19 +18,23 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Refactored the AB3 code base to better suit the naming conventions of Vax@NUS.[\#123](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/123)  
+    * Updated project ReadMe [\#58](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/58) [\#291](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/291)
 
 * **Enhancements to existing features**:
-    * Updated the `Add` command from original AB3 form to current Vax@NUS form. While there were only 5 parameters initially, there are currently 9. [\#82](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/82)
+    * Updated the `add` command from original AB3 form to current Vax@NUS form. While there were only 5 parameters initially, there are currently 9. [\#82](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/82)
     * Updated the `edit` command from original AB3 form to current Vax@NUS form. The new parameters all had to be accounted for. [\#82](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/82)
 
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `add`, `edit` and `editAppt` [\#87](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/87) [\#99](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/99) [\#169](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/169)
         * Added the `Input Formats` section to improve user guide usability. [\#149](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/149)
-        * Contributed to the Q&A section. 
+        * Added the Q&A section. 
+        * Contributed to the Command Summary section. 
     * Developer Guide:
         * Updated UML diagrams of the Model component and the `Add` command.
         * Updated the Implementation section for the `Add` command. 
+        * Added use cases for `editAppt`.[\#299](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/299)
+        * Added manual test cases for `add` and `editAppt`. [also in \#299](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/299)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#139](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/139)

@@ -35,6 +35,7 @@ public class FilterCommandTest {
     private static String vaccinatedString = "vaccinated";
     private static String facultyString = "COM";
     private static String schoolResidenceString = "RVRC";
+    private static String noSchoolResidenceString = "DOES_NOT_LIVE_ON_CAMPUS";
 
     private Model model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
@@ -127,9 +128,11 @@ public class FilterCommandTest {
 
         SchoolResidenceContainsKeywords schoolResidencePredicate = new
                 SchoolResidenceContainsKeywords("DOES_NOT_LIVE_ON_CAMPUS");
-        FilterCommand filterResidenceCommand = new FilterCommand(schoolResidencePredicate, schoolResidenceString);
+        FilterCommand filterResidenceCommand = new FilterCommand(schoolResidencePredicate, noSchoolResidenceString);
         expectedModel.updateFilteredStudentList(schoolResidencePredicate);
         assertCommandSuccess(filterResidenceCommand, model, expectedMessage, expectedModel);
+        assertEquals(filterResidenceCommand.getMessageStudentsAreListed(),
+                "All students that does not live on campus exist in Vax@NUS's record");
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
 
     }

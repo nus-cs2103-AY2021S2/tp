@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.student.logic.commands.AddAppointmentCommand;
 import seedu.student.model.appointment.Appointment;
+import seedu.student.model.student.MatriculationNumber;
 import seedu.student.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandParserTest {
@@ -54,7 +55,8 @@ public class AddAppointmentCommandParserTest {
 
         // extra matriculation number prefix
         assertParseFailure(parser, MATRIC_DESC_BOB + DATE_DESC_BOB_APPOINTMENT
-                + START_TIME_DESC_BOB_APPOINTMENT, expectedMessage);
+                + START_TIME_DESC_BOB_APPOINTMENT,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MatriculationNumber.MESSAGE_CONSTRAINTS));
 
         // missing date prefix
         assertParseFailure(parser, VALID_MATRIC_BOB + VALID_DATE_BOB_APPOINTMENT
@@ -75,6 +77,6 @@ public class AddAppointmentCommandParserTest {
         assertParseFailure(parser, INVALID_MATRIC_DESC + DATE_DESC_BOB_APPOINTMENT
                         + START_TIME_DESC_BOB_APPOINTMENT,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE));
+                    MatriculationNumber.MESSAGE_CONSTRAINTS));
     }
 }
