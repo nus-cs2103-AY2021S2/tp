@@ -412,6 +412,13 @@ Format: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
 
 Toggles between previous inputs keyed into the Command Box previously. Returns user to a *blank* Command Box upon keying <kbd>&darr;</kbd> on the most recent input.
 
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* Input commands which are previously input and invalid are still saved and can be accessed by user again.
+* This feature is meant for easy reversion and revision of past commands.
+
+</div><br>
+
 ### Saving the data
 
 App-Ointment data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -459,6 +466,7 @@ Must be any of:
 
 * Inputs with the `next` keywords **without a user-specified time** will reflect the current time when the command is entered. For example, `add-appt pt/1 dr/1 at/next monday` when entered on *07/04/2021 12:00* will result in an appointment added on *12/04/2021 12:00*.
 * `next DAY` inputs must be spelt correctly and fully. Inputs such as`at/next MONDAYXX` or `at/next MON` is restricted. <br>
+* Dates that have occurred in the past will be allowed to parse. This is to allow users to keep a stringent record of past appointments, should patients wish to make required changes to them.
 
 </div><br>
 
