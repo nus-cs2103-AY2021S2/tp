@@ -1033,9 +1033,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding an item
 
-    Prerequisites: 
-    Arguments are valid and compulsory parameters are provided. 
-    No duplicate item or similar item exists in the list.
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Prerequisites:**
+* Arguments are valid and compulsory parameters are provided.
+* No duplicate item or similar item exists in the list.
+
+</div>
 
 * Test case: `add n/Apple l/table q/1`<br>
    Expected: Item is added into the displayed list. Details of the added item shown in the status message.
@@ -1051,9 +1055,13 @@ testers are expected to do more *exploratory* testing.
   Expected: No item is added. Error details shown in the status message.
 
 ### Edit an item
-  
-    Prerequisites: 
-    There should be items in the inventory.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Prerequisites:**
+* There should be items in the inventory.
+
+</div>
 
 * Test case: `edit 1 n/Apple`<br>
    Expected: The name of the first item is edited to `Apple`. Details of the edited item shown in the status message.
@@ -1063,8 +1071,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting an item
 
-        Prerequisites:
-        There should be items in the inventory.
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Prerequisites:**
+* There should be items in the inventory.
+
+</div>
 
 * Test case: `delete 1`<br>
    Expected: First item from the list is deleted. Details of the deleted item shown in the status message.
@@ -1091,13 +1103,11 @@ testers are expected to do more *exploratory* testing.
 
     * Test case: `list`<br>
        Expected: All items are being displayed.
-      
 
 2. Listing items in a specific location.
    
     * Test case: `list l/Bedroom`<br>
        Expected: All items with `Bedroom` as the location are being displayed.
-
 
 3. Listing items with a specific tag. 
 
@@ -1113,7 +1123,6 @@ testers are expected to do more *exploratory* testing.
     * Test case: `reminder -7 days`<br>
      Expected: All items that have already expired for at least 7 days are shown.
 
-
 2. Showing items expiring within x weeks from today. 
 
     *  Test case: `reminder 7 weeks`<br>
@@ -1127,13 +1136,10 @@ testers are expected to do more *exploratory* testing.
 
     * Test case: `sort quantity asc`<br>
        Expected: All the items are sorted in order of ascending quantity.
-
     * Test case: `sort quantity desc`<br>
        Expected: All the items are sorted in order of descending quantity.
-
     * Incorrect sort commands to try: `sort`, `sort quantity`<br>
        Expected: Error details shown in the status message.
-
 
 2. Sorting items in the inventory in terms of expiry date.
 
@@ -1144,18 +1150,25 @@ testers are expected to do more *exploratory* testing.
 
 1. Clearing all the items in the inventory.
 
-        Prerequisite: 
-        Ensure there are items in the inventory.
-   
+    <div markdown="span" class="alert alert-warning">
+    
+    :exclamation: **Prerequisites:**
+    * Ensure there are items in the inventory.
+    
+    </div>
+
     * Test case: `clear`<br>
        Expected: All items are cleared from the inventory.
 
-
 2. Clearing all the items in a specific location. 
-   
-        Prerequisite: 
-        Ensure there is an item with the location "Bedroom" in the inventory.
-   
+
+    <div markdown="span" class="alert alert-warning">
+
+   :exclamation: **Prerequisites:**
+    * Ensure there is an item with the location "Bedroom" in the inventory.
+
+    </div>
+
     * Test case: `clear l/Bedroom`<br>
        Expected: All items in the specified location are cleared.
 
