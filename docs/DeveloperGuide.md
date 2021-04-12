@@ -179,7 +179,7 @@ The following diagram shows where sorting occurs in the Model component (higher 
 * **Alternative 1 (current choice)**: <br>
   Sorts the Garments based on chronological ordering of the `LastUse` attribute.
   * Pros: Garments that have not been used for a longer period of time come up earlier in the list, which would 
-    encourage and remind users to wear all their clothes.
+    encourage and remind users to wear all their garments.
   * Cons: Garments may not have been used for a reason, which may result in user taking a longer time to sieve 
     through the list.
 * **Alternative 2**: <br>
@@ -353,7 +353,7 @@ The following activity diagram summarizes what happens when a user executes a ne
       a extremely long phrase, which could be hard for the user to remember or input into the application.
 
 
-### <a name="view"></a> [Completed] View feature
+### <a name="view"></a> View feature
 
 #### Implementation
 The `view` mechanism extends the `list` mechanism from `AddressBook`. It is facilitated by the `ViewCommand` class.
@@ -413,27 +413,28 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <a name="value-proposition"></a>**Value Proposition:**
 
-* Ability to organise garments based on attributes such as colour, size, material, type of clothing
+* Ability to organise garments based on attributes such as colour, size, material, type of garment
 
 * Maintain outfit schedules to prevent repetitive dressing
 
-* Receive clothing suggestions based on factors such as weather, temperature, or the nature of events the user may be attending
+* Receive garment suggestions based on factors such as weather, temperature, or the nature of events the user may be attending
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​ | So that I can…​ |  
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |  
-| `* * *`  | new user                                   | have a tutorial to teach me how to use the app| so that I will be able to learn how to use the app quicker                 |  
-| `* * *`  | user                                       | add an item of clothing               |        keep a record of garments                                                                |  
-| `* * *`  | user                                       | edit details of clothing logged in                | correct incorrect details pertaining to items          |  
-| `* * *`  | user                                       | find a clothing by name          | locate details of clothing without having to go through the entire list |  
-| `* *`    | user                                       | remove an item of clothing from my wardrobe   | so that I can reflect that an item of clothing has been discarded                |  
-|  `* *`      | user        | easily plan a schedule for what clothes to wear                                                |  so that I do not have to waste time deciding at the last minute
-|  `* *`      | user        | be reminded on the clothes I have not worn                                                 |  so that I would not be wearing the same clothes all the time
-|  `*`      | user        | to see whether certain colours and types of clothing match                                                 |  so that I will be able to ascertain if the clothes match without having to try them on physically
-<br>
+| Priority | As a ...                                           | I want to ...                                             | So that I ...                                                                            |
+| -------- | -------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `* * *`  | new user                                           | have a tutorial to teach me how to use the app            | will be able to learn how to use the app quicker                                         |
+| `* * *`  | user                                               | add a garment                                             | can keep a record of garments                                                            |
+| `* * *`  | user                                               | edit details of garment logged in                         | can correct incorrect details pertaining to items                                        |
+| `* * *`  | user                                               | remove a garment from my wardrobe                         | can reflect that a garment has been discarded                                            |
+| `* * *`  | user with many garments in my wardrobe             | find a garment by name                                    | can locate details of a garment without having to go through the entire list             |
+| `* *`    | user that cannot decide what to wear               | easily plan a schedule for what garments to wear          | do not have to waste time deciding at the last minute                                    |
+| `* *`    | user that always wears the same few garments       | be reminded on the garments I have not worn               | would not be wearing the same garments all the time                                      |
+| `*`      | user that does not know how to match garments      | to see whether certain colours and types of garment match | will be able to ascertain if the garments match without having to try them on physically |
+| `*`      | user that cannot visualise how an outfit will look | to be able to preview how an outfit will look             | will be able to better visualise how an outfit will look                                 |
+
 
 ### Use cases
 (For all use cases below, the System is the `NuFash` and the Actor is the `user`, unless specified otherwise)
@@ -455,7 +456,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Steps 1a1-1a2 are repeated until data entered is in a valid format.
         
-        Use case resumes from step 2.
+        Use case resumes at step 2.
 
       
 **Use case: Delete a garment**
@@ -506,13 +507,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User specifies keywords of the attributes for the garments they would like to find.
-2. NuFash shows a list of all the garments that contain the specified keywords, which is a list of 0 or more garments.
+2. NuFash shows a list of all the garments that contain the specified keywords, which is a list of 0 or more garments.  
    Use case ends.
    
 **Extensions**
 * 1a. The specified keywords are invalid.
-    * 1a1. NuFash shows an error message.
-    Use case resumes from step 1.
+    * 1a1. NuFash shows an error message.   
+    Use case resumes at step 1.
 <br><br>    
 
 **Use case: Matching a garment**
@@ -522,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all garments
 2. NuFash shows a list of garments
 3. User specifies a garment they would like to match
-4. NuFash shows a list of garments that match the specified garments
+4. NuFash shows a list of garments that match the specified garments    
    Use case ends.
 
 **Extensions**
@@ -530,8 +531,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. NuFash shows an error message.  
-    Use case resumes from step 2.
+    * 3a1. NuFash shows an error message.   
+      Use case resumes at step 2.
 <br><br>
 
 **Use case: Viewing an outfit consisting of 3 garments (upper, lower, footwear)**
@@ -550,13 +551,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given indexes are invalid.
     * 3a1. NuFash shows an error message.   
-    Use case ends.
+      Use case resumes at step 2.
       
 <br><br>
       
 <a name="non-functional-requirements"></a>**Non-Functional Requirements:**
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
-2.  Should be able to hold up to 1000 articles of clothing without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 garments without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 <br><br>
 
