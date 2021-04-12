@@ -13,6 +13,15 @@ to parse and return the `DeleteContactCommand`. Subsequently, it
 returns `CommandResult` which is shown on the command result
 field of the GUI as the information of the user that is deleted.
 `
+The following activity diagram summarizes what happens when a 
+user executes the cdelete command:
+
+![Delete Contact Command Activity Diagram](images/DeleteContactCommandActivityDiagram.png)
+
+The following sequence diagram summarizes what happens when a
+user executes the cdelete command:
+
+![Delete Contact Command Sequence Diagram](images/DeleteContactCommandSequenceDiagram.png)
 ###[Proposed] Enquire if time interval is free
 
 The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
