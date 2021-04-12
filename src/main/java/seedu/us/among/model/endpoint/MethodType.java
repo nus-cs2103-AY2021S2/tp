@@ -3,8 +3,9 @@ package seedu.us.among.model.endpoint;
 import java.util.HashMap;
 import java.util.Map;
 
-//Solution below adapted from
-//https://www.stubbornjava.com/posts/java-enum-lookup-by-name-or-field-without-throwing-exceptions
+//@@author tjtanjin-reused
+//Reused from https://www.stubbornjava.com/posts/java-enum-lookup-by-name-or-field-without-throwing-exceptions
+// with minor modifications
 public enum MethodType {
     GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH;
 
@@ -24,3 +25,4 @@ public enum MethodType {
         return methodIndex.get(method.toUpperCase());
     }
 }
+//@@author
