@@ -227,36 +227,8 @@ Format: `deletenote INDEX`
 * The index refers to the index number shown in the displayed note list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-#### Mark a note as done: `markasdonenote`
-
-Marks a note in a list as done.
-
-Format: `markasdonenote INDEX`
-
-* Marks the note at the specified `INDEX` as done.
-* The index refers to the index number shown in the displayed note list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* After execution, the affected note will be marked with a green tick.
-
-#### Mark a note as undone: `markasundonenote`
-
-Marks a note in a list as undone.
-
-Format: `markasundonenote INDEX`
-
-* Marks the note at the specified `INDEX` as undone.
-* The index refers to the index number shown in the displayed note list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* After execution, the affected note will not be marked with a green tick.
-
-#### Mark all notes as undone: `markallasundonenote`
-
-Marks all notes in a list as undone.
-
-Format: `markallasundonenote`
-
-* Marks all the notes as undone.
-* After execution, all notes marked with a green tick will be reset.
+Examples:
+* `deletenote 1` Deletes the note at the first position.
 
 #### Editing a note : `editnote`
 
@@ -275,6 +247,31 @@ Examples:
 * `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
 * `editnote 1 c/Hi` Edits the content of the 1st contact to be `Hi` and keep the tags. 
 
+#### Merge two notes into one : `mergenote`
+
+Merge two notes into one note.
+
+Format: `mergenote INDEX_1 INDEX_2`
+
+* Merge two notes in the specified index into one note.
+* The two notes that are merged are deleted.
+
+Examples:
+* `mergenote 2 5` Merges the note in the second and fifth position. 
+
+#### Convert a note into a .txt file : `converttxtnote`
+
+Converts a note into a text file.
+
+Format: `converttxtnote INDEX`
+
+* Merge two notes in the specified index into one note.
+* The two notes that are merged are deleted.
+* The file name will be the content of the note itself. Also, it can be found in the `data` folder of the `Dictionote`.
+
+Examples:
+* `converttxtnote 2` Converts the second note in the list into a text file. 
+
 #### Show a note : `shownote`
 
 Showcases a note.
@@ -287,6 +284,9 @@ Format: `shownote INDEX​`
   `shownote 6`:
   ![shownote for content](images/Diagram-shownoteforcontent.png)
 
+Examples:
+* `shownote 2` Shows the note at position 2.
+
 #### List all notes : `listnote`
 
 Lists every note on the note list.
@@ -298,6 +298,12 @@ Format: `listnote​`
 Sort every note on the note list alphabetically.
 
 Format: `sortnote`
+
+#### Sort all notes based on last edit time: `sortnotebytime`
+
+Sort every note on the note list based on last edit time.
+
+Format: `sortnotebytime`
 
 #### Find notes using a keyword : `findnote`
 
@@ -315,9 +321,10 @@ Examples:
 
 * `findnote c/CS2103` returns note containing `CS2103`
 * `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
+
 #### Edit a note in edit mode : `editmode`
 
-Edits a note in edit mode. 
+Edits a note in edit mode.
 
 Format: `editmode`
 
@@ -331,7 +338,7 @@ Format: `editmode`
 Examples:
 * `editmode`
   * Note Content will be editable
-![Ui Panel](images/EditModeExample.png)
+    ![Ui Panel](images/EditModeExample.png)
 
 <div markdown="span" class="alert alert-primary">
 
@@ -367,6 +374,67 @@ Examples:
 * `quit`
   * quit edit mode and discard all changes.
 
+#### Sort all notes : `sortnote`
+
+Sort every note on the note list alphabetically.
+
+Format: `sortnote`
+
+#### Find notes using a keyword : `findnote`
+
+Find notes whose names contain any of—or tags contain all of—the given keywords.
+
+Format: `findnote c/NAME_KEYWORD... [t/TAG_KEYWORD]...`
+
+* The search is case-insensitive. e.g `c/cs2103` will match the name `CS2103`
+* Only the content and tags are searched.
+* Notes and tags will be matched if they contain the given keywords e.g. `c/CS` will match the note containing `CS2103T`
+* Notes matching at least one content keyword will be returned (i.e. OR search). e.g. `c/CS c/Important` will return `CS Midterm`, `Important stuff`
+* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `t/urgent` will return all notes that are tagged with `urgent`.
+* When both `c/` and `t/` are used, notes that satisfy BOTH of the constraints will be returned. 
+Examples:
+
+* `findnote c/CS2103` returns note containing `CS2103`
+* `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
+
+#### Mark a note as done: `markasdonenote`
+
+Marks a note in a list as done.
+
+Format: `markasdonenote INDEX`
+
+* Marks the note at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* After execution, the affected note will be marked with a green tick.
+* A note can only be marked as done if it is currently not done. Otherwise, an exception will be raised.
+
+Examples:
+* `markasdonenote 1` Marks note at the first position as done.
+
+#### Mark a note as undone: `markasundonenote`
+
+Marks a note in a list as undone.
+
+Format: `markasundonenote INDEX`
+
+* Marks the note at the specified `INDEX` as undone.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* After execution, the affected note will not be marked with a green tick.
+* A note can only be marked as undone if it is currently done. Otherwise, an exception will be raised.
+
+Examples:
+* `markasundonenote 1` Marks note at the first position as undone.
+
+#### Mark all notes as undone: `markallasundonenote`
+
+Marks all notes in a list as undone.
+
+Format: `markallasundonenote`
+
+* Marks all the notes as undone.
+* After execution, all notes marked with a green tick will be reset.
 
 ### Contact Features
 
@@ -737,13 +805,16 @@ Action | Format, Examples
 ***Note Features*** | 
 **Add note** | `addnote c/CONTENT [t/TAG]…​`
 **Delete note** | `deletenote INDEX`
+**Convert note into .txt** | `converttxtnote INDEX`
 **Mark note as done** | `markasdonenote INDEX`
 **Mark note as undone** | `markasundonenote INDEX`
 **Mark all notes as undone** | `markallasundonenote`
 **Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
 **Show note** | `shownote INDEX` <br> e.g., `shownote 1`
 **List all notes** | `listnote`
+**Merge two notes** | `mergenote INDEX_1 INDEX_2`
 **Sort all notes** | `sortnote`
+**Sort all notes based on the last edit time** | `sortnotebytime`
 **Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
 **Edit note in edit mode** | `editmode`
 **Quit edit mode** | `quit`

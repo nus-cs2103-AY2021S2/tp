@@ -28,6 +28,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class FrequencyCounter
 Class UniqueContactList
 }
 
@@ -78,6 +79,7 @@ Contact *--> Name
 Contact *--> Phone
 Contact *--> Email
 Contact *--> Address
+Contact *--> FrequencyCounter
 Contact *--> "*" Tag
 
 NoteBook *--> "1" UniqueNoteList
