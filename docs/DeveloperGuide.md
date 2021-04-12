@@ -314,7 +314,7 @@ This section explains the implementation of the Delete Todo feature. As the impl
 
 The `DeleteTodoCommand` results in the specified todo being removed from the application. This command requires two compulsory fields Project Index & Todo Index to specify which project the todo is to be deleted from.
 
-This is done through the use of the `ParserUtil#parseIndex` method inside the `seedu.address.logic.parser` package, which checks and extracts the index field from the provided command string.
+This is done through the use of the `ParserUtil#parseIndex` method inside the `seedu.address.logic.parser` package, which checks and extracts the index field from the provided command string. As depicted in the sequence diagram below, the `ParserUtil#parseIndex` method is called twice for Project Index & Todo Index respectively.
 
 If the provided project index and todo index are valid, then `DeleteTodoCommandParser` creates a `DeleteTodoCommand` object. The sequence diagram below shows how the `DeleteTodoCommand` object is created.
 
