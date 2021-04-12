@@ -17,7 +17,7 @@ Given below are my contributions to the project.
       Should the user accidentally adds a task, they can delete it easily. 
     * Highlights: The implementation was challenging as it required changes to existing commands. When the index is parsed, I had to take into account of the different scenarios. 
       For instance, I had to change the function of isNonZeroUnsignedInteger in StringUtil.java from a boolean function to an 
-      int function so that 1 will be returned if the index is a Valid Integer(Postive Integer),
+      int function so that 1 will be returned if the index is a Valid Integer(Positive Integer),
       2 for Invalid Integers(Non-positive integers) and 3 for Invalid Input(spaces, alphanumeric) such that different error messages would be thrown 
       should the index differ from the format.
 
@@ -32,8 +32,8 @@ Given below are my contributions to the project.
     Also, I had to do heavy testing to account for the different scenarios of usage which was quite challenging as the some of the commands
     have to be changed. 
 
-* **New Feature**: Added the ability to view a list of unassigned tasks.
-  * What it does: Allows the user to view a list of tasks that they have not assigned to any member. (Pull Requests [\#162](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/162), [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#252](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/252))
+* **New Feature**: Added the ability to view a list of unassigned tasks. (Pull Requests [\#162](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/162), [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#252](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/252))
+  * What it does: Allows the user to view a list of tasks that they have not assigned to any member.
   * Justification: This feature improves the product significantly because a user can easily view a list of unassigned tasks upon inputting the command
     which greatly saves the time of the user of searching for the list of unassigned tasks.
   * Highlights: The implementation was challenging as it required me to create another predicate to filter a list of
