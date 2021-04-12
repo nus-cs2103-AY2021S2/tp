@@ -466,8 +466,6 @@ You can use this command in 3 different ways.
 
       </div>
 
-<div style="page-break-after: always;"></div>
-
 * #### 3.7.2. Sorting items by expiry date
   
   Format: `sort expirydate`
