@@ -11,7 +11,7 @@ An outline of the proposed implementation is as follows:
 The `TeachingAssistantParser` should accept another case of command word `free` which eventually returns `FreeCommand`
 back to Logic Manager.
 
-This command is then executed to return `CommandResult` which is either shown on the command result field of the GUI as:
+This command is then executed to return `CommandResult` which is either shown on the result display of the GUI as:
 
 * "You're Free!"
 * Or "Sorry, you're not free. Entries occupying that time interval listed below!". The occupying entries are shown in
