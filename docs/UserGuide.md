@@ -525,6 +525,7 @@ Format: `emailcontact INDEX [ni/NOTE_INDEX]`
 * The index refers to the index number shown in the displayed contacts list or notes list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<div style="page-break-after: always;"></div>
 Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
