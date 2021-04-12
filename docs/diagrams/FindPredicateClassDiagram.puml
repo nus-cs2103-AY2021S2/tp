@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+class FieldsContainsKeywordsPredicate
+class RemarkContainsKeywordsPredicate
+class EmailContainsKeywordsPredicate
+class NameContainsKeywordsPredicate
+class TagContainsKeywordsPredicate
+class FindCommandParser
+interface Predicate <<interface>>
+
+TagContainsKeywordsPredicate ..|> Predicate
+NameContainsKeywordsPredicate ..|> Predicate
+EmailContainsKeywordsPredicate ..|> Predicate
+RemarkContainsKeywordsPredicate ..|> Predicate
+FieldsContainsKeywordsPredicate ..|> Predicate
+
+RemarkContainsKeywordsPredicate <-- FieldsContainsKeywordsPredicate
+EmailContainsKeywordsPredicate <-- FieldsContainsKeywordsPredicate
+NameContainsKeywordsPredicate <-- FieldsContainsKeywordsPredicate
+TagContainsKeywordsPredicate <-- FieldsContainsKeywordsPredicate
+
+FieldsContainsKeywordsPredicate -[hidden]-> TagContainsKeywordsPredicate
+FieldsContainsKeywordsPredicate -[hidden]-> NameContainsKeywordsPredicate
+FieldsContainsKeywordsPredicate -[hidden]-> EmailContainsKeywordsPredicate
+FieldsContainsKeywordsPredicate -[hidden]-> RemarkContainsKeywordsPredicate
+
+FindCommandParser --> FieldsContainsKeywordsPredicate
+FindCommandParser --> TagContainsKeywordsPredicate
+FindCommandParser --> NameContainsKeywordsPredicate
+FindCommandParser --> EmailContainsKeywordsPredicate
+FindCommandParser --> RemarkContainsKeywordsPredicate
+
+FindCommand -up-> Predicate
+
+@enduml

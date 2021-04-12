@@ -299,8 +299,13 @@ attributes.
 The current implementation of the `find` command only searches the name, email, remark and tag fields. Potential
 improvements of the feature is to search all fields including phone number, address, company, and job title.
 
-To search each field, a predicate for the relevant fields need to be created and the master 
-`FieldsContainsKeywordPredicate` should also be updated to include the new field for general search.
+The implementation of general search is via a `FieldsContainsKeywordsPredicate` predicate class. This predicate simply
+propagate the keywords down to each individual predicate. Its Test function is basically the boolean or of all the
+individual specific field predicate's test function.
+
+Below is the class diagram for the entire Find command
+![FindCommandPredicateDiagram](images/FindPredicateClassDiagram.png)
+
 
 ### Fuzzy Find
 
