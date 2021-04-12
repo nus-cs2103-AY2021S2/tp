@@ -175,7 +175,7 @@ This updated `FilteredList` is then displayed, showing the results of the find c
 This operation is exposed in the `Model` interface as `Model#updateFilteredOrderList`.
 
 The find feature generally does a generic 'OR' search. When multiple keywords are specified, orders that contains any of these keywords will be displayed.
-However, to enable a more specific search, users can specify multiple prefixes such as `/n` and `/o` and their respective keywords. This will trigger an 'AND' search.
+However, to enable a more specific search, users can specify multiple prefixes such as `n/` and `o/` and their respective keywords. This will trigger an 'AND' search.
 
 If users want to find all order with name `Alex` OR order description `Chocolate`, they can use the command: `find Alex Chocolate`.
 If users want to find an order with name `Alex` AND order description `Chocolate`, they can use the command: `find n/Alex o/Chocolate`.
