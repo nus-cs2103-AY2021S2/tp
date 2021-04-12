@@ -303,7 +303,7 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
         <ul><li>Should be of the form <code>DATE START_TIME END_TIME PLACE</code></li></ul>
         <ul><li><code>DATE</code> part should be in <code>dd.MM.yyyy</code> format, for example <code>20.05.2021</code></li></ul>
         <ul><li><code>START_TIME</code> and <code>END_TIME</code> parts should be in <code>HH:mm</code> format, for example <code>15:30</code></li></ul>
-        <ul><li><code>END_TIME</code> of a meeting must be after <code>START_TIME</code> of the same meeting on the same <code>DATE</code></li></ul>
+        <ul><li><code>END_TIME</code> of a meeting should be after <code>START_TIME</code> of the same meeting on the same <code>DATE</code></li></ul>
         <ul><li><code>START_TIME</code> of a meeting cannot be the same as <code>END_TIME</code> of another meeting on the same <code>DATE</code></li></ul>
         <ul><li><code>PLACE</code> should not be empty and can have space between characters</li></ul>
     </td>
