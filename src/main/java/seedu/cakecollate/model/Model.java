@@ -113,4 +113,5 @@ public interface Model {
      * Replaces the data in order items with the data in {@code orderItems}.
      */
     void setOrderItems(ReadOnlyOrderItems orderItems);
+
 }

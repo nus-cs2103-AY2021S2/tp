@@ -34,7 +34,7 @@ public class UniqueOrderList implements Iterable<Order> {
      */
     public boolean contains(Order toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameOrder);
     }
 
     /**
@@ -128,7 +128,7 @@ public class UniqueOrderList implements Iterable<Order> {
     private boolean ordersAreUnique(List<Order> orders) {
         for (int i = 0; i < orders.size() - 1; i++) {
             for (int j = i + 1; j < orders.size(); j++) {
-                if (orders.get(i).equals(orders.get(j))) {
+                if (orders.get(i).isSameOrder(orders.get(j))) {
                     return false;
                 }
             }
