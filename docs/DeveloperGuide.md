@@ -154,15 +154,8 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * provides models to access the User object and it's related functions.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">
-    :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-    ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-</div>
-
+* exposes several `ObservableList` instances that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+    * namely `ObservableList<Food>`, `ObservableList<DietPlan>`
 
 ### Storage component
 
@@ -662,11 +655,12 @@ For women, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) 
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-|Priority|   As a ...   |   I want to ...  |   So that I can​ ...   |
+|Priority|   As a ...   |   I want to ...  |   So that I can ...   |
 |------------|------------------|----------------------|---------------------------|
 |`***`|User|Set a deadline for my diet plan|Stay on track of when the diet finishes|
 |`***`|User|Add a new diet plan|Start a new diet plan|
 |`***`|User|Delete my diet plan|Give up on the current diet plan|
+|`***`|User|Record my food consumption|Keep track of my daily macronutrient intake|
 |`***`|User|Track my weight|See if the diet is working|
 |`***`|User|View a list of recommended diets|find out what to diet on as I am not sure|
 |`***`|User|Record my food consumption|Keep track of my daily macronutrient intake|
@@ -803,7 +797,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 6.  The data files should be easily modifiable by a user with a basic understanding of the JavaScript Object Notation (JSON).
 7.  Errors should display vividly and differently from the rest of the normal input such that users are aware something has gone wrong.
 8.  Should be easily deployable to all systems running any _mainstream OS_ once compiled executable is distributed via a release.
-
 
 ### Glossary
 
