@@ -1,12 +1,12 @@
 @startuml
 !include style.puml
 
-
+actor User
 participant "plan:Plan" as Plan UI_COLOR
 participant "tags:Set<Tag>" as Tags LOGIC_COLOR
 
-
-[-> Plan : new Plan(description, tags, semesters)
+create Plan
+User -> Plan : new Plan(description, tags, semesters)
 activate Plan
 
 Plan -> Tags : addAll(tags)
@@ -21,6 +21,7 @@ activate Plan
 Plan --> Plan
 deactivate Plan
 
-[<-- Plan
+User <-- Plan
 deactivate Plan
+[<-- User
 @enduml
