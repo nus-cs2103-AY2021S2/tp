@@ -739,7 +739,7 @@ Action | Format, Examples
 
 **Parameters:** Inputs keyed in after the command word that specify the behaviour of the command
 
-**Prefix**: Expressions that signal inputs of a certain field e.g. n/ signals name field, gp/ signals guardian's phone.
+**Prefix**: Expressions that signal inputs of a certain field e.g. `n/` signals name field, `gp/` signals guardian's phone.
 
 **Case sensivitity**: Case-insensitive means that a word input in upper case or lower case will be treated the same way.
 Case-sensitive is the opposite.
