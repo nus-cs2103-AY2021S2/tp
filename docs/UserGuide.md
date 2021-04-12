@@ -38,6 +38,8 @@ title: User Guide
 * [FAQ](#faq)
 * [Command Summary](#summary)
 
+<div style="page-break-after: always;"></div>
+
 <a name="introduction"></a>
 ## Welcome to HEY MATEz
 As a Club leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
@@ -57,6 +59,9 @@ are further divided into 3 sections which include the **General features**, **Me
 Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
 to manage tasks which can be identified by their unique list indexes.
 
+<div style="page-break-after: always;"></div>
+
+
 --------------------------------------------------------------------------------------------------------------------
 <a name="quick-start"></a>
 ## Quick Start
@@ -67,7 +72,7 @@ to manage tasks which can be identified by their unique list indexes.
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HEY MATEz.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample tasks and members.<br>
+1. Double-click the file to start the app. The GUI similar to the picture below should appear in a few seconds. Note how the app contains some sample tasks and members.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -84,6 +89,8 @@ to manage tasks which can be identified by their unique list indexes.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------------------------------
 
@@ -112,12 +119,14 @@ to manage tasks which can be identified by their unique list indexes.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For features which uses the INDEX field, the INDEX you specify must be a valid number in the currently displayed list of tasks.
+* For features which use the INDEX field, the INDEX you specify must be a valid number in the currently displayed list of tasks.
 
 * The NAME, NEW_NAME, ASSIGNEE and NEW_ASSIGNEE fields are case-sensitive and format-sensitive across all features which uses it.
   e.g. "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp; Yeoh" are not the same.
   
 </div>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -132,6 +141,8 @@ Format: `help`
 
 Example: `help`
 
+<div style="page-break-after: always;"></div>
+
 <a name="clear"></a>
 ### 2. Clear all data in application: `clear`
 Clears all entries from the application.
@@ -140,6 +151,8 @@ Format: `clear`
 
 Example: `clear`
 
+<div style="page-break-after: always;"></div>
+
 <a name="exit"></a>
 ### 3. Exiting the programme: `exit`
 Exits the program.
@@ -147,6 +160,8 @@ Exits the program.
 Format: `exit`
 
 Example: `exit`
+
+<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------------------------------
 
@@ -186,6 +201,8 @@ can be used as shown below:
 ![Example of using addMember result](images/UG-examples/addMember-result.png)
 <br/><br/>
 
+<div style="page-break-after: always;"></div>
+
 <a name="deleteMember"></a>
 ### 2. Delete Member: `deleteMember`
 
@@ -200,6 +217,8 @@ The NAME specified must appear in the currently displayed list of members in ord
 Examples:
 * `deleteMember Rachel`
 
+<div style="page-break-after: always;"></div>
+
 <a name="viewMembers"></a>
 ### 3. View Members: `viewMembers`
 
@@ -210,6 +229,8 @@ Format: `viewMembers `
 Examples: 
 * `viewMembers`
 
+<div style="page-break-after: always;"></div>
+
 <a name="editMember"></a>
 ### 4. Edit Member: `editMember`
 Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of an 
@@ -217,7 +238,7 @@ existing member in the application with the name you specify.
 
 Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
 
-* Edits the member at the specified NAME.
+* Edits the member with the specified NAME.
 * At least one of the optional fields must be provided.
 * NEW_NAME and NEW_ROLE fields can take on any values with alphanumeric characters.
 * Existing values will be updated to the input values. 
@@ -230,6 +251,8 @@ Examples:
 * `editMember Alice n/Alice Tan`
 * `editMember Alice n/Alice Tan p/98154155 e/aliceTan@gmail.com`
 * `editMember Alice n/Alice Tan p/98154155 e/aliceTan@gmail.com r/Events head`
+
+<div style="page-break-after: always;"></div>
 
 <a name="findMember"></a>
 ### 5. Find Members by Keywords: `findMembers`
@@ -249,6 +272,8 @@ Examples:
 * `findMembers Rachel`
 * `findMembers Rachel 98562154 john@gmail.com`
 * `findMembers Rachel 98562154 john@gmail.com President`
+
+<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------------------------------
 <a name="tasks"></a>
@@ -289,6 +314,8 @@ addTask command can be used as shown below:
 ![Example of using addTask result](images/UG-examples/addTask-result.png)
 <br><br>
 
+<div style="page-break-after: always;"></div>
+
 <a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
 If a task is no longer relevant, you can delete the task along with its details from the list with the task index you specified.
@@ -298,6 +325,8 @@ Format: `deleteTask INDEX`
 Examples: 
 * `deleteTask 1`
 
+<div style="page-break-after: always;"></div>
+
 <a name="viewTasks"></a>
 ### 3. View Tasks: `viewTasks`
 Displays the list of tasks that you have added into HEY MATEz.
@@ -306,6 +335,8 @@ Format: `viewTasks`
 
 Examples: 
 * `viewTasks`
+
+<div style="page-break-after: always;"></div>
 
 <a name="editTask"></a>
 ###     4. Edit Task: `editTask`
@@ -328,6 +359,8 @@ Examples:
 * `editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04`
 * `editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04 a/Samuel a/Christian`
     
+<div style="page-break-after: always;"></div>
+    
 <a name="doneTask"></a>
 ### 5. Mark Task as Completed: `done`
 
@@ -339,6 +372,8 @@ Format: `done INDEX`
 Examples: 
 * `done 1`
 
+<div style="page-break-after: always;"></div>
+
 <a name="undoTask"></a>
 ### 6. Mark Task as Uncompleted: `undo`
 
@@ -348,6 +383,8 @@ Format: `undo INDEX`
 
 Examples: 
 * `undo 1`
+
+<div style="page-break-after: always;"></div>
 
 <a name="findTask"></a>
 ### 7. Find Tasks by Keywords: `findTasks`
@@ -366,6 +403,8 @@ Examples:
 * `findTasks Meeting`
 * `findTasks Meeting Proposal Draft`
 
+<div style="page-break-after: always;"></div>
+
 <a name="findBefore"></a>
 ### 8. Find Tasks due before certain date: `findBefore`
 
@@ -380,6 +419,8 @@ The DATE specified must follow the format `YYYY-MM-DD`and be a valid date in the
 
 Examples: 
 * `findBefore 2021-05-04`
+
+<div style="page-break-after: always;"></div>
 
 <a name="findPriority"></a>
 ### 9. Find Tasks by Priority: `findPriority`
@@ -398,6 +439,8 @@ Format: `findPriority PRIORITY`
 Examples:
 * `findPriority high`
 
+<div style="page-break-after: always;"></div>
+
 <a name="clearAssignees"></a>
 ### 10. Remove all Members Assigned to a Task: `clearAssignees`
 
@@ -408,6 +451,8 @@ Format: `clearAssignees INDEX`
 
 Examples: 
 * `clearAssignees 2`
+
+<div style="page-break-after: always;"></div>
 
 <a name="findUnassigned"></a>
 ### 11. View List of Unassigned Tasks: `viewUnassignedTasks`
@@ -420,6 +465,8 @@ Format: `viewUnassignedTasks`
 Examples: 
 * `viewUnassignedTasks`
 
+<div style="page-break-after: always;"></div>
+
 <a name="findUncompleted"></a>
 ### 12. View List of Uncompleted Tasks: `viewUncompletedTasks`
 
@@ -430,6 +477,8 @@ Format: `viewUncompletedTasks`
 
 Examples: 
 * `viewUncompletedTasks`
+
+<div style="page-break-after: always;"></div>
 
 <a name="findTasksFor"></a>
 ### 13. Find Tasks Assigned to a Single Member: `findTasksFor`
@@ -452,6 +501,8 @@ Examples:
 * `findTasksFor Alex Yeoh`
 * `findTasksFor Bernice Teo Hui Min`
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 <a name="dataStorage"></a>
 ## Data Storage 
@@ -470,6 +521,8 @@ HEY MATEz data is saved as a JSON file `[JAR file location]/data/heymatez.json`.
 If your changes to the data file makes its format invalid, HEY MATEz will discard all data and start with an empty data file at the next run.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <a name="faq"></a>
@@ -477,6 +530,8 @@ If your changes to the data file makes its format invalid, HEY MATEz will discar
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HEY MATEz home folder.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
