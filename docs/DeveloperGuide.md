@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Introduction**
 
-ParentPal is a desktop application designed for parents to manage their children-related contacts and appointments.
+ParentPal is a desktop application designed for parents to manage their children-related contacts and appointments. 
+It is named ParentPal because it aims to be a 'pal' to the busy parents who need help managing their kids' schedules and important contacts.
 ParentPal is built for use via a Command Line Interface (CLI), the Graphical User Interface (GUI) is primarily meant
 for displaying key information. 
 
@@ -193,7 +194,7 @@ When displaying the tags in the UI as a `PersonCard`, a customised `TagComparato
 for `ChildTag`.
 
 
-#### Design Considerations
+#### Design considerations
 
 The decision to implement `ChildTag` as its own class rather than a boolean in the `Tag` class was to allow for the 
 future extensibility of the program in being able to create more types of Tags in the future. 
@@ -269,7 +270,7 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations
 
 ##### Aspect: Where the information displayed in the help window is retrieved from
 
@@ -407,7 +408,7 @@ Step 4. The success message and unfavourited `Contact` are returned to `LogicMan
 The following activity diagram shows how the favourite operation works:
 ![FavouriteActivityDiagram](images/FavouriteActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations
 
 ##### Aspect: How to implement the favourite feature
 
@@ -601,7 +602,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations
 
 ##### Aspect: How undo & redo executes
 
@@ -620,6 +621,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
+  * See also: [Intructions for manual testing](#appendix-instructions-for-manual-testing)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
@@ -835,43 +837,53 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file or run `java -jar ParentPal.jar`. <br> 
-      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file or run `java -jar parentpal.jar`. <br> 
+      Expected: Shows the GUI with a set of sample contacts and appointments. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file or run `java -jar ParentPal.jar`.<br>
+    2. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
        Expected: The most recent window size and location is retained.
 
-3. Subsequent launch
-    1. Re-launch the app by double-clicking the jar file or run `java -jar ParentPal.jar`.<br>
+3. Subsequent launch    
+    1. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
        Expected: Shows the GUI with data loaded from the json files.
-       
-### Deleting a contact
 
-1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+### Testing Address Book Features
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### Add a contact
 
-   1. Test case: `delete 0`<br>
-      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+#### Delete a contact
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### Sort contacts
 
-1. _{ more test cases …​ }_
+
+      
+### Testing Appointment Book Features
+
+#### Add an appointment
+
+#### Edit an appointment
+
+#### Find an appointment
+
+#### List all appointments
+
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Dealing with missing data files
+    1. Prerequisites: some commands that makes a change to the Address Book and Appointment Book have been performed.
+       
+    1. Delete the `addressbook.json` and `appointmentbook.json` files found in the directory 
+      `[JAR file location]/data`.
+      
+    2. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+        Expected: The app launches with the sample contacts and appointments.
 
 1. _{ more test cases …​ }_
