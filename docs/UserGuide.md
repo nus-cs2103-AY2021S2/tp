@@ -190,6 +190,7 @@ Examples:
 
 * `add appointment n/Meeting at agency r/Company is setting new sales target for the month d/01-06-2021 t/1300`
 
+<div style="page-break-after: always;"></div>
 
 ### 4.3 Editing
 
@@ -278,6 +279,8 @@ Description:
 Examples:
 *  `delete appointment 7` deletes the appointment at index `7`.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5 Listing
 
 #### 4.5.1 Listing all properties and appointments : `list all`
@@ -300,6 +303,8 @@ Shows a list of all appointments in the app.
 
 Format:
 * `list appointment`
+
+<div style="page-break-after: always;"></div>
 
 ### 4.6 Updating status
 
@@ -339,6 +344,8 @@ Examples:
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
 
 ![Example property updated](images/ExampleUpdateNew.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.7 Sorting
 
