@@ -106,7 +106,7 @@ The `UI` component,
 
 1. `Logic` uses the `PawbookParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding a owner).
+3. The command execution can affect the `Model` (e.g. adding an owner).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -177,13 +177,13 @@ This current implementation though not ideal, avoid many potential rewrites sinc
 
 ### Adding/Deleting feature
 
+#### What it is
+
 ![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png){: .center-image}
 
 Pawbook manages more than one type of entity, each with their own unique attributes. An OOP approach is used here whereby both the `AddCommand` and `DeleteCommand` are generic classes that extends the `Command` class. This way any number of other classes extending `entity` can be added/deleted as well.
 
-Example: `add owner n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`
-
-#### Implementation
+#### Implementation details
 
 The actual execution of the different add commands are highly similar and often differ only by the extra entity-specific checks, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number. The same applies to delete commands as well.
 
@@ -207,7 +207,11 @@ To further illustrate how an actual deletion of an entity is performed, below is
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png){: .center-image}
 
-The deletion of any entity will typically affect other related entities as well, as shown in a more details sequence diagram below.
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+2. The `PawbookParser` identifies the user command and creates a `DeleteDogCommandParser` object. It then calls the `DeleteDogCommandParser`'s `parse()`method with user input as the parameter.
+3. In the `parse()` method, the `DeleteDogCommandParser` will then generate the `DeleteDogCommand` object. This is then returned all the way back to the `LogicManager`.
+4. The `LogicManager` will then proceed to call the `execute()` method.
+5. The `execute()` method is further explored below. The high level understanding is that a CommandResult is returned and finally passed back to `LogicManager`.
 
 ![DeleteSequenceDetailedDiagram](images/DeleteSequenceDetailedDiagram.png){: .center-image}
 
@@ -219,11 +223,15 @@ This is how the `DeleteDogCommand` works upon execution:
 5. For each of these `Program`, it will be edited to remove the current `Dog`'s ID.
 6. With no more entities referring to the current `Dog`, it is safe to call `Model#deleteEntity(...)` to delete the `Dog`.
 
-The various add commands will similarly perform the reverse of the delete command.
+The deletion of any entity will typically affect other related entities as well. The various add commands will similarly perform the reverse of the delete command.
 
 ### Edit feature
 
-Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit` some attribute of an owner. By entering the edit command with the target owner ID, the attributes of the owner will be modified accordingly.
+#### What it is
+
+Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit` some attributes of an owner. By entering the edit command with the target owner ID, the attributes of the owner will be modified accordingly.
+
+#### Implementation details
 
 In order to generate the edit command, the user indicates the entity type to be edited, followed by the ID number. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
 
@@ -235,20 +243,22 @@ Below is the sequence diagram for the Edit Command.
 
 ![EditActivityDiagram](images/EditSequenceDiagram.png){: .center-image}
 
-Below is a more detailed look at execute method of the EditCommand.
-
-![EditOwnerDetailedSequenceDiagram](images/EditOwnerDetailedSequenceDiagram.png){: .center-image}
-
 1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
 2. The `PawbookParser` identifies the user command and creates a `EditOwnerCommandParser` object. It then calls the `EditOwnerCommandParser`'s `parse()`method with user input as the parameter.
 3. In the `parse()` method, the `EditOwnerCommandParser` will then generate the `EditOwnerCommand` object. This is then returned all the way back to the `LogicManager`.
 4. The `LogicManager` will then proceed to call the `execute()` method.
 5. The `execute()` method is further explored below. The high level understanding is that a `CommandResult` is returned and finally passed back to `LogicManager`.
 
+![EditOwnerDetailedSequenceDiagram](images/EditOwnerDetailedSequenceDiagram.png){: .center-image}
+
 ### Find feature
+
+#### What it is
 
 Pawbook allows the users to `find` an entity based on keyword searches. The `find` function allows for multiple keyword
 searches and reveals the entire list of entities that match one or more of the results.
+
+#### Implementation details
 
 When the user enters a valid command with the search keywords, the arguments are parsed by the `FindCommmandParser` which
 converts the string of arguments into a list. The list is subsequently passed on to a `NameContainsKeywordsPredicate` object
@@ -278,8 +288,12 @@ Here is a more specific breakdown of the command's execute method.
 3. From here, Find Command creates a command result and returns it to the `LogicManager`.
 
 ### List feature
+
+#### What it is
 Pawbook allows the users to `list` an entity based on keyword searches. The `list` function responds to the current available
 entities, which are `owner`, `dog` and `program`, and returns a list of all the entries of the respective entity.
+
+#### Implementation details
 
 When the user enters a valid command with the entity keyword, the arguments are parsed by `PawbookParser`, which uses `Predicate`
 to identify which entity `owner`, `dog` or `program` it is. `ListCommand` is then generated with the predicate to return
@@ -310,8 +324,11 @@ Here is a more specific breakdown of the command's execute method.
 
 ### View feature
 
-Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or
-all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
+#### What it is
+
+Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
+
+#### Implementation detail
 
 When the user enters a valid command with the target entity ID, the ViewCommandParser will firstly parse the command and store the ID as an integer that is then passed on to as a parameter into the constructor method of a new ViewCommand instance.
 
@@ -351,9 +368,12 @@ Here is a more specific breakdown of the command's execute method.
 
 ### Schedule feature
 
+#### What it is
+
 Pawbook allows the user to display the `schedule` of all programs.
-For instance, the user may want to view the `schedule` of all programs on a specific date.
-By entering the correct schedule command with the correct date, the entire list of programs on the specific date will be generated.
+For instance, the user may want to view the `schedule` of all programs on a specific date. By entering the correct schedule command with the correct date, the entire list of programs on the specific date will be generated.
+
+#### Implementation details
 
 When the user enters a valid command with the date, the arguments are parsed by the `ScheduleCommandParser` that converts
 the argument string into a Date that is subsequently passed on to a `ProgramOccursOnDatePredicate` object.
@@ -380,7 +400,11 @@ Here is a more specific breakdown of the command's execute method.
 
 ### Enrol feature
 
+#### What it is
+
 Pawbook supports the enrolling of specific dogs into specific programs.
+
+#### Implementation details
 
 In order to enrol a dog into a program, the raw input needs to be parsed first. It is required that the user provides 2 parameters, namely `dogId` and `programId`. These inputs have the prefix `/d` and `/p`, and is followed by an integer. Using this information, the arguments will be forwarded to the `EnrolCommandParser` from within `PawbookParser`, which converts the String input to int.
 
@@ -413,7 +437,11 @@ Here is a more specific breakdown of the command's execute method.
 
 ### Drop feature
 
+#### What it is
+
 While Pawbook allows the enrolling of dogs into programs, conversely it supports dropping previously-enrolled dogs from the programs.
+
+#### Implementation details
 
 To drop a dog from a program, the raw input is parsed and goes through several checks to ensure that the provided dog and program IDs are both valid and are indeed referring to dog and program objects respectively. Subsequently, the arguments will be forwarded to `DropCommandParser` followed by `PawbookParser` where they are converted from the String input to int.
 
@@ -477,11 +505,11 @@ However, this requires there to be no duplicate dog or program names.
 
 **Value proposition**:
 
-* Manages contacts faster than a typical mouse/GUI driven app
+* Manages customer data faster than a typical mouse/GUI driven app
 * Saves significant time for the business owner, who beforehand had to manage the details of dogs and owners
 * Consolidates information on dogs, owners and programs into one place
 * Clutter-free user interface
-* Application is optimised for keyboard navigation
+* Application is optimized for keyboard navigation
 
 
 ### User Stories
@@ -503,8 +531,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes  |
 | `* *`    | Advanced user        | Edit in bulk quickly                                                       | Save time and effort when making changes to multiple profiles/programs |
 | `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command |
-
-*{More to be added}*
 
 ### Use Cases
 
@@ -534,8 +560,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-
-*Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
 **Use case: UC02 - Delete a dog/owner profile or program**
 
@@ -1231,7 +1255,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 1. Test case: `exit` <br>
    Expected: The program should exit and close.
 
-## Effort
+## **Appendix: Effort**
 
 Throughout the development, our team wanted to make Pawbook easy to use, intuitive and presentable. After countless group discussions, physical meetings and additional effort leading up to submission, we managed to pull through and present a usable and functioning product that we are proud of. Amassing over 14,000 lines of code combined, we had to stick to strict internal deadlines, manage conflicts and maintain a culture of open communication and transparency. We also took the liberty to call for group meetings whenever needed, going beyond just the usual meetings to make sure everyone is in sync.
 

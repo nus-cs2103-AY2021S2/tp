@@ -34,7 +34,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/kouyk)]
 [[portfolio](team/kouyk.md)]
 
-* Role: Team Lead / Developer
+* Role: Tech Lead / Developer
 * Responsibilities: Data, Code Refactoring, Schedule and List Commands
 
 ### Lam Xuan Yi, Shaelyn
@@ -64,5 +64,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/ZhangAnli)]
 [[portfolio](team/zhanganli.md)]
 
-* Role: Developer
+* Role: Team Lead / Developer
 * Responsibilities: View and Find Commands, GUI
