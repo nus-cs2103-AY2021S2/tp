@@ -18,6 +18,7 @@ import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
 import seedu.address.model.reminder.ReminderDate;
@@ -357,6 +358,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_TIME_MINUTES);
         }
         return new AppointmentDateTime(trimmedDateTime);
+    }
+
+    /**
+     * Parses a {@code String subjectName} into a {@code SubjectName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subjectName} is invalid.
+     */
+    public static SubjectName parseSubjectNameInGrade(String subjectName) throws ParseException {
+        requireNonNull(subjectName);
+        String trimmedSubjectName = subjectName.trim();
+        if (!Grade.isValidSubject(trimmedSubjectName)) {
+            throw new ParseException(Grade.SUBJECT_CONSTRAINTS);
+        }
+        return new SubjectName(trimmedSubjectName);
     }
 
     /**
