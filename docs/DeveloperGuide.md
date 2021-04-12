@@ -211,7 +211,7 @@ From the diagram illustrated above:
 1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
 1. This would update the model by deleting the specified pool at the first index, then a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
 
-### findPool feature
+### FindPool feature
 This feature allows users to find a pool that contains a passenger with a provided keyword in their name.
 
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("findPool n/Alice")` command.
