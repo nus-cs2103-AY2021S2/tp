@@ -25,6 +25,8 @@ Given below are my contributions to the project.
     * What it does: Users are able to use `food_intake_add` command to add a food intake with a food item for a specific day. The `food_intake_update` command can be used to update the specific food intake item for the day with a different nutrient value(s). The `food_intake_delete` command can be used to delete a specific food intake item for a specific day.The `food_intake_query` command can be used to query all the food intake within a day or over a period of time.
     * Justification: This feature allows users to track their food intake for the day, which will then help to calculate the nutrients consumption for the day to see how far are they from the planned progress of the specific diet plans daily requirements.
 
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Implemented part of TemplateInitializer alongside with Jason
     * What it does: This TemplateInitializer creates a default template data set that can be used during the first initialization. 
     * Justification: This feature allows users to have a sample data preloaded into the application to give them a feel of how the program is like and test the functionalities. 
