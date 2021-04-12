@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":RemindCommandParser" as RemindCommandParser LOGIC_COLOR
-participant ":ReminderDatePredicate" as ReminderDatePredicate LOGIC_COLOR
+participant "r:ReminderDatePredicate" as ReminderDatePredicate LOGIC_COLOR
 participant ":RemindCommand" as RemindCommand LOGIC_COLOR
 participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -19,17 +19,17 @@ create ReminderDatePredicate
 RemindCommandParser -> ReminderDatePredicate
 activate ReminderDatePredicate
 
-ReminderDatePredicate --> RemindCommandParser : c
+ReminderDatePredicate --> RemindCommandParser : r
 deactivate ReminderDatePredicate
 
 create RemindCommand
-RemindCommandParser -> RemindCommand : RemindCommand(c)
+RemindCommandParser -> RemindCommand : RemindCommand(r)
 activate RemindCommand
 
-RemindCommand --> RemindCommandParser : f
+RemindCommand --> RemindCommandParser : rc
 deactivate RemindCommand
 
-[<-- RemindCommandParser : f
+[<-- RemindCommandParser : rc
 deactivate RemindCommandParser
 [<-[hidden]- RemindCommandParser
 destroy RemindCommandParser
@@ -37,10 +37,13 @@ destroy RemindCommandParser
 [-> RemindCommand : execute()
 activate RemindCommand
 
-RemindCommand -> Model : updateFilteredOrderList(c)
+RemindCommand -> Model : updateFilteredOrderList(r)
 activate Model
 
 deactivate Model
+
+RemindCommandParser <-[hidden]- ReminderDatePredicate
+destroy ReminderDatePredicate
 
 create CommandResult
 RemindCommand -> CommandResult
@@ -51,5 +54,8 @@ deactivate CommandResult
 
 [<-- RemindCommand : cr
 deactivate RemindCommand
+
+[<-[hidden]- RemindCommand
+destroy RemindCommand
 
 @enduml

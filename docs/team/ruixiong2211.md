@@ -6,6 +6,7 @@ title: Lim Rui Xiong's Project Portfolio Page
 ## Project: CakeCollate
 
 CakeCollate is a desktop order book application used for tracking cake orders. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+CakeCollate is based on the AddressBook-Level3 project (AB3) created by the [SE-EDU initiative](https://se-education.org).
 
 ## Summary of Contributions
 
@@ -18,7 +19,7 @@ Given below are my contributions to the project.
   current date.
   * Justification: This feature improves the product significantly because a user can now easily filter through 
   undelivered impending orders within a time frame they have the flexibility to be able to specify.
-  * Highlights: This enhancement affects existing fields and fields to be added in future. 
+  * Highlights: This enhancement affects existing fields and fields to be added in the future. 
   It required an in-depth analysis of design alternatives. The implementation too was challenging as it required 
   changes to existing fields.
   
@@ -43,10 +44,7 @@ in my explanation
 
 ### Contributions to the Developer Guide
 * Updated all existing diagrams from AB3 to reflect the current codebase of CakeCollate.
-* Added implementation details, design considerations and sequence diagram for the `remind` command. Here is
-the sequence diagram of it. <br>
-![RemindSequenceDiagram](img/RemindSequenceDiagram.png)
-<br>
+* Added implementation details, design considerations and sequence diagram for the `remind` command.
 * Added Use Cases for Add, Edit, Delete command.
 
 ### Contributions to team-based tasks
