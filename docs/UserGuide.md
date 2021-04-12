@@ -250,7 +250,7 @@ exists and editing a client to have the same information as an existing client i
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td> Must only contain <a href="#glossary">alphanumeric</a> characters and spaces </td>
+    <td> <ul><li>Must only contain <a href="#glossary">alphanumeric</a> characters and spaces</li></ul>/td>
   </tr>
   <tr>
     <td> Phone number </td>
@@ -375,7 +375,7 @@ A client can have any number of tags and insurance policies (including 0).
 * To include the URL, remember to use `>` to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
 * Meetings of a client cannot be added with this command.
 * If a field (e.g. `n/NAME`) is expected only once in the command, but you specified it multiple times, only the last occurrence of the field will be taken.
-    * E.g. if you specify add `n/Alex n/Bob...`, only `n/Bob` will be taken.
+    * E.g. if you specify `add n/Alex n/Bob...`, only `n/Bob` will be taken.
 
 **Examples**:
 * Example of a client with insurance policy but no URL associated with insurance policy
@@ -403,7 +403,7 @@ A client can have any number of tags and insurance policies (including 0).
 * At least one of the optional fields must be provided.
 * Meetings of a client cannot be modified with this command.
 * If a field (e.g. `n/NAME`) is expected only once in the command, but you specified it multiple times, only the last occurrence of the field will be taken.
-    * E.g. if you specify add `n/Alex n/Bob...`, only `n/Bob` will be taken.
+    * E.g. if you specify `edit n/Alex n/Bob...`, only `n/Bob` will be taken.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
@@ -434,7 +434,7 @@ A client can have any number of tags and insurance policies (including 0).
 **Examples**:
 * `delete 2` deletes the 2nd client in the currently displayed list.
   <br><br>
-* To more easily delete policies of a specific client "Charlotte Chan", `delete` can be used in conjunction with `find`.
+* To easily delete a specific client "Charlotte Chan", `delete` can be used in conjunction with `find`.
     * First, use `find n/Charlotte Chan`. Assuming there is only one Charlotte Chan in the client book, she will be the 
     client at index 1 after we run the command.
     * After we get the filtered list, use `delete 1` to delete the client at index 1, which is 
@@ -639,7 +639,7 @@ You may use optional identifiers in conjunction with the `-` symbol to limit the
 ### <span style="color:#c9a500">Shortcuts</span>
 We understand that you might have commands that you frequently use. You may use shortcuts to abbreviate
 those commands to make using ClientBook more convenient. As this feature is not commonly found in other contact management applications,
-the following example usage section.
+we have included the following Example Usage section to guide you through on how to use this feature. 
 
 ### <span style="color:#c9a500">Example Usage</span>
 <p><b>Scenario:</b></p> 
