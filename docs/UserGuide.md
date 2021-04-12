@@ -301,6 +301,7 @@ Examples:
 * `save`
   * exit edit mode and save all changes.
 
+<div style="page-break-after: always;"></div>
 #### Quiting edit mode : `quit`
 
 Quits edit mode and discard all changes.
