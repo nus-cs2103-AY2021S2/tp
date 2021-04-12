@@ -2,10 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -116,12 +113,29 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Guarantees that two lists have the same length.
+     * @param listA The first list in the comparison.
+     * @param listB The other list in the comparison.
+     * @throws ParseException if the two lists do not have the same length.
+     */
     public static void validateListLengths(List listA, List listB) throws ParseException {
         requireNonNull(listA);
         requireNonNull(listB);
         if (listA.size() != listB.size()) {
             throw new ParseException(MESSAGE_MISMATCHED_LISTS);
         }
+    }
+
+    /**
+     * Removes duplicate items from a list of strings.
+     * @param stringList
+     * @return A copy of the original list, but with duplicates removed.
+     */
+    public static List<String> deduplicateStringList(List<String> stringList) {
+        HashSet<String> deduplicatedSet = new HashSet<>(stringList);
+        List<String> deduplicatedList = new ArrayList<>(deduplicatedSet);
+        return deduplicatedList;
     }
 
     /**

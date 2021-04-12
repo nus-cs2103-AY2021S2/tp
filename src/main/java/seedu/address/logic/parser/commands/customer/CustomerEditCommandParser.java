@@ -60,7 +60,11 @@ public class CustomerEditCommandParser implements Parser<CustomerEditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            List<String> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            List<String> deduplicatedTagList = ParserUtil.deduplicateStringList(tagList);
+            editPersonDescriptor.setTags(deduplicatedTagList);
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(CustomerEditCommand.MESSAGE_NOT_EDITED);
