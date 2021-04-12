@@ -256,9 +256,12 @@ Format: `delete INDEX [MORE_INDEXES]`…​
 * Deletes the contact at the specified `INDEX` or multiple `INDEXES`.
 * The index refers to the index number shown in the displayed contact list.
 * The index/indexes **must be a positive integer/integers** 1, 2, 3, …​
+* If deleting multiple contacts by multiple indexes, the indexes *must* be separated by whitespace and must all be valid.
+
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
+* `list` followed by `delete 1 2 3` deletes the 1st, 2nd and 3rd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
