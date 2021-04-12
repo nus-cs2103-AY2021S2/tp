@@ -434,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user that always wears the same few garments       | be reminded on the garments I have not worn               | would not be wearing the same garments all the time                                      |
 | `*`      | user that does not know how to match garments      | to see whether certain colours and types of garment match | will be able to ascertain if the garments match without having to try them on physically |
 | `*`      | user that cannot visualise how an outfit will look | to be able to preview how an outfit will look             | will be able to better visualise how an outfit will look                                 |
-<br>
+
 
 ### Use cases
 (For all use cases below, the System is the `NuFash` and the Actor is the `user`, unless specified otherwise)
@@ -523,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all garments
 2. NuFash shows a list of garments
 3. User specifies a garment they would like to match
-4. NuFash shows a list of garments that match the specified garments
+4. NuFash shows a list of garments that match the specified garments    
    Use case ends.
 
 **Extensions**
@@ -531,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. NuFash shows an error message.
+    * 3a1. NuFash shows an error message.   
       Use case resumes at step 2.
 <br><br>
 
