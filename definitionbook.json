@@ -15,6 +15,9 @@
     "term": "Architecture",
     "defs": "Architecture: The high level structures of a software system, the discipline of creating such structures, and the documentation of these structures. These structures are needed to reason about the software system. Each structure comprises software elements, relations among them, and properties of both elements and relations. The architecture of a software system is a metaphor, analogous to the architecture of a building."
   },{
+    "term": "Atomic",
+    "defs": "Atomic: Not divisible any further."
+  },{
     "term": "Beta testing",
     "defs": "Beta testing is performed by a selected subset of target users of the system in their natural work setting."
   },{
@@ -29,6 +32,9 @@
   },{
     "term": "Brooks' Law",
     "defs": "Brooks' law: Adding people to a late project will make it later. -- Fred Brooks (author of The Mythical Man-Month)"
+  },{
+    "term": "Brown-field project",
+    "defs": "Brown-field project: Develop a product to replace/update an existing software product"
   },{
     "term": "Buffers",
     "defs": "A buffer is time set aside to absorb any unforeseen delays"
@@ -87,14 +93,23 @@
     "term": "Enterprise application",
     "defs": "Enterprise application: ‘enterprise applications’ refer to software applications used by organizations and therefore have to meet much higher demands (such as in scalability, security, performance, and robustness) than software meant for individual use."
   },{
+    "term": "Epics",
+    "defs": "High-level user stories."
+  },{
     "term": "Equivalence partition",
     "defs": "Equivalence partition (aka equivalence class): A group of test inputs that are likely to be processed by the SUT in the same way."
+  },{
+    "term": "Estimation",
+    "defs": "Estimation: How much effort each feature will take."
   },{
     "term": "Exception",
     "defs": "The term exception is shorthand for the phrase `exceptional event.` An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program's instructions. –- Java Tutorial (Oracle Inc.)"
   },{
     "term": "Exploratory testing",
     "defs": "Exploratory testing: Devise test cases on-the-fly, creating new test cases based on the results of the past test cases."
+  },{
+    "term": "Extension",
+    "defs": "\"add-on\"s to the MSS that describe exceptional/alternative flow of events. "
   },{
     "term": "Feature Branch Flow",
     "defs": "Feature branch workflow is similar to forking workflow except there are no forks. Everyone is pushing/pulling from the same remote repo. The phrase feature branch is used because each new feature (or bug fix, or any other modification) is done in a separate branch and merged to the master branch when ready. Pull requests can still be created within the central repository, from the feature branch to the main branch."
@@ -111,11 +126,20 @@
     "term": "Formal verification",
     "defs": "Formal verification uses mathematical techniques to prove the correctness of a program."
   },{
+    "term": "Functional Requirements",
+    "defs": "Functional Requirements specify what the system should do."
+  },{
     "term": "GANTT Charts",
     "defs": "A Gantt chart is a 2-D bar-chart, drawn as time vs tasks"
   },{
     "term": "Glossary",
     "defs": "Glossary: A glossary serves to ensure that all stakeholders have a common understanding of the noteworthy terms, abbreviations, acronyms etc."
+  },{
+    "term": "Green-field Project",
+    "defs": "Green-field Project: Develop a totally new system with no precedent"
+  },{
+    "term": "Guarantees",
+    "defs": "Guarantees: What the use case promises to give us at the end of its operation"
   },{
     "term": "Integration testing",
     "defs": "Integration testing : testing whether different parts of the software work together (i.e. integrates) as expected. Integration tests aim to discover bugs in the 'glue code' related to how components interact with each other. These bugs are often the result of misunderstanding what the parts are supposed to do vs what the parts are actually doing."
@@ -135,8 +159,14 @@
     "term": "Liskov substitution principle",
     "defs": "Liskov substitution principle (LSP): Derived classes must be substitutable for their base classes. -- proposed by Barbara Liskov"
   },{
+    "term": "Main Success Scenario (MSS)",
+    "defs": "The most straightforward interaction for a given use case, which assumes that nothing goes wrong."
+  },{
     "term": "Milestone",
     "defs": "A milestone is the end of a stage which indicates significant progress."
+  },{
+    "term": "Non-functional requirements",
+    "defs": "Non-functional requirements specify the constraints under which the system is developed and operated."
   },{
     "term": "Open-closed principle",
     "defs": "Open-closed principle (OCP): A module should be open for extension but closed for modification. That is, modules should be written so that they can be extended, without requiring them to be modified. -- proposed by Bertrand Meyer"
@@ -147,8 +177,17 @@
     "term": "Pair programming",
     "defs": "Pair programming is an agile software development technique in which two programmers work together at one workstation. One, the driver, writes code while the other, the observer or navigator, reviews each line of code as it is typed in. The two programmers switch roles frequently. [source: Wikipedia]"
   },{
+    "term": "Persistency",
+    "defs": "Persistency: Saving data permanently."
+  },{
     "term": "Polymorphism",
     "defs": "The ability of different objects to respond, each in its own way, to identical messages is called polymorphism. -- Object-Oriented Programming with Objective-C, Apple"
+  },{
+    "term": "Precondition",
+    "defs": "Preconditions: The specific state you expect the system to be in before the use case starts."
+  },{
+    "term": "Prose",
+    "defs": "Prose: A textual description"
   },{
     "term": "Prototype",
     "defs": "Prototype: A prototype is a mock up, a scaled down version, or a partial system constructed\n\nto get users’ feedback.\nto validate a technical concept (a \"proof-of-concept\" prototype).\nto give a preview of what is to come, or to compare multiple alternatives on a small scale before committing fully to one alternative.\nfor early field-testing under controlled conditions."
@@ -165,8 +204,17 @@
     "term": "Revision",
     "defs": "A revision (some seem to use it interchangeably with version while others seem to distinguish the two -- here, let us treat them as the same, for simplicity) is a state of a piece of information at a specific time that is a result of some changes to it e.g., if you modify the code and save the file, you have a new revision (or a version) of that file."
   },{
-    "term": "Revision control softwar",
+    "term": "Revision control software",
     "defs": "RCS: Revision control software are the software tools that automate the process of Revision Control i.e. managing revisions of software artifacts."
+  },{
+    "term": "Scheduling",
+    "defs": "Scheduling: When to deliver each feature."
+  },{
+    "term": "Scope",
+    "defs": "Scope: the extent to which the software feature should go."
+  },{
+    "term": "Scoping",
+    "defs": "Scoping: Which features to include in the product."
   },{
     "term": "Scripted testing",
     "defs": "Scripted testing: First write a set of test cases based on the expected behavior of the SUT, and then perform testing based on that set of test cases."
@@ -183,11 +231,14 @@
     "term": "Software Development Life cycle",
     "defs": "Software development goes through different stages such as requirements, analysis, design, implementation and testing. These stages are collectively known as the software development life cycle (SDLC)"
   },{
+    "term": "Software Engineering",
+    "defs": "Software Engineering: Software Engineering is the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software -- IEEE Standard Glossary of Software Engineering Terminology"
+  },{
     "term": "Software Quality Assurance",
     "defs": "Software Quality Assurance (QA) is the process of ensuring that the software being built has the required levels of quality."
   },{
-    "term": "Software engineering",
-    "defs": "Software engineering: Software Engineering is the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software -- IEEE Standard Glossary of Software Engineering Terminology"
+    "term": "Software Requirement",
+    "defs": "Software Requirement specifies a need to be fulfilled by the software product."
   },{
     "term": "Stage",
     "defs": "Stage (verb): Instructing Git to prepare a file for committing."
@@ -197,9 +248,6 @@
   },{
     "term": "Static analysis",
     "defs": "Static analysis is the analysis of code without actually executing the code."
-  },{
-    "term": "Static analysis",
-    "defs": "Static analysis: Static analysis is the analysis of code without actually executing the code."
   },{
     "term": "Static binding",
     "defs": "Static binding (aka early binding): When a method call is resolved at compile time."
@@ -245,6 +293,9 @@
   },{
     "term" : "User story format",
     "defs" : "format: As a {user type/role} I can {function} so that {benefit}"
+  },{
+    "term": "Volatility",
+    "defs": "Volatility: How often do data change"
   },{
     "term": "Work Breakdown Structure",
     "defs": "A Work Breakdown Structure (WBS) depicts information about tasks and their details in terms of subtasks."
