@@ -162,14 +162,27 @@ From the diagram illustrated above:
    `PoolCommandParser` which creates and returns a `PoolCommand`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()`
     that gets a list of passengers from `Model` by calling `getFilteredPassengerList()`.
-1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
+1. A `Pool` object is then instantiated with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
 1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
-1. Finally, a `CommandResult` would be returned back to `LogicManager` to indicate the completion status of the command.
+1. Finally, a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
 
 It is worth noting that in the case of adding a passenger, a `Passenger` object is created by `AddCommandParser` and used in the constructor of `AddCommand`.
 However, in the case of adding a pool, a `PoolCommand` is constructed using the details specified and parsed from `PoolCommandParser`, instead of creating and passing a `Pool` object.
 The rationale is due the fact that a list of passengers have to be obtained from the indexes specified, which requires interactions with the model.
 The current implementation thus encapsulates all the interactions with model, within the methods of `PoolCommand`.
+
+### ListPool feature
+This feature allows users to list all the pools from the pool list without any filter.
+
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("listPool")`.
+![Interactions Inside the Logic Component for the `listPool` Command](images/ListPoolSequenceDiagram.png)
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"listPool"` command.
+1. `AddressBookParser` class is then instantiated, which subsequently instantiates an `ListPoolCommand` object to be returned to `LogicManager`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `ListPoolCommand`.
+1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
+1. Finally, a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
 
 ### Unpool feature
 This feature allows users to remove a pool from the pool list through the specification of an index.
@@ -194,12 +207,12 @@ From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"unpool 1"` command.
 1. `AddressBookParser` class is then instantiated, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
 1. `AddressBookParser` would then have its `parse()` method invoked, passing the argument `"1"` to `UnpoolCommandParser`.
-1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be created and returned to `LogicManager`.
+1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be instantiated and returned to `LogicManager`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
-1. This would update the model by deleting the specified pool at the first index, then the result of the command execution `CommandResult` would be created and returned back to `LogicManager`.
+1. This would update the model by deleting the specified pool at the first index, then a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
 
-### findPool feature
-This feature allows users to find a pool that contains a passenger with a provided keyword in their name. 
+### FindPool feature
+This feature allows users to find a pool that contains a passenger with a provided keyword in their name.
 
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("findPool n/Alice")` command.
 ![Interactions Inside the Logic Component for the `findPool n/Alice` Command](images/FindPoolSequenceDiagram.png)
@@ -223,8 +236,8 @@ From the diagram illustrated above:
 
 ### Find feature
 
-The rationale behind expanding on the find feature is to allow for the user to find passengers by more attributes to improve usability. 
-Instead of being restricted to searching for names only, the user can now find other passengers with the same day or of a certain area. 
+The rationale behind expanding on the find feature is to allow for the user to find passengers by more attributes to improve usability.
+Instead of being restricted to searching for names only, the user can now find other passengers with the same day or of a certain area.
 This is vital as it is necessary to improve the usability for the user when attempting to find passengers to carpool with drivers.
 
 ![Interactions Inside the Logic Component for the `find n/Lucy n/Adam` Command](images/FindSequenceDiagram.png)
@@ -300,14 +313,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 2. GME shows a list of passengers.
 3. HR executive chooses and view the details of the specific passenger.
 4. HR executive allocates drivers to specific passenger to the driver's carpooling group.
-
-    Use case ends.
+   
+   Use case ends.
 
 ***Extensions***
 
 * 1a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -359,9 +372,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 ***Extensions***
 
 * 2a. Index number of passenger does not exist.
-  * 2a1. GME warns that no such passenger exists.
+    * 2a1. GME warns that no such passenger exists.
 
-    Use case ends.
+      Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -373,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 1. HR Executive finds passengers only looking for female drivers.
 2. HR Executive then matches female drivers to female passengers looking for female drivers only.
 
-    Use case ends.
+   Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -422,42 +435,125 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial launch.
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+1. Saving window preferences.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Creating a pool
+
+1. Creating a pool from using the list of all passengers being shown.
+
+    1. Prerequisites: List all passengers using the `list` command.
+       Multiple passengers in the list, with the first four passengers having the same the trip day of `MONDAY` and trip time of `1930`.
+       This can be achieved through the editing the details of the passengers with the `edit` command and the `d/` and `t/` prefixes.
+       The remaining passengers must have a different trip day and trip time from `MONDAY` and `1930` respectively.
+
+    1. Test case: `pool n/Paul p/90101231 d/MONDAY t/1930 c/1 c/2`<br>
+       
+       Expected: A pool is created and added to the pool list, with a trip by the driver named `Paul`, phone number `90101231`, at `MONDAY 1930`.
+       Names of the passengers from the passenger list at index 1 and 2 are also displayed in the pool.
+       Status message shows the details of the pool created.
+
+   1. Test case: `pool n/Sarah p/96663777 d/MONDAY t/1400 c/3 c/4`<br>
+      
+      Expected: A pool is created and added to the pool list, with a trip by the driver named `Sarah`, phone number `96663777`, at `MONDAY 1400`.
+      Names of the passengers from the passenger list at index 3 and 4 are also displayed in the pool.
+      Status message shows a message to warn the user that there are passengers with a time difference of more than 15 minutes of the pool time.
+
+   1. Test case: `pool n/Patricia p/90102020 d/WEDNESDAY t/1930 c/1 c/5`<br>
+      
+      Expected: No pool is added. Error details shown in the status message, prompting user to check for a trip day mismatch. Text in command bar turns red.
+
+   1. Test case: `pool n/Jose p/85553777 d/MONDAY t/1930 c/0`<br>
+      
+      Expected: No pool is added. Error details shown in the status message. Text in command bar turns red.
+
+### Deleting a pool
+
+1. Deleting a pool while all pools are being shown.
+
+    1. Prerequisites: List all pools using the `listPool` command. Multiple pools in the list.
+
+    1. Test case: `unpool 1`<br>
+
+       Expected: First pool is deleted from the list. Details of the deleted pool shown in the status message.
+
+    1. Test case: `unpool 0`<br>
+
+       Expected: No pool is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `unpool`, `unpool x`, `...` (where x is larger than the list size)<br>
+
+       Expected: Similar to previous.
 
 ### Deleting a passenger
 
-1. Deleting a passenger while all passengers are being shown
+1. Deleting a passenger while all passengers are being shown.
 
-   1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list. Passengers to be deleted are not in a pool.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`.<br>
+       Expected: First contact is deleted from the list. Name of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No passenger is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`.<br>
+       Expected: No passenger is deleted. Error details shown in the status message. Text in command bar turns red.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size).<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting multiple passengers while all passengers are being shown.
+
+    1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list. Passengers to be deleted are not in a pool.
+
+    1. Test case: `delete 1 2`.<br>
+       Expected: First and second contact is deleted from the list. Names of deleted contacts are shown in the status message.
+
+### Finding a passenger
+
+1. Finding passengers by name while all passengers shown.
+
+    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+
+    1. Test case: `find n/bernice`.<br>
+       Expected: Details of passenger named `Bernice Yu` is shown. Status message shows 1 passenger listed.
+
+    1. Test case: `find n/bob`.<br>
+       Expected: No passengers are shown. Status message shows 0 passenger listed.
+
+    1. Test case: `find n/ROY n/lEnny`.<br>
+       Expected: Details of passengers named `Roy Balakrishnan` and `Lenny Hoon` shown. Status message shows 2 passengers listed.
+
+    1. Test case: `find n/   David lI`.<br>
+       Expected: Details of passenger named `David Li` is shown. Status message shows 1 passenger listed.
+
+
+1. Finding passengers by tag while all passengers are shown.
+
+    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+
+    1. Test case: `find tag/finance`.<br>
+       Expected: Details of `Bernice Yu` and `Roy Balakrishnan` are shown. Status message shows 2 passengers listed.
+
+    1. Test case: `find tag/marketing tag/sales`.<br>
+       Expected: Details of `Alex Yeoh`, `Bernice Yu`, `Irfan Ibrahim` and `Turner Peck` are shown. Status message shows 4 passengers listed.
+
+    1. Test case: `find tag/marketing sales`.<br>
+       Expected: Passengers are shown are same as previous. Status message shows tag provided is invalid.
+
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
