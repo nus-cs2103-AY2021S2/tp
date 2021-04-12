@@ -236,7 +236,7 @@ This section will detail the steps the program takes to calculate the streaks of
 3. This is done by calling `PersonStreak#fromPerson()` which will use the `Streak#from()` to create a `Streak` from a Person. The streak will be calculated upon the creation of the `Streak` object.
 4. Once all `PersonStreak` objects are created, they will be sent back to the `PersonStreakList` and put into an internal observable list, named `internalList`. 
 
-`internalList` will contain all the `PersonStreak` objects that will be displayed on the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` objects that have an active goal set. 
+`internalList` will contain all `PersonStreak` objects that will be displayed on the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` objects that have an active goal set. 
 An active goal is any valid goal that is not `NONE`, refer to the user guide's `set-goal` section [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#setting-meeting-goal-set-goal) for more information.
 The filtered list will then be made unmodifiable before being exposed to UI components to consume.
 
@@ -537,16 +537,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Type `add` into the command bar<br>
    Expected: A list of commands with `add` in their command words shows up.
-   
-2. Navigate with the up/down arrow keys and press `enter` to verify if the word selected will be entered automatically into the command bar. 
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+2. Navigate with the up/down arrow keys and press `enter` to verify if the word selected will be entered automatically into the command bar.
 
 ### Adding a person: `add`
 
@@ -705,7 +697,10 @@ Prerequisites: List all persons using the `list` command. There is at least a pe
     3. Test case: `delete 0` (Invalid index) <br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) <br>
+    4. Other incorrect `delete` commands to try:
+       * `delete` (missing `INDEX` argument)
+       * `delete x` (where x is larger than the list size)
+
        Expected: Similar to previous.
 
 ### Deleting a special date: `del-date`
@@ -892,7 +887,7 @@ Prerequisites: List contains the default data included in FriendDex.
 
 ### Viewing help: `help`
 
-1. Execute the `help` command. A new window will be opened with the URL to the UG guide.     
+1. Execute the `help` command. A new window will be opened with the URL to the User Guide.     
 
 ### Listing all persons: `list`
 
@@ -961,10 +956,10 @@ Prerequisites: List contains the default data included in FriendDex.
     1. Test case: `theme @monokai`<br>
        Expected: Theme of the application changes. A success message will be shown.
 
-    1. Test case: `theme @asdfg` (Invalid argument)<br>
+    2. Test case: `theme @asdfg` (Invalid argument)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
-    1. Test case: `theme` (Invalid format)<br>
+    3. Test case: `theme` (Invalid format)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
 2. Applying a user-defined theme
@@ -1019,7 +1014,7 @@ Prerequisites: List contains the default data included in FriendDex.
        Expected: Details panel not updated. Information on the `details` command shown in the status message.
 
     4. Other incorrect `view` commands to try:
-        * `view x` (where x is not a valid `TAB`),
-        * `view` (missing `TAB` argument),
+        * `view x` (where x is not a valid `TAB`)
+        * `view` (missing `TAB` argument)
 
        Expected: Details panel not updated. Error details shown in the status message.
