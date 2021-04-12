@@ -231,7 +231,7 @@ An `Endpoint` contains the following attributes:
 
 Adds an endpoint to the bottom of the list of currently existing endpoints. Users are able to add any valid endpoint to the list. If the exact same endpoint is already in the list, this command will not be allowed and an error will be shown.
 
-Example: `add -x get -u https://localhost:3000`
+Example: `add -x get -u google.com`
 
 #### Implementation
 
