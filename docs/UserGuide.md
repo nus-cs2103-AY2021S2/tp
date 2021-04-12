@@ -5,9 +5,9 @@ title: User Guide
 
 <img width="960" alt="docboblogo" src="https://user-images.githubusercontent.com/59093518/113546749-2db63300-961f-11eb-979d-128c9fd10ee6.png">
 
-**DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let DocBob take you to an automated future.
+**DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let DocBob take you to an automated future. 
 
-If there are any issues, please feel free to contact the team via the emails provided below under the **Issues** section.
+If there are any issues, please feel free to contact the team via the emails provided below under the **Issues** section
 
 * Table of Contents
 {:toc}
@@ -93,7 +93,6 @@ with `list`, or find a specific patient with `find`. To view the comprehensive i
 <div markdown="block" class="alert alert-info">
    
 **Quick tip**: To keep the patient list concise, only the most relevant information about a patient such as their name and tags are displayed. To view the full information on a patient, use the **`view`** function
-
 </div>
 
 
@@ -122,8 +121,10 @@ Output:
 
 `New patient added: Shrek; Date Of Birth: 27-02-1999; Gender: M; Phone: 69696969; Email: shrek@swampmail.com; Address: Swamp; BloodType: O-; Height: 243cm; Weight: 94kg; Tags: [acromegaly]`
 
-> **Quick tip**: You can always change these details later on using the `edit` command!
-
+<div markdown="block" class="alert alert-info">
+   
+**Quick tip**: You can always change these details later on using the `edit` command!
+</div>
 
 ### Listing out all patients : `list`
 
@@ -214,16 +215,21 @@ an existing record with `vrec`.
 In addition to commands by the user, DocBob also does some bookkeeping of its own! Appointments that are more than a day past are automatically deleted, and empty sections (without a title 
 and body) of a medical record are automatically removed. 
 
-> **Limitations**: DocBob currently does not support editing/removal of existing appointments. Clinics may choose to edit the data file directly to edit/remove appointments, or wait for the 
-> appointment date to pass and the appointment to be automatically cleaned up.
+<div markdown="block" class="alert alert-info">
+   
+**Limitations**: DocBob currently does not support editing/removal of existing appointments. Clinics may choose to edit the data file directly to edit/remove appointments, or wait for the appointment date to pass and the appointment to be automatically cleaned up.
+</div>
 
 ### Adding an appointment to a patient : `appt`
 
 Adds a scheduled upcoming appointment to a patient in DocBob's displayed patient book. The appointment is specified by its date and time, where the year is optional(assumed to be the current year if not specified). 
 The patient is identified by their index number shown in the displayed patient book.
 
-> **Date inference**: DocBob offers two ways of specifying the format of the date, the first with the year specified and the second without. In the latter case, DocBob automatically infers the current year to be the
+<div markdown="block" class="alert alert-info">
+   
+**Date inference**: DocBob offers two ways of specifying the format of the date, the first with the year specified and the second without. In the latter case, DocBob automatically infers the current year to be the
 intended year for the appointment.
+</div>
 
 Format: `appt INDEX d/DATE`
 where INDEX must be a positive integer (1,2,3,...)
@@ -242,8 +248,10 @@ Shows all your patients with appointments, the number of appointments you have, 
 
 This command will automatically filter the patient book to only show patients with an appointment, as well as replace the selected patient in the selected patient box with the upcoming appointments in sorted order (by date). 
 
-> **Viewing appointments**: The nearest upcoming appointment of each patient is already included beside each patient in the patient list. Simply scroll around for a quick look in the patient list for
-> appointments if your hands are tied, or use `listappt` for a more complete view.
+<div markdown="block" class="alert alert-info">
+   
+**Viewing appointments**: The nearest upcoming appointment of each patient is already included beside each patient in the patient list. Simply scroll around for a quick look in the patient list for appointments if your hands are tied, or use `listappt` for a more complete view.
+</div>
 
 Format: `listappt`
 
@@ -262,8 +270,10 @@ to allow for customization. Under the editor window, add a new section with the 
 
 Once done, click the **Save Record** button to save the record for future viewing with the `vrec` command.
 
-> **Separate windows**: The medical record opens on a separate window to allow users to have multiple medical records open at once while continuing to run commands on the main DocBob
-> application. More importantly, this also allows users to reference previous medical records while drafting the current record, a key feature of our medical record functionality.
+<div markdown="block" class="alert alert-info">
+   
+**Separate windows**: The medical record opens on a separate window to allow users to have multiple medical records open at once while continuing to run commands on the main DocBob application. More importantly, this also allows users to reference previous medical records while drafting the current record, a key feature of our medical record functionality.
+</div>
 
 Format : `mrec INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -275,8 +285,10 @@ Output:
 
 ![image](https://user-images.githubusercontent.com/48408342/113468956-34f10b80-947c-11eb-9ccf-ec15e2fde260.png)
 
-> **Quick tip**: You can still edit a medical record with `vrec` within a day of the creation of the record, should you need to change some details.
-
+<div markdown="block" class="alert alert-info">
+   
+**Quick tip**: You can still edit a medical record with `vrec` within a day of the creation of the record, should you need to change some details.
+</div>
 
 ### View a patient's pre-existing medical record : `vrec`
 
@@ -319,7 +331,10 @@ Archives a patient from DocBob's main patient book, identified by the index numb
 Format : `archive INDEX`
 where INDEX must be a positive integer (1,2,3,...)
 
-> **Quick tip**: Remember to be on the main patient book when archiving a patient using the `list` command.
+<div markdown="block" class="alert alert-info">
+   
+**Quick tip**: Remember to be on the main patient book when archiving a patient using the `list` command.
+</div>
 
 Example:
 * `archive 1`
@@ -353,7 +368,10 @@ Output:
 
 <img width="972" alt="D5 unarchive" src="https://user-images.githubusercontent.com/59093518/114416367-2ffe2b80-9be3-11eb-9686-2a48ec842a81.PNG">
 
-> **Tip**: Make sure you are on the archive list(using the `archivelist` command) before trying to unarchiving a patient!
+<div markdown="block" class="alert alert-info">
+   
+**Quick tip**: Make sure you are on the archive list(using the `archivelist` command) before trying to unarchiving a patient!
+</div>
 
 ## Miscellaneous
 
