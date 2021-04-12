@@ -54,7 +54,6 @@ Here are my contributions to the project.
     * Added Developer Guide for Merge Note
       (Pull requests [\#174](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/174))
 
----to be added
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
     * [\#88](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/88)
