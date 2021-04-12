@@ -270,11 +270,11 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_IT
 
 * The difference here compared to the previous format is that you can omit the `ORDER_DESCRIPTION` parameter, but you need to include an `ORDER_ITEM_INDEXES` parameter.
 
-* This alternative format is aimed at saving you some typing. If an order description you want to specify already exists in the [order item table](#221-sections-of-the-ui), you can specify its index instead of typing its entire name out.
+* This alternative format is aimed at saving you some typing. If an order description you want to specify already exists in the [order items table](#221-sections-of-the-ui), you can specify its index instead of typing its entire name out.
 
 * For example, for an order that involves Chocolate Cake, if `Chocolate Cake` exists in the [order items table](#221-sections-of-the-ui) as shown, instead of typing `o/Chocolate Cake`, you can type `oi/4`.
 
-* As such, you can interpret the order item table of the GUI as being a shortcut table.
+* As such, you can interpret the order items table of the GUI as being a shortcut table.
 
 Examples:
 
@@ -283,7 +283,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2022 oi/1 4 5` adds an order with all compulsory fields and adds order items 1, 4, 5 of order items table to the order.<br>
 ![add_alt_1](images/add_alt_1.PNG)
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2022 o/Strawberry Cake oi/1` adds an order with all compulsory fields, an order description of Strawberry Cake and the first item of the order item table.<br>
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2022 o/Strawberry Cake oi/1` adds an order with all compulsory fields, an order description of Strawberry Cake and the first item of the order items table.<br>
 ![add_alt_1](images/add_alt_2.PNG)
 
 :information_source: **How are items added to the order items table?**<br>
@@ -296,7 +296,7 @@ Examples:
 
 * If a user orders 2 chocolate cakes, you can specify the `o/` prefix twice, E.g. `o/Chocolate Cake o/Chocolate Cake`.
 
-* Alternatively, if Chocolate Cake is at index 4 of the order item table, you can specify `oi/4 4`.
+* Alternatively, if Chocolate Cake is at index 4 of the order items table, you can specify `oi/4 4`.
 
 ##### Adding a special request to an order: `request`
 
