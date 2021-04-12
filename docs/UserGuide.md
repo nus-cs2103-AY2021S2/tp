@@ -69,7 +69,7 @@ DocBob's interface comprises of 4 main parts.
 * Certain commands (such as `help`, `list`, `exit` and `clear`) do not take in parameters.  In cases like this, the extra input parameters will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-Our features are divided into three categories:
+Our features are divided into four categories:
 
 **Basic Features** contain the basic functionality of DocBob. These include commands that interact with the list of patients, viewing individual patients as well as the management of patient data.
 
@@ -79,6 +79,7 @@ core functionality of DocBob and clinics should look to use these functions as s
 **Archive** contains more advanced commands related to interacting with the archive and moving patients to and from the archive. These commands are suitable for clinics with a 
 large number of patients in their database, as the archive allows clinics to better organise their patients to maintain a smooth workflow.
 
+**Miscellaneous** contains ancillary features that are not critical to the functionality of DocBob or unlikely to affect DocBob's performance. Such features include commands to exit DocBob or delete all patients.
 
 </div>
 
@@ -348,6 +349,8 @@ Output:
 <img width="972" alt="D5 unarchive" src="https://user-images.githubusercontent.com/59093518/114416367-2ffe2b80-9be3-11eb-9686-2a48ec842a81.PNG">
 
 > **Tip**: Make sure you are on the archive list(using the `archivelist` command) before trying to unarchiving a patient!
+
+## Miscellaneous
 
 ### Clearing all entries : `clear`
 
