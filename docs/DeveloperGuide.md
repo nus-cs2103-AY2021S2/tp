@@ -127,7 +127,7 @@ Classes used by multiple components are in the `seedu.heymatez.commons` package.
 ## **Implementation**
 This section documents some of the noteworthy details on how certain features are implemented
 
-### Mark as completed / uncompleted features
+### Mark as completed / uncompleted feature
 
 The implementation of the mark as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` classes respectively, both of which extends from the Command abstract class.
 
@@ -144,7 +144,6 @@ Subsequently, the created `DoneTaskCommand` / `UndoTaskCommand` object contains 
 updating the status of the Task to `completed` or `uncompleted`. This is achieved by creating a new `Task` object with the
 same fields and values but updating the `TaskStatus` field depending on which command is being executed.
 
-<br/>
 Below is the usage scenario and how the mark task as completed mechanism behaves.
 
 Assumptions:
@@ -164,9 +163,20 @@ with the updated status replaces the old task in the `Model`.
 Step 4. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS` is used to return a new Command Result
 with the attached message.
 
+<br/>
+
 Below is the sequence diagram to show how the mark task as completed mechanism works:
 
 ![#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
+
+<br/>
+
+The following activity diagram summarizes what happens when a user executes the mark task as completed command:
+
+![#Activity Diagram for Mark task as done](images/DoneTaskActivityDiagram.png)
+
+<br/>
+
 
 ### Find Tasks with deadline before a selected date feature
 
@@ -207,6 +217,14 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `findBefore 2021-04-04` Command](images/FindBeforeSequenceDiagram.png)
 
+<br/>
+
+The following activity diagram summarizes what happens when a user executes the find tasks with deadline before a selected date command:
+
+![#Activity Diagram for find tasks due before a certain date](images/FindBeforeActivityDiagram.png)
+
+<br/>
+
 ### Delete a Task feature
 
 The implementation of the delete a task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
@@ -245,7 +263,11 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
 
-### Clear all Assignees of a Task feature
+The following activity diagram below summarizes what happens when a user executes the `deleteTask` command:
+
+![#Activity Diagram for Delete Task](images/DeleteTaskActivityDiagram.png)
+
+### Clear all assignees of a Task feature
 
 The implementation of the clear all assignees of a task feature is facilitated by the `ClearAssigneeCommand` 
 class which extends from the Command abstract class.
@@ -281,13 +303,18 @@ new empty HashSet. The copy of the task with the updated assignees field replace
 Step 4. Once the execution is completed, the message `MESSAGE_CLEARED_ASSIGNEES_SUCCESS` is used to return a new Command Result
 with the attached message.
 
-The following sequence diagram shows how the clear all assignees of a Task mechanism behaves. 
+The following sequence diagram shows how the clear all assignees of a task mechanism works: 
 
 ![#Interactions Inside the Logic Component for the `clearAssignees 1` Command](images/ClearAssigneeSequenceDiagram.png)
 
-* Note: The lifeline for `ClearAssigneesCommandParser` and `ClearAssigneesCommand` should end at the destroy marker (X) 
-  but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
-  
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ClearAssigneesCommandParser` and `ClearAssigneesCommand` should end at the destroy marker (X) 
+but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `clearAssignees` command: 
+
+![#Activity Diagram for the clearAssignees command](images/ClearAssigneesActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -520,13 +547,15 @@ Use case ends.
 
 1.  User requests to mark a task as completed using the task's index
 2.  HEY MATEz searches for the task index
-3.  HEY MATEz changes the status of the task in the list to completed
+3.  HEY MATEz changes the status of the task in the list to **completed**
     
 Use case ends.
 
 **Extensions**
 * 2a. Task index does not exist in the currently displayed list of tasks
     * 2a1. HEY MATEz shows an error message
+* 3a. The task has a status of **completed**
+    * 3a1. HEY MATEz shows an error message    
   
 Use case ends.
 
@@ -536,13 +565,15 @@ Use case ends.
 
 1.  User requests to mark a task as uncompleted using the task's index
 2.  HEY MATEz searches for the task index 
-3.  HEY MATEz changes the status of the task in the list to uncompleted
+3.  HEY MATEz changes the status of the task in the list to **uncompleted**
     
 Use case ends.
 
 **Extensions**
 * 2a. Task index does not exist in the currently displayed list of tasks
     * 2a1. HEY MATEz shows an error message
+* 3a. The task has a status of **uncompleted**
+    * 3a1. HEY MATEz shows an error message        
   
 Use case ends.
 
@@ -643,7 +674,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `clear` <br>
        Expected: All the data in HEY MATEz is cleared.
        
-### Adding a member
+### Adding a Member
 
 1. Adding a member 
 
@@ -662,9 +693,9 @@ testers are expected to do more *exploratory* testing.
       Expected: No member is added since the phone number given is invalid. Error details shown in the status bar.
 
    1. Other incorrect commands to try: `addMember`, `addMember Alice`, `addMember Alice p/12345678`, `addMember Alice e/Alice@gmail.com` <br>
-      Expected: similar to previous.
+      Expected: similar to previous test case.
 
-### Viewing members
+### Viewing Members
 
 1. Lists all members within HEY MATEz
 
@@ -675,11 +706,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a member
 
-    1. Prerequisites: List all members using the `viewMembers` command. A member with the name of Rachel exists in the members list
-       while no members with the name of John exists.
+    1. Prerequisites: List all members using the `viewMembers` command. A member with the name of 'Rachel' exists in the members list
+       while no members with the name of 'John' exists.
 
     2. Test case: `deleteMember Rachel`<br>
-       Expected: Member with the name Rachel is deleted from the members list. Details of the deleted member is shown in the
+       Expected: Member with the name 'Rachel' is deleted from the members list. Details of the deleted member is shown in the
        status message.
 
     3. Test case: `deleteMember John`<br>
@@ -692,19 +723,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a member
 
-    1. Prerequisites: List all members using the `viewMembers` command. Members with the name of Alice and Timothy exists
-       in the members list while no members with the name of Dylan exists.
+    1. Prerequisites: List all members using the `viewMembers` command. Members with the name of 'Alice' and 'Timothy' exists
+       in the members list while no members with the name of 'Dylan' exists.
 
     2. Test case: `editMember Alice n/Allyson`<br>
-       Expected: Member with the name Alice is edited to have a new name of Allyson. Details of the edited member is shown
+       Expected: Member with the name 'Alice' is edited to have a new name of 'Allyson'. Details of the edited member is shown
        in the status message.
 
     3. Test case: `editMember Alice n/Timothy`<br>
-       Expected: No member is edited since a member with the name Timothy already exists. Error details is shown in the status
+       Expected: No member is edited since a member with the name 'Timothy' already exists. Error details is shown in the status
        message.
        
     4. Test case: `editMember Alice n/Alice Tan p/98887777 e/aliceTan@gmail.com`
-       Expected: Member with the name Alice is edited to have the new details as specified. Details of the edited member is shown
+       Expected: Member with the name 'Alice' is edited to have the new details as specified. Details of the edited member is shown
        in the status message.
 
     5. Test case: `editMember Dylan`<br>
@@ -713,7 +744,7 @@ testers are expected to do more *exploratory* testing.
     6. Other incorrect delete commands to try: `edit`, `editMember x` (where x is a name which does not exist in the members list) <br>
        Expected: Similar to previous test case.
 
-### Finding Members by Keywords
+### Finding Members by keywords
 
 1. Finding members in HEY MATEz whose details (i.e. name, phone number, email, role) contain any of the specified keywords
 
@@ -724,7 +755,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `findMembers Alice`<br>
        Expected: Alice is listed in the members list.
 
-    3. Test case: `findMembers alice@gmail.com bryan@gmail.com` <br>
+    3. Test case: `findMembers alice@gmail.com 89996666` <br>
        Expected: Both Alice and Bryan are listed in the members list.
 
     4. Test case: `findMembers secretary`<br>
@@ -736,6 +767,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `findMembers`<br>
        Expected: Invalid command format, error details is shown in the status message.
        
+
 ### Add a Task
 
 1. Adding a task
@@ -787,8 +819,8 @@ testers are expected to do more *exploratory* testing.
     6. Other incorrect delete commands to try: `edit`, `editTask 0`, `editTask -1` <br>
        Expected: Similar to previous test case.
 
-       
-### Viewing tasks
+      
+### Viewing Tasks
 
 1. Lists all tasks within HEY MATEz. 
    
@@ -809,38 +841,45 @@ testers are expected to do more *exploratory* testing.
        Expected: No task is deleted. Error details shown in the status message(Index is invalid).
 
     4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1`, `...` <br>
-       Expected: Similar to previous.
+       Expected: similar to previous test case.
        
 ### Mark a Task as completed
 
-1. Mark a task as completed:
+1. Mark a task as completed
 
-   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status is **uncompleted**.
+   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status 
+   is uncompleted. There also exists a task at index 2 whose task status is completed.
 
    1. Test case: `done 1`<br>
-      Expected: Status of task at index 1 is updated to **completed**. Successful task status update message is shown in the status bar.
+      Expected: Status of task at index 1 is updated to completed. Successful task status update message is shown in the status bar.
       
    1. Test case: `done 0`<br>
-      Expected: No task marked as **completed**. Error details is shown in the status bar.      
+      Expected: No task marked as completed. Error details is shown in the status bar.      
+
+    1. Test case: `done 2`<br>
+      Expected: Since the task already has a status of completed, an error message is shown in the status bar. 
       
    1. Other incorrect commands to try: `done`, `done -1` 
       Expected: Similar to previous test case. 
       
 ### Mark a Task as uncompleted
 
-1. Mark a task as uncompleted: 
+1. Mark a task as uncompleted
 
-   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status is **completed**.
+   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status 
+   is completed. There also exists a task at index 2 whose task status is uncompleted.
 
    1. Test case: `undo 1`<br>
-      Expected: Status of task at index 1 is updated to **uncompleted**. Successful task status update message is shown in the status bar.
+      Expected: Status of task at index 1 is updated to uncompleted. Successful task status update message is shown in the status bar.
       
    1. Test case: `undo 0`<br>
-      Expected: No task marked as **uncompleted**. Error details is shown in the status bar.      
+      Expected: No task marked as uncompleted. Error details is shown in the status bar. 
       
-   1. Other incorrect commands to try: `undo`, `undo -1`
-      Expected: Similar to previous test case.   
-
+   1. Test case: `undo 2`<br>
+      Expected: Since the task already has a status of uncompleted, an error message is shown in the status bar.
+             
+   1. Other incorrect commands to try: `undo`, `undo -1` 
+      Expected: similar to previous test case.
       
 ### Viewing a list of unassigned Tasks
 
@@ -898,7 +937,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect commands to try: `findBefore`, `findBefore 2021-03/21`, etc.
        Expected: Similar to previous test case.
 
-### Find Tasks assigned to a member
+
+### Find Tasks assigned to a Member
 
 1. Lists all tasks assigned to a member
 
@@ -910,13 +950,13 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findTasksFor`
       Expected: Error message displayed in the status bar.
 
-### Finding Tasks by Keywords
+### Finding Tasks by keywords
 
 1. Finding tasks in HEY MATEz whose title or description contain any of the specified keywords
 
     1. Prerequisites: HEY MATEz contains 2 tasks, T1 and T2, with the following details: <br>
-        * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach session
-        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline for EXCO event 
+        * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach
+        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline
 
     2. Test case: `findTasks Community`<br>
         Expected: Task T1 is listed in the task list. 
@@ -933,9 +973,9 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `findTasks`<br>
        Expected: Invalid command format, error details is shown in the status message.
 
-### Clearing all Assignees of a Task
+### Clearing all assignees of a Task
 
-1. Clearing all Assignees of a Task
+1. Clearing all assignees of a Task
     1. Prerequisites: List all tasks using the `viewTasks` command. There exists a task at index 1 with at least 1 member 
        assigned to it.
 
@@ -948,3 +988,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect commands to try: `clearAssignees`, `clearAssignees -1`
       Expected: Similar to previous test case.
+
+      
+--------------------------------------------------------------------------------------------------------------------
+
