@@ -24,8 +24,8 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 <div markdown="block" class="alert-warning">
 
-**:warning: PartyPlanet will use its default Address Book and Event Book if it is unable to locate the
-JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
+**:warning: PartyPlanet will use its default Address (resp. Event) Book if it is unable to locate the
+JSON file for the Address (resp. Event) Book. It will start with an empty Address (resp. Event) Book if there is an error in the JSON file for the Address (resp. Event) Book.**
 
 </div>
 
@@ -43,7 +43,7 @@ purposes, these steps are split into a few categories.
    not important. For instance, the Welfare IC might want to store the address of a member to hold a surprise party.
 
 2. Add in vendors that are commonly contacted during party planning to allow for ease of reference when planning for
-   further parties. All fields are optional except name as it does not make sense for the welfare IC be forced to
+   further parties. All fields are optional except name as it does not make sense for the welfare IC to be forced to
    store information such as Birthdays. This gives the Welfare IC flexibility to decide on what information needs to
    be stored. For instance, the Welfare IC might want to store the email of a catering company, or the address of a bakery for cake pickups.
 
