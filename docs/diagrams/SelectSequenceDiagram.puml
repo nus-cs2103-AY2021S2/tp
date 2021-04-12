@@ -1,7 +1,7 @@
 @startuml
 !include style.puml
 
-box Select Command LOGIC_COLOR_T1
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as Command LOGIC_COLOR
 participant ":WardrobeParser" as WardrobeParser LOGIC_COLOR
 participant ":SelectCommandParser" as SelectCommandParser LOGIC_COLOR
