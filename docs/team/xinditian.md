@@ -25,9 +25,10 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can efficiently search for defintions they need to save time, which satisfies their concern of wasting time having to find data in the textbook. All definitions are extracted from the CS2103/T textbook.  
     (Pull request [\#95](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/95))
 
----
+***
 
-  
+
+
 * **New Feature**: Added ability to show specific content in the Dictionary.
   * What it does: display the contents/definitions at the specified index that is shown on the Dictionary Panel. The feature returns the corresponding content at the index and displays it onto the Dictionary content panel which enables the user to view the full content/definitions.
   * Justifications: This feature improves the product significantly because a user can view the content/definition that they want in detail and easily with a simple command, which satisfies their concern of wasting time digging for contents.
