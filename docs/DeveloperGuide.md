@@ -615,15 +615,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enter book barcode and reader name to allow that reader to borrow a book
-2.  SmartLib displays successful borrowing information
+1.  User enter book barcode and reader name to allow that reader to borrow a book.
+2.  SmartLib displays successful borrowing information.
 
 **Extensions**
 
-* 1a. The book does not exist
-* 1b. The reader does not exist
-* 1c. The book is currently not available
-* 1d. The reader has borrowed more than the number of books allowed
+* 1a. The book does not exist.
+* 1b. The reader does not exist.
+* 1c. The book is currently not available.
+* 1d. The reader has borrowed more than the number of books allowed.
 
   Use case ends.
 
@@ -631,14 +631,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enter book barcode to allow the reader to return a book
-2.  SmartLib displays successful returning information
+1.  User enter book barcode to allow the reader to return a book.
+2.  SmartLib displays successful returning information.
 
 **Extensions**
 
-* 1a. The book does not exist
-* 1b. The book is currently not borrowed by any reader
-* 1c. The book in loan has exceeded expire date, extra charge
+* 1a. The book does not exist.
+* 1b. The book is currently not borrowed by any reader.
+* 1c. The book in loan has exceeded expire date, extra charge.
 
   Use case ends.
 
@@ -648,10 +648,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list readers
+1.  User requests to list readers.
 2.  SmartLib shows a list of readers
-3.  User requests to delete a specific reader in the list
-4.  SmartLib deletes the reader
+3.  User requests to delete a specific reader in the list.
+4.  SmartLib deletes the reader.
 
     Use case ends.
 
@@ -713,8 +713,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User enters data about the reader to be added
-2. SmartLib confirms the addition
+1. User enters data about the reader to be added.
+2. SmartLib confirms the addition.
 
    Use case ends.
 
@@ -734,7 +734,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. User proceeds to enter new data to add another reader.
 
-    * 1b2. Steps 1b and 1b1 are repeated until the data entered is a non-existing reader
+    * 1b2. Steps 1b and 1b1 are repeated until the data entered is a non-existing reader.
 
       Use case resumes from step 2.
 
@@ -803,7 +803,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
    optimal.
