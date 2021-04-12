@@ -211,6 +211,8 @@ Description:
 * Existing values will be updated to the input values.
 * The edited property **cannot have a deadline that is already passed**.
 
+<br>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
 To remove tags from a property, you can use the command `edit property INDEX tags/`. <br> e.g. `edit property 1 tags/` can be used to remove all the tags from the property at index 1.
@@ -237,10 +239,14 @@ Description:
 * Existing values will be updated to the input values.
 * The edited appointment **cannot have a meeting date and time that is already passed**.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 *  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
 
 ![Example appointment edited](images/ExampleEditAppointment.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Deleting
 
