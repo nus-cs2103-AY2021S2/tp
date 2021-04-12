@@ -9,9 +9,9 @@ import seedu.address.model.tag.Tag;
 
 public class Assignment extends Event {
     public static final String DATE_CONSTRAINTS = "Assignment deadline must be formatted "
-            + "to a valid DD/MM/YYYY HHmm";
+        + "to a valid DD/MM/YYYY HHmm";
     public static final String DESCRIPTION_CONSTRAINTS = "Assignment description should not be "
-            + "blank.";
+        + "blank.";
 
     public final Description description;
     public final LocalDateTime deadline;
@@ -84,17 +84,17 @@ public class Assignment extends Event {
 
     @Override
     public String toString() {
-        return description + " due: " + deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER)
+        return description + "\n   due: " + deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER)
             + "    " + isDone();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Assignment // instanceof handles nulls
-                && isDone().equals(isDone()))
-                && description.equals(((Assignment) other).description)
-                && deadline.equals(((Assignment) other).deadline);
+            || (other instanceof Assignment // instanceof handles nulls
+            && isDone().equals(isDone()))
+            && description.equals(((Assignment) other).description)
+            && deadline.equals(((Assignment) other).deadline);
     }
 
     @Override

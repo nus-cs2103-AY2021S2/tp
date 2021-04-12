@@ -225,10 +225,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void switchTabByErrorCommandText(String commandText) {
-        boolean isPersons = commandText.contains("n/");
+        boolean isPersons = commandText.contains("b/");
         boolean isModules = commandText.contains("m/") || commandText.contains("a/")
             || commandText.contains("e/");
-        boolean isEvents = commandText.contains("g/");
+        boolean isEvents = commandText.contains("g/") || commandText.contains("on/");
 
         if (isPersons) {
             displayPanel.showContacts();
