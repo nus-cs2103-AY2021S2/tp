@@ -720,7 +720,7 @@ application is first launched.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing. Take note that all test cases are separate and individual and assume 
 the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 2 programs) respectively, if not otherwise specified.  
-:bulb: To empty the database and reset the state (ID goes back to 1) for testing, try deleting all the entities and restart the program.
+:bulb: To empty the database and reset the state (ID goes back to 1) for testing, try deleting all the entities and restart the program. 
 </div>
 
 ### Launch and shutdown
@@ -784,14 +784,24 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
     1. Test case: `add program s/01-02-2021 18:00 n/Obedience Training t/puppies` <br>
        Expected: Similar to previous.
 
-    1. Test case : `add program n/Obedience Training t/puppies` <br>
+    1. Test case : `add program t/puppies` <br>
        Expected: Missing parameters, status message indicates invalid command format.
         
 ### Delete Command
 
 1. Deleting an owner while all owners are being shown
 
-    1. Prerequisites: List all owners using the `list owner` command. Multiple owners in the list.
+    1. Pre-requisites
+
+        1. Start with an empty database by deleting all entities.
+    
+        1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+    
+        1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`. Ensure Bruce has ID 2. 
+    
+        1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`. Ensure program has ID 3. 
+    
+        1. List owners using `list owner`. 
 
     1. Test case: `delete owner 1`<br>
        Expected: Owner with ID 1 is deleted from the list. All the dogs belonging to the first owner is also deleted. 
@@ -808,7 +818,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
        
 1. Deleting a dog while all dogs are being shown 
 
-    1. Prerequisites: List all dogs using the `list dog` command. Multiple dogs in the list. 
+    1. Prerequisites: Refer to above. List dogs using `list dog`. 
     
     1. Test case: `delete dog 2`<br> 
        Expected: Dog with ID 2 is deleted from the list. The dogs will also be removed from all programs they were previously
@@ -818,23 +828,23 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
       Expected: No dog is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Test case: `delete dog 1`<br>
-      Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+      Expected: No dog is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete dog`, `delete dog x`, `delete dog -x` (where x is larger than list size or negative)<br>
       Expected: Similar to previous.
 
 1. Deleting a program while all programs are being shown
 
-    1. Prerequisites: List all programs using the `list program` command. Multiple programs in the list.
+    1. Prerequisites: Refer to above. List programs using `list program`. 
 
-    1. Test case: `delete program 3`<br>
+    1. Test case: `delete program 5`<br>
        Expected: Program with ID 3 is deleted from the list. The dogs that were enrolled in the program will no longer be enrolled in that program. 
        
     1. Test case: `delete program 0`<br>
        Expected: No program is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Test case: `delete program 1`<br>
-       Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+       Expected: No program is deleted as ID 1 is not a program. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete program`, `delete program x`, `delete program -x` (where x is larger than list size or negative)<br>
        Expected: Similar to previous.
@@ -890,16 +900,26 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
 1. Find valid entities
 
-    1. Prerequisites: Application is running. List being shown does not matter. Ensure Alice Pauline exists in the 
+    1. Pre-requisites
+    
+        1. Start with an empty database by deleting all entities.
+    
+        1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+    
+        1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
+    
+        1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`
+    
+        1. Add another sample owner with `add owner n/James Bond p/90139122 e/jamesbond@example.com a/322, Clementi Ave 2, #02-25 t/friends t/owesMoney` Ensure James Bond has ID 4.
 
-    1. Test case: `find Alice`<br>
+     1. Test case: `find John`<br>
        Expected: Alice with ID 1 is shown on the display list. Status message says "1 entity listed!"
 
-    1. Test case: `find Al`<br>
+    1. Test case: `find Jo`<br>
        Expected: Similar to previous.
        
-    1. Test case: `find Alice Benson ` <br>
-       Expected: Alice and Benson are displayed on the list. Status messages says: "2 entities listed!"
+    1. Test case: `find John James` <br>
+       Expected: John and James are displayed on the list. Status messages says: "2 entities listed!"
        
 1. Finding invalid entities
 
