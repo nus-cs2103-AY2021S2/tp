@@ -363,7 +363,7 @@ Format: `undo`
 
 **:information_source: Info:**<br>
 
-You can only redo `add-fr` and `delete-fr` operations.
+You can only redo undone `add-fr` and `delete-fr` operations.
 
 </div>
 
