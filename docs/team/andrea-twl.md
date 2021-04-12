@@ -35,7 +35,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `sort`, `levelup` and `leveldown`
     * Added field format summary table. (Pull request: [\#211](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/211))
     * Added annotated diagram of TutorsPet UI for quick start section (Pull request: [\#374](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/374))
-* Developer Guide:
+  * Developer Guide:
     * Added implementation details of `sort`, `levelup` and `leveldown`  features. [/#282](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/282)
 
 * **Community**:
