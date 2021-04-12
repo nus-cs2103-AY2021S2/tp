@@ -179,7 +179,7 @@ Examples:
 * `addMember Dylan p/64529356 e/dylan@gmail.com`
 * `addMember Dylan p/64529356 e/dylan@gmail.com r/President`
 
-<br/><br/>
+<div style="page-break-after: always;"></div>
 
 Using the following addMember command, `addMember Erynne p/96398428 e/erynne@gmail.com`, the addMember command
 can be used as shown below:
@@ -218,8 +218,6 @@ Format: `viewMembers `
 
 Examples: 
 * `viewMembers`
-
-<div style="page-break-after: always;"></div>
 
 <a name="editMember"></a>
 ### 4. Edit Member: `editMember`
@@ -291,7 +289,7 @@ Examples:
 * `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
 * `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Rachel a/James`
 
-<br/><br/>
+<div style="page-break-after: always;"></div>
 
 Using the following addTask command, `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Alex Yeoh a/Bernice Yu`, the 
 addTask command can be used as shown below:
@@ -324,8 +322,6 @@ Format: `viewTasks`
 
 Examples: 
 * `viewTasks`
-
-<div style="page-break-after: always;"></div>
 
 <a name="editTask"></a>
 ###     4. Edit Task: `editTask`
