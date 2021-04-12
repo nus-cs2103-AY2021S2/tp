@@ -613,8 +613,8 @@ The following activity diagram summarizes what happens when the `timetable` comm
 
 ![Activity Diagram of View TimeTable](images/timetable/TimetableWindowActivityDiagram.png)
 
-### [Proposed] Budget Feature
-#### Proposed Implementation
+### Budget Feature
+#### Implementation
 The proposed budget feature is to facilitate the user to keep track of the total
 cost of all of his own appointments and whether it is within the budget he has set for
 himself. The budget is an optional feature, and can easily be added through
