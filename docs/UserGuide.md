@@ -14,7 +14,7 @@ If there are any issues, please feel free to contact the team via the emails pro
 --------------------------------------------------------------------------------------------------------------------
 # Application Layout
 
-<img width="1035" alt="layout" src="https://user-images.githubusercontent.com/59093518/114415214-0e507480-9be2-11eb-9b06-ad796d8ebf1c.png">
+<img width="1035" alt="layout" src="https://user-images.githubusercontent.com/59093518/114416067-e31a5500-9be2-11eb-83c3-7b64d6f662da.png">
 
 DocBob's interface comprises of 4 main parts.
 * The **command box** is where you would enter the commands to be executed.
@@ -129,7 +129,7 @@ Example: `list`
 
 Output:
 
-![image](https://user-images.githubusercontent.com/48408342/113679268-2ad84280-96f2-11eb-96c5-c9cb86b651b4.png)
+<img width="972" alt="D1" src="https://user-images.githubusercontent.com/59093518/114416157-fb8a6f80-9be2-11eb-9981-9d44a7ab6b93.PNG">
 
 ### View all information regarding a patient : `view`
 
@@ -143,7 +143,7 @@ Examples:
 
 Output:
 
-![image](https://user-images.githubusercontent.com/48408342/113469180-3ae7ec00-947e-11eb-8a80-a35a17daa1e8.png)
+<img width="972" alt="D2" src="https://user-images.githubusercontent.com/59093518/114416231-0ba24f00-9be3-11eb-9ee5-6749ec557638.PNG">
 
 ### Locating a patient by name : `find`
 
@@ -245,7 +245,7 @@ Example: `listappt`
 
 Output:
 
-![image](https://user-images.githubusercontent.com/59093518/113469628-a2536b00-9481-11eb-95e0-19607d43db7c.png)
+<img width="972" alt="D3" src="https://user-images.githubusercontent.com/59093518/114416268-16f57a80-9be3-11eb-9056-3d36ad010d69.PNG">
 
 ### Create a new medical record for a patient : `mrec`
 
@@ -320,7 +320,7 @@ Example:
 
 Output:
 
-![image](https://user-images.githubusercontent.com/48408342/114153711-30cc5e80-9952-11eb-8dbf-b2eeb74d36b2.png)
+<img width="972" alt="D4" src="https://user-images.githubusercontent.com/59093518/114416329-270d5a00-9be3-11eb-9eb8-c99606606161.PNG">
 
 ### Listing out all archived patients : `archivelist`
 
@@ -345,7 +345,7 @@ Example:
 
 Output:
 
-![image](https://user-images.githubusercontent.com/48408342/114153912-6d985580-9952-11eb-8c4f-408bdbb0a82d.png)
+<img width="972" alt="D5 unarchive" src="https://user-images.githubusercontent.com/59093518/114416367-2ffe2b80-9be3-11eb-9686-2a48ec842a81.PNG">
 
 > **Tip**: Make sure you are on the archive list(using the `archivelist` command) before trying to unarchiving a patient!
 
