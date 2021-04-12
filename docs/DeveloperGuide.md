@@ -914,7 +914,7 @@ testers are expected to do more *exploratory* testing.
     Expected: All tasks with the `uncompleted` status are deleted. 
        
     1. Test case: `delete expired`<br>
-    Expected: An error message **"There are no tasks with the given status!"** is given as there are no expired tasks.
+    Expected: An error message **"There are no tasks with the given status!"** is given if there are no expired tasks.
 
 
 ## 7.5 Switching Tabs
@@ -924,13 +924,13 @@ testers are expected to do more *exploratory* testing.
        Expected: If not already on the home tab, the UI will switch to the home tab.
 1. Switching to expired tab
     1. Test case: `expired`<br>
-       Expected: If not already on the expired tab, the UI will switch to the home tab.
+       Expected: If not already on the expired tab, the UI will switch to the expired tab.
 1. Switching to completed tab      
     1. Test case: `completed`<br>
-       Expected: If not already on the completed tab, the UI will switch to the home tab.
+       Expected: If not already on the completed tab, the UI will switch to the completed tab.
 1. Switching to uncompleted tab
    1. Test case: `uncompleted`<br>
-      Expected: If not already on the uncompleted tab, the UI will switch to the home tab.
+      Expected: If not already on the uncompleted tab, the UI will switch to the uncompleted tab.
 
 ## 7.6 Sorting Tasks
 
