@@ -1,7 +1,6 @@
 package seedu.booking.ui;
 
 import javafx.scene.control.Label;
-
 import seedu.booking.model.Tag;
 
 /**
@@ -10,7 +9,7 @@ import seedu.booking.model.Tag;
  */
 public class TagLabel extends Label {
 
-    private final static String[] colors = new String[]{"a85b6b","75a784","004D80","dd9b73","d66b6b"};
+    private static final String[] colors = new String[]{"a85b6b", "75a784", "004D80", "dd9b73", "d66b6b"};
 
     private final Tag tag;
 

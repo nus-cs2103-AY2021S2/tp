@@ -10,10 +10,10 @@ public enum CommandShowType {
     COMMAND_SHOW_PERSONS,
     COMMAND_SHOW_VENUES,
     COMMAND_SHOW_BOOKINGS,
-    COMMAND_SHOW_PREVIOUS
-    ;
+    COMMAND_SHOW_PREVIOUS;
 
-    private static final EnumMap<CommandShowType, String> enumMap = new EnumMap<CommandShowType, String>(CommandShowType.class);
+    private static final EnumMap<CommandShowType, String> enumMap =
+            new EnumMap<CommandShowType, String>(CommandShowType.class);
 
     static {
         enumMap.put(CommandShowType.COMMAND_SHOW_NONE, "None");

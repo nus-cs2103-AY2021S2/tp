@@ -273,8 +273,8 @@ public class MainWindow extends UiPart<Stage> {
             assert false;
         }
         currentListName.setText(commandType.toString());
-        currentListSize.setText(String.valueOf(listSize) +
-                ((listSize == 1) ? " Listing" : " Listings"));
+        currentListSize.setText(String.valueOf(listSize)
+                + ((listSize == 1) ? " Listing" : " Listings"));
     }
 
     private void handleList(String command) {
