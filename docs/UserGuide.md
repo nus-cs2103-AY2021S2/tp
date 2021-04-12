@@ -64,7 +64,7 @@ Here are some important syntax to take note of to facilitate your reading before
 | <kbd>Enter</kbd> | Indicates the enter button on the user's keyboard |
 | `Markdown` | Example of what to type in the command textbox |
 | **Bold** | Note-worthy keywords |
-| :bulb: | Indicates an important note that will enhance your user experience |
+| :bulb: | Indicates an important tip that will enhance your user experience |
 | :heavy_exclamation_mark: | Indicates something that the user should take caution of |
 
 ## Syntax Format
@@ -96,11 +96,11 @@ Here is how the main page view looks like on launch:
 
 Component | Purpose
 --------|-----------------
-**Menu Bar** | A menu bar that allows users to click on shortcuts
-**Main Display** | The main display that shows the results of each command
-**Response Display** | A display that shows the response message from Pawbook after a command has been executed
-**Card Component** | Each card component represents one entity profile (i.e. Dog, Owner, Program)
-**Command Box** | A text field for the user to enter his/her command
+Menu Bar | A menu bar that allows users to click on shortcuts
+Main Display | The main display that shows the results of each command
+Card Component | Each card component represents one entity profile (i.e. Dog, Owner, Program)
+Response Display | A display that shows the response message from Pawbook after a command has been executed
+Command Box | A text field for the user to enter his/her command
 
 ### Help Page View
 
@@ -149,7 +149,7 @@ Note:
 
 - Different prefixes should be used for the respective entities to specify details.
 - Names are allowed to contain basic Latin letters, numerics, hyphens, commas, periods and apostrophes. This is catered for cases when a program name contains numbers and in some cases, even dog names and owner names. Extra punctuation are subjected to common usages.
-- Pawbook support arbitrary length phone numbers. This is to support phone numbers with differing lengths from different regions.
+- Pawbook supports arbitrary length phone numbers. This is to support phone numbers with differing lengths from different regions.
 - Tags are optional and multiple tags can be added.
 - Tags are only able to take in one alphanumeric string. To write tags with multiple words, consider using camelCase for combining multiple words.
 - Date format used is <kbd>dd-MM-yyyy</kbd>, time format is <kbd>HH:mm</kbd>. For date and time of sessions, it will need therefore need to follow <kbd>dd-MM-yyyy HH:mm</kbd>.<br>
@@ -189,8 +189,8 @@ If successfully added, Pawbook will display a success message as shown here.
 
 ### Delete Command: Remove a dog/owner/program
 
-**Function**: Remove the entry for an entity (dog/owner/program) from Pawbook.<br>
-**Use case**: When you want to delete an entity, you can simply use the delete command and delete the entity that you want using their ID number. For instance, when a dog is no longer under your care, you can delete the dog's profile using this command.
+**Function**: Removes the entry for an entity (dog/owner/program) from Pawbook.<br>
+**Use case**: When you want to delete an entity, you can simply use the delete command and delete the entity that you want using its ID number. For instance, when a dog is no longer under your care, you can delete the dog's profile using this command.
 
 Format:
 
@@ -233,7 +233,7 @@ If successfully deleted, Pawbook will display a success message as shown here.
 ### Edit Command: Modify the details of a dog/owner/program
 
 **Function**: Edits a dog/owner/program from Pawbook.<br>
-**Use case**: This command allows you to edit the attributes of the entity (dog/owner/program) in your Pawbook. Let's say you just added an entry for a dog but you realized that you filled in one of the owner particulars wrongly. The edit command allows you to quickly correct that mistake. More details about each of the editable attributes can be found _[here](#add-command-create-a-dogownerprogram)_.
+**Use case**: This command allows you to edit the attributes of the entity (dog/owner/program) in your Pawbook. Let's say you just added an entry for a dog but you realized that you filled in one of its particulars wrongly. The edit command allows you to quickly correct that mistake. More details about each of the editable attributes can be found _[here](#add-command-create-a-dogownerprogram)_.
 
 Format:
 
@@ -262,7 +262,7 @@ Examples:
 
 <div markdown="span" class="alert alert-info">
 :bulb: Tags are only able to take in one alphanumeric string!<br>
-:bulb: The same restrictions from [Add Command](#add-tips) regarding identity of entities.<br>
+:bulb: The same restrictions from [Add Command](#add-tips) regarding identity of entities apply here.<br>
 :heavy_exclamation_mark: Take note that editing sessions for programs and tags for any entity will automatically override **all** its current sessions/tags! To clear all sessions/tags, use "s/" and "t/" respectively without any values.<br>
 :heavy_exclamation_mark: At least one attribute needs to be modified!
 </div>
@@ -275,7 +275,7 @@ If successfully edited, Pawbook will display a success message as shown here.
 
 ### Enrol Command: Allows dog(s) to join program(s)
 
-**Function**: Enrol a specified dog to a specified program that the dog was previously not enrolled in. Batch enrolment is also supported, which means that multiple dogs can be enrolled into the same program, or one dog can be enrolled into multiple programs.<br>
+**Function**: Enrols a specified dog to a specified program that the dog was previously not enrolled in. Batch enrolment is also supported, which means that multiple dogs can be enrolled into the same program, or one dog can be enrolled into multiple programs.<br>
 **Use case**: When you want to enrol a dog into a specific program, you can use this command. One instance is when after a new dog Bruce has just joined the school and is applying for Obedience Training. You can then enrol Bruce into the Obedience Training program after you have added Bruce into the system.
 
 Format:
@@ -354,8 +354,8 @@ Upon successful dropping, Pawbook will display a success message as shown here.
 
 ### Schedule Command: See all the programs in a day
 
-**Function**: Display all programs happenings on the current day or any specified date.<br>
-**Use case**: As a busy dog school manager, this allows you to view at one glance what are the programs that are lined up on any given day.
+**Function**: Displays all programs happenings on the current day or any specified date.<br>
+**Use case**: As a busy dog school manager, this allows you to view the programs lined up on any specified date at a glance.
 
 Format:
 
@@ -370,9 +370,9 @@ Note:
 
 Examples:
 
-1. Display the schedule for today:
+1. Display the schedule for today. <br>
    Command: `schedule`
-2. Display the schedule for 1st April 2021:
+2. Display the schedule for 1st April 2021. <br>
    Command: `schedule 01-04-2021`
 
 To view the schedule for 01-02-2021, type `schedule 01-02-2021` into the command box.
@@ -383,7 +383,7 @@ If there is a schedule to be viewed, Pawbook will display a success message as s
 
 ### List Command: Switch to viewing a particular type of entity
 
-**Function**: Display entities filtered by type.<br>
+**Function**: Displays entities filtered by type.<br>
 **Use case**: To see the three different types of entities (dog/owner/program), you can use this command. Let's say you want to see all the dogs that you are in-charge of. Simply type `list dog` and all the dogs in Pawbook will be displayed.
 
 Format:
@@ -397,6 +397,7 @@ list program
 Note:
 
 - On Pawbook's startup, all dogs are listed.
+- List command supports plural forms of the entity words, as well as unlimited `'s'`.
 
 Examples:
 
@@ -426,7 +427,7 @@ find KEYWORD [MORE_KEYWORDS]...
 
 Note:
 
-- As long as a name contains one of the keyword, the corresponding entity will show up in the results.
+- As long as a name contains one of the keywords, the corresponding entity will show up in the results.
 
 Examples:
 
@@ -438,6 +439,7 @@ Examples:
 
 <div markdown="span" class="alert alert-info">
 :bulb: `find` is able to take in multiple keywords and return all results as long as the name contains any one of the keywords.
+:bulb: `find` is able to search for results based on substrings of keywords.
 </div>
 
 To find entities containing `Berry` and `Training`, type `find berry training` into the command box.
@@ -474,7 +476,7 @@ To view all entities related to entity with ID 4, type `view 4` into the command
 If there are entities to be viewed, Pawbook will display a success message as shown here.
 ![View Command Result](images/ViewCommandScreenshot2.png)
 
-### Help Command
+### Help Command: Ask for help!
 
 **Function**: Shows the help page.<br>
 **Use case**: If you are unsure about how to use Pawbook, execute this help command to view a complete list of commands.
