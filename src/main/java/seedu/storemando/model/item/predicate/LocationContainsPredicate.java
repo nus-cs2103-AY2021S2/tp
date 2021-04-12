@@ -8,6 +8,9 @@ import seedu.storemando.model.item.Item;
  * Tests that a {@code Item}'s {@code location} matches any of the keywords given.
  */
 public class LocationContainsPredicate implements Predicate<Item> {
+    /**
+     * The keyword that is use to be filter on.
+     */
     private final String keyword;
 
     public LocationContainsPredicate(String keyword) {

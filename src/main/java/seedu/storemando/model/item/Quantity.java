@@ -5,7 +5,7 @@ import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Item's quantity number in the storemando.
- * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}.
  *
  */
 public class Quantity {

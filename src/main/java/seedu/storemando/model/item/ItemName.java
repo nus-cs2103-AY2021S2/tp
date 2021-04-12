@@ -5,7 +5,7 @@ import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Item's name in the storemando.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}.
  */
 public class ItemName {
 

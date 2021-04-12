@@ -38,10 +38,13 @@ public class AddCommand extends Command {
     public static final String MESSAGE_ITEM_EXPIRED_WARNING = "\nWarning: Item has already expired!";
     public static final String MESSAGE_SIMILAR_ITEM_WARNING = "\nWarning: Similar item exists in the same location!";
 
+    /**
+     * The item that the user wants to add into StoreMando.
+     */
     private final Item itemToAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Item}
+     * Creates an AddCommand to add the specified {@code Item}.
      */
     public AddCommand(Item item) {
         requireNonNull(item);

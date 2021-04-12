@@ -20,6 +20,9 @@ public class ClearLocationCommand extends ClearCommand {
         + "(if the location exists) are cleared!";
 
 
+    /**
+     * The predicate that clear command uses to filter the items.
+     */
     private final Predicate<Item> predicate;
 
     public ClearLocationCommand(LocationContainsPredicate predicate) {
