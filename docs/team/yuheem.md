@@ -36,17 +36,8 @@ Given below are my contributions to the project.
 
 - **Documentation**:
 
-  - TODO
   - User Guide:
-    - Added documentation for the features `delete` and `find` [\#72]()
-    - Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    - Added documentation for the features `set-bg` and `help`.
+    - Update style, language and tone to be more user-centred (Pull request [#124](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/124)).
   - Developer Guide:
-    - Added implementation details of the `delete` feature.
-
-- **Community**:
-
-  - TODO
-  - PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  - Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  - Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  - Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+    - Added design details of the logic component (Pull request [#91](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/91)).
