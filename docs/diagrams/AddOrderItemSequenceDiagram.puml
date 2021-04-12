@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":AddOrderItemCommandParser" as AddOrderItemCommandParser LOGIC_COLOR
 participant ":OrderItem" as OrderItem LOGIC_COLOR
-participant ":AddOrderItemCommand" as AddOrderItemCommand LOGIC_COLOR
+participant "a:AddOrderItemCommand" as AddOrderItemCommand LOGIC_COLOR
 participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 
 end box
