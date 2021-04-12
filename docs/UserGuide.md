@@ -397,7 +397,8 @@ Example:
 `search n/yeoh alex s/xyz t/cn` displays a list of students who has the name `yeoh alex`, order does not matter, or with
 the school `xyz` or with subjects `cn`.
 
-![AfterSearch](images/DemoAfterSearchCommand.png)
+![AfterSearch1](images/DemoAfterSearchCommand1.png)
+![AfterSearch2](images/DemoAfterSearchCommand2.png)
 
 Other examples:
 
