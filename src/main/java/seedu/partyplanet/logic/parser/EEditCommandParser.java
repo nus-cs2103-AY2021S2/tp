@@ -12,14 +12,14 @@ import seedu.partyplanet.logic.commands.EEditCommand.EditEventDescriptor;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EEditCommand object
+ * Parses input arguments and creates a new EEditCommand object.
  */
 public class EEditCommandParser implements Parser<EEditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EEditCommand
      * and returns an EEditCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
