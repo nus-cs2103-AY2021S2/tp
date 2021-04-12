@@ -126,6 +126,9 @@ public class ParserUtil {
         List<Index> listOfIndices = new ArrayList<>();
         Set<Index> setOfIndices = new HashSet<>();
         for (String index : splitByComma) {
+            if (index.equals("")) {
+                continue;
+            }
             Index parsedIndex;
 
             try {
