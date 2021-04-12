@@ -445,7 +445,7 @@ You can use this command in 3 different ways.
 
   Example:
   
-    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
+    * `sort expirydate` sorts the items in the displayed list from the earliest expiry date to the latest.
       
     <br>
 
