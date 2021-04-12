@@ -17,7 +17,7 @@ import seedu.dictionote.model.Model;
 
 
 /**
- * Format full help instructions for every command for display.
+ * Closes a specific UI panel specify by the user.
  */
 public class CloseCommand extends Command {
 
@@ -43,7 +43,9 @@ public class CloseCommand extends Command {
     private final UiActionOption uiActionOption;
 
     /**
-     * Creates an CloseCommand of a the specified Option {@code UiActionOption}
+     * Creates an CloseCommand of a the specified UI Action Option.
+     *
+     * @param uiActionOption UI action option for UI.
      */
     public CloseCommand(UiActionOption uiActionOption) {
         requireNonNull(uiActionOption);
@@ -51,11 +53,9 @@ public class CloseCommand extends Command {
         this.uiActionOption = uiActionOption;
     }
 
-
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.CLOSE, uiActionOption);
-
     }
 
     @Override

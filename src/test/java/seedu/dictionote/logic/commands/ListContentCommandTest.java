@@ -9,6 +9,8 @@ import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -30,12 +32,14 @@ public class ListContentCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListContentCommand(), model, ListContentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListContentCommand(), model, ListContentCommand.MESSAGE_SUCCESS,
+            UiAction.OPEN, UiActionOption.DICTIONARY_LIST, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         //showContentAtIndex(model, INDEX_FIRST_Content);
-        assertCommandSuccess(new ListContentCommand(), model, ListContentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListContentCommand(), model, ListContentCommand.MESSAGE_SUCCESS,
+            UiAction.OPEN, UiActionOption.DICTIONARY_LIST, expectedModel);
     }
 }

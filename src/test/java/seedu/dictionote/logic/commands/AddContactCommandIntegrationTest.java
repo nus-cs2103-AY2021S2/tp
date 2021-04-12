@@ -7,6 +7,8 @@ import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.DefinitionBook;
 import seedu.dictionote.model.Dictionary;
 import seedu.dictionote.model.Model;
@@ -38,7 +40,8 @@ public class AddContactCommandIntegrationTest {
         expectedModel.addContact(validContact);
 
         assertCommandSuccess(new AddContactCommand(validContact), model,
-                String.format(AddContactCommand.MESSAGE_SUCCESS, validContact), expectedModel);
+            String.format(AddContactCommand.MESSAGE_SUCCESS, validContact),
+            UiAction.OPEN, UiActionOption.CONTACT, expectedModel);
     }
 
     @Test

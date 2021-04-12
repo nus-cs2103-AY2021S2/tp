@@ -21,11 +21,16 @@ public class ToggleDictionaryOrientationCommandTest {
     public void execute_toggle_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_TOGGLE_SUCCESS, UiAction.OPEN,
             UiActionOption.DICTIONARY);
+        expectedModel.getGuiSettings().toggleDictionaryPanelOrientation();
         assertCommandSuccess(new ToggleDictionaryOrientationCommand(), model, expectedCommandResult, expectedModel);
+
         //value should not equal after toggle
         assertNotEquals(model.getGuiSettings().getDictionaryPanelOrientation(), (
             new ModelManager()).getGuiSettings().getDictionaryPanelOrientation());
+
+        expectedModel.getGuiSettings().toggleDictionaryPanelOrientation();
         assertCommandSuccess(new ToggleDictionaryOrientationCommand(), model, expectedCommandResult, expectedModel);
+
         //value should be equal after toggle again
         assertEquals(model.getGuiSettings().getDictionaryPanelOrientation(), (
             new ModelManager()).getGuiSettings().getDictionaryPanelOrientation());

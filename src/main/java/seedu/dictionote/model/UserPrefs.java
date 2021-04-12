@@ -12,7 +12,6 @@ import seedu.dictionote.commons.core.GuiSettings;
  * Represents User's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
-
     private GuiSettings guiSettings = new GuiSettings();
     private Path contactsListFilePath = Paths.get("data" , "contactslist.json");
     private Path noteBookFilePath = Paths.get("data" , "notebook.json");

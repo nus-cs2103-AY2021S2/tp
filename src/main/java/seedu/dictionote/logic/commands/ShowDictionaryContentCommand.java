@@ -13,7 +13,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 
 /**
- * Show a specific dictionary content in the content list to the user.
+ * Shows a specific dictionary content in the content list to the user.
  */
 public class ShowDictionaryContentCommand extends Command {
     public static final String COMMAND_WORD = "showdc";
@@ -28,6 +28,11 @@ public class ShowDictionaryContentCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an ShowDictionaryContentCommand that show the content on the dictionary content panel.
+     *
+     * @param targetIndex index of the dictionary content.
+     */
     public ShowDictionaryContentCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

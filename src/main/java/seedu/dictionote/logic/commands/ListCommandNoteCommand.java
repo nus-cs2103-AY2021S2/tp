@@ -3,7 +3,7 @@ package seedu.dictionote.logic.commands;
 import seedu.dictionote.model.Model;
 
 /**
- * Format every available  command for display.
+ * Formats every available note command with description for display.
  */
 public class ListCommandNoteCommand extends Command {
 
