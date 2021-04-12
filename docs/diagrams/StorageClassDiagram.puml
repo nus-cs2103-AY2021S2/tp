@@ -4,13 +4,27 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
+
+package Storage {
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
 Interface BookStorage<T extends Item> <<Interface>> STORAGE_COLOR
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonUserPrefsStorage
+Class JsonPersonBookStorage
+Class JsonDishBookStorage
+Class JsonIngredientBookStorage
+Class JsonOrderBookStorage
+Class JsonSerializablePersonBook
+Class JsonSerializableDishBook
+Class JsonSerializableIngredientBook
+Class JsonSerializableOrderBook
+}
+
+Class HiddenOutside<<hidden>>
+HiddenOutside ..> Storage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
