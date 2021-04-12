@@ -491,6 +491,7 @@ Format: `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...
 * Contacts matching all of the given tag keywords will be returned (i.e. `AND` search).
   e.g. `t/friends t/university` will only return all contacts that are tagged with both `Friends` and `University`
 
+<div style="page-break-after: always;"></div>
 Examples:
 * `findcontact n/John` returns `john` and `John Doe`
 * `findcontact n/jack e/@email.net t/friends t/university` returns all contacts containing `Jack` in their name, `@email.net` in their email, and both `Friends` and `University` as part of their tags.
