@@ -140,19 +140,30 @@ The proposed mechanism is facilitated by the `logic` component described above. 
 
 * `Residence#hasUpcomingBooking()` — Returns true if the `Residence` has a booking starting in the next 7 days.
 
-These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method and `Model` has a new public static `Predicate` named `PREDICATE_UPCOMING_BOOKED_RESIDENCES`.
+These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method. `Model` has a new public static `Predicate` named `PREDICATE_UPCOMING_BOOKED_RESIDENCES`.
 
 Given below is an example usage scenario and how the reminder filtering mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the initial residence tracker state.
+Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the sample residence tracker data.
 
-Step 2. The user executes `addb 2 n/New Tenant p/098 ...` command to add a booking that starts within the next 7 days to the 2nd residence in the residence tracker. The `addb` command calls `Residence#addBooking(Booking booking)`, which replaces the 2nd residence with the new `Residence` after the command execution.
+Step 2. The user executes `addb 2 n/New Tenant p/098 ...` command to add a booking that starts within the next 7 days to the 2nd residence in the residence tracker. The `addb` command calls `Residence#addBooking(Booking booking)`, which adds a new booking to the 2nd residence.
 
 Step 3. The user executes `remind` to list all residences with upcoming bookings. The `remind` command also calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing a filtered list of `Residence`s to be displayed which includes the updated residence from the previous step.
 
 Step 4. Any successful execution of commands `add`, `addb`, `edit`, `editb`, `delete`, `deleteb` or `list` will return to the previous display of the full residence list.
 
+The following sequence diagram shows how the operation works. The `predicate` parameter here is the `Model`'s public static variable `PREDICATE_UPCOMING_BOOKED_RESIDENCES`. Notice how this sequence diagram differs from the delete operation sequence diagram above as there is no `CommandParser` class involved:
+
+![RemindSequenceDiagram](images/RemindSequenceDiagram.png)
+
+The `Model` in the diagram above refers to the Model API interface that the `Logic` component interacts with. The sequence diagram below shows what happens under the hood in the `Model` component to sort residences:
+
+![ResidenceSortSequenceDiagram](images/ResidenceSortSequenceDiagram.png)
+
+
 #### Design consideration:
+
+##### Aspect: What should the `remind` feature do
 
 * **Alternative 1 (current choice):** Checks if residences have bookings starting in the next 7 days.
     * Pros: Easy to implement.
@@ -160,8 +171,8 @@ Step 4. Any successful execution of commands `add`, `addb`, `edit`, `editb`, `de
 
 * **Alternative 2:** Residences are automatically displayed with residences having upcoming bookings on top.
     * Pros: Users will be able to see the residences that need the most urgent attention on top of their list without interacting with the app.
-    * Cons: The users will not be able to tell how many in the list will need to be cleaned immediately for the next 7 days. 
-      Using colour codes to differentiate the residences from the rest will make it visually more unpleasant for the users as it already uses colour coding for bookings.
+    * Cons: The users will not be able to tell how many in the list will need to be cleaned urgently for the next 7 days. 
+      Using colour codes to differentiate these residences from the rest will make it visually more unpleasant for the users as it already uses colour coding for bookings.
 
 ### Status feature
 
@@ -293,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a residence by name            | review details of specific residences without having to go through the entire list |
 | `* *`    | new user                                   | clear all sample residences         | begin using Residence Tracker with my own data quickly
 | `* *`    | user                                       | edit a residence                    | change the information of a residence when necessary           |
-|`* *`     | user                                       | exit the application                | use my computer for other stuff
+|`* *`     | user                                       | exit the application                | use my computer for other matters
 |`* *`     | user                                       | go through a tutorial guide         | quickly learn the usage of the application 
 |`* *`     | user                                       | add a new booking of a residence    | keep track of all booking information of my residences
 |`* *`     | user                                       | edit a new booking of a residence   | change the information of booking when necessary
@@ -411,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case(UC09): Adds a new booking of the specified residence** <br>
+**Use case(UC09): Add a new booking to a specific residence** <br>
 **MSS** <br>
 1.  User adds a new booking to a residence.
 2.  System confirms the validity of the residence and the new booking details.
@@ -428,7 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case(UC10): edit a booking of the specified residence** <br>
+**Use case(UC10): Edit a booking of a specific residence** <br>
 **MSS** <br>
 1.  User edits a residence's booking. 
 2.  System confirms the validity of the residence and the edited booking details.
@@ -445,8 +456,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case (UC11): Delete a booking of a residence**
-
+**Use case (UC11): Delete a booking of a specific residence**<br>
 **MSS**
 1.  User deletes a booking from a residence.
 2.  System validates the booking to be deleted.
@@ -464,7 +474,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case (UC12): Reminder of Residences with Upcoming Bookings** <br>
+**Use case (UC12): Get reminder of residences with upcoming bookings** <br>
 **MSS**<br>
 1.  User requests a reminder of residences with upcoming bookings.
 2.  System shows a list of all residences with bookings starting in the next 7 days.
@@ -543,11 +553,20 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There are some stored residences in the residence tracker. The app is closed.
 
     1. Test case: corrupted `residencetracker.json` <br>
-       Steps: First edit the `residencetracker.json` such that it becomes an invalid format by removing a single `}` at the end of the file. Open the residence tracker.<br>
-       Expected: The residence tracker will start but the residence list will be empty (i.e all previous data is lost). Add a few residences and try other commands. They should work as expected.
+       
+       * Steps: 
+         * Edit the `residencetracker.json` such that it becomes an invalid format by removing a single `}` at the end of the file.
+         * Open the residence tracker. <br>
+       
+       Expected: The residence tracker will start but the residence list will be empty (i.e all previous data is lost). Add a few residences and try other commands. They should work as expected. <br>
 
     1. Test case: missing `residencetracker.json` <br>
-       Steps: Exit the residence tracker. First delete the `residencetracker.json` from the `/data` directory. Open the residence tracker.<br>
+       
+       * Steps: 
+         * Exit the residence tracker.
+         * Delete the `residencetracker.json` from the `/data` directory.
+         * Open the residence tracker.<br>
+       
        Expected: The residence tracker will start with only the sample data.
        
 

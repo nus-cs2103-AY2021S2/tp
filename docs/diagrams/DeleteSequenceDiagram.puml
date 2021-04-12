@@ -48,7 +48,7 @@ deactivate ResidenceTrackerParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteResidence(Residence)
+DeleteCommand -> Model : deleteResidence(residence)
 activate Model
 
 Model --> DeleteCommand

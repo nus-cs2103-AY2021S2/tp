@@ -35,7 +35,7 @@ ResidenceTracker helps users to also keep track of any bookings a residence has,
    * **`clear`** : Deletes all residences.
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command and do make sure to checkout the Refer to the [FAQ](#faq) section as well.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ Adds a new residence to the list of residences, default for clean status is ‘c
 * Names cannot be empty. Trailing white spaces before and after a valid name will be ignored. e.g `  BLK 3  ` will be used and displayed as `BLK 3`
 * Names should only contain alpha-numeric characters. e.g `Block71 Ayer Rajah`  
 * Valid clean statuses are case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
-* Address can contain any alphanumeric character and symbols. `@!df34!@//` is considered a valid address.
+* Address can take any values (even emojis) but only alphanumeric characters and symbols will be visible on the residence tracker. `@!df34!@//` is a valid address.
 * Tags should only contain alphanumeric characters. Symbols and spaces are not valid.
 * Valid tags are case-sensitive so will be used exactly as provided by the user. e.g `POPular` will be used and displayed as `POPular`
 
@@ -174,6 +174,7 @@ Format: `status clean RESIDENCE_INDEX1 RESIDENCE_INDEX2..` or `status unclean RE
 * The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. start from index 1).
 * The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 * More than 1 residence indexes can be specified.
+* The update will not occur at all if any of the indexes provided is invalid (i.e no partial exceution of the command).
 * After updating, the residence list will sort automatically to show Unclean residences before the clean residences.
 
 Examples:
@@ -184,16 +185,16 @@ Examples:
 
 Adds a new booking to the specified residence.
 
-Format: `addb RESIDENCE_INDEX n/NAME_OF_TENANT p/PHONE_OF_TENANT s/START_DATE e/END_DATE`
+Format: `addb RESIDENCE_INDEX n/TENANT_NAME p/TENANT_PHONE s/START_DATE e/END_DATE`
 
 * Adds a booking to the residence at the specified `RESIDENCE_INDEX`.
 * The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. start from index 1).
 * The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
+* The `TENANT_NAME` is similar to `RESIDENCE_NAME`.
 * The phone must only include numbers and must be at least 3 characters long. e.g `p/999` `p/12345678`
 * The dates must follow the format DD-MM-YYYY. e.g `s/01-02-2021`
-* The `START_DATE` to be before than the `END_DATE`.
-* The booking period `START_DATE` to `END_DATE` should not overlap with the booking period of other bookings for this residence.
-* Existing values will be updated to the input values.
+* The `START_DATE` has to be before than the `END_DATE`.
+* The booking period `START_DATE` to `END_DATE` should not overlap with the booking period of other bookings for the given residence.
 
 Examples:
 * `addb 1 n/John p/91234567 s/01-01-2021 e/02-01-2021`
@@ -216,15 +217,15 @@ Examples:
 
 Edits the specified booking from the specified residence.
 
-Format: `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` 
+Format: `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/TENANT_PHONE] [s/START_DATE] [e/END_DATE]` 
 
 * `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. start from index 1).
 * `RESIDENCE_INDEX` and `BOOKING_INDEX` must be a **positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
 to be earlier than the `START_DATE`.
-* It is invalid to edit `START_DATE` or `END_DATE` such that it overlaps with dates of other bookings.
-* Existing values will be updated to the input values.
+* It is invalid to edit `START_DATE` or `END_DATE` such that it overlaps with the booking period of other bookings.
+* Existing booking details will be overwritten by the input values.
 
 Examples:
 * `editb r/1 b/2 p/90069009 s/03-28-2021` Edits the phone number and start date of 2nd booking of the 1st residence to be
@@ -265,13 +266,13 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ResidenceTracker home folder.
 
-**Q**: What does the colour of the bookings respresent?
+**Q**: What does the colour of the bookings respresent?<br>
 **A**: The colours are as follows
 * Red - refers to bookings that have passed
 * Orange - refers to bookings that are ongoing (A booking that starts or ends today is also considered ongoing)
 * Green - refers to bookings that have not started yet 
 
-**Q**: How can I keep viewing the filtered residence list returned by `remind` and `find` commands after I make edits?
+**Q**: How can I keep viewing the filtered residence list returned by `remind` and `find` commands after I make edits?<br>
 **A**: Unfortunately, that is not a functionality we have built yet, but we hear you! The next iteration will be sure to incorporate such features for a better user experience and we hope you can stick with us while we improve the product.
 
 --------------------------------------------------------------------------------------------------------------------

@@ -95,12 +95,12 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
         residences.remove(key);
     }
 
-    /**
+    /**remind
      * Sorts the Residences in this {@code ResidenceTracker}
      * as described in the Residence's {@code compareTo} method.
      */
     public void sortResidenceList() {
-        residences.sortUnmodifiableObservableList();
+        residences.sortResidenceList();
     }
 
     //// util methods
