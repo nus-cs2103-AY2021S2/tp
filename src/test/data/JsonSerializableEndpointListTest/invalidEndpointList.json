@@ -1,0 +1,16 @@
+{
+  "endpoints" : [ {
+    "address" : "https://reqbin.com/echo",
+    "data" : "",
+    "headers" : [ ],
+    "tagged" : [ "missingmethod" ],
+    "response" : {
+      "protocolVersion" : "No Data",
+      "statusCode" : "No Data",
+      "reasonPhrase" : "No Data",
+      "statusLine" : "No Data",
+      "responseEntity" : "No Data",
+      "responseTime" : "No Data"
+    }
+  } ]
+}

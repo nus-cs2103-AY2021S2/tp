@@ -2,8 +2,22 @@
 
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
+           xmlns:fx="http://javafx.com/fxml/1">
+  <VBox VBox.vgrow="ALWAYS" >
+  <FlowPane fx:id="responseMeta" />
+  <TextArea fx:id="resultDisplay" editable="false" prefHeight="9999" prefWidth="9999" styleClass="focused, result-display" wrapText="true"/>
+  </VBox>
+  <children>
+    <ImageView fx:id="loadingSpinnerPlaceholder" visible="false" fitWidth="320" fitHeight="320" preserveRatio="true" pickOnBounds="true">
+    </ImageView>
+    <ImageView fx:id="errorPlaceholder" visible="false" fitWidth="320" fitHeight="320" preserveRatio="true" pickOnBounds="true">
+    </ImageView>
+    <ImageView fx:id="emptyListPlaceholder" visible="false" fitWidth="320" fitHeight="320" preserveRatio="true" pickOnBounds="true">
+    </ImageView>
+  </children>
 </StackPane>

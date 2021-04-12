@@ -1,59 +1,75 @@
 ---
 layout: page
-title: About Us
+title: imPoster Developers
+nav-text: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+<p align="center">
+  <img width="300px" src="images/imPosterB.png" >
+</p>
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+<h1 class="post-title">{{ page.title | escape }}</h1>
+<h3 class="post-subtitle">Project Team</h3>
+
+<div style="page-break-after: always;"></div>
+<br/>
+
+ImPoster developer team is based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg). You can reach us at the email `imposterdevteam@gmail.com`
 
 ## Project team
 
-### John Doe
+### Juliet Teoh
 
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/julietteoh.png" width="200px">
+<p align="left">
+  <a href="http://github.com/JulietTeoh"><img src="images/github-highres-icon.png" class="small-icon"></a>
+  <a href="team/julietteoh.html"><img src="images/portfolio-icon.png" class="small-icon"></a>
+</p>	
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Update existing AB3 commands and documentation
 
-### Jean Doe
+### Liu Yongliang
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/tlylt.png" width="200px">
+<p align="left">
+  <a href="https://github.com/tlylt"><img src="images/github-highres-icon.png" class="small-icon"></a>
+  <a href="team/tlylt.html"><img src="images/portfolio-icon.png" class="small-icon"></a>
+</p>	
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Update new features and ensure code quality
+
+### Ong Jun Xiong
+
+<img src="images/ong6.png" width="200px">
+<p align="left">
+  <a href="https://github.com/ong6"><img src="images/github-highres-icon.png" class="small-icon"></a>
+  <a href="team/ong6.html"><img src="images/portfolio-icon.png" class="small-icon"></a>
+</p>	
+
+* Role: Developer
+* Responsibilities: Update existing AB3 commands and documentation
+
+### Tan Jin
+
+<img src="images/tjtanjin.png" width="200px">
+<p align="left">
+  <a href="https://github.com/tjtanjin"><img src="images/github-highres-icon.png" class="small-icon"></a>
+  <a href="team/tjtanjin.html"><img src="images/portfolio-icon.png" class="small-icon"></a>
+  <a href="https://tjtanjin.com"><img src="images/home-icon.png" class="small-icon"></a>
+</p>	
+
+* Role: Developer
+* Responsibilities: Update new features and ensure smooth integrations
+
+### Warren Ng
+
+<img src="images/nightraven49.png" width="200px">
+<p align="left">
+  <a href="https://github.com/nightraven49"><img src="images/github-highres-icon.png" class="small-icon"></a>
+  <a href="team/nightraven49.html"><img src="images/portfolio-icon.png" class="small-icon"></a>
+</p>	
+
+* Role: Developer
+* Responsibilities: Update user interface and provide quality assurance

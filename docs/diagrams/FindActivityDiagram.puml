@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes find command;
+:Parse command arguments;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([else])
+    :Creates general endpoint
+    predicate;
+else ([has prefix])
+    :Creates predicate related
+    to that prefix/s;
+
+endif
+    :Find command;
+    :Update endpoint list;
+stop
+@enduml

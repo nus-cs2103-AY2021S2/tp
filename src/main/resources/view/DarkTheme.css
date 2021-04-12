@@ -120,6 +120,11 @@
     -fx-text-fill: white;
 }
 
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #383838;
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
@@ -146,9 +151,13 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
+.result-background {
+    -fx-opacity: 0.3;
+}
+
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Segoe UI";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -307,6 +316,14 @@
     -fx-padding: 8 1 8 1;
 }
 
+.focused {
+    -fx-border-color: transparent;
+}
+
+.focused:focused {
+    -fx-border-color: #FD830D !important;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -333,6 +350,7 @@
 }
 
 #resultDisplay .content {
+    -fx-background-image: url('/images/BackgroundDark.png');
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
 }
@@ -344,9 +362,49 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #387b94;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#headers {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#headers .label {
+    -fx-text-fill: white;
+    -fx-background-color: #967336;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#responseMeta {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#responseMeta .label {
+    -fx-text-fill: white;
+    -fx-background-color: #FFA00D;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+    -fx-z-index: -1;
+}
+
+
+#banner {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#banner .label {
+    -fx-text-fill: derive(#FD830D, 10%);
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15;
 }

@@ -1,14 +1,15 @@
-title: "AB-3"
+title: "imPoster"
 theme: minima
 
 header_pages:
   - UserGuide.md
   - DeveloperGuide.md
+  - WorkflowGuide.md
   - AboutUs.md
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2021S2-CS2103T-T12-4/tp"
 github_icon: "images/github-icon.png"
 
 plugins:

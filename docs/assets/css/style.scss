@@ -10,3 +10,50 @@
     height: 21px;
     width: 21px
 }
+
+.custom-table-format {
+  margin-bottom: 1px;
+  height: 20px;
+  line-height:20px;
+  padding:0px 15px;
+}
+
+//Styling taken from https://bskinn.github.io/Custom-kbd-Style/
+kbd { border-style: outset; border-width: 2px; border-color: #999999; border-radius: 6px; padding: 3px; font-size: 75%; font-weight: 475; background-color: #f8f8f8; margin: 2px; white-space: nowrap; }
+
+.name-title {
+  text-align: center;
+  font-size: 32px;
+}
+
+.small-icon {
+  width: 30px;
+  margin: 10px;
+}
+
+.main-command {
+  background-color: #FFC87C;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+}
+
+.compulsory-param {
+  background-color: #ADD8E6;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+}
+
+.optional-param {
+  background-color: #D8BFD8;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+}
+
+
+.pseudo-header {
+  color: #E46C0A;
+  font-size: 20px;
+}

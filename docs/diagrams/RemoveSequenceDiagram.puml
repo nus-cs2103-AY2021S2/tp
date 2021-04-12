@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ImposterParser" as ImposterParser LOGIC_COLOR
+participant ":RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
+participant "d:RemoveCommand" as RemoveCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete 1")
+activate LogicManager
+
+LogicManager -> ImposterParser : parseCommand("remove 1")
+activate ImposterParser
+
+create RemoveCommandParser
+ImposterParser -> RemoveCommandParser
+activate RemoveCommandParser
+
+RemoveCommandParser --> ImposterParser
+deactivate RemoveCommandParser
+
+ImposterParser -> RemoveCommandParser : parse("1")
+activate RemoveCommandParser
+
+create RemoveCommand
+RemoveCommandParser -> RemoveCommand
+activate RemoveCommand
+
+RemoveCommand --> RemoveCommandParser : d
+deactivate RemoveCommand
+
+RemoveCommandParser --> ImposterParser : d
+deactivate RemoveCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemoveCommandParser -[hidden]-> ImposterParser
+destroy RemoveCommandParser
+
+ImposterParser --> LogicManager : d
+deactivate ImposterParser
+
+LogicManager -> RemoveCommand : execute()
+activate RemoveCommand
+
+RemoveCommand -> Model : removeEndpoint(1)
+activate Model
+
+Model --> RemoveCommand
+deactivate Model
+
+create CommandResult
+RemoveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemoveCommand
+deactivate CommandResult
+
+RemoveCommand --> LogicManager : result
+deactivate RemoveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

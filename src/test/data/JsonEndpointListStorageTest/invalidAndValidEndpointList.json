@@ -1,0 +1,31 @@
+{
+  "endpoints" : [ {
+    "method" : "GET",
+    "address" : "https://reqbin.com/echo",
+    "data" : "",
+    "headers" : [ ],
+    "tagged" : [ ],
+    "response" : {
+      "protocolVersion" : "No Data",
+      "statusCode" : "No Data",
+      "reasonPhrase" : "No Data",
+      "statusLine" : "No Data",
+      "responseEntity" : "No Data",
+      "responseTime" : "No Data"
+    }
+  }, {
+    "method" : "INVALID METHOD",
+    "address" : "https://reqbin.com/echo/get/json",
+    "data" : "",
+    "headers" : [ ],
+    "tagged" : [ ],
+    "response" : {
+      "protocolVersion" : "No Data",
+      "statusCode" : "No Data",
+      "reasonPhrase" : "No Data",
+      "statusLine" : "No Data",
+      "responseEntity" : "No Data",
+      "responseTime" : "No Data"
+    }
+  } ]
+}

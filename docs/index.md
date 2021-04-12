@@ -1,19 +1,35 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: imPoster
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+<p align="center">
+  <img width="300px" src="images/imPoster.png" >
+</p>
 
-![Ui](images/Ui.png)
+<h1 class="post-title">{{ page.title | escape }}</h1>
+<h3 class="post-subtitle">v1.4b</h3>
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+<div style="page-break-after: always;"></div>
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+<p align="center">
+  <a href="https://github.com/AY2021S2-CS2103T-T12-4/tp/actions"> <img src="https://github.com/AY2021S2-CS2103T-T12-4/tp/workflows/Java%20CI/badge.svg" /> </a>
+  <a href="https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp"> <img src="https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp/branch/master/graph/badge.svg" /> </a>
+</p>
+<br/>
+
+**imPoster contains most of the features of [Postman](https://www.postman.com/) and is implemented in a simple and minimalistic style** that is easy for anyone to pick up. The latest releases for download are available [here](https://imposter-dev.tk).
+
+* If you are interested in using imPoster, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#3-quickstart).
+* If you are interested about developing imPoster, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+
+A brief snapshot of our application:
+
+<p align="center">
+  <img width="800px" src="images/Ui.png" >
+</p>
 
 
 **Acknowledgements**
-
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Apache HttpComponents](https://hc.apache.org/index.html)
