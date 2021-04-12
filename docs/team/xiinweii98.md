@@ -23,6 +23,8 @@ Given below are my contributions to the project.
     manage the tracking of their orders in CakeCollate.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. The implementation was challenging as it required changes to existing commands.
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancement to existing feature**: Modified `FindCommand`. (Pull request [\#92](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/92))
   * What was changed: 
     * Allow users a less restrictive search.<br>
