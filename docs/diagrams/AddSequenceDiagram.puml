@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "descriptor:AddOrderDescriptor" as AddOrderDescriptor LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> AddCommand : execute()
+activate AddCommand
+
+'not very sure about variables and argument names
+loop for each order description not in the model
+    AddCommand -> Model : addOrderItem(order description)
+end
+
+|||
+
+AddCommand -> Model : getFilteredOrderItemsList()
+
+|||
+
+loop for each order item index in indexlist
+    AddCommand -> AddOrderDescriptor : setOrderDescription(orderItem)
+end
+
+|||
+
+
+AddCommand -> AddOrderDescriptor : build()
+AddCommand <-- AddOrderDescriptor : order
+[<-[hidden]- AddCommand
+destroy AddOrderDescriptor
+
+
+AddCommand -> Model : addOrder(order)
+activate Model
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand : result
+deactivate CommandResult
+[<-[hidden]- AddCommand
+destroy CommandResult
+
+[<-- AddCommand : result
+deactivate AddCommand
+[<-[hidden]- AddCommand
+destroy AddCommand
+
+@enduml
