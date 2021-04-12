@@ -5,7 +5,7 @@ title: Ian's Project Portfolio Page
 
 ## Project: SunRez
 
-**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI). It is written in Java, and has about 19 kLoC.
+**SunRez** is a resident management system for use in hostels and residential colleges (RCs). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 19 kLoC.
 
 Given below are my contributions to the project.
 
