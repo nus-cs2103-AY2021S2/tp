@@ -39,10 +39,10 @@ public class SubjectNameTest {
     @Test
     public void isValidName() {
         // EP 1: Lowercase Alphabet
-        assertTrue(SubjectName.isValidName("abcdefghijklmnopqrstuvwxyz"));
+        assertTrue(SubjectName.isValidName("abcdefghijk"));
 
         // EP 2: Uppercase Alphabet
-        assertTrue(SubjectName.isValidName("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+        assertTrue(SubjectName.isValidName("ABCDEFGHIJK"));
 
         // EP 3: Numbers
         assertTrue(SubjectName.isValidName("0123456789"));

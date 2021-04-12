@@ -25,12 +25,12 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="subject" styleClass="cell_big_label" text="\$subject" />
+                <Label fx:id="subject" styleClass="cell_big_label" text="\$subject" wrapText="true" />
             </HBox>
-            <Label fx:id="name" styleClass="cell_small_label" text="\$name" />
+            <Label fx:id="name" styleClass="cell_small_label" text="\$name" wrapText="true" />
             <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
             <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$location" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$location" wrapText="true" />
         </VBox>
       <rowConstraints>
          <RowConstraints />

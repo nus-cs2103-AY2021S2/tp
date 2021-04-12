@@ -34,17 +34,17 @@
                     <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="NAME" />
+                <Label fx:id="name" styleClass="cell_big_label" text="NAME" wrapText="true" />
               </children>
             </HBox>
             <HBox>
               <children>
                 <VBox>
                   <children>
-                              <Label fx:id="gender" layoutX="10.0" layoutY="27.0" styleClass="cell_small_label" text="GENDER" />
-                    <Label fx:id="phone" styleClass="cell_small_label" text="PHONE" />
-                    <Label fx:id="address" styleClass="cell_small_label" text="ADDRESS" />
-                    <Label fx:id="email" styleClass="cell_small_label" text="EMAIL" />
+                    <Label fx:id="gender" layoutX="10.0" layoutY="27.0" styleClass="cell_small_label" text="GENDER" />
+                    <Label fx:id="phone" styleClass="cell_small_label" text="PHONE" wrapText="true" />
+                    <Label fx:id="address" styleClass="cell_small_label" text="ADDRESS" wrapText="true" />
+                    <Label fx:id="email" styleClass="cell_small_label" text="EMAIL" wrapText="true" />
                     <FlowPane fx:id="subjects" />
                     <FlowPane fx:id="tags" />
                   </children>

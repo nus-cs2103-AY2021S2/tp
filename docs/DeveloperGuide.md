@@ -22,9 +22,9 @@ The features of Tutor Tracker includes:
 
 - Adding, editing, deleting and viewing of tutors' profile
 - Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
-- Adding a note to each tutor's profile
-- Exporting tutor's details  
-- Creating a list of favourites tutors
+- Adding, editing, deleting note of tutors
+- Exporting tutor's details, subject list and notes
+- Adding, removing and listing favourite tutors
 - Adding, editing, deleting and viewing of all tuition appointments
 - Adding, editing, deleting and viewing of all tuition-related schedules
 - Adding, editing, deleting and listing grade records
@@ -56,7 +56,7 @@ The application consists of 6 main components:
 
 | Component                           | Description
 | ----------------------------------- | -------------------------------------------------------------------- |
-| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). <br/>It is responsible for: <li>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</li> <li>At shut down: Shuts down the components and invokes cleanup methods where necessary.</li>|
+| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). * It is responsible for: * At app launch: Initializes the components in the correct sequence, and connects them up with each other. * At shut down: Shuts down the components and invokes cleanup methods where necessary.|
 | [**`UI`**](#ui-component)           | The UI of the App.                                                   |
 | [**`Logic`**](#logic-component)     | The command executor.                                                |
 | [**`Model`**](#model-component)     | Holds the data of the App in memory.                                 |
@@ -141,7 +141,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Implementation
 
 ### Tutor Book
 Tutor Tracker's Tutor Book allows users to store a list of tuition tutors.
@@ -161,23 +161,10 @@ It implements the following operations:
 These operations are exposed in the `Logic` interface by parsing respective `AddCommand` `EditCommand`, `DeleteCommand`, `FindCommand`,
 `ViewCommand` and `ListCommand`. 
 
-### Appointment Book
-Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
+#### Implementation 
+The class and commands are re-used from the `AddressBook Level-3`'s `Person` class.
 
-#### Rationale
-As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, allowing user to store a list of his/her tuition appointment is core of Tutor Tracker.
-
-The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
-It implements the following operations:
-* `Add appointment` - Adds an appointment to the list of appointments.
-* `Edit appointment` - Edit an appointment from the list of appointments.
-* `Delete appointment` - Delete an appointment from the list of appointments.
-* `Find appointment` - Find a tutor from the list of appointments by tutor's name.
-* `View schedules` - View the list of appointments that is happening on the queried date.
-* `List all appointments` - Show an unfiltered list of the appointments.
-
-These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
-`ViewAppointmentCommand` and `ListAppointmentCommand`.
+![Class Diagram of Tutor](images/TutorClassDiagram.png)
 
 ### Favourite Feature
 Tutor Tracker's Favourite feature allows users to create a list of favourites tutors from the entire list of tutors.
@@ -186,8 +173,8 @@ Tutor Tracker's Favourite feature allows users to create a list of favourites tu
 As Tutor Tracker is an application to aid users in viewing a tutor's personal profile, we have also considered that users may also wish to keep a favourite tutor list for easier personal reference instead of performing a search or filtering every time.
 
 #### Implementation
-The proposed note feature is to facilitate the user to keep track of his/her own note of different tutors and export them.
-The notes feature consists of the following operations that can be performed on tutors:
+The favourite feature is to facilitate the user to keep track of his/her favourites out of the entire list of tutors. 
+It implements the following operations:
 * `Favourite tutor` - Add a tutor to the list of favourite tutors.
 * `Unfavourite tutor` - Delete the tutor from the list of favourite.
 * `List favourites` - Show the list of the favourite tutor.
@@ -195,20 +182,23 @@ The notes feature consists of the following operations that can be performed on 
 These operations are exposed in the `Logic` interface by parsing respective `FavouriteCommand`,
 `UnfavouriteCommand` and `ListFavouriteCommand`.
 
-Given below are example usage scenarios and how the favourite feature behaves at each step.
+When the user enters any of the aforementioned commands,
+the user input command undergoes the same command
+parsing as described in the [Logic component](#logic-component).
 
-When the user enters any of the aforementioned commands, the user input command undergoes the same command parsing as described in the [Logic component](#logic-component).
+To add the `favourite` attribute to a Tutor, we can simply create an `EditTutorDescriptor` which is a `Favourite` descriptor, and edit the corresponding `Tutor` with this descriptor. 
+The following shows an example of how an `FavouriteCommand` is executed.
 
-Steps for the execution of the `FavouriteCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `FavouriteCommandParser`.
-3. The `FavouriteCommandParser` will then parse and validate the inputs, and creates a `FavouriteCommandParser` with a target index number,
-   and an `EditTutorDescriptor` with a `Favourite` descriptor.
-4. The `execute()` method of the created `FavouriteCommand` will be called.
-5. The `FavouriteCommand` will validate both the index number and the `EditTutorDescriptor` and call the `ModelManager`'s
-   `setTutor()` method, followed by `TutorBook`'s `setTutor()` method which will add the `Favourite` attribute to the existing tutor.
-6. After the new `Notes` has been successfully added to a tutor, it will update the GUI with the `Favourite` indicator (a star) beside the tutor's name, and return
-   a `CommandResult` to provide feedback of the command's execution.
+Steps for the execution of the `FavouriteCommand` (assuming that no errors are encountered during parsing of inputs):
+1. When the `execute()` method of the `FavouriteCommand` is called, the `Model`’s `getFilteredTutorList()` method is called.
+1. The `get()` method of the `ObservableList` is called returning the tutor at the index specified by the user. 
+1. The `isFavourite()` method of the `Tutor`, which was retrieved from the previous step, is called to check if the tutor specified by index is already a favourite.
+1. Assuming that the above validation passes, the `FavouriteCommand`'s `createEditedTutor()` method is called to create a `Tutor` object with a `favourite` attribute while retaining existing information from the tutor specified by index.
+1. The `Model`'s `setTutor()` method is called, which will then call the `TutorBook`'s `setTutor()` method.
+1. The `Ui` component will detect this change and update the GUI with the `favourite` indicator (a star) beside the tutor's name.
+1. Assuming that the above steps are all successful, the `FavouriteCommand` will then create a `CommandResult` object and return the result.
+
+The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sequence Diagram of Favourite Tutor](images/favourite/FavouriteSequenceDiagram.png)
 
@@ -249,29 +239,25 @@ The notes feature consists of the following operations that can be performed on 
 These operations are exposed in the `Logic` interface by parsing respective `AddNoteCommand`,
 `DeleteNoteCommand`, `EditNoteCommand`, `ListNoteCommand` and `ExportCommand`.
 
-Given below are example usage scenarios and how the note feature behaves at each step.
-
-When the user enters any of the aforementioned commands, 
-the user input command undergoes the same command 
+When the user enters any of the aforementioned commands,
+the user input command undergoes the same command
 parsing as described in the [Logic component](#logic-component).
 
-To add, delete or edit a `Notes` of a `Tutor`, we use of an `EditTutorDescriptor`. The `EditTutorDescriptor` describes the 
-attributes of a tutor to be edited. To add a `Notes` to a `Tutor`, we can simply create an `EditTutorDescriptor` which a 
-`Notes` descriptor, and edit the corresponding `Tutor` with this descriptor. The following shows an example of how an
-`AddNoteCommand` is executed.
+To add the `note` attribute to a Tutor, we can simply create an `EditTutorDescriptor` which is a `Note` descriptor, and edit the corresponding `Tutor` with this descriptor.
+The following shows an example of how an `AddNoteCommand` is executed.
 
-Steps for the execution of the `AddNoteCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddNoteCommandParser`.
-3. The `AddNoteCommandParser` will then parse and validate the inputs, and creates a `AddNoteCommand` with a target index number, 
-   and an `EditTutorDescriptor` with a `Notes` descriptor.
-4. The `execute()` method of the created `AddNoteCommand` will be called.
-5. The `AddNoteCommand` will validate both the index number and the `EditTutorDescriptor` and call the `ModelManager`'s 
-   `setTutor()` command which will add a new `Notes` to the existing tutor. 
-6. After the new `Notes` has been successfully added to a tutor, it will update the GUI with the new `Notes`, and return
-   a `CommandResult` to provide feedback of the command's execution.
+Steps for the execution of the `AddNoteCommand` (assuming that no errors are encountered during parsing of inputs):
+1. When the `execute()` method of the `AddNoteCommand` is called, the `Model`’s `getFilteredTutorList()` method is called.
+1. The `get()` method of the `ObservableList` is called returning the tutor at the index specified by the user.
+1. The `hasNotes()` method of the `Tutor`, which was retrieved from the previous step, is called to check if the tutor specified by index have an existing note.
+1. Assuming that the above validation passes, the `AddNoteCommand`'s `createEditedTutor()` method is called to create a `Tutor` object with a `note` attribute while retaining existing information from the tutor specified by index.
+1. The `Model`'s `setTutor()` method is called, which will then call the `TutorBook`'s `setTutor()` method.
+1. The `Ui` component will detect this change and update the GUI with the `notes` panel attached beside the tutor's profile.
+1. Assuming that the above steps are all successful, the `AddNoteCommand` will then create a `CommandResult` object and return the result.
 
-![Sequence Diagram of Add Schedule](images/notes/NotesSequenceDiagram.png)
+The following Sequence Diagram summarises the aforementioned steps.
+
+![Sequence Diagram of Add Notes](images/notes/NotesSequenceDiagram.png)
 
 #### Design Consideration
 
@@ -290,7 +276,7 @@ Reason for choosing option 1:
   
 The following activity diagram summarizes what happens when the `add_note` command is executed.
 
-![Activity Diagram of Add Schedule](images/notes/NotesActivityDiagram.png)
+![Activity Diagram of Add Note](images/notes/NotesActivityDiagram.png)
 
 To export the details and notes of a `Tutor` into a text file, we use the `export` command. The `export` command would
 create a new folder `/export` in the root directory. Details and notes of a `Tutor` would be converted into human-readable
@@ -392,6 +378,29 @@ When adding or deleting from each `FilterSet`, the combined filter must be recre
 
 The difference for exclusive filters is that an `and` is used instead of `or` to compose the filters. The sequence for deletion is similar, except that filters are removed from the set before composing the filters.
 
+### Appointment Book
+Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
+
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, allowing user to store a list of his/her tuition appointment is core of Tutor Tracker.
+
+The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
+It implements the following operations:
+* `Add appointment` - Adds an appointment to the list of appointments.
+* `Edit appointment` - Edit an appointment from the list of appointments.
+* `Delete appointment` - Delete an appointment from the list of appointments.
+* `Find appointment` - Find a tutor from the list of appointments by tutor's name.
+* `View appointments` - View the list of appointments that is happening on the queried date.
+* `List all appointments` - Show an unfiltered list of the appointments.
+
+These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
+`ViewAppointmentCommand` and `ListAppointmentCommand`.
+
+#### Implementation
+The class and commands are re-used from the `AddressBook Level-3`'s `Person` class.
+The following UML Class Diagram depicts the hirerachy of `Event`, `Appointment` and `Schedule`.
+![Class Diagram of Event](images/EventClassDiagram.png)
+
 ### Schedule Tracker
 Tutor Tracker's Schedule Tracker allows users to create schedules to track their ongoing or upcoming timed-sensitive tasks.
 
@@ -402,7 +411,7 @@ With Schedule Tracker feature, users can now keep track and manage all tuition-r
 
 #### Implementation
 
-A schedule is composed of a `title`, `description`, `schedule date`, `time from` and `time to`, which are used to identify a schedule uniquely.
+A schedule is composed of a `title`, `description`, `time_from` and `time_to`, which are used to identify a schedule uniquely.
 
 All the user's schedules are stored internally in the `scheduleList`.
 Schedule Tracker consist of the following operations that can be performed on schedule:
@@ -415,16 +424,19 @@ Schedule Tracker consist of the following operations that can be performed on sc
 These operations are exposed in the `Logic` interface by parsing respective `AddScheduleCommand`,
 `DeleteScheduleCommand`, `EditScheduleCommand` and `ViewScheduleCommand`.
 
-When the user enters the `add_schedule` command to add a new schedule, the user input command undergoes the same command parsing as described in
-[Logic component](#logic-component).
+When the user enters any of the aforementioned commands,
+the user input command undergoes the same command
+parsing as described in the [Logic component](#logic-component).
 
-Steps for the execution of the `AddScheduleCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddScheduleCommandParser`.
-3. The `AddScheduleCommandParser` will then parse the inputs, and creates a `AddScheduleCommand`.
-4. The `AddScheduleCommand` will then validates the parameters and creates a `Schedule` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addSchedule()`, then create a `CommandResult` object and return the result.
-6. The `Ui` component will detect this change and update the GUI.
+Steps for the execution of the `AddScheduleCommand` (assuming that no errors are encountered during parsing of inputs):
+1. When the `execute()` method of the `AddScheduleCommand` is called, it will perform two-steps of validation. 
+    1. The first validation method called is the `Model`’s `hasSchedule()`. 
+    1. Assuming the previous step's validation is successful, it will then call `DateTimeValidationUtil`'s `validateDateTime()` method.
+1. Assuming that the above validations passes, the `Model`'s `addSchedule()` method is called, which will then call the `TutorTracker`'s `addSchedule()` method.
+1. The `Ui` component will detect this change and update the GUI.
+1. Assuming that the above steps are all successful, the `AddScheduleCommand` will then create a CommandResult object and return the result.
+
+The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sequence Diagram of Add Schedule](images/schedule/ScheduleSequenceDiagram.png)
 
@@ -489,16 +501,19 @@ Reminder Tracker consist of the following operations that can be performed on re
 These operations are exposed in the `Logic` interface by parsing respective `AddReminderCommand`,
 `DeleteReminderCommand` and `EditReminderCommand`.
 
-When the user enters the `add_schedule` command to add a new schedule, the user input command undergoes the same command parsing as described in
-[Logic component](#logic-component).
+When the user enters any of the aforementioned commands,
+the user input command undergoes the same command
+parsing as described in the [Logic component](#logic-component).
 
-Steps for the execution of the `AddReminderCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddReminderCommandParser`.
-3. The `AddReminderCommandParser` will then parse the inputs, and creates a `AddReminderCommand`.
-4. The `AddReminderCommand` will then validates the parameters and creates a `Reminder` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addReminder()`, then create a `CommandResult` object and return the result.
-6. The `Ui` component will detect this change and update the GUI.
+Steps for the execution of the `AddReminderCommand` (assuming that no errors are encountered during parsing of inputs):
+1. When the `execute()` method of the `AddReminderCommand` is called, it will perform two-steps of validation.
+    1. The first validation method called is the `AddReminderCommand`’s `Reminder`'s object `isBeforeToday()`.
+    1. Assuming the previous step's validation is successful, it will then call `Model`'s `hasReminder()` method.
+1. Assuming that the above validations passes, the `Model`'s `addReminder()` method is called, which will then call the `ReminderTracker`'s `addReminder()` method.
+1. The `Ui` component will detect this change and update the GUI.
+1. Assuming that the above steps are all successful, the `AddReminderCommand` will then create a `CommandResult` object and return the result.
+
+The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sequence Diagram of Add Reminder](images/reminder/ReminderSequenceDiagram.png)
 
@@ -532,16 +547,6 @@ The date of an appointment will be indicated using the first column of the grid.
 
 When the user enters the `timetable` command to open the timetable window, the user input command undergoes the same command parsing as described in
 [Logic component](#logic-component).
-
-Steps for the execution of the `ViewTimeTableCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `ViewTimeTableCommandParser`.
-3. The `ViewTimeTableCommandParser` will then parse the inputs, and creates a `ViewTimeTableCommand`.
-4. The `ViewTimeTableCommand` will then validates the parameters.
-5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `viewTimetable()`, then create a `CommandResult` object and return the result.
-6. The `Ui` component will detect that it is asking for the timetable window, and will open it as a separate window.
-
-![Sequence Diagram of View TimeTable](images/timetable/TimetableWindowSequenceDiagram.png)
 
 **Displaying TimeTable in the GUI**
 
@@ -768,9 +773,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.   
-Use case ends.
-
+* 1a. The list is empty.
+  Use case ends.
 <hr/>
 
 **Use Case UC0007: Unfavourite a tutor**
@@ -795,7 +799,7 @@ Use case ends.
 
 <hr/>
 
-**Use Case UC0008: Export tutor's details **
+**Use Case UC0008: Export tutor's details**
 
 **MSS**
 
@@ -849,7 +853,7 @@ Use case ends.
 
 <hr/>
 
-**Use Case UC0011: View tuition appointment**
+**Use Case UC0011: View tuition appointments**
 
 **MSS**
 
@@ -869,8 +873,8 @@ Use case ends.
 
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
-
-    Use case ends.
+      
+    Use case resumes at step 2.
 
 <hr/>
 
@@ -894,8 +898,8 @@ Use case ends.
 
 * 3a. No appointment matches the search value.
     * 3a1. TutorTracker displays an empty list.
-
-  Use case ends.
+      
+    Use case resumes at step 2.
 
 <hr/>
 
@@ -1099,7 +1103,7 @@ Use case ends.
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
 
-  Use case ends.
+  Use case resumes at step 2.
 
 <hr/>
 
@@ -1114,10 +1118,9 @@ Use case ends.
 
 **Extensions**
 
-* 3a. The index is out of bound.
+* 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
-
-  Use case ends.
+      Use case resumes at step 2.
 
 <hr/>
 
@@ -1165,10 +1168,10 @@ Use case ends.
 
 **Extensions**
 
-* 3a. The index is out of bound.
+* 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
+      Use case resumes at step 2.
 
-  Use case ends.
 
 <hr/>
 
@@ -1281,6 +1284,7 @@ Use case ends.
 
 <hr/>
 
+
 ### Non-Functional Requirements
 **Technical Requirements**:
 * Application should be able to launch in any operating
@@ -1338,22 +1342,159 @@ Given below are instructions to test the app manually.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-       
+
+### Adding a Tutor
+
+1. Adding a tutor
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided.
+    1. Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: Adds a tutor by the name `John Doe`, who can teach `English` at `Secondary 3` level. <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient` <br>
+      Expected: Adds a tutor by the name `John Doe`, who can teach `English` at `Secondary 3` level. A note: `Patient` is attached to the tutor as well. <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient` <br>
+       Expected: The tutor is not added. An error message saying that the tutor already exists (assuming you did the first
+       test case) is shown <br><br>
+    1. Test Case: `add_tutor n/John!!!!! g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: The tutor is not added. An error message saying that the name should be in alphanumeric is shown <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Dinosaur p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: The tutor is not added. An error message saying that the gender is invalid is shown <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Male p/995 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+      Expected: The tutor is not added. An error message saying that the phone number length is invalid is shown <br><br>
+    1. Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johexample.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: The tutor is not added. An error message saying that the email format is invalid is shown <br><br>
+    1 . Test Case: `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/ s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level` <br>
+       Expected: The tutor is not added. An error message saying that the address should not be blank is shown <br><br>
+        
 ### Deleting a tutor
 
 1. Deleting a tutor while all tutor(s) are being shown
 
-    1. Prerequisites: List all tutor(s) using the `list` command. Multiple tutors in the list.
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The tutor to be deleted must exist.
+       3. Index must be a positive integer.
 
-    1. Test case: `delete 1`<br>
+    1. Test case: `delete_tutor 1`<br>
        Expected: First tutor is deleted from the list. Details of the deleted tutor shown in the status message.
 
-    1. Test case: `delete 0`<br>
+    1. Test case: `delete_tutor 0`<br>
        Expected: No tutor is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete_tutor`, `delete_tutor x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+       
+### Adding a Note
+
+1. Adding a Note
+    1. Prerequisites:
+        1. List all tutor(s) using the `list` command. Multiple tutors in the list
+        1. Arguments are valid and compulsory parameters are provided.
+    1. Test Case: `add_note 1 patient tutor` <br>
+       Expected: Adds a note `patient tutor` to the first tutor from the list. <br><br>
+    1. Test Case: `add_note 0 patient tutor` <br>
+      Expected: No note is added. Error details shown in the status message. <br><br>
+    1. Test Case: `add_note 1 patient tutor` <br>
+      Expected: No note is added. An error message saying that the tutor already has a note (assuming you did the first
+      test case) is shown <br><br>
+
+### Editing a Note
+
+1. Editing a Note
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided.
+    1. Test Case: `edit_note 1 good tutor` <br>
+       Expected: The note of the first tutor from the list changed to `good tutor`. <br><br>
+    1. Test Case: `edit_note 0 patient tutor` <br>
+       Expected: No note is updated. Error details shown in the status message. <br><br>
+
+### Listing All Tutor(s) with Note
+
+1. List all tutor(s) with note
+    1. Test Case: `list_note` <br>
+       Expected: The Tutor List Panel displays the all the tutor with notes. <br><br>
+    2. Test Case: `list_note abcdefg` <br>
+       Expected: The Tutor List Panel displays the all the tutor with notes. <br><br>
+
+### Deleting a Note
+
+1. Deleting a note while all note(s) are being shown
+
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The note to be deleted must exist.
+       3. Index must be a positive integer.
+
+    1. Test case: `delete_note 1`<br>
+       Expected: Note of the first tutor is deleted. Details of the deleted note shown in the status message.
+
+    1. Test case: `delete_note 0`<br>
+       Expected: No note is deleted. Error details shown in the status message.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-       
+
+### Export Tutor Details
+
+1. Export Tutor Details
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The tutor to be exported must exist.
+       3. Index must be a positive integer.
+     1. Test Case: `export 1` <br>
+       Expected: The details of the first tutor is exported. A `txt` file named after the tutor is saved at the `export` folder of the `jar` file location. <br><br>
+    1. Test Case: `export 0` <br>
+       Expected: No details is exported. Error details shown in the status message. <br><br>
+
+### Favourite Tutor
+
+1. Favourite Tutor
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The tutor to be favourite must exist.
+       3. Index must be a positive integer.
+     1. Test Case: `favourite 1` <br>
+       Expected: The first tutor from the list is favourite. A favourite indicator (star) shown beside the tutor's name. <br><br>
+    1. Test Case: `export 0` <br>
+       Expected: No tutor is favourite. Error details shown in the status message. <br><br>
+
+### Unfavourite Tutor
+
+1. Unfavourite Tutor
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The tutor to be unfavourite must exist.
+       3. Index must be a positive integer.
+     1. Test Case: `favourite 1` <br>
+       Expected: The first tutor from the list is unfavourite. A favourite indicator (star) is removed from beside the tutor's name. <br><br>
+    1. Test Case: `export 0` <br>
+       Expected: No tutor is unfavourite. Error details shown in the status message. <br><br>
+
+### Listing All Favourite Tutor(s)
+
+1. List all favourite tutor(s)
+    1. Test Case: `list_favourites` <br>
+       Expected: The Tutor List Panel displays the all the favourite tutors. <br><br>
+    2. Test Case: `list_favourites abcdefg` <br>
+       Expected: The Tutor List Panel displays the all the favourite tutors. <br><br>
+
+### Viewing Appointments
+
+1. Viewing appointments
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided.
+        2. The date must be in the form `yyyy-mm-dd`.<br><br>
+    2. Test Case: `view_appointment 2021-4-20` <br>
+       Expected: The Appointment List Panel displays the appointments happening on Apr 20 2021. <br><br>
+    3. Test Case: `view_appointment 20/4/2021` <br>
+       Expected: The Appointment List Panel not updated. An error message saying that the date is in the wrong format is shown. <br><br>
+
+### Listing All Appointments
+
+1. List all appointments
+    1. Test Case: `list_appointments` <br>
+       Expected: The Appointment List Panel displays the all the appointments in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
+    2. Test Case: `list_appointments abcdefg` <br>
+       Expected: The Appointment List Panel displays the all the appointments in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
+
 ### Adding a Schedule
 
 1. Adding a schedule
@@ -1454,9 +1595,9 @@ Given below are instructions to test the app manually.
 
 1. List all schedules
     1. Test Case: `list_schedules` <br>
-       Expected: The Schedule List Panel displays the all the schedules in ascending (oldest to newest) order. <br><br>
+       Expected: The Schedule List Panel displays the all the schedules in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
     2. Test Case: `list_schedules abcdefg` <br>
-      Expected: The Schedule List Panel displays the all the schedules in ascending (oldest to newest) order. <br><br>
+      Expected: The Schedule List Panel displays the all the schedules in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
 
 ### Deleting a Schedule
 
@@ -1512,9 +1653,9 @@ Given below are instructions to test the app manually.
 
 1. List all schedules
     1. Test Case: `list_reminders` <br>
-       Expected: The Reminder List Panel displays the all the reminders in ascending (oldest to newest) order. <br><br>
+       Expected: The Reminder List Panel displays the all the reminders in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
     2. Test Case: `list_reminders abcdefg` <br>
-       Expected: The Reminder List Panel displays the all the reminders in ascending (oldest to newest) order. <br><br>
+       Expected: The Reminder List Panel displays the all the reminders in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
 
 ### Deleting a Reminder
 

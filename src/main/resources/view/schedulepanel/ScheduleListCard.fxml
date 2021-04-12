@@ -25,7 +25,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="title" styleClass="cell_big_label" text="\$description" />
+                <Label fx:id="title" styleClass="cell_big_label" text="\$description" wrapText="true" />
             </HBox>
             <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
             <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
