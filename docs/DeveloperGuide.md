@@ -240,10 +240,10 @@ In this way, the opening and saving of medical records is decoupled, allowing mu
 **Target user profile**:
 
 * Clinics where patient information is managed in a written medium such as pen and paper
-* has many patients to manage
-* has a need to edit and maintain patients personal and medical information
-* well versed in CLI
-* prefers typing to mouse interactions
+* Has many patients to manage
+* Has a need to edit and maintain patients personal and medical information
+* Well versed in CLI
+* Prefers typing to mouse interactions
 
 
 **Value proposition**:
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Deleting a patient's information**
 
-**Pre-requisite:** Use 'list' to list out the index of all the patients
+**Pre-requisite:** Use 'list' to list out the index of the patients
 
 **MSS**
 
@@ -340,6 +340,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: View a patient's information**
 
+**Pre-requisite:** Use 'list' to list out the index of the patients
+
 **MSS**
 
 1. User request to view patients information.
@@ -356,12 +358,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 **Use case: Find a patient**
 
-**Pre-requisite:** Finding for patient either in an archived or unarchived list
+**Pre-requisite:** Use 'list' to list out the index of the patients
 
 **MSS**
 
-1. User finds for a patient using a keyword which is case insensitive
-2. DocBob returns a patients
+1. User finds patients using keyword(s) which are case insensitive
+2. DocBob returns all patients matching the keyword(s) entered
 
    `Use case ends`
 
@@ -372,12 +374,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     `Use case resumes at step 1'
         
-  *1a2. the given patient is in the list user is currently in
-  *     1a2.1 DocBob a message to indicate user is in wrong list
-
-    `Use case resumes at step 1'
-        
 **Use case: Edit a patient's information**
+
+**Pre-requisite:** Use 'list' to list out the index of the patients
 
 **MSS**
 
@@ -402,6 +401,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
        `Use case resumes at step 1
 
 **Use case: Adding a new appointment to a patient**
+
+**Pre-requisite:** Use 'list' to list out the index of the patients
 
 **MSS**
 
@@ -434,9 +435,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   *2a. The list is empty
 
-      Use case ends.
+      `Use case ends.`
 
 **Use case: Creating a new medical record**
+
+**Pre-requisite:** Use 'list' to list out the index of the patients
 
 **MSS**
 
@@ -457,6 +460,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       `Use case ends.`
 
 **Use case: View a patient's medical record**
+
+**Pre-requisite:** Use 'list' to list out the index of the patients
 
 **MSS**
 
@@ -479,6 +484,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 **Use case: Adding a patient to archive**
 
+**Pre-requisite:** Use 'list' to list out the index of the patients
+
 **MSS**
 
   1. User chooses to add a patient to archive.
@@ -499,7 +506,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Unarchiving a patient**
 
-**Pre-requisite:** Use 'archivelist' to list out the index of all the archived patients
+**Pre-requisite:** Use 'archivelist' to list out all the archived patients
 
 **MSS**
 
@@ -513,7 +520,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all patients that have been archived.
-2. DocBob shows a list of patients.
+2. DocBob shows the list of patients that have been archived.
 
       `Use case ends.`
 
@@ -549,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Category of Non Functional Requirements | Non Functional Requirement                                                                                    | 
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Domain rules                            | at least 1 patient added |
+| Domain rules                            | At least 1 patient added |
 | Constraints                             | System should be compatible with previous version and easily scalable to add new functionalities  |
 | Constraints                             | System should give obvious advantage to fast typers |
 | Constraints                             | System should not have elements of social networking i.e. communication between devices |
@@ -562,15 +569,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Quality requirement                     | System should be straightforward enough that a novice should at the very least be able to add, edit and delete users|
 | Quality requirement                     | System should be have features that make sense so that as time passes, the users can do more with the software|
 | Quality requirement                     | System should be robust enough to handle manner of edge cases i.e. throw appropriate exceptions that guide the user|
-| Process requirement                     | the project should adhere to the schedule pre-decided (subject to minor adjustments within margin of error)|
-| Notes about project scope               | the program should not have to handle printing of the screen |
-| Notes about project scope               | the program should not have to handle uploading information to private servers |
-| Notes about project scope               | the program should not have to handle encryption and decryption of information passed into it |
+| Process requirement                     | The project should adhere to the schedule pre-decided (subject to minor adjustments within margin of error)|
+| Notes about project scope               | The program should not have to handle printing of the screen |
+| Notes about project scope               | The program should not have to handle uploading information to private servers |
+| Notes about project scope               | The program should not have to handle encryption and decryption of information passed into it |
 | Submission constraints                  | The product JAR should not exceed 100MB |
 | Submission constraints                  | The PDFs of the User Guide and Developer Guide should not exceed 15MB |
-| Miscellaneous                           | the program should not contain any offending imaginary |
-| Miscellaneous                           | the program should not contain any vulgar words/language |
-| Miscellaneous                           | the program should not contain any political imagery |
+| Miscellaneous                           | The program should not contain any offending imaginary |
+| Miscellaneous                           | The program should not contain any vulgar words/language |
+| Miscellaneous                           | The program should not contain any political imagery |
 
 
 
@@ -579,7 +586,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **MSS**: Main success story which describes the most straightforward interaction for a given use case, where nothing goes wrong
-* **Case insensitive**: Capitilisation of letters do not matter.  For example shrek, SHREK and ShErK are considered the same.
+* **Case insensitive**: Capitilisation of letters do not matter.  For example shrek, SHREK and ShrEK are considered the same.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -607,7 +614,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding a patient
+### Adding information
 
 1. Adding a patient
 
@@ -617,59 +624,101 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add n/NAME y/DATEOFBIRTH g/GENDER p/PHONENUMBER e/EMAIL a/ADDRESS b/BLOODTYPE h/HEIGHT w/WEIGHT`<br>
       Expected: Patient with appropriate information (without a tag) added
 
-   1. Other incorrect delete commands to try: `add`, `add x`, `...` (where x is not in the above specified format)<br>
-      Expected: Similar to previous.
+   1. Other incorrect add commands to try: `add`, `add x`, `...` (where x is not in the above specified format)<br>
+      Expected: Error message is shown
 
-1. Adding a patient in archieved list
+1. Adding a patient to the archives
 
-   1. Prerequisites: List all patients using the `archivelist` command. Multiple patients in the archieved list.
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `archive 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is archived. Details of the archived contact shown in the status message.
       
-   1. Other incorrect delete commands to try: `archive`,<br>
-      Expected: Similar to previous.
+   1. Test case: `archive`<br>
+      Expected: Error message is shown
 
 1. Adding a medical record to a patient
-
+  
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+   
    1. Test case: `mrec 1`<br>
-      Expected: Opens a notepad to add medical record to the patient with index 1
+      Expected: Opens a new window to add medical record to the patient with index 1.
       
-  1. Other incorrect delete commands to try: `mrec`, `mrec x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Test case: `mrec`<br>
+      Expected: Error message is shown.
+      
+ 1. Adding an appointment to a patient
 
-### Deleting a patient
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list. 
+   
+   1. Test case: `appt 1 d/25120800`<br>
+      Expected: Adds an appointment on 25th December of the current year at 0800 to the first person in the list. 
+      
+   1. Test case: `appt 1 d/25121230800`<br>
+      Expected: Error message is shown. 
+
+### Listing or viewing information
+
+1. Listing all appointments
+
+   1. Test case: `listappt`<br>
+      Expected: All apointments of patients are listed.
+
+   1. Test case: `listappt 123`<br>
+      Expected: Similar to the previous.
+      
+1. Viewing medical information of a paitnet
+
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list. 
+   
+   1. Test case: `view 1`<br>
+      Expected: The first patient's contact information, medical information, appointments and medical records are shown in the view box.
+      
+   1. Test case: `view`<br>
+      Expected: Error message is shown
+
+1. Viewing medical record of a patient
+
+   1. Prerequisites: View first patient using the `view` command.
+   
+   1. Test case: `vrec 1`<br>
+      Expected: The first medical record of the viewed person is shown in a new window
+      
+   1. Test case: `vrec 5`<br>
+      Expected: Error message is shown if the patient does not have 5 medical records
+      
+1. Listing all archived patients
+
+   1. Test case: `archivelist`<br>
+      Expected: All archived patients are shown.
+
+   1. Test case: `archivelist 123`<br>
+      Expected: Similar to the previous
+
+### Deleting and unarchiving patients
 
 1. Deleting a patient while all patients are being shown
 
    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. Deleting a patient in archieved list
+1. Unarchiving a patient in archive list
 
-   1. Prerequisites: List all patients using the `archivelist` command. Multiple patients in the archieved list.
+   1. Prerequisites: List all patients using the `archivelist` command. Multiple patients in the archived list.
 
    1. Test case: `unarchive 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is moved back to the main list from the archived list. Details of the unarchived contact shown in the status message.
 
    1. Test case: `unarchive 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is unarchived. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `unarchive`, `unarchive x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-
+      Expected: Error message is shown.
