@@ -23,7 +23,11 @@ public class FindContentCommand extends Command {
 
     private final ContentContainsKeywordsPredicate predicate;
 
-    //Todo
+    /**
+     * Creates a new {@code FindContentCommand} with a predicate (i.e., conditions):
+     * which references to the main content in the Dictionary.
+     * @param predicate The predicate to be evaluated against the Dictionary's main content.
+     */
     public FindContentCommand(ContentContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
