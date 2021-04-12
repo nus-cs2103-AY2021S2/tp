@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TutorBuddy - User Guide
+title: User Guide
 ---
 
 <div align="center">
