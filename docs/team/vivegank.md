@@ -33,7 +33,7 @@ Given below are my contributions to the project.
   * Wrote new JUnit tests for Date of Birth, Gender, Height, Weight, and updated all existing JUnit tests related to patient attributes and their usage in other parts of the codebase to increase code coverage.(Pull request [\#96](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/96))
 
 * **Enhancements to existing features**:
-  * Modified existing commands to make some of them work in archive mode and block some of them from working in archive mode. (Pull request [\#41](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/41/files))
+  * Modified existing commands to make some of them work in archive mode and block some of them from working in archive mode. (Pull request [\#41](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/41))
   * Updated the information contained by sample patients to be shown on first startup of product. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/97))
 
 * **Documentation**:
