@@ -16,9 +16,13 @@ StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> ResidenceTrackerStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> ResidenceTrackerStorage
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonResidenceTrackerStorage .left.|> ResidenceTrackerStorage
-JsonResidenceTrackerStorage .down.> JsonSerializableResidenceTrackerStorage
-JsonSerializableResidenceTrackerStorage .right.> JsonSerializableResidence
-JsonSerializableResidence .right.> JsonAdaptedTag
+JsonResidenceTrackerStorage .down.> JsonSerializableResidenceTracker
+JsonSerializableResidenceTracker .right.> JsonAdaptedResidence
+JsonAdaptedResidence .right.> JsonAdaptedTag
+JsonAdaptedResidence .up.> JsonAdaptedBooking
 @enduml

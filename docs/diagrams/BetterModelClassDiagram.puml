@@ -20,7 +20,7 @@ Residence *--> "1" CleanStatusTag
 Residence *--> "1"BookingList
 
 BookingList *-->"*" Booking
-Booking *--> Tenant
+Booking *--> TenantName
 Booking *--> Phone
 Booking *--> BookingTime
 

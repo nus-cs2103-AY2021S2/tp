@@ -66,7 +66,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String DELETE_PROMPT = DeleteCommand.getCommandWord()
                                              + " - Deletes the specified residence from the list of residences "
                                              + "based on index."
-                                             + "\nEnter \"" + DeleteCommand.getCommandWord() + "INDEX\""
+                                             + "\nEnter \"" + DeleteCommand.getCommandWord() + " INDEX\""
                                              + "\nExample: " + DeleteCommand.getCommandWord() + " 3\n\n";
 
     public static final String DELETEB_PROMPT = DeleteBookingCommand.getCommandWord()
