@@ -233,16 +233,6 @@ From the diagram illustrated above:
 ### Unpool feature
 This feature allows users to remove a pool from the pool list through the specification of an index.
 
-Design considerations include the `findPool` command being able to be used in conjunction with the `unpool` command. For instance, the user might first use `findPool n/Alice` and then followed by `unpool 1`.
-The `findPool n/Alice` command first filters the list of displayed pools, such that only pools in which there is a passenger named Alice will be displayed. Calling the `unpool` command would then remove the pool specified by the provided indices from the currently displayed list, removing it from the system. The `findPool` command works similarly to the `find` command, except that it currently only supports the use of the name prefix: "/n"
-
-The activity diagram below encapsulates the user workflow of adding passengers, finding passengers and then pooling the passengers:
-
-![Activity Diagram for a user using Unpool](images/UnpoolActivityDiagram.png)
-
-The rationale behind this implementation was because once the GME terminal is populated with a large number of pools, it would be rather difficult for the user to find a specific pool with a specific passenger.
-By allowing the user to first filter the pools before subsequently removing the pool from the filtered list, the findPool feature greatly enhances the unpool feature, thereby making the product much more cohesive as features work well together.
-
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("unpool 1")`.
 ![Interactions Inside the Logic Component for the `unpool 1` Command](images/UnpoolSequenceDiagram.png)
 
@@ -259,6 +249,14 @@ From the diagram illustrated above:
 
 ### FindPool feature
 This feature allows users to find a pool that contains a passenger with a provided keyword in their name.
+
+Design considerations include the `findPool` command being able to be used in conjunction with the `pool` or `unpool`  command. Due to the limitations of the current iteration of GME, each passenger can only belong to one pool. As the number of passengers and pools increases, it may be hard to keep track of the passengers that exist in pools and those that dont, thus, the user might attempt to create a new pool with a passenger and be informed that that passenger already exists in a pool. The `findPool` feature thus allows the user to find the pool that the passenger already exists in to either confirm if they are in the correctly assigned pool, or `unpool` them if they are not. The `findPool` command works similarly to the `find` command, except that it currently only supports the use of the name prefix: "/n"
+
+The activity diagram below encapsulates the user workflow of attempting to pool a passenger, finding out that the passenger already exists in a pool, and using the `findPool` command to rectify the issue:
+
+![Activity Diagram for a user using Unpool](images/UnpoolActivityDiagram.png)
+
+The rationale behind this implementation was because once the GME terminal is populated with a large number of pools, it would be rather difficult for the user to find a specific pool that includes a specific passenger. This could make it difficult to pool a passenger if they already exist in another pool. By allowing the user to filter the pools by the passengers they include, the user will be able to quickly find the pools that include the passenger they are attempting to pool, allowing them to confirm if they have been assigned to the right pool or to rectify the issue if they have not.
 
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("findPool n/Alice")` command.
 ![Interactions Inside the Logic Component for the `findPool n/Alice` Command](images/FindPoolSequenceDiagram.png)

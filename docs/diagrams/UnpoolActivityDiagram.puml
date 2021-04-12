@@ -1,16 +1,22 @@
 @startuml
-skinparam conditionStyle diamond
 start
-repeat
-  :User adds a pool;
-repeatwhile ([there are more pools to add])
-:User list all pools;
-if () then ([not able to find desired pool to remove])
-    :User filters the pool list using findPool command;
+:User attempts to pool a passenger with the pool command;
+if () then ([Passenger is already in a pool])
+    :User filters the pool list to pools with
+    the Passengers name using findPool
+    command;
     :Filtered pool list is updated and displayed;
-else ([able to find desired pool remove])
+    if () then([Passenger is in the wrong pool])
+        :User uses unpool command to remove that pool;
+        :pool that contains the passenger is removed;
+        :User creates a new pool with the passenger;
+    else ([Passenger is in the right pool])
+    endif
+else ([Passenger does not exist in a pool])
+    :New Pool is created;
 endif
-:User uses unpool [INDEX] command;
-:[INDEX] of pool on currently displayed pool list is removed;
 stop
+':User uses unpool [INDEX] command;
+':[INDEX] of pool on currently displayed pool list is removed;
+'stop
 @enduml
