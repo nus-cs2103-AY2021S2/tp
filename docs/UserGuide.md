@@ -684,6 +684,8 @@ However, if you want to personalise your window size, the optimal display resolu
 **Q**: Why is all my data cleared? <br>
 **A**: You could have edited the data files accidentally and corrupted the data.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Summary
@@ -742,6 +744,6 @@ Action | Format, Examples
 **Prefix**: Expressions that signal inputs of a certain field e.g. `n/` signals name field, `gp/` signals guardian's phone.
 
 **Case sensivitity**: Case-insensitive means that a word input in upper case or lower case will be treated the same way.
-Case-sensitive is the opposite.
+Case-sensitive means the opposite.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
