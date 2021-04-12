@@ -9,7 +9,7 @@ title: Developer Guide
 
 <p align="center">
 
-# Developer Guide
+<h1>Developer Guide</h1>
 </p>
 
 ## Table of Contents
