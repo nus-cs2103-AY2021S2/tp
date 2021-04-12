@@ -9,6 +9,7 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    /** Feedback should be shown to the user. */
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
@@ -52,7 +53,6 @@ public class CommandResult {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof CommandResult)) {
             return false;
         }
@@ -67,5 +67,4 @@ public class CommandResult {
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
-
 }

@@ -13,13 +13,15 @@ import seedu.address.model.Model;
 import seedu.address.model.entry.Entry;
 
 /**
- * Adds an Entry to the list
+ * Adds an Entry to Teaching Assistant.
  */
 public class AddEntryCommand extends Command {
 
     public static final String COMMAND_WORD = "eadd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the list. "
+    public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to Teaching Assistant. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_START_DATE + "START DATE "
@@ -31,12 +33,10 @@ public class AddEntryCommand extends Command {
             + PREFIX_END_DATE + "2021-04-01 19:00 "
             + PREFIX_TAG + "CS2100";
 
-    public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
-
     private final Entry toAdd;
 
     /**
-     * Creates an AddEntryCommand to add the specified {@code Entry}
+     * Creates an AddEntryCommand to add the specified {@code Entry}.
      * @param entry
      */
     public AddEntryCommand(Entry entry) {

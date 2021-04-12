@@ -18,6 +18,8 @@ public class AddContactCommand extends Command {
 
     public static final String COMMAND_WORD = "cadd";
 
+    public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to Teaching Assistant. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -31,12 +33,10 @@ public class AddContactCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
-
     private final Contact toAdd;
 
     /**
-     * Creates an AddContactCommand to add the specified {@code contact}
+     * Creates an AddContactCommand to add the specified {@code Contact}.
      */
     public AddContactCommand(Contact contact) {
         requireNonNull(contact);

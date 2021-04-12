@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.entry.Entry;
 
 /**
- * Deletes an entry identified using its displayed index from Teaching Assistant.
+ * Deletes an entry identified using its displayed index from the entry list in Teaching Assistant.
  */
 public class DeleteEntryCommand extends Command {
 
@@ -24,6 +24,9 @@ public class DeleteEntryCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteEntryCommand to delete the entry at the specified {@code targetIndex}.
+     */
     public DeleteEntryCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
