@@ -667,6 +667,8 @@ Even though the help command expects the user input to contain the `help` comman
   append arguments. However, the arguments will not be parsed by StoreMando.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Actual Implementation
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
@@ -996,6 +998,8 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC12 - Sort items by expiry date**
 
