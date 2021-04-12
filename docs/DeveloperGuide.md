@@ -672,6 +672,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 |`***`|User|Delete my diet plan|Give up on the current diet plan|
 |`***`|User|Track my weight|See if the diet is working|
 |`***`|User|View a list of recommended diets|find out what to diet on as I am not sure|
+|`***`|User|Record my food consumption|Keep track of my daily macronutrient intake|
 |`***`|First-time User|Skim through some example templates|Know how the application works|
 |`**`|Long-time User|See a history of my past diet|I can backtrack what diets I have been on|
 |`**`|Frequent user|Store information on the popular foods that I eat|Quickly input my intake for the day|
