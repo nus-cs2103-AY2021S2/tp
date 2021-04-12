@@ -553,6 +553,7 @@ If your changes to the data files make their format invalid, CakeCollate will di
 * **JSON**: JSON stands for Javascript Object Notation. It is a format for saving data which provides user-friendliness as it is easy to read and write data in this format.
 * **CLI**: CLI is an abbreviation for Command Line Interface. A Command Line Interface enables the user to interact with the application via commands in text format.
 * **GUI**: GUI is an abbreviation for Graphical User Interface. A Graphical User Interface enables the user to interact with the application by clicking on visual components.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **6. FAQ**

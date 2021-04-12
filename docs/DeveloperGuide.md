@@ -415,8 +415,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | `*`     | User                                         | save a particular customer's information                           | I can quickly add another order from this customer next time                                 |
 | `*`     | Regular user                                 | keep track of the money paid or owed by the customer               | I can ensure that all my dues have been received                                             |
 
-[comment]: <> (# will need to add a few more based on new order model and any new features we decide on)
-
 ### Use cases
 
 (For all use cases below, the **System** is `CakeCollate` and the **Actor** is the `user`, unless specified otherwise)
@@ -675,6 +673,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: none
     1. Test case: `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2022 o/Chocolate Cake o/chocolate cake o/Mochi Cake t/friend t/daughter` <br>
     Expected: A new entry corresponding to the details of this order is added to the Order Box. Details of the successful input is shown in the status box. If `Mochi Cake` and `Chocolate Cake` are not in the Order Items table previously, they should be added to it now.
+   1. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2022`
+      Expected: An invalid command format message with details is displayed. No order is added. 
 
 ### Deleting multiple orders
 
