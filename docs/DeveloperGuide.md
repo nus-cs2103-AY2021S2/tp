@@ -3,8 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents 
-{:toc}
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,8 +26,8 @@ each component.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/AY2021S2-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the 
-[PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
+the [diagrams](https://github.com/AY2021S2-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the
+[PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create
 and edit diagrams.
 
 </div>
@@ -160,7 +160,7 @@ convert it to the full gender. For example, `NoN-binARy` will be successfully re
 The birthdate of each client is currently represented as a `LocalDate` object instead of a `String`. This allows us to
 use `LocalDate.parse()` to check for the validity of dates, as well as restricting the range of input dates from
 `1900-01-01` to `LocalDate.now()`. Link.me supports only strict parsing, which means all invalid dates will not be
-recognized and common mistakes like inputting non-existent dates such as the 31st of September will not be automatically 
+recognized and common mistakes like inputting non-existent dates such as the 31st of September will not be automatically
 round down to the 30th of September.
 
 
@@ -168,20 +168,20 @@ round down to the 30th of September.
 
 The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
 risk of overflow. This is to support all currency values, including those that have a much lower value than SGD.
-The validity of the user's input amount is checked using regular expressions. Unnecessary leading zeroes in the input 
+The validity of the user's input amount is checked using regular expressions. Unnecessary leading zeroes in the input
 string are trimmed, and the input string is padded with zeroes as necessary to format it to 2 decimal places.
 
 ### Adding or removing insurance plans of clients
 ![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
 
 The `PlanCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. Depending
-on the `Prefix` the user inputs (`i/` or `c/`), an `AddPlanCommand` or a `RemovePlanCommand` will be created and 
-returned respectively. 
+on the `Prefix` the user inputs (`i/` or `c/`), an `AddPlanCommand` or a `RemovePlanCommand` will be created and
+returned respectively.
 
 ### Recording, viewing and clearing notes for clients
 ![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
 
-The `NoteCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. The `Prefix` 
+The `NoteCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. The `Prefix`
 that the user called the command with (`r/` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
 additional parameter in the `NoteCommand`.
 
@@ -189,7 +189,7 @@ additional parameter in the `NoteCommand`.
 ![NoteSequenceDiagramRef](images/NoteSequenceDiagramRef.png)
 
 Upon executing a `NoteCommand`, a different sequence of actions is performed by the `NoteCommand`, depending on the
-`Prefix` stored in the `NoteCommand`. 
+`Prefix` stored in the `NoteCommand`.
 
 Viewing notes will simply create and return a `CommandResult`. This `CommandResult` contains the `Person` object
 representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
@@ -203,7 +203,7 @@ is then created and returned.
 
 ### Listing, Finding and filtering clients
 
-Upon executing a `ListCommand`, `FindCommand` or `FilterCommand`, a sequence of action is performed by the 
+Upon executing a `ListCommand`, `FindCommand` or `FilterCommand`, a sequence of action is performed by the
 corresponding commands. All 3 commands work similarly: while `ListCommand` does not require any additional user
 inputs, additional users inputs for `FindCommand` and `FilterCommand` are required and will be parsed to create
 Predicate objects. As for the `ListCommand`, the Predicate object will simply return true. These predicates will then
@@ -219,14 +219,14 @@ The implementation of scheduling a meeting is as showcased below:
 
 The current implementation of the `Meeting` class places `Meeting` as an attribute of `Person`. While it
 certainly makes more sense to adopt an implementation where `Person` is an attribute of `Meeting` in order to better
-support extensions and many-to-many relations, we would have to examine and update every `Meeting` object to edit the 
-`Person` if we were to update and change a `Person` as the current implementation of `Person` does not contain an 
-immutable and unique identifier. 
+support extensions and many-to-many relations, we would have to examine and update every `Meeting` object to edit the
+`Person` if we were to update and change a `Person` as the current implementation of `Person` does not contain an
+immutable and unique identifier.
 
-As a result, the current implementation of `UniqueMeetingList` takes in `Person` as the element of the list, and 
-accesses the meeting attribute within the `Person` object when needed. `UniqueMeetingList` contains both a `TreeMap` 
-with `Meeting` as the key and the owner `Person` as the value, as well as an internal `List`. Regarding the editing of 
-the `UniqueMeetingList`, every time the `UniquePersonList` is edited, `UniqueMeetingList` is edited as well. Hence, 
+As a result, the current implementation of `UniqueMeetingList` takes in `Person` as the element of the list, and
+accesses the meeting attribute within the `Person` object when needed. `UniqueMeetingList` contains both a `TreeMap`
+with `Meeting` as the key and the owner `Person` as the value, as well as an internal `List`. Regarding the editing of
+the `UniqueMeetingList`, every time the `UniquePersonList` is edited, `UniqueMeetingList` is edited as well. Hence,
 alteration only remains on the `Model` and `Ui` components.
 
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
@@ -242,7 +242,7 @@ The behavior of the unscheduling command and its options are shown as below.
 ![UnscheduleActivityDiagram](images/UnscheduleActivityDiagram.png)
 
 The internal operation of removing a `Meeting` involves locating the owner `Person` on the internal `List` stored in
-`UniqueMeetingList`, then use the `Meeting` (the key) to remove the owner `Person` (the value) from the internal 
+`UniqueMeetingList`, then use the `Meeting` (the key) to remove the owner `Person` (the value) from the internal
 `TreeMap`, then exporting the values in the `TreeMap` back into the internal `List`.
 
 ### Displaying Notifications
@@ -437,7 +437,7 @@ otherwise)
 **MSS**
 1.  User requests to search for clients with corresponding attribute information (at least one parameter is required)
     * address: a/ADDRESS
-    * gender: g/GENDER 
+    * gender: g/GENDER
     * tag: t/TAG
     * age: age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]
     * insurance plan name: i/PLAN_NAME
@@ -449,15 +449,15 @@ otherwise)
 * 1a. The user inputs an invalid prefix.
     * 1a1. Link.me shows an error message.
     * Use case resumes at step 1
-    
+
 * 1b. The user inputs an invalid age parameter or age range as an attribute to filter
     * 1b1. Link.me shows an error message
     * Use case resumes at step 1
-    
+
 * 1c. The user inputs an invalid gender parameter (must be 'M', 'F' or 'N')
     * 1c1. Link.me shows an error message
     * Use case resumes at step 1
-    
+
 * 1d. The user does not input any filter parameters (eg. `filter ` instead of `filter age/25`)
     * 1d1. Link.me shows an error message
     * Use case resumes at step 1
@@ -486,7 +486,7 @@ otherwise)
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The software should not use any OS-dependent libraries and OS-specific features.
 3.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
-4.  A user with average typing speed for regular English text (i.e. not code, not system admin commands) should be able 
+4.  A user with average typing speed for regular English text (i.e. not code, not system admin commands) should be able
     to accomplish most of the tasks faster using commands than using the mouse.
 5.  The software should work without requiring an installer.
 6.  The software should not depend on a remote server.
@@ -507,8 +507,6 @@ otherwise)
 * **Note** : Longer and complex remarks that gives details about the client
 * **JAR** : Java Archive File, the deployment format of the Link.me application
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
 
@@ -521,47 +519,89 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+* Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+* Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Scheduling a meeting
 
-### Deleting a client
+* Scheduling a meeting with a client
 
-1. Deleting a client while all clients are being shown
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+    1. Test case: `schedule 1 m/Insurance Plan Talk @ 2032-01-02 16:30`<br>
+       Expected: Meeting scheduled with first client. Meeting list panel on the right should be updated.
+       Status bar should display a message indicating success.
 
-   1. Test case: `delete 1`<br>
-      Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `schedule 0 m/Insurance Plan Talk @ 2032-01-02 16:30`<br>
+       Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
 
-   1. Test case: `delete 0`<br>
-      Expected: No clients is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `schedule 1 m/Insurance Plan Talk 2032-01-02 16:30`<br>
+       Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
 
+<<<<<<< HEAD
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
       
 
+=======
+    1. Test case: `schedule 1 m/Insurance Plan Talk `<br>
+       Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
+>>>>>>> master
 
-1. _{ more test cases …​ }_
+    1. Other incorrect schedule commands to try: `schedule`, `schedule x m/ DESCRIPTION @ DATETIME ` (where x is larger than the list size), `...`<br>
+       Expected: Similar to previous.
 
-### Saving data
+### Unscheduling a meeting
 
-1. Dealing with missing/corrupted data files
+* Unscheduling a meeting with a client
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: Meetings are scheduled and shown in the Meeting List Panel on the right on the Ui
 
-1. _{ more test cases …​ }_
+    1. Test case: `unschedule 2`<br>
+       Expected: First meeting on the meeting list panel removed.
+       Meeting list panel on the right should be updated.
+       Status bar should display a message indicating success.
+
+    1. Test case: `unschedule expired`<br>
+       Expected: All meetings on the meeting list panel whose scheduled time has passed are removed.
+       Meeting list panel on the right should be updated.
+       Status bar should display a message indicating success.
+
+    1. Test case: `unschedule all`<br>
+       Expected: All meetings on the meeting list panel are removed.
+       Meeting list panel on the right should be updated.
+       Status bar should display a message indicating success.
+
+    1. Test case: `unschedule 0 `<br>
+       Expected: No meeting is unscheduled. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect unschedule commands to try: `unschedule everything`, `unschedule x` (where x is negative), `...`<br>
+       Expected: Similar to previous.
+
+### Generating Notifications
+
+* Generating Notifications
+
+    1. Prerequisites: None
+
+    1. Test case: `notif`<br>
+       Expected: Notification window should pop up.
+
+    1. Test case: `notif 12345`<br>
+       Expected: Notification window should pop up.
+
+    1. Other correct notif commands to try: `notif x`(where x is any string appended)<br>
+       Expected: Similar to previous.
 
 ### Recording a note for a client
 
@@ -612,65 +652,122 @@ testers are expected to do more *exploratory* testing.
 
 1. Get a list of all clients
 
-  1. Test case: `list`, `list alex`, `list 123` <br>
-    Expected: All clients will be displayed in the list, additional parameters are ignored
+1. Test case: `list`, `list alex`, `list 123` <br>
+   Expected: All clients will be displayed in the list, additional parameters are ignored
 
 ### Finding clients by name
 
 1. Finding clients using (a) name(s) as keyword
 
-  1. Test case: `find Alex` <br>
-    Expected: All clients with that has "Alex" in their name will be displayed in the list
+1. Test case: `find Alex` <br>
+   Expected: All clients with that has "Alex" in their name will be displayed in the list
 
-  1. Test case: `find Alex Bernice` <br>
-    Expected: All clients with that has "Alex" OR "Bernice" in their name will be displayed in the list
+1. Test case: `find Alex Bernice` <br>
+   Expected: All clients with that has "Alex" OR "Bernice" in their name will be displayed in the list
 
-  1. Test case: `find` <br>
-    Expected: Error message "Invalid command format!" followed by instructions on how to properly use the find 
-command
+1. Test case: `find` <br>
+   Expected: Error message "Invalid command format!" followed by instructions on how to properly use the find
+   command
 
-## Filtering clients using attributes. Attributes include a/ADDRESS, g/GENDER, t/TAG, age/[AGE] or 
+## Filtering clients using attributes. Attributes include a/ADDRESS, g/GENDER, t/TAG, age/[AGE] or
 age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
 
-  1. Test case: `filter a/Clementi g/M t/medical i/Protecc age/23-30` <br>
-    Expected: Returns a list of clients who have "Clementi" in their address, and <br>
-      clients who are Male, and <br>
-      clients with the "medical" tag, and <br>
-      clients with the insurance plan "Protecc", and <br>
-      clients aged between 23 and 30 years old, inclusive
+1. Test case: `filter a/Clementi g/M t/medical i/Protecc age/23-30` <br>
+   Expected: Returns a list of clients who have "Clementi" in their address, and <br>
+   clients who are Male, and <br>
+   clients with the "medical" tag, and <br>
+   clients with the insurance plan "Protecc", and <br>
+   clients aged between 23 and 30 years old, inclusive
 
-  1. Test case: `filter`, `filter 20`, `filter Clementi` <br>
-    Expected: Error message "Invalid command format!" followed by instructions on how to properly use the filter 
-command
-
-  1. Test case: `filter age/abc`, `filter age/-1`, `filter age/30-20`, `filter age/ab-20`, `filter age/-1-20` <br>
-    Expected: Error message "Invalid age (range) input!" followed by instructions on how to properly use the filter 
-command <br>
-     
+1. Test case: `filter`, `filter 20`, `filter Clementi` <br>
+   Expected: Error message "Invalid command format!" followed by instructions on how to properly use the filter
+   command
+   
+1. Test case: `filter age/abc`, `filter age/-1`, `filter age/30-20`, `filter age/ab-20`, `filter age/-1-20` <br>
+   Expected: Error message "Invalid age (range) input!" followed by instructions on how to properly use the filter
+   command <br>
+   
 ### Adding or removing an insurance plan of a client
 
 1. Adding a new insurance plan to a client while all clients are being shown
 
-   1. Prerequisites: List all clients using the `list` command. At least 1 client in the list.
+    1. Prerequisites: List all clients using the `list` command. At least 1 client in the list.
 
-   1. Test case: `plan 1 i/Investment $1000`<br>
-      Expected: A new insurance plan is added to the 1st client in the list. Details are shown in the result display.
+    1. Test case: `plan 1 i/Investment $1000`<br>
+       Expected: A new insurance plan is added to the 1st client in the list. Details are shown in the result display.
 
-   1. Test case: `plan 1 i/Investment $0`<br>
-      Expected: No insurance plan is added. Error details are shown in the result display.
+    1. Test case: `plan 1 i/Investment $0`<br>
+       Expected: No insurance plan is added. Error details are shown in the result display.
 
-   1. Other incorrect plan commands to try: `plan 0 i/Investment $1000`, `plan 1 i/`<br>
-      Expected: Similar to previous.
-      
+    1. Other incorrect plan commands to try: `plan 0 i/Investment $1000`, `plan 1 i/`<br>
+       Expected: Similar to previous.
+
 2. Removing an existing insurance plan from a client while all clients are being shown
 
-   1. Prerequisites: List all clients using the `list` command. At least 1 client in the list and the 1st client has at least 1 insurance plan.
+    1. Prerequisites: List all clients using the `list` command. At least 1 client in the list and the 1st client has at least 1 insurance plan.
 
-   1. Test case: `plan 1 c/1`<br>
-      Expected: The 1st insurance plan of the 1st client in the list is removed. Details are shown in the result display.
+    1. Test case: `plan 1 c/1`<br>
+       Expected: The 1st insurance plan of the 1st client in the list is removed. Details are shown in the result display.
 
-   1. Test case: `plan 1 c/0`<br>
-      Expected: No insurance plan is removed. Error details are shown in the result display.
+    1. Test case: `plan 1 c/0`<br>
+       Expected: No insurance plan is removed. Error details are shown in the result display.
 
+    1. Other incorrect plan commands to try: `plan 0 c/1`, `plan 1 c/`<br>
+       Expected: Similar to previous.
+
+### Saving data
+
+1. Editing linkme.json
+
+1. Prerequisites: Link.me is not started while data files are edited
+
+<<<<<<< HEAD
    1. Other incorrect plan commands to try: `plan 0 c/1`, `plan 1 c/`<br>
       Expected: Similar to previous.
+=======
+1. Test case: delete the `linkme.json` file
+   Expected: Link.me will load sample data upon initialization the next time it starts
+
+1. Test case: valid edits are made in the `linkme.json` file
+   Expected: Link.me will the data in from the json file correctly
+
+1. Test case: invalid edits are made in the `linkme.json` file
+   Expected: Link.me will start with an empty data set upon initialization the next time it starts
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+### Meetings and scheduling
+While AB3 only deals with a single entity, `Link.me` deals with an additional entity - `Meeting`. As `Meeting` and
+`Person` are closely intertwined, the level of dependency between the two entities had to be carefully determined.
+Another issue we had to face with `Meeting` was that the `Meeting` entity was time-related, thus some operations could
+not be easily tested. Due to the time-related nature of `Meeting`, we also had to come up with a method to order
+`Meeting` according to time when put on display.
+
+### Notifications and notes
+Notifications and notes had too much information to fit on the main GUI window, thus we had to display the information
+on a separate window. As the construction of a new stage was troublesome especially when we still wanted keyboard
+operations like `Enter` to still work on the new window as well as keep the main GUI consistent, we decided to piggyback
+the implementation on the inbuilt `JavaFX Alert` class, which proved to be another hassle, as `Alert` windows were not
+designed to hold that much information. As a result, we had to sacrifice a bit of UI theme consistency over successful
+functionality.
+
+### Insurance plans
+For insurance plans, the troubling part was to try to keep the similar functionalities of adding and removing within the
+same command in order to reduce user confusion. A separate parser had to be implemented. Another challenge was that the
+insurance premiums could be very large when we wanted to subject it to different small value currencies. Hence, we had
+to store the value as a `String` with validations made with regular expressions, something else we had to learn, instead
+of an `Integer`.
+
+### Filtering clients
+For filtering clients, the main issue was trying to express the selection criteria of different attributes as
+predicates, to which we had to utilize functional programming techniques instead of more common OOP usage. The parser
+for the filter command was also more complex than other commands to construct. In particular, for filtering, we also
+had to filter by age, which required an extra processing step as compared to filtering by other attributes.
+
+### UI
+The UI tinkering for the MainWindow proved to be a major hurdle as we wanted the UI to remain viewable even after
+extreme inputs, which we allowed in order to give our users the greatest flexibility. The GUI also had to stay intact
+when the window is restarted. Furthermore, GUI behaviors could be different on different OSes, so we had to test the GUI
+under different environments.
+>>>>>>> master

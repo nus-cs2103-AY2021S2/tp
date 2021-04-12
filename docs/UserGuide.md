@@ -1,16 +1,16 @@
 ---
-layout: page 
+layout: page
 title: User Guide
 ---
 
 Are you finding it difficult to keep track of your insurance clients? Life as an insurance agent isn't easy. We
-understand. Link.me is a **desktop app built for insurance agents** to help you manage your clients. Features of 
-Link.me include adding, editing, deleting, searching for and filtering clients. Link.me also supports peripheral 
+understand. Link.me is a **desktop app built for insurance agents** to help you manage your clients. Features of
+Link.me include adding, editing, deleting, searching for and filtering clients. Link.me also supports peripheral
 features such as adding and removing insurance plans of clients, meeting scheduling, recording client notes and
 notifying the user of important upcoming events.
 
-Link.me is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical 
-User Interface (GUI). If you can type fast, Link.me can get your client management tasks done faster than traditional 
+Link.me is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical
+User Interface (GUI). If you can type fast, Link.me can get your client management tasks done faster than traditional
 GUI apps.
 
 ### Using this guide
@@ -31,8 +31,8 @@ You may navigate this document using the Table of Contents provided below.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-* Table of Contents 
-{:toc}
+* Table of Contents
+  {:toc}
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -53,15 +53,15 @@ You may navigate this document using the Table of Contents provided below.
    the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all of your clients.
+  * **`list`** : Lists all of your clients.
 
-    * **`add n/John Doe p/98765432 e/johnd@example.com a/123 John Street g/M b/1993-05-06`** : Adds a client named `John Doe` to Link.me.
-    
-    * **`delete 3`** : Deletes the 3rd client shown in the currently displayed client list.
+  * **`add n/John Doe p/98765432 e/johnd@example.com a/123 John Street g/M b/1993-05-06`** : Adds a client named `John Doe` to Link.me.
 
-    * **`clear`** : Deletes all of your clients. You may use this to clear the sample data.
+  * **`delete 3`** : Deletes the 3rd client shown in the currently displayed client list.
 
-    * **`exit`** : Exits Link.me.
+  * **`clear`** : Deletes all of your clients. You may use this to clear the sample data.
+
+  * **`exit`** : Exits Link.me.
 
 6. Refer to the [Features](#features) section below for details of each command.
 
@@ -122,19 +122,19 @@ Action                            | Format
 * Words in `UPPER_CASE` are the inputs you should supply.<br>
   e.g. in `n/NAME`, `NAME` represents the client's name that you should provide. For instance, if the
   client's name is "John Doe", you should input: `n/John Doe`.
-  
+
 
 * Inputs in square brackets are optional.<br>
-  e.g. in `n/NAME [t/TAG]`, while the input for `n/NAME` is mandatory, it is okay to omit `[t/TAG]`. 
+  e.g. in `n/NAME [t/TAG]`, while the input for `n/NAME` is mandatory, it is okay to omit `[t/TAG]`.
   For instance, these two inputs are valid:
-    * `n/John Doe t/medical`
-    * `n/John Doe`
-    
+  * `n/John Doe t/medical`
+  * `n/John Doe`
+
 
 * Inputs with `…`​ after them can be used multiple times (including zero times).<br>
   e.g. in `[t/TAG]…​`, the following inputs are valid:
-    * `t/medical`
-    * `t/medical t/investment`
+  * `t/medical`
+  * `t/medical t/investment`
 
 * You can enter your inputs in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -148,7 +148,7 @@ Action                            | Format
 * For commands that do not take in additional inputs (such as `help`, `list`, `exit` and `clear`), any additional inputs will
   be ignored.<br>
   e.g. for the `help` command, if you input `help 123`, it will be interpreted as `help`.
-  
+
 
 </div>
 
@@ -162,16 +162,16 @@ Format: `list`
 
 You can add a client to Link.me, by specifying each of the fields below:
 
-* Name 
+* Name
   * should only contain alphanumeric characters, spaces and these special characters: (),-
     * :bulb: **Tip:** Use `-` in place of `/` if your name has it. e.g. `Ravi s/o Veegan` --> `Ravi s-o Veegan`
   * should not be blank
   * should not be the same as an existing client
     * :bulb: **Tip:** Link.me does not allow identical names to help you avoid confusion. If more than one of your
-    clients have the same name, you are encouraged to add additional information in parentheses after their name
-    to help you differentiate them.
+      clients have the same name, you are encouraged to add additional information in parentheses after their name
+      to help you differentiate them.
 
-* Phone number 
+* Phone number
   * should only contain numbers
   * should be between 3 and 50 digits (inclusive) long
 
@@ -182,14 +182,14 @@ You can add a client to Link.me, by specifying each of the fields below:
 
 * Address
   * should not be blank
-    
+
 * Gender
   * should be either `M`/`Male`, `F`/`Female` or `N`/`Non-binary`
-    
+
 * Birthdate
   * should be in the format `YYYY-MM-DD`
   * should be a valid date
-    
+
 * Tags (optional)
   * should only contain alphanumeric characters
 
@@ -358,21 +358,21 @@ is exactly the same. Even with a difference of 1 minute, Link.me will schedule a
 
 Example:
 
-* `schedule 2 m/Insurance Plan @ 2020-10-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client 
+* `schedule 2 m/Insurance Plan @ 2020-10-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client
   on 28th October 2020 2:30 pm.
 
 #### Removing a meeting : `unschedule`
 
 Removing meetings comes in three flavors:
 
-* Format: `unschedule INDEX` 
+* Format: `unschedule INDEX`
   * Removes the meeting in the meeting list at `INDEX`. `INDEX` refers to the index number shown in the displayed meeting list.
   * The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* Format: `unschedule all` 
+* Format: `unschedule all`
   * Removes all meetings in the meeting list.
-* Format: `unschedule expired` 
+* Format: `unschedule expired`
   * Removes all expired meetings in the meeting list, i.e. meetings before the present date and time.
-    
+
 
 Example:
 
@@ -417,7 +417,7 @@ All of your clients that have at least one of their attributes matching your sea
 * The search is case-insensitive. e.g. for gender, `male` will match `Male`
 * Only attributes that are identical will be matched. e.g. for insurance plan, `Protect` will not match `Protect Plan`
 * Clients with matching attribute to all the keyword attributes will be returned (i.e. `OR` search). e.g. `g/F age/40` will return all
-female clients aged 40.
+  female clients aged 40.
 
 Example:
 
@@ -431,7 +431,7 @@ Example:
 
 ### Displaying notifications : `notif`
 
-You can view a notification window containing: 
+You can view a notification window containing:
 * All meetings occurring today, arranged in order of time.
 * All client birthdays within the next two weeks, arranged in order of time.
 
