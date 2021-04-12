@@ -8,14 +8,11 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.booking.commons.util.StringUtil;
 import seedu.booking.model.booking.exceptions.BookingNotFoundException;
 import seedu.booking.model.booking.exceptions.DuplicateBookingException;
 import seedu.booking.model.booking.exceptions.OverlappingBookingException;
 import seedu.booking.model.person.Email;
-import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
-import seedu.booking.model.venue.exceptions.VenueNotFoundException;
 
 /**
  * A list of bookings that enforces that is it non overlapping between its elements and does not allow nulls.
@@ -193,6 +190,9 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
         return internalList.stream().filter(toAdd::isOverlapping).count();
     }
 
+    /**
+     * Removes booking with {@code venueName}
+     */
     public void removeBookingWithVenue(VenueName venueName) {
         for (int i = 0; i < internalList.size(); i++) {
             if (!(internalList.get(i).getVenueName().venueName.equalsIgnoreCase(venueName.venueName))) {
@@ -202,6 +202,9 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
         }
     }
 
+    /**
+     * Removes booking with {@code email}
+     */
     public void removeBookingWithBooker(Email email) {
         for (int i = 0; i < internalList.size(); i++) {
             if (!(internalList.get(i).getBookerEmail().value.equalsIgnoreCase(email.value))) {
