@@ -39,19 +39,12 @@ Given below are my contributions to the project.
 * **New Feature**: Added ability to find appointments by specific fields.
   * What it does: allows the user to find appointments by specifying a specific field to search in by
     adding `o/OPTION` to the command.
-  * Justification: This feature improves the product significantly because a user might know exactly what
-    they wish to find and need a quick way to find it. By allowing them to search in the specified field,
-    they can find appointments faster.
-  * Highlights: The parser need to be edited to handle all the different options.This increased the number of branches in the code
-    significantly, hence the implementation was challenging. The number of exceptions to be handled also increased, adding to the complexity.
-    In addition, OOP was used as I extended the search predicates from a common parent class to prevent code duplication.
+  * Justification: **Similar to `find` command above**
   * Pull requests: [#141](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/141), [#176](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/176),
 
 * **New Feature**: Added ability to find appointments by any field.
   * What it does: allows the user to find appointments by searching through all the fields of the appointment.
-  * Justification: This feature allows the user to quickly search through all the fields of the appointment if they do not know which exact
-    field they want to search for. This will return more results rather than just searching by name previously.
-  * Highlights: The implementation of varies predicates into a single predicate was challenging and required use of functional programming paradigms.
+  * Justification **Similar to `find` command above**
   * Pull requests: [#147](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/147)
 
 * **Enhancements to existing features**: Extend usage of `help` command from teammate [Nicole](https://github.com/nicoleang09).
