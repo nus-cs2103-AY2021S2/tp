@@ -301,7 +301,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" height="600" width="601" />
+![UndoRedoState4](images/CommitActivityDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -431,6 +431,8 @@ The following activity diagram summarizes what happens when a user executes a `F
 
 ![FindAppointmentActivityDiagram](images/FindActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ##### Aspect: How predicates of the same type interact with each other
 
 * **Initial implementation**: Conjunction of all predicates where all predicates are combined with logical **`AND`**. 
@@ -442,7 +444,7 @@ with other predicates with logical **`AND`**.
     * Pros: Allows for more flexible searches. 
     * Cons: More difficult to implement and test.    
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
 
@@ -452,7 +454,7 @@ with other predicates with logical **`AND`**.
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix A: Product scope**
 
@@ -466,6 +468,7 @@ with other predicates with logical **`AND`**.
 
 **Value proposition**: PocketEstate enables easy organization of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix B: User Stories**
 
@@ -494,6 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | edit the name of the property listing                                      | change the name of the property when I have made a mistake                                |
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix C: Use Cases**
 
@@ -641,6 +645,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -660,7 +665,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, and with optional attributes: Remarks, Status, Client name, Client contact, Client email, Client asking price, a set of Tags (containing 0 or more tags)
 * **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date, Time
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix F: Instructions for manual testing**
 
@@ -850,6 +855,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit appointment 1 d/19-05-2021 t/1930` <br>
        Expected: No appointment is edited. An error message `Another appointment with the same date and time already exists in the app` is shown in the result display.
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix G: Effort**
 
