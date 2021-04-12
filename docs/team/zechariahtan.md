@@ -33,12 +33,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `Search` [\#72]()
-    * Modified examples and standardised the formatting[\#74]()
-    * Added iconography formatting and introduction paragraph
-    * Added more terms to glossary
+    * Added documentation for the features `Search`[\#72]().
+    * Modified examples and standardised the formatting[\#74]().
+    * Added iconography formatting and introduction paragraph.
+    * Added more terms to glossary.
   * Developer Guide:
-    * Modified existing glossary to include terms specified in the user guide as well
+    * Modified existing glossary to include terms specified in the user guide as well.
     * Modified existing use cases to include relevant information in headers.
     * Modified user stories to better match the current iteration of the product.
     * Added rationale, sequence diagram, activity diagram, and explanation for FindPool command.

@@ -12,7 +12,7 @@ regularly on the specified days and times every week.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the Pool command feature. _(Pull requests [\#121](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/121))_
+* **New Feature**: Added the Pool command feature. (Pull requests [\#121](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/121))
   * What it does: Allows the user to create a pool from the list of passengers, and add it to the list of pools in the GME system.
   * Justification: This feature is the core feature of the product, where pools are created and added to the pool list by the user.
 
