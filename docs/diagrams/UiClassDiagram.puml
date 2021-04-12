@@ -11,7 +11,6 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class StatusBarFooter
 Class CommandBox
 }
 
@@ -27,14 +26,12 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> StatusBarFooter
 
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 UiManager -right-> Logic
@@ -42,7 +39,7 @@ MainWindow -left-> Logic
 
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+
 
 MainWindow -[hidden]-|> UiPart
 @enduml

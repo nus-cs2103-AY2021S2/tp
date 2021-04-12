@@ -101,21 +101,21 @@ Legend | Description
 6. Type the command in the command box at the top and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:
    
-   * **`reset t/blank`**: Resets sample data in the application.
+   * `reset t/blank`: Resets sample data in the application.
 
-   * **`bmi g/M a/43 h/170 w/70 i/50`**: Sets up your user profile with the gender (male), age (43), height (170cm), weight (70kg) and ideal weight (50kg).
+   * `bmi g/M a/43 h/170 w/70 i/50`: Sets up your user profile with the gender (male), age (43), height (170cm), weight (70kg) and ideal weight (50kg).
 
-   * **`bmi_query`**: Returns information on your current BMI profile.
+   * `bmi_query`: Returns information on your current BMI profile.
 
-   * **`plan_recommend`**: Get a recommended diet plan based on your current BMI.
+   * `plan_recommend`: Get a recommended diet plan based on your current BMI.
 
-   * **`plan_set`**`p/1`: Sets your current diet plan to the first in the list.
+   * `plan_set p/1`: Sets your current diet plan to the first in the list.
 
-   * **`food_intake_add`**`d/31 Mar 2021 n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for 31 Mar 2021.
+   * `food_intake_add d/31 Mar 2021 n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for 31 Mar 2021.
 
-   * **`food_intake_query`**`d/31 Mar 2021`: Shows the food intake for 31 Mar 2021.
+   * `food_intake_query d/31 Mar 2021`: Shows the food intake for 31 Mar 2021.
 
-   * **`progress`**: Shows your progress towards your ideal weight.
+   * `progress`: Shows your progress towards your ideal weight.
 
 7. Refer to the [Features](#features) section below for details of each command
 

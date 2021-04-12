@@ -6,19 +6,38 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface UniqueFoodListStorage <<Interface>>
+Interface FoodIntakeListStorage <<Interface>>
+Interface UserStorage <<Interface>>
+Interface DietPlanListStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonUniqueFoodListStorage
+Class JsonFoodIntakeListStorage
+Class JsonUserStorage
+Class JsonDietPlanListStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o-right-> UniqueFoodListStorage
+StorageManager o--> FoodIntakeListStorage
+StorageManager o--> UserStorage
+StorageManager o--> DietPlanListStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonUniqueFoodListStorage .left.|> UniqueFoodListStorage
+JsonFoodIntakeListStorage .left.|> FoodIntakeListStorage
+JsonUserStorage .left.|> UserStorage
+JsonDietPlanListStorage .left.|> DietPlanListStorage
+
+JsonUniqueFoodListStorage .down.> JsonSerializableUniqueFoodList
+JsonFoodIntakeListStorage .down.> JsonSerializableFoodIntakeList
+JsonUserStorage .down.> JsonSerializableUser
+JsonDietPlanListStorage .down.> JsonSerializableDietPlanList
+
+JsonSerializableUniqueFoodList .right.> JsonAdaptedFood
+JsonSerializableFoodIntakeList .right.> JsonAdaptedFoodIntake
+JsonSerializableUser .right.> JsonAdaptedUser
+JsonSerializableDietPlanList .right.> JsonAdaptedDietPlanList
 @enduml
