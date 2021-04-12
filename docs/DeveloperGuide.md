@@ -449,6 +449,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+
 ### Saving data
 
 1. Commands to try out before starting manual testing
@@ -459,6 +460,24 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double clicking on the jar file.<br>
         Expected: The application will be launch and the previously added task will be displayed
 
+
+### Using command `list`
+
+1. Add some dummy tasks 
+    1. Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`
+    2. Use `add mc/CS2105 n/Assignment 2 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
+    3. Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH`
+    4. use command `list`.<br>
+        Expected: Task list will show all available tasks
+
+
+### Using command `clear` 
+
+1. Clearing tasks
+    1. Use command `clear` to clear all the tasks on the list.<br>
+      Expected: The task list is now empty.
+      
+      
 ### Adding a task
 
 1. Adding a task to daily task list using command `add`
@@ -479,9 +498,34 @@ testers are expected to do more *exploratory* testing.
     1. Use `add mc/CS2103 n/Finals d/10-03-2021 t/12:00 w/35% ptag/MEDIUM` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
         Expected: Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `MEDIUM`. Status bar shows success message
     1. Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
-        Expected: Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `HIGH`, tag `URGENT`. Status bar shows success message
+        Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `HIGH`, tag `URGENT`. Status bar shows success message
+        
+ 1. Adding a task with notes using command `add`
+      1. Prerequisites: list do not have the same identical task(s) that are used in example.
+      1. Use `add mc/CS2103 n/Finals d/10-03-2021 t/12:00 w/35% pt/CORE ptag/MEDIUM, notes/IMPORTANT` to attempt to add a new task with notes to the list.<br>
+          Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `MEDIUM`, tag `CORE` and notes `IMPORTANT`. Status bar shows success message.
+        
         
 ### Editing a task 
+
+1. Use the command `clear` to empty the task list. 
+1. Add dummy tasks to test `edit` feature. 
+    1.  Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`
+    2.  Use `add mc/CS2105 n/Assignment 2 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
+    3.  Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
+    4.  After addition of 3 tasks, there will be a list of tasks on the task list.<br>
+          Expected: Task list will display 3 tasks with correct input values.    
+1. Use command `list` to show all available tasks.
+1. Use command `edit` to change module code and name attribute. 
+    1. Use `edit 1 mc/CS1010J n/Finals` to attempt to change the first task on the task list.<br>
+        Expected: First task on the task list will be change to module code: CS1010J and name: Finals
+1. Use command `edit` to change deadline, time and weightage attribute. 
+    1. Use `edit 2 d/18-11-2021 t/21:00 w/25%` to attempt to change the second task on the task list.<br>
+        Expected: Second task on the task list will be change to deadline: 18-11-2021, time: 21:00 and weightage: 25%
+1. Use command `edit` to change tag, priority tag and remarks attribute.
+    1. use `edit 3 pt/CORE ptag/MEDIUM notes/not so soon` to attempt to change the third task on the task list.<br>
+        Expected: Third tasks on the task list will be changed to tag: CORE, priority tag: MEDIUM and notes: not so soon.
+1. (Addtional) Feel free to test `edit` command on one single attribute (weightage alone etc). Reason for not including it in appendix: We hope to allow the user to go through the guide quickly and therefore truncated the some of the single `edit` commands. 
 
 
 ### Deleting a task
