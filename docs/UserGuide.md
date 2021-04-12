@@ -97,7 +97,7 @@ Ensure you have Java `11` or above installed in your Computer.
 
 <p><b>Step 2.</b></p>
 
-Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.4).
+Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases).
    
 <br>
 
@@ -193,6 +193,8 @@ This command deletes the contact of the third client displayed in the contact li
 Now that you have tried out the basic commands available in ClientBook, you can use the command `batch delete 1,2,3,4,5,6,7`
 to delete all the sample entries and start using your very own ClientBook.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Overview
@@ -227,11 +229,13 @@ to delete all the sample entries and start using your very own ClientBook.
 | [Saving data](#saving-data) | Save the data to a file in the home folder |
 | [Editing data file](#editing-data-file) | Edit the data stored in the file in the home folder|
 
+[Return to Table of Contents](#table-of-contents)
+
 ### What information can we store for each client contact?
 
 
 Each client attribute such as name and address have been assigned identifiers so that you do not have to type out
-the entire attribute when using ClientBook. For example, name has been abbreviated to n. Listed below are all the identifiers
+the entire attribute when using ClientBook. For example, name has been abbreviated to `n`. Listed below are all the identifiers
 which correspond to client attributes as well as restrictions that have to be followed when they are used as part of a command.
 
 <table>
@@ -243,7 +247,7 @@ which correspond to client attributes as well as restrictions that have to be fo
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td> Must only contain <a href=#"glossary">alphanumeric</a> characters and spaces </td>
+    <td> Must only contain <a href="#glossary">alphanumeric</a> characters and spaces </td>
   </tr>
   <tr>
     <td> Phone number </td>
@@ -262,7 +266,9 @@ which correspond to client attributes as well as restrictions that have to be fo
     <td> Email </td>
     <td> <code>e</code> </td>
     <td><ul><li>Should be of the form <code>name@email.com</code></li></ul>
-        <ul><li><code>name</code> part of email should not contain the following characters <code>!#$%&'*+/=?\`{&#x7c;}~^.-</code></li></ul>
+        <ul><li><code>name</code> part of email should:
+            <ul><li>Consists only of alphanumeric characters and these special characters <code>!#$%&'*+/=?`{|}~^.-)</code></li></ul>
+        </li></ul>
         <ul><li> <code>email</code> part of email should: 
             <ul><li>Be at least 2 characters long</li></ul>
             <ul><li>Start and end with either alphabets or numbers</li></ul>
@@ -626,7 +632,8 @@ To more easily list policies of a specific client in mind, `policy` can be used 
 
 ### <span style="color:#c9a500">Shortcuts</span>
 We understand that you might have commands that you frequently use. You may use shortcuts to abbreviate
-those commands to make using ClientBook more convenient.
+those commands to make using ClientBook more convenient. To give you a clearer idea of how the shortcuts feature works,
+an example usage is provided below.
 
 ### <span style="color:#c9a500">Example Usage</span>
 <p><b>Scenario:</b></p> 
@@ -748,9 +755,13 @@ created.
 
 **Format**: `lock [CURRENT_PASSWORD] [NEW_PASSWORD]`
 
-* Verifies the current password before locking ClientBook with the new password.
-* The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
-* When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
+* If ClientBook is not yet locked.
+    * `CURRENT_PASSWORD` field can be omitted.
+    * `NEW_PASSWORD` can also be omitted and ClientBook will attempt to lock itself using your most recently used password.
+
+
+* If ClientBook is already locked.
+    * ClientBook verifies the current password before locking ClientBook with `NEW_PASSWORD`.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Note**: 
@@ -833,25 +844,22 @@ CTRL + F | `find` |
 CTRL + L | `list` |
 CTRL + S | `sort` |
 
-### <span style="color:#3cb44b">Saving data</span>
-ClientBook saves its data in a zip-contained JSON file in the [home folder](#quick-start) automatically after any command that changes the data. There is no need to save manually.
-
-
 [Return to Table of Contents](#table-of-contents)
-<br><br>
 
+### <span style="color:#3cb44b">Saving data</span>
+ClientBook saves its data file `clientbook.json` in a zip file `clientbook.zip` inside the `data` folder in the [home folder](#quick-start).
+Data is saved automatically after any command that changes the data. There is no need to save manually.
 
-### <span style="color:#3cb44b">Editing data file</span>
-
-ClientBook saves its data as a JSON file. Advanced users are welcome to update their client data directly by editing the data file.
-
-* The data file is stored in a zip file `clientbook.zip` inside the `data` folder in the [home folder](#quick-start). 
-* If you have previously set a `lock` for ClientBook, the zip folder can be unzipped with that same password.
+* If ClientBook is locked with a password, the zip folder can be unzipped with that same password.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**:
 If your changes to the data file makes its format invalid, **all your data will be lost** at the next run.
 </div>
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -895,7 +903,7 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Batch**](#batch-execute-commands-in-batch) | `batch COMMAND INDICES [ARGUMENTS]` | `batch edit 1, 2, 4 p/91234567 a/Hougang Green t/TanFamily i/FamPol#111` |
 [**Meet**](#meet-schedule-a-meeting-with-a-client) | `meet INDEX [-ACTION] DATE START_TIME END_TIME PLACE` | `meet 1 -add 20.05.2021 15:00 16:00 KENT RIDGE MRT` |
 |<span style="color:#c93640">**Contact Viewing**</span>|
-[**List**](#list-list-all-clients) | `list [-IDENTIFIER]` | `list -i` |
+[**List**](#list-list-all-clients) | `list [-p] [-e] [-a] [-i] [-m]` | `list -i` |
 [**Find**](#find-search-for-client-contact-based-on-keywords) | `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#policy-display-policies-associated-with-a-client) | `policy INDEX` | `policy 4` |
 [**Sort**](#sort-sort-list-of-clients) | `sort -IDENTIFIER -DIRECTION` | `sort -n -des` |
@@ -925,6 +933,8 @@ CTRL + F | `find` |
 CTRL + L | `list` |
 CTRL + S | `sort` |
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
 
@@ -934,13 +944,13 @@ CTRL + S | `sort` |
 2. **Attribute** The types of information you can store in ClientBook. E.g. phone number, address, name of your clients.
    
 
-3. **CLI** (Command Line Interface) A text box like interface which allows a user to enter and execute commands.
+3. **CLI** (command line interface) A text box like interface which allows a user to enter and execute commands.
 
 
 4. **Command Prompt** A command line interpreter application on the Windows operating system.
 
 
-5. **GUI** (Graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
+5. **GUI** (graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
 
 
 6. **Identifier** The alphabetical letter associated with an attribute.
@@ -955,7 +965,7 @@ CTRL + S | `sort` |
 9. **Terminal** A command line interpreter application on MacOS/Linux operating systems.
 
 
-10. **UI** (User Interface) An interface for a user to interact with a program.
+10. **UI** (user interface) An interface for a user to interact with a program.
 
 
 
