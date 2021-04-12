@@ -844,9 +844,9 @@ Prerequisites: Use the sample data provided on first start up. You can delete th
 
 1. Adding an order item to the order items table
     1. Prerequisites: none.
-    1.Test case: `addItem Chocolate Cake`<br>
+    1. Test case: `addItem Chocolate Cake`<br>
        Expected: A new Order Item with description "Chocolate Cake" is added to the order items table.
-    1.Test case: `addItem 123`<br>
+    1. Test case: `addItem 123`<br>
        Expected:  No order item is added. Error details shown in the status message.
        
 ### Deleting multiple order items
