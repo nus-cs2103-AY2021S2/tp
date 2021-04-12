@@ -26,7 +26,6 @@ public class Note implements Comparable<Note> {
     /**
      * Every field must be present and not null.
      */
-
     public Note(String note) {
         requireAllNonNull(note, tags);
         this.note = note;
@@ -39,7 +38,6 @@ public class Note implements Comparable<Note> {
     /**
      * Constructor with the note and tag
      */
-
     public Note(String note, Set<Tag> tags) {
         requireAllNonNull(note, tags);
         this.note = note;
@@ -49,6 +47,7 @@ public class Note implements Comparable<Note> {
         this.isDone = false;
     }
 
+    //Todo
     private Note(String note, Set<Tag> tags, LocalDateTime createdTime, Boolean isDone) {
         requireAllNonNull(note, tags);
         this.note = note;
@@ -61,7 +60,6 @@ public class Note implements Comparable<Note> {
     /**
      * Constructor with the note and tag
      */
-
     public Note(String note, Set<Tag> tags, LocalDateTime createdTime,
                  LocalDateTime lastEditTime, Boolean isDone) {
         requireAllNonNull(note, tags);
@@ -71,10 +69,10 @@ public class Note implements Comparable<Note> {
         this.lastEditTime = lastEditTime;
         this.isDone = isDone;
     }
+
     /**
      * Method to call the above private constructor for note.
      */
-
     public Note createEditedNote(String note, Set<Tag> tags, LocalDateTime createdTime,
                                  Boolean isDone) {
         return new Note(note, tags, createdTime, isDone);
@@ -88,7 +86,6 @@ public class Note implements Comparable<Note> {
     /**
      * Method to call the above private constructor for note.
      */
-
     public Note markAsDoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
         return new Note(note, tags, createdTime, true);
     }
@@ -96,7 +93,6 @@ public class Note implements Comparable<Note> {
     /**
      * Method to call the above private constructor for note.
      */
-
     public Note markAsUndoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
         return new Note(note, tags, createdTime, false);
     }
@@ -128,10 +124,10 @@ public class Note implements Comparable<Note> {
     public void setLastEditTime(LocalDateTime time) {
         this.lastEditTime = time;
     }
+
     /**
      * Returns true if both notes have the same note.
      */
-
     public boolean isSameNote(Note otherNote) {
         if (otherNote == this) {
             return true;
@@ -172,6 +168,7 @@ public class Note implements Comparable<Note> {
         return this.getNote().compareTo(otherNote.getNote());
     }
 
+    //Todo
     public String createFileName() {
         return this.getNote() + ".txt";
     }

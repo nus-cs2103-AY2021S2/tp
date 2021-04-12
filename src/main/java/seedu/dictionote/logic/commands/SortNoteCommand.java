@@ -9,7 +9,7 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 
 /**
- * Sort notes in the note list.
+ * Sorts notes in the note list.
  */
 public class SortNoteCommand extends Command {
     public static final String COMMAND_WORD = "sortnote";
@@ -20,9 +20,7 @@ public class SortNoteCommand extends Command {
 
     public static final String MESSAGE_SORT_NOTE_SUCCESS = "Note sorted";
 
-    /**
-     * Sort notes in the note list.
-     */
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 

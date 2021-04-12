@@ -13,7 +13,7 @@ import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddNoteCommand object
+ * Parses input arguments and creates a new AddNoteCommand object.
  */
 public class AddNoteCommandParser implements Parser<AddNoteCommand> {
 

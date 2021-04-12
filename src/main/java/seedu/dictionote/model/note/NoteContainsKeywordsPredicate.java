@@ -3,9 +3,11 @@ package seedu.dictionote.model.note;
 import java.util.List;
 import java.util.function.Predicate;
 
+//Todo
 public class NoteContainsKeywordsPredicate implements Predicate<Note> {
     private final List<String> keywords;
 
+    //Todo
     public NoteContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
