@@ -305,7 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to handle 500 modules without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to handle 25 modules without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The system should be backward compatible with data produced by earlier versions of the system.
 5.  The system should work on both 32-bit and 64-bit environments
