@@ -12,6 +12,18 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+A-Bash Book (ABB) is a Command Line Interface (CLI) based Contact Management System built to address the growing demands 
+of businesses with an increasing business ecosystem. Especially in a climate where large amounts of business information 
+are being stored in various decentralised places. 
+
+This guide serves to aid A-Bash Book (ABB) developers by describing the **Design**, **Architecture** and **Implementation**
+behind each feature. **Design Considerations** can be found for certain features that would require extra attention when
+modifying or enhancing the feature.
+
+Various **UML Diagrams** are used to help describe the feature flow as well as the associations between objects and classes.
+
 
 ## **Design**
 
