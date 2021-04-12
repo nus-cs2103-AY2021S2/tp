@@ -156,7 +156,7 @@ Below, you can see the multi-step command when in action as it is prompting the 
 ![Ui2](images/Add_name.png)
 
 If your command went through successfully without any invalid fields, you should see a success message like this: <br>
-![Ui3](images/Add_persons.png)
+![Ui3](images/Add_person.png)
 
 
 
