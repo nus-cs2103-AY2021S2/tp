@@ -1,9 +1,9 @@
 ---
 layout: page
-title: A-Bash Book User Guide
+title: User Guide
 ---
 
-<h1 align="center">{{ page.title }}</h1>
+<h1 align="center">A-Bash Book User Guide</h1>
 
 # Table of Contents
 
