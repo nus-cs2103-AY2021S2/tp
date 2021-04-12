@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes list command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if (Delivery task present in delivery list) then ([delivery task exists])
+    :Returns delivery list with all delivery tasks;
+else ([else])
+    : Return Empty Delivery list;
+endif
+stop
+@enduml

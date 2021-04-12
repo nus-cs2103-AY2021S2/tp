@@ -214,6 +214,83 @@ LogicManager.
 Below is an activity diagram for the remark command.
 
 ![Remark Command Activity Diagram](images/RemarkCommandActivityDiagram.png)
+
+
+### List Command - `list`
+The list command allows users to see all the delivery tasks in the delivery list.
+
+![List Command Sequence Diagram](images/ListCommandLogicSequenceDiagram.png)
+
+Description:
+When the user keys the input command "list", execute method of LogicManager is called. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the command. The
+DeliveryListParser parses the command and identifies it as a ListCommand which then returns the CommandResult object 
+to the LogicManager. The CommandResult will update the model through the command updatedFilteredCustomerList() to show
+all the delivery tasks in the delivery list.
+
+The following Activity Diagram summarizes what happens when a user executes the list command:
+
+![List Command Activity Diagram](images/ListCommandActivityDiagram.png)
+
+### Help Command - `help`
+The help command allows users to see all the available commands and how to use them
+
+![Help Command Sequence Diagram](images/HelpCommandLogicSequenceDiagram.png)
+
+Description:
+When the user keys the input command "help", execute method of LogicManager is called. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the command. The
+DeliveryListParser parses the command and identifies it as a HelpCommand which then returns the CommandResult object
+to the LogicManager. The CommandResult will update the UI by setting showHelp() to true to show
+the pop-up help window.
+
+The following Activity Diagram summarizes what happens when a user executes the list command:
+
+![Help Command Activity Diagram](images/HelpCommandActivityDiagram.png)
+
+
+### Completed Command - `completed`
+The completed command allows users to see all the delivery tasks marked as done.
+
+![Completed Command Sequence Diagram](images/CompletedCommandSequenceDiagram.png)
+
+Below is a further breakdown of the logic component of the completed command using a sequence diagram
+
+![Completed Command Logic Sequence Diagram](images/CompletedCommandLogicSequenceDiagram.png)
+
+Description:
+When the user keys the input command "completed", execute method of LogicManager is called. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the command. The
+DeliveryListParser parses the command and identifies it as a CompletedCommand which then returns the CommandResult object
+to the LogicManager. The CommandResult will update the model through the command updatedFilteredCustomerList() to show
+all the delivery tasks marked done in the delivery list.
+
+The following Activity Diagram summarizes what happens when a user executes the completed command:
+
+![Completed Command Activity Diagram](images/CompletedCommandActivityDiagram.png)
+
+
+### Uncompleted Command - `uncompleted`
+The uncompleted command allows users to see all the delivery tasks not marked as done.
+
+![Completed Command Sequence Diagram](images/CompletedCommandSequenceDiagram.png)
+
+Below is a further breakdown of the logic component of the completed command using a sequence diagram
+
+![Completed Command Logic Sequence Diagram](images/CompletedCommandLogicSequenceDiagram.png)
+
+Description:
+When the user keys the input command "uncompleted", execute method of LogicManager is called. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the command. The
+DeliveryListParser parses the command and identifies it as a UncompletedCommand which then returns the CommandResult object
+to the LogicManager. The CommandResult will update the model through the command updatedFilteredCustomerList() to show
+all the delivery tasks not marked done in the delivery list.
+
+The following Activity Diagram summarizes what happens when a user executes the completed command:
+
+![Completed Command Activity Diagram](images/CompletedCommandActivityDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -250,23 +327,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​      | I want to …​                                             | So that I can…​                                                        |
 | -------- | --------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `* * *`  | Delivery driver | Add a delivery entry to the list.                           | Keep track of all the deliveries I am supposed to make.                   |
-| `* *`    | Delivery driver | Get the customer’s details of a delivery entry in the list. | Understand the customer of that delivery better.                          |
-| `* *`    | Delivery driver | Mark a delivery entry in the list as done.                  | Keep track of which deliveries I have done.                               |
-| `* * *`  | Delivery driver | Delete a delivery entry from the list.                      | Remove completed deliveries or unwanted deliveries I do not want to make. |
-| `* *`    | Delivery driver | Clear all delivery entries from the list.                   | Clean or reset my delivery list.                                          |
-| `* * *`  | Delivery driver | Edit a delivery entry in the list.                          | Make necessary changes to the delivery details.                           |
-| `* * *`  | Delivery driver | Exit the app.                                               | Close the app.                                                            |
-| `* *`    | Delivery driver | Filter the list by tag.                                     | Get all the deliveries associated with a specific tag.                    |
-| `* *`    | Delivery driver | Filter all delivery entries by date.                        | See which deliveries I have to make on that date.                         | 
-| `* *`    | Delivery driver | Filter all delivery entries by location.                    | See which deliveries I have to make in that area.                         |
-| `* * *`  | Delivery driver | Find all delivery entries by keyword(s).                    | Get all the deliveries with details containing the keyword(s).            |
-| `* *`    | Delivery driver | Get help for issues pertaining to the app.                  | Understand the app’s features and how to use them better.                 |
-| `* * *`  | Delivery driver | Get the list of all my delivery entries.                    | See all the deliveries I have to make and have done.                      |
-| `* *`    | Delivery driver | Get the list of all my completed delivery entries.          | See all the deliveries I have done.                                       |
-| `* *`    | Delivery driver | Add a tag to a delivery entry in the list.                  | Add information categorising the parcel for that delivery.                |
-| `* *`    | Delivery driver | Delete a tag from a delivery entry in the list.             | Delete the information categorising the parcel for that delivery.         |
-| `* *`    | Delivery driver | Edit a tag of a delivery entry in the list.                 | Edit the information categorising the parcel for that delivery.           |
+| `* * *`  | Delivery driver | Add a delivery task to the list.                            | Keep track of all the deliveries I am supposed to make.                   | 
+| `* * *`  | Delivery driver | Delete a delivery task from the list.                       | Remove completed deliveries or unwanted deliveries I do not want to make. |
+| `* * *`  | Delivery driver | Edit a delivery task in the list.                           | Make necessary changes to the delivery details.                           |
+| `* * *`  | Delivery driver | Exit the app.                                               | Close the application when I am not using it                              |
+| `* * *`  | Delivery driver | Find all delivery tasks by keyword(s).                      | Get all the deliveries with details containing the keyword(s).            |
+| `* * *`  | Delivery driver | Get the list of all my delivery tasks.                      | See all the deliveries that i have.                                       |
+| `* *`    | Delivery driver | Mark a delivery task in the list as done.                   | Keep track of which deliveries I have done.                               |
+| `* *`    | Delivery driver | Clear all delivery tasks from the list.                     | Clean or reset my delivery list.                                          |
+| `* *`    | Delivery driver | Get help for issues pertaining to the app.                  | Understand the app’s features and how to use them better.                 | 
+| `* *`    | Delivery driver | Get the list of all my completed delivery tasks.            | See all the deliveries I have done.                                       |
+| `* *`    | Delivery driver | Get the list of all my uncompleted delivery tasks.          | See all the deliveries I have not done.                                   |
+| `* *`    | Delivery driver | Add a tag to a delivery task in the list.                   | Add information categorising the parcel for that delivery.                |
+| `* *`    | Delivery driver | Delete all tags from a delivery task in the list.           | Delete the information categorising the parcel for that delivery.         |
+| `* *`    | Delivery driver | Edit the tags of a delivery task in the list.               | Edit the information categorising the parcel for that delivery.           |
+| `* *`    | Delivery driver | Sort the delivery tasks in the list.                        | See the delivery tasks that i have to do first easily                     |
+
 
 *{More to be added}*
 

@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
+participant "command:UncompletedCommand" as UncompletedCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("uncompleted")
+activate LogicManager
+
+LogicManager -> DeliveryListParser : parseCommand("uncompleted")
+activate DeliveryListParser
+
+create UncompletedCommand
+DeliveryListParser -> UncompletedCommand
+activate UncompletedCommand
+
+UncompletedCommand --> DeliveryListParser : command
+deactivate UncompletedCommand
+
+DeliveryListParser --> LogicManager : command
+deactivate DeliveryListParser
+
+LogicManager -> UncompletedCommand : execute()
+activate UncompletedCommand
+
+UncompletedCommand -> Model : updateFilteredCustomerList()
+activate Model
+
+Model --> UncompletedCommand
+deactivate Model
+
+create CommandResult
+UncompletedCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UncompletedCommand
+deactivate CommandResult
+
+UncompletedCommand --> LogicManager : result
+deactivate UncompletedCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

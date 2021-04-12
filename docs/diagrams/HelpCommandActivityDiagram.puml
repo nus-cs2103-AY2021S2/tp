@@ -1,0 +1,7 @@
+@startuml
+start
+:User executes help command;
+:A pop-up window with all the available commands, how to use them and url to our UserGuide ;
+
+stop
+@enduml
