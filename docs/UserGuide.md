@@ -99,6 +99,8 @@ We also use the following symbols for easier identification of different propert
 {::nomarkdown}<p align="center">{:/} Condo | {::nomarkdown}<p align="center">{:/} ![Condo](images/condo_16.png)
 {::nomarkdown}<p align="center">{:/} Landed | {::nomarkdown}<p align="center">{:/} ![Landed](images/landed_16.png)
 
+<div style="page-break-after: always;"></div>
+
 ## 4. Commands
 
 <div markdown="block" class="alert alert-info">**:information_source: Notes about the command format:**<br>
@@ -140,8 +142,6 @@ Format: `help`
 Exits the program.
 
 Format: `exit`
-
-<div style="page-break-after: always;"></div>
 
 ### 4.2 Adding
 
