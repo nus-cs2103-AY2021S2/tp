@@ -72,7 +72,7 @@ public class SampleDataUtilTest {
         alexMap.put(CLOUDATLAS, ALEX_RECORD.getDateBorrowed());
         assertEquals(SampleDataUtil.getSampleReaders()[0],
                 new Reader(
-                        new Name("Alex"),
+                        new Name("Alex Yu"),
                         new Phone("87438807"),
                         new Email("alexyeoh@example.com"),
                         new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -87,7 +87,7 @@ public class SampleDataUtilTest {
         berniceMap.put(OLDMAN, BERNICE_RECORD_2.getDateBorrowed());
         assertEquals(SampleDataUtil.getSampleReaders()[1],
                 new Reader(
-                        new Name("Bernice"),
+                        new Name("Bernice Tan"),
                         new Phone("99272758"),
                         new Email("berniceyu@example.com"),
                         new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -99,7 +99,7 @@ public class SampleDataUtilTest {
         // third reader
         assertEquals(SampleDataUtil.getSampleReaders()[2],
                 new Reader(
-                        new Name("Charlotte"),
+                        new Name("Charlotte Chan"),
                         new Phone("93210283"),
                         new Email("charlotte@example.com"),
                         new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
@@ -149,7 +149,7 @@ public class SampleDataUtilTest {
         bobMap.put(HELLO, BOB_RECORD.getDateBorrowed());
         assertEquals(SampleDataUtil.getSampleReaders()[6],
                 new Reader(
-                        new Name("Bob"),
+                        new Name("Bob Tan"),
                         new Phone("98765432"),
                         new Email("bob@hi.com"),
                         new Address("1 Bukit Timah Road"),
@@ -163,7 +163,7 @@ public class SampleDataUtilTest {
         aliceMap.put(LILAC, ALICE_RECORD.getDateBorrowed());
         assertEquals(SampleDataUtil.getSampleReaders()[7],
                 new Reader(
-                        new Name("Alice"),
+                        new Name("Alice Lee"),
                         new Phone("91234567"),
                         new Email("alice@hello.com"),
                         new Address("2 Bukit Timah Road"),
@@ -238,7 +238,7 @@ public class SampleDataUtilTest {
         berniceMap.put(HOBBIT, BERNICE_RECORD_1.getDateBorrowed());
         berniceMap.put(OLDMAN, BERNICE_RECORD_2.getDateBorrowed());
         assertTrue(smartLib.getReaderList().contains(new Reader(
-                new Name("Bernice"),
+                new Name("Bernice Tan"),
                 new Phone("99272758"),
                 new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),

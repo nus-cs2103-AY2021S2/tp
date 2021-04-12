@@ -348,13 +348,13 @@ Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/GENRE`
 
 Example use:
 
-Let's say you have ordered a new book (e.g. Harry Porter) for your library, and would like SmartLib to register the new
+Let's say you have ordered a new book (e.g. Harry Potter) for your library, and would like SmartLib to register the new
 book.
 You can follow the steps below to add the book to SmartLib's registered book list.
 
 Steps:
 
-1. Type `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy` into the _Command Box_.
+1. Type `addbook b/Harry Potter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy` into the _Command Box_.
 2. Press `Enter` to execute your input.
 
 Outcome:
@@ -362,7 +362,7 @@ Outcome:
 * SmartLib will randomly assign a barcode to your newly added book.
 * The _Result Display_ will show a success message with the newly added book's information.
   <br><br>
-  ![result for 'addbook Harry Porter'](images/addbookresult.png)
+  ![result for 'addbook Harry Potter'](images/addbookresult.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -587,7 +587,8 @@ Format: `return bc/BARCODE`
 **:information_source: Notes:**
 
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
-* The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
+* The output message will contain how long it exceeded the original due date, and the amount of fine that the reader
+  needs to pay if the book is overdue.
 
 Example use:
 
@@ -603,7 +604,7 @@ Outcome:
 
 * The _Result Display_ will show a message indicating success.
 * If the book returned is an overdue book, SmartLib will show you how long it exceeded the 
-  original due date.
+  original due date, and the amount of fine that the reader needs to pay if the book is overdue.
 * SmartLib will record down this returning activity.
 * The relevant parts of the GUI will be updated.
   <br><br>
@@ -842,6 +843,9 @@ To purge all sample user data from SmartLib, you may use the command
 
 * **Special characters**: Special characters refer to any characters that are not alphanumeric.
 
+* **Uniform Resource Locator (URL)**: This is a reference to a web resource that specifies its location on a computer
+    network and a mechanism for retrieving it.
+
 * **Web browser**: A web browser is a piece of application software for accessing the World Wide Web.
     Some examples include Google Chrome, Mozilla Firefox, and Safari.
 
@@ -859,7 +863,7 @@ Action                 | Format, Examples
 **Delete reader**      | `deletereader INDEX`<br><br> e.g. `deletereader 3`
 **Find reader**        | `findreader KEYWORD [MORE_KEYWORDS]…` or `findreader t/TAG [MORE_TAGS]…` <br><br> e.g. `findreader James Jake`
 **List readers**       | `listreader`
-**Add book**           | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br><br> e.g. `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
+**Add book**           | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br><br> e.g. `addbook b/Harry Potter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
 **Delete book**        | `deletebook INDEX`<br><br> e.g. `deletebook 3`
 **Find book**          | `findbook KEYWORD [MORE_KEYWORDS]…`<br><br> e.g. `findbook Thomas Tank Engine`
 **List books**         | `listbook`
