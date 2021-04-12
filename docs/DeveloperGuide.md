@@ -315,7 +315,7 @@ Below is the class diagram for the entire Find command
 
 The current implementation of `find` command uses the Java port of Python's 
 [fuzzywuzzy algorithm](https://github.com/xdrop/fuzzywuzzy). Current implementation matches using partial match of more
-than 60% similarity. The `find` command also sorts the search result in decrementing order of similarity.
+than 60% similarity.
 
 #### Considerations
 
@@ -330,6 +330,10 @@ Key requirements for fuzzy search is the following
     - `Ben` and `Benjamin`
     - `Sam` and `Samantha`
     - `Jon` and `Jonathan`
+- String matching should be one way
+  - Queries should match with data and not the other way round
+    - `Tom` should partially match with `Thomas`
+    - `Thomas` should not partially match with `Tom`
     
 #### Side Effects and Missed Matches
 
@@ -579,3 +583,50 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+## **Appendix: Effort**
+
+Our team has put in significant effort in enhancing the usability of AB-3 into a more CLI centric address book.
+Much effort has been put in to replicate common controls and conventions seen in the popular terminal _Bash_. Our project
+has over 12k lines of code and over 500 automated tests. We detail some challenges faced and achievements made while 
+implementing A-Bash Book in the subsequent sections.
+
+### Challenges faced
+
+- **Conversion to _Bash_ style arguments**
+  - We note that _Bash_ uses the convention of `-` flags as well as enforcing a space after your arguments.
+  - Much of the existing AB-3 command inputs are not following such conventions in _Bash_. To make such a change,
+    we had to change `ArgumentMultimap` class which is the core of the program. Much time was put into validating the
+    commands still work properly after such a change as the modification affects every single command that parses arguments.
+- **Addition of command aliasing**
+  - In order for us to implement one of our quality of life changes available in _Bash_, namely command aliasing, a deep
+    understanding of the command flow is required. The addition of command aliasing requires a loop back of commands back
+    into the parser system after it has been converted from its aliased form to its complete form.
+- **Fuzzy string matching for contact finding**
+  - While the algorithm for fuzzy matching was ultimately included via a library import of the common FuzzyWuzzy matching
+    library, much effort was spent in considering the way strings should be matched. Documented in the [Fuzzy Find](#fuzzy-find)
+    section, different considerations were made when deciding the level of tolerance, and how the way strings are matched.
+- **UI additions**
+  - An improvement was required to the UI to include the auto-complete command panel. Much of the UI code was also untestable
+    within unit tests and require much manual testing. UI development also had to account for user limitations such as string
+    length and screen size.
+- **Attempt at WebView**
+  - An attempt was made to include the WebView into our application for the user to have quick access to our user guide.
+    However, after v1.3 was tested during PE-D, much issues surfaces from rendering issues when users use the webview to
+    navigate outside the expected websites. It was eventually decided to scrap the WebView for a simple text based summary
+    together with the existing link to our user guide.
+- **Keyboard overrides**
+  - To implement quality of life changes to be more keyboard centric, we implemented keyboard overrides to aid in selecting
+    of contacts as well as to facilitate our autocomplete feature. Doing so required a big degree of understand of JavaFX's
+    UI event system. This is especially the case when we had to override the tab key for auto-complete which already had a 
+    pre-existing function of navigating between UI elements.
+- **Addition of special indices**
+  - To support bulk commands, we added two special indices `shown` and `selected`. These two keywords can replace any `INDEX`
+    in any command. To do so, we had to modify pre-existing commands to add support for multiple modifications in a single
+    command. New commands also have to account for these two special indices during development.
+
+### Achievements
+
+- Streamlined and intuitive user experience for existing _Bash_ users.
+- Improved the feature set and usability while still managing to maintain code coverage.
