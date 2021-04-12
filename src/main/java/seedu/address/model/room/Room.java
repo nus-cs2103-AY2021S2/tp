@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Represents a Room in the hostel management system.
+ * Represents a Room in SunRez.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 
@@ -29,9 +29,15 @@ public class Room implements Comparable<Room> {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null. This constructor should only be used when creating
-     * a room model from the JSON file. The Add/Edit room commands and their respective parsers should
-     * NOT use this constructor. Use the one that does not take in isOccupied.
+     * Constructs a Room. This constructor should only be used when creating a room model from the JSON file.
+     * Commands such as {@code AddRoomCommand} or {@code EditRoomCommand} and their respective parsers should
+     * NOT use this constructor. Use the one that does not take in {@code IsOccupied}.
+     *
+     * @param roomNumber The {@code RoomNumber} of the {@code Room} to create.
+     * @param roomType   The {@code RoomType} of the {@code Room} to create.
+     * @param isOccupied The {@code IsOccupied} value of the {@code Room} to create.
+     * @param tags       {@code Set<Tag>} containing the {@code Tag}s of the {@code Room} to create.
+     * @throws NullPointerException If any of the provided parameters are null.
      */
     public Room(RoomNumber roomNumber, RoomType roomType, IsOccupied isOccupied, Set<Tag> tags) {
         requireAllNonNull(roomNumber, roomType, isOccupied, tags);
@@ -42,7 +48,14 @@ public class Room implements Comparable<Room> {
     }
 
     /**
-     * Every field must be present and not null.
+     * Constructs a Room with the default {@code IsOccupied} value of "No".
+     * This constructor should be used in most cases, i.e creating a room using the {@code AddRoomCommand} or
+     * {@code EditRoomCommand}
+     *
+     * @param roomNumber The {@code RoomNumber} of the {@code Room} to create.
+     * @param roomType   The {@code RoomType} of the {@code Room} to create.
+     * @param tags       {@code Set<Tag>} containing the {@code Tag}s of the {@code Room} to create.
+     * @throws NullPointerException If any of the provided parameters are null.
      */
     public Room(RoomNumber roomNumber, RoomType roomType, Set<Tag> tags) {
         requireAllNonNull(roomNumber, roomType, tags);

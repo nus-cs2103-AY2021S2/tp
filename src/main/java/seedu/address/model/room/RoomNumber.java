@@ -28,7 +28,10 @@ public class RoomNumber implements Comparable<RoomNumber> {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Checks if a {@code String} is a valid Room Number.
+     *
+     * @param test {@code String} to test.
+     * @return True if the Room Number {@code String} is valid.
      */
     public static boolean isValidRoomNumber(String test) {
         return test.matches(VALIDATION_REGEX);

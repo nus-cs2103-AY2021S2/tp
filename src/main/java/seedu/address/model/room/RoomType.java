@@ -29,7 +29,10 @@ public class RoomType {
     }
 
     /**
-     * Returns true if a given string is a valid name. Tests are case insensitive.
+     * Checks if a {@code String} is a valid Room Type.
+     *
+     * @param test {@code String} to test.
+     * @return True if the Room Type {@code String} is valid.
      */
     public static boolean isValidRoomType(String test) {
         test = test.toUpperCase();

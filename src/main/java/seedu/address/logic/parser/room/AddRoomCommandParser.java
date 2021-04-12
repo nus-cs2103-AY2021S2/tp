@@ -26,15 +26,17 @@ import seedu.address.model.tag.Tag;
 public class AddRoomCommandParser implements Parser<AddRoomCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddRoomCommand
-     * and returns an AddRoomCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddRoomCommand and returns an AddRoomCommand
+     * object for execution.
      *
+     * @param userInput The command {@code String} entered by the user
+     * @return The parsed {@code AddRoomCommand}
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public AddRoomCommand parse(String args) throws ParseException {
+    public AddRoomCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE,
+                ArgumentTokenizer.tokenize(userInput, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE,
                         PREFIX_ROOM_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE)

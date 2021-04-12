@@ -25,7 +25,10 @@ public class IsOccupied {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Checks if a {@code String} is a valid occupancy status.
+     *
+     * @param test {@code String} to test.
+     * @return True if the occupancy status {@code String} is valid.
      */
     public static boolean isValidOccupancyStatus(String test) {
         test = test.toLowerCase();

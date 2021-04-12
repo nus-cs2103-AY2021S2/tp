@@ -60,8 +60,10 @@ public class EditRoomCommand extends Command {
     private final EditRoomDescriptor editRoomDescriptor;
 
     /**
-     * @param index              of the room in the filtered room list to edit
-     * @param editRoomDescriptor details to edit the room with
+     * Creates an EditRoomCommand to edit the room at the specified {@code Index}.
+     *
+     * @param index              of the room in the filtered room list to edit.
+     * @param editRoomDescriptor details to edit the room with.
      */
     public EditRoomCommand(Index index, EditRoomDescriptor editRoomDescriptor) {
         requireNonNull(index);
@@ -71,6 +73,15 @@ public class EditRoomCommand extends Command {
         this.editRoomDescriptor = new EditRoomDescriptor(editRoomDescriptor);
     }
 
+    /**
+     * @param model {@code Model} which the command should operate on.
+     * @return A {@code CommandResult} with the {@code Room} that was edited.
+     * @throws CommandException If the room being edited at the specified {@code Index} does not exist.
+     * @throws CommandException If the {@code Room} being edited is being at the specified {@code Index} will have its
+     *                          {@code RoomNumber} edited but the {@code Room} has been allocated to a {@code Resident}.
+     * @throws CommandException If the {@code Room} being edited is being at the specified {@code Index} will have its
+     *                          {@code RoomNumber} edited but the {@code Room} has an associated {@code Issue}.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -122,8 +133,11 @@ public class EditRoomCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Room} with the details of {@code roomToEdit}
-     * edited with {@code editRoomDescriptor}.
+     * Creates and returns a {@code Room} with the details of {@code roomToEdit} edited with {@code editRoomDescriptor}.
+     *
+     * @param roomToEdit         The {@code Room} that is being edited
+     * @param editRoomDescriptor The {@code EditRoomDescriptor} that contains the details to edit the {@code Room} with.
+     * @return
      */
     public static Room createEditedRoom(Room roomToEdit, EditRoomDescriptor editRoomDescriptor) {
         assert roomToEdit != null;

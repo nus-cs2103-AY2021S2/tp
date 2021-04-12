@@ -26,10 +26,24 @@ public class FindRoomCommand extends Command {
 
     private final RoomNumberOrTagsContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an FindRoomCommand to return any {@code Room} that matches the provided
+     * {@code RoomNumberOrTagsContainsKeywordsPredicate}.
+     *
+     * @param predicate Predicate indicating what criteria must be matched to return a room.
+     */
     public FindRoomCommand(RoomNumberOrTagsContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Executes the FindRoomCommand on the provided {@code Model} which will ensure that only rooms matching the
+     * provided {@code RoomNumberOrTagsContainsKeywordsPredicate} will be returned in
+     * {@link Model#getFilteredRoomList()}.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return A {@code CommandResult} with the number of {@code Room} objects that will be listed.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
