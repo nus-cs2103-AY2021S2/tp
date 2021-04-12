@@ -916,19 +916,22 @@ to work on.
     1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.<br>
        
     2. Test case: `addon 1 re/I like this food a lot! p/7`
-
-    <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
-       out of the initial price range displayed in the entry). Specified Entry will be updated with the addon on fields.<br />
-    <br />
+    
+        <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
+           out of the initial price range displayed in the entry). Specified Entry will be updated with the addon on fields.<br />
+        <br />
     3. Test case: `addon 1`
-    <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.<br />
-    <br />
+    
+        <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
     4. Test case: `addon 1 re/`
-    <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.<br />
-    <br />
+    
+        <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
     5. Test case: `addon 1 re/Good Food p/1000`
-    <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.<br />
-    <br />
+    
+        <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
 
     6. Other incorrect `addon` commands to try: `addon 10000000000 re/Good Food` (invalid index)
     
@@ -938,14 +941,17 @@ to work on.
     1. Prerequisite: `list` all entries to find out the name of the entry to delete<br>
        
     2. Test case: `delete 1`
-    <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.<br />
-    <br />
-    3. Test case: `delete x` (where x is non-existent booking ID)
-    <br>Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
-    <br />
-    4. Other incorrect delete commands to try: `delete`, `delete Starbucks`
     
-        Expected: Invalid command format error. No entry is deleted.
+        <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.<br />
+        <br />
+       
+    3. Test case: `delete x` (where x is non-existent booking ID)
+       
+        <br>Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
+        <br />
+       
+    4. Other incorrect delete commands to try: `delete`, `delete Starbucks`
+       Expected: Invalid command format error. No entry is deleted.
    
     
 ### Find entries
@@ -1145,35 +1151,35 @@ to work on.
        - First entry has named changed to "McDonalds".
        - All entries remained shown
        - Success message displayed informing the user of change.<br />
-    <br />
+        <br />
     3. Test case: `edit 2 ra/0`
 
        Expected:
        - Second entry has rating changed to 0. (0/5)
        - All entries remained shown (with the first entry remaining edited as done previously).
        - Success message displayed informing the user of change.<br />
-    <br />
+        <br />
     4. Test case: `edit 3 a/50 West Coast Road`
 
        Expected:
        - Third entry has address changed to "50 West Coast Road".
        - All entries remained shown (with all entries updated previously).
        - Success message displayed informing the user of change.<br />
-    <br />
+        <br />
     5. Test case: `edit 4 re/I had a great time here.`
 
         Expected:
        - Fourth entry has review changed to "I had a great time here".
        - All entries remained shown (with all entries updated previously).
        - Success message displayed informing the user of change.<br />
-    <br />
+        <br />
     6. Test case: `edit 5 p/20`
 
        Expected:
        - Fifth entry has price changed to "20". ($20)
        - All entries remained shown (with all entries updated previously).
        - Success message displayed informing the user of change.<br />
-    <br />
+        <br />
     7. Test case: `edit 1 n/Hwangs ra/4 p/7 a/NUS re/Korean food makes me happy. s/Utown c/Korean`
 
        Expected:
@@ -1182,7 +1188,7 @@ to work on.
         food category changed to "Korean".
        - All entries remained shown (with all entries updated previously).
        - Success message displayed informing the user of change.<br />
-    <br />
+        <br />
     8. Test case: `edit 1 c/Korean c/Others`
 
        Expected:
