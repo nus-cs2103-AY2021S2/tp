@@ -37,7 +37,7 @@ Given below are my contributions to the project.
     * Added description of the purpose of the User Guide and what BudgetBaby is about (Pull request [\#118](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/118))
     * Added the table of contents and provided links for quick re-direction to specific parts of the document (Pull request [\#122](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/122))
     * Added documentation for the features `find-fr` and `reset-filter` (Pull request [\#108](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/108))
-    
+
   * Developer Guide:
     * Added implementation details of the `find-fr` and `reset-filter` feature. (Pull request [\#108](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/108))
     * Added documentation for storage component (Pull request [\#92](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/92))

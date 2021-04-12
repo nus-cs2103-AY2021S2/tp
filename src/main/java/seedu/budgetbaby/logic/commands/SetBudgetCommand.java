@@ -16,8 +16,8 @@ public class SetBudgetCommand extends BudgetBabyCommand {
             + "Note the BG_AMOUNT must be a positive number up to two decimal places.";
     public static final String MESSAGE_SUCCESS = "New budget set: %s";
 
-    public static final String MESSAGE_FAILURE = "The budget amount set must be positive up to two decimal places.\n" 
-            + "Note that the upper limit for the budget amount is 1000000." ;
+    public static final String MESSAGE_FAILURE = "The budget amount set must be positive up to two decimal places.\n"
+            + "Note that the upper limit for the budget amount is 1000000.";
 
     private final Budget toSet;
 
