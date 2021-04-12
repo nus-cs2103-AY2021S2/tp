@@ -1240,7 +1240,7 @@ testers are expected to do more *exploratory* testing.
 
 If the effort required to create **AB3** is 100, we would place the effort required to implement the current version of **CoLAB** at 200.
 
-Our team has put in a significant amount of effort to get CoLAB to the current state. As evidence, we currently have over [20,000 lines of code contributed](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103T-T11-2%2Ftp&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19) and over 500 automated tests. Below, we list some notable changes that required a significant amount of effort.
+Our team has put in a significant amount of effort to get CoLAB to the current state. As evidence, we currently have over [20,000 lines of code contributed](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103T-T11-2%2Ftp&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19) and over 500 automated tests. Below, we list some notable changes that required a significant amount of effort to implement.
 
 ### Notable Changes
 
@@ -1273,7 +1273,7 @@ Our team has put in a significant amount of effort to get CoLAB to the current s
 
 4. **CRUD operations**
 
-    We had to implement create, read, update, and delete (CRUD) operations for each of the new models we created. This was not as simple due to the complexity and size of our models. For example, we had to ensure that the operations were executed on the correct task as the index shown to the user may not be the same as the index in the list (as the list displayed to the user is sorted). We also had to ensure that the many lists were all updated correctly and kept in sync with each other.
+    We had to implement create, read, update, and delete (CRUD) operations for each of the new models we created. This was not as simple as expected due to the complexity and size of our models. For example, we had to ensure that the operations were executed on the correct task as the index shown to the user may not be the same as the index in the list (as the list displayed to the user is sorted). We also had to ensure that the many lists were all updated correctly and kept in sync with each other.
 
 5. **Undo/Redo**
 
