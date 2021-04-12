@@ -19,8 +19,8 @@ CakeCollate promises to be an efficient desktop application that allows you to e
 1. Order management
 2. Order Item management
 3. Quick search function for your orders
-3. Reminder for undelivered orders that have delivery dates approaching the current date
-4. Checking the delivery status of your orders
+4. Reminder for undelivered orders that have delivery dates approaching the current date
+5. Checking the delivery status of your orders
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI applications.
 

@@ -16,15 +16,16 @@ Please refer to the guide [_Setting up and getting started_](SettingUp.md) to se
 
 ## **2. Introduction**
 
-Welcome to our Developer Guide! CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:
+Welcome to our Developer Guide! CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
+1. Order management
+2. Order Item management
+3. Quick search function for your orders
+4. Reminder for undelivered orders that have delivery dates approaching the current date
+5. Checking the delivery status of your orders
 
-* Order management
-* Order Item management
-* Reminders for undelivered orders that have delivery dates approaching the current date
-* Checking the delivery status of your orders
-<br>
-  
-It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you’re a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI applications.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **3. Design**
 
@@ -223,7 +224,7 @@ The following sequence diagram shows how this works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of diagram.
 
 </div>
 
@@ -284,7 +285,7 @@ The following sequence diagram shows how this works:
 
 ![RemindSequenceDiagram](images/RemindSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of diagram.
 
 </div>
 
@@ -668,9 +669,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
+      
 ### Adding orders 
 1. Add an order to the database 
     1. Prerequisites: none
@@ -691,8 +690,43 @@ testers are expected to do more *exploratory* testing.
        
     1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+       
+### Finding orders
+Prerequisites: Use the sample data provided on first start up. You can delete the `cakecollate.json` file in `/data` to reset CakeCollate.
 
-1. _{ more test cases …​ }
+1. Finding all orders using a generic `OR` search
+    1. Test case: `find serangoon vanilla`<br>
+      Expected: 3 orders are listed.
+        * Bernice with address containing `serangoon` and order description containing `vanilla`.
+        * David with address containing `serangoon`.
+        * Irfan with order description containing `vanilla`.
+    1. Test case: `find n/Alex Bernice`<br>
+      Expected: 2 orders are listed.
+        * Alex with name containing `Alex`.
+        * Bernice with name containing `Bernice`.
+    1. Test case: `find durian`<br>
+      Expected: 0 order listed.
+    1. Test case: `find`<br>
+      Expected: Error message shown.
+    1. Test case: `find o/`<br>
+      Expected: Error message shown.
+
+1. Finding all orders using a specific `AND` search
+    1. Test case: `find a/serangoon o/vanilla`<br>
+      Expected: 1 order are listed.
+        * Bernice with address containing `serangoon` and order description containing `vanilla`.
+    1. Test case: `find p/durian o/singapore`<br>
+      Expected: 0 order listed.    
+    1. Test case: `find o/ a/ d/`<br>
+      Expected: Error message shown.
+
+1. Finding all orders using both generic `OR` and specific `AND` search
+    1. Test case: `find n/Alex Charlotte o/Chocolate`<br>
+       Expected: 2 orders are listed.
+         * Alex with name containing `Alex` and order description containing `Chocolate`.
+         * Charlotte with name containing `Charlotte` and order description containing `Chocolate`.
+    1. Test case: `find p/durian 100 o/singapore`<br>
+       Expected: 0 order listed.
 
 ### Receiving reminders for orders
 
@@ -723,9 +757,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`undelivered x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
-
-1. _{ more test cases …​ }
-
+       
 ### Delivering multiple orders
 
 1. Delivering multiple orders while all orders are being shown
@@ -740,9 +772,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`delivered x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
-
-1. _{ more test cases …​ }
-
+       
 ### Cancelling multiple orders
 
 1. Cancelling multiple orders while all orders are being shown
@@ -757,17 +787,17 @@ testers are expected to do more *exploratory* testing.
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`cancelled x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
-
-1. _{ more test cases …​ }
-
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
+   1. How to simulate a corrupted file:
+      * Open the `cakecollate.json` file in the `/data` folder with Intellij or Notepad.
+      * Change the `deliveryDate` of the first order to an invalid format.<br>
+      I.e. `yyyy-dd-mm`
+   1. Now run the application. Since the data file is not in the correct format, CakeCollate should start without any data.<br>
+    I.e. all the previously stored data is lost.
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **8. Effort**
@@ -790,8 +820,8 @@ Challenges faced:
 * As two different models were implemented in CakeCollate, differentiating the commands used for
   both the models and implementing the interactions between the two models took time to work out.
   
-* Although the individual project used JavaFx, we were not very familiar with the it. Hence, it took some
-  trial and error was required to understand the JavaFx components and how they work.
+* Although the individual project used JavaFX, we were not very familiar with it. Hence, it took some
+  trial and error was required to understand the JavaFX components and how they work.
 
 Achievements of the project: 
 
@@ -800,13 +830,3 @@ Achievements of the project:
   this developer guide.
   
 * Extensive testing has been done to ensure minimum possible bugs in CakeCollate.
-
-
-
-
-
-
-
-
-
- 

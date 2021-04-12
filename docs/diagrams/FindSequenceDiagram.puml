@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
-participant ":ContainsKeywordsPredicate" as ContainsKeywordsPredicate LOGIC_COLOR
+participant "c:ContainsKeywordsPredicate" as ContainsKeywordsPredicate LOGIC_COLOR
 participant ":FindCommand" as FindCommand LOGIC_COLOR
 participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -42,6 +42,9 @@ activate Model
 
 deactivate Model
 
+FindCommandParser <-[hidden]- ContainsKeywordsPredicate
+destroy ContainsKeywordsPredicate
+
 create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
@@ -51,5 +54,8 @@ deactivate CommandResult
 
 [<-- FindCommand : cr
 deactivate FindCommand
+
+[<-[hidden]- FindCommand
+destroy FindCommand
 
 @enduml
