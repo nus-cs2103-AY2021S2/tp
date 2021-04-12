@@ -17,61 +17,24 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * It allows the user to classify tasks into 3 different category, `LOW/MEDIUM/HIGH`, with `HIGH` having the most priority
 * Justification : User can view the different priority on the Ui and each priority levels are color coded distinctively from one another
 * Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature that was handled by another of my team mate.
-* Worked on the following files:
-1) `PriorityTag`
-2) `State`
-3) `Tag`
-4) `AddCommandParser`
-5) `EditCommandParser`
-6) `CliSyntax`
-7) `TaskTrackerParser`
-8) `AddCommand`
-9) `EditCommand`
-10) `ArgumentMultiMap`
-11) `ParserUtil`
-12) `Prefix`
+* Worked on the following files: `PriorityTag`, `State`, `Tag`, `AddCommandParser`, `EditCommandParser`, `CliSyntax`, `TaskTrackerParser`, `AddCommand`, `EditCommand`, `ArguementMutliMap`, `ParserUtil`, `Prefix`.
   
 ### Enhancement 2
 * Sorting the priority tag based on priority levels can help the user view the most prioritised tasks at the top of the task list. 
 * Justification : User can better organise and plan which tasks to do first using the priority levels.
 * Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks.
-* Worked on the PriorityTag files and Sorting files, but are not restricted to:
-1) `PriorityTagComparator`
-2) `SortCommand`
-3) `SortCommandParser`
-     
+* Worked on the PriorityTag files and Sorting files, but are not restricted to: `PriorityTagComparator`, `SortCommand`, `SortCommandParser`.
+
 ### Enhancement 3
 * Ensure testing can be properly function after every deliverables to identify any possible bugs.
 * Justification : Help to identify possible bugs in newly written features.
-* Highlights: Worked on the Storage component files, they are mainly but no restricted to
-1) `JsonAdaptedTag`
-2) `JsonAdaptedTask`
-3) `JsonSerizlizableTaskTracker`
-4) `JsonTaskTrackerStorage`
-5) `JsonUserPrefsStorage`
-6) `Storage`
-7) `StorageManager`
-8) `TaskTrackerStorage`
-9) `UserPrefsStorage`
-     
+* Highlights: Worked on the Storage component files, they are mainly but no restricted to: `JsonAdaptedTag`, `JsonAdaptedTask`, `JsonSerializableTaskTracker`, `JsonUserPrefsStorage`, `Storage`, `StoreManager`, `TaskTrackerStorage`, `UserPrefsStorage`.
+
 ## Testing
 * I was the IC for testing component. I have to vet the test cases of my team mates and occasionally edit and configure the test cases to ensure that the test cases are well written. 
-* I was in charge of testing for the Storage component. I wrote test cases for storage classes they are:
-    1. `JsonAdaptedTagTest`
-    2. `JsonAdaptedTaskTest`
-    3. `JsonSerializableTaskTrackerTest`
-    4. `JsonTaskTrackerStorageTest`
-    5. `JsonUserPrefsStorageTest`
-    6. `StorageManagerTest`
-* I also edit and vetted the data component to ensure that the data under data folder used for testing are up-to-date they are mainly but not restricted to:
-    1. `data\ConfigUtilTest`
-    2. `data\JsonSerializableTaskTrackerTest`
-    3. `data\JsonTaskTrackerStorageTest`
-    4. `data\sandbox`
-* I wrote test cases for Model component correctly they are mainly but not restricted to:
-    1. `PriorityTagTest`
-    2. `TagTest`
-    3. `SortingFlagTest`
+* I was in charge of testing for the Storage component. I wrote test cases for storage classes they are: `JsonAdaptedTagTest`, `JsonAdaptedTaskTest`, `JsonSerializableTaskTrackerTest`, `JsonTackTrackerStorageTest`, `JsonUserPrefsStorageTest`, `StorageManagerTest`.
+* I also edit and vetted the data component to ensure that the data under data folder used for testing are up-to-date they are mainly but not restricted to: `data\ConfigUtilTest`, `data\JsonSerializableTaskTrackerTest`, `data\JsonTaskTrackerStorageTest`, `data\sandbox`.
+* I wrote test cases for Model component correctly they are mainly but not restricted to: `PriorityTagTest`, `TagTest`, `SortingFlagTest`
 * Maintained the `testUtil` folder so that the data stored and used for testing are correct. 
 
 ## Contributions to the UG
@@ -96,12 +59,8 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
         * Ensuring that we document our challenges and diffculties properly. 
 
 ## Contributions to team-based tasks
-* Refactored person classes in the Person package
-* Refactored Storage classes 
-* Refactor Tag class
-* Worked on Comparator class 
-* Worked on Sorting class
-* Worked on Command class
+* Refactored person classes in the Person package, refactored storage classes, refactor tag classes.
+* Worked on Comparator class, sorting class, Tag class, Command class, Parser class
 * Worked on resolving Ui bugs after practical dry runs
 * Helped to standardize UG and DG
 * Wrote test cases when possible
