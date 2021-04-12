@@ -20,7 +20,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/chenzaza.png" width="200px">
 
-[[github](http://github.com/chenzaza)]
+[[github](http://github.com/chenzaza)][[Project Portfolio Page](team/chenzaza.md)]
 
 * Role: Code quality, Testing
 * Responsibilities: Ensures adherence to coding standards
@@ -29,7 +29,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/internityz.png" width="200px">
 
-[[github](https://github.com/internityz)]
+[[github](https://github.com/internityz)][[Project Portfolio Page](team/internityz.md)]
 
 * Role: Integration, Testing
 * Responsibilities: Versioning of code, maintaining the code repository, integrating various parts of the software to create a whole.
@@ -39,9 +39,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/mabel-kang.png" width="200px">
 
-[[github](http://github.com/mabel-kang)]
-
-[[Project Portfolio Page](team/mabel-kang.md)]
+[[github](http://github.com/mabel-kang)][[Project Portfolio Page](team/mabel-kang.md)]
 
 * Role: Scheduling and tracking, Testing
 * Responsibilities:  Defining, assigning, and tracking project tasks
@@ -50,7 +48,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/sylviaokt.png" width="200px">
 
-[[github](http://github.com/sylviaokt)]
+[[github](http://github.com/sylviaokt)][[Project Portfolio Page](team/sylviaokt.md)]
 
 * Role: Deliverables and deadlines, Testing
 * Responsibilities: Ensure project deliverables are done on time and in the right format
