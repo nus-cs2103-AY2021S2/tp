@@ -48,15 +48,20 @@ deactivate AddressBookParser
 LogicManager -> AddStudentCommand : execute()
 activate AddStudentCommand
 
-AddStudentCommand -> Model : hasName(name)
+AddStudentCommand -> Model : hasStudent(name)
 activate Model
 deactivate Model
 
-AddStudentCommand -> Model : updateFilteredStudentList\n(PREDICATE_SHOW_ALL_STUDENTS)
+opt no student with the same identity in TutorBuddy
+AddStudentCommand -> Model : addStudent(student)
 activate Model
 
+Model -> Model : updateFilteredStudentList\n(PREDICATE_SHOW_ALL_STUDENTS)
 Model --> AddStudentCommand
 deactivate Model
+end opt
+
+
 
 create CommandResult
 AddStudentCommand -> CommandResult
