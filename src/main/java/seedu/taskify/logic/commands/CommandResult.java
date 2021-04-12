@@ -61,18 +61,6 @@ public class CommandResult {
         return showTabBoolean.get(HOME);
     }
 
-    public static boolean isExpiredTab() {
-        return showTabBoolean.get(EXPIRED);
-    }
-
-    public static boolean isCompletedTab() {
-        return showTabBoolean.get(COMPLETED);
-    }
-
-    public static boolean isUncompletedTab() {
-        return showTabBoolean.get(UNCOMPLETED);
-    }
-
     /**
      * Command Result for the user to switch to home tab
      * @param feedbackToUser
