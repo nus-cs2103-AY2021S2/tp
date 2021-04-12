@@ -15,10 +15,10 @@ Package "Ui"<<Rectangle>>{
     -ObservableList<? extends Schedulable> schedulables
     }
     Class TimetablePlacementPolicy UI_COLOR
-    Class TimetableCell UI_COLOR
+    Class TimetableSlot UI_COLOR
 }
 
-TimetableView ..> TimetableCell : creates
+TimetableView ..> TimetableSlot : creates
 TimetableView -> "1" TimetablePlacementPolicy
 TimetableView ..> "Model" : listens to
 

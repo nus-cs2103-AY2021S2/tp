@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.note.Note;
 import seedu.address.model.note.NoteBook;
 import seedu.address.model.note.ReadOnlyNoteBook;
-import seedu.address.storage.notebook.JsonAdaptedNote;
 
 /**
  * An Immutable NoteBook that is serializable to JSON format.
