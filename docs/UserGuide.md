@@ -70,7 +70,7 @@ Head over to our [Quickstart](#quickstart) to start learning about NuFash.
 ## Quickstart
 1. Ensure that you have Java `11` or above installed on your Computer.
 
-2. You can download the latest `nufash.jar` [here](https://github.com/AY2021S2-CS2103T-T12-1/tp/releases/tag/v1.3.0).
+2. You can download the latest `nufash.jar` [here](https://github.com/AY2021S2-CS2103T-T12-1/tp/releases/tag/v1.4).
 
 3. Copy the file to the folder you want to use as the _home folder_ for the NuFash application.
 
