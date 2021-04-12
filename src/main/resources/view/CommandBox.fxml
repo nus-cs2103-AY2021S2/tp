@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-background-radius: 20;" styleClass="stack-pane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane style="-fx-background-radius: 20;" styleClass="stack-pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
   <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here...">
       <font>
          <Font size="10.0" />

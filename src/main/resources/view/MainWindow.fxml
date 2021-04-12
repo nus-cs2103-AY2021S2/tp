@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="800.0" maxWidth="1000.0" minHeight="600.0" minWidth="700.0" onCloseRequest="#handleExit" title="Taskify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="800.0" maxWidth="1000.0" minHeight="600.0" minWidth="700.0" onCloseRequest="#handleExit" title="Taskify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <scene>
         <Scene>
             <stylesheets>
