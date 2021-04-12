@@ -1226,7 +1226,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 ### Help Command
 
 1. Test case: `help` <br>
-   Expected: Opens a pop-up window that shows the command summary and
+   Expected: Opens a pop-up window that shows the command summary and provides a link to the user guide.
 
 ### Exit Command
 
