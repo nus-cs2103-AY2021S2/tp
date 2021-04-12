@@ -381,6 +381,7 @@ Output:
 **Quick tip**: Make sure you are on the archive list(using the `archivelist` command) before trying to unarchiving a patient!
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 ## Miscellaneous
 
 ### Clearing all entries : `clear`
