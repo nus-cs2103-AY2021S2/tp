@@ -37,11 +37,9 @@ Given below are my contributions to the project.
       require the user to append a `-f` flag in order for the command
       to go through, acknowledging this intended effect. This was
       quite non-trivial to implement because of the many layers of
-      hierarchy within the system. For example, when deleting
-      inventory items, then the corresponding menu items that use
-      these ingredients need to be accounted for and then finally, the
-      orders that depend on the availability of these menu items need
-      to be accounted for.
+      hierarchy within the system. For example, deleting inventory
+      items result in corresponding menu items and hence orders being
+      deleted as well.
 
 * **New Feature**: Data links for menu item edits ([#104](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/104 "#104"), [#112](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/122 "#112"), [#130](https://github.com/AY2021S2-CS2103T-W15-3/tp/issues/130 "#130"), [#134](https://github.com/AY2021S2-CS2103T-W15-3/tp/issues/134 "#134"))
     * What is does: Checks that the edits to menu items (in terms of
@@ -55,14 +53,11 @@ Given below are my contributions to the project.
     * Highlights: This is non-trivial to do because of the immutable
       nature of objects within the source code. When an edit is
       processed, all orders that utilize the dish needs to be
-      collated, their new ingredient requirements calculated and
-      checked, and then this new edited `Dish` object needs to be
-      propagated throughout the order database. This was also
-      non-trivial because of the hierarchical nature of the
-      objects. For instance, when `Ingredient` items are edited, this
-      edit needs to be propagated to all menu items that use them and
-      then all uncompleted orders that depend on these menu items also
-      need to be edited.
+      collated, ingredient requirements calculated and checked, and
+      then new edited `Dish` object propagated. This was also
+      non-trivial by the hierarchical nature of the objects. For
+      instance, when `Ingredient` items are edited, this edit needs to
+      be propagated to all menu items and then the affect orders.
 
 * **New Feature**: Data link for order add/edit ([#138](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/138 "#138"), [#159](https://github.com/AY2021S2-CS2103T-W15-3/tp/issues/159 "#159"), [#245](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/245 "#245"))
     * What it does: Checks that orders can be fulfilled before
@@ -89,22 +84,16 @@ Given below are my contributions to the project.
         * Added working examples and explainations for `customer` related commands [link](https://ay2021s2-cs2103t-w15-3.github.io/tp/UserGuide.html#customer "link").
         [#145](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/145 "#145")
     * Developer Guide:
-        * Added segment on data consistency describing the behavior of
+        * Added segment on data consistency describing the behaviors of
           `customer delete` and `customer edit` commands [link](https://ay2021s2-cs2103t-w15-3.github.io/tp/DeveloperGuide.html#deletion-of-person-objects "link")
           ([#81](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/81
           "#81"),
           [#105](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/105/files
-          "#105"))
-        * Added segment on data consistency describing the behavior of
-          `menu delete` and `menu edit` commands
+          "#105")), `menu delete` and `menu edit` commands
           [link](https://ay2021s2-cs2103t-w15-3.github.io/tp/DeveloperGuide.html#deletion-of-dish-objects
-          "link")
-        * Added segment on data consistency describing the behavior of
-          `inventory delete` command
+          "link"), `inventory delete` command
           [link](https://ay2021s2-cs2103t-w15-3.github.io/tp/DeveloperGuide.html#deletion-of-ingredient-objects
-          "link")
-        * Added segment on data consistency describing the behavior of
-          `order edit` command
+          "link"), and `order edit` command
           [link](https://ay2021s2-cs2103t-w15-3.github.io/tp/DeveloperGuide.html#editing-of-order-objects
           "link")
         * Contributed to the use cases in DG
