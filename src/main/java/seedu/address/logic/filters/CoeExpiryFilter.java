@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
 
-public class CoeExpiryFilter extends AbstractFilter {
+public class CoeExpiryFilter extends Filter {
     public static final String MESSAGE_CONSTRAINTS = "COE Expiry Filter can only accept 'exp' or a non negative number";
     private final LocalDate coeExpiryThreshold;
 
