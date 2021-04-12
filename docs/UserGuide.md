@@ -47,6 +47,9 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
 6. Refer to the [Features](#features-and-behaviour) below for the details of the main commands.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## UI Layout
 This section introduces you to the UI of Taskify. Let us take a closer look at the different sections and fields
 present in the UI of Taskify.
@@ -75,6 +78,8 @@ A Status can be one of the following: `uncompleted`, `completed` or `expired`.
 
 This is the Command Box. This is where you will input your commands.
 
+<div style="page-break-after: always;"></div>
+
 ### 3. Response Box
 <img src="images/responsebox.png" width="600">
 
@@ -97,6 +102,9 @@ for your convenience.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## Features and Behaviour
 This section highlights the features and behaviour of Taskify when it comes to certain situations. Refer to
 this section if there are any unexpected or undesirable behaviour while using Taskify. We welcome any feedback
@@ -177,6 +185,8 @@ Examples:
 * `add n/Consult Professor desc/Discuss project with prof date/2021-04-04 10:30 t/project`
 * `add n/Buy groceries desc/Don't forget tomatoes`
 
+<div style="page-break-after: always;"></div>
+
 | Screenshot         | Remark |
 | :-----------: | :-----------: |
 |  <img src="images/feature-screenshots/add-task-before.png" >     | <ins>**Before**</ins><br/>Command Entered: `add n/Finish 2103 Tutorial desc/Draw UML diagram date/2021-04-13 10:30`  |
@@ -187,6 +197,7 @@ Examples:
 View a list of all tasks in Taskify.
 Format: `list`
 
+<div style="page-break-after: always;"></div>
 
 ### Editing a task : `edit`
 
@@ -226,6 +237,9 @@ Examples: `delete 2` deletes the 2nd task in Taskify, if there are at least 2 or
 Notes:
 * The index refers to the index number shown in the displayed task list in `home` tab.
 * The index **must be a positive integer** 1, 2, 3, …
+
+
+<div style="page-break-after: always;"></div>
 
 #### Deleting multiple tasks
 
