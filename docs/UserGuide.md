@@ -19,12 +19,12 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   <img alt="logo" src="images/logo.png">
 </div>
 
-Welcome and thank you for downloading **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
+Welcome and thank you for downloading **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many tasks and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
 
 CoLAB (Collaboration Lab) is a **desktop app for university students to manage their school projects.**  CoLAB's main features include:
 
 * Project management
-* Contacts management
+* Contact management
 * Today View that surfaces an overview of upcoming events and deadlines
 
 With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools.
@@ -169,7 +169,10 @@ To achieve the best possible experience, avoid adding excessively long text to C
     * 23/11/2021
     * 23.11.2021
     * 23112021
-* The year should be a non-negative number between 0000 and 9999.
+* Date should be a valid date (dd/MM/yyyy) where:
+    * The Year Field (yyyy) should be a non-negative number between 0000 and 9999.
+    * The Month Field (MM) should be a non-negative number between 01 and 12.
+    * The Day Field (dd) should be a non-negative number between 00 and 31 (may be less than 31 depending on the number of days in the month).
 
 ##### `DESCRIPTION`
 
@@ -392,7 +395,7 @@ Format `updateP PROJECT_INDEX n/NAME`
 Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
-* [`NAME`](#name) The name of the project.
+* [`NAME`](#name) The updated name of the project.
 
 Example:
 
@@ -462,7 +465,7 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`TODO_INDEX`](#index) The index of the todo.
-* [`DESCRIPTION`](#description) The description of the todo.
+* [`DESCRIPTION`](#description) The updated description of the todo.
 
 Example:
 
@@ -551,8 +554,8 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`DEADLINE_INDEX`](#index) The index of the deadline.
-* [`DESCRIPTION`](#description) The description of the deadline.
-* [`DATE`](#date) The due date of the deadline.
+* [`DESCRIPTION`](#description) The updated description of the deadline.
+* [`DATE`](#date) The updated due date of the deadline.
 
 Examples:
 
@@ -646,10 +649,10 @@ At least one of the optional fields must be provided.
 Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
-* [`EVENT_INDEX`](#index) The index of an event.
-* [`DESCRIPTION`](#description) The description of an event.
-* [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week.
-* [`TIME`](#time) The time of the event.
+* [`EVENT_INDEX`](#index) The index of the event.
+* [`DESCRIPTION`](#description) The updated description of the event.
+* [`DATE`](#date) The updated date of the event, or the updated starting date of the event if the event repeats every week.
+* [`TIME`](#time) The updated time of the event.
 * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
@@ -700,7 +703,7 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`NAME`](#name) The name of the groupmate.
-* [`ROLE`](#role) The role of the groupmate.
+* [`ROLE`](#role) The roles of the groupmate.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 A groupmate can have any number of roles (including 0).
@@ -732,8 +735,8 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
-* [`NAME`](#name) The name of the groupmate.
-* [`ROLE`](#role) The role of the groupmate.
+* [`NAME`](#name) The updated name of the groupmate.
+* [`ROLE`](#role) The updated roles of the groupmate.
 
 Examples:
 
@@ -817,11 +820,11 @@ Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 
 Parameters:
 
-* [`NAME`](#name) The name of a contact.
-* [`PHONE_NUMBER`](#phone_number) The phone number of a contact.
-* [`EMAIL`](#email) The email of a contact.
-* [`ADDRESS`](#address) The address of a contact.
-* [`TAG`](#tag) The tag associated with a contact.
+* [`NAME`](#name) The updated name of the contact.
+* [`PHONE_NUMBER`](#phone_number) The updated phone number of the contact.
+* [`EMAIL`](#email) The updated email of the contact.
+* [`ADDRESS`](#address) The updated address of the contact.
+* [`TAG`](#tag) The updated tag of the contact.
 
 Examples:
 
