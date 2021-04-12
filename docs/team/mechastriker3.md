@@ -68,7 +68,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `add` feature [\#301](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/301)
     * Added use cases for `delete`, `find` in Appendix:Requirements [\#291](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/291)
-
+    * Added test cases for **delete multiple** and `findAppt` and `find` features.
 * **Community**:
   * Contributed to forum discussions (examples: [#17](https://github.com/nus-cs2103-AY2021S2/forum/issues/17#issuecomment-767455612), [21](https://github.com/nus-cs2103-AY2021S2/forum/issues/21), [#281](https://github.com/nus-cs2103-AY2021S2/forum/issues/281#issuecomment-811904159), [#95](https://github.com/nus-cs2103-AY2021S2/forum/issues/95#issuecomment-775764330))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/177), [2](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/173), [3](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/167), [4](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/165), [5](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/163))
