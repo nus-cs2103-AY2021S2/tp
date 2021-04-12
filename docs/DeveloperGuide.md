@@ -194,7 +194,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Book
 
 #### Adding a book
-The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under Reader#addbook)
+The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under [**`Adding a reader`**](#Adding a reader)).
 
 #### Deleting a book
 
@@ -275,7 +275,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 
 #### Deleting a reader
-The execution of deleting a reader `deletereader` is very similar to deleting a book `deletebook` (refer to diagrams under Book)
+The execution of deleting a reader `deletereader` is very similar to deleting a book `deletebook` (refer to diagrams under [**`Deleting a book`**](#Deleting a book)).
 
 
 #### Listing all readers
@@ -320,15 +320,15 @@ The only differences are that `FindReaderCommandParser` is used to parse the arg
 
 Recording a reader borrowing a book requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, the input is valid if
-1. The book and reader specified exist in the code base
-2. The book is available
-3. The reader does not have overdue books or exceed his borrowing quota
+1. The book and reader specified exist in the code base.
+2. The book is available.
+3. The reader does not have overdue books or exceed his borrowing quota.
 
 Then take the following pseudo processes:
-1. Obtain the Reader object and the Book object based on the identity provided by the user
-2. Add a corresponding record to the record List
+1. Obtain the Reader object and the Book object based on the identity provided by the user.
+2. Add a corresponding record to the record List.
 3. Update reader and book's borrowing status by adding the book in reader's borrowing list and setting the book's
-borrower to the reader
+borrower to the reader.
 
 Given below is an example usage scenario of how the `borrow` mechanism behaves at each step. In our example and the
 diagrams below,
@@ -341,13 +341,13 @@ books added to the book list.
 * Step 4: `LogicManager` will then call `BorrowCommand#execute()`, which in turn calls `Model#addRecord()` and
 `Model#borrowBook()`.
 * Step 5: For calling `Model#addRecord()`, `ModelManager` will then call `SmartLib#addRecord()` and
-`Model#updateFilteredRecordList()`
-* Step 6: `SmartLib#addRecord()` will add the corresponding record to record list
-* Step 7: `ModelManager#updateFilteredRecordList()` will update corresponding record list in local storage file
+`Model#updateFilteredRecordList()`.
+* Step 6: `SmartLib#addRecord()` will add the corresponding record to record list.
+* Step 7: `ModelManager#updateFilteredRecordList()` will update corresponding record list in local storage file.
 * Step 8: On the other hand, `ModelManager#borrowBook()` will change the borrowing status of book and reader's borrowing
 list by calling `SmartLib#isBookBorrowed()` and
   update local storage by calling `Model#updateFilteredReaderList()` and `Model#updateFilteredBookList()`.
-* Step 9: All reader list, book list and record list will be updated in storage and reflected on the GUI
+* Step 9: All reader list, book list and record list will be updated in storage and reflected on the GUI.
 
 The following sequence diagram shows how the `borrow` operation works:
 
@@ -362,13 +362,13 @@ The following activity diagram summarizes what happens when a user executes the 
 Recording a reader returning a book requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, the input is valid if
 1. The book specified exists in the code base.
-2. The book is borrowed by someone
-3. There is such a valid borrowing record existing in the code base
+2. The book is borrowed by someone.
+3. There is such a valid borrowing record existing in the code base.
 
 Then take the following pseudo processes:
-1. Obtain the Book object based on the identity provided by the user
+1. Obtain the Book object based on the identity provided by the user.
 2. Mark the corresponding record as returned by indicating the dateReturned field.
-3. Remove the book from reader's borrowing list and set book's borrower to null
+3. Remove the book from reader's borrowing list and set book's borrower to null.
 
 Given below is an example usage scenario of how the `return` mechanism behaves at each step. In our example and the
 diagrams below,
@@ -382,12 +382,12 @@ we assume that the user input is `return bc/1000000000`:
   `Model#getBookNameForReturn()`, `Model#markRecordAsReturned()` and `Model#returnBook()`.
 * Step 5: After calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()`.
 * Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the
-  dateReturned to LocalDate.now()
+  dateReturned to 'LocalDate.now()'.
 * Step 7: After calling `Model#returnBook()`, `ModelManager` will then call `ModelManager#updateFilteredRecordList()`
-  which will update the corresponding record list in local storage file
+  which will update the corresponding record list in local storage file.
 * Step 8: `ModelManager#returnBook()` will also change the status of book and reader specified by calling
   `SmartLib#isBookReturned()` and update local storage by calling `Model#updateFilteredReaderList()` and `Model#updateFilteredBookList()`.
-* Step 9: All reader list, book list and record list will be updated in storage and reflected on the GUI
+* Step 9: All reader list, book list and record list will be updated in storage and reflected on the GUI.
 
 The following sequence diagram shows how the `return` operation works:
 
@@ -406,7 +406,7 @@ This process happens after `ReturnCommand#returnBook()` and before creating a `C
 Given below is an example scenario of how the system deals with overdue book at each step.
 Here, we assume that the book is indeed overdue by 10 hours.
 
-* Step 1: `ReturnCommand` checks whether the book is overdue by invoking its own method `ReturnCommand#isOverdue()`
+* Step 1: `ReturnCommand` checks whether the book is overdue by invoking its own method `ReturnCommand#isOverdue()`.
 * Step 2: `ReturnCommand` instantiate a `Cost` object with parameter `10`.
 * Step 3: `Cost#getCost()` will returns the total amount of fine that the reader is required to pay.
 
