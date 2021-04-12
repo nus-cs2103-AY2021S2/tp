@@ -18,6 +18,7 @@ import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -103,9 +104,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isValid = true;
         String[] dressCodes = dressCode.split(" ");
         for (String d : dressCodes) {
-            if (!d.equalsIgnoreCase("casual")
-                    && !d.equalsIgnoreCase("formal")
-                    && !d.equalsIgnoreCase("active")) {
+            if (!DressCode.isValidDressCode(d)) {
                 isValid = false;
             }
         }
@@ -119,9 +118,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isValid = true;
         String[] types = type.split(" ");
         for (String t : types) {
-            if (!t.equalsIgnoreCase("upper")
-                    && !t.equalsIgnoreCase("lower")
-                    && !t.equalsIgnoreCase("footwear")) {
+            if (!Type.isValidType(t)) {
                 isValid = false;
             }
         }
