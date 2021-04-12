@@ -241,6 +241,10 @@ converts the string of arguments into a list, that is subsequently passed on to 
 that uses the list of keywords to find the search results based on the supplied keywords. Take note that Find Command supports 
 substring searching, so for example if there is an Alice in the program, searching "Ali" will also return Alice as result. 
 
+Below is an example activity diagram for a valid find command from the user.
+
+![FindActivityDiagram](images/FindActivityDiagram.png){: .center-image}
+
 Below is an example sequence diagram for a valid find command from the user.
 
 ![FindActivityDiagram](images/FindSequenceDiagram.png){: .center-image}
@@ -255,13 +259,9 @@ Here is a more specific breakdown of the command's execute method.
 
 ![ViewSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png) 
 
-1. Upon calling the `execute()` method, the find command updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter. 
-2. It then sorts the entity using the `sortEntities()` in increasing order. 
-3. From here, Find Command creates a command result and returns it to the `LogicManager`. 
-
-Below is an example activity diagram for a valid find command from the user.
-
-![FindActivityDiagram](images/FindActivityDiagram.png){: .center-image}
+1. Upon calling the `execute()` method, the `FindCommand` updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter. 
+2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
+3. From here, Find Command creates a command result and returns it to the `LogicManager`.
 
 ### View feature
 
@@ -275,7 +275,16 @@ Based on the class type of the target entity, we will reveal the search results 
 
 This list is subsequently passed on to the `RelatedEntityPredicate` that will later be used in the ModelManager's `updatefilteredEntityList())` method to finally reveal the search results.
 
-Below is an example sequence diagram for a valid view command from the user. 
+Take note that this is the order in which results will be displayed, based on target entity searched:
+* **View Dog**: Dog > Owner > Programs enrolled in
+* **View Owner**: Owner > Dogs owned 
+* **View Program**: Program > Dogs enrolled
+
+Below is an example activity diagram for a valid view command from the user.
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png){: .center-image}
+
+Below is an example sequence diagram for a valid view command from the user.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png){: .center-image}
 
@@ -292,11 +301,7 @@ Here is a more specific breakdown of the command's execute method.
 1. In the execute method of `ViewCommand`, it first generates a list of related entity IDs by calling the `generateRelatedIdList()`which accesses the data in the model. 
 2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model. 
 3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list. 
-4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial. 
-
-Below is an example activity diagram for a valid view command from the user.
-
-![ViewActivityDiagram](images/ViewActivityDiagram.png){: .center-image}
+4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
 
 ### Enrol feature
 
@@ -423,7 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes.  |
 | `* *`    | Advanced user        | Edit in bulk quickly                                                       | Minimize chance of someone else seeing them by accident |
 | `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command. |
-| `* * `   | User                 | Exit the application                                                       |           |
+| `* `     | User                 | Exit the application                                                       |           |
 
 *{More to be added}*
 
@@ -449,7 +454,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Steps 1a1-1a2 are repeated until the command entered is correct.
       
     Use case resumes at step 2.
-
+* 1b. Entity already exists in the program. 
+    * 1b1. Pawbook shows an error message. 
+    * 1b2. User supplies an entity with different details. <br>
+      Steps 1b1-1b2 are repeated until the command entered is correct.
+      
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
 **Use case: UC02 - Delete a dog/owner profile or program**
@@ -578,7 +587,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
 
-**Use case: UC05 - Drop dog from program**
+**Use case: UC08 - Drop dog from program**
 
 **MSS**
 
@@ -604,7 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
-**Use case: UC06 - View schedule**
+**Use case: UC09 - View schedule**
 
 **MSS**
 
@@ -624,7 +633,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 2.
 
 
-**Use case: UC07 - View Help Window**
+**Use case: UC10 - View Help Window**
 
 **MSS**
 
@@ -643,7 +652,7 @@ and also a command summary for the user.
     Use case resumes at step 2.
       
 
-**Use case: UC08 - Exit Pawbook**
+**Use case: UC11 - Exit Pawbook**
 
 **MSS**
 
