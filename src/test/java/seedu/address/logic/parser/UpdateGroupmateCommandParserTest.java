@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GROUPMATE_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_UPDATED;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SYLPH;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_LEADER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_LEADER;
@@ -15,7 +16,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateGroupmateCommand;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.testutil.GroupmateBuilder;
@@ -88,6 +88,6 @@ class UpdateGroupmateCommandParserTest {
     @Test
     public void parse_notEdited_failure() {
         assertParseFailure(parser, "" + INDEX_FIRST.getOneBased() + " "
-                + PREFIX_INDEX + INDEX_FIRST.getOneBased(), UpdateContactCommand.MESSAGE_NOT_EDITED);
+                + PREFIX_INDEX + INDEX_FIRST.getOneBased(), MESSAGE_NOT_UPDATED);
     }
 }

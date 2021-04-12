@@ -88,8 +88,6 @@ class UpdateGroupmateCommandTest {
         Index projectIndex = INDEX_FIRST;
         UpdateGroupmateCommand updateGroupmateCommand = new UpdateGroupmateCommand(projectIndex, INDEX_FIRST,
                 new UpdateGroupmateCommand.UpdateGroupmateDescriptor());
-        Groupmate editedGroupmate = model.getFilteredProjectList().get(projectIndex.getZeroBased()).getGroupmates()
-                .get(INDEX_FIRST.getZeroBased());
 
         assertCommandFailure(updateGroupmateCommand, model, UpdateGroupmateCommand.MESSAGE_UNCHANGED_GROUPMATE);
     }

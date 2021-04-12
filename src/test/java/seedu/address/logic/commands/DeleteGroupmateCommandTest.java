@@ -38,22 +38,22 @@ public class DeleteGroupmateCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Groupmate contactToDelete = new GroupmateBuilder().withName("a").build();
+        Groupmate groupmateToDelete = new GroupmateBuilder().withName("a").build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addGroupmate(contactToDelete);
+        editedProject.addGroupmate(groupmateToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index firstContactIndex = Index.fromOneBased(1); //groupmate is first in sorted list
+        Index firstGroupmateIndex = Index.fromOneBased(1); //groupmate is first in sorted list
 
-        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_FIRST, firstContactIndex);
+        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_FIRST, firstGroupmateIndex);
 
         String expectedMessage = String.format(MESSAGE_DELETE_GROUPMATE_SUCCESS,
-                contactToDelete.getName(), projectToEdit.getProjectName());
+                groupmateToDelete.getName(), projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
@@ -63,20 +63,20 @@ public class DeleteGroupmateCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Groupmate contactToDelete = new GroupmateBuilder().build();
+        Groupmate groupmateToDelete = new GroupmateBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addGroupmate(contactToDelete);
+        editedProject.addGroupmate(groupmateToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
 
-        Index lastContactIndex = Index.fromOneBased(model.getFilteredProjectList().get(
+        Index lastGroupmateIndex = Index.fromOneBased(model.getFilteredProjectList().get(
                 INDEX_FIRST.getZeroBased()).getGroupmates().size());
 
-        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_THIRD, lastContactIndex);
+        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_THIRD, lastGroupmateIndex);
 
         assertThrows(
                 CommandException.class,
@@ -96,10 +96,10 @@ public class DeleteGroupmateCommandTest {
 
     @Test
     public void equals() {
-        Groupmate contactToDelete = new GroupmateBuilder().build();
+        Groupmate groupmateToDelete = new GroupmateBuilder().build();
         Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addGroupmate(contactToDelete);
+        editedProject1.addGroupmate(groupmateToDelete);
 
         model.setProject(
                 project1ToEdit,
@@ -108,7 +108,7 @@ public class DeleteGroupmateCommandTest {
 
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
         Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
-        editedProject2.addGroupmate(contactToDelete);
+        editedProject2.addGroupmate(groupmateToDelete);
 
 
         model.setProject(
@@ -116,32 +116,32 @@ public class DeleteGroupmateCommandTest {
                 editedProject2
         );
 
-        Index lastContactFromProject1 = Index.fromOneBased(
+        Index lastGroupmateFromProject1 = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getGroupmates().size());
-        Index lastContactFromProject2 = Index.fromOneBased(
+        Index lastGroupmateFromProject2 = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getGroupmates().size());
 
-        DeleteGroupmateCommand deleteContactFromProject1Command = new DeleteGroupmateCommand(
-                INDEX_FIRST, lastContactFromProject1);
-        DeleteGroupmateCommand deleteContactFromProject2Command = new DeleteGroupmateCommand(
-                INDEX_SECOND, lastContactFromProject2);
+        DeleteGroupmateCommand deleteGroupmateFromProject1Command = new DeleteGroupmateCommand(
+                INDEX_FIRST, lastGroupmateFromProject1);
+        DeleteGroupmateCommand deleteGroupmateFromProject2Command = new DeleteGroupmateCommand(
+                INDEX_SECOND, lastGroupmateFromProject2);
 
         // same object -> returns true
-        assertEquals(deleteContactFromProject1Command, deleteContactFromProject1Command);
+        assertEquals(deleteGroupmateFromProject1Command, deleteGroupmateFromProject1Command);
 
         // same values -> returns true
-        DeleteGroupmateCommand deleteContactFromProject1CommandCopy = new DeleteGroupmateCommand(
-                INDEX_FIRST, lastContactFromProject1);
-        assertEquals(deleteContactFromProject1Command, deleteContactFromProject1CommandCopy);
+        DeleteGroupmateCommand deleteGroupmateFromProject1CommandCopy = new DeleteGroupmateCommand(
+                INDEX_FIRST, lastGroupmateFromProject1);
+        assertEquals(deleteGroupmateFromProject1Command, deleteGroupmateFromProject1CommandCopy);
 
         // different types -> returns false
-        assertNotEquals(deleteContactFromProject1Command, 1);
+        assertNotEquals(deleteGroupmateFromProject1Command, 1);
 
         // null -> returns false
-        assertNotEquals(deleteContactFromProject1Command, null);
+        assertNotEquals(deleteGroupmateFromProject1Command, null);
 
-        // different contact -> returns false
-        assertNotEquals(deleteContactFromProject1Command, deleteContactFromProject2Command);
+        // different Groupmate -> returns false
+        assertNotEquals(deleteGroupmateFromProject1Command, deleteGroupmateFromProject2Command);
     }
 
 }

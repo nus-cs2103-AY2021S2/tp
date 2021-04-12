@@ -47,7 +47,6 @@ public class UpdateContactCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_CONTACT_SUCCESS = "Updated contact: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to update must be provided.";
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in CoLAB.";
     public static final String MESSAGE_UNCHANGED_CONTACT = "This contact already has this name, phone,"
             + " email, address and tags.";
