@@ -68,6 +68,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+A similar *Sequence Diagram* exists for meeting related commands like `editm 1`.
+
+<img src="images/ArchitectureSequenceMeetingDiagram.png" width="574" />
+
 The sections below give more details of each component.
 
 ### UI component
@@ -123,7 +127,7 @@ Given below is another Sequence Diagram for interactions within the `Logic` comp
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the MeetBuddy data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the meeting book data.
 * exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
