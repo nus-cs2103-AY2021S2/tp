@@ -70,7 +70,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 A similar *Sequence Diagram* exists for meeting related commands like `editm 1`.
 
-<img src="images/ArchitectureSequenceMeetingDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagramMeeting.png" width="574" />
 
 The sections below give more details of each component.
 
@@ -310,7 +310,7 @@ Takes up less space in the model.
 a whole column, or search through the slots in the column to find the slot.
 
 
-#### setTimetable
+#### Implementation : `setTimetable`
 
 We store an SimpleObjectProperty of a localDate inside a class called timetablePrefs in the model.
 When we initialize the Ui components, a ReadOnlyObservableValue of this localDate is passed to the TimetableView.
@@ -497,6 +497,11 @@ Users would be better able to manage their social and academic commitments by to
 
   Use case ends.
 
+<<<<<<< HEAD
+**Use case: Viewing meetings in the timetable**
+
+=======
+>>>>>>> 6b3cdedcdc7d066e766ef5f4d6971efdb9916ac1
 
 New features on V1.2
 5.  Assign priorities to contacts
@@ -507,10 +512,11 @@ New features on V1.2
 ## Appendix: Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The response to any use action should become visible within 2 seconds.
-5.  The source code should be open source.
+2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  The response to any use action should become visible within 2 seconds.
+4.  The source code should be open source.
+5.  There should not be noticeable lag in the UI when handling up to 100 people.
+
 
 ## Appendix: Glossary
 

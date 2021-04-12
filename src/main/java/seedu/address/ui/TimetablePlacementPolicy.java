@@ -35,7 +35,7 @@ public class TimetablePlacementPolicy {
     public static final int SECONDS_IN_AN_HOUR = 3600;
     public static final long SECONDS_IN_DAY = 86400;
 
-    public static final double TIMETABLE_DISPLAY_SIZE = 5760;
+    public static final double TIMETABLE_DISPLAY_SIZE = 2760;
     public static final int NUMBER_OF_COLUMNS = 7;
 
     private final int startHour;
