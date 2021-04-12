@@ -92,6 +92,4 @@ Lesson *--> "*" Person
 
 ModelManager ----->" ~* filtered and observable list" Person
 ModelManager ----->" ~* filtered and observable list" Lesson
-
 @enduml
-
