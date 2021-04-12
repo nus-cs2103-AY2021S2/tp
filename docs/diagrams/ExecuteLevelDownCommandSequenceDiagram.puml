@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+mainframe "sd execute method of level down command"
+
+box Logic LOGIC_COLOR_T1
+participant "lv:LevelDownCommand" as LevelDownCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+LevelDownCommand -> Model : filterIndicesThenTransformPersonList(indices, new PersonLevelDownFunction())
+activate Model
+
+Model --> LevelDownCommand
+deactivate Model
+
+create CommandResult
+LevelDownCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LevelDownCommand
+deactivate CommandResult
+
+@enduml

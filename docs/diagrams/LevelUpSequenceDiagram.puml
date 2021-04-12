@@ -48,18 +48,7 @@ deactivate AddressBookParser
 LogicManager -> LevelUpCommand : execute()
 activate LevelUpCommand
 
-LevelUpCommand -> Model : filterIndicesThenTransformPersonList(indices, new PersonLevelUpFunction())
-activate Model
-
-Model --> LevelUpCommand
-deactivate Model
-
-create CommandResult
-LevelUpCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> LevelUpCommand
-deactivate CommandResult
+ref over LevelUpCommand, Model : execute method of LevelUpCommand
 
 LevelUpCommand --> LogicManager : result
 deactivate LevelUpCommand
