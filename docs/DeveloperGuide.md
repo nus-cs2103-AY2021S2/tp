@@ -839,7 +839,31 @@ Prerequisites: Use the sample data provided on first start up. You can delete th
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`cancelled x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
+ 
+### Adding order items
+
+1. Adding an order item to the order items table
+    1. Prerequisites: none.
+    1.Test case: `addItem Chocolate Cake`<br>
+       Expected: A new Order Item with description "Chocolate Cake" is added to the order items table.
+    1.Test case: `addItem 123`<br>
+       Expected:  No order item is added. Error details shown in the status message.
        
+### Deleting multiple order items
+
+1. Deleting multiple order items from the order items table.
+    1. Prerequisites: Multiple order items in the order items table.
+    1. Test case: `delete 1`<br>
+       Expected: First order item is deleted from the order items table. Details of the deleted order item shown in the status message.
+    1. Test case: `delete 1 2` <br>
+       Expected: First and second order items are deleted from the order items table. Details of the deleted order items are shown in the status message.
+    1. Test case: `delete 0 1`<br>
+       Expected: No order item is deleted. Error details shown in the status message.
+    1. Test case: `delete 0 1`<br>
+       Expected: No order item is deleted. Error details shown in the status message.
+    1. Other incorrect deleteItem commands to try: `deleteItem`, `deleteItem x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+      
 ### Saving data
 
 1. Dealing with missing/corrupted data files
