@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_FIND_PATIENT_SUCCESS;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -32,7 +32,7 @@ public class FindPatientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPatientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PATIENTS_FOUND_OVERVIEW, model.getFilteredPatientList().size()));
+                String.format(MESSAGE_FIND_PATIENT_SUCCESS, model.getFilteredPatientList().size()));
     }
 
     @Override
