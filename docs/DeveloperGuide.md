@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -58,6 +59,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -73,6 +76,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -94,6 +99,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -107,6 +114,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` and `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -172,6 +180,7 @@ Below is the sequence diagram to show how the mark task as completed mechanism w
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DoneTaskCommandParser` and `DoneTaskCommand` should end at the destroy marker (X) 
 but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
 </div>
+<br> 
 
 The following activity diagram summarizes what happens when a user executes the mark task as completed command:
 
@@ -179,6 +188,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 <br/>
 
+<div style="page-break-after: always;"></div>
 
 ### Find Tasks with deadline before a selected date feature
 
@@ -222,12 +232,13 @@ Below is the sequence diagram:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTasksBeforeCommandParser` and `FindTasksBeforeCommand` should end at the destroy marker (X) 
 but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
 </div>
+<br> 
 
 The following activity diagram summarizes what happens when a user executes the find tasks with deadline before a selected date command:
 
 ![#Activity Diagram for find tasks due before a certain date](images/FindBeforeActivityDiagram.png)
 
-<br/>
+<div style="page-break-after: always;"></div>
 
 ### Delete a Task feature
 
@@ -270,10 +281,13 @@ Below is the sequence diagram:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` and `DeleteTaskCommand` should end at the destroy marker (X) 
 but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
 </div>
+<br>
 
 The following activity diagram below summarizes what happens when a user executes the `deleteTask` command:
 
 ![#Activity Diagram for Delete Task](images/DeleteTaskActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Clear all assignees of a Task feature
 
@@ -318,6 +332,7 @@ The following sequence diagram shows how the clear all assignees of a task mecha
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ClearAssigneesCommandParser` and `ClearAssigneesCommand` should end at the destroy marker (X) 
 but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
 </div>
+<br> 
 
 The following activity diagram summarizes what happens when a user executes the `clearAssignees` command: 
 
@@ -377,6 +392,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `  | CCA leader | be able to get a list of tasks that have not been completed | check on the progress of the tasks |
 | `* `  | CCA leader | be able to get a list of tasks with deadlines that are prior to a certain date | make sure I do not miss those deadlines |
 | `* `  | CCA leader | be able to get a list of tasks assigned to a particular member | check on the workload of a particular member |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -690,6 +707,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `addMember`, `addMember Alice`, `addMember Alice p/12345678`, `addMember Alice e/Alice@gmail.com` <br>
       Expected: similar to previous test case.
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing Members
 
 1. Viewing all members
@@ -738,6 +757,8 @@ testers are expected to do more *exploratory* testing.
 
     6. Other incorrect delete commands to try: `edit`, `editMember x` (where x is a name which does not exist in the members list) <br>
        Expected: Similar to previous test case.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding Members by keywords
 
@@ -789,6 +810,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect commands to try: `addTask`, `addTask Roster`, `addTask Roster d/Plan roster` <br>
        Expected: No task is added since compulsory fields are not provided. Error details shown in the status bar.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a Task
 
