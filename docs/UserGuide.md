@@ -109,7 +109,7 @@ This image below is a screenshot of the app displaying events sorted by upcoming
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
 | `DATE` | `-d` /<br>`--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
 | `REMARK` | `-r` /<br>`--remark` | any | Any value |
-| `EMAIL` | `-e` /<br>`--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
+| `EMAIL` | `-e` /<br>`--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>_!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
 | `INDEX` | - | any | Positive integer between 0 and 2,147,483,647 inclusive, representing the ID present in the filtered list |
 | `NAME` | `-n` /<br>`--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) and not longer than 25 characters|
 | `PHONE` | `-p` /<br>`--phone` | Contact | Any number at least three digits long |
