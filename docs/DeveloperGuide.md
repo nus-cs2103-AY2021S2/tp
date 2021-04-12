@@ -272,7 +272,7 @@ Additionally, here are some information to note:
 
 * Alternative 1: Keep multiple `UniqueFoodList`
     * Pros:
-        * Similar `Food` items can store multiple nutrients' value across many list
+        * Similar `Food` items can store multiple nutrients' value across many lists
     * Cons:
         * Referencing a particular value from multiple lists can be quite complicated and buggy
 

@@ -26,7 +26,7 @@ activate AddFoodItemCommandParser
 AddFoodItemCommandParser --> DietLahParser
 deactivate AddFoodItemCommandParser
 
-DietLahParser -> AddFoodItemCommandParser : parse(foodItem)
+DietLahParser -> AddFoodItemCommandParser : parse(n/grape c/10 f/10 p/10)
 activate AddFoodItemCommandParser
 
 create AddFoodItemCommand
@@ -48,7 +48,7 @@ deactivate DietLahParser
 LogicManager -> AddFoodItemCommand : execute()
 activate AddFoodItemCommand
 
-AddFoodItemCommand -> Model : AddFoodItem(foodItem)
+AddFoodItemCommand -> Model : addFoodItem(foodItem)
 activate Model
 
 Model --> AddFoodItemCommand
