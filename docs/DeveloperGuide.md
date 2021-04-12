@@ -622,12 +622,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-  
-      Use case ends.
+* 1a. The list is empty.   
+    Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.
+    * 3a1. TutorTracker shows an error message.   
       Use case resumes at step 2.
 
 <hr/>
@@ -645,12 +644,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-
-      Use case ends.
+* 1a. The list is empty.   
+    Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.
+    * 3a1. TutorTracker shows an error message.    
       Use case resumes at step 2.
 
 <hr/>
@@ -666,9 +664,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-
-      Use case ends.
+* 1a. The list is empty.   
+Use case ends.
 
 <hr/>
 
@@ -685,9 +682,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-
-      Use case ends.
+* 1a. The list is empty.  
+Use case ends.
 
 * 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
@@ -707,12 +703,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.
-
-      Use case ends.
+* 1a. The list is empty.   
+Use case ends.
 
 * 3a. The index is invalid.
-    * 3a1. TutorTracker shows an error message.
+    * 3a1. TutorTracker shows an error message.   
       Use case resumes at step 2.
 
 <hr/>
@@ -807,7 +802,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 1.  User requests to list appointments.
 2.  TutorTracker shows a list of appointments.
 3.  User requests to delete a specific appointment in the list.
-4.  TutorTracker deletes that specific appointment.
+4.  TutorTracker deletes that specific appointment.   
     Use case ends.
 
 <hr/>
@@ -877,6 +872,7 @@ Use case ends.
       
   Use case ends.
 
+
 * 3b. Grade details are invalid or empty.
     * 3b1. TutorTracker shows an error message.
 
@@ -895,11 +891,12 @@ Use case ends.
 **MSS**
 
 1. User wants to add a personal budget to keep track of.
-2. User keys in command to add budget of an amount he wants. 
+2. User keys in command to add budget of an amount he wants.   
+   Use case ends.
 
 **Extensions** 
 * 2a. A budget is already present.
-    * 2a1. TutorTracker flags out an error.
+    * 2a1. TutorTracker flags out an error.  
 * 2b. Invalid budget amount is added, for example a negative amount.
     * 2b1. TutorTracker flags out the error.
     
