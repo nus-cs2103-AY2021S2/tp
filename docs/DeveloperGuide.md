@@ -24,6 +24,11 @@ title: Developer Guide
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Adding a contact](#adding-a-contact)
+  - [Finding contacts](#finding-contacts)
+  - [Filtering contacts via tags](#filtering-contacts-via-tags)
+  - [Editing a contact](#editing-a-contact)
+  - [Deleting a contact](#deleting-a-contact)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -514,10 +519,10 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
        result window.
     1. Doing the exact same command one more time will fail with an error message as duplicated contacts are not allowed to be added into the list
 
-### Finding a contact
+### Finding contacts
 
-1. Finding a contact while all contacts are being shown
-    1. Prerequisites: There should be contacts present in the contact list. List all contacts using the `clist` command.
+1. Finding contacts while all contacts are being shown
+    1. Prerequisites: There should be at least a contact present in the contact list. List all contacts using the `clist` command.
     1. Test case: `cfind Danny`<br>
        Expected: Assuming that there is at least a contact named "Danny", a message indicating how many contacts are listed is
        shown in the result window. Contact list will only list the contacts with the matching name.
@@ -550,7 +555,7 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
        Expected: No contact will be edited. Error details shown in the result display indicating at least one field should be 
        given.
 
-### Deleting contacts
+### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown.
     1. Prerequisites: List all contacts using the `clist` command. Contact list must not be empty.
