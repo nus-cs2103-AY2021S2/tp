@@ -217,7 +217,10 @@ There are two views in Focuris, which can be toggled with the [`switch` command]
    This is how your events are displayed:
    ![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
 
-**:information_source: Please take note that Events are not sorted by their Priority in Focuris (Coming soon!)** <br/>
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br/>
+Please take note that Events are not sorted by their Priority in Focuris (Coming soon!) <br/>
+</div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -325,12 +328,12 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                                                        | Expected Command Result                                                                                                          |
-| --- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO                               |
-| 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
-| 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Todo added: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
-| 4   | `todo n/Run d/Exercise p/h`                                                            | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
+| No  | Example Command                                                                        | Expected Command Result                                                                                                                                 |
+| --- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Event added with a status of TODO: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 May 2021; Status: TODO                               |
+| 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Event added with a status of TODO: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
+| 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Event added with a status of TODO: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
+| 4   | `todo n/Run d/Exercise p/h`                                                            | New Event added with a status of TODO: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -355,12 +358,12 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                          | Expected Command Result                                                                                    |
-| --- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
-| 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New BackLog added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
-| 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
-| 4   | `log n/Run d/Exercise p/high`                            | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                             |
+| No  | Example Command                                          | Expected Command Result                                                                                                           |
+| --- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New Event added with a status of BACKLOG: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
+| 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New Event added with a status of BACKLOG: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
+| 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New Event added with a status of BACKLOG: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
+| 4   | `log n/Run d/Exercise p/high`                            | New Event added with a status of BACKLOG: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                             |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -385,12 +388,12 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                                                     |
-| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
-| 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
-| 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
-| 4   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
+| No  | Example Command                                                               | Expected Command Result                                                                                                                                            |
+| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Event added with a status of IN-PROGRESS: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
+| 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New Event added with a status of IN-PROGRESS: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
+| 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Event added with a status of IN-PROGRESS: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
+| 4   | `prog n/Run d/Exercise p/h`                                                   | New Event added with a status of IN-PROGRESS: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -460,10 +463,10 @@ delete IDENTIFIER
 
 **More Sample Commands:**
 
-| No  | Example Command | Expected Command Result                                                                  |
-| --- | --------------- | ---------------------------------------------------------------------------------------- |
-| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Status: TODO; Description: Lab 1 to complete                |
-| 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Status: IN_PROGRESS; Description: Due on 28 Mar 2021 |
+| No  | Example Command | Expected Command Result                                                                                   |
+| --- | --------------- | --------------------------------------------------------------------------------------------------------- |
+| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Priority: LOW; Description: Lab 1 to complete; Status: TODO;                 |
+| 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Priority: HIGH; Description: Due on 28 Mar 2021; Status: IN_PROGRESS; |
 
 <div markdown="block" class="alert alert-info">
 
@@ -671,6 +674,8 @@ As a new user to Focuris, you might encounter have certain queries regarding how
 <div class="page-break-before"></div>
 
 # 4. Glossary
+
+As a new user to Focuris, you may encounter certain keywords that you may not be familiar with in the user guide or in Focuris. The glossary will help you get started with understanding what each keyword means.
 
 <a name="backlog" class="do-not-decorate"><strong>Backlog</strong>: Describes an Event that is currently not being worked on, but needs to be worked on in the future. When an Event is about to be worked on, a status of `Todo` should be allocated to it.</a>
 
