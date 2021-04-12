@@ -36,6 +36,8 @@ Given below are my contributions to the project.
   * Prevent deleting of contacts that are involved in appointments (Pull requests [\#149](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/149))
   * Allow appointments of same name to be added, given that they have a different date/time or address (Pull requests [\#257](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/257))
   * Allow users to edit contacts to remove their previous entries to optional fields such as the phone, email and address (Pull requests [\#263](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/263))
+  * Wrote tests for features (`FavouriteCommand`, `FavouriteCommandParser`, `SortCommand`, `SortCommandParser`, `ListCommand`, `ListCommandParser`, `DeleteAppointmentCommand`, `DeleteAppointmentCommandParser`) to increase coverage 
+    (Pull requests [\#284](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/284), [\#288](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/288))
 
 * **Documentation**:
   * User Guide:
@@ -45,9 +47,8 @@ Given below are my contributions to the project.
     * Updated target user, value proposition and user stories. (Pull request [\#22](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/22))
     * Added use cases. (Pull request [\#22](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/22))
     * Added implementation details of the `sort` feature. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/97))
-    * Added implementation details of the `favourite` feature. (Pull request [\#97]())
+    * Added implementation details of the `favourite` feature. (Pull request [\#283](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/283))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\##139](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/139), [\#141](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/141), [\#147](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/147), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
