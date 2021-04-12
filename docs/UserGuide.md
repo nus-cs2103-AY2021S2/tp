@@ -225,13 +225,13 @@ Deletes the specific passenger from the GME terminal.
 * Multiple passengers can be deleted by including additional indexes after the first. 
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `search female` followed by `delete 3` deletes the *1st* passenger in the results of `search female` command.
+* `find tag/female` followed by `delete 3` deletes the *1st* passenger in the results of `find tag/female` command.
 * Passengers with a carpool arrangement cannot be deleted, `unpool` must first be done on the pools they are in before deletion.
 </div>
 
 **Examples:**
 * `list` followed by `delete 3` deletes the *3rd* passenger in the passenger list.
-* `delete 1 2 5` deletes the 1st, 2nd and 5th passenger in the passenger list. 
+* `delete 1 2 5` deletes the *1st*, *2nd* and *5th* passenger in the passenger list. 
 
 
 ## 3.3 Pool features
