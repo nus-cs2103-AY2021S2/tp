@@ -107,7 +107,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-* contains DeadlineDate, DeadlineTime, ModuleCode, Remark, Status, TaskName, Weightage classes which serve as
+* contains TaskName, ModuleCode, DeadlineDate, DeadlineTime, Notes, Status, Weightage classes which serve as
   attributes of the Task class
 * Tasks stored have to be unique
 
@@ -440,7 +440,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample tasks. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -453,20 +453,20 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Commands to try out before starting manual testing
-    1. Making sure the data is saved correctly by using the `add` command `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`.<br>
+    1. Making sure the data is saved correctly by using the `add` command `add mc/CS3243 n/Project 1 d/15-05-2021 t/10:00 w/10%`.<br>
         Expected: A new task will be added to the task list.
     1. Close to application using the command `exit`.<br>
         Expected: The window will be closed.
-    1. Re-launch the app by double clicking on the jar file.<br>
-        Expected: The application will be launch and the previously added task will be displayed
+    1. Re-launch the app by double-clicking on the jar file.<br>
+        Expected: The application will be launched, and the previously added task will be displayed
 
 
 ### Using command `list`
 
 1. Add some dummy tasks 
-    1. Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`
+    1. Use `add mc/CS3243 n/Project 1 d/15-05-2021 t/10:00 w/10%`
     2. Use `add mc/CS2105 n/Assignment 2 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
-    3. Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH`
+    3. Use `add mc/CS3240 n/Finals d/12-05-2021 t/16:00 w/20% pt/URGENT ptag/HIGH`
     4. use command `list`.<br>
         Expected: Task list will show all available tasks
 
@@ -482,7 +482,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a task to daily task list using command `add`
     1. Prerequisites: list do not have the same identical task(s) that are used in example. 
-    1. Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` to attempt to add a new task to the list.<br>
+    1. Use `add mc/CS3243 n/Project 1 d/15-05-2021 t/10:00 w/10%` to attempt to add a new task to the list.<br>
         Expected: A new task will be added to the task list, and will be displayed on the Ui. Status bar shows success message 
         
 1. Adding a task with tag(s) using command `add`
@@ -495,14 +495,15 @@ testers are expected to do more *exploratory* testing.
  1. Adding a task with priority tag using command `add`
     1. Prerequisites: list do not have the same identical task(s) that are used in example. 
     1. By default, if there are no user input to specify a task priority tag on `add`, priority tag will be set to default `LOW`.
-    1. Use `add mc/CS2103 n/Finals d/10-03-2021 t/12:00 w/35% ptag/MEDIUM` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
+    1. Use `add mc/CS2103 n/Finals d/10-05-2021 t/12:00 w/35% ptag/MEDIUM` to attempt to add a new task with 
+       priority tag `MEDIUM` to the list.<br>
         Expected: Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `MEDIUM`. Status bar shows success message
-    1. Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
+    1. Use `add mc/CS3240 n/Finals d/12-05-2021 t/16:00 w/20% pt/URGENT ptag/HIGH` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
         Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `HIGH`, tag `URGENT`. Status bar shows success message
         
  1. Adding a task with notes using command `add`
       1. Prerequisites: list do not have the same identical task(s) that are used in example.
-      1. Use `add mc/CS2103 n/Finals d/10-03-2021 t/12:00 w/35% pt/CORE ptag/MEDIUM, notes/IMPORTANT` to attempt to add a new task with notes to the list.<br>
+      1. Use `add mc/CS2103 n/Finals d/10-05-2021 t/12:00 w/35% pt/CORE ptag/MEDIUM, notes/IMPORTANT` to attempt to add a new task with notes to the list.<br>
           Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `MEDIUM`, tag `CORE` and notes `IMPORTANT`. Status bar shows success message.
         
         
@@ -510,10 +511,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Use the command `clear` to empty the task list. 
 1. Add dummy tasks to test `edit` feature. 
-    1.  Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`
+    1.  Use `add mc/CS3243 n/Project 1 d/15-05-2021 t/10:00 w/10%`
     2.  Use `add mc/CS2105 n/Assignment 2 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
-    3.  Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
-    4.  After addition of 3 tasks, there will be a list of tasks on the task list.<br>
+    3.  Use `add mc/CS3240 n/Finals d/12-05-2021 t/16:00 w/20% pt/URGENT ptag/HIGH`
+    4.  After addition of the 3 tasks, there will be a list of tasks on the task list.<br>
           Expected: Task list will display 3 tasks with correct input values.    
 1. Use command `list` to show all available tasks.
 1. Use command `edit` to change module code and name attribute. 
@@ -522,11 +523,13 @@ testers are expected to do more *exploratory* testing.
 1. Use command `edit` to change deadline, time and weightage attribute. 
     1. Use `edit 2 d/18-11-2021 t/21:00 w/25%` to attempt to change the second task on the task list.<br>
         Expected: Second task on the task list will be change to deadline: 18-11-2021, time: 21:00 and weightage: 25%
-1. Use command `edit` to change tag, priority tag and remarks attribute.
+1. Use command `edit` to change tag, priority tag and notes attribute.
     1. use `edit 3 pt/CORE ptag/MEDIUM notes/not so soon` to attempt to change the third task on the task list.<br>
-        Expected: Third tasks on the task list will be changed to tag: CORE, priority tag: MEDIUM and notes: not so soon.
+        Expected: Third task on the task list will be changed to tag: CORE, priority tag: MEDIUM and notes: not so soon.
 1. (Addtional) Feel free to test `edit` command on one single attribute (weightage alone etc). Reason for not including it in appendix: We hope to allow the user to go through the guide quickly and therefore truncated the some of the single `edit` commands. 
-1. Other incorrect `edit` commands to try: `edit x ...` (where x is large than the list size and ... is any attribute you wish to edit), `edit`, `edit 1 XXXX/YYYY` (where XXXX is any of the mc/, n/, pt/, w/, ptag/ and notes/ that can be edited. YYYY is the input that user wishes to put but is similar to the exisiting input. Eg: `edit 1 mc/CS2103` onto the first task on the task list with module code: CS2103 will throw an error). <br>
+1. Other incorrect `edit` commands to try: `edit x ...` (where x is large than the list size and ... is any 
+   attribute you wish to edit), `edit`, `edit 1 XXXX` (where XXXX is an invalid input of any of the mc/, n/, pt/, w/, 
+   ptag/ and notes/ that can be edited.) <br>
     Expected: Error will be thrown.
 
 
@@ -545,22 +548,18 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding a task 
 
-1. Recommended to use the `clear` command at this point to input a new set of diversed tasks to be used for test cases
+1. Recommended to use the `clear` command at this point to input a new set of diverse tasks to be used for test cases
 1. Inputting fresh set of diverse tasks into the task list.
-    1.  Use `add mc/CS2103 n/Practical d/11-02-2021 t/08:00 w/10%`
+    1.  Use `add mc/CS2103 n/Practical d/11-06-2021 t/08:00 w/10%`
     1.  Use `add mc/CS2105 n/Assignment 1 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
-    1.  Use `add mc/CS3240 n/Finals d/16-08-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
+    1.  Use `add mc/CS3240 n/Finals d/16-08-2021 t/16:00 w/20% pt/URGENT ptag/HIGH`
     1.  Use `add mc/CS4101 n/Project 1 d/08-07-2021 t/23:00 w/5%`
     1.  Use `add mc/CS1231 n/practical d/13-06-2021 t/12:00 w/40% pt/URGENT pt/NONCORE ptag/MEDIUM`
-    1.  Use `add mc/CS1010J n/Finals d/12-09-2021 t/21:00 w/15% pt/CORE ptag/HIGH notes/Must do soon`.<br>
+    1.  Use `add mc/CS1010J n/Finals d/12-09-2021 t/21:00 w/15% pt/CORE ptag/HIGH`.<br>
           Expected: 6 newly added tasks into the task list
 1. Using `find` command to find a list of similar task
     1. Test case: `find practical`.<br>
         Expected: task list will now show 2 tasks: module code: CS1231 and CS2103
-    1. Test case: `find URGENT`
-        Expected: task list will now show 3 tasks: module code: CS2131, CS2103, CS3240
-    1. Test case: `find must do soon`.<br>
-        Expected: task list will now show 2 tasks: module code: CS1010J and CS3240 
     1. Test case: `find`.<br>
         Expected: Error details will be shown in the status message
         
@@ -594,10 +593,11 @@ testers are expected to do more *exploratory* testing.
 ### Using command `dueIn`
 
 1. Recommended to use the `clear` command to start with a fresh set of tasks in the tasks list. Instructions below will be based on new set of tasks.
+    1. The following set of inputs are based on an assumption of the current date (16-02-2021)
 1. Adding new tasks onto the task list.
     1.  Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`
     1.  Use `add mc/CS2105 n/Assignment 1 d/24-04-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
-    1.  Use `add mc/CS3240 n/Finals d/23-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
+    1.  Use `add mc/CS3240 n/Finals d/23-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH`
 
 1. Using the `dueIn` command
     1. Test case: `dueIn day/7`.<br>
@@ -626,7 +626,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Undo a command
 
-1. undo a command 
+1. Undo a command 
   1. Test case: `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
       1. New task will be added to the task list.
       1. Use command `undo` to undo the `add` command.<br>
@@ -642,7 +642,8 @@ testers are expected to do more *exploratory* testing.
       1. Use command `clear` to clear the tasks on the task list.
       1. Use `undo` command.<br>
           Expected: All the deleted tasks will now be in the task list.
-  1. Invalid test cases to try: `Undo`, undo commands that are not `add`. `delete` or `clear`
+  1. Invalid test cases to try: `Undo`, undo commands that are not `add`, `delete`, `clear`, `done`, `doToday`, 
+     `edit`, `notes`
   1. Other invalid test cases to try: 
       1. Re-launch the application.
       1. Use the `undo` command.<br>
@@ -655,7 +656,7 @@ testers are expected to do more *exploratory* testing.
     1. Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
     2. Use the `undo` command to delete this newly added task.
     3. Use the `redo` command to bring back the undo task.<br>
-        Expected: The task now be on the task list
+        Expected: The task is now on the task list
         
 1. Test case: `redo` a delete command.
     1. Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`.
@@ -670,7 +671,8 @@ testers are expected to do more *exploratory* testing.
     4. Use the `redo` command to clear all the task(s).<br>
         Expected: The task(s) will not be on the task list. 
 
-1. Invalid test cases to try: `Redo`, `redo` commands that are not `add`, `delete` or `clear`
+1. Invalid test cases to try: `Redo`, `redo` commands that are not `add`, `delete`, `clear`, `done`, `doToday`,
+   `edit`, `notes`
 1. Other invalid test cases to try:
     1. Re-launch the application
     2. Use the `redo` command.<br>
