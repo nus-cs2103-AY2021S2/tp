@@ -25,15 +25,15 @@ Given below are my contributions to the project.
     * What it does: Supports other commands like `add`, `edit`, `sort`, `filter` as all property and appointment data are maintained in a list. The unique property and appointment lists prevents addition/ edit of `Property` / `Appointment` that results in duplicate  `Property` / `Appointment` listings.
     * Justification: The core functionality of our application is heavily reliant on both of these lists, as `Property` and `Appointment` lists are necessary to maintain `Property` and `Appointment` data PocketEstate manages.
     * Highlights: Prevents addition of duplicate `Property` and `Appointment` to minimise redundant data.
-
-<div style="page-break-after: always;"></div>
-
+  
 
 * **Enhancement**: Implemented storage support for both `Property`, `Appointment` and their attributes.
     * What it does: Performs accurate parsing of `Property` and `Appointment` data from the respective `Property` and `Appointment` lists to data forms that are reader friendly for display to the user, which is then stored in separate json files.
     * Justification: Proper parsing and storage of `Property` and `Appointment` data ensures data integrity and reliability of PocketEstate that aims to manage significant property and appointment data. 
     * Highlights: Maintains 2 separate json files with reader friendly data (Eg. Parsing of date from 01-12-2021 to Dec 12, 2021, time from 1500 to 3:00pm) to be presented to the user in GUI 
-  
+
+<div style="page-break-after: always;"></div>
+
 * **Enhancement**: Added the ability to list properties and appointments through the three different `list` commands - `list all`, `list property`, `list appointment`.
     * What it does: Allows the user to list a property, list an appointment or list both properties and appointments to the application.
     * Justification: These basic core commands are required for users to view information in the application.
