@@ -21,8 +21,8 @@ public class OrderFindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds orders. "
             + "At least one prefix must be used. \n"
             + "n/ - Look for customer names that contain any of the keywords (case-insensitive) \n"
-            + "d/ - Look for dish names that contain keyword (case-insensitive) \n"
-            + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... d/[KEYWORD]\n"
+            + "d/ - Look for dish names that contain any of the keywords (case-insensitive) \n"
+            + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... d/[KEYWORD] (MORE_KEYWORDS)...\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " n/Alex Sally d/Burger";
 
     private final Predicate<Order> predicate;

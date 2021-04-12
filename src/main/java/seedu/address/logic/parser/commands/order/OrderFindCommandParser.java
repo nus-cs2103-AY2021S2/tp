@@ -42,29 +42,28 @@ public class OrderFindCommandParser implements Parser<OrderFindCommand> {
         List<Predicate<Order>> predicates = new ArrayList<>();
 
         Optional<String> nameArgs = argMultimap.getValue(PREFIX_NAME);
-        Optional<String> dishArg = argMultimap.getValue(PREFIX_DISH);
+        Optional<String> dishArgs = argMultimap.getValue(PREFIX_DISH);
 
         if (nameArgs.isPresent()) {
-            List<String> keywords;
-            try {
-                keywords = ParserUtil.parseKeywords(nameArgs.get());
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        OrderFindCommand.MESSAGE_USAGE), pe);
-            }
+            List<String> keywords = getKeywords(nameArgs.get());
             predicates.add(new OrderContainsCustomerNamesPredicate(keywords));
         }
 
-        if (dishArg.isPresent()) {
-            String keyword;
-            try {
-                keyword = ParserUtil.parseKeyword(dishArg.get());
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        OrderFindCommand.MESSAGE_USAGE), pe);
-            }
-            predicates.add(new OrderContainsDishNamePredicate(keyword));
+        if (dishArgs.isPresent()) {
+            List<String> keywords = getKeywords(dishArgs.get());
+            predicates.add(new OrderContainsDishNamePredicate(keywords));
         }
         return predicates;
+    }
+
+    private List<String> getKeywords(String input) throws ParseException {
+        List<String> keywords;
+        try {
+            keywords = ParserUtil.parseKeywords(input);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    OrderFindCommand.MESSAGE_USAGE), pe);
+        }
+        return keywords;
     }
 }

@@ -1,30 +1,31 @@
 package seedu.address.model.dish;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Predicate that checks if this dish contains an ingredient with specified name
+ * Predicate that checks if this dish contains an ingredient with any keyword
  */
 public class DishContainsIngredientNamePredicate implements Predicate<Dish> {
-    private final String ingredientName;
+    private final List<String> keywords;
 
     /**
-     * Initialize predicate with name of ingredient
-     * @param ingredientName ingredient name to look for
+     * Initialize predicate with keywords
+     * @param keywords keywords to look for
      */
-    public DishContainsIngredientNamePredicate(String ingredientName) {
-        this.ingredientName = ingredientName;
+    public DishContainsIngredientNamePredicate(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     @Override
     public boolean test(Dish dish) {
-        return dish.containsIngredientKeyword(ingredientName);
+        return dish.containsIngredientKeywords(keywords);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DishContainsIngredientNamePredicate // instanceof handles nulls
-                && ingredientName.equals(((DishContainsIngredientNamePredicate) other).ingredientName)); // state check
+                && keywords.equals(((DishContainsIngredientNamePredicate) other).keywords)); // state check
     }
 }
