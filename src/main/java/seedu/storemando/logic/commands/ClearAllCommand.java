@@ -18,6 +18,9 @@ public class ClearAllCommand extends ClearCommand {
 
     public static final String CLEAR_MESSAGE_SUCCESS = "All items in the inventory are cleared!";
 
+    /**
+     * The predicate that clear command uses to filter the items.
+     */
     private final Predicate<Item> predicate;
 
     public ClearAllCommand() {

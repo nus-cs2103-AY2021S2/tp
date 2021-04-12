@@ -40,6 +40,7 @@ public class ReminderCommand extends Command {
     /**
      * Constructor for reminder command with ItemExpiringPredicate predicate, numOfDaysOrWeeksFromToday and the timeUnit
      * specified.
+     *
      * @param predicate The predicate that will be use to filter the item.
      * @param numOfDaysOrWeeksFromToday The number of days away from today.
      * @param timeUnit The unit of time specified by user. It is either in day(s) or week(s).
@@ -66,6 +67,11 @@ public class ReminderCommand extends Command {
         return new CommandResult(message);
     }
 
+    /**
+     * Get the success message based on the number of days specified by the user.
+     *
+     * @return The success message.
+     */
     public String getMessage() {
         if (this.numOfDaysOrWeeksFromToday < 0) {
             return String.format(MESSAGE_SUCCESS_EXPIRED_ITEM, Math.abs(numOfDaysOrWeeksFromToday), timeUnit);

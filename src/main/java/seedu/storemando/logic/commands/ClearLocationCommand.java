@@ -19,6 +19,9 @@ public class ClearLocationCommand extends ClearCommand {
 
     public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location are cleared!";
 
+    /**
+     * The predicate that clear command uses to filter the items.
+     */
     private final Predicate<Item> predicate;
 
     public ClearLocationCommand(LocationContainsPredicate predicate) {

@@ -58,8 +58,8 @@ public class EditCommand extends Command {
     private final EditItemDescriptor editItemDescriptor;
 
     /**
-     * @param index              of the item in the filtered item list to edit
-     * @param editItemDescriptor details to edit the item with
+     * @param index              of the item in the filtered item list to edit.
+     * @param editItemDescriptor details to edit the item with.
      */
     public EditCommand(Index index, EditItemDescriptor editItemDescriptor) {
         requireNonNull(index);

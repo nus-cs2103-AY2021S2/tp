@@ -30,6 +30,9 @@ public class FindCommand extends Command {
     public static final String MESSAGE_LESS_THAN_TWO_ITEMS_FOUND_OVERVIEW = "%1$d item found!";
     public static final String MESSAGE_MORE_THAN_ONE_ITEM_FOUND_OVERVIEW = "%1$d items found!";
 
+    /**
+     * The predicate that find command uses to filter the items.
+     */
     private final Predicate<Item> predicate;
 
     public FindCommand(ItemNameContainsKeywordsPredicate predicate) {

@@ -35,7 +35,13 @@ public class ListCommand extends Command {
         + "3. " + COMMAND_WORD + " t/favourite\n";
     public static final List<String> NO_KEYWORD = new ArrayList<>();
 
+    /**
+     * The predicate that list command uses to filter the items.
+     */
     private final Predicate<Item> predicate;
+    /**
+     * The list of keywords that will be use to filter on.
+     */
     private final List<String> keywords;
 
     /**
@@ -79,6 +85,10 @@ public class ListCommand extends Command {
         return new CommandResult(message);
     }
 
+    /**
+     * Get the success message based on how the user list the item list.
+     * @return The success message.
+     */
     private String getMessage() {
         if (this.predicate instanceof LocationContainsKeywordsPredicate) {
             return String.format(MESSAGE_SUCCESS_LOCATION_PREDICATE, String.join(" ", keywords));

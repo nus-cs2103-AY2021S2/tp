@@ -24,6 +24,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Item: %1$s";
 
+    /**
+     * The index of the deleted item.
+     */
     private final Index targetIndex;
 
 
