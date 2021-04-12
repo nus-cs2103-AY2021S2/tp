@@ -217,6 +217,8 @@ _{more aspects and alternatives to be added}_
 * For those proficient in typing, ease management of assets
 
 
+### Introduction to DG
+The purpose of this DG is to serve as a place for future designers to familarise themself with the product. Included below are user stories that show the importance of the features added.  Also included are use cases and non functional requirements. We have also included a guide to manual testing but designers are encouraged to test further.
 
 ### User stories
 
