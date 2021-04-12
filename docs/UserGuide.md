@@ -327,10 +327,10 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 | No  | Example Command                                                                        | Expected Command Result                                                                                                                                 |
 | --- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Event added with a status of TODO: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 May 2021; Status: TODO                               |
-| 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Event added with a status of TODO: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
-| 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Event added with a status of TODO: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
-| 4   | `todo n/Run d/Exercise p/h`                                                            | New Event added with a status of TODO: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
+| 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Event added with the Status of TODO: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 May 2021; Status: TODO                               |
+| 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Event added with the Status of TODO: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
+| 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Event added with the Status of TODO: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
+| 4   | `todo n/Run d/Exercise p/h`                                                            | New Event added with the Status of TODO: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -357,10 +357,10 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 | No  | Example Command                                          | Expected Command Result                                                                                                           |
 | --- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New Event added with a status of BACKLOG: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
-| 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New Event added with a status of BACKLOG: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
-| 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New Event added with a status of BACKLOG: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
-| 4   | `log n/Run d/Exercise p/high`                            | New Event added with a status of BACKLOG: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                             |
+| 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New Event added with the Status of BACKLOG: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
+| 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New Event added with the Status of BACKLOG: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
+| 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New Event added with the Status of BACKLOG: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
+| 4   | `log n/Run d/Exercise p/high`                            | New Event added with the Status of BACKLOG: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                             |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -387,10 +387,10 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 
 | No  | Example Command                                                               | Expected Command Result                                                                                                                                            |
 | --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Event added with a status of IN-PROGRESS: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
-| 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New Event added with a status of IN-PROGRESS: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
-| 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Event added with a status of IN-PROGRESS: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
-| 4   | `prog n/Run d/Exercise p/h`                                                   | New Event added with a status of IN-PROGRESS: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
+| 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Event added with the Status of IN-PROGRESS: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
+| 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New Event added with the Status of IN-PROGRESS: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
+| 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Event added with the Status of IN-PROGRESS: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
+| 4   | `prog n/Run d/Exercise p/h`                                                   | New Event added with the Status of IN-PROGRESS: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -421,17 +421,17 @@ Existing event will have its data overwritten by the new values taken in by the 
 
 **What you should expect to happen:**
 
-- Before executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
+- Before executing `edit 6 n/CS2040S Lab 2 d/Merge sort algorithm p/m`:
   ![Before edit](./images/user-guide/Annotated/beforeEditExecutionAnnotated.png)
 
-- After executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
+- After executing `edit 6 n/CS2040S Lab 2 d/Merge sort algorithm p/m`:
   ![After edit](./images/user-guide/Annotated/afterEditExecutionAnnotated.png)
 
 **More Sample Commands:**
 
 - `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the event with identifier `#1` to be `CS2030` and `Assignment` respectively.
 - `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`.
-- `edit 3 n/CS1101S d/Streams assignment s/in_progress p/high` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `IN_PROGRESS`, `HIGH` respectively.
+- `edit 3 n/CS1101S d/Streams assignment s/todo p/low` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `TODO`, `LOW` respectively.
 - `edit 4 s/d p/l` Edits the status and the priority of the event with identifier `#4` to be `DONE` and `LOW` respectively.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
@@ -462,8 +462,8 @@ delete IDENTIFIER
 
 | No  | Example Command | Expected Command Result                                                                                   |
 | --- | --------------- | --------------------------------------------------------------------------------------------------------- |
-| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Priority: LOW; Description: Lab 1 to complete; Status: TODO;                 |
-| 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Priority: HIGH; Description: Due on 28 Mar 2021; Status: IN_PROGRESS; |
+| 1   | `delete 1`      | Deleted Event: CS2107 Finals; Priority: LOW; Description: Finals on 3rd May 2021; Status: BACKLOG;                 |
+| 2   | `delete 5`      | Deleted Event: CS2101 OP1; Priority: HIGH; Description: Due on 28 Mar 2021; Status: DONE; |
 
 <div markdown="block" class="alert alert-info">
 
@@ -585,10 +585,10 @@ done IDENTIFIER
 
 **What you should expect to happen:**
 
-- Before the execution of the `done 4` command:
+- Before the execution of the `done 6` command:
   ![Before done](./images/user-guide/Annotated/beforeDoneExecutionAnnotated.png)
 
-- After the execution of `done 4` command:
+- After the execution of `done 6` command:
   ![After done](./images/user-guide/Annotated/afterDoneExecutionAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
