@@ -64,7 +64,7 @@ public class MeetingCard extends UiPart<Region> {
             meeting.getConnectionToPerson().stream()
                     .sorted(Comparator.comparing(person -> person.getName().fullName))
                     .forEach(person -> personsRelated.getChildren()
-                            .add(new Label("[" + person.getName().fullName + "]")));
+                            .add(new Label("  [" + person.getName().fullName + "]")));
         }
     }
 

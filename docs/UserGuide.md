@@ -36,15 +36,18 @@ their profile pictures.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below (after glossary) for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary 
 
 * **Contact**: The set of all the persons stored in MeetBuddy, which is shown in the left part of the GUI.
 * **Person(s)**: Refers to the persons in the contact.
-* **Person Meeting**: Refers to features/models and other aspects that are 
+* **Person Meeting**: Refers to features/models and other aspects that are |
   related to both persons(contact) and meetings in MeetBuddy.
+* **Person Meeting Connection**: Refers to the associations between people and meeting within 
+MeetBuddy.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -82,6 +85,8 @@ there is no such day corresponding to the given month and year of the date, the 
 
 </div>
 
+### Composition of the app
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -105,7 +110,7 @@ MeetBuddy data are saved in the hard disk automatically after any command that c
 
 Person Contact data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Users are not suggested updating data directly by editing that data file.
 Meeting data are saved as a JSON file `[JAR file location]/data/meetingbook.json`. Users are not suggested updating data directly by editing that data file.
-Person Meeting Connection data are saved as a JSON file `[JAR file location]/data/connctions.json`. Users are not suggested updating data directly by editing that data file.
+Person-Meeting Connection data are saved as a JSON file `[JAR file location]/data/connctions.json`. Users are not suggested updating data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MeetBuddy will discard all data and start with an empty data file at the next run.
 </div>
@@ -329,6 +334,8 @@ Shows a list of all persons and meetings in MeetBuddy.
 
 Format: `list`
 
+## Timetable feature
+=======
 ### Adding persons related for a meeting: `addptm`
 
 Adds persons related to a meeting in MeetBuddy.
@@ -355,7 +362,8 @@ Format: `deletepfm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]â€¦ â€
 Examples:
 * `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
 
-##Timetable feature
+## Timetable feature
+
 
 ### Viewing Timetable: 
  No command is necessary. Just click on the timetable tab to switch view from meeting list to timetable. The timetable
@@ -367,12 +375,24 @@ Examples:
  * The length of the meeting slot is proportional to the timespan of the meeting.
  
  Note that it will correctly update and display all meetings. Meetings that fall outside the range of the timetable 
- will be filtered off. Some things to note:
+ will be filtered off. 
+ ![An Example Timetable](images/exampleTimetable.png)
  
- * Default when starting the application, the timetable will have the first ( leftmost column ) representing today's date.
+ 
+ 
+ Some things to note:
+ 
+ * Default when starting the application, the timetable will have the first ( leftmost column ) 
+ representing today's date.
  * Meetings can overlap across columns.
- * Setting small meeting times around the edge of the timetable will cause display issues, For example, setting a meeting 
- to 6:44-7:01 might cause display issues from the 7 - 7.01 will not display the date or time.
+ * Setting small meeting times around the edge of the timetable will cause display issues, For example, 
+ setting a meeting 
+ to 6:44-7:01 might cause display issues from the 7 - 7.01 will not display the date or time. Also even though 15 minute 
+ meetings are allowed to be scheduled, the words will appear squished on the timetable. It is therefore highly 
+ recommended to set your meeting times to be `AT LEAST 30 MINS` and `AT MOST 24 characters` long.
+
+![An Example of words being squished](images/SquishedTimetable.png)
+ 
  * Note that you can scroll to view more slots.
  
  
@@ -388,6 +408,7 @@ Examples:
    
 Examples:
 * `setTimetable 2021-04-12` Set the time table to Apr 12th, 2021. You can check it by clicking Timetable in the GUI.
+* `setTimetable` Sets the timetable to today's date. You can double check with the calendar.
 
 --------------------------------------------------------------------------------------------------------------------
 

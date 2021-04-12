@@ -3,44 +3,56 @@ layout: page
 title: Maurice's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: MeetBuddy Application
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+MeetBuddy is your handy desktop meeting and contacts management app,
+ optimized for NUS students to manage their social connections and daily meetings who prefer to work with a 
+ Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! 
+
+I was in charge of Overhauling the GUI and creating functionality for users to view
+their meeting schedules in the form of a timetable. I also made GUI enhancements and managed the 
+storage component.
+ The GUI of MeetBuddy was created with JavaFX and written in Java,
+ and I have contributed  about 4+ kLoC of code across a span of 6 weeks.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **Minor Feature**: Added the ability to sync contacts profile picture from Gravatar account. ([\#53()], Implement Caching improvements [\#184()])
+  * What it does: If a contact has an email aassociated with a Gravatar account, 
+  the application gets and displays the contact's Gravatar profile picture automatically as a profile picture in MeetBuddy upon adding said contact. 
+  * Justification: This feature improves the product by making it easier to remember contacts as long as they have Gravatar accounts.
+  
+* **Major Feature**: Add a timetable component [\#102()] [\#99()] [\#90()]
+     *What it does : with a setTimetable Command allowing users to switch between different 
+starting dates of the timetable via CLI. Meetings are synced to the timetable when added/ edited or deleted.
+    * Justification: This feature improves the product by making it easier to peruse their weekly schedules, 
+or find free times to schedule events.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed! Do check out my code!**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=Maurice2n97&tabRepo=AY2021S2-CS2103-T16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed release `v1.3` on GitHub
+  * Managed the storage component to ensure neatness and code quality [\#57()]
+  * Managed the GUI component to ensure neatness and code quality [\#106()]
+  * Managed integration of Team member Yuheng's features with storage. [\#187()]
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Overhauled the existing GUI (Pull requests ) [\#45()][\#97()]
+  * Wrote additional tests for new features to maintain above 90% coverage for storage component.
+  * Implemented deletem command to delete meetings [\#54()]
+  * Implemented APIs within meeting to handle clashing meeting checks, enhanced add meeting command.[\#75()]
+  
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `Profile Picture` and `setTimetable` [\#113()]
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `setTimetable` feature. [\#203()]
+    * Updated Ui class Diagram [\#203()]
+    * Updated Storage class Diagram.[\#203()]
+    * Added user stories to DG [\#204]()
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
