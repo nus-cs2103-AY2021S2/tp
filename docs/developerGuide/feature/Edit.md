@@ -25,7 +25,7 @@ Given below is an example usage scenario and how the `edit` mechanism behaves.
 
 4. `AddressBookParser` calls `parse("--remove -t friends -t pilot")` of `EditCommandParser`.
 
-5. `EditCommandParser` detects flag `--remove` and calls `parseTags(argMultimap.getAllValues(PREFIX_TAG)` of `ParserUtil`
+5. `EditCommandParser` detects flag `--remove` and calls `parseTags(argMultimap.getAllValues(PREFIX_TAG))` of `ParserUtil`
    to processes the input tags into a `Set<Tag>`.
 
 6. `EditCommandParser` then passes this `Set<Tag>` as input to create an `EditToRemoveTagCommand` which is returned to the `LogicManager`.
