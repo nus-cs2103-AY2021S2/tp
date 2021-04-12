@@ -38,6 +38,7 @@ public class SetBudgetCommandTest {
         String actualOutput = expectedModel.getFilteredMonthList().get(0).getBudget().toString();
 
         assertEquals("$1000.00", actualOutput);
-        assertEquals("The budget amount set must be positive up to two decimal places.", actualMessage);
+        assertEquals("The budget amount set must be positive up to two decimal places.\n"
+                + "Note that the upper limit for the budget amount is 1000000.", actualMessage);
     }
 }
