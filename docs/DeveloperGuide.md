@@ -11,13 +11,11 @@ Welcome to the PocketEstate Developer Guide! This guide will take you through th
 * Table of Contents 
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **1. Setting up, getting started**
 
 Please refer to the guide [_Setting up and getting started_](SettingUp.md) to learn how to set up this project in your computer.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **2. Design**
 
