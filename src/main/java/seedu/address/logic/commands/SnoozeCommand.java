@@ -55,8 +55,8 @@ public class SnoozeCommand extends Command {
     /**
      * Constructor for the SnoozeCommand class.
      *
-     * @param index of the task in the filtered task list to snooze
-     * @param snoozeAmount number of days to snooze the task by
+     * @param index of the task in the filtered task list to snooze.
+     * @param snoozeAmount number of days to snooze the task by.
      */
     public SnoozeCommand(Index index, int snoozeAmount) {
         requireNonNull(index);
