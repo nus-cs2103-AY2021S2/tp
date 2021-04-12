@@ -112,8 +112,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* stores a Person object.
+* stores the TutorsPet data.
+* stores a Person object that represents a student 
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed'.
   * UI bounded to this list and Person object will be automatically updated when the data in the list change.
 * does not depend on any of the other three components.
@@ -191,15 +191,13 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the add command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the add feature works:
+The sequence diagram below shows how the `add` feature works:
 ![Sequence Diagram for Add Command](images/AddSequenceDiagram.png)
 ![Sequence Diagram for Ref Add Command](images/AddCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when an add command is executed:
+The activity diagram shows the workflow when an `add` command is executed:
 ![Activity Diagram for Add Command](images/AddActivityDiagram.png)
 
 #### Design consideration:
@@ -255,15 +253,13 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the edit command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the edit feature works:
+The sequence diagram below shows how the `edit` feature works:
 ![Sequence Diagram for Edit Command](images/EditSequenceDiagram.png)
 ![Sequence Diagram for Ref Edit Command](images/EditCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when an edit command is executed:
+The activity diagram shows the workflow when a `edit` command is executed:
 ![Activity Diagram for Edit Command](images/EditActivityDiagram.png)
 
 #### Design consideration:
@@ -317,15 +313,13 @@ a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
 
 Step 6. If the delete command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the delete feature works:
+The sequence diagram below shows how the `delete` feature works:
 ![Sequence Diagram for Delete Command](images/DeleteSequenceDiagram.png)
 ![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a `delete` command is executed:
 ![Activity Diagram for Delete Command](images/DeleteActivityDiagram.png)
 
 #### Design consideration:
@@ -372,14 +366,12 @@ get displayed and a new `CommandResult` is returned. Otherwise, a `CommandExcept
 
 Step 6. If the detail command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the detail feature works:
+The sequence diagram below shows how the `detail` feature works:
 ![Sequence Diagram for Delete Command](images/DetailSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a detail command is executed:
+The activity diagram shows the workflow when a `detail` command is executed:
 ![Activity Diagram for Delete Command](images/DetailActivityDiagram.png)
 
 #### Design consideration:
@@ -492,12 +484,10 @@ a new `CommandResult` is returned.
 
 Step 7. If the sort command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 The sequence diagram below shows how the `sort` feature works:
 
 ![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
 
-#### Activity Diagram
 The activity diagram shows the workflow when a `sort` command is executed:
 
 ![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
@@ -547,14 +537,10 @@ are advanced by one education level. Otherwise, a `CommandException` is thrown.
 
 Step 6. If the advancing command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the levelup feature works:
+The sequence diagram below shows how the `levelup` feature works:
 ![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a levelup command is executed:
+The activity diagram shows the workflow when a `levelup` command is executed:
 ![Activity Diagram for LevelUp Command](images/LevelUpActivityDiagram.png)
 
 #### Design consideration:
@@ -605,14 +591,12 @@ are advanced by one education level. Otherwise, a `CommandException` is thrown.
 
 Step 6. If the advancing command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the leveldown feature works:
+The sequence diagram below shows how the `leveldown` feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a leveldown command is executed:
+The activity diagram shows the workflow when a `leveldown` command is executed:
 ![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
 
 #### Design consideration:
@@ -668,15 +652,11 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the add important date command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the add important date feature works:
+The sequence diagram below shows how the `add-date` feature works:
 ![Sequence Diagram for Add Important Date Command](images/AddImportantDateSequenceDiagram.png)
 ![Sequence Diagram for ref CreateAddDateCommand](images/CreateAddDateCommandSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when an add important date command is executed:
+The activity diagram shows the workflow when an `add-date` command is executed:
 ![Activity Diagram for Add Important Date Command](images/AddImportantDateActivityDiagram.png)
 
 #### Design consideration:
@@ -724,14 +704,10 @@ a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
 
 Step 6. If the delete important date command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the delete important date feature works:
+The sequence diagram below shows how the `delete-date` feature works:
 ![Sequence Diagram for Delete Important Date Command](images/DeleteImportantDateSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a delete important date command is executed:
+The activity diagram shows the workflow when a `delete-date` command is executed:
 ![Activity Diagram for Delete Important Date Command](images/DeleteImportantDateActivityDiagram.png)
 
 #### Design consideration:
@@ -796,16 +772,12 @@ create a `dateListPanel`, containing the `ObservableList` of important dates.
 
 Step 7. If the list important dates command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the list important dates feature works:
+The sequence diagram below shows how the `list-date` feature works:
 ![Sequence Diagram for List Important Dates Command](images/ListImportantDatesSequenceDiagram.png)
 ![Sequence Diagram for ref List Important Dates](images/ListImportantDatesCommandSequenceDiagram.png)
 ![Sequence Diagram for ref Execute Important Dates Command](images/ExecuteImportantDatesCommandSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a list important dates command is executed:
+The activity diagram shows the workflow when a `list-date` command is executed:
 ![Activity Diagram for List Important Dates Command](images/ListImportantDatesActivityDiagram.png)
 
 #### Design consideration:
@@ -868,7 +840,6 @@ The sequence diagram below shows how the `schedule` feature works:
 ![Sequence Diagram for Schedule Command](images/ScheduleSequenceDiagram.png)
 
 ![Sequence Diagram for Ref Schedule Command](images/ScheduleCommandSequenceDiagram.png)
-
 
 Step 5. The user then executes `detail 1` command that does not modify the `internalList` or the seven separate `ObservableList`
 of lessons for each day of the week. The `detail` command instead modifies another `ObservableList`. Thus, the schedule
@@ -943,47 +914,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TutorsPet` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new contact**
+**Use case: Add a new student contact**
 
 **MSS**
 
-1.  User keys in the contact to be added
-2.  TutorsPet shows the added contact into the list
+1.  User keys in the student's contact to be added
+2.  TutorsPet shows the added student into the list
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given details is in an incorrect format.
+* 1a. The given details are in an incorrect format.
 
     * 1a1. TutorsPet shows an error message.
 
       Use case ends.
+  
+* 1b. Details are in correct format, but the name already exists in TutorsPet.
 
-**Use case: Delete a student contact**
+    * 1b1. TutorsPet displays a message to notify the duplicate name and ask user whether to proceed with `y` or `n`.
+  
+    * 1b2. User enters `y`.<br>
+      Use case resumes from step 2.
 
-**MSS**
+* 1c. Details are in correct format, but the phone already exists in TutorsPet.
 
-1.  User requests to list contacts
-2.  TutorsPet shows a list of students’ contact
-3.  User requests to delete a specific contact from the list
-4.  TutorsPet deletes the person
+     * 1c1. TutorsPet shows an error message. <br>
+       Use case ends.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. TutorsPet shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Editing an existing contact**
+**Use case: Editing an existing student contact**
 
 **MSS**
 
@@ -998,9 +958,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorsPet shows an error message.
+  * 1a1. TutorsPet shows an error message.
 
-      Use case ends.
+    Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes at step 2.
+       
+**Use case: Delete a student contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  TutorsPet shows a list of students’ contact
+3.  User requests to delete a specific contact from the list
+4.  TutorsPet deletes the student
+
+    Use case ends.
+
+**Extensions**
 
 * 2a. The list is empty.
 
@@ -1011,6 +994,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Display a student contact details**
+
+**MSS**
+
+1.  User requests to list student contacts.
+2.  TutorsPet shows a list of student contacts.
+3.  User requests to display a specific student contact from the list.
+4.  TutorsPet display the specified student contact in the details panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index of the student contact in the list is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
 
 **Use case: Search for a student contact**
 
@@ -1167,30 +1173,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Display a student contact details**
-
-**MSS**
-
-1.  User requests to list student contacts.
-2.  TutorsPet shows a list of student contacts.
-3.  User requests to display a specific student contact from the list.
-4.  TutorsPet display the specified student contact in the details panel.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty
-
-  Use case ends.
-
-* 3a. The given index of the student contact in the list is invalid.
-
-  * 3a1. TutorsPet shows an error message.
-
-    Use case resumes from step 2.
-
-
 **Use case: Opens schedule window**
 
 **MSS**
@@ -1308,6 +1290,71 @@ testers are expected to do more *exploratory* testing.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+### Adding a student
+Add a student with his/her details
+
+   1. Test case: `add n/John`<br>
+      Expected: The student cannot be added. 
+     
+      A student's name and phone are compulsory details that must be provided.
+      Here, the phone number is missing.
+
+   1. Test case: `add n/John p/aaaaa`<br>
+      Expected: The student cannot be added.
+     
+      Phone number has the invalid format.
+
+   1. Test case: `add n/John Doe p/87438807`<br>
+      Expected: Assume that phone number is already owned by another student in TutorsPet.
+     
+      The new student cannot be added because each student must have a unique phone number.
+
+   1. Test case: `add n/Alex Yeoh p/12345678`<br>
+      Expected: Assume that the name is the same as another student in TutorsPet.
+     
+      There will be a message notifying the user about the duplicate name. 
+     
+      If the user proceeds to type`y`, the student can be added. If the user proceeds to type`n`, the student will not be added.
+
+   1. Test case: `add n/John Doe p/98765432 s/Clementi Secondary School e/johnd@example.com a/311, Clementi Ave 2, #02-25 gn/Helen Doe gp/98765431 lv/sec3 t/math t/chem le/monday 1300`<br>
+      Expected: Assume that both the name and the phone are unique.
+     
+      The student can be successfully added with all the details stored in TutorsPet.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Editing a student
+1. Edit details of an existing student listed the first in TutorsPet
+    1. Prerequisites: List all students using the `list` command. There is at least 1 student in the list.
+
+    1. Test case: `edit s/ABC Secondary School gn/John Lee`<br>
+       Expected: No student can be edited.<br> 
+       There is an error message to notify the incorrect command format.
+
+    1. Test case: `edit 0 s/ABC Secondary School gn/John Lee`<br>
+       Expected: No student can be edited.<br>
+       There is an error message to notify the invalid index.
+   
+    1. Test case: `edit 1 n/John Doe`<br>
+       Expected: Assume there is another student named John Doe.<br>
+       There will be a message notifying the user about the duplicate name.<br>
+       If the user proceeds to type`y`, the name of the first studnet in the list is edited. If the user proceeds to type`n`, the student will not be edited.
+
+    1. Test case: `edit 1 s/`<br>
+       Expected: The edit command is invalid. <br>
+       The student's school cannot be edited with an empty name.
+
+    1. Test case: `edit 1 t/`<br>
+       Expected: The subjects of the first student is removed.
+
+    1. Test case: `edit 1 s/ABC Secondary School gn/John Lee`<br>
+       Expected: The school name and guardian's name of the first student is edited.
+
+    1. Test case: `edit 1 t/bio t/lit` <br>
+       Expected: The subjects of the student are edited to biology and literature.
+   
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -1323,26 +1370,22 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Viewing a student contact details
 
 1. Viewing a student contact details while all students are being shown
 
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-  1. Test case: `detail 1`<br>
+   1. Test case: `detail 1`<br>
      Expected: Details of the first contact from the list is displayed on the Contact Detail panel.
 
-  1. Test case: `detail 0`<br>
+   1. Test case: `detail 0`<br>
      Expected: No student detail is displayed. Error details shown in the status message. Status bar remains the same.
 
-  1. Other incorrect delete commands to try: `detail`, `detail x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `detail`, `detail x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -1365,16 +1408,6 @@ testers are expected to do more *exploratory* testing.
       Expected: Displays a list of students with subject `phy`.
    1. Test case: `search s/xyz`<br>
       Expected: Displays a list of students with school names with `xyz` (case insensitive),
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -1454,3 +1487,12 @@ testers are expected to do more *exploratory* testing.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
