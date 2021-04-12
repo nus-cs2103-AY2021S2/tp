@@ -43,7 +43,9 @@ their profile pictures.
 
 * **Contact**: The set of all the persons stored in MeetBuddy, which is shown in the left part of the GUI.
 * **Person(s)**: Refers to the persons in the contact.
-* **Person Meeting**: Refers to features/models and other aspects that are related to both persons(contact) and meetings in MeetBuddy.
+* **Person Meeting**: Refers to features/models and other aspects that are 
+  related to both persons(contact) and meetings in MeetBuddy.
+
 --------------------------------------------------------------------------------------------------------------------
 
 
