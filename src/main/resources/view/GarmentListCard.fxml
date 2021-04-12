@@ -29,14 +29,19 @@
       </HBox>
       <FlowPane fx:id="descriptions" />
       <Label fx:id="size" styleClass="cell_small_label" text="\$size" />
-      <Label fx:id="dresscode" styleClass="cell_small_label" text="\$dresscode" />
       <Label fx:id="lastused" styleClass="cell_small_label" text="\$lastused" />
     </VBox>
     <VBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets top="0" right="50" bottom="0" left="0"/>
+        <Insets top="35" right="50" bottom="0" left="0"/>
       </padding>
       <Label fx:id="sampleImage" styleClass="cell_small_label" />
+    </VBox>
+    <VBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="35" right="140" bottom="0" left="0"/>
+      </padding>
+      <Label fx:id="dressCodeImage" styleClass="cell_small_label" />
     </VBox>
   </GridPane>
 </HBox>

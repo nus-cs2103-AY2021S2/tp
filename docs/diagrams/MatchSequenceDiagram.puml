@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+Box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WardrobeParser" as WardrobeParser LOGIC_COLOR
+participant ":MatchCommandParser" as MatchCommandParser LOGIC_COLOR
+
+participant "c:MatchCommand" as MatchCommand LOGIC_COLOR
+participant "c:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end Box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(model)
+activate LogicManager
+
+LogicManager -> WardrobeParser : parseCommand("match 1")
+activate WardrobeParser
+
+create MatchCommandParser
+WardrobeParser -> MatchCommandParser
+activate MatchCommandParser
+
+MatchCommandParser --> WardrobeParser
+deactivate MatchCommandParser
+
+WardrobeParser -> MatchCommandParser : parse("match 1")
+activate MatchCommandParser
+
+create MatchCommand
+MatchCommandParser -> MatchCommand : MatchCommand(1)
+activate MatchCommand
+
+MatchCommand -> MatchCommandParser : c
+deactivate MatchCommand
+
+MatchCommandParser --> WardrobeParser : c
+deactivate MatchCommandParser
+
+MatchCommandParser -[hidden]-> WardrobeParser
+destroy MatchCommandParser
+
+WardrobeParser --> LogicManager : c
+deactivate WardrobeParser
+
+LogicManager -> MatchCommand : execute(model)
+activate MatchCommand
+
+create FindCommand
+MatchCommand -> FindCommand : execute(model)
+activate FindCommand
+
+FindCommand -> Model : updateFilteredGarmentList(predicates)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> MatchCommand
+deactivate FindCommand
+
+create CommandResult
+MatchCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MatchCommand : result
+deactivate CommandResult
+
+MatchCommand --> LogicManager : result
+deactivate MatchCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
