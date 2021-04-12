@@ -66,10 +66,10 @@ public class ProgramTest {
         editedActiveListening = new ProgramBuilder(ACTIVE_LISTENING).withName(VALID_NAME_OBEDIENCE_TRAINING).build();
         assertFalse(ACTIVE_LISTENING.isSameAs(editedActiveListening));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Program editedPottyTraining = new ProgramBuilder(POTTY_TRAINING)
                 .withName(VALID_NAME_POTTY_TRAINING.toLowerCase()).build();
-        assertFalse(POTTY_TRAINING.isSameAs(editedPottyTraining));
+        assertTrue(POTTY_TRAINING.isSameAs(editedPottyTraining));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_POTTY_TRAINING + " ";

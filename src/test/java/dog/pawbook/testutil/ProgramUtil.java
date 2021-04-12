@@ -30,13 +30,13 @@ public class ProgramUtil {
      */
     public static String getProgramDetails(Program program) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + program.getName().fullName + " ");
-        program.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " "));
-        program.getDogIdSet().stream().forEach(
-            s -> sb.append(PREFIX_DOGID + Integer.toString(s) + " "));
-        program.getSessions().stream().forEach(
-            s -> sb.append(PREFIX_SESSION + s.value + " "));
+        sb.append(PREFIX_NAME).append(program.getName().fullName).append(" ");
+        program.getTags().forEach(
+            s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+        program.getDogIdSet().forEach(
+            s -> sb.append(PREFIX_DOGID).append(s).append(" "));
+        program.getSessions().forEach(
+            s -> sb.append(PREFIX_SESSION).append(s.value).append(" "));
         return sb.toString();
     }
 
@@ -49,7 +49,7 @@ public class ProgramUtil {
         if (descriptor.getSessions().isPresent()) {
             Set<Session> sessions = descriptor.getSessions().get();
             if (sessions.isEmpty()) {
-                sb.append(PREFIX_SESSION);
+                sb.append(PREFIX_SESSION).append(" ");
             } else {
                 sessions.forEach(s -> sb.append(PREFIX_SESSION).append(s.value).append(" "));
             }
