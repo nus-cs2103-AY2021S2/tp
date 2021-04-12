@@ -70,7 +70,7 @@ public class Person {
      * Creates a code{Person} with the specified code{attribute} using the input code{person}.
      * Other than name and tags, other unspecified field is empty.
      */
-    public Person(Person person, List<Attribute> attributes) {
+    public Person(Person person, Set<Attribute> attributes) {
         requireAllNonNull(person, attributes);
         this.name = person.name;
         if (attributes.contains(Attribute.POLICY_ID)) {
