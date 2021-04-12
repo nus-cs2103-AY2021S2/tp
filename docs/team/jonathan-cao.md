@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=Jonathan-Cao&tabRepo=AY2021S2-CS2103T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-    * Managed releases `v1.2.1` - `v1.3` (2 releases) on GitHub
+    * Managed releases `v1.2.1` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
     * Updates the Model from being AddressBook to Wardrobe [\#48](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/4aab44387539ea107f13108fa3b6ab42a27d42cb)
