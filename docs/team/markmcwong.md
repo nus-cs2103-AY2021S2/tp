@@ -12,11 +12,11 @@ regularly on the specified days and times every week.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the findPool command feature. (Pull requests [\#126](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/126), [\#216](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/216))
-  * What it does: allows the user to find the pools in the GME system by the names of passengers in the pool.
-  * Justification: This feature improves the product significantly because a user can easily find the pools they desired to join, leave or see the details in combination with other commands.
+* **New Feature**: Added the findPool command feature (Pull requests [\#126](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/126), [\#216](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/216))
+  * What it does: allows the user to find the pools in the GME system by the names of passengers in the pool
+  * Justification: This feature improves the product significantly because a user can easily find the pools they desired to join, leave or see the details in combination with other commands
   
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=markmcwong)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=markmcwong&tabRepo=AY2021S2-CS2103T-W10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Enhancements to existing features**:
   * GUI [\#73](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/73), [\#107](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/107), [\#284](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/284):
