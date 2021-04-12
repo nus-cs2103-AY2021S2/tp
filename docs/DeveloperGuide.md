@@ -550,8 +550,9 @@ keeping records of food options tasted in the vicinity of NUS.
 Product Scope:
 The Food Diary will allow NUS foodies to save time and effort when finding places to eat around the NUS vicinity.
 The Food Diary especially caters to students chiefly on 2 aspects – One, the ability for users to log personal food
-reviews tagged under different NUS-related location categories for future reference; and two, the ability to
-effortlessly reference food options based on relevant filters in a user-friendly GUI.
+reviews tagged under different NUS-related location categories for future reference; two, the ability to
+effortlessly reference food options based on relevant filters in a user-friendly GUI; and three, the option for users
+to use Commands typed by keyboard in an intuitive GUI to perform tasks quickly.
 
 ## **Appendix C: User stories**
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
