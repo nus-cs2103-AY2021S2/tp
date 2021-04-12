@@ -10,7 +10,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ListPool command feature. (Pull requests [\#227](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/227))
+* **New Feature**: Added the `listPool` command feature. (Pull requests [\#227](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/227))
     * What it does: Allows the user to list all existing pools.
     * Justification: As there exists a feature to filter the pool list, the listPool command allows the user to remove all existing filters and view the full list.
 
@@ -21,21 +21,19 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Model:
-    * Added TripDay, TripTime, Person, Driver, and Pool classes to the model to allow for further extension of previous versions
-    * Refactored existing code to fit new model format
+    * Added TripDay, TripTime, Person, Driver, and Pool classes to the model to allow for further extension of previous versions. (Pull requests [#53](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/53), [#91](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/91), [#100](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/100), [#111](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/111))
+    * Added PoolList to AddressBook to allow for the tracking of pools created. (Pull request [#113](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/113))
+    * Refactored existing code to fit new model format (Pull requests [#40](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/40))
   * Logic:
-    * Added listPool command to fix feature bug where pool list cannot be refreshed to show all pools after filtering the list with findPool command
-  * UI: 
-    * Improved the help window to show a command summary on top of a link to the user guide.
+    * Added listPool command to fix feature bug where pool list cannot be refreshed to show all pools after filtering the list with findPool command. (Pull request [#227](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/227))
   * Testing:
     * Added test code for TripDay, TripTime, Person, and Driver classes.
     * Added test code for Pool, and Unpool classes, as well as their respective parsers
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `Search`[\#72]().
-    * Modified examples and standardised the formatting[\#74]().
-    * Added iconography formatting and introduction paragraph.
+    * Modified examples and standardised the formatting[#74](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/74).
+    * Added iconography formatting and introduction paragraph. (Pull request [#226](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/226), [#219](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/219))
     * Added more terms to glossary.
   * Developer Guide:
     * Modified existing glossary to include terms specified in the user guide as well.
@@ -46,6 +44,3 @@ Given below are my contributions to the project.
     * Added Manual Testing instructions for FindPool command.
   * About Us:
     * Added relevant profile pictures and modified AboutUs.md to include relevant teammembers information
-
-* **Community**:
-
