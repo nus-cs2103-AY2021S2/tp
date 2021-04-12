@@ -429,13 +429,13 @@ Options:
 
     Searches for properties with names that contain the keywords in `NAME`, i.e. "Mayfair" matches `find property n/mayfair` but not `find property n/may`. 
 
-* `[pl/PRICE_UPPER_LIMIT]`
+* `[pl/UPPER_PRICE_LIMIT]`
 
-    Searches for properties with prices less than `[PRICE_UPPER_LIMIT]`.
+    Searches for properties with prices less than `[UPPER_PRICE_LIMIT]`.
 
-* `[pm/PRICE_LOWER_LIMIT]`
+* `[pm/LOWER_PRICE_LIMIT]`
 
-    Searches for properties with prices more than `[PRICE_LOWER_LIMIT]`.
+    Searches for properties with prices more than `[LOWER_PRICE_LIMIT]`.
     
 * `[t/PROPERTY_TYPE]`
 
@@ -590,6 +590,8 @@ Advanced users are welcome to update data directly by editing the data files.
 If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run. For example, if the property storage data file is corrupted but the appointment storage data file is in the correct format, PocketEstate will start with an empty data file for properties and use the original data file for appointments.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 5.3 Specifying the data files
 
 It is also possible to specify your own property and/or appointment storage data files. In the `preferences.json` file that is generated when you first launch the app, you may edit the values of `propertyBookFilePath` and/or `appointmentBookFilePath` to your own property and appointment storage file paths respectively.
@@ -600,14 +602,13 @@ It is also possible to specify your own property and/or appointment storage data
 
 </div>
 
---------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PocketEstate home folder.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7. Command summary
 
@@ -634,6 +635,8 @@ Action | Format, Examples
 **Clear property** | `clear property`
 **Clear appointment** | `clear appointment`
 **Undo** | `undo`
+
+<div style="page-break-after: always;"></div>
 
 ## 8. Appendix
 
