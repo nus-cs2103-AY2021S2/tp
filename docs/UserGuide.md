@@ -141,9 +141,9 @@ Finds all contacts whose name contain all of the specified keywords and displays
 
 * Only names are searched.
 * The search is case-insensitive e.g. `amy` will match `Amy`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`.
-* Only contacts matching all keywords will be returned (i.e. AND search). E.g. `Hans Bo` will only return `Hans Bo`.
+* Only full words will be matched e.g. `Dan` will not match `Danny`.
+* Only contacts matching all keywords will be returned (i.e. AND search). E.g. `Danny Tan` will only return `Danny Tan`.
+* The order of the keywords does not matter. e.g. `Danny Tan` will match `Tan Danny`.
 
 Example(s):
 
@@ -167,12 +167,12 @@ Filters all contacts that have the tags of the specified keywords and displays t
 
 
 * Only tags are searched.
-* The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
+* The filtering is case-insensitive e.g. `Student` will match `student`.
 * Only full words will be matched e.g. `Friend` will not match `Friends`.
 * If more than one keyword is provided, only contacts with all the keywords provided will be displayed.
   E.g. `filter colleagues friends` will only return a contact with both tags `colleagues` and `friends`. Contacts with
   only one of the 2 keywords will not be displayed.
-* The order of the keywords does not matter. e.g. `colleagues friends` will match `friends colleagues`
+* The order of the keywords does not matter. e.g. `colleagues friends` will match `friends colleagues`.
 
 Example(s):
 
@@ -263,11 +263,12 @@ Adds a new entry into Teaching Assistant.
 * `START DATE` and `END DATE` are in the format `yyyy-mm-dd HH:MM`.
 * `START DATE` should be before `END DATE`.
 * Entries cannot overlap. i.e. Entries with overlapping timings will not be added.
+* Addition of entries which start and end in the past are allowed but the GUI will show a red entry card.
 
 Example(s):
 
-* `eadd n/meeting sd/2021-02-15 21:00 ed/2021-02-15 23:00 t/meeting t/needprep`
-* `eadd n/consultation 1 sd/2021-02-15 22:00 ed/2021-02-15 23:00 t/consultation`
+* `eadd n/meeting sd/2021-06-06 21:00 ed/2021-06-06 23:00 t/meeting t/needprep`
+* `eadd n/consultation 1 sd/2021-06-07 22:00 ed/2021-06-07 23:00 t/consultation`
 
 Scenario: You want to add entries into Teaching Assistant to keep track of your schedule.
 
@@ -284,10 +285,10 @@ Finds all entries whose name contain all of the specified keywords and displays 
 
 * Only names are searched.
 * The search is case-insensitive e.g. `meeting` will match `Meeting`.
-* The order of the keywords does not matter. e.g. `teaching assistant` will match `assistant teaching`.
 * Only full words will be matched e.g. `meeting` will not match `meetings`.
 * Only entries matching all keywords will be returned (i.e. AND search). E.g. `meeting 1` will only return
-  `meeting 1`.
+    `meeting 1`.
+* The order of the keywords does not matter. e.g. `teaching assistant` will match `assistant teaching`.
 
 Example(s):
 
@@ -309,12 +310,12 @@ Filters all entries that have the tags of the specified keywords and displays th
 
 
 * Only tags are searched.
-* The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
-* Only full words will be matched e.g. `CS2103` will not match `CS2103T`.
+* The filtering is case-insensitive e.g. `meeting` will match `Meeting`.
+* Only full words will be matched e.g. `meeting` will not match `meetings`.
 * If more than one keyword is provided, only entries with all the keywords provided will be displayed.
-  E.g. `filter meeting CS2103T` will only return an entry with both tags `meeting` and `CS2103T`. Entries with only one
+  E.g. `filter meeting needprep` will only return an entry with both tags `meeting` and `needprep`. Entries with only one
   of the 2 keywords will not be displayed.
-* The order of the keywords does not matter. e.g. `meeting CS2103T` will match `CS2103T meeting`.
+* The order of the keywords does not matter. e.g. `meeting needprep` will match `needprep meeting`.
 
 Example(s):
 
@@ -345,8 +346,8 @@ Edits an existing entry with the specified index in Teaching Assistant.
 
 Example(s):
 
-* `eedit 1 sd/2021-05-03 13:00 ed/2021-05-03 14:00` Edits the start and end dates of the entry corresponding to index 1 to
-  be `2021-05-03 13:00` and `2021-05-03 14:00` respectively.
+* `eedit 1 sd/2021-06-07 13:00 ed/2021-06-07 14:00` Edits the start and end dates of the entry corresponding to index 1 to
+  be `2021-06-07 13:00` and `2021-06-07 14:00` respectively.
 * `eedit 1 t/` Edits the entry corresponding to index 1 by clearing all existing tags.
 
 Scenario: The Head of Department (HOD) just rescheduled a department meeting. You want to edit an entry's start and end 
@@ -394,7 +395,7 @@ interval will be shown in the entry list.
 
 Example(s):
 
-* `free sd/ 2021-12-20 12:00 ed/ 2021-12-20 13:00` if the time interval is free, entry list will be empty and _"You're
+* `free sd/ 2021-06-06 21:30 ed/ 2021-06-06 22:30` if the time interval is free, entry list will be empty and _"You're
   free!"_ message is shown. If not, a message _"Sorry, you're not free. Entries occupying that time interval listed
   below!"_ will be shown, accompanied by occupying entries in the entry list.
   
@@ -465,11 +466,11 @@ Teaching Assistant data is saved in the hard disc automatically after any comman
 There is no need to save data manually.
 
 ### Editing the data file
-Teaching Assistant data is saved as a JSON file `[JAR file location]/data/teachingAssistant.json`. Advanced users are
+Teaching Assistant data is saved as a JSON file `[JAR file location]/data/teachingassistant.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Teaching Assistant will discard all data and start with an empty data file at the next run.
 </div>
 
 ---
