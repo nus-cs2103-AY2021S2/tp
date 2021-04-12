@@ -30,22 +30,22 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At application launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the application consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of the application.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Model`**](#model-component): Holds the data of the application in memory.
+* [**`Storage`**](#storage-component): Reads and writes data to the hard disk.
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -96,7 +96,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 </div>
 
 ### Model component
-
+ 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -106,7 +106,9 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* consists of two main packages:
+    * the `Student` package contains classes that represents a student.
+    * the `Session` package contains classes that represents a tuition session for each particular student.
 
 
 ### Storage component
@@ -174,7 +176,7 @@ Given below is an example of how the add student mechanism runs:
 5. `AddStudentCommandParser` also creates a new `AddStudentCommand` with the previously created `Student` object as parameter.
 6. The command is returned to `LogicManager` which then executes the command.
 7. `ModelManager` adds the student to the `AddressBook`.
-8. `ModelManager` adds the student to `filteredStudents` list.
+8. `ModelManager` adds the student to the `filteredStudents` list.
 9. `Logic` saves the `AddressBook` data in the `Storage`.
 
 The following activity diagram summarizes what happens when a user executes the `add_student` command.
@@ -189,20 +191,18 @@ The delete student feature allows user to delete a student from the TutorBuddy A
 
 ##### Implementation
 The delete student feature is implemented similarly to the add student feature. However, it makes use of the
-`DeleteStudentCommandParser` and `DeleteStudentCommand` instead to delete the student from the student list. 
-The command word to use is `delete_student`. In step 4, it only validates the information and do not create a new 
-`student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
-`filteredStudents`, we remove the student instead.
+`DeleteStudentCommandParser` and `DeleteStudentCommand` instead to delete the student from the `AddressBook`. 
+The command word to use is `delete_student`. In step 4, TutorBuddy validates the information. In step 7 and 8,
+the student is removed from the `UniqueStudentList` list instead.
 
 #### Edit Student Feature
 The edit student feature allows user to edit a student profile from the TutorBuddy Application.
 
 ##### Implementation
 The edit student feature is implemented similarly to the add student feature. However, it makes use of the
-`EditStudentCommandParser` and `EditStudentCommand` instead to edit the student from the student list.
-The command word to use is `edit_student`. In step 4, it only validates the information, determine the fields to be edited, 
-but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
-`filteredStudents`, we update the student list instead.
+`EditStudentCommandParser` and `EditStudentCommand` instead to edit the student from the `AddressBook`.
+The command word to use is `edit_student`. In step 4, TutorBuddy validates the information, determine the fields to be edited.
+In step 7 and 8, the student is edited and updated to the `UnqiueStudentList` list instead.
 
 #### Find Student Feature
 The find student feature allows user to specific keywords in relation to the student's name in the application.
@@ -210,15 +210,14 @@ TutorBuddy will then filter the student list based on given keyword.
 
 ##### Implementation
 The find student feature is implemented similarly to the add student feature. However, it makes use of the
-`FindStudentCommandParser` and `FindStudentCommand` instead to edit the student from the student list.
-The command word to use is `find_student`. In step 4, it only validates the information, determine the keywords,
-but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
-`filteredStudents`, we only update the `filteredStudents` list instead based on the given keywords.
+`FindStudentCommandParser` and `FindStudentCommand` instead to update the `filteredStudent` list to only display students with the matching keyword.
+The command word to use is `find_student`. In step 4, TutorBuddy validates the information and determine the keywords. 
+In step 7 and 8, the `filteredStudents` list is updated based on the given keywords.
 
 #### List Students' Email Feature
 The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
-a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
-e-mail purposes (e.g. newsletter).
+a semi-colon `;`. This allows for quick copying and pasting to e-mail applications, such as Microsoft Outlook, for broadcasting
+message purposes (e.g. newsletter).
 
 ##### Implementation
 This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
@@ -267,7 +266,22 @@ an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME
    `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the Ui.
 
-##### Design Considerations
+Aspect 2: Model for `Session` class
+* **Alternative 1(current choice)**: Maintaining a list of session in the `Student` class.
+    * Pros:
+        * Easy and straightforward implementation
+    * Cons:
+        * Could potentially hinder performance if there is too much data
+
+* **Alternative 2**: Maintain a two separate lists and have `UniqueStudentList` and `UniqueSessionList`.
+    * Pros:
+        * Smooth performance when there is a lot of data
+    * Cons:
+        * Harder to implement due to the need for a Universally Unique Identifier(UUID)
+    
+Alternative 1 was chosen because TutorBuddy is meant to be an application for independent tutors with few students.
+However, for future iterations, alternative 2 would be strongly considered.
+
 Aspect 1: Type of input for `AddSessionCommand`
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
@@ -281,9 +295,9 @@ Aspect 1: Type of input for `AddSessionCommand`
     * Cons:
         * User has to constantly refer to the application for student index id.
 
-Alternative 1 was chosen because the cons of implementing alternative 2 outweighs the benefits derived from it. Student index id may change when
+Alternative 1 was chosen because the cons of implementing alternative 2 outweighs the benefits derived from it. Student index may change when
 a user adds a new student into the AddressBook. If the AddressBook contains many students, it may take some time for the user to find the
-updated student index id. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
+updated student index. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
 
@@ -761,8 +775,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 2a. User can toggle between the different weeks using the left and right button in the Calendar page.
-
-* 2b. User can toggle directly move to this week's schedule by clicking on the `Today` button.
+    * 2a1. User can view this week's schedule again by clicking on the `Today` button.
 
   Use case ends.
 
@@ -822,10 +835,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Session**: Tuition session for a particular student
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface where users can interact with their OS system.
 * **MSS**: Main Success Scenario
 * **WPM**: Words Per Minute
+* **JavaFx**: Java framework to create user interfaces
+* **UI**: User interface
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
