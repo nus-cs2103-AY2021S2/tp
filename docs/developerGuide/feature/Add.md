@@ -46,7 +46,6 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 
    ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p3](images/AddSequenceDiagram3.png)
 
-   Given below is the full Sequence Diagram for interactions within the `Logic` component for the `execute("add -n
-James -r Loves sweets")` API call.
+Given below is the full Sequence Diagram for interactions within the `Logic` component for the `execute("add -n James -r Loves sweets")` API call.
 
-   ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/AddSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/AddSequenceDiagram.png)
