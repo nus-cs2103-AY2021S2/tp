@@ -126,12 +126,14 @@ public class FindCommandTest {
 
     @Test
     public void execute_oneTripDayKeyword_onePassengersFound() {
-        String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 5);
+        String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 7);
         TripDayContainsKeywordsPredicate predicate = prepareTripDayPredicate(VALID_TRIPDAY_STR_MONDAY);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA, HILARY, IRENE, JACKSON, KINGSLEY), model.getFilteredPassengerList());
+        assertEquals(Arrays.asList(
+                DANIEL, ELLE, FIONA, HILARY, IRENE, JACKSON, KINGSLEY
+        ), model.getFilteredPassengerList());
     }
 
     @Test

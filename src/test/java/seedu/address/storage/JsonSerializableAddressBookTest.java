@@ -26,6 +26,8 @@ public class JsonSerializableAddressBookTest {
     private static final Path DUPLICATE_POOL_FILE = TEST_DATA_FOLDER.resolve("duplicatePoolsAddressBook.json");
     private static final Path DUPLICATE_PASSENGER_REFERENCE_FILE =
             TEST_DATA_FOLDER.resolve("duplicatePassengersReferenceAddressBook.json");
+    private static final Path MISMATCH_TRIPDAY_FILE =
+            TEST_DATA_FOLDER.resolve("mismatchTripDayAddressBook.json");
 
     @Test
     public void toModelType_typicalPassengersFile_success() throws Exception {
@@ -86,4 +88,12 @@ public class JsonSerializableAddressBookTest {
                 dataFromFile::toModelType);
     }
 
+    // Pool and Passenger mismatch trip day
+    @Test
+    public void toModelType_mismatchPassengerTripDay_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(MISMATCH_TRIPDAY_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_POOL_PASSENGER_DAY_MISMATCH,
+                dataFromFile::toModelType);
+    }
 }
