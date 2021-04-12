@@ -506,7 +506,7 @@ This use case is similar to UC13 - Edit a venue, except that venues are replaced
 ## **Appendix E: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Booking**: A person's request to occupy a venue for a specified duration
+* **Booking**: A person's request to occupy a venue for a specified ****duration
 
 --------------------------------------------------------------------------------------------------------------------
 
