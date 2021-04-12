@@ -372,7 +372,7 @@ In order to enrol a dog into a program, the raw input needs to be parsed first. 
 
 Below is an example activity diagram for a valid enrol command from the user.
 
-![EnrolActivityDiagram](images/EnrolActivityDiagram.png){: .center-image}
+![<img src="images/EnrolActivityDiagram.png" width="50%"/>](images/EnrolActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid enrol command from the user.
 
@@ -405,7 +405,7 @@ To drop a dog from a program, the raw input is parsed and goes through several c
 
 Below is an example activity diagram for a valid drop command from the user.
 
-![DropActivityDiagram](images/DropActivityDiagram.png){: .center-image}
+![<img src="images/DropActivityDiagram.png" width="50%"/>](images/DropActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid drop command from the user.
 
@@ -480,15 +480,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Dog school manager   | Easily switch between the different lists for dogs, owners and programs    | Quickly view all the profiles of one entity type     |
 | `* * *`  | Dog school manager   | Add dog/owner/program profiles                                             | Keep track of the operations and parties involved in the school|
 | `* * *`  | Dog school manager   | Delete dog/owner/program profiles                                          | Keep track of the operations and parties involved in the school|
-| `* * *`  | Dog school manager   | Edit a dog/owner/program profile                                           | Correct/update a profile when needed.|
+| `* * *`  | Dog school manager   | Edit a dog/owner/program profile                                           | Correct/update a profile when needed|
 | `* * *`  | Dog school manager   | View a dog/owner/program profile                                           | Easily find out information on the target entity|
 | `* * *`  | Dog school manager   | Find profiles using keywords instead of ID                                 | Easily find a target dog/owner/program very quickly |
 | `* * *`  | Dog school manager   | Enrol dogs into a specific dog program                                     | Add dogs who recently joined a program to the class list |
 | `* * *`  | Dog school manager   | Drop dogs out of a specific dog program                                    | Remove dogs that have left a program from the class list  |
-| `* * *`  | Dog school manager   | See the schedule for any day                                               | Easily view my schedule to know what programs are happening on that day. |
-| `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes.  |
-| `* *`    | Advanced user        | Edit in bulk quickly                                                       | Minimize chance of someone else seeing them by accident |
-| `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command. |
+| `* * *`  | Dog school manager   | See the schedule for any day                                               | Easily view my schedule to know what programs are happening on that day |
+| `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes  |
+| `* *`    | Advanced user        | Edit in bulk quickly                                                       | Save time and effort when making changes to multiple profiles/programs |
+| `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command |
 
 *{More to be added}*
 
@@ -508,13 +508,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies missing details. <br>
     Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
     Use case resumes at step 2.
       
-* 1b. Entity already exists in the program. 
-  
+
+* 1b. Entity already exists in the program.
     * 1b1. Pawbook shows an error message. 
     * 1b2. User supplies an entity with different details. <br>
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
       
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
@@ -532,17 +534,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given dog/owner/program ID is invalid or not specified.
-
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies the corrected dog/owner/program ID.<br>
       Steps 1a1-1a2 are repeated until the command entered is correct. <br>
+      
       Use case resumes at step 2.
 
-* 1a. The given dog/owner/program ID does not match the entity specified.
-
-    * 1a1. Pawbook shows an error message, indicating the entity expected. 
-    * 1a2. User supplies the corrected dog/owner/program ID.<br>
+* 1b. The given dog/owner/program ID does not match the entity specified.
+    * 1b1. Pawbook shows an error message, indicating the entity expected. 
+    * 1b2. User supplies the corrected dog/owner/program ID.<br>
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
 
 **System**: Pawbook
@@ -557,24 +559,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given dog/owner/program ID is invalid or does not correspond to the entity specified. 
-
+* 1a. The given dog/owner/program ID is invalid or does not correspond to the entity specified.
     * 1a1. Pawbook shows an error message. 
     * 1a2. User supplies the corrected dog/owner/program ID.<br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
     
-* 1a. The user failed to provide any mandatory details to be edited.
-
-    * 1a1. Pawbook shows an error message.
-    * 1a2. The user provides one or more mandatory details to be edited.
-      Steps 1a1-1a2 are repeated until the command entered is correct.
+* 1b. The user failed to provide any mandatory details to be edited.
+    * 1b1. Pawbook shows an error message.
+    * 1b2. The user provides one or more mandatory details to be edited.
+      Steps 1b1-1b2 are repeated until the command entered is correct.
     
       Use case resumes at step 2.
-
-
+    
 **System**: Pawbook
-**Use case: UC04 - Show the specified entity list.**
+**Use case: UC04 - Show the specified entity list**
 **Actor**: User
 **MSS**
 
@@ -586,14 +586,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User requests to list something that is none of the three entities.
-
     * 1a1. Pawbook shows an error message, suggesting the accepted entities. 
     * 1a2. User supplies the corrected dog/owner/program parameter. <br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
       
 **System**: Pawbook
-**Use case UC05 - View an entity and all its related entities.**
+**Use case UC05 - View an entity and all its related entities**
 **Actor**: User
 **MSS**
 
@@ -605,18 +605,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The ID is not provided.
-  
     * 1a1. Pawbook shows an error message. 
     * 1a2. User supplies a valid ID.<br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
 
 * 1b. The ID is invalid (negative, out of bounds, not in database etc.).
-  
-  * 1b1. Pawbook shows an error message. 
-  * 1b2. User supplies a valid ID.<br>
-    Steps 1b1-1b2 are repeated until the command entered is correct.<br>
-    Use case resumes at step 2.
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User supplies a valid ID.<br>
+      Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+    
+      Use case resumes at step 2.
     
 **System**: Pawbook
 **Use case UC06 - Find entity**
@@ -631,10 +631,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The keyword is not provided.
-
     * 1a1. Pawbook shows an error message and requests keyword.
     * 1a2. User supplies keywords.<br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
 
 **System**: Pawbook
@@ -650,16 +650,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The dog/program ID is invalid/not specified.
-
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies correct dog/program ID.<br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
     
 * 1b. The user requests to enrol multiple dogs to multiple programs.
-
     * 1b1. Pawbook shows an error message.
     * 1b2. User changes request to either enrolling one dog to one program, one dog to multiple programs, or multiple dogs to one program.<br>
+      Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
 
 **System**: Pawbook
@@ -675,16 +676,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The dog/program ID is invalid/not specified.
-
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies correct dog/program ID.<br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
     
 * 1b. The user requests to drop multiple dogs from multiple programs.
-
     * 1b1. Pawbook shows an error message.
     * 1b2. User changes request to either dropping one dog from one program, one dog from multiple programs, or multiple dogs from one program.<br>
+      Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
 
 **System**: Pawbook
@@ -700,10 +702,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The date is invalid/not specified.
-
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies correct date. <br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
 
 **System**: Pawbook
@@ -723,6 +725,7 @@ and also a command summary for the user.
     - 1a1. Pawbook shows an error message to the user.
     - 1a2. User supplies the correct command. <br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
       
 **System**: Pawbook
@@ -742,6 +745,7 @@ and also a command summary for the user.
     - 1a1. Pawbook shows an error message to the user.
     - 1a2. User supplies the correct command. <br>
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      
       Use case resumes at step 2.
 
 ### Non-Functional Requirements
