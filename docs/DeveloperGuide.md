@@ -651,7 +651,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing passengers with 1 parameter while all passengers shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`.
 
     1. Test case: `edit 1 n/Alice`.<br>
        Expected: Name of passenger previously named `Alex Yeoh` is changed to `Alice`. Status message shows all the details of `Alice`.
@@ -663,7 +663,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 1. Editing passengers with multiple parameters while all passengers shown.
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`.
        
     1. Test case: `edit 1 p/12345678 a/Floor Street tag/abcd`.<br>
        Expected: Phone number, address, and tag of passenger named `Alice` is changed to `12345678`, `Floor Street`, and `abcd` respectively. Status message shows all the new details of `Alice`
@@ -675,7 +675,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No passenger is edited. Result box shows error: `This passenger already exists in the GME Terminal.`. Command box text turns red.
 
 1. Editing passenger that is in a Pool.
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`. All pools listed using `listPool`.
 
     1. Test case: `edit 7 n/Kelly`.<br>
        Expected: Name of passenger previously named `Kristen Woo` is changed to `Kelly`. Status message shows all the details of `Kelly`. `Trip by Irfan Ibrahim` in Pool list updates to `Roy Balakrishnan, Kelly`.
