@@ -41,7 +41,7 @@ Given below is a quick overview of each component.
 `Commons` represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
-* `Ui`: The Ui of the App.
+* `Ui`: The User interface (ie. Ui) of the App.
 * `Logic`: The command executor.
 * `Model`: Holds the data of the App in memory.
 * `Storage`: Reads data from, and writes data to, the hard disk.
@@ -76,7 +76,7 @@ The sections below give more details of each component.
 * All of these Ui parts and windows, including the `MainWindow`, inherit from the abstract `UiPart` class.
 * In addition, the `Ui` component also uses the JavaFX Ui framework. The layout of these Ui parts are each defined in
  their corresponding `.fxml` files that can be loated in the `src/main/resources/view` folder.
-* For example, the layout of the HelpWindow is specified in the `HelpWindow.fxml` file.
+* For example, the layout of the `HelpWindow` is specified in the `HelpWindow.fxml` file.
 * A universal styling theme is applied to all components, and the styling is defined in 2 files:
  `DarkTheme.css` and `Extensions.css`. Both are located in the `src/main/resources/view` folder.
 * Images/icons used throughout the app windows are located in the `src/main/resources/images` folder.
@@ -129,10 +129,10 @@ The `Storage` component,
 ### Common classes
 * Classes used by multiple components are in the fooddiary.commons package.
 * There are primarily 3 folders of classes classified under common classes. Namely, these are:
-    * Index
-    * Exceptions
-    * Utility
-* In general, these classes are responsible for the processing the app's logging information, GUI settings,
+    * `Index`
+    * `Exceptions`
+    * `Utility`
+* In general, these classes are responsible for the processing of the app's logging information, GUI settings,
  error messages thrown, and file management etc.
 
 Notably:
@@ -179,7 +179,8 @@ The following activity diagram summaries the flow of events when a user executes
     * Cons: A lot of refactoring will be needed. Time-consuming.
 * **Alternative 2:** Entry containing a single Review attribute 
     * Pros: Easy to implement, as additional reviews can be concatenated as a string to the current review
-    * Cons: This cannot be easily extended in the future (e.g. deleting a specific review in an entry).
+    * Cons: This cannot be easily extended in the future (e.g. the capability to delete a specific
+    review in an entry without deleting other reviews).
 
 ### List Feature
 The List feature allows a user to list all entries that they have keyed in thus far. This will be useful when a user
@@ -194,16 +195,16 @@ Each Entry contains the `Name`, `Address`, `Price`, `Rating`,  `Review`, `TagCat
 
 This feature was brought over to The Food Diary from AB3. 
 There were not many changes apart from modifying it to list
-entries instead. Similar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()`
+entries instead. Similar to other commands, `MainWindow#executeCommand()` runs and `Logic#execute()`
 will be called to parse the user input in `FoodDiaryParser#parseCommand()`. 
 The parsed command will be identified as a list command.
 
 ### Find Feature
-The Find feature allows a user to find entries that match **ANY** of the keywords provided by the user.
-This enables the user to easily sieve out all the entries that meet every single requirement the user
+The Find feature allows a user to find entries that match **ANY** of the keyword(s) provided by the user.
+This enables the user to easily sieve out all the entries that meet any of the requirement(s) the user
 is looking for, which will be useful when deciding where to eat.
 
-This feature is implemented through the `find` command, where the user will provide a list of keywords that
+This feature is implemented through the `find` command, where the user will provide a list of keyword(s) that
 they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
 The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
 `TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
@@ -212,7 +213,7 @@ be updated to display the list of entries that were returned as a search result.
 
 Given below is an example usage scenario:
 
-The user wants to find for good food places within NUS.
+The user wants to find good food places within NUS.
 
 Step 1: User enters the command `find 5/5`.
 
@@ -228,27 +229,27 @@ implementation is largely the same.
 
 #### Design Considerations
 
-##### Aspect: Whether the syntax used for the find command should be similar to the add command
+##### Aspect: Whether the syntax used for the find command should be similar to the add command.
 * **Alternative 1 (current choice):** Implement the `find` command without using similar syntax to the `add`
   command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`)
-    * Pros: Lesser syntax required, making the command more user-friendly (**Important as the `find` command
-      will be executed by the user many more times as compared to the `add` command**)
-    * Cons: Makes the implementation less standardised across different commands
-* **Alternative 2:** Implement the `find` command by using similar syntax as the `add` command
-    * Pros: Makes the implementation more standardised across different commands
+    * Pros: Less syntax required, making the command more user-friendly (**Important as the `find` command
+      will likely be executed by the user many more times as compared to the `add` command**).
+    * Cons: Makes the implementation less standardised across different commands.
+* **Alternative 2:** Implement the `find` command by using similar syntax as the `add` command.
+    * Pros: Makes the implementation more standardised across different commands.
     * Cons: Greatly slows down the efficiency of performing searches on the FoodDiary, which will negatively
-    impact the user experience
+    impact the user experience.
 
-##### Aspect: How the user input keywords for the Rating and Price fields should be implemented
-* **Alternative 1 (current choice):** Implement the rating and price fields with additional syntax (eg. Rating
+##### Aspect: How the user-input keywords for the Rating and Price fields should be implemented
+* **Alternative 1 (current choice):** Implement the Rating and Price fields with additional syntax (eg. Rating
   implemented as `RATING/5` instead of `RATING`, and price implemented as `$PRICE` or `$PRICE-PRICE` instead
-  of `PRICE` or `PRICE-PRICE`)
-    * Pros: More intuitive keywords for the user to type out when performing their search
-    * Cons: More typing is required, with additional syntax that needs to be strictly followed
-* **Alternative 2:** Implement the rating and price fields without additional syntax
-    * Pros: Keywords can be typed out faster, makes performing searches more efficient
-    * Cons: Possibility of user getting back results for rating when finding for price, or getting back results
-    for price when finding for rating
+  of `PRICE` or `PRICE-PRICE`).
+    * Pros: More intuitive keywords for the user to type out when performing their search.
+    * Cons: More typing is required, with additional syntax that needs to be strictly followed.
+* **Alternative 2:** Implement the Rating and Price fields without additional syntax.
+    * Pros: Keywords can be typed out faster, makes performing searches more efficient.
+    * Cons: Possibility of user getting back results for Rating when finding for Price, or getting back results
+    for Price when finding for Rating, which are both unintended consequences.
 
 ### FindAll Feature
 The FindAll feature allows a user to find entries that match **ALL** the keywords provided by the user.
@@ -268,7 +269,7 @@ given keywords.**
 
 Given below is an example usage scenario:
 
-The user wants to find for good food places within NUS that are within their budget, from a specific food
+The user wants to find good food places within NUS that are within their budget, from a specific food
 category.
 
 Step 1: User enters the command `findall 5/5 $0-10 western`.
@@ -291,31 +292,31 @@ command:
 
 #### Design Consideration
 
-##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature
-* **Alternative 1 (current choice):** Implement the FindAll feature as a separate command
-    * Pros: Easier to implement, and more user-friendly as less syntax is required
-    * Cons: User has to utilise 2 different commands despite them both performing a similar search function
-* **Alternative 2:** Implement the FindAll feature using the same command as the Find feature
+##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature.
+* **Alternative 1 (current choice):** Implement the FindAll feature as a separate command.
+    * Pros: Easier to implement, and more user-friendly as less syntax is required.
+    * Cons: User has to utilise 2 different commands despite them both performing a similar search function.
+* **Alternative 2:** Implement the FindAll feature using the same command as the Find feature.
     * Pros: User can carry out all searches using only one command, which makes the features fit together better
-      than the first alternative
+      than the first alternative.
     * Cons: Much harder to implement, and less user-friendly as more syntax is required due to the user needing to
       specify the method of search between the Find and FindAll features that they would like to use to perform
-      their search
+      their search.
 
 ### Revise Feature
 The Revise feature allows a user to quickly edit different sections of an entry. It is often misunderstood to be 
-mutually exclusive with the edit feature or the slower alternative. This feature shines when a user wishes to edit 
-while also adding into multiple sections in an entry. The edit and addon features are still necessities for making 
+mutually exclusive with the Edit feature or the slower alternative of it. This feature shines when a user wishes to edit 
+while also adding into multiple sections in an entry. The Edit and AddOn features are still necessities for making 
 quick and small chanegs to an entry.
 
 The command opens an additional window when a user enters the command in the Ui, the command will be passed into 
 `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
 The user input will be parsed as a 'Revise' command and executed to retrieve all the details related to the specified entry.
-With the window for revision of the entry, a user can easily make changes to the sections all at once. 
+With a separate window for revision of the entry, a user can easily make changes to the sections all at once. 
 
-With the revise button, all the changes made are passed into the `MainWindow#executeCommand()`, and makes its way to 
-`ReviseCommand#revise()` with calls `MainWindow#executeCommand()` with the content at each section concatenated with its
-prefix and the EditCommand. 
+With the revise button, all the changes made are passed into the `MainWindow#executeCommand()`, which makes its way to 
+`ReviseCommand#revise()` which calls `MainWindow#executeCommand()` with the content of each section concatenated with its
+prefix and the EditCommand.
 
 The following sequence diagram shows how Revise feature works:
 ![Revise Sequence Diagram](images/ReviseSequenceDiagram.png)
@@ -328,18 +329,19 @@ The following activity diagram summarises the events that take place when a user
 ##### Aspect: Whether to revise entry in command line or in a new Ui window.
 * **Alternative 1 (current choice):** Revise entry in a new Ui window.
     * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
-    * Cons: Revise is not done purely in command line, but rather in a Ui window.
+    * Cons: Revise is not done purely in command line, but rather in a separate Ui window.
 * **Alternative 2:** Revise entry in command line.
   * Pros: Revise is purely done in the command line.
-  * Cons: For entry with lengthy details, it will flood the command line space and be difficult for revising.
+  * Cons: For entry with lengthy details, typing in the full command will flood the command line text field
+   and pose a major inconvenience for users to revise the entry specified.
 
 ### Edit Feature
 #### Implementation
 At its core, the `edit` feature allows a user to edit multiple fields pertaining to the entry specified by its `index`,
  in a single edit command. The `edit` feature is the fundamental feature for editing an entry, and it is recommended
  for users to use it if minor changes to an entry are to be made, typically caused by a spelling mistake or typo.
- As such, the edit feature runs solely via the command typed in the command box. The following feature,
- the `revise` feature, builds upon the implementation of the `edit` feature. See more below.
+ As such, the edit feature runs solely via the command typed in the command box. The above feature,
+ the `revise` feature, builds upon the implementation of the `edit` feature. See more above.
  
 When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which
  `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
@@ -683,7 +685,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC06: Find for entries**
+**UC06: Find entry(-ies)**
 
 **MSS**
 1. User enters keywords to be used to search for entries.
@@ -699,10 +701,10 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
   Use case resumes from step 2.
 
 
-**UC07: Find all specific entries**
+**UC07: Find specific entry(-ies)**
 
 **MSS**
-1. User enters keywords to specify requirements for entries.
+1. User enters keywords to specify requirements for entry(-ies).
 2. Food Diary shows all entries matching user requirements (if any).
 
    Use case ends.
