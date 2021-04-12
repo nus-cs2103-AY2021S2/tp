@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Introduction**
 
-ParentPal is a desktop application designed for parents to manage their children-related contacts and appointments.
+ParentPal is a desktop application designed for parents to manage their children-related contacts and appointments. 
+It is named ParentPal because it aims to be a 'pal' to the busy parents who need help managing their kids' schedules and important contacts.
 ParentPal is built for use via a Command Line Interface (CLI), the Graphical User Interface (GUI) is primarily meant
 for displaying key information. 
 
@@ -34,11 +35,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -58,7 +59,7 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/AppointmentWithLogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
@@ -70,14 +71,14 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/AppointmentWithUIClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,12 +87,12 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/AppointmentWithLogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ParentPalParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -106,37 +107,42 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/AppointmentWithModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Contact>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the appointment book data.
+* exposes unmodifiable `ObservableList<Contact>` and `Observable<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Contact` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Contact` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+![More detailed structure of Model Component](images/AppointmentAndContact.png)
+* Some attributes have their own class, like `Name`, `DateTime`, and they contain methods to check for the validity of the value given by the user.
+* `Name` and `Address` classes are referenced by both `Contact` and `Appointment` class and are hence not within the `Contact` or `Appointment` package.
 
 </div>
 
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/AppointmentWithStorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* can save the appointment book date in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -193,7 +199,7 @@ When displaying the tags in the UI as a `PersonCard`, a customised `TagComparato
 for `ChildTag`.
 
 
-#### Design Considerations
+#### Design considerations
 
 The decision to implement `ChildTag` as its own class rather than a boolean in the `Tag` class was to allow for the 
 future extensibility of the program in being able to create more types of Tags in the future. 
@@ -269,7 +275,7 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations
 
 ##### Aspect: Where the information displayed in the help window is retrieved from
 
@@ -407,7 +413,7 @@ Step 4. The success message and unfavourited `Contact` are returned to `LogicMan
 The following activity diagram shows how the favourite operation works:
 ![FavouriteActivityDiagram](images/FavouriteActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations
 
 ##### Aspect: How to implement the favourite feature
 
@@ -472,69 +478,40 @@ The add mechanism is facilitated by `AddCommand` and `AddCommandParser`.
   
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-Step 1. The user executes `add n/David `. Since only the `n/` arg is specified, 
-'NIL' will be used for the remaining args.
+Step 1. The user enters `add n/David `. 
 
-[comment]: <> (add UML diagram)
+Step 2. LogicManager#execute(userInput) calls ParentPalParser#parseCommand(userInput), which then parses 
+the input into the command word and arguments, ` n/David` . `n/David` is then passed to 
+`AddCommandParser#parse(" n/David")`
+
+Step 3. `AddCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()` into the 
+various fields for the `Contact`. A new `Contact` is created with these fields. Since only the `n/` arg is 
+specified for this example, the string 'NIL' will be used for the remaining args.
+
+Step 5. A new `AddCommand` is created using the new `Contact` and returned to `AddressBookParser`
+and subsequently `LogicManager`.
+
+Step 6. `LogicManager#execute()` calls `AddCommand#execute()`.
+
+Step 7. The `Model#addContact()` method is used to add the new `Contact` into the model. The success message 
+is returned to `LogicManager` via a `CommandResult`.
 
 The following sequence diagram shows how the add operation works:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-[Add sequence diagram]
-
-Note: Style of diagram to be updated.
-
-### Appointment feature
-
-#### Implementation
-
-An appointment feature will be implemented in the next version of this application. It is a useful feature for parents to track any important appointments
-related to their children. For example, a parent teacher meeting or a birthday party at the house of their child's friend. 
-
-##### UI Component
-
-![AppointmentWithUIClassDiagram](images/AppointmentWithUIClassDiagram.png)
-
-The appointment will be added as a column beside the current address column.
-
-##### Model Component
-
-![AppointmentWithModelClassDiagram](images/AppointmentWithModelClassDiagram.png)
-
-As shown in the diagram above, the proposed appointment feature is facilitated by `AppointmentBook`. It is similar to `AddressBook`, with similar methods
-that are related to appointment instead. `AppointmentBook` contains `UniqueAppointmentList` that stores `Appointment` objects by
-implementing `Iterable<Appointment>`. `AppointmentBook` implements the interface `ReadOnlyAppointmentBook`.
-
-A filtered list of `Appointment` objects is maintained by `ModelManager`. 
-
-![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
-
-Attributes of the `Appointment` class:
-* Name of appointment, which is a String object
-* Location of appointment, which is a String object
-* Date of appointment, which is a DateTime object
-* Contacts that parents might need to contact about the appointment. This is an ArrayList of Contact objects.
-
-##### Logic Component
-
-![AppointmentWithLogicClassDiagram](images/AppointmentWithLogicClassDiagram.png)
-
-`ParentPalParser` looks at the user command and determines which command it is. After determing the correct command, it creates a parser
-for that particularly command.  
-
-![AppointmentCommandClassDiagram](images/AppointmentCommandClassDiagram.png)
-
-The main methods for the appointment feature include `AddAppointmentCommand`, `EditAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
-to similar methods for AddressBook. 
-* For `AddAppointmentCommand`, adding of appointments is handled by `AppointmentBook#addAppointment()`, similar to how adding of contacts is handled by `AddressBook#addContact()`. 
-* For `EditAppointmentCommand`, editing of appointments is handled by `AppointmentBook#setAppointment()`, similar to how editing of contacts is handled by `AddressBook#setContact()`.
-* For `FindAppointmentCommand`, a predicate defined by given keywords is fed to the filtered list of `Appointment` handled by `ModelManager`, and this filters the `Appointment` objects.
-* For `DeleteAppointmentCommand`, `Appointment` is selected to be deleted by the given `index`.
-
-##### Storage Component
-
-![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagramUpdated.png)
-
-The storage component now saves and reads back appointment book data on top of address book and user preference data. The implementation of the appointment book storage is similar to that of the address book storage.
+#### Design considerations
+##### Aspect: How to allow incomplete contacts to be added
+* **Alternative 1 (current choice):** Setting a placeholder string when fields not specified
+    * Pros: Lesser code refactoring, more uniform data in model so lesser need to check if a field is null.
+    * Cons: Might affect future extensions if logic is applied on the placeholder.
+    
+* **Alternative 1:** Setting a placeholder class. 
+    * Pros: Slightly more extendable 
+    * Cons: More code refactoring leading to more bugs
+    
+Alternative 1 was eventually chosen due to ease of refactoring and low chance of future extensions being affected 
+by the placeholder since it is a String and only one single use case of placeholders being use throughout the entire
+project hence it would be unnessary abstraction.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -601,7 +578,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations
 
 ##### Aspect: How undo & redo executes
 
@@ -620,6 +597,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
+  * See also: [Intructions for manual testing](#appendix-instructions-for-manual-testing)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
@@ -835,43 +813,53 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file or run `java -jar ParentPal.jar`. <br> 
-      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file or run `java -jar parentpal.jar`. <br> 
+      Expected: Shows the GUI with a set of sample contacts and appointments. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file or run `java -jar ParentPal.jar`.<br>
+    2. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
        Expected: The most recent window size and location is retained.
 
-3. Subsequent launch
-    1. Re-launch the app by double-clicking the jar file or run `java -jar ParentPal.jar`.<br>
+3. Subsequent launch    
+    1. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
        Expected: Shows the GUI with data loaded from the json files.
-       
-### Deleting a contact
 
-1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+### Testing Address Book Features
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### Add a contact
 
-   1. Test case: `delete 0`<br>
-      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+#### Delete a contact
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### Sort contacts
 
-1. _{ more test cases …​ }_
+
+      
+### Testing Appointment Book Features
+
+#### Add an appointment
+
+#### Edit an appointment
+
+#### Find an appointment
+
+#### List all appointments
+
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Dealing with missing data files
+    1. Prerequisites: some commands that makes a change to the Address Book and Appointment Book have been performed.
+       
+    1. Delete the `addressbook.json` and `appointmentbook.json` files found in the directory 
+      `[JAR file location]/data`.
+      
+    2. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+        Expected: The app launches with the sample contacts and appointments.
 
 1. _{ more test cases …​ }_

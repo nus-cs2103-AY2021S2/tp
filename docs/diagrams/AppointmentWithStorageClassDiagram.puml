@@ -37,9 +37,6 @@ JsonSerializableAppointmentBook .down.> JsonAdaptedAppointment
 JsonSerializableAddressBook .down.> JsonAdaptedContact
 JsonAdaptedAppointment .down.> JsonAdaptedTag
 
-note on link
-    "(Extra) For tag command"
-end note
 JsonAdaptedContact .down.> JsonAdaptedTag
 
 @enduml
