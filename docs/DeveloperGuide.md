@@ -979,7 +979,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+* Initial launch
 
     1. Download the jar file and copy into an empty folder
 
@@ -990,118 +990,130 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding an item
 
-1. Adding an item to the inventory
+    Prerequisites: 
+    Arguments are valid and compulsory parameters are provided. 
+    No duplicate item or similar item exists in the list.
 
-    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item
-       exists in the list.
+* Test case: `add n/Apple l/table q/1`<br>
+   Expected: Item is added into the displayed list. Details of the added item shown in the status message.
 
-    1. Test case: `add n/Apple l/table q/1`<br>
-       Expected: Item is added into the displayed list. Details of the added item shown in the status message.
+* Test case: `add n/Banana l/kitchen q/1 e/2020-10-10`<br>
+   Expected: Similar to previous.
 
-    1. Test case: `add n/Banana l/kitchen q/1 e/2020-10-10`<br>
-       Expected: Similar to previous.
+* Test case: `add `<br>
+   Expected: No item is added. Error details shown in the status message.
 
-    1. Test case: `add `<br>
-       Expected: No item is added. Error details shown in the status message.
-
-    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not
-       specified)<br>
-       Expected: Similar to previous.
+* Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not
+   specified)<br>
+  Expected: No item is added. Error details shown in the status message.
 
 ### Edit an item
+  
+    Prerequisites: 
+    There should be items in the inventory.
 
-1. Editing an item in the inventory 
-
-    1. Prerequisites: There are items in the inventory.
-    
-    1. Test case: `edit 1 n/Apple`<br>
-       Expected: The name of the first item is edited to `Apple`. Details of the edited item shown in the status message.
-       
-    1. Test case: `edit 0 n/Apple`<br>
-       Expected: No item is edited. Error details shown in the status message.
+* Test case: `edit 1 n/Apple`<br>
+   Expected: The name of the first item is edited to `Apple`. Details of the edited item shown in the status message.
+   
+* Test case: `edit 0 n/Apple`<br>
+   Expected: No item is edited. Error details shown in the status message.
 
 ### Deleting an item
 
-1. Deleting an item from the inventory
+        Prerequisites:
+        There should be items in the inventory.
 
-    1. Prerequisites: List all household items using the `list` command. Multiple items in the list.
+* Test case: `delete 1`<br>
+   Expected: First item is deleted from the list. Details of the deleted item shown in the status message.
 
-    1. Test case: `delete 1`<br>
-       Expected: First item is deleted from the list. Details of the deleted item shown in the status message.
+* Test case: `delete 0`<br>
+  Expected: No item is deleted. Error details shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No item is deleted. Error details shown in the status message.
-
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+* Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the displayed list size or less than 0)<br>
+  Expected: No item is deleted. Error details shown in the status message.
 
 ### Finding an item
 
-1. Finding an item in the inventory
+* Finding an item in the inventory.
 
-    1. Test case: `find banana`<br>
+    * Test case: `find banana`<br>
        Expected: All items containing `banana` as a word in the name are shown.
 
-    1. Test case: `find */nana`<br>
+    * Test case: `find */nana`<br>
        Expected: All items containing `nana` as part of a word in the name are shown.
 
 ### Listing items
 
-1. Listing all the items in the inventory
+1. Listing all the items in the inventory.
 
-    1. Test case: `list`<br>
+    * Test case: `list`<br>
        Expected: All items are being displayed.
+      
 
-1. Listing items in a specific location
+2. Listing items in a specific location.
    
-    1. Test case: `list l/Bedroom`<br>
+    * Test case: `list l/Bedroom`<br>
        Expected: All items with `Bedroom` as the location are being displayed.
 
-1. Listing items with a specific tag 
 
-    1. Test case: `list t/food`<br>
+3. Listing items with a specific tag. 
+
+    * Test case: `list t/food`<br>
        Expected: All items with `food` as the tag are being displayed.
 
 ### Show items x days/weeks from expiry date
 
-1. Showing items x days from expiry date
+1. Showing items expiring within x days from today.
 
-    1. Test case: `reminder 7 days`<br>
+    * Test case: `reminder 7 days`<br>
        Expected: All items that have already expired or are expiring within the next 7 days are shown.
+    * Test case: `reminder -7 days`<br>
+     Expected: All items that have already expired for at least 7 days are shown.
 
-1. Showing items x weeks from expiry date 
 
-    1. Test case: `reminder 7 weeks`<br>
+2. Showing items expiring within x weeks from today. 
+
+    *  Test case: `reminder 7 weeks`<br>
        Expected: All items that have already expired or are expiring within the next 7 weeks are shown.
+    * Test case: `reminder -3 weeks`<br>
+     Expected: All items that have already expired for at least 3 weeks are shown.
 
 ### Sorting items
 
 1. Sorting items in the inventory in terms of quantity.
 
-    1. Test case: `sort quantity asc`<br>
-       Expected: All the items are sorted in terms of quantity from least to most.
+    * Test case: `sort quantity asc`<br>
+       Expected: All the items are sorted in ascending quantity.
 
-    1. Test case: `sort quantity desc`<br>
-       Expected: All the items are sorted in terms of quantity from most to least.
+    * Test case: `sort quantity desc`<br>
+       Expected: All the items are sorted in descending quantity.
 
-    1. Incorrect sort commands to try: `sort`, `sort quantity`<br>
+    * Incorrect sort commands to try: `sort`, `sort quantity`<br>
        Expected: Error details shown in the status message.
 
-1. Sorting items in the inventory in terms of expiry date.
 
-    1. Test case: `sort expirydate`<br>
+2. Sorting items in the inventory in terms of expiry date.
+
+    * Test case: `sort expirydate`<br>
        Expected: All the items are sorted in chronological order of their expiry date.
 
 ### Clearing items
 
-1. Clearing all the items in the inventory
+1. Clearing all the items in the inventory.
 
-    1. Test case: `clear`<br>
+        Prerequisite: 
+        Ensure there are items in the inventory.
+   
+    * Test case: `clear`<br>
        Expected: All items are cleared from the inventory.
 
-1. Clearing all the items in a specific location 
 
-    1. Test case: `clear l/Bedroom`<br>
+2. Clearing all the items in a specific location. 
+   
+        Prerequisite: 
+        Ensure there is an item with the location "Bedroom" in the inventory.
+   
+    * Test case: `clear l/Bedroom`<br>
        Expected: All items in the specified location are cleared.
 
 --------------------------------------------------------------------------------------------------------------------
