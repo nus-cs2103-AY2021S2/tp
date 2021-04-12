@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/teohoekeat.md)]
 
 * Role: Member
-* Responsibilities: Implementation and Documentation of UI & Help Feature, Weekly Meeting Documentation. 
+* Responsibilities: Implementation and Documentation of UI & Help Feature, Weekly Meeting Documentation.  
 
 ### Tian Xindi
 
@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Member
-* Responsibilities: Full Stack Developer
+* Responsibilities: Implementation and Documentation of Dictionary and Definitions' Model and Features.
