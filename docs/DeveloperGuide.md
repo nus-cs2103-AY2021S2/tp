@@ -569,7 +569,7 @@ testers are expected to do more *exploratory* testing.
 
        Expected: No pool is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `unpool`, `unpool x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect unpool commands to try: `unpool`, `unpool x`, `...` (where x is larger than the list size)<br>
 
        Expected: Similar to previous.
 
