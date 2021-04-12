@@ -438,7 +438,7 @@ component command prefix/[INPUT] -flag
     
         Example:
         ```
-        menu find n/burger noodles i/soy sauce
+        menu find n/burger steak i/beef
         ```
         This will find any dishes that are burger or noodles and have an ingredient name containing "soy sauce".
 
