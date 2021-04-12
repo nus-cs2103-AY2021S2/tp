@@ -510,12 +510,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
     * 2a1. Taskify warns that the list is empty.
-        Use case ends.
+      
+      Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. Taskify warns that the index entered is invalid.
-
+      
       Use case ends.
 
 ---
@@ -532,14 +532,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The Task to be added already exists in the list
     * 1a1. Taskify warns the User that there is already such a Task
-    * Use case ends.
+      
+      Use case ends.
 
 * 1b. The User fails to fill in any of the compulsory fields to create a new Task
     * 1b1. Taskify informs the User of the format of creating a new Task 
-    * Use case ends.
+      
+      Use case ends.
+  
 * 1c. The User's input is unrecognisable to Taskify
     * 1c1. Taskify informs the User of the format of creating a new Task 
-    * Use case ends.
+      
+      Use case ends.
     
 ---
 **Use case 3: Set status of Task**
@@ -555,19 +559,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The current status of the Task is the same as status the User requests to set for the same Task
     * 1a1. Taskify warns that the Task is already of the set status 
-    * Use case ends.
+      
+      Use case ends.
 
 * 1b. The given status is expired. Even though `expired` is a valid status of a task, users cannot directly modify it.
     * 1b1. Taskify warns that it can change the status of the task if it is either `uncompleted` or `completed` . 
-    * Use case ends.
+    
+      Use case ends.
   
 * 1c. Taskify does not recognise the status that the User wants to set
     * 1c1. Taskify warns that it does not understand the type of status entered
-    * Use case ends.
+    
+      Use case ends.
     
 * 1d. The given index is invalid
     * 1d1. Taskify warns that the index entered is invalid.
-    * Use case ends.    
+    
+      Use case ends.    
 
 ---
 **Use case 4: List all Tasks**
@@ -575,14 +583,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all Tasks
-2. Taskify lists all the Tasks  
+2. Taskify lists all the Tasks 
+   
    Use case ends.
 
 **Extensions**
 
 * 1a. There are no tasks stored
     * 1a1. Taskify informs the User there are no tasks tracked
-    * Use case ends.
+    
+      Use case ends.
 ---
 **Use case 5: Search for Tasks by Tags**
 
@@ -590,16 +600,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find Task(s) by tags based on a list of tags.
 2. Taskify shows the Tasks that match one or more of the given tags.    
-   Use case ends.
+   
+    Use case ends.
 
 **Extensions**
 * 1a. Taskify cannot find any Task with the given tags
     * 1a1. Taskify informs the User that no Tasks are found.
-    * Use case ends.
+      
+      Use case ends.
     
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. Taskify informs the User on the format of command to search for tasks by tags.
-    * Use case ends.
+    
+      Use case ends.
 
 ---
 **Use case 6: Sort all Tasks (in ascending order of their date & time)**
@@ -608,7 +621,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to sort the Tasks.
 2. Taskify shows the Tasks in their sorted order.   
-   Use case ends.
+   
+    Use case ends.
 
 ---
 **Use case 7: Search for Tasks by Name**
@@ -617,16 +631,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find Task(s) by name based on a list of keywords.
 2. Taskify shows the Tasks that match the given keywords.    
-   Use case ends.
+   
+    Use case ends.
 
 **Extensions**
 * 1a. Taskify cannot find any Task with the given keywords
     * 1a1. Taskify informs the User that no Tasks are found.
-    * Use case ends.
+    
+      Use case ends.
     
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. Taskify informs the User on the format of command to search for tasks by name.
-    * Use case ends.
+    
+      Use case ends.
 ---
 **Use case 8: Modifying an existing Task**
 
@@ -634,20 +651,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to modify an existing Task
 2. Taskify shows the User the modified Task.     
+   
    Use case ends.
 
 **Extensions**
 * 1a. The User's input is unrecognisable to Taskify
     * 1a1. Taskify informs the User on the format to edit a Task.
-    * Use case ends.
+    
+      Use case ends.
     
 * 1b. The User's input for specific fields is invalid
     * 1b1. Taskify informs the User on the correct format of the field in the User's input that failed to pass validation checks.
-    * Use case ends.
+    
+      Use case ends.
     
 * 1c. The User's input does not include any fields at all.
     * 1c1. Taskify warns that no modifying can take place if there are no updated fields filled in.
-    * Use case ends.
+    
+      Use case ends.
     
 ---
 
@@ -657,16 +678,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to switch to Home Tab.
 2. Taskify switches to Home Tab.   
-   Use case ends.
+   
+    Use case ends.
 
 **Extensions**
 * 1a. If the user is currently in the Home tab 
     * 1a1. Taskify informs the User that it is currently in the Home tab.
-    * Use case ends.
+    
+      Use case ends.
 
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. An error message is shown.
-    * Use case ends.
+    
+      Use case ends.
       
 ---
 
@@ -683,11 +707,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. If the user is currently in the Expired Tab
     * 1a1. Taskify informs the User that it is currently in the Expired Tab.
-    * Use case ends.
+    
+      Use case ends.
     
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. An error message is shown.
-    * Use case ends.
+    
+      Use case ends.
 
 ---
 
@@ -704,11 +730,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. If the user is currently in the Completed Tab
     * 1a1. Taskify informs the User that it is currently in the Completed Tab.
-    * Use case ends.
+    
+      Use case ends.
 
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. An error message is shown.
-    * Use case ends.
+    
+      Use case ends.
 
 ---
     
@@ -726,11 +754,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. If the user is currently in the Uncompleted Tab
     * 1a1. Taskify informs the User that it is currently in the Uncompleted Tab.
-    * Use case ends.
+    
+      Use case ends.
 
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. An error message is shown.
-    * Use case ends.
+    
+      Use case ends.
     
 ---
 
@@ -746,7 +776,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. There are no tasks stored
     * 1a1. Taskify informs the User there are no tasks tracked   
-    * Use case ends.
+      
+      Use case ends.
       
 ---
 
