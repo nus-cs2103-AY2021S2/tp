@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
+participant ":SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort")
+activate LogicManager
+
+LogicManager -> DeliveryListParser : parseCommand("sort")
+activate DeliveryListParser
+
+create SortCommand
+DeliveryListParser -> SortCommand
+activate SortCommand
+
+SortCommand --> DeliveryListParser
+deactivate SortCommand
+
+DeliveryListParser --> LogicManager
+deactivate DeliveryListParser
+
+LogicManager -> SortCommand : execute(model)
+activate SortCommand
+
+SortCommand -> Model : getDeliveryList()
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+SortCommand -> Model : setDeliveryList(sortedList)
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand
+deactivate CommandResult
+
+SortCommand --> LogicManager
+deactivate SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

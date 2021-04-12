@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
+participant ":ClearCommand" as ClearCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":DeliveryList" as DeliveryList LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clear")
+activate LogicManager
+
+LogicManager -> DeliveryListParser : parseCommand("clear")
+activate DeliveryListParser
+
+create ClearCommand
+DeliveryListParser -> ClearCommand
+activate ClearCommand
+
+ClearCommand --> DeliveryListParser
+deactivate ClearCommand
+
+DeliveryListParser --> LogicManager
+deactivate DeliveryListParser
+
+LogicManager -> ClearCommand : execute(model)
+activate ClearCommand
+
+create DeliveryList
+ClearCommand -> DeliveryList : new DeliveryList()
+activate DeliveryList
+
+DeliveryList --> ClearCommand
+deactivate DeliveryList
+
+ClearCommand -> Model : setDeliveryList(DeliveryList)
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+create CommandResult
+ClearCommand -> CommandResult : new CommandResult(MESSAGE_SUCCESS)
+activate CommandResult
+
+CommandResult --> ClearCommand
+deactivate CommandResult
+
+ClearCommand --> LogicManager
+deactivate ClearCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
