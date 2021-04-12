@@ -146,7 +146,7 @@ Format : `view INDEX`
 where INDEX must be a positive integer (1,2,3,...)
 
 Examples:
-* `view 6`
+* `view 3`
 
 Output:
 
@@ -450,7 +450,7 @@ Action | Format, Examples
 **delete** | `delete INDEX` <br> e.g., `delete 1`
 **find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find john`
 **edit** | `edit INDEX [n/NAME] [y/DATEOFBIRTH] [g/GENDER] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BLOODTYPE] [h/HEIGHT] [w/WEIGHT] [t/TAG]…​` <br> e.g., `edit 1 p/91234567 e/johndoe@example.com`
-**view** | `view INDEX` <br> e.g., `view 6`
+**view** | `view INDEX` <br> e.g., `view 3`
 **appt** | `appt INDEX /dDATE` <br> e.g., `appt 1 d/010120211200`
 **listappt** | `listappt`
 **mrec** | `mrec INDEX` <br> e.g., `mrec 3`
