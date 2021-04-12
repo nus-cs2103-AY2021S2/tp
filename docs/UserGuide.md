@@ -28,11 +28,11 @@ This User Guide is designed for employees who require additional information on 
 
 # How to Use the User Guide
 
-Use the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
+You can use the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
 
-The following typographic conventions and usage conventions occur in the User Guide:
+Before you continue reading the rest of the User Guide, take note of the following text formats and conventions which are used to place emphasis on certain texts:
 
-| Text Type                                                                | Meaning                         |
+| Text Format                                                              | Meaning                         |
 | ------------------------------------------------------------------------ | ------------------------------- |
 | `Code`                                                                   | Command text                    |
 | <kbd>Keyboard Input</kbd>                                                | Keyboard actions                |
