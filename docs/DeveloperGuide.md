@@ -17,7 +17,7 @@ title: Developer Guide
         + [Component Parser](#component-parser)
         + [Parser validation](#parser-validation)
         + [Data consistency](#data-consistency)
-            - [Deletion of Person objects](#deletion-of-person-objects)
+            - [Deletion of Customer objects](#deletion-of-customer-objects)
             - [Deletion of Ingredient objects](#deletion-of-ingredient-objects)
             - [Logging of Order object](#logging-of-order-object)
         + [Concurrent list display](#concurrent-list-display)
@@ -115,7 +115,7 @@ Note: ComponentXYZCommand = CustomerAddCommand, MenuAddCommand, OrderDeleteComma
 1. `Logic` uses the `JJIMYParser` class to differentiate the user command's component and parse the arguments to respective `ComponentParser` (e.g. `MenuParser`, `OrderPaser` etc).
 1. `ComponentParser` will then creates respective `ComponentXYZCommand`.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -166,7 +166,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Model update
 
-The model has been updated to contain new classes for the `menu`, `inventory`, and `order` components (`Dish`, `Ingredient`, and `Order` classes respectively), in addition to the original `Person` class for the `contact` component.
+The model has been updated to contain new classes for the `menu`, `inventory`, and `order` components (`Dish`, `Ingredient`, and `Order` classes respectively), in addition to the original `Customer` class for the `customer` component.
 
 `Person` class has had field classes `Phone`, `Address` and `Email` removed. `Tag` has also been replaced with `String` instead. The validation functionality will be moved to other classes.
 
@@ -358,13 +358,13 @@ The command will update the `FilteredOrderedList` object to only contain orders 
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts, orders, menu items and inventory
+* has a need to manage a significant number of customers, orders, menu items and inventory
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts, orders, menu items and inventory faster than a typical mouse/GUI driven app
+**Value proposition**: manage customers, orders, menu items and inventory faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -375,8 +375,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------ | ---------------------------------------------------------- | ----------------------------------------------------------- |
 | `* * *`  | new user                       | see usage instructions                                     | refer to instructions when I forget how to use the App      |
 | `* * *`  | fast typer                     | be able to input by CLI                                    | key in commands faster                                      |
-| `* * *`  | restaurant owner               | add a customer's contact                                   | keep track of each customer's details                       |
-| `* * *`  | restaurant owner               | remove a customer's contact                                | remove customers who no longer patronize the restaurant     |
+| `* * *`  | restaurant owner               | add a customer's customer                                  | keep track of each customer's details                       |
+| `* * *`  | restaurant owner               | remove a customer's customer                               | remove customers who no longer patronize the restaurant     |
 | `* * *`  | restaurant owner               | add dishes to the menu                                     | keep track of dishes being offered                          |
 | `* * *`  | restaurant owner               | remove dishes from the menu                                | remove dishes that are not being offered anymore            |
 | `* * *`  | restaurant owner               | add food orders to the order list                          | keep track of the food I need to prepare                    |
@@ -391,8 +391,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | restaurant owner               | remove dishes to the menu list                             | so I can remove dishes that are not being offered anymore   |
 | `* * *`  | restaurant owner               | view all dishes to the menu list                           | so I can view all the dishes being offered                  |
 | `* * *`  | restaurant owner               | view the list of food orders                               | so I know which dishes to prepare                           |
-| `* *`    | restaurant owner               | edit a customer's contact                                  | rectify typos for customer errors                           |
-| `* *`    | user with many contacts        | find a customer's contact                                  | quickly locate the contact details of a particular customer |
+| `* *`    | restaurant owner               | edit a customer's customer                                 | rectify typos for customer errors                           |
+| `* *`    | user with many customers       | find a customer's customer                                 | quickly locate the customer details of a particular customer |
 | `* *`    | owner with a large menu        | find a dish on the menu                                    | quickly locate details of a dish on the menu                |
 | `* *`    | owner of a busy restaurant     | find a food order from the order list                      | quickly locate the details of an order I'm working on       |
 | `* *`    | owner with a complex inventory | find the quantity of an ingredient in the food inventory   | quickly check how much of a certain ingredient I have left  |
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add a contact**
+**Use case: Add a customer**
 
 **MSS**
 
@@ -437,7 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: List all contacts**
+**Use case: List all customers**
 
 **MSS**
 
@@ -446,7 +446,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Delete a contact**
+**Use case: Delete a customer**
 
 **MSS**
 
@@ -469,7 +469,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find a contact**
+**Use case: Find a customer**
 
 **MSS**
 
@@ -728,7 +728,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 2000 total items (contacts, menu items, inventory stock) without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 2000 total items (customers, menu items, inventory stock) without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to complete any single request within 200ms.
 4.  Should work entirely client-side, without involving a remote server.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -737,4 +737,4 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Inventory**: A list of necessary food ingredients and their associated stock quantities
 * **Mainstream OS**: Windows, Linux, Unix, OS X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private customer detail**: A customer detail that is not meant to be shared with others
