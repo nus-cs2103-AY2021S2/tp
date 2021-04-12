@@ -223,11 +223,6 @@ Below shows the sequence diagram of `EditBookingCommand`
 And the activity diagram:
 ![EditBookingCommandActivityDiagram](images/EditBookingActivityDiagram.png)
 
-
-
-
-
-
 ### Design Consideration
 
 #### How to check if the edited booking has dates that overlap with other bookings of the residence
