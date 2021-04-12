@@ -76,15 +76,16 @@ Format: `help`
 ### Check graduation : `validate`
 Format: `validate`
 
+> Note: The validate command checks if a plan is valid by looking at whether or not the modules contained in its history match those of the current `master`. Hence, `master` is always valid. The command does not check for pre-requisites and preclusions with this release.
+
+> Example: if master is at current semester `2`, all other plans have their semester `1`s checked, if these semester `1`s match the master module, the plan is valid.
+
 - Shows header
     - Shows plan number
     - Shows description of plan
     - Shows if the plan is valid compared to master plan
     - Shows how many MCs the plan has
     - Shows how many semesters the plan has
-
-> Tip: A plan is valid if the modules contained in its history match those of the current Master Plan.
-> This ensures that any valid plan is a viable option for the user.
 
 ### Clearing all entries : `clear`
 
@@ -224,9 +225,6 @@ The details to output are as follows:
 Constraints:
 * Trying to add a module that already exists will not be allowed
 * Trying to add/delete a nonexistent module code/plan number/semester number will not be allowed
-
-Prompts:
-* Adding a module without prerequisites fulfilled results in a warning
 
 > Note: As this is not a fully fledged production level project, there are limited modules for users to add. If in the future this project grows to a production piece, it will use relevant NUS APIs to collect modules for users to add. Instead, currently there are only dozens of modules for users to add, but for the purposes of testing and showcasing this product, it is sufficient.
 

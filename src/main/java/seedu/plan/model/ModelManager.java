@@ -23,6 +23,7 @@ import seedu.plan.model.plan.Module;
 import seedu.plan.model.plan.Plan;
 import seedu.plan.model.plan.Semester;
 import seedu.plan.model.util.History;
+import seedu.plan.storage.JsonModule;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -136,6 +137,7 @@ public class ModelManager implements Model {
     @Override
     public void validate(Plan masterPlan, Semester currentSemester) {
         List<Module> masterModules = new ArrayList<>();
+        modulePlanner.setPlan(masterPlan, masterPlan.setIsValid(true));
 
         for (int i = 1; i < currentSemester.getSemNumber(); i++) {
             Semester sem = masterPlan.getSemester(i);
@@ -152,8 +154,6 @@ public class ModelManager implements Model {
                 continue;
             }
 
-            Plan newPlan = p;
-
             List<Module> modulesInPlan = new ArrayList<>();
             for (int i = 1; i < currentSemester.getSemNumber(); i++) {
                 Semester sem = p.getSemester(i);
@@ -164,12 +164,10 @@ public class ModelManager implements Model {
                         .collect(Collectors.toList());
             }
             if (modulesInPlan.containsAll(masterModules)) {
-                // newPlan.setIsValid(true);
                 modulePlanner.setPlan(p, p.setIsValid(true));
             } else {
                 modulePlanner.setPlan(p, p.setIsValid(false));
             }
-            // modulePlanner.setPlan(p, newPlan);
         }
 
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
