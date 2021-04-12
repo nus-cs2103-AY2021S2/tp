@@ -29,15 +29,15 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-    * Updated GUI for student record [\#83](), [\#93]()
+    * Updated GUI for student record [\#83](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/83), [\#93](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/93)
 
 
 * **Documentation**:
     * User Guide:
-        * Added non-functional requirements [\#62]()
-        * Added documentation for the features `addAppt` [\#72]()
+        * Added non-functional requirements [\#62](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/62)
+        * Added documentation for the features `addAppt` [\#72](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/72)
     * Developer Guide:
-        * Added documentation for appointment model [\#122]()
-        * Updated documentation for added UI classes [\#110]()
-        * Added implementation details of the `addAppt` feature [\#122]()
+        * Added documentation for appointment model [\#122](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/122)
+        * Updated documentation for added UI classes [\#110](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/110)
+        * Added implementation details of the `addAppt` feature [\#122](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/122)
 
