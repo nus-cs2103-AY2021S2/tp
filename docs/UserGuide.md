@@ -394,8 +394,19 @@ Format: `exit`
 
 ### 5.12 Viewing all categories spent for the current month
 
+<img src="images/features/stats-side-panel.png" width="1200px">
+
 The UI displays all the categories spent for the current month at the side panel of the application. The categories are 
 sorted in lexicographical order, so that users are able to find the amounts spent on any particular category easily.
+
+<div markdown="block" class="alert alert-primary">
+
+**Note:**<br>
+
+Note that the sum of all the values does not necessarily add up to the total expenses of the month. A Financial Record may 
+contribute to more than one category or no categories at all.
+
+</div>
 
 ### 5.13 Viewing top 5 categories spent for the current month
 
@@ -464,7 +475,7 @@ empty data file at the next run.
 | **Add a Financial Record**    | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…` <br> e.g., `add-fr d/Lunch a/10`                       |
 | **Delete a Financial Record** | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                                                                      |
 | **Edit a Financial Record**   | `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]…` <br> e.g., `edit-fr 1 d/new description` |
-| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                      |
+| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                         |
 | **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                |
 | **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/food`                                                                 |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
