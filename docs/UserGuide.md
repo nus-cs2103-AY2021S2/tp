@@ -296,7 +296,7 @@ Format: `add_booking`
 Edits an existing booking in the booking system.
 
 Format: `edit_booking INDEX [e/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
-* Edits the booking at the specified `INDEX`.
+* Edits the booking at the specified `INDEX`. The index refers to the index number shown in the displayed boking list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified booking.
 * It is allowed that the provided field(s) match the data in the corresponding existing field(s) of the specified booking.
 * The provision of an empty `DESCRIPTION` field is accepted.
@@ -309,7 +309,7 @@ Examples:
 Deletes the specified booking from the booking system.
 
 Format: `delete_booking INDEX`
-* Deletes the booking at the specified `INDEX`.
+* Deletes the booking at the specified `INDEX`. The index refers to the index number shown in the displayed booking list. The index must be a positive integer 1, 2, 3, …​
 
 Example:
 * `delete_booking 1` deletes the booking at index `1`.

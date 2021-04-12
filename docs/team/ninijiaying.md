@@ -11,12 +11,12 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=NiniJiaying&tabRepo=AY2021S2-CS2103-W17-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
-* **New Feature**: Added the ability to add a booking into the system.
-    * Justification: This feature improves the product by allowing users to add a booking into the system.
+* **New Feature**: Added the ability to add a booking record into the system.
+    * Justification: This feature improves the product by allowing users to add a valid booking record into the system. Every booking record consists of a compulsory valid venue and person. Checkings are done to ensure that a venue cannot be double booked. 
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
 * **New Feature**: Implemented multi-step prompting structure on `add_person`
-    * What it does: allows the user to add persons one at a time into the system through a multi step command with compulsory fields such as name, email, phone and optional field tags.
+    * What it does: allows the user to add persons one at a time into the system through a multi-step command with compulsory fields such as name, email, phone and optional field tags.
     * Justification: A lot of information input is needed to create a person, making the `add_person` process troublesome and confusing.
       This feature breaks down the input process into several steps, improving the input experience for users.
 
@@ -25,7 +25,7 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly because a user can make mistakes in the addition of booking details, and the app should provide a convenient way to rectify them.
 
 * **Enhancements to existing features**:
-    * Wrote additional tests for existing features (Pull requests [\#122](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/122), [#235](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/235)), [#247](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/247)), [#248](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/248))
+    * Wrote additional tests for existing features (Pull requests [\#122](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/122), [#235](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/235), [#247](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/247), [#248](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/248))
     * Managed storage function for Booking class and Person class (Pull requests [\#55](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/55), [#98](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/98))
 
 * **Documentation**:

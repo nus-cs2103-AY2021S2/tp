@@ -11,6 +11,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -68,7 +69,9 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
                     argMultimap.getValue(PREFIX_BOOKING_END).get()));
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editBookingDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editBookingDescriptor.setTags(getTagSet(argMultimap.getValue(PREFIX_TAG).get()));
+        }
 
         if (!editBookingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -76,6 +79,22 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         }
 
         return new EditBookingCommand(index, editBookingDescriptor);
+    }
+
+
+    private Set<Tag> getTagSet(String input) throws ParseException {
+        final Set<Tag> tagSet = new HashSet<>();
+        if (input.trim().equals("")) {
+            return tagSet;
+        }
+        String[] tags = input.split(",");
+        for (String tag : tags) {
+            if (!Tag.isValidTagName(tag.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(tag.trim()));
+        }
+        return tagSet;
     }
 
     /**
