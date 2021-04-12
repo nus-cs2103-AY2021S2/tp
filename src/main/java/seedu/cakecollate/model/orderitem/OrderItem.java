@@ -13,7 +13,9 @@ public class OrderItem {
     private final Type type;
 
     /**
-     * Every field must be present and not null.
+     * Returns
+     *
+     * Type field must be present and not null.
      */
     public OrderItem(Type type) {
         requireAllNonNull(type);
@@ -26,6 +28,7 @@ public class OrderItem {
 
     /**
      * Returns true if both order items have the same type of cake.
+     * This method is case insensitive.
      */
     @Override
     public boolean equals(Object other) {
