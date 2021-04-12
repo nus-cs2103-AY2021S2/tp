@@ -8,6 +8,7 @@ import static seedu.booking.commons.core.Messages.PROMPT_EMAIL_PERSON_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_PHONE_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -41,7 +42,8 @@ public class PromptAddPersonCommandTest {
 
     @Test
     void execute_enterName_stateChangeToEmailSuccessful() {
-        CommandResult expectedResult = new CommandResult(PROMPT_EMAIL_PERSON_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+        CommandResult expectedResult = new CommandResult(PROMPT_EMAIL_PERSON_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                COMMAND_SHOW_PERSONS);
         CommandResult result = new PromptAddPersonCommand(new Name((VALID_NAME_AMY))).execute(model);
         assertEquals(expectedResult, result);
 
@@ -68,7 +70,8 @@ public class PromptAddPersonCommandTest {
 
             PromptPersonEmailCommand command = new PromptPersonEmailCommand(
                     new Email(VALID_EMAIL_AMY));
-            CommandResult expectedResult = new CommandResult(PROMPT_PHONE_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+            CommandResult expectedResult = new CommandResult(PROMPT_PHONE_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                    COMMAND_SHOW_PERSONS);
             CommandResult result;
 
             try {
@@ -91,7 +94,8 @@ public class PromptAddPersonCommandTest {
 
             PromptPersonPhoneCommand command = new PromptPersonPhoneCommand(
                     new Phone(VALID_PHONE_AMY));
-            CommandResult expectedResult = new CommandResult(PROMPT_TAG_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+            CommandResult expectedResult = new CommandResult(PROMPT_TAG_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                    COMMAND_SHOW_PERSONS);
             CommandResult result;
 
             try {

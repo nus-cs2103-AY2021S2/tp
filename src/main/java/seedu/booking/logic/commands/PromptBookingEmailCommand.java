@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 
 import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
@@ -33,7 +34,8 @@ public class PromptBookingEmailCommand extends Command {
 
         StatefulLogicManager.processStateInput(email);
         StatefulLogicManager.setNextState();
-        return new CommandResult(StatefulLogicManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
+        return new CommandResult(StatefulLogicManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT,
+                COMMAND_SHOW_VENUES);
     }
 
 }

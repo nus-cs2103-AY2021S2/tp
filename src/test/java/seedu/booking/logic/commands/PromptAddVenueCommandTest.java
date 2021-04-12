@@ -8,6 +8,7 @@ import static seedu.booking.commons.core.Messages.PROMPT_CAPACITY_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_VENUE_DESC_MESSAGE;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_DESCRIPTION_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_HALL;
@@ -39,7 +40,8 @@ public class PromptAddVenueCommandTest {
 
     @Test
     void execute_enterVenueName_stateChangeToCapacitySuccessful() throws CommandException {
-        CommandResult expectedResult = new CommandResult(PROMPT_CAPACITY_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+        CommandResult expectedResult = new CommandResult(PROMPT_CAPACITY_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                COMMAND_SHOW_VENUES);
         CommandResult result = new PromptAddVenueCommand(new VenueName((VALID_VENUE_NAME_HALL))).execute(model);
         assertEquals(expectedResult, result);
 
@@ -65,7 +67,8 @@ public class PromptAddVenueCommandTest {
 
             PromptVenueCapacityCommand command = new PromptVenueCapacityCommand(
                     new Capacity(VALID_VENUE_CAPACITY_HALL));
-            CommandResult expectedResult = new CommandResult(PROMPT_VENUE_DESC_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+            CommandResult expectedResult = new CommandResult(PROMPT_VENUE_DESC_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                    COMMAND_SHOW_VENUES);
             CommandResult result;
 
             try {
@@ -87,7 +90,8 @@ public class PromptAddVenueCommandTest {
             StatefulLogicManager.setState(STATE_DESC);
 
             PromptVenueDescCommand command = new PromptVenueDescCommand(VALID_VENUE_DESCRIPTION_HALL);
-            CommandResult expectedResult = new CommandResult(PROMPT_TAG_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+            CommandResult expectedResult = new CommandResult(PROMPT_TAG_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                    COMMAND_SHOW_VENUES);
             CommandResult result;
 
             try {

@@ -13,7 +13,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/xuanqi966.png" width="200px">
 
 [[github](https://github.com/xuanqi966)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/xuanqi966.md)]
 
 * Role: Developer, team lead
 * Responsibilities:
@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/ninijiaying.png" width="200px">
 
 [[github](http://github.com/ninijiaying)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/ninijiaying.md)]
 
 * Role: Developer, integration
 * Responsibilities:
@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/vvan-essa.png" width="200px">
 
-[[github](http://github.com/vvan-essa)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/vvan-essa)] [[portfolio](team/vvan-essa.md)]
 
 * Role: Developer, deliverables and deadlines
 * Responsibilities:
@@ -42,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/hojiefeng.png" width="200px">
 
 [[github](http://github.com/hojiefeng)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/hojiefeng.md)]
 
 * Role: Developer, code quality
 * Responsibilities:
@@ -52,7 +52,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/ming-00.png" width="200px">
 
 [[github](http://github.com/ming-00)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/ming-00.md)]
 
 * Role: Developer, documentation
 * Responsibilities:

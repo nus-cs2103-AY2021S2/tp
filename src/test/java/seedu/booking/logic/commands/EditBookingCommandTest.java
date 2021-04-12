@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_COMMAND_DESCRIPTOR_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_COMMAND_DESCRIPTOR_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -44,7 +45,7 @@ class EditBookingCommandTest {
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
         expectedModel.setBooking(model.getFilteredBookingList().get(0), editedBooking);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, COMMAND_SHOW_BOOKINGS, expectedModel);
     }
 
     @Test
@@ -77,7 +78,7 @@ class EditBookingCommandTest {
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
         expectedModel.setBooking(lastBooking, editedBooking);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, COMMAND_SHOW_BOOKINGS, expectedModel);
     }
 
     @Test
@@ -92,7 +93,7 @@ class EditBookingCommandTest {
         String expectedMessage = String.format(EditBookingCommand.MESSAGE_EDIT_BOOKING_SUCCESS, editedBooking);
 
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
-        assertCommandSuccess(editBookingCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editBookingCommand, model, expectedMessage, COMMAND_SHOW_BOOKINGS, expectedModel);
     }
 
     @Test
@@ -109,7 +110,7 @@ class EditBookingCommandTest {
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
         expectedModel.setBooking(model.getFilteredBookingList().get(0), editedBooking);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, COMMAND_SHOW_BOOKINGS, expectedModel);
     }
 
     @Test

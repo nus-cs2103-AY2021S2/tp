@@ -1,5 +1,7 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_NONE;
+
 import seedu.booking.model.Model;
 
 /**
@@ -13,7 +15,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, COMMAND_SHOW_NONE, true);
     }
 
 }

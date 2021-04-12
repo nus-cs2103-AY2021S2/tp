@@ -1,5 +1,6 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.logic.commands.CommandTestUtil.showVenueAtIndex;
 import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
@@ -29,14 +30,14 @@ public class ListVenueCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListVenueCommand(), model,
-                ListVenueCommand.MESSAGE_VENUE_LISTED_SUCCESS, expectedModel);
+                ListVenueCommand.MESSAGE_VENUE_LISTED_SUCCESS, COMMAND_SHOW_VENUES, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showVenueAtIndex(model, INDEX_FIRST);
         assertCommandSuccess(new ListVenueCommand(), model,
-                ListVenueCommand.MESSAGE_VENUE_LISTED_SUCCESS, expectedModel);
+                ListVenueCommand.MESSAGE_VENUE_LISTED_SUCCESS, COMMAND_SHOW_VENUES, expectedModel);
     }
 
 }

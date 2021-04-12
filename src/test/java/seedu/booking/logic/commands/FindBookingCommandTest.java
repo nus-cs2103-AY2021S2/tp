@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.MESSAGE_NO_BOOKINGS_FOUND;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -71,7 +72,7 @@ public class FindBookingCommandTest {
 
         FindBookingCommand command = new FindBookingCommand(predicate);
         expectedModel.updateFilteredBookingList(combineVenuePredicates(predicate));
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, COMMAND_SHOW_BOOKINGS, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredBookingList());
     }
 

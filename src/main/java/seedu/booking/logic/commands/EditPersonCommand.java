@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -93,7 +94,7 @@ public class EditPersonCommand extends Command {
         model.updatePersonInBookings(personToEdit.getEmail(), editedPerson.getEmail());
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), COMMAND_SHOW_PERSONS);
     }
 
     private static Person getPersonByEmail(Email email, List<Person> personList) {

@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class DeletePersonCommand extends Command {
 
         Person personToDelete = lastShownList.stream().filter(email::isSameEmail).findFirst().orElse(null);
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete), COMMAND_SHOW_PERSONS);
     }
 
     @Override

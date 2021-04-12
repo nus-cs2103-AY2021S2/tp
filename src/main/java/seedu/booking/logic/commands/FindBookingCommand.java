@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -47,10 +48,11 @@ public class FindBookingCommand extends Command {
         Predicate<Booking> predicate = combineBookingPredicates(predicateList);
         model.updateFilteredBookingList(predicate);
         if (model.getFilteredBookingList().size() == 0) {
-            return new CommandResult(Messages.MESSAGE_NO_BOOKINGS_FOUND);
+            return new CommandResult(String.format(Messages.MESSAGE_NO_BOOKINGS_FOUND), COMMAND_SHOW_BOOKINGS);
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_BOOKING_DISPLAYED, model.getFilteredBookingList().size()));
+                String.format(Messages.MESSAGE_BOOKING_DISPLAYED, model.getFilteredBookingList().size()),
+                COMMAND_SHOW_BOOKINGS);
     }
 
     @Override

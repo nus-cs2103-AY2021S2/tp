@@ -11,7 +11,8 @@ public class Messages {
             + "Please provide another number.\n";
     public static final String PROMPT_PHONE_MESSAGE = "Please enter the phone number of the booker.\n";
     public static final String PROMPT_EMAIL_PERSON_MESSAGE = "Please enter the email address of the booker.\n";
-    public static final String MESSAGE_EMAIL_NOT_FOUND = "The provided email of the person to be edited does not exist in the system.\n";
+    public static final String MESSAGE_EMAIL_NOT_FOUND =
+            "The provided email of the person to be edited does not exist in the system.\n";
     public static final String MESSAGE_INVALID_PERSON_EMAIL = "The email provided does not correspond to any user.";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL = "Email address "
             + "provided does not exist in the system.\n";
@@ -27,8 +28,8 @@ public class Messages {
     public static final String PROMPT_DUPLICATE_VENUE_MESSAGE = "A venue already exists "
             + "in the system with the same name!\n";
     public static final String MESSAGE_VENUE_LISTED_EMPTY = "There are no venues in the system.\n";
-    public static final String MESSAGE_VENUE_NOT_FOUND = "The provided venue name of the venue to be edited does not exist in the system.\n";
-    public static final String MESSAGE_INVALID_VENUE_NAME = "The venue name provided is invalid.\n";
+    public static final String MESSAGE_VENUE_NOT_FOUND =
+            "The provided venue name of the venue to be edited does not exist in the system.\n";
     public static final String MESSAGE_NON_EXISTENT_VENUE_NAME =
             "The venue name provided does not exist in the system.\n";
     public static final String MESSAGE_VENUE_DISPLAYED = "%1$d Venue(s) displayed!";
@@ -44,6 +45,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_TIME =
             "Invalid timing: The booking's starting time cannot be later than its ending time.";
     public static final String MESSAGE_OVERLAPPING_BOOKING = "This time slot has been booked.";
+
     public static final String MESSAGE_INVALID_EMAIL_FORMAT = "Invalid email address format, please try again.\n";
     public static final String PROMPT_MESSAGE_TRY_AGAIN = "Please try again or enter exit_prompt to quit prompting.\n";
     public static final String PROMPT_MESSAGE_EXIT_PROMPT = "Enter exit_prompt to quit prompting.\n";
