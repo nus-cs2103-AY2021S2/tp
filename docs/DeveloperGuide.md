@@ -618,7 +618,7 @@ Use case ends.
 
 1.  User requests to clear all assignees from a task using the task's index
 2.  HEY MATEz searches for the task index 
-3.  HEY MATEz clear all members assigned to the task
+3.  HEY MATEz clears all members assigned to the task
 
 **Extensions**
 * 2a. Task index does not exist in the currently displayed list of tasks
