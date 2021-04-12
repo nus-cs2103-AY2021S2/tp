@@ -11,6 +11,8 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   {:toc}
 </div>
 
+<div style="page-break-after: always"></div>
+
 ## **1. Introduction**
 
 <div align="center">
@@ -32,6 +34,8 @@ We have designed a user-friendly User Interface (UI) that is intuitive to both f
 We look forward to seeing what you accomplish with CoLAB. Get your journey started with the [Quick Start section](#3-quick-start)!
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **2. About**
 
@@ -250,6 +254,8 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## **3. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -284,6 +290,8 @@ When the sample data is no longer required, you may use the `clear` command to c
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **4. Features**
 
@@ -930,6 +938,8 @@ Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -949,6 +959,8 @@ If your changes to the data file makes its format invalid, CoLAB will discard al
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **6. Command summary**
 
@@ -1019,6 +1031,8 @@ Action | Format, Examples
 **Clear All Entries** | `clear`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **7. Acknowledgements**
 
