@@ -493,6 +493,7 @@ Retrieves previously entered input.
 #### Data path display :
 
 * Displays the absolute path to the folder where the data is stored at the bottom of PartyPlanet.
+* Data directory will only be created only upon the first command input. Fresh application start ups will not have the data folder.
 
 <div markdown="block" class="alert-warning">
 
