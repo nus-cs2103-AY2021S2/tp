@@ -998,7 +998,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Item is added into the displayed list. Details of the added item shown in the status message.
 
 * Test case: `add n/Banana l/kitchen q/1 e/2020-10-10`<br>
-   Expected: Similar to previous.
+   Expected: Item is added into the displayed list. Details of the added item shown in the status message.
 
 * Test case: `add `<br>
    Expected: No item is added. Error details shown in the status message.
@@ -1024,7 +1024,7 @@ testers are expected to do more *exploratory* testing.
         There should be items in the inventory.
 
 * Test case: `delete 1`<br>
-   Expected: First item is deleted from the list. Details of the deleted item shown in the status message.
+   Expected: First item from the list is deleted. Details of the deleted item shown in the status message.
 
 * Test case: `delete 0`<br>
   Expected: No item is deleted. Error details shown in the status message.
@@ -1034,13 +1034,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding an item
 
-* Finding an item in the inventory.
+* Finding an item in the inventory using partial words or full words.
 
     * Test case: `find banana`<br>
-       Expected: All items containing `banana` as a word in the name are shown.
+       Expected: All items containing `banana` as a word in their item names are shown.
 
     * Test case: `find */nana`<br>
-       Expected: All items containing `nana` as part of a word in the name are shown.
+       Expected: All items containing `nana` as part of a word in their item names are shown.
 
 ### Listing items
 
