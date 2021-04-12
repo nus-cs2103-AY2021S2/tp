@@ -129,14 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         poolListPanelPlaceholder.getChildren().add(poolListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
-        final int smallScreenHeight = 768;
-        final int smallerResultDisplayHeight = 75;
-        if (logic.getGuiSettings().getWindowHeight() <= smallScreenHeight){
-            // make resultDisplay smaller to fit into smaller screen
-            resultDisplay.getRoot().setMaxHeight(smallerResultDisplayHeight);
-        }
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
