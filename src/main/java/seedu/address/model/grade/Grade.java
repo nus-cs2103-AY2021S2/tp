@@ -17,7 +17,7 @@ public class Grade {
     public static final String SUBJECT_CONSTRAINTS =
             "Subject names should only contain alphanumeric characters and spaces, "
                     + "and it should not be blank. "
-                    + "Maximum number of non-whitespace characters is 20. ";
+                    + "Maximum number of characters is 12. ";
 
     /*
      * The first character of the gradedItem must not be a whitespace,
