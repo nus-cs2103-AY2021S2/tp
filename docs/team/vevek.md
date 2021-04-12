@@ -10,7 +10,7 @@ CoLAB (Collaboration Lab) is a desktop app for university students to manage the
 Given below are my contributions to the project.
 
 * **New Feature**: Added add & delete todo/deadline/event commands.
-  * What it does: This feature allows the user to add or delete a todo/deadline/event from a project.
+  * What it does: This feature allows the user to add or delete a todo/deadline/event to/from a project.
   * Justification: This feature improves the product significantly as it is a core part of the application.
   * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because it involved the index of the project and the todo/deadline/event within the project as well as thinking through the implementation of todo/deadline/event models.
 
