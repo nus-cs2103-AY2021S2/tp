@@ -59,7 +59,7 @@ In [Section 4: Features](#4-features), you will find documentation on all of CoL
 
 In [Section 5: FAQ](#5-faq), you may find answers to some questions you may have on using CoLAB.
 
-In [Section 6: Command Summary](#6-command-summary), you will find a summary on CoLAB's commands.
+In [Section 6: Command Summary](#6-command-summary), you will find a summary of CoLAB's commands.
 
 You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
@@ -97,7 +97,7 @@ Example information!
 
 **Highlights**
 
-Words or sentences that appear in these highlighted boxes are being emphasised for their relevance in that section.
+Words or sentences that appear in these highlighted boxes are being emphasized for their relevance in that section.
 
 `Example highlight!`
 
@@ -111,7 +111,7 @@ Different sections of the application window will be referred to by the names de
 
 Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
 
-Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
+Users can enter commands into the command box and press `ENTER` to execute them. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Most commands require all the fields (e.g. project index and deadline index when updating a deadline) so that you can run the command from anywhere within the app.
@@ -128,7 +128,7 @@ Only successfully executed commands will be saved.
 Commands discussed in this user guide follow these rules:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
+  e.g. in `addC n/NAME`, `NAME` is a parameter that can be used as `addC n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -159,13 +159,13 @@ Parameters refer to information that is to be included as an input to a command.
 This subsection serves to list out the parameters used in this document.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-To achieve the best possible experience, avoid adding excessively long text to CoLAB. At small screen resolutions and with unusually long parameters, text may be truncated to  fit in the main panel. While we do not expect such occurrences to happen in day to day regular use, we have made accommodations for it. To view the rest of the truncated text, simple hover over the relevant section and scroll sideways, either with a trackpad or shift-scroll if you are using a mouse with a scroll wheel.
+To achieve the best possible experience, avoid adding excessively long text to CoLAB. At small screen resolutions and with unusually long parameters, text may be truncated to  fit in the main panel. While we do not expect such occurrences to happen in day-to-day regular use, we have made accommodations for it. To view the rest of the truncated text, simply hover over the relevant section and scroll sideways, either with a trackpad or shift-scroll if you are using a mouse with a scroll wheel.
 </div>
 
 ##### `ADDRESS`
 
 * The address of a contact.
-* Addresses can take any values, but it should not be blank.
+* An addresses can take any value, but it should not be blank.
 
 ##### `DATE`
 
@@ -211,17 +211,17 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
 * The keyword used to search for contacts.
 * `MORE KEYWORDS` also follows this definition.
-* Keywords can take any values, but it should not be blank.
+* A keyword can take any value, but it should not be blank.
 
 ##### `NAME`
 
 * The name of a contact/groupmate/project.
-* Names should only contain alphanumeric characters and spaces, and it should not be blank.
+* A name should only contain alphanumeric characters and spaces, and it should not be blank.
 
 ##### `PHONE_NUMBER`
 
 * The phone number of a contact.
-* Phone numbers should only contain numbers, and it should be at least 3 digits long.
+* A phone number should only contain numbers, and it should be at least 3 digits long.
 
 ##### `REPEAT_WEEKLY`
 
@@ -232,7 +232,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
     * `y`
     * `n`
 * `Y` or `y` indicates that the event repeats every week.
-* `N` or `n` indicates that the event is a one time event.
+* `N` or `n` indicates that the event is a one-time event.
 
 ##### `ROLE`
 
@@ -267,7 +267,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
 ## **3. Quick Start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
 1. Download the latest `CoLAB.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-2/tp/releases).
 
@@ -288,7 +288,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
     * **`addT`**`1 d/My Task`: Adds a todo with the description `My Task` to the first project.
 
-    * **`deleteP`**`3`: Deletes the third project in the list.
+    * **`deleteP`**`3`: Deletes the third project from the list.
 
     * **`exit`**: Exits the app.
 
@@ -425,7 +425,7 @@ Example:
 
 #### **4.1.1 Todos**
 
-Todos are used in CoLAB to represent a task that has to be done. These are usually short-term tasks which have to be done in a short timeframe or have no due date.
+Todos are used in CoLAB to represent a task that has to be done. These are usually short-term tasks that have to be done in a short timeframe or have no due date.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Todos may be known as tasks in other similar applications.
@@ -565,7 +565,7 @@ Parameters:
 
 Examples:
 
-* `updateD 1 i/2 d/Finish v1.3 by/02-02-2021` updates the second deadline of the first project with new description `Finish v1.3` and new due date `02-02-2021`.
+* `updateD 1 i/2 d/Finish v1.3 by/02-02-2021` updates the second deadline of the first project with a new description `Finish v1.3` and new due date `02-02-2021`.
 * `updateD 2 i/1 by/31-03-2021` updates the first deadline of the second project with the new due date `31-03-2021`.
 
 ##### Marking a Deadline as Done: `markD`
@@ -604,11 +604,11 @@ Example:
 
 #### **4.1.3 Events**
 
-Events are used in CoLAB to represent project specific events.
+Events are used in CoLAB to represent project-specific events.
 
 ![Ui](images/events.png)
 
-Events contain a description, date and a time. Events can be set to either occur once or repeat at the same time every week.
+Events contain a description, a date and a time. Events can be set to either occur once or repeat at the same time every week.
 
 Events are sorted in ascending order by date.
 
@@ -619,7 +619,7 @@ Adds an event to a project in CoLAB.
 Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
 * Adds an event to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` as well as the `DATE` and `TIME` of the event.
-* `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
+* `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one-time event.
 
 Parameters:
 
@@ -632,7 +632,7 @@ Parameters:
 Examples:
 
 * `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y` adds a weekly event with description `Project Meeting` starting on `24-04-2021` at `2000` to the first project.
-* `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n` adds a one time event with description `CS2101 Presentation` on `14-04-2021` at `1015` to the second project.
+* `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n` adds a one-time event with description `CS2101 Presentation` on `14-04-2021` at `1015` to the second project.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 You cannot add an event to a project containing another event with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
@@ -646,7 +646,7 @@ Format: `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME]
 
 * Updates the `DESCRIPTION`, `DATE`, `TIME` or `REPEAT_WEEKLY` status of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`.
 * Existing values will be updated to the input values.
-* `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
+* `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one-time event.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 At least one of the optional fields must be provided.
@@ -663,7 +663,7 @@ Parameters:
 
 Examples:
 
-* `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y` updates the first event of the first project to be weekly event with new description `Project Meting` starting on `24-04-2021`.
+* `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y` updates the first event of the first project to be weekly event with a new description `Project Meeting` starting on `24-04-2021`.
 * `updateE 2 i/2 on/14-04-2021 at/1015` updates the second event of the second project to a new date `14-04-2021` at `1015`.
 
 ##### Deleting an Event From a Project: `deleteE`
@@ -717,8 +717,8 @@ A groupmate can have any number of roles (including 0).
 
 Examples:
 
-* `addG 1 n/John Doe` adds a groupmate with name `John Doe` to the first project.
-* `addG 2 n/Betsy Crowe r/developer` adds a groupmate with name `Betsy Crowe` and role `developer` to the second project.
+* `addG 1 n/John Doe` adds a groupmate with the name `John Doe` to the first project.
+* `addG 2 n/Betsy Crowe r/developer` adds a groupmate with the name `Betsy Crowe` and role `developer` to the second project.
 
 ##### Updating a Groupmate: `updateG`
 
@@ -769,7 +769,7 @@ Example:
 
 ### **4.2 Contacts**
 
-Contact are used in CoLAB to store contact information about a person, to help you keep track of people you contact frequently.
+Contact is used in CoLAB to store contact information about a person, to help you keep track of people you contact frequently.
 
 ![Ui](images/contacts.png)
 
@@ -802,7 +802,7 @@ A contact can have any number of tags (including 0)
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you do not have information required for a compulsory parameter, consider leaving it as a dummy character such as `-`. For example, if you do not have the address of a contact, you can enter the parameter as `a/-`.
+If you do not have the information required for a compulsory parameter, consider leaving it as a dummy character such as `-`. For example, if you do not have the address of a contact, you can enter the parameter as `a/-`.
 </div>
 
 Example:
@@ -931,7 +931,7 @@ Reverses the most recent undo command.
 
 Format: `redo`
 
-* Requires an undo command to have been performed prior to a redo command.
+* Requires an undo command to have been performed before a redo command.
 
 ##### Exiting the Program: `exit`
 
@@ -964,7 +964,7 @@ Format: `clear`
 **A**: CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
+If your changes to the data file make its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
