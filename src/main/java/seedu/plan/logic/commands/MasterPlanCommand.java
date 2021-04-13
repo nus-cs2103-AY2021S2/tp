@@ -67,7 +67,7 @@ public class MasterPlanCommand extends Command {
             throw new CommandException("Set a new Master Plan as the old one is no longer valid.");
         }
         Plan originalPlan = masterPlan;
-        masterPlan.setIsValid(true);
+        // masterPlan.setIsValid(true); // master plan can be invalid if pre-reqs are not met, run validateCommand.
         model.setMasterPlan(masterPlan);
         model.setPlan(originalPlan, masterPlan);
 
