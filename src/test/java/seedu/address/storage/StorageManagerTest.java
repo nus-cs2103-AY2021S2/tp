@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalShortcuts.getTypicalShortcutLibrary;
 
 import java.nio.file.Path;
 
@@ -14,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.shortcut.ShortcutLibrary;
 
 public class StorageManagerTest {
 
@@ -26,7 +28,9 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonShortcutLibraryStorage shortcutLibraryStorage = new JsonShortcutLibraryStorage(
+                getTempFilePath("shlib"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, shortcutLibraryStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -63,6 +67,23 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void shortcutLibraryReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonShortcutLibraryStorage} class.
+         */
+        ShortcutLibrary original = getTypicalShortcutLibrary();
+        storageManager.saveShortcutLibrary(original);
+        ShortcutLibrary retrieved = storageManager.readShortcutLibrary().get();
+        assertEquals(original, new ShortcutLibrary(retrieved.getShortcuts()));
+    }
+
+    @Test
+    public void getShortcutLibraryFilePath() {
+        assertNotNull(storageManager.getShortcutLibraryFilePath());
     }
 
 }

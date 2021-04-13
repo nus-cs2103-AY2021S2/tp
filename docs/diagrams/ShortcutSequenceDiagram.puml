@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ClientBookParser" as ClientBookParser LOGIC_COLOR
+participant "a:AddShortcutCommand" as AddShortcutCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ShortcutLibrary" as ShortcutLibrary MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addshortcut sn/aia sc/find i/aia")
+activate LogicManager
+
+LogicManager -> ClientBookParser : parseCommand("addshortcut sn/aia sc/find i/aia")
+activate ClientBookParser
+
+create AddShortcutCommand
+ClientBookParser -> AddShortcutCommand
+activate AddShortcutCommand
+
+AddShortcutCommand --> ClientBookParser : a
+deactivate AddShortcutCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddShortcutCommand -[hidden]-> ClientBookParser
+
+ClientBookParser --> LogicManager : a
+deactivate ClientBookParser
+
+LogicManager -> AddShortcutCommand : execute()
+activate AddShortcutCommand
+
+AddShortcutCommand -> Model : addShortcut("aia", "find i/aia")
+activate Model
+
+Model -> ShortcutLibrary : addShortcut("aia", "find i/aia")
+activate ShortcutLibrary
+
+ShortcutLibrary --> Model
+deactivate ShortcutLibrary
+
+Model --> AddShortcutCommand
+deactivate Model
+
+AddShortcutCommand --> LogicManager : result
+deactivate AddShortcutCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

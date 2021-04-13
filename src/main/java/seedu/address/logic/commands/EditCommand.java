@@ -3,11 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +21,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -29,11 +33,11 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCommand extends Command {
+public class EditCommand extends Command implements BatchOperation {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -41,28 +45,53 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] "
+            + "[" + PREFIX_TAG + "TAG]... \n"
+            + "FLAG can be modify, insert or remove or editing policy ids. If no flag is specified, the default "
+            + "behaviour is replace.\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_USAGE_BATCH = COMMAND_WORD + ": Edits the details of the client identified "
+            + "by the index number used in the displayed person list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDICES (all must be distinct positive integers) "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] "
+            + "[" + PREFIX_TAG + "TAG]... \n"
+            + "FLAG can be modify, insert or remove or editing policy ids. If no flag is specified, the default "
+            + "behaviour is replace.\n"
+            + "Example: batch " + COMMAND_WORD + " 1, 2, 3 "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_INSURANCE_POLICY + "POL#123";
+
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_MODIFY_POLICY_CONSTRAINT = "When -modify flag is indicated for editing policy,"
+            + " the format should be i/[TO_MODIFY];[TO_REPLACE]. ";
+    public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found.";
+    public static final String MESSAGE_INSERT_DUPLICATE_POLICY = "The policy %s already exists in this "
+            + "client's record.";
+
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private final EditPolicyMode editPolicyMode;
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, EditPolicyMode editPolicyMode) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPolicyMode = editPolicyMode;
     }
 
     @Override
@@ -75,9 +104,9 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, editPolicyMode);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!personToEdit.equals(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -86,20 +115,94 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
+    @Override
+    public CommandResult executeBatch(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, editPolicyMode);
+
+        if (!personToEdit.equals(editedPerson) && model.hasPerson(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        model.setPerson(personToEdit, editedPerson);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
+
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor,
+                                             EditPolicyMode editPolicyMode) throws CommandException {
+
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone().get());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail().get());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress().get());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        List<InsurancePolicy> updatedPolicies;
+        switch (editPolicyMode) {
+        case REPLACE:
+            updatedPolicies = editPersonDescriptor.getPoliciesToAdd().orElse(personToEdit.getPolicies());
+            break;
+        case MODIFY:
+            List<InsurancePolicy> originalList = personToEdit.getPolicies();
+            List<InsurancePolicy> listToRemove = editPersonDescriptor.getPoliciesToRemove().orElse(new ArrayList<>());
+            List<InsurancePolicy> listToAdd = editPersonDescriptor.getPoliciesToAdd().orElse(new ArrayList<>());
+            updatedPolicies = removeInsurancePolicies(originalList, listToRemove);
+            updatedPolicies = addInsurancePolicies(updatedPolicies, listToAdd);
+            break;
+        case APPEND:
+            listToAdd = editPersonDescriptor.getPoliciesToAdd().orElse(new ArrayList<>());
+            updatedPolicies = addInsurancePolicies(personToEdit.getPolicies(), listToAdd);
+            break;
+        case REMOVE:
+            originalList = personToEdit.getPolicies();
+            listToRemove = editPersonDescriptor.getPoliciesToRemove().orElse(new ArrayList<>());
+            updatedPolicies = removeInsurancePolicies(originalList, listToRemove);
+            break;
+        default:
+            throw new CommandException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
+        }
+        List<Meeting> updatedMeetings = personToEdit.getMeetings();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedPolicies, updatedMeetings);
+    }
+
+    private static List<InsurancePolicy> removeInsurancePolicies(List<InsurancePolicy> policiesToRemoveFrom,
+                                             List<InsurancePolicy> policiesToRemove) throws CommandException {
+        ArrayList<InsurancePolicy> policiesToRemoveFromTemp = new ArrayList<>(policiesToRemoveFrom);
+        for (InsurancePolicy insurancePolicy : policiesToRemove) {
+            boolean isRemoved = policiesToRemoveFromTemp.remove(insurancePolicy);
+            if (!isRemoved) {
+                throw new CommandException(String.format(MESSAGE_MODIFY_POLICY_NOT_FOUND, insurancePolicy.policyId));
+            }
+        }
+        return policiesToRemoveFromTemp;
+    }
+
+    private static List<InsurancePolicy> addInsurancePolicies(List<InsurancePolicy> policiesToAddTo,
+                                             List<InsurancePolicy> policiesToAdd) throws CommandException {
+        ArrayList<InsurancePolicy> policiesToAddToTemp = new ArrayList<>(policiesToAddTo);
+        for (InsurancePolicy insurancePolicy : policiesToAdd) {
+            if (policiesToAddTo.contains(insurancePolicy)) {
+                throw new CommandException(String.format(MESSAGE_INSERT_DUPLICATE_POLICY, insurancePolicy.policyId));
+            } else {
+                policiesToAddToTemp.add(insurancePolicy);
+            }
+        }
+        return policiesToAddToTemp;
     }
 
     @Override
@@ -117,7 +220,18 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor)
+                && editPolicyMode.equals(e.editPolicyMode);
+    }
+
+    public enum EditPolicyMode {
+        MODIFY, APPEND, REPLACE, REMOVE;
+
+        public static final String MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS =
+                "Edit policy mode should be specified by -MODE, where MODE should be insert, remove or modify.";
+
+        public static final String MESSAGE_EDIT_POLICY_MULTIPLE_FLAG_CONSTRAINTS =
+                "Only 1 edit policy mode should be specified.";
     }
 
     /**
@@ -130,6 +244,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private List<InsurancePolicy> policiesToAdd;
+        private List<InsurancePolicy> policiesToRemove;
 
         public EditPersonDescriptor() {}
 
@@ -143,13 +259,15 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPoliciesToAdd(toCopy.policiesToAdd);
+            setPoliciesToRemove(toCopy.policiesToRemove);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove);
         }
 
         public void setName(Name name) {
@@ -201,6 +319,22 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setPoliciesToAdd(List<InsurancePolicy> policiesToAdd) {
+            this.policiesToAdd = policiesToAdd;
+        }
+
+        public Optional<List<InsurancePolicy>> getPoliciesToAdd() {
+            return Optional.ofNullable(policiesToAdd);
+        }
+
+        public void setPoliciesToRemove(List<InsurancePolicy> policiesToRemove) {
+            this.policiesToRemove = policiesToRemove;
+        }
+
+        public Optional<List<InsurancePolicy>> getPoliciesToRemove() {
+            return Optional.ofNullable(policiesToRemove);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -220,7 +354,9 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getPoliciesToAdd().equals(e.getPoliciesToAdd())
+                    && getPoliciesToRemove().equals(e.getPoliciesToRemove());
         }
     }
 }

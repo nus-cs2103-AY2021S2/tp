@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListShortcutCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -34,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PoliciesWindow policiesWindow;
+    private ShortcutsWindow shortcutsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +69,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        policiesWindow = new PoliciesWindow();
+        shortcutsWindow = new ShortcutsWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +152,50 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens a window to display all policies associated with selected client, or focuses on it if it's already opened.
+     */
+    @FXML
+    public void showPolicies(String nameAndPolicies) {
+        String[] nameAndPoliciesSplit = nameAndPolicies.split("\n", 2);
+
+        if (nameAndPoliciesSplit.length == 1) {
+            policiesWindow.noPolicyToDisplay(nameAndPoliciesSplit[0]);
+        } else {
+            final String windowTitle = nameAndPoliciesSplit[0];
+            final String allPolicies = nameAndPoliciesSplit[1];
+            policiesWindow.setPoliciesToDisplay(windowTitle, allPolicies);
+        }
+
+        if (!policiesWindow.isShowing()) {
+            policiesWindow.show();
+        } else {
+            policiesWindow.focus();
+        }
+    }
+
+    /**
+     * Opens a window to display all shortcuts, or focuses on it if it's already opened.
+     */
+    @FXML
+    public void showShortcuts(String shortcuts) {
+        String[] shortcutSplit = shortcuts.split("\n", 2);
+
+        if (shortcutSplit.length == 1) {
+            shortcutsWindow.noShortcutToDisplay(shortcutSplit[0]);
+        } else {
+            final String windowTitle = shortcutSplit[0];
+            final String allShortcuts = shortcutSplit[1];
+            shortcutsWindow.setShortcutsToDisplay(windowTitle, allShortcuts);
+        }
+
+        if (!shortcutsWindow.isShowing()) {
+            shortcutsWindow.show();
+        } else {
+            shortcutsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -180,6 +229,15 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowPolicies()) {
+                showPolicies(commandResult.getFeedbackToUser());
+            }
+
+            if (commandResult.isShowShortcuts()) {
+                showShortcuts(commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(ListShortcutCommand.MESSAGE_SUCCESS);
             }
 
             if (commandResult.isExit()) {

@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INDEX_IS_WORD;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_BATCH_INDICES;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -14,6 +16,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -33,8 +36,20 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_POLICYID_1 = "Policy_1234";
+    private static final String VALID_POLICYID_2 = "Policy_1235";
+    private static final String VALID_POLICY_URL = "www.google.com";
+    private static final String VALID_POLICYID_NO_URL = "Policy_1234";
+    private static final String VALID_POLICYID_VALID_URL = "Policy_1235>www.google.com";
 
     private static final String WHITESPACE = " \t\r\n";
+
+    private static final String INVALID_INPUT_INDICES_ZERO = "0, 1, 2";
+    private static final String INVALID_INPUT_INDICES_HUGE = "1, 2, 10000000000000000000000000000000000000";
+    private static final String INVALID_INPUT_INDICES_ALL_NUMBERS_NO_COMMA = "1 2 3";
+    private static final String INVALID_INPUT_INDICES_WITH_WORD_NO_COMMA = "1 2 lol";
+    private static final String INVALID_INPUT_INDICES_WITH_WORD_WITH_COMMA = "1, 2, lol";
+    private static final String INVALID_INPUT_INDICES_REPEATED_INDICES = "1 1 1";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -54,6 +69,34 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndices_invalidInput_throwsParseException() {
+        // Input indices contain some indices which are less than 1
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_ZERO));
+
+        // Input indices contain some indices which are huge
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_HUGE));
+
+        // Input all numbers but not separated by commas
+        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_ALL_NUMBERS_NO_COMMA));
+
+        // Input has word and not separated by commas
+        assertThrows(ParseException.class, MESSAGE_INDEX_IS_WORD, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_WITH_WORD_NO_COMMA));
+
+        // Input has word but separated by commas
+        assertThrows(ParseException.class, MESSAGE_INDEX_IS_WORD, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_WITH_WORD_WITH_COMMA));
+
+        // Repeated indices in input
+        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_REPEATED_INDICES));
+
     }
 
     @Test
@@ -192,5 +235,25 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parsePolicies_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePolicies(null));
+    }
+
+    @Test
+    public void parsePolicies_emptyCollection_returnsEmptySet() throws ParseException {
+        assertTrue(ParserUtil.parsePolicies(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parsePolicies_returnsPoliciesList() throws ParseException {
+        Set<InsurancePolicy> actualPolicySet = ParserUtil.parsePolicies(Arrays.asList(VALID_POLICYID_NO_URL,
+            VALID_POLICYID_VALID_URL));
+        Set<InsurancePolicy> expectedPolicyList = new HashSet<>(Arrays.asList(new InsurancePolicy(VALID_POLICYID_1),
+                new InsurancePolicy(VALID_POLICYID_2, VALID_POLICY_URL)));
+
+        assertEquals(expectedPolicyList, actualPolicySet);
     }
 }

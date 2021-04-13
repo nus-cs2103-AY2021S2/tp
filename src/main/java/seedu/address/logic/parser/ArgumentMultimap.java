@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
@@ -40,7 +41,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns all values of {@code prefix}.
+     * Returns all values of {@code prefix}, until the next prefix.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
      */
@@ -48,7 +49,18 @@ public class ArgumentMultimap {
         if (!argMultimap.containsKey(prefix)) {
             return new ArrayList<>();
         }
-        return new ArrayList<>(argMultimap.get(prefix));
+        List<String> values = argMultimap.get(prefix);
+
+        ArrayList<String> output = new ArrayList<>();
+
+        //Add all values up till the next prefix to the output.
+        for (String value : values) {
+            if (CliSyntax.isValidPrefix(value)) {
+                break;
+            }
+            output.add(value);
+        }
+        return output;
     }
 
     /**
@@ -57,4 +69,6 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+
 }
