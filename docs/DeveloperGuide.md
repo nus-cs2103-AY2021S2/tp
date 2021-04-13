@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 Weeblingo is a desktop application for **learning Japanese, optimized for use via a Command Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
-users can learn Japanese at a comfortable pace and manage flashcards with this application.
+users can learn Japanese at a comfortable pace and manage flashcards with this application. 
 
 ## Table of Contents
 * [Setting Up](#setting-up-getting-started)
@@ -287,9 +287,9 @@ quiz is displayed in the GUI window. The following activity diagrams summarize h
 along with each quiz session.
 
 <p float="left">
-  <img src="images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png" width="310" />
+  <img src="images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png" />
   <img src="images/blank.png" width="20" />
-  <img src="images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png" width="310" />
+  <img src="images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png" />
 </p>
 
 <div style="page-break-after: always;"></div>
@@ -470,8 +470,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Weeblingo shows the history, including relevant details of the quiz attempts.
 
     Use case ends.
-
-*{More to be added}*
 
 <div style="page-break-after: always;"></div>
 

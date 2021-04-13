@@ -5,9 +5,10 @@ title: Zhang Xinyi's Project Portfolio Page
 
 ## Project: Weeblingo
 
-Weeblingo is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI)
-while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
-users can learn Japanese at a comfortable pace with this application.
+Weeblingo is a desktop app for learning the Japanese language via flashcards. It is designed specifically with the needs
+of budding Japanese language students in mind, providing everything one would need to embark on their academic journey.
+With a simple and friendly design and carefully crafted user-centric features, one can learn Japanese at a comfortable
+pace to the level of proficiency one desires.
 
 Given below are my contributions to the project.
 
@@ -37,11 +38,11 @@ Given below are my contributions to the project.
   
   * Developer Guide:
     * Added documentation for `quiz features` and `checking user attempts` (Pull requests:
-    [#98](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/98/files)
+    [#98](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/98/files),
     [#187](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/187))
     * Modified given architectural diagrams non-trivially to match our project (Pull request
     [#187](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/187))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#68](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/68), [#78](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/78) [#168](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/168)
+  * PRs reviewed (with non-trivial review comments): [#68](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/68), [#78](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/78), [#168](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/168)
   
