@@ -27,7 +27,7 @@ Class Node
 Class "<<enumerations>>\nNodeType"
 }
 Class XYZFilter
-note bottom of XYZFilter: XYZFilter = AddressFilter, CarFilter,\nCarsOwned Filter, CarsPreferredFilter etc.
+
 Class Filters
 Class "{abstract}\nFilter" as Filter
 }
@@ -91,7 +91,7 @@ CommandResult -[hidden]-> "<<Interface>>\nParser"
 
 'Filter .-->Model
 
-CommandHistory  .->Ui
+CommandHistory  .right.->Ui
 
 FilterCombinator .right.-> ArgumentTokenizer
 FilterCombinator .-> Filter
