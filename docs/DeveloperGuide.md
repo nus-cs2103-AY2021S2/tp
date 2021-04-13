@@ -36,18 +36,18 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 >**Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103-W17-1/tp/tree/master/docs/diagrams) folder.
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/plan/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/plan/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+**`Commons`** represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* **`UI`**: The UI of the App.
+* **`Logic`**: The command executor.
+* **`Model`**: Holds the data of the App in memory.
+* **`Storage`**: Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
