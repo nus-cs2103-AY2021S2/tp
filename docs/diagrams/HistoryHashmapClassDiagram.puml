@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+'undo configurations in style.puml'
+skinparam Class {
+    FontColor #000
+    BorderThickness 1
+    BorderColor #000
+    StereotypeFontColor #FFF
+    FontName Arial
+}
+show members
+hide empty members
+show footbox
+hide circle
+
+'Remove styling for visibility icons to conform to CS2103 requirements (e.g. + -> public, - -> private)'
+skinparam classAttributeIconSize 0
+
+skinparam arrowThickness 1.1
+skinparam arrowColor #000
+skinparam classBackgroundColor #FFF
+
+
+History -up-|> HashMap
+History : + new()
+History : + toString()
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+
+participant ":History" as History LOGIC_COLOR
+participant ":Semester" as Semester LOGIC_COLOR
+participant ":Module" as Module LOGIC_COLOR
+
+[-> History : toString()
+activate History
+
+History -> History : sortSemesters()
+
+loop semester in plan
+History -> Semester : toString()
+activate Semester
+
+loop module in semester
+Semester -> Module :toString()
+activate Module
+
+Module --> Semester : formattedModule
+deactivate Module
+end
+
+Semester --> History : formattedSemester
+deactivate Semester
+end
+
+History -->[ : formattedHistory
+deactivate History
+@enduml

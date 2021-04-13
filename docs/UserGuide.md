@@ -3,40 +3,37 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+NUS Module Planner is a **desktop app for NUS students to manage and plan the modules to enrol in upcoming semesters, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUS Module Planner can get your module planning done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `moduleplanner.jar` from [here](https://github.com/AY2021S2-CS2103-W17-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiLanding.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   - **`list`** : Lists all plans.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   - **`addp d/sample plan`** : Adds a plan with description `sample plan` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   - **`deletep p/3`** : Deletes the 3rd plan shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   - **`clear`** : Deletes all plans.
 
-   * **`exit`** : Exits the app.
+   - **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -44,103 +41,51 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `addp d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `addp d/Networking Focus Area`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items in square brackets are optional.<br>
+  e.g `d/planDesc [t/TAG]` can be used as `d/planDesc t/3 years`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+- Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/3 years`, `t/3 years t/2 internships` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+- Parameters can be in any order.<br>
+  e.g. if the command specifies `p/PLAN_NUMBER s/SEM_NUMBER`, `s/SEM_NUMBER p/PLAN_NUMBER` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `d/myplan1 d/myplan2`, only `d/myplan2` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+# User Commands
+## General Commands
 
-Adds a person to the address book.
+### Check graduation : `validate`
+Format: `validate`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+> Note: The validate command checks if a plan is valid by looking at whether or not the modules contained in its history match those of the current `master`. Hence, `master` is always valid. The command does not check for pre-requisites and preclusions with this release.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+> Example: if master is at current semester `2`, all other plans have their semester `1`s checked, if these semester `1`s match the master module, the plan is valid.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- Shows header
+    - Shows plan number
+    - Shows description of plan
+    - Shows if the plan is valid compared to master plan
+    - Shows how many MCs the plan has
+    - Shows how many semesters the plan has
 
 ### Clearing all entries : `clear`
 
@@ -154,39 +99,170 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+## Plan commands
+### List a summary of all plans: `list`
 
-### Editing the data file
+Format: `list`
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+This command must be done by the user at least once before they can use other commands.
+Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+Example output:
+![list plans](images/Ui.png)
 
-### Archiving data files `[coming in v2.0]`
+### Create/Delete Plan: `addp`/`deletep`
 
-_Details coming soon ..._
+Format for adding: `addp d/DESCRIPTION [OPTIONAL: t/TAG...]`
 
---------------------------------------------------------------------------------------------------------------------
+Format for deleting: `deletep p/PLAN_NUMBER`
 
-## FAQ
+Shows 2 rows:
+- Whether the plan is added/deleted successfully/unsuccessfully
+- Plan number
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Constraints:
+- Trying to add a plan with invalid description will not be allowed
+- Trying to delete a plan that does not exist will not be allowed
+- Tags provided when adding a plan should contain only alphanumeric characters with no spaces
 
---------------------------------------------------------------------------------------------------------------------
+Example output for adding plan:
+![add_plan](images/AddPlan.png)
 
-## Command summary
+Example output for deleting plan:
+![delete_plan](images/DeletePlan.png)
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+### Set Plan as Master Plan: `master`
+Format: `master p/PLAN_NUMBER`
+
+This command must be done by the user at least once before they can use other commands.
+Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
+
+Example output:
+![masterPlanExample](images/masterPlan.png)
+
+## Semester commands
+### Show the number of MCs the user is currently taking: `show MCs`
+Format: `show mcs`
+
+Example output:
+![showMcsExample](images/showMcsExample.png)
+
+
+### Calculate and show the current CAP (Cumulative academic points) of the student: `show cap`
+Format: `show cap`
+
+This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP using this formula:
+
+![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
+
+Example output:
+![showCapExample](images/showCapExample.png)
+
+
+### Add/Delete Semester to/from Plan: `adds`/`deletes`
+Format for adding: `adds p/PLAN_NUMBER s/SEM_NUMBER`
+
+Format for deleting: `deletes p/PLAN_NUMBER s/SEM_NUMBER`
+
+The output will show whether the operation was successful and include the semester number in its output.
+
+Constraints:
+* Trying to add a semester that already exist will not be allowed
+* Trying to delete a semester that does not exist will not be allowed
+* A semester number must be a positive integer
+
+Example output for adding semester:
+![add_semester](images/AddSemester.png)
+
+Example output for deleting semester:
+![delete_semester](images/DeleteSemester.png)
+
+### Set Semester as in-progress: `current`
+Format: `current s/SEM_NUMBER`
+
+Marks the supplied semester as the current semester of the master plan.
+This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
+The user will have to manually update the current semester as time progresses.
+
+Example output:
+![currentSemesterExample](images/currentSemesterExample.png)
+
+### Show history: `history`
+Format: `history`
+
+The above command takes no arguments and shows the user a list of modules that they have completed up until **before** the *current semester*.
+
+> Tip: The *current semester* is the semester that was marked using the `current semester` command.
+
+Example output:
+
+![historyCommandExample](images/historyCommandExample.png)
+
+## Module commands
+
+### Add/Delete module to/from semester: `addm/deletem`
+Format for adding: `addm m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+
+Format for adding module with grade: `addm m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER g/GRADE`
+
+Format for deleting: `deletem m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+
+`SEM_NUMBER` here references to the semester number of the semester user created.
+
+For example, if user added a semester using `adds p/1 s/5`, to add module to this semester user need to use `addm p/1 s/5 m/MODULE_CODE`
+
+> Tip: A user can view module info to see more details about it. (See `info`)
+
+This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and `SEM_NUMBER`, and outputs meta details about the module being added/deleted, as well as whether the addition/deletion was successful or not.
+
+The details to output are as follows:
+
+* Module addition/deletion success status
+* Semester number
+* Module code
+
+Constraints:
+* Trying to add a module that already exists will not be allowed
+* Trying to add/delete a nonexistent module code/plan number/semester number will not be allowed
+
+> Note: As this is not a fully fledged production level project, there are limited modules for users to add. If in the future this project grows to a production piece, it will use relevant NUS APIs to collect modules for users to add. Instead, currently there are only dozens of modules for users to add, but for the purposes of testing and showcasing this product, it is sufficient.
+
+#### Example output for add module command:
+![AddModuleCommandDemo](images/AddModuleCommandDemo.png)
+
+#### Example output for deleting a module:
+![DeleteModuleCommandDemo](images/DeleteModuleCommandDemo.png)
+
+### View module info: `info`
+Format: `info m/MODULE_CODE`
+
+> Tip: A user can also add a module to a plan/semester (See `add/delete`)
+
+By default, this command takes in one optional argument, `MODULE_CODE` and outputs the module information including:
+* Brief Description
+* Number of MCs
+* Semesters available
+* Pre-requisites
+* Preclusions
+
+Constraints:
+* Module has to exist
+
+#### Example output listing all module information:
+![InfoCommandDemo](images/InfoCommandDemo.png)
+
+#### Example output for finding a specific module information
+![InfoCommandDemoSingle](images/InfoCommandSingleModuleDemo.PNG)
+
+
+### Overall input constraints
+The NUS Module Planner app is designed to help students track their typical study plans.
+Hence, user inputs for indexes such as plan numbers or semester numbers are only guaranteed to work within reasonable limits. For example a student should never have 2 billion semesters in their study plan as this would exceed the typical human lifetime.
+
+Explicitly, the following should take on values between 1 and 100 only. Correct behaviour of the app is not guaranteed beyond these bounds.
+* Semester number
+* Plan number
+* Number of modules in a plan or semester
+
+Please note that if you manually edit the `moduleinfo.json` or the `plans.json` files that the NUS Module Planner application may not longer function as expected.

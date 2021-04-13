@@ -1,0 +1,14 @@
+
+@startuml
+!include style.puml
+
+object ":Module" as moduleToAdd
+object "addModule:Command" as addPlanCommand
+object "moduleCode:moduleCode" as planDescription
+
+hide empty members
+
+addPlanCommand -> "1" moduleToAdd
+
+moduleToAdd -down-> "1" planDescription
+@enduml

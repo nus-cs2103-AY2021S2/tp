@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+participant ":ModelManager" as ModelManager LOGIC_COLOR
+participant ":History" as History LOGIC_COLOR
+participant "plan:Plan" as Plan LOGIC_COLOR
+participant "semester:Semester" as Semester LOGIC_COLOR
+
+[-> ModelManager : getHistory()
+activate ModelManager
+
+create History
+ModelManager -> History : new(plan, currentSemester)
+activate History
+
+History -> Plan : getSemesters()
+activate Plan
+
+Plan --> History : semesters
+deactivate Plan
+
+
+loop semester in semesters
+opt semester number < currentSemester number
+
+History -> Semester : getModules()
+activate Semester
+
+Semester --> History : modules
+deactivate Semester
+
+History -> History : put(semester, modules)
+activate History
+
+History --> History
+deactivate History
+end
+end
+
+
+History --> ModelManager
+
+[<--ModelManager
+deactivate ModelManager
+@enduml

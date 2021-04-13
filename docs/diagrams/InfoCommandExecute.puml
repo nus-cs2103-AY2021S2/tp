@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":InfoCommand" as ic UI_COLOR
+Participant "model:Model" as m MODEL_COLOR
+
+logic -[LOGIC_COLOR]> ic : execute()
+activate ic UI_COLOR
+
+ic -[UI_COLOR]-> m : getModuleInfo()
+activate m MODEL_COLOR
+
+m -[MODEL_COLOR]-> ic
+deactivate m
+
+alt module code given
+     ic -[UI_COLOR]-> ic : findMatchingModule()
+
+    ic -[UI_COLOR]-> m : setFoundModule(foundModule)
+    activate m MODEL_COLOR
+
+    m -[MODEL_COLOR]-> ic
+    deactivate m
+
+    ic -[UI_COLOR]-> m : setCurrentCommand("info_single")
+    activate m MODEL_COLOR
+
+    m -[MODEL_COLOR]-> ic
+    deactivate m
+else no module code
+    ic -[UI_COLOR]-> m : setCurrentCommand("info")
+    activate m MODEL_COLOR
+
+    m -[MODEL_COLOR]-> ic
+    deactivate m
+end
+
+ic -[UI_COLOR]-> logic
+deactivate ic
+destroy ic
+@enduml

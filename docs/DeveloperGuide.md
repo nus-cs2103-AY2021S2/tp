@@ -2,355 +2,326 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## Table of Contents
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+- [Implementation](#implementation)
+  - [Add plan feature](#add-plan-feature)
+  - [Add Module to Semester feature](#add-module-to-semester-feature)
+  - [History feature](#history-feature)
+  - [Validate feature](#validate-feature)
+  - [Info feature](#info-feature)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product Scope](#product-scope)
+  - [User Stories](#user-stories)
+  - [User Cases](#use-cases)
+  - [Non-functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
-
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-<div markdown="span" class="alert alert-primary">
+>**Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103-W17-1/tp/tree/master/docs/diagrams) folder.
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/plan/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/plan/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+**`Commons`** represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* **`UI`**: The UI of the App.
+* **`Logic`**: The command executor.
+* **`Model`**: Holds the data of the App in memory.
+* **`Storage`**: Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-The sections below give more details of each component.
-
-### UI component
-
-![Structure of the UI Component](images/UiClassDiagram.png)
-
-**API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
-
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
-
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
-
-The `UI` component,
-
-* Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
-
-### Logic component
-
-![Structure of the Logic Component](images/LogicClassDiagram.png)
-
-**API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
-
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
-
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-### Model component
-
-![Structure of the Model Component](images/ModelClassDiagram.png)
-
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
-
-The `Model`,
-
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
-### Storage component
-
-![Structure of the Storage Component](images/StorageClassDiagram.png)
-
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
-
-The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
-
-### Common classes
-
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
-
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add Plan feature
+![PlanObjectDiagram](images/AddPlanObjectDiagram.png)
 
-#### Proposed Implementation
+The `addp` command makes use of the `Plan` class to add a plan to the user's list of plans. The user must provide a valid `Description` for the plan, otherwise they will be prompted to do so.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Constructor:`Plan#new(Description description, Set<tag> tags, List<Semester> semesters)`
+Creates a `Plan` object using the plan's `description`, its relevant `tags` as well as a list of `semesters` to include.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+![PlanConstructorSequenceDiagram](images/PlanConstructorSequenceDiagram.png)
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+#### Method:`Plan#toString()`
+Builds a formatted string by appending the plan's description as well as all of its tags.
+The `getDescription` method is used to obtain the Description in `String` format.
+Each Tag's `toString()` method is called.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+![PlanToStringSequenceDiagram](images/PlanToStringSequenceDiagram.png)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+##### Overview: Add Plan command
+The following presents a final overview of how the `addp command` is used:
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![AddPlanArchitectureSequenceDiagram](images/AddPlanArchitectureSequenceDiagram.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Do note that the current implementation always creates a new `Plan` instance whenever the `addp command` is provided by the user, to ensure that users create a new plan.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+### Add Module to Semester Feature
+![ModuleConstructionDiagram](images/ModuleObjectDiagram.puml.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The addm command makes use of the Module class to add a module to the user's choice of plan and semester.
+The user must provide a valid Plan Number, Semester Number and Module Code, otherwise they will be prompted to do so.
+Here, if the user input the module with grade behind, model will note down the grade and use the grade to calculate user's CAP
+Otherwise, the module will be mark as undone.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Constructor: Plan#new(String ModuleCode, String ModuleTitle, int MCs, <optional> String grade)
+Creates a module object with the given module code, module title, MCs and grade if provided.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+#### Overview: Add Plan command
+The following presents a final overview of how the addm command is used:
 
-</div>
+![AddModuleArchitectureSequenceDiagram](images/AddModuleArchitectureSequenceDiagram.png)
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+### History feature
+![HistoryObjectDiagram](images/HistoryObjectDiagram.png)
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The `history command` makes use of the `History` class to format information about semesters prior to the users `current semester` in their `master plan`. As such, a precondition for the `history command` is that the user must have identified both a `master plan` and `current semester`, otherwise they will be prompted to do so.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+![HistoryHashmapClassDiagram](images/HistoryHashmapClassDiagram.png)
 
-</div>
+The `History` class is a helper class that extends `HashMap` and implements two methods, a constructor and a `toString` method. The following explains the functionality that each method provides and how they are implemented:
 
-The following sequence diagram shows how the undo operation works:
+#### Constructor:`History#new(Plan p, Semester current)`
+Creates a `History` object (a subclass of `HashMap`) using information about semesters from the Plan `p` up until the `current` semester. The *keys* to the `HashMap` are the prior semesters each corresponding *value* is a List of modules that were done in that semester.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![HistoryConstructorSequenceDiagram](images/HistoryConstructorSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+#### Method:`History#toString()`
+![HistoryToStringSequenceDiagram](images/HistoryToStringSequenceDiagram.png)
 
-</div>
+Builds a formatted string by iterating over each of the semesters stored as keys in the HashMap according to their semester number and in ascending order.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Each semester's `toString()` method is called which internally calls each modules `toString()` method.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+#### Overview: History command
+The following presents a final overview of how the `history command` is used:
 
-</div>
+![HistoryArchitectureSequenceDiagram](images/HistoryArchitectureSequenceDiagram.png)
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Do note that the current implementation always creates a new `History` instance whenever the `history command` is provided by the user, to ensure that users are presented with their most updated information.
 
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+### Validate feature
+The `validate` command looks at all modules from the `master` plan, specifically all semesters from the first to `current`. Every other plan is then looked at the same way up to whatever semester that `current` is set to. For example, if `current` is set to semester 5, validate takes the first 5 semesters of modules from the master plan and compares it to every other plan. If the other plans have every module that was found in the master plan, it is valid.
 
 
---------------------------------------------------------------------------------------------------------------------
+#### Overview: Validate command
+![ValidateArchitectureDiagram](images/ValidateArchitectureDiagram.png)
 
-## **Documentation, logging, testing, configuration, dev-ops**
+The `validate` command makes use of the `ModelManager` class which contains the necessary list of `plan` objects, which contains the relevant `semester` and `module` objects. After accessing the ValidateCommand logic component, if `master` and `current` is set, the `ModelManager` is accessed.
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+#### State Diagrams
+![ValidateStateDiagram](images/ValidateStateDiagram.png)
 
---------------------------------------------------------------------------------------------------------------------
+The `validate` command does not create other objects. It initializes with a null `masterPlan` and `currentSemester`, and updates them in the `execute()` method, throwing exceptions if they have not yet been set. If set successfully, validation continues.
+
+![ValidateModelManagerSequenceDiagram](images/ValidateModelManagerSequenceDiagram.png)
+
+In the `ModelManager`, the `validate(masterPlan, currentSemester)` method references every other existing `Plan` from the base master plan. The method then sets whether or not they are valid.
+
+##### [Proposed] Validating using History object
+
+Currently, `validate` checks each plan up to their semesters for the taken modules. This is rather slow since it has to loop through the modules. This can be done much faster using the `HashTable` which is provided by the `History` object. Although not currently a necessary feature since only a single user uses the application, this is a rather simple optimization that should be implemented.
+
+### Info feature
+
+![InfoCommandExecute](images/InfoFeatureClassDiagram.png)
+
+The `InfoCommandParser` reads the user input and creates a `InfoCommand` to execute with the any arguments found.
+The `InfoCommand` makes use of the `JsonModule` class to retrieve module information stored in json format to
+display relevant information to the user.
+
+#### InfoCommandParser
+#### Method:`parse(String args)`
+
+![InfoCommandExecute](images/InfoCommandParserParse.png)
+
+After `ModulePlannerParser` removes the command word from the user input, `InfoCommandParser`
+extracts the module code if found and creates an `InfoCommand` object with the module code otherwise
+an `InfoCommand` object with no module code.
+The created `InfoCommand` object is returned to `Logic` object for execution.
+
+#### InfoCommand
+#### Method: `execute(Model model)`
+
+![InfoCommandExecute](images/InfoCommandExecute.png)
+
+`InfoCommand` object retrieves all module information from `Model` object stored in `JsonModule`
+object. Based on what arguments the `InfoCommand` object is created with, it finds the relevant
+`JsonModule` object and sets it for the `Model` object `foundModule` field. Lastly, the `currentCommand`
+field is updated for the UI to show a single module information or all of them.
+
+---
 
 ## **Appendix: Requirements**
-
 ### Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- NUS students
+- has a hard time organising and planning what modules to take
+- prefer desktop apps over phone apps
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
+- want to have a good way to check all MCs
+- wants to have a good way to check all fulfilled pre-requisites
+- wants to have a good way to plan for all their modules
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+- managing study plan is much easier than existing choices (i.e. WHAT-IF report)
+- planning for modules is more automatic/convenient than manual inputs
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​           | I can …​                            | So that I can…​                                                        |
+| -------- | ----------------- | ----------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user          | see usage instructions              | refer to instructions when I forget how to use the App                 |
+| `* * *`  | student user      | have multiple study plans           | prepare for different study scenarios in university                    |
+| `* * *`  | student user      | add multiple semesters to a plan    | create plans that involve multiple semesters                           |
+| `* * *`  | student user      | add multiple modules to a semester  | plan for what modules i want to do in a given semester                 |
+| `* * *`  | student user      | delete a study plan                 | remove plans that i no longer need                                     |
+| `* * *`  | student user      | delete a semester from a plan       | remove semesters that i no longer need                                 |
+| `* * *`  | student user      | delete a module from a semester     | remove modules that i no longer need                                   |
+| `* * *`  | student user      | view summary information of a plan  | conveniently understand the plan without having to open it             |
+| `* *`    | student user      | check if my plan contains 160MCs    | know whether my plan allows me to graduate                             |
+| `* * *`  | student user      | view a module's prerequisites       | know what modules need to be done before hand                          |
+| `*`      | forgetful student | add and view grades of past modules | keep track of how well i did for different modules without remembering |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NUS Module Planner` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a plan**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a plan
+2.  NUS Module Planner shows result
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The given plan number already exists.
+
+  - 2a1. NUS Module Planner shows an error message.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+- 3a. The given plan number is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  - 3a1. NUS Module Planner shows an error message.
 
-      Use case resumes at step 2.
+  Use case ends.
 
-*{More to be added}*
+**Use case: Delete a plan**
+
+**MSS**
+
+1.  User requests to list plans
+2.  NUS Module Planner shows a list of plans
+3.  User requests to delete a specific plan in the list
+4.  NUS Module Planner deletes the plan
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 3a. The given index is invalid.
+
+  - 3a1. NUS Module Planner shows an error message.
+
+    Use case resumes at step 2.
+  
+**Use case: Add a module to semester**
+
+**MSS**
+
+1.  User requests to add a module
+2.  NUS Module Planner shows result
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given module number is already added.
+
+  - 2a1. NUS Module Planner shows an error message.
+
+  Use case ends.
+
+- 3a. The given plan/semester number does not exist.
+
+  - 3a1. NUS Module Planner shows an error message.
+
+  Use case ends.
+
+- 4a. The given module number does not exist.
+
+  - 4a1. NUS Module Planner shows an error message.
+
+  Use case ends.
+
+- 5a. The given module number does not have its prerequisites met.
+
+  - 3a1. NUS Module Planner shows a warning prompt.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to handle 25 modules without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The system should be backward compatible with data produced by earlier versions of the system.
+5.  The system should work on both 32-bit and 64-bit environments
+6.  The system should respond within two seconds.
+7.  The system should be usable by a novice who has never attended a single semester in NUS.
+8.  The product should not be required to share data between users.
+9.  The product should not be able to detect if the registered module is valid or available in NUS.
+10. The product will not support any other modules other than for NUS.
+11. The product should not contain all NUS modules as it is just a prototype.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **NUS**: National University of Singapore
+* **MCs**: Module credits, usually 4 for each sem-long module
+* **Module**: Classes for students in university. It has both a title and a module code
+* **Module prerequisite**: Students must fulfill by passing the prerequisite modules before taking this module
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+---
