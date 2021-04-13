@@ -29,7 +29,7 @@ An image of our UI is shown below!
 - [Structure of User Guide](#structure-of-the-user-guide)
     - [Reading this User Guide](#reading-this-user-guide)
         - [Terminology](#terminology)
-        - [General Syntax and Symbols](#general-symbols-and-syntax)
+        - [General Syntax and Symbols](#general-syntax)
 - [Features](#features)
     - [Viewing help: `help`](#viewing-help-help)
     - [Contact](#adding-a-contact-cadd)
