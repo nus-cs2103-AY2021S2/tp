@@ -5,29 +5,54 @@ title: Developer Guide
 
 <p align="center">
   <img src="./images/budget_baby.png" width="200px" />
-  <h1 align="center" style="margin-top:15px;">BudgetBaby :baby: :money_with_wings: Developer Guide</h1>
+  <h1 align="center" style="margin-top:15px;">BudgetBaby :baby: :money_with_wings: </h1>
 </p>
-
-<br>
 
 **BudgetBaby** is a **budget and expenses tracking desktop app for University students and/or those who are looking to
 better manage their finances**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and
 editing financial records and budgets can be done faster by typing in commands while still having the benefits of a
 Graphical User Interface (GUI).
 
-This document serves as a guide for developers to understand the internal workings of BudgetBaby.
+## Table of Contents
 
-## Table of Content
+- [1 About](#1-about)
+- [2 Setting Up, Getting Started](#2-setting-up-getting-started)
+- [3 Design](#3-design)
+  - [3.1 Architecture](#31-architecture)
+  - [3.2 UI Component](#32-ui-component)
+  - [3.3 Logic Component](#33-logic-component)
+  - [3.4 Model Component](#34-model-component)
+  - [3.5 Storage Component](#35-storage-component)
+  - [3.6 Common Classes](#36-common-classes)
+- [4 Implementation](4-implementation)
+  - [4.1 Month Management Feature](#41-month-management-feature)
+  - [4.2 Financial Record Management Feature](#42-financial-record-management-feature)
+  - [4.3 Budget Management Feature](#43-budget-management-feature)
+  - [4.4 Find Financial Record Feature](#44-find-financial-record-feature)
+  - [4.5 Reset Filter Feature](#45-reset-filter-feature)
+  - [4.6 All Categories Statistics Feature](#46-all-categories-statistics-feature)
+  - [4.7 Top 5 Categories Statistics Feature](#47-top-5-categories-statistics-feature)
+  - [4.8 Past 6 Months Statistics Feature](#48-past-6-months-statistics-feature)
+  - [4.9 Undo Feature](#49-undo-feature)
+- [5 Appendix: Requirements](#5-appendix-requirements)
+  - [5.1 Product Scope](#51-product-scope)
+  - [5.2 User Stories](#52-user-stories)
+  - [5.3 Use Cases](#53-use-cases)
+  - [5.4 Non-functional Requirements](#54-non-functional-requirements)
+  - [5.5 Glossary](#55-glossary)
+- [6 Appendix: Instructions for Manual Testing](#6-appendix-instructions-for-manual-testing)
 
-- [Setting up, getting started](#setting-up-getting-started)
+## **1 About**
 
-## **Setting up, getting started**
+This document serves as a guide for developers to understand the overall architecture and design of the BudgetBaby application. It should help new developers and existing developers understand how different parts of the codebase work together to achieve different functionalities.
+
+## **2 Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-## **Design**
+## **3 Design**
 
-### Architecture
+### 3.1 Architecture
 
 ![Architecture Diagram](images/ArchitectureDiagram.png)
 
@@ -70,7 +95,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -86,7 +111,7 @@ The `UI` component,
 - Executes user commands using the `Logic` component.
 - Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3 Logic component
 
 ![Structure of the logic component](images/LogicClassDiagram.png)
 
@@ -106,9 +131,9 @@ Given below is the sequence diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddFrCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<img src="images/ModelClassDiagram.png" width="500px">
 
 **API** : [`BudgetBabyModel.java`](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/budgetbaby/model/BudgetBabyModel.java)
 
@@ -120,7 +145,7 @@ The `BudgetBabyModel`,
 - exposes an unmodifiable `ObservableList<FinancialRecord>` that can be 'observed' (same as above)
 - does not depend on any of the other three components.
 
-### Storage component
+### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -131,17 +156,17 @@ The `Storage` component,
 - can save `UserPref` objects in json format and read it back.
 - can save the budget tracker data in json format and read it back.
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.budgetbaby.commons` package.
 
 ---
 
-## **Implementation**
+## **4 Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Month Management Feature
+### 4.1 Month Management Feature
 
 `Month` is a very important concept in our application. As a budget tracker, we keep track of users'
 financial records every month and a monthly budget can be set, which represents their spending goal
@@ -168,7 +193,7 @@ The following activity diagram summarizes what happens when a user executes `fin
 
 ![](images/ViewMonthActivityDiagram.png)
 
-### Financial Record Management Feature
+### 4.2 Financial Record Management Feature
 
 `FinancialRecord` is another important concept in our application. A financial record represents one record of expense that users key in to store in the budget tracker. Each `FinancialRecord` consists of a `Description`, `Amount`, `Timestamp` and potentially `Categories`. Each `Month` then contains a `FinancialRecordList` which is essentially a list of `FinancialRecord`
 
@@ -209,7 +234,7 @@ The `delete-fr` command simply remove the financial record from the `Month` that
 
 One extension implemented to the `delete-fr` command is the support for multiple deletion at once. It was difficult to support multiple deletion because whenever a `FinancialRecord` in the associated list within the current month is removed, it may possibly update the index of all future `FinancialRecord` within the list after it. The simplest solution used was to sort the indices `List<Index>` in descending order, by removing the `FinancialRecord` with the greatest `Index` first it circumvents the issue since the removal of a `FinancialRecord` with a greater `Index` will not affect the `Index` of all the `FinancialRecord` before it.
 
-### Budget Management Feature
+### 4.3 Budget Management Feature
 
 This section describes how the budget was implemented in our application. To model the user's budget, `Budget` is used which represents such an abstraction and wraps an amount stored as a double. Each `Month` is associated with a respective `Budget`. By default, the amount stored within a `Budget` is set to 1000, though this can be changed easily by modifying the `DEFAULT_BUDGET` field.
 
@@ -229,9 +254,9 @@ The following activity diagram summarizes what happens when a user executes `set
 
 ![](images/SetBgActivityDiagram.png)
 
-### Find Financial Record Feature : `find-fr`
+### 4.4 Find Financial Record Feature
 
-#### Proposed Implementation
+#### `find-fr` command
 
 The proposed `find` mechanism is facilitated by `BudgetBabyModelManager` which contains
 a filtered list `filteredFinancialRecords` that is to be altered and displayed to the
@@ -289,9 +314,9 @@ The following activity diagram summarizes what happens when a user executes `fin
   - Cons: Additional implementation and commands. More steps required for user
     when filtering multiple fields
 
-### Reset Filter Feature : `reset-filter`
+### 4.5 Reset Filter Feature
 
-#### Actual Implementation
+#### `reset-filter` command
 
 This feature was developed in conjunction with `find-fr`. As the financial records list can
 be filtered to the flags set by the user, there must be a way for the user to revert this list
@@ -322,33 +347,32 @@ The following sequence diagram shows how the find operation works:
 The following activity diagram summarizes what happens when a user executes `reset-filter`:
 ![](images/ResetActivityDiagram.png)
 
-### All Categories Statistics Feature
+### 4.6 All Categories Statistics Feature
 
-##### Implementation
+#### Implementation
 
 The `getAllUnsortedCategories()` function in `Statistics` relies on another method, `allCategories()` within the same `Statistics` class.
 The `allCategories()` method obtains the `currentDisplayedMonth` `Month` object via the local variable `monthList` and uses the
 `getFinancialRecordList()` method from the `currentDisplayedMonth` object.
-<br><br>
+
 After obtaining the `financialRecordList` from the `Month` object,
-the `FinancialRecords` in the list are looped through, and `Category` objects are added to a `HashMap`,
-along with their respective `Amount`s.
-<br><br>
+the `FinancialRecords` in the list are looped through, and `Category` objects are added to a `HashMap`, along with their respective `Amount`s.
+
 The `HashMap` is converted into an `ArrayList` and is returned.
 
 The following sequence diagram shows how the categories statistics feature works:<br>
 ![](images/CategoriesStatisticsSequenceDiagram.png)
 
-### Top 5 Categories Statistics Feature
+### 4.7 Top 5 Categories Statistics Feature
 
-##### Implementation
+#### Implementation
 
 The `getTopCategories()` feature is based off the previous `getAllUnsortedCategories()` feature, except that the final returned
 `ArrayList` objects is sorted by the `Category` amounts and limited to 5 categories using the `stream` `limit` method.
 
-### Past 6 Months Statistics Feature
+### 4.8 Past 6 Months Statistics Feature
 
-##### Implementation
+#### Implementation
 
 This feature was developed with the help of `BudgetBabyModel` and `BudgetBabyModelManager`,
 which allowed for the method calls required for this feature to function as required.
@@ -369,7 +393,7 @@ The following sequence diagram showcases the sequence of events whenever the `ge
 The following activity diagram summarizes the flow of events when the Ui calls upon the `getPastMonthStatistics()` method: <br>
 ![](images/PastMonthsActivityDiagram.png)
 
-### Undo Feature
+### 4.9 Undo Feature
 
 The undo and redo features was developed with the help of `VersionedBudgetTracker`.
 `VersionedBudgetTracker` is an extension of `BudgetTracker` which internally stores and handle a list of `BudgetTracker` states.
@@ -377,9 +401,10 @@ A `currentStatePointer` is used internally to access the different states of the
 
 <br><br>
 The additional methods that were implemented are:
-* `VersionedBudgetTracker#commit()` -- Saves the current budget tracker state.
-* `VersionedBudgetTracker#undo()` -- Restores to the previous budget tracker state.
-* `VersionedBudgetTracker#redo()` -- Restores to the next budget tracker state.
+
+- `VersionedBudgetTracker#commit()` -- Saves the current budget tracker state.
+- `VersionedBudgetTracker#undo()` -- Restores to the previous budget tracker state.
+- `VersionedBudgetTracker#redo()` -- Restores to the next budget tracker state.
 
 These additional methods are exposed in the `BudgetBabyModel` interface as `BudgetBabyModel#commitBudgetTracker()`,
 `BudgetBabyModel#undoBudgetTracker()` and `BudgetBabyModel#redoBudgetTracker()` respectively.
@@ -409,7 +434,7 @@ If a command fails its execution, it will not call `BudgetBabyModel#commitBudget
 will not be saved into the `budgetTrackerStateList`.
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the
-`undo` command. The `undo` command will call `BudgetBabyModel#undoBudgetTracker()`, which will shift the 
+`undo` command. The `undo` command will call `BudgetBabyModel#undoBudgetTracker()`, which will shift the
 `currentStatePointer` once to the left, pointing it to the previous budget tracker state, and restores the
 budget tracker to that state.
 
@@ -472,9 +497,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 [comment]: <> (--------------------------------------------------------------------------------------------------------------------)
 
-## **Appendix: Requirements**
+## **5 Appendix: Requirements**
 
-### Product scope
+### 5.1 Product scope
 
 **Target user profile**:
 University student who needs to manage their finances.
@@ -492,7 +517,39 @@ students as they adjust themselves, easing into adulthood.
     (i.e. to cut down on costs incurred on food next month)
   - sending reminders to keep university students on track (i.e. how much money is left in their budget) as they are often busy with school
 
-### User stories
+### 5.2 User stories
+
+[comment]: <> (Priorities: High &#40;must have&#41; - `* * *`, Medium &#40;nice to have&#41; - `* *`, Low &#40;unlikely to have&#41; - `*`)
+
+**v1.2**
+
+| As a …​                                                               | I want to …​                                    | So that I can…​                                                                       |
+| --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
+| university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
+| university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
+| university student who wants to manage my finances                    | view all FRs                                    | quickly glance at all my past spendings                                               |
+| university student who has difficulties in managing expenses          | set a monthly budget                            | keep track of my expenses and reduce chances of overspending                          |
+| university student who has difficulties in managing expenses          | view my monthly budget                          | quickly glance at budget set for the given month                                      |
+| university student who wants to know how much money I can still spend | view my remaining budget for a particular month | be aware of my spending and decide whether I need to be more prudent with my spending |
+
+**v1.3**
+
+| As a …​                                                                    | I want to …​                                        | So that I can…​                                                                       |
+| -------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| university student who wants to manage my finances                         | add an FR                                           | track my spending history easily                                                      |
+| university student who wants to manage my finances                         | delete an FR                                        | recover from mistakes from adding wrong entries of my spending history                |
+| university student who wants to manage my finances                         | view all FRs                                        | quickly glance at all my past spendings                                               |
+| university student who wants to manage my finances                         | view all FRs in a particular month                  | quickly glance at my spending history of a specific month                             |
+| university student who wants to manage my finances                         | filter FRs based on category                        | quickly glance at my spending history of a specific category                          |
+| university student who wants to manage my finances                         | reset filters on FRs                                | quickly glance at the original list of financial records                              |
+| university student who has difficulties in managing expenses               | set a monthly budget                                | keep track of my expenses and reduce chances of overspending                          |
+| university student who has difficulties in managing expenses               | view my monthly budget                              | quickly glance at budget set for the given month                                      |
+| university student who wants to know how much money I can still spend      | view my remaining budget for a particular month     | be aware of my spending and decide whether I need to be more prudent with my spending |
+| university student who wants to visualise my data in a more concise manner | view the past 6 months' expenditure and budgets     | quickly glance and gain insight from my spending patterns                             |
+| university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list | quickly glance and gain insight from my spending patterns                             |
+| university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  | quickly glance and gain insight from my spending patterns                             |
+
+**v1.4**
 
 | As a …​                                                                    | I want to …​                                          | So that I can…​                                                                       |
 | -------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
@@ -511,7 +568,7 @@ students as they adjust themselves, easing into adulthood.
 | university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list   | quickly glance and gain insight from my spending patterns                             |
 | university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on    | quickly glance and gain insight from my spending patterns                             |
 
-### Use cases
+### 5.3 Use cases
 
 (For all use cases below, the **System** is the `BudgetTracker` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -658,7 +715,7 @@ students as they adjust themselves, easing into adulthood.
 
     Use case ends.
 
-### Non-Functional Requirements
+### 5.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should work without internet connection.
@@ -666,14 +723,14 @@ students as they adjust themselves, easing into adulthood.
 4.  Should be able to hold up to 1000 financial records without a noticeable sluggishness in performance for typical usage.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-### Glossary
+### 5.5 Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Cross-platform**: Able to transfer the software and its data from one OS to another without creating any problem
 
 ---
 
-## **Appendix: Instructions for manual testing**
+## **6 Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -697,12 +754,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
