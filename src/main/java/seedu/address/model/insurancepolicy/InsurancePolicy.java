@@ -14,6 +14,7 @@ public class InsurancePolicy {
 
     public static final String MESSAGE_NO_POLICY = "Currently does not have an active policy";
     /*
+    @@author jlxw48-reused
     Checks if a String is a valid URL.
     Reused from: https://stackoverflow.com/a/42619410
      */
@@ -21,6 +22,7 @@ public class InsurancePolicy {
             + "|https|www.))[a-zA-Z0-9_-]+(\\.[a-zA-Z]+)+((\\/)[\\w#]+)*(\\/\\w+\\?[a-zA-Z0-9_]+=\\"
             + "w+(&[a-zA-Z0-9_]+=\\w+)*)?", Pattern.CASE_INSENSITIVE);
     /*
+    @@author jlxw48-reused
     Checks if String contains angular brackets, which we do not want in a URL.
     Reused from: https://stackoverflow.com/a/4105987
      */
