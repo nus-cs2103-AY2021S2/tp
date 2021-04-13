@@ -100,9 +100,9 @@ FilterCombinator .-> Filters
 FilterCombinator .down.->Node
 
 
-Filters .->CliSyntax
-Filters .->ArgumentMultimap
-Filters .->ArgumentTokenizer
+Filters .down.->CliSyntax
+Filters .down.->ArgumentMultimap
+Filters .down.->ArgumentTokenizer
 
 XYZFilter -|> Filter
 
