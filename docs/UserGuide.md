@@ -419,7 +419,7 @@ Action | Format,<br> Example(s)
 Term | Definition,<br>
 --------|------------------
 **ATTRIBUTE** | `A key detail of a delivery task`<br> e.g., `name`
-**Command Line Interface** | `An interface that accepts user input in lines of text.`<br> e.g., `name`
+**Command Line Interface** | `An interface that accepts user input in lines of text.`
 **TASK_NUMBER** | `The delivery task number shown in the delivery list`
 **PREFIX** | `Refers to the letter representing the respective attribute.` <br> e.g., `Letter a for attribute ADDRESS`
 
