@@ -89,7 +89,7 @@ LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> "<<Interface>>\nParser"
 
-'Filter .-->Model
+Filter .right-->Model
 
 CommandHistory  .right.->Ui
 
