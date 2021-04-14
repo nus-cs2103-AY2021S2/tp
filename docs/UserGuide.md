@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-Welcome to the User Guide for ParentPal! This guide aims to help users in using the application.
+Welcome to the User Guide for ParentPal! This guide aims to help users in navigating and using ParentPal.
 
 Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
 remembering who exactly that contact in your address book is referring to? Do you have multiple children and want
@@ -12,11 +12,10 @@ ParentPal is a **desktop application that helps busy parents manage their childr
 optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, ParentPal can get your contact management tasks done faster than traditional GUI apps.
 
-Interested in starting to use ParentPal
 Want to get started with ParentPal? Jump right into the Quick Start guide [here](#quick-start).
 
 --------------------------------------------------------------------------------------------------------------------
-## Table of Contents
+<h2> Table of Contents </h2>
 * Table of Contents
 {:toc}
   
@@ -138,7 +137,7 @@ Parameter | Description | Example
 `TAG` | The tag you want to attach to a contact. | Tag a contact with `form teacher` to associate this additional information to the contact.
 `CHILD_TAG` | The child tag you want to attach to a contact or appointment. | You can tag a contact or appointment with `Alice` to signify it is related to you child Alice.
 `KEYWORD` | A keyword you want to search for. | Typing `betsy` means you want to search for the word 'betsy'. See [`find`](#finding-contacts-find) and [`findAppt`](#finding-appointments-findappt) for more information.
-`CONTACT_INDEX` | The index number of a contact in the *Contact List*. <br><br> It must be a positive number. | Typing `1` would refer to the first contact in the *Contact List*
+`CONTACT_INDEX` | The index number of a contact in the *Contact List*. <br><br> It must be a positive number. | Typing `1` would refer to the first contact in the *Contact List*.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -147,7 +146,7 @@ Parameter | Description | Example
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. See <a href="#command-parameters">Command Parameters</a><br> above.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. See <a href="#command-parameters">Command Parameters</a> above.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -377,7 +376,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILD_TAG]â€¦â€
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 When editing tags, the existing tags of the contact will be replaced i.e. adding of tags is not cumulative. For cumulative addition of tags,
-see the <a href = "#addingreplacing-tags-to-a-contact-tag">tag</a> command.
+see the <a href = "#addingreplacing-tags-to-a-contact-tag"><code>tag</code></a> command.
 </div>
 
 **Example 1**
@@ -496,7 +495,7 @@ Option  | Description
 `fav` | Displays all favourited contacts in the *Contact List*
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To favourite a contact, use the <a href = "#favourite-a-contact--fav">fav</a> command.
+To favourite a contact, use the <a href = "#favourite-a-contact--fav"><code>fav</code></a> command.
 </div>
 
 **Example 1**
@@ -603,7 +602,8 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The first contact is now favourited, and the star in the contact is filled.
-
+![fav_1](images/fav_1.png)
+   
 **Example 2**
 
 Let's say that you want to unfavourite the first contact.
@@ -616,6 +616,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The first contact is now unfavourited and the star in the contact is not filled.
+![fav_2](images/fav_2.png)
 
 #### Sorting all contacts : **`sort`**
 
@@ -652,7 +653,8 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The *Contact List* is now sorted by the date the contacts were added.
-
+![sort_1](images/sort_1.png)
+   
 **Example 2**
 
 Let's say you searched for contacts tagged with `teacher` and want to sort the contacts found by alphabetical order.
@@ -665,6 +667,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The *Contact List* is now in alphabetical order.
+![sort_2](images/sort_2.png)
 
 #### Clearing all entries : **`clear`**
 
@@ -689,6 +692,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The *Contact List* is now empty.
+![clear_1](images/clear_1.png)
 
 **Example 2**
 
@@ -703,6 +707,7 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. All contacts tagged with `teacher` are removed from the *Contact List* if none of them are involved in appointments.
    Otherwise, an error message will be shown.
+![clear_2](images/clear_2.png)
 
 ### Appointment Book Commands
 
@@ -737,6 +742,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message. 
 2. The appointment appears in the *Appointment List*.
+![addAppt_1](images/addAppt_1.png)
 
 #### Deleting an appointment : **`deleteAppt`**
 
@@ -760,6 +766,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The 2nd appointment in the *Appointment List* is removed.
+![deleteAppt_1](images/deleteAppt_1.png)
 
 **Example 2**
 
@@ -776,6 +783,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The 1st appointment in the *Appointment List* is removed.
+![deleteAppt_2](images/deleteAppt_2.png)
 
 #### Editing an appointment : **`editAppt`**
 
@@ -807,6 +815,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The first appointment's name, address and related contacts are updated.
+![editAppt_1](images/editAppt_1.png)
 
 #### Finding appointments: **`findAppt`**
 
@@ -847,6 +856,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. All appointments with 'ptm' in any of their fields will be listed in the *Appointment List*.
+![findAppt_1](images/findAppt_1.png)
 
 **Example 2**
 
@@ -860,6 +870,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. All appointments with Annie as a related contact will be listed in the *Appointment List*.
+![findAppt_2](images/findAppt_2.png)
 
 #### Listing all appointments : **`listAppt`**
 
@@ -881,7 +892,8 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. All the appointments will be listed in the *Appointment List*.
-
+![listAppt_1](images/listAppt_1.png)
+   
 --------------------------------------------------------------------------------------------------------------------
 
 ## Managing ParentPal Data
@@ -892,8 +904,8 @@ ParentPal data is saved in the hard disk automatically after any command that ch
 
 ### Editing data files
 
-ParentPal data is saved as two JSON files in the `data` directory at `[JAR file location]/data` as
-`addressbook.json` and `appointmentbook.json`. 
+ParentPal data is saved as two JSON files in the **data** directory at **[JAR file location]/data** as
+**addressbook.json** and **appointmentbook.json**. 
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -906,12 +918,12 @@ Changes to the data files may cause ParentPal to behave unexpectedly, edit the f
 
 ### Transferring your data to another device
 #### Exporting your data
-1. Locate the `data` folder on your device which can be found in the same folder as your **parentpal.jar** file. 
-2. Transfer this `data` folder to your other device.
+1. Locate the **data** folder on your device which can be found in the same folder as your **parentpal.jar** file. 
+2. Transfer this **data** folder to your other device.
    
 #### Importing your data
 1. Install ParentPal on your new device and run it once, exit the program before proceeding.
-2. Copy the `data` folder from your old device to the new device to the same folder as where you installed the **parentpal.jar** file.
+2. Copy the **data** folder from your old device to the new device to the same folder as where you installed the **parentpal.jar** file.
 3. Override the files on your new device if prompted.
 
 Congratulations! You have successfully transferred your data to a new device.
@@ -979,5 +991,4 @@ Action | Format | Examples
 * **GUI**: Application where you interact with it via graphical icons such as buttons
 * **Home folder**: The folder containing all the files needed to run ParentPal.
 * **Index**: Index number shown in the displayed contact/appointment list
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
 
