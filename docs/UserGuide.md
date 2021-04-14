@@ -6,9 +6,9 @@ Hello! Are you a parent whose phone's contact book is filling up with the contac
 remembering who exactly that contact in your contact book is referring to? Do you have multiple children and want
 a centralised place to keep track of all their activities? Then ParentPal could be the app for you!
 
-ParentPal is a **desktop app for managing your children's contacts and their related appointments, 
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
-Graphical User Interface (GUI). 
+ParentPal is a **desktop application that helps busy parents manage their children's contacts and related appointments, 
+optimized for use via a Command Line Interface** (CLI) <sup>[(1)](#glossary)</sup> while still having the benefits of a
+Graphical User Interface (GUI) <sup>[(1)](#glossary)</sup>. 
 If you can type fast, ParentPal can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -18,7 +18,7 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your computer.
 
 1. Download the latest `parentpal.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
 
@@ -41,18 +41,62 @@ If you can type fast, ParentPal can get your contact management tasks done faste
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+--------------------------------------------------------------------------------------------------------------------
+## Using this Guide
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you see a blue box with a light-bulb like this, it means there is a tip to help you use ParentPal better.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you see a yellow box with an exclamation mark like this, it means there is a warning to take note of.
+</div>
+
+`COMMAND` : If you see words formatted in monospace like this, it represents a command or part of a command.
+
+*Interface* : If you see italicized words, it represents a part of the ParentPal interface. See [Interface of ParentPal](#interface-of-parentpal)
+for more information.
+
+>If you see words in a blockquote like this, it represents an example use case for a feature. Give it a try!
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Understanding ParentPal
 
-### Interface of ParentPal 
-ParentPal makes it easy for you to manage your contacts and appointments with a command. 
-
-Enter the command in the command box, a success message will be displayed when the action has been executed successfully.
-Otherwise, an error will be displayed.
-
+### Interface of ParentPal
 ![ParentPalExplanation](images/ParentPalExplanation.png)
+
+1. Button
+    * Click to see an option to exit.
+1. Command Box
+    * ParentPal makes it easy for you to manage your contacts and appointments with a single command.
+    * Enter the command in the command box, a success message will be displayed in the status box when the action has been executed successfully.
+    * Should an error occur, an error message will be displayed in the status box.
+1. Status Box
+    * Displays success message or error message.
+1. Contact List 
+    * Scroll to view all of your contacts.
+1. Appointment List
+    * Scroll to view all of your appointments.
+
+### Contacts
+![ContactCard](images/ContactCard.png)
+1. Index
+1. Name
+1. Favourite Icon
+1. Child Tag 
+1. Tag
+1. Phone Number
+1. Email
+
+### Appointments
+![AppointmentCard](images/AppointmentCard.png)
+1. Index
+1. Name
+1. Child Tag
+1. Address
+1. Date and Time
+1. Contacts
 
 ### Expired appointments
 ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
@@ -92,7 +136,7 @@ Should the appointment not appear red despite it having expired, click on the ap
 </div>
 
 This section is separated into the following sub-sections:
-* [General Commands](#general-commands): Commands related to navigating ParentPal
+* [General Commands](#general-commands): Commands related to managing ParentPal itself
 * [Address Book Commands](#address-book-commands): Commands related to managing contacts
 * [Appointment Book Commands](#appointment-book-commands): Commands related to managing appointments
 
@@ -107,13 +151,36 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-  * Click the **'OPEN URL'** button to open the full user guide.
+* Click the **'OPEN URL'** button to open the full user guide.
 * If command is specified, detailed information about the command will be displayed.
 * If multiple commands are specified, only the last command will be taken.
 
-Examples:
-* `help` Displays summary of all available commands.
-* `help find` Displays detailed information about the find command.
+>Example 1 
+> 
+>Let's say you are unsure about the commands that ParentPal offers.
+You can follow the steps below to view a help window.
+>
+>Steps: 
+>1. Type `help` in the *Command Box*.
+>2. Press Enter to execute.
+> 
+>Outcome: 
+>1. The *Status Box* will show a success message.
+>2. A help window with details of all commands will open.
+
+> Example 2
+> 
+> Let's say that you want to view more details about the `add` command.
+You can follow the steps below to view a help window for the `add` command.
+> 
+> Steps: 
+> 1. Type `help add` in the *Command Box*.
+> 2. Press Enter to execute.
+> 
+> Outcome: 
+> 1. The *Status Box* will show a success message.
+> 2. A help window with details of the `add` command will open.
+
 
 #### Exiting the program : `exit`
 
@@ -121,24 +188,52 @@ Exits the program.
 
 Format: `exit`
 
+>Example 1
+>
+>Let's say you are done with ParentPal and would like to close the application.
+You can follow the steps below to close ParentPal.
+>
+>Steps:
+>1. Type `exit` in the *Command Box*.
+>2. Press Enter to execute.
+>
+>Outcome:
+>1. ParentPal closes.
+
 #### Changing ParentPal's theme : `theme`
 
 Changes the theme of ParentPal.
 
 Format: `theme o/OPTION`
 
-Currently available options for the `[OPTION]` field include: 
-* `light` Light theme
+Currently available options for the `OPTION` field include: 
+
+Option  | Description
+-------- | ------------------
+`light` | Sets ParentPal to light theme
+`dark` | Sets ParentPal to dark theme
+
+Light theme:
   ![LightTheme](images/lightTheme.png)
-* `dark` Dark theme
+Dark theme:
   ![DarkTheme](images/Ui.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 ParentPal's theme is set to dark by default.
 </div>
 
-Examples: 
-* `theme o/light` changes theme to a light theme.
+>Example 1
+>
+>Let's say you would like to try ParentPal's light theme.
+You can follow the steps below to change ParentPal to the light theme.
+>
+>Steps:
+>1. Type `theme o/light` in the *Command Box*.
+>2. Press Enter to execute.
+>
+>Outcome:
+>1. The *Status Box* will show a success message.
+>2. ParentPal will change to the light theme.
 
 ### Address Book Commands
 
@@ -157,9 +252,29 @@ You can add a contact with only some of the information, you can fill in the res
 the <a href="#editing-a-contact--edit">edit</a> command.
 </div>
 
-Examples:
-* `add n/John Doe p/98765432`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+> Example 1
+>
+> Let's say you want to add a contact, but you only know his phone number.
+You can follow the steps below to add the contact with incomplete fields.
+>
+> Steps:
+> 1. Type `add n/John Doe p/98765432` in the *Command Box*.
+> 2. Press Enter to execute.
+>
+> Outcome:
+> 
+  
+> Example 2
+> 
+> Let's say you want to add contact of your child's math teacher and you have all her details.
+> You can follow the steps below to add the contact with complete fields.
+> 
+> Steps:
+> 1. Type add n/Betsy Crowe e/betsycrowe@example.com a/ABC Primary School p/1234567 t/teacher t/math tc/Alice` in the *Command Box*.
+> 2. Press Enter to execute.
+> 
+> Outcome:
+> 
 
 #### Deleting a contact : `delete`
 
@@ -176,7 +291,13 @@ Format: `delete INDEX [MORE_INDEXES]…​`
 Contacts that are involved with appointments cannot be deleted.
 </div>
 
-Examples:
+> Example 1
+> 
+> Let's say you want to delete the second contact in the address book.
+> You can follow the steps below.
+> 
+> Steps:
+> 1. Type `delete 2` in the *Command Box*.
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
 * `list` followed by `delete 1 2 3` deletes the 1st, 2nd and 3rd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
@@ -193,7 +314,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * You can remove the optional fields (phone, email and address) by typing `p/`, `e/` or `a/` without specifying any phone, email or address after it.
-* You can remove all the contact’s tags by typing `t/` or `tc/` without specifying any tags after it. Note: both regular Tags and ChildTags will be removed in both situations.
+* You can remove all the contact’s tags by typing `t/` or `tc/` without specifying any tags after it. Note: both regular tags and child tags will be removed in both situations.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative. For cumulative addition of tags,
@@ -205,6 +326,19 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 *  `edit 4 e/` Edits to remove the email of the 4th contact in the displayed contact list.
 
+>Example 1
+>
+>Let's say you want to edit the name of a co
+You can follow the steps below to view a help window.
+>
+>Steps:
+>1. Type `help` in the *Command Box*.
+>2. Press Enter to execute.
+>
+>Outcome:
+>1. The *Status Box* will show a success message.
+>2. A help window with details of all commands will open.
+
 #### Finding contacts: `find`
 
 Find contacts based on the given option.
@@ -215,11 +349,14 @@ fields will be searched and any keyword matches in any one of the fields will di
 Format: `find [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 
 Currently available options for the `[OPTION]` field include:
-* `name` Find by name of the contact
-* `address` Find by address of the contact
-* `phone` Find by phone of the contact
-* `email` Find by email of the contact
-* `tag` Find by tags of the contact (only exact tags will be matched)
+
+Option | Description
+-------- |------------------
+`name`  | Finds by the name of the contact
+`address` | Finds by the address of the contact 
+`phone` | Finds by the phone number of the contact 
+`email` | Finds by the email of the contact 
+`tag` | Finds by the tags of the contact (only exact tags will be matched) 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 When using the <code>tag</code> option <code>t/</code> needs to be placed in front of the tag 
@@ -247,7 +384,10 @@ Shows a list of all contacts in the address book.
 Format: `list [o/OPTION]`
 
 Currently available options for the `[OPTION]` field include:
-* `fav` Shows list of favourited contacts in the address book
+
+Option  | Description
+-------- | ------------------
+`fav` | Shows list of favourited contacts in the address book
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To favourite a contact, use the <a href = "#favourite-a-contact--fav">fav</a> command.
@@ -268,7 +408,10 @@ Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Currently available options for the `[OPTION]` field include:
-* `replace` Replaces the currently existing tags with the given new set of tags 
+
+Option  | Description
+-------- | ------------------
+`replace` | Replaces the currently existing tags with the given new set of tags 
   
 Examples:
 *  `tag 4 t/School t/English` Adds the tags School and English to the 4th contact.
@@ -284,6 +427,9 @@ Format: `fav INDEX [o/OPTION]`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Currently available options for the `[OPTION]` field include:
+
+Option  | Description
+-------- | ------------------
 * `remove` Unfavourites the specified contact
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -303,8 +449,11 @@ Sorts the address book in the order based on the given option.
 Format: `sort o/OPTION`
 
 Currently available options for the `[OPTION]` field include:
-* `name` Sorts by name (alphabetical order)
-* `date` Sorts by date added (chronological order)
+
+Option  | Description
+-------- | ------------------
+`name` | Sorts by name (alphabetical order)
+`date` | Sorts by date added (chronological order)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The sorting order is saved across different use sessions.
@@ -327,13 +476,12 @@ Examples:
 
 Clears all entries from the address book or clears all contacts with the specified tags.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The tags here do not differentiate between <code>ChildTags</code> and regular <code>Tags</code>. 
-This command will delete all entries that match **any** of the given tags.
-</div>
-
 Format: `clear [t/TAG]…​`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The <code>TAG</code> here does not differentiate between child tags and regular tags. 
+This command will delete all entries that match **any** of the given tags.
+</div>
 
 Examples:
 * `clear` deletes all entries in the address book.
@@ -360,8 +508,18 @@ An appointment with the exact same name, date, time and address as an appointmen
 ParentPal currently does not support checking for clashing appointments. Please make sure to check your availability before adding new appointments. This can be done with the help of findAppt by date.
 </div>
 
-Examples:
-* `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/amy`
+>Example
+>
+>Say you just received the details of the annual parent-teacher meeting at Alice's school.
+You can follow the steps below to add the appointment to ParentPal.
+>
+>Steps:
+>1. Type `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/alice` in the *Command Box*.
+>2. Press Enter to execute.
+>
+>Outcome:
+>1. The *Status Box* will show a success message. 
+>2. The contact appears in the appointment list.
 
 #### Deleting an appointment : `deleteAppt`
 
@@ -376,6 +534,19 @@ Format: `deleteAppt INDEX`
 Examples:
 * `list` followed by `deleteAppt 2` deletes the 2nd appointment in the appointment book.
 * `findAppt ptm` followed by `deleteAppt 1` deletes the 1st appointment in the results of the `findAppt` command.
+
+>Example
+>
+>Say you just received the details of the annual parent-teacher meeting at Alice's school.
+You can follow the steps below to add the appointment to ParentPal.
+>
+>Steps:
+>1. Type `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/alice` in the *Command Box*.
+>2. Press Enter to execute.
+>
+>Outcome:
+>1. The *Status Box* will show a success message.
+>2. The contact appears in the appointment list.
 
 #### Editing an appointment : `editAppt`
 
@@ -417,11 +588,14 @@ Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
   e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed.
   
 Currently available options for the `[OPTION]` field include:
-* `name` Find by the name of the appointment
-* `child` Find by the child that the appointment is tagged to   
-* `address` Find by address of the appointment  
-* `date` Find by date of appointment
-* `contact` Find by name of the contacts involved in the appointment
+
+Option | Description
+-------- |------------------
+`name`  | Finds by the name of the appointment
+`child` | Finds by the child that the appointment is tagged to
+`address` | Finds by the address of the appointment
+`date` | Finds by the date of appointment
+`contact` | Finds by the name of the contacts involved in the appointment
 
 
 Examples:
@@ -485,6 +659,23 @@ that works with regular Tags such as `find` will also work with ChildTags.
 
 **Q**: Why is your application named *ParentPal*? <br>
 **A**: It is named *ParentPal* because it aims to be a 'pal' to the busy parents who need help managing their kids' schedules and important contacts.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* **Action**: Executed command
+* **Address book**: Section of the application that stores and manages data related to contacts
+* **Appointment**: Entry in the appointment book containing an appointment's information
+* **Appointment list**: List of appointments displayed
+* **Appointment book**: Section of the application that stores and manages data related to appointments
+* **Backup file**: JSON file that stores address and appointment book data in the hard disk
+* **CLI**: Application where you perform actions by typing commands in the Command Box
+* **Contact**: Entry in the address book containing a contact's contact information
+* **Contact list**: List of contacts displayed
+* **GUI**: Application where you interact with it via graphical icons such as buttons
+* **Index**: Index number shown in the displayed contact/appointment list
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
 
