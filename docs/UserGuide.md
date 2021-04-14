@@ -412,11 +412,12 @@ Supported `PREFIX/KEYWORD` pairs:
 * age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]` (Age should be a non-negative integer)
 * insurance plan name: `i/PLAN_NAME`
 
-All of your clients that have at least one of their attributes matching your search keywords will be listed.
+All of your clients that have all their attributes matching your search keywords will be listed.
 
 * The search is case-insensitive. e.g. for gender, `male` will match `Male`
-* Only attributes that are identical will be matched. e.g. for insurance plan, `Protect` will not match `Protect Plan`
-* Clients with matching attribute to all the keyword attributes will be returned (i.e. `OR` search). e.g. `g/F age/40` will return all
+* For the insurance plan name attribute, only those that are identical will be matched. e.g. for insurance plan,
+  `Protect` will not match `ProtectPlus`
+* Clients with matching attributes to all the keyword attributes will be returned (i.e. `AND` search). e.g. `g/F age/40` will return all
   female clients aged 40.
 
 Example:
