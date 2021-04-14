@@ -14,6 +14,7 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 
 Interested in starting to use ParentPal
 Want to get started with ParentPal? Jump right into the Quick Start guide [here](#quick-start).
+
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
 * Table of Contents
@@ -24,11 +25,11 @@ Want to get started with ParentPal? Jump right into the Quick Start guide [here]
 ## Using this Guide
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you see a blue box with a light-bulb like this, it is a tip to help you use ParentPal better.
+If you see a blue box with a light-bulb like this, it contains a tip to help you use ParentPal better.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you see a yellow box with an exclamation mark like this, it is a warning that you should take note of.
+If you see a yellow box with an exclamation mark like this, it contains a warning that you should take note of.
 </div>
 
 `COMMAND` : If you see words formatted in monospace like this, it represents a command or part of a command.
@@ -44,22 +45,22 @@ for more information.
 
 1. Download the latest **parentpal.jar** from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the **home folder** for your ParentPal.
+1. Copy the **parentpal.jar** file to the folder you want to use as the **home folder** for your ParentPal.
 
 1. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>![Ui](images/Ui.png)
 
-1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/Smith Street, Block 123, #01-01` : Adds a contact named `John Doe` to the *Contact List*.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd contact shown in the *Contact List*.
 
    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+   * `exit` : Exits ParentPal.
 
 1. Refer to the [Features](#features) section for details of each command.
 
@@ -79,16 +80,22 @@ for more information.
     * Displays success message or error message.
 1. Contact List 
     * Scroll to view all of your contacts.
+    * By default, the Contact List is sorted by the order in which they were added. See [`sort`](#sorting-all-contacts--sort)
+    for how you can change the order of the contacts.
 1. Appointment List
     * Scroll to view all of your appointments.
+    * By default, the Appointment List is sorted chronologically, ie. by the date and time of the appointment, see [Appointments](#appointments) below. 
+    ParentPal currently does not support sorting appointments in other ways.
 
 ### Contacts
 ![ContactCard](images/ContactCard.png)
 1. Index
     * The index is mutable, and it changes depending on the settings for the *Contact List*.
-    * For example, the *Contact List* can be filtered by different commands, see [`find`](#finding-contacts-find). And it can be sorted in different ways, see [`sort`](#sorting-all-contacts--sort)
+    * For example, the *Contact List* can be filtered by different commands, see [`find`](#finding-contacts-find). And it can be sorted in different ways, see [`sort`](#sorting-all-contacts--sort).
 1. Name
 1. Favourite Icon
+    * The star will be filled if the contact is favourited as shown above. 
+      It will be empty if the contact is not favourited. See [`fav`](#favourite-a-contact--fav) for how you can favourite and unfavourite contacts.
 1. Child Tag 
 1. Tag
 1. Phone Number
@@ -97,6 +104,8 @@ for more information.
 ### Appointments
 ![AppointmentCard](images/AppointmentCard.png)
 1. Index
+    * The index is mutable, and it changes depending on the settings for the *Appointment List*.
+    * For example, the *Appointment List* can be filtered by different commands, see [`findAppt`](#finding-appointments-findappt).
 1. Name
 1. Child Tag
 1. Address
@@ -138,7 +147,7 @@ Parameter | Description | Example
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. See <a href="#command-parameters">Command Parameters</a><br> above.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -148,7 +157,7 @@ Parameter | Description | Example
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -167,7 +176,7 @@ The command summary table can also be accessed [here](#command-summary).
 
 ### General Commands
 
-#### Viewing help : `help`
+#### Viewing help : **`help`**
 
 Shows information about available commands and how they can be used.
 
@@ -190,7 +199,8 @@ Steps:
 Outcome: 
 1. The *Status Box* will show a success message.
 2. A help window with details of all commands will open.
-
+![help_1](images/help_1.png)
+   
 **Example 2**
 
 Let's say that you want to view more details about the `add` command.
@@ -203,8 +213,9 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. A help window with details of the `add` command will open.
+![help_2](images/help_2.png)
 
-#### Exiting the program : `exit`
+#### Exiting the program : **`exit`**
 
 Exits the program.
 
@@ -222,7 +233,7 @@ Steps:
 Outcome:
 1. ParentPal closes.
 
-#### Changing ParentPal's theme : `theme`
+#### Changing ParentPal's theme : **`theme`**
 
 Changes the theme of ParentPal.
 
@@ -258,10 +269,11 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. ParentPal will change to the light theme.
-
+![theme_1](images/theme_1.png)
+   
 ### Address Book Commands
 
-#### Adding a contact: `add`
+#### Adding a contact: **`add`**
 
 Adds a contact to the address book.
 
@@ -288,6 +300,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 1. John Doe's contact will appear in the *Contact List*.
+![add_1](images/add_1.png)
   
 **Example 2**
  
@@ -301,8 +314,9 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 1. Betsy Crowe's contact will appear in the *Contact List*.
+![add_2](images/add_2.png)
 
-#### Deleting a contact : `delete`
+#### Deleting a contact : **`delete`**
 
 Deletes the specified contact(s) from the address book.
 
@@ -329,6 +343,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 1. The fifth contact will disappear from the *Contact List*.
+![delete_1](images/delete_1.png)
 
 **Example 2**
 
@@ -344,8 +359,9 @@ Outcome:
    If any of the contacts you are trying to delete is involved in an appointment, 
    the *Status Box* will show an error message to notify you on which contacts were successfully deleted, and which failed to delete.
 1. The successfully deleted contacts will disappear from the *Contact List*, but contacts with appointments will remain in the *Contact List*.
-
-#### Editing a contact : `edit`
+![delete_2](images/delete_2.png)
+   
+#### Editing a contact : **`edit`**
 
 Edits an existing contact in the address book.
 
@@ -376,6 +392,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The name of the second contact has been replaced with 'Betsy'.
+![edit_1](images/edit_1.png)
 
 **Example 2**
 
@@ -389,6 +406,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The email of the second contact has been added as 'betsy@example.com'.
+![edit_2](images/edit_2.png)
 
 **Example 3**
 
@@ -402,8 +420,9 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The email and tags field of the first contact has been removed, and you can no longer see it in the contact details of the first contact.
-
-#### Finding contacts: `find`
+![edit_3](images/edit_3.png)
+   
+#### Finding contacts: **`find`**
 
 Find contacts based on the given option.
 
@@ -448,7 +467,8 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. All the contacts whose name contains the word 'john' will be displayed in the *Contact List*.
-
+![find_1](images/find_1.png)
+   
 **Example 2**
 
 Let's say you only remember that a contact has the word 'lee' in his name or email. 
@@ -461,9 +481,9 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. All the contacts with any of their fields containing the word 'lee' will be displayed in the *Contact List*.
+![find_2](images/find_2.png)
 
-
-#### Listing all contacts : `list`
+#### Listing all contacts : **`list`**
 
 Display all contacts from the address book in the *Contact List*.
 
@@ -491,6 +511,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. All contacts are now displayed in the *Contact List*.
+![list_1](images/list_1.png)
 
 **Example 2**
 
@@ -504,8 +525,9 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. All favourite contacts are now displayed in the *Contact List*.
+![list_2](images/list_2.png)
 
-#### Adding/replacing tags to a contact: `tag` 
+#### Adding/replacing tags to a contact: **`tag`**
 
 Adds or replaces tags to the specified contact.
 
@@ -533,6 +555,7 @@ Steps:
 Outcome:
 1. The *Status Box* will show a success message.
 2. The tags 'School' and 'English' are now added to the existing tags of the first contact.
+![tag_1](images/tag_1.png)
 
 **Example 2**
 
@@ -547,8 +570,9 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The child tags for the first contact have been replaced with the child tag 'Alexa'. 
 3. The tags for the first contact have been replaced with the tag 'English'.
-
-#### Favourite a contact : `fav`
+![tag_2](images/tag_2.png)
+   
+#### Favourite a contact : **`fav`**
 
 Format: `fav INDEX [o/OPTION]`
 
@@ -593,7 +617,7 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The first contact is now unfavourited and the star in the contact is not filled.
 
-#### Sorting all contacts : `sort`
+#### Sorting all contacts : **`sort`**
 
 Sorts the address book in the order based on the given option.
 
@@ -642,7 +666,7 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The *Contact List* is now in alphabetical order.
 
-#### Clearing all entries : `clear`
+#### Clearing all entries : **`clear`**
 
 Clears all entries from the address book or clears all contacts with the specified tags.
 
@@ -682,7 +706,7 @@ Outcome:
 
 ### Appointment Book Commands
 
-#### Adding an appointment : `addAppt`
+#### Adding an appointment : **`addAppt`**
 
 Adds an appointment to the appointment book.
 
@@ -714,7 +738,7 @@ Outcome:
 1. The *Status Box* will show a success message. 
 2. The appointment appears in the *Appointment List*.
 
-#### Deleting an appointment : `deleteAppt`
+#### Deleting an appointment : **`deleteAppt`**
 
 Deletes the specified appointment from the appointment book.
 
@@ -753,7 +777,7 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The 1st appointment in the *Appointment List* is removed.
 
-#### Editing an appointment : `editAppt`
+#### Editing an appointment : **`editAppt`**
 
 Edits an existing appointment in the appointment book.
 
@@ -784,7 +808,7 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The first appointment's name, address and related contacts are updated.
 
-#### Finding appointments: `findAppt`
+#### Finding appointments: **`findAppt`**
 
 Find appointments based on the given option.
 
@@ -813,11 +837,11 @@ Option | Description
 
 **Example 1**
 
-Let's say you want to search for all appointments with any fields containing 'ptm'.
+Let's say you want to search for all appointments with any fields containing 'psg'.
 You can follow the steps below to do so.
 
 Steps:
-1. Type `findAppt ptm` in the *Command Box*.
+1. Type `findAppt psg` in the *Command Box*.
 2. Press Enter to execute.
 
 Outcome:
@@ -837,7 +861,7 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. All appointments with Annie as a related contact will be listed in the *Appointment List*.
 
-#### Listing all appointments : `listAppt`
+#### Listing all appointments : **`listAppt`**
 
 Displays all appointments in the appointment book in the *Appointment List*.
 
@@ -882,13 +906,13 @@ Changes to the data files may cause ParentPal to behave unexpectedly, edit the f
 
 ### Transferring your data to another device
 #### Exporting your data
-1. After running ParentPal at least once, locate the `data` folder on your device which can be found in the same directory as your JAR file. 
+1. Locate the `data` folder on your device which can be found in the same folder as your **parentpal.jar** file. 
 2. Transfer this `data` folder to your other device.
    
 #### Importing your data
 1. Install ParentPal on your new device and run it once, exit the program before proceeding.
-2. Copy the `data` folder from your old device to the new device to the same directory as where you installed the JAR file.
-3. Override the files on your new device when prompted.
+2. Copy the `data` folder from your old device to the new device to the same folder as where you installed the **parentpal.jar** file.
+3. Override the files on your new device if prompted.
 
 Congratulations! You have successfully transferred your data to a new device.
 
@@ -953,6 +977,7 @@ Action | Format | Examples
 * **Contact**: Entry in the address book containing a contact's information
 * **Contact list**: List of contacts displayed, see [Interface of ParentPal](#interface-of-parentpal)
 * **GUI**: Application where you interact with it via graphical icons such as buttons
+* **Home folder**: The folder containing all the files needed to run ParentPal.
 * **Index**: Index number shown in the displayed contact/appointment list
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
