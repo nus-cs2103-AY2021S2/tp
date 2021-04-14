@@ -2,62 +2,66 @@
 layout: page
 title: User Guide
 ---
-Hello! Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
+Welcome to the User Guide for ParentPal! This guide aims to help users in using the application.
+
+Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
 remembering who exactly that contact in your contact book is referring to? Do you have multiple children and want
 a centralised place to keep track of all their activities? Then ParentPal could be the app for you!
 
-ParentPal is a **desktop application that helps busy parents manage their children's contacts and related appointments, 
-optimized for use via a Command Line Interface** (CLI) <sup>[(1)](#glossary)</sup> while still having the benefits of a
-Graphical User Interface (GUI) <sup>[(1)](#glossary)</sup>. 
+ParentPal is a **desktop application that helps busy parents manage their children's contacts and related appointments**, 
+optimized for use via a Command Line Interface (CLI) <sup>[(1)](#glossary)</sup> while still having the benefits of a
+Graphical User Interface (GUI) <sup>[(2)](#glossary)</sup>. 
 If you can type fast, ParentPal can get your contact management tasks done faster than traditional GUI apps.
+
+Interested in starting to use ParentPal
+Want to get started with ParentPal? Jump straight into the Quick Start guide [here]()
 
 * Table of Contents
 {:toc}
+  
+--------------------------------------------------------------------------------------------------------------------
+
+## Using this Guide
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you see a blue box with a light-bulb like this, it is a tip to help you use ParentPal better.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you see a yellow box with an exclamation mark like this, it is a warning that you should take note of.
+</div>
+
+`COMMAND` : If you see words formatted in monospace like this, it represents a command or part of a command.
+
+*Interface* : If you see italicized words, it represents a part of the ParentPal GUI. See [Interface of ParentPal](#interface-of-parentpal)
+for more information.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed on your computer.
+1. Ensure you have **Java 11** or above installed on your computer. To install **Java**, you can view the guide [here](https://docs.oracle.com/en/java/javase/11/install/).
 
-1. Download the latest `parentpal.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
+1. Download the latest **parentpal.jar** from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your ParentPal.
+1. Copy the file to the folder you want to use as the **home folder** for your ParentPal.
 
-1. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>![Ui](images/Ui.png)
 
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * `list` : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/Smith Street, Block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * `clear` : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+   * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
---------------------------------------------------------------------------------------------------------------------
-## Using this Guide
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you see a blue box with a light-bulb like this, it means there is a tip to help you use ParentPal better.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you see a yellow box with an exclamation mark like this, it means there is a warning to take note of.
-</div>
-
-`COMMAND` : If you see words formatted in monospace like this, it represents a command or part of a command.
-
-*Interface* : If you see italicized words, it represents a part of the ParentPal interface. See [Interface of ParentPal](#interface-of-parentpal)
-for more information.
-
->If you see words in a blockquote like this, it represents an example use case for a feature. Give it a try!
+1. Refer to the [Features](#features) section for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -70,7 +74,7 @@ for more information.
     * Click to see an option to exit.
 1. Command Box
     * ParentPal makes it easy for you to manage your contacts and appointments with a single command.
-    * Enter the command in the command box, a success message will be displayed in the status box when the action has been executed successfully.
+    * Type the command into the command box, and press Enter to execute it.
     * Should an error occur, an error message will be displayed in the status box.
 1. Status Box
     * Displays success message or error message.
@@ -108,7 +112,17 @@ Should the appointment not appear red despite it having expired, click on the ap
 ![expiredAppt](images/expiredAppt.png)
 
 --------------------------------------------------------------------------------------------------------------------
+## Command Parameters
 
+Parameter | Description | 
+-------- |------------------
+`name`  | Finds by the name of the contact
+`address` | Finds by the address of the contact
+`phone` | Finds by the phone number of the contact
+`email` | Finds by the email of the contact
+`tag` | Finds by the tags of the contact (only exact tags will be matched)
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -155,32 +169,31 @@ Format: `help [COMMAND]`
 * If command is specified, detailed information about the command will be displayed.
 * If multiple commands are specified, only the last command will be taken.
 
->Example 1 
-> 
->Let's say you are unsure about the commands that ParentPal offers.
+**Example 1**
+ 
+Let's say you are unsure about the commands that ParentPal offers.
 You can follow the steps below to view a help window.
->
->Steps: 
->1. Type `help` in the *Command Box*.
->2. Press Enter to execute.
-> 
->Outcome: 
->1. The *Status Box* will show a success message.
->2. A help window with details of all commands will open.
 
-> Example 2
-> 
-> Let's say that you want to view more details about the `add` command.
+Steps:
+1. Type `help` in the *Command Box*.
+2. Press Enter to execute.
+ 
+Outcome: 
+1. The *Status Box* will show a success message.
+2. A help window with details of all commands will open.
+
+**Example 2**
+
+Let's say that you want to view more details about the `add` command.
 You can follow the steps below to view a help window for the `add` command.
-> 
-> Steps: 
-> 1. Type `help add` in the *Command Box*.
-> 2. Press Enter to execute.
-> 
-> Outcome: 
-> 1. The *Status Box* will show a success message.
-> 2. A help window with details of the `add` command will open.
 
+Steps:
+1. Type `help add` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. A help window with details of the `add` command will open.
 
 #### Exiting the program : `exit`
 
@@ -188,17 +201,17 @@ Exits the program.
 
 Format: `exit`
 
->Example 1
->
->Let's say you are done with ParentPal and would like to close the application.
+**Example 1**
+
+Let's say you are done with ParentPal and would like to close the application.
 You can follow the steps below to close ParentPal.
->
->Steps:
->1. Type `exit` in the *Command Box*.
->2. Press Enter to execute.
->
->Outcome:
->1. ParentPal closes.
+
+Steps:
+1. Type `exit` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. ParentPal closes.
 
 #### Changing ParentPal's theme : `theme`
 
@@ -222,18 +235,18 @@ Dark theme:
 ParentPal's theme is set to dark by default.
 </div>
 
->Example 1
->
->Let's say you would like to try ParentPal's light theme.
+**Example 1**
+
+Let's say you would like to try ParentPal's light theme.
 You can follow the steps below to change ParentPal to the light theme.
->
->Steps:
->1. Type `theme o/light` in the *Command Box*.
->2. Press Enter to execute.
->
->Outcome:
->1. The *Status Box* will show a success message.
->2. ParentPal will change to the light theme.
+
+Steps:
+1. Type `theme o/light` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. ParentPal will change to the light theme.
 
 ### Address Book Commands
 
@@ -252,29 +265,29 @@ You can add a contact with only some of the information, you can fill in the res
 the <a href="#editing-a-contact--edit">edit</a> command.
 </div>
 
-> Example 1
->
-> Let's say you want to add a contact, but you only know his phone number.
+*Example 1*
+
+Let's say you want to add a contact, but you only know his phone number.
 You can follow the steps below to add the contact with incomplete fields.
->
-> Steps:
-> 1. Type `add n/John Doe p/98765432` in the *Command Box*.
-> 2. Press Enter to execute.
->
-> Outcome:
-> 
+
+Steps:
+1. Type `add n/John Doe p/98765432` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1.  
   
-> Example 2
-> 
-> Let's say you want to add contact of your child's math teacher and you have all her details.
-> You can follow the steps below to add the contact with complete fields.
-> 
-> Steps:
-> 1. Type add n/Betsy Crowe e/betsycrowe@example.com a/ABC Primary School p/1234567 t/teacher t/math tc/Alice` in the *Command Box*.
-> 2. Press Enter to execute.
-> 
-> Outcome:
-> 
+*Example 2*
+ 
+Let's say you want to add contact of your child's math teacher, and you have all her details.
+You can follow the steps below to add the contact with complete fields.
+ 
+Steps:
+1. Type `add n/Betsy Crowe e/betsycrowe@example.com a/ABC Primary School p/1234567 t/teacher t/math tc/Alice` in the *Command Box*.
+2. Press Enter to execute.
+ 
+Outcome:
+1.
 
 #### Deleting a contact : `delete`
 
@@ -284,22 +297,42 @@ Format: `delete INDEX [MORE_INDEXES]…​`
 
 * Deletes the contact at the specified `INDEX` or multiple `INDEXES`.
 * The index refers to the index number shown in the displayed contact list.
-* The index/indexes **must be a positive integer/integers** 1, 2, 3, …​
+* Indexes **must be positive integers**: ie. 1, 2, 3, …​
 * If deleting multiple contacts by multiple indexes, the indexes *must* be separated by a whitespace and must all be valid.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Contacts that are involved with appointments cannot be deleted.
 </div>
 
-> Example 1
-> 
-> Let's say you want to delete the second contact in the address book.
-> You can follow the steps below.
-> 
-> Steps:
-> 1. Type `delete 2` in the *Command Box*.
-* `list` followed by `delete 2` deletes the 2nd contact in the address book.
-* `list` followed by `delete 1 2 3` deletes the 1st, 2nd and 3rd contact in the address book.
+*Example 1*
+
+Let's say you want to delete the second contact in the address book.
+You can follow the steps below.
+
+Steps:
+ 
+1. Type `list` the *Command Box*.
+1. Press Enter to execute. This should list all the contacts in the address book.
+1. Type `delete 2` in the *Command Box*.
+2. Press Enter to execute.
+ 
+Outcome:
+1. The second contact will disappear from the address book, and the success message will appear.
+
+*Example 2*
+
+If you want to delete multiple contacts at once (for example, the first three contacts), 
+you can follow the steps below.
+
+Steps:
+1. Type `list` in the *Command Box*.
+1. Press enter to execute. This should list all the contacts in the address book.
+1. Type `delete 1 2 3` in the *Command Box*.
+2. Press enter to execute.
+
+Outcome:
+1. The first three contacts will disappear from the address book, and the success message will appear.
+
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 #### Editing a contact : `edit`
@@ -321,23 +354,44 @@ When editing tags, the existing tags of the contact will be removed i.e. adding 
 see the <a href = "#addingreplacing-tags-to-a-contact-tag">tag</a> command.
 </div>
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
-*  `edit 4 e/` Edits to remove the email of the 4th contact in the displayed contact list.
+**Example 1**
 
->Example 1
->
->Let's say you want to edit the name of a co
-You can follow the steps below to view a help window.
->
->Steps:
->1. Type `help` in the *Command Box*.
->2. Press Enter to execute.
->
->Outcome:
->1. The *Status Box* will show a success message.
->2. A help window with details of all commands will open.
+Let's say you want to edit the name of the first contact.
+You can follow the steps below to edit the name of the first contact. 
+
+Steps:
+1. Type `edit 1 n/Betsy` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The name of the first contact is now 'Betsy'.
+
+**Example 2**
+
+Let's say you have added the first contact, but you did not include any email during the adding process.
+You can follow the steps below to add an email to the first contact. 
+
+Steps:
+1. Type `edit 1 e/betsy@example.com` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The email of the first contact has been added as 'betsy@example.com'.
+
+**Example 3**
+
+Let's say you want to remove some fields like the email and tags of the first contact.
+You can follow the steps below.
+
+Steps:
+1. Type `edit 1 t/ e/` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The email and tags field of the first contact has been removed, and you can no longer see it in the contact details of the first contact.
 
 #### Finding contacts: `find`
 
@@ -377,6 +431,11 @@ Examples:
 * `find alex annie` returns `Alex Yeoh`, `Annie Li` when no exact matches are found.
 * `find o/phone 9927` return contacts whose phone number contains 9927 (partial matches will also be returned).
 
+**Example 1**
+
+Let's say you want to find all the contacts in your contact list named John. You can follow the steps below
+to 
+
 #### Listing all contacts : `list`
 
 Shows a list of all contacts in the address book.
@@ -393,9 +452,31 @@ Option  | Description
 To favourite a contact, use the <a href = "#favourite-a-contact--fav">fav</a> command.
 </div>
 
-Examples:
-* `list` List all contacts in the address book
-* `list o/fav` Lists all favourited contacts in the address book
+**Example 1**
+
+Let's say you want to view all your contacts again, as you have just filtered the contacts by some keywords.
+You can follow the steps below to view all your contacts.
+
+Steps:
+1. Type `list` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. All contacts are now displayed.
+
+**Example 2**
+
+Let's say you want to view all of your favourite commands.
+You can follow the steps below to view all 
+
+Steps:
+1. Type `list` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. All contacts are now displayed.
 
 #### Adding/replacing tags to a contact: `tag` 
 
@@ -430,7 +511,7 @@ Currently available options for the `[OPTION]` field include:
 
 Option  | Description
 -------- | ------------------
-* `remove` Unfavourites the specified contact
+`remove` | Unfavourites the specified contact
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 When a contact is favourited, the star next to their name will become filled.
@@ -493,9 +574,9 @@ Examples:
 
 Adds an appointment to the appointment book.
 
-Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​`
+Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACTINDEX]…​ [tc/CHILDTAG]…​`
 
-* Contact in the address book at the specified `CONTACT_INDEX` is added to the appointment.
+* Contact in the address book at the specified `CONTACTINDEX` is added to the appointment.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` has to be in the format "`dd/MM/yyyy` `HH:mm`".
@@ -508,18 +589,18 @@ An appointment with the exact same name, date, time and address as an appointmen
 ParentPal currently does not support checking for clashing appointments. Please make sure to check your availability before adding new appointments. This can be done with the help of findAppt by date.
 </div>
 
->Example
->
->Say you just received the details of the annual parent-teacher meeting at Alice's school.
+**Example 1**
+
+Say you just received the details of the annual parent-teacher meeting at Alice's school.
 You can follow the steps below to add the appointment to ParentPal.
->
->Steps:
->1. Type `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/alice` in the *Command Box*.
->2. Press Enter to execute.
->
->Outcome:
->1. The *Status Box* will show a success message. 
->2. The contact appears in the appointment list.
+
+Steps:
+1. Type `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/alice` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message. 
+2. The appointment appears in the appointment list.
 
 #### Deleting an appointment : `deleteAppt`
 
@@ -531,30 +612,42 @@ Format: `deleteAppt INDEX`
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `deleteAppt 2` deletes the 2nd appointment in the appointment book.
-* `findAppt ptm` followed by `deleteAppt 1` deletes the 1st appointment in the results of the `findAppt` command.
+**Example 1**
 
->Example
->
->Say you just received the details of the annual parent-teacher meeting at Alice's school.
-You can follow the steps below to add the appointment to ParentPal.
->
->Steps:
->1. Type `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/alice` in the *Command Box*.
->2. Press Enter to execute.
->
->Outcome:
->1. The *Status Box* will show a success message.
->2. The contact appears in the appointment list.
+Say you are viewing the full list of appointments and you want to delete the 2nd appointment in the appointment list.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `deleteAppt 2` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The 2nd appointment in the appointment list is removed.
+
+**Example 2**
+
+Say you want to delete an appointment named 'PTM'.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `findAppt o/name ptm` in the *Command Box*.
+2. Press Enter to execute.
+3. Only appointments with 'ptm' in their name will be listed in the appointment list.
+4. Say the first appointment is the one you want to delete. Type `deleteAppt 1` in the *Command Box*.
+5. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The 1st appointment in the appointment list is removed.
 
 #### Editing an appointment : `editAppt`
 
 Edits an existing appointment to the appointment book.
 
-Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​`
+Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACTINDEX]…​ [tc/CHILDTAG]…​`
 
-* Contacts in the address book at the specified `CONTACT_INDEX` is added to the appointment.
+* Contacts in the address book at the specified `CONTACTINDEX` is added to the appointment.
 * Edits the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment book.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -698,8 +791,8 @@ Action | Format, Examples
 **Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
 **Clear** | `clear [t/TAG]…​`
 ​ | **Appointment Book Commands**
-**Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
+**Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACTINDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
 **Delete** | `deleteAppt INDEX` <br> e.g., `deleteAppt 2`
-**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `editAppt 1 n/PSG meeting a/ABC Secondary School c/1`
+**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACTINDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `editAppt 1 n/PSG meeting a/ABC Secondary School c/1`
 **Find** | `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `findAppt PTM`
 **List** | `listAppt`
