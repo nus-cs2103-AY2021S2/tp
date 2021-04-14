@@ -69,47 +69,47 @@ for more information.
 ## Interface of ParentPal
 ![ParentPalExplanation](images/ParentPalExplanation.png)
 
-1. Menu Button
+1. **Menu Button**
     * Click to see an option to exit.
-1. Command Box
+1. **Command Box**
     * ParentPal makes it easy for you to manage your contacts and appointments with a single command.
     * Type the command into the command box, and press Enter to execute it.
     * Should an error occur, an error message will be displayed in the status box.
-1. Status Box
+1. **Status Box**
     * Displays success message or error message.
-1. Contact List 
+1. **Contact List**
     * Scroll to view all of your contacts.
     * By default, the Contact List is sorted by the order in which they were added. See [`sort`](#sorting-all-contacts--sort)
     for how you can change the order of the contacts.
-1. Appointment List
+1. **Appointment List**
     * Scroll to view all of your appointments.
     * By default, the Appointment List is sorted chronologically, ie. by the date and time of the appointment, see [Appointments](#appointments) below. 
     ParentPal currently does not support sorting appointments in other ways.
 
 ### Contacts
 ![ContactCard](images/ContactCard.png)
-1. Index
+1. **Index**
     * The index is mutable, and it changes depending on the settings for the *Contact List*.
     * For example, the *Contact List* can be filtered by different commands, see [`find`](#finding-contacts-find). And it can be sorted in different ways, see [`sort`](#sorting-all-contacts--sort).
-1. Name
-1. Favourite Icon
+1. **Name**
+1. **Favourite Icon**
     * The star will be filled if the contact is favourited as shown above. 
       It will be empty if the contact is not favourited. See [`fav`](#favourite-a-contact--fav) for how you can favourite and unfavourite contacts.
-1. Child Tag 
-1. Tag
-1. Phone Number
-1. Email
+1. **Child Tag** 
+1. **Tag**
+1. **Phone Number**
+1. **Email**
 
 ### Appointments
 ![AppointmentCard](images/AppointmentCard.png)
-1. Index
+1. **Index**
     * The index is mutable, and it changes depending on the settings for the *Appointment List*.
     * For example, the *Appointment List* can be filtered by different commands, see [`findAppt`](#finding-appointments-findappt).
-1. Name
-1. Child Tag
-1. Address
-1. Date and Time
-1. Contacts
+1. **Name**
+1. **Child Tag**
+1. **Address**
+1. **Date and Time**
+1. **Contacts**
 
 ### Expired appointments
 ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
@@ -127,17 +127,17 @@ The table below provides descriptions for all the parameters used by ParentPal c
 
 Parameter | Description | Example
 -------- |------------------ | --------
-`OPTION` | Specifies the options to be applied to a command | Typing `name` as an option to the [`find`](#finding-contacts-find) command to specify you wish to filter the *Contact List* by name.
-`INDEX` | The index number of a contact or appointment shown in the *Contact List* or *Appointment List*. <br><br> It must be a positive number. | Typing `1` would refer to the first contact in the *Contact List* or first appointment in the *Appointment List*.
-`COMMAND` | The name of a command. | `add` or `edit` are names of commands you can use with [`help`](#viewing-help--help). See [Command Summary](#command-summary) for a full list of command names.
+`OPTION` | Specifies the options to be applied to a command | You can type `name` as an option to the [`find`](#finding-contacts-find) command to specify you wish to filter the *Contact List* by name.
+`INDEX` | The index number of a contact or appointment shown in the *Contact List* or *Appointment List*. <br><br> It must be a positive number. | You can type `1` to refer to the first contact in the *Contact List* or first appointment in the *Appointment List*.
+`COMMAND` | The name of a command. | You can type `add` as a command name to use with [`help`](#viewing-help--help). <br><br> See [Command Summary](#command-summary) for a full list of command names.
 `NAME`  | The name of a contact or appointment. | You can type `Betsy Crowe` as the name for a contact or `Parent Teacher Meeting` as the name for an appointment.
 `ADDRESS` | The address or location of a contact or appointment. | You can use `ABC Primary School` to represent the address of a contact or an appointment.
-`PHONE` | The contact number of a contact. <br><br> It should contain only numbers and be at least 3 digits long.| `91234567` would represent the phone number of a contact.
-`EMAIL` | The email address of a contact. <br><br> It must be a valid email.| `betsycrowe@example.com` would represent the email of a contact.
-`TAG` | The tag you want to attach to a contact. | Tag a contact with `form teacher` to associate this additional information to the contact.
+`PHONE` | The contact number of a contact. <br><br> It should contain only numbers and be at least 3 digits long.| You can type `91234567` to represent the phone number of a contact.
+`EMAIL` | The email address of a contact. <br><br> It must be a valid email.| You can type `betsycrowe@example.com` to represent the email of a contact.
+`TAG` | The tag you want to attach to a contact. | You can type `form teacher` to tag this additional information to a contact.
 `CHILD_TAG` | The child tag you want to attach to a contact or appointment. | You can tag a contact or appointment with `Alice` to signify it is related to you child Alice.
-`KEYWORD` | A keyword you want to search for. | Typing `betsy` means you want to search for the word 'betsy'. See [`find`](#finding-contacts-find) and [`findAppt`](#finding-appointments-findappt) for more information.
-`CONTACT_INDEX` | The index number of a contact in the *Contact List*. <br><br> It must be a positive number. | Typing `1` would refer to the first contact in the *Contact List*.
+`KEYWORD` | A keyword you want to search for. | You can type `betsy` as a keyword to search for the word 'betsy'. <br><br> See [`find`](#finding-contacts-find) and [`findAppt`](#finding-appointments-findappt) for more information.
+`CONTACT_INDEX` | The index number of a contact in the *Contact List*. <br><br> It must be a positive number. | You can type `1` to refer to the first contact in the *Contact List*.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -657,7 +657,7 @@ Outcome:
    
 **Example 2**
 
-Let's say you searched for contacts tagged with `teacher` and want to sort the contacts found by alphabetical order.
+Let's say you searched for contacts tagged with 'teacher' and want to sort the contacts found by alphabetical order.
 You can follow the steps below to do so.
 
 Steps:
@@ -696,7 +696,7 @@ Outcome:
 
 **Example 2**
 
-Let's say you want to clear all contacts tagged with `teacher`.
+Let's say you want to clear all contacts tagged with 'teacher'.
 You can follow the steps below to do so.
 
 Steps:
@@ -705,7 +705,7 @@ Steps:
 
 Outcome:
 1. The *Status Box* will show a success message.
-2. All contacts tagged with `teacher` are removed from the *Contact List* if none of them are involved in appointments.
+2. All contacts tagged with 'teacher' are removed from the *Contact List* if none of them are involved in appointments.
    Otherwise, an error message will be shown.
 ![clear_2](images/clear_2.png)
 
@@ -720,7 +720,7 @@ Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILD_TAG]�
 * The contact in the *Contact List* at the specified `CONTACT_INDEX` is added to the appointment.
 * The index refers to the index number shown in the displayed *Contact List*.
 * The index **must be a positive integer** 1, 2, 3, …​ 
-* `DATE` has to be in the format "`dd/MM/yyyy` `HH:mm`".
+* `DATE` has to be in the format '`dd/MM/yyyy` `HH:mm`'.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 An appointment with the exact same name, date, time and address as an appointment that already exists in the <i>Appointment List</i> cannot be added.
@@ -795,7 +795,7 @@ Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [t
 * Edits the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed *Appointment Book*.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `DATE` has to be in the format "`dd/MM/yyyy` `HH:mm`".
+* `DATE` has to be in the format '`dd/MM/yyyy` `HH:mm`'.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags and contacts, the existing tags and contacts of the contact will be removed 
@@ -804,7 +804,7 @@ Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [t
 **Example 1**
 
 Let's say you want to edit the first appointment in the full *Appointment List* so that the name and address is changed to
-`PSG meeting` and `ABC Secondary School` respectively and replace all related contacts with the 1st contact
+'PSG meeting' and 'ABC Secondary School' respectively and replace all related contacts with the 1st contact
 on the *Contact List*.
 You can follow the steps below to do so.
 
@@ -944,7 +944,7 @@ to what is currently displayed on screen. Similarly, the appointment book refers
 while the appointment list only refers to what is currently displayed on screen, see [Interface of ParentPal](#interface-of-parentpal).
 
 **Q**: Why is your application named *ParentPal*? <br>
-**A**: It is named *ParentPal* because it aims to be a 'pal' to the busy parents who need help managing their kids' schedules and important contacts.
+**A**: It is named *ParentPal* because it aims to be a 'pal' to the busy parents who need help with managing their kids' schedules and important contacts.
 
 
 --------------------------------------------------------------------------------------------------------------------
