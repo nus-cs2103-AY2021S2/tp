@@ -198,6 +198,7 @@ Steps:
 Outcome: 
 1. The *Status Box* will show a success message.
 2. A help window with details of all commands will open.
+
 ![help_1](images/help_1.png)
    
 **Example 2**
@@ -989,6 +990,6 @@ Action | Format | Examples
 * **Contact**: Entry in the address book containing a contact's information
 * **Contact list**: List of contacts displayed, see [Interface of ParentPal](#interface-of-parentpal)
 * **GUI**: Application where you interact with it via graphical icons such as buttons
-* **Home folder**: The folder containing all the files needed to run ParentPal.
+* **Home folder**: The folder containing all the files needed to run ParentPal
 * **Index**: Index number shown in the displayed contact/appointment list
 
