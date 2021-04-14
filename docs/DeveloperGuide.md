@@ -122,13 +122,11 @@ The `Model`,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Contact` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Contact` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+</div>
 
 ![More detailed structure of Model Component](images/AppointmentAndContact.png)
 * Some attributes have their own class, like `Name`, `DateTime`, and they contain methods to check for the validity of the value given by the user.
 * `Name` and `Address` classes are referenced by both `Contact` and `Appointment` class and are hence not within the `Contact` or `Appointment` package.
-
-</div>
-
 
 ### Storage component
 
