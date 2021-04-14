@@ -5,17 +5,17 @@ title: User Guide
 Welcome to the User Guide for ParentPal! This guide aims to help users in using the application.
 
 Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
-remembering who exactly that contact in your contact book is referring to? Do you have multiple children and want
+remembering who exactly that contact in your address book is referring to? Do you have multiple children and want
 a centralised place to keep track of all their activities? Then ParentPal could be the app for you!
 
 ParentPal is a **desktop application that helps busy parents manage their children's contacts and related appointments**, 
-optimized for use via a Command Line Interface (CLI) <sup>[(1)](#glossary)</sup> while still having the benefits of a
-Graphical User Interface (GUI) <sup>[(2)](#glossary)</sup>. 
+optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, ParentPal can get your contact management tasks done faster than traditional GUI apps.
 
 Interested in starting to use ParentPal
-Want to get started with ParentPal? Jump straight into the Quick Start guide [here]()
-
+Want to get started with ParentPal? Jump right into the Quick Start guide [here](#quick-start).
+--------------------------------------------------------------------------------------------------------------------
+## Table of Contents
 * Table of Contents
 {:toc}
   
@@ -53,7 +53,7 @@ for more information.
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/Smith Street, Block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/Smith Street, Block 123, #01-01` : Adds a contact named `John Doe` to the *Contact List*.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -65,12 +65,11 @@ for more information.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Understanding ParentPal
 
-### Interface of ParentPal
+## Interface of ParentPal
 ![ParentPalExplanation](images/ParentPalExplanation.png)
 
-1. Button
+1. Menu Button
     * Click to see an option to exit.
 1. Command Box
     * ParentPal makes it easy for you to manage your contacts and appointments with a single command.
@@ -86,6 +85,8 @@ for more information.
 ### Contacts
 ![ContactCard](images/ContactCard.png)
 1. Index
+    * The index is mutable, and it changes depending on the settings for the *Contact List*.
+    * For example, the *Contact List* can be filtered by different commands, see [`find`](#finding-contacts-find). And it can be sorted in different ways, see [`sort`](#sorting-all-contacts--sort)
 1. Name
 1. Favourite Icon
 1. Child Tag 
@@ -114,13 +115,21 @@ Should the appointment not appear red despite it having expired, click on the ap
 --------------------------------------------------------------------------------------------------------------------
 ## Command Parameters
 
-Parameter | Description | 
--------- |------------------
-`name`  | Finds by the name of the contact
-`address` | Finds by the address of the contact
-`phone` | Finds by the phone number of the contact
-`email` | Finds by the email of the contact
-`tag` | Finds by the tags of the contact (only exact tags will be matched)
+The table below provides descriptions for all the parameters used by ParentPal commands.
+
+Parameter | Description | Example
+-------- |------------------ | --------
+`OPTION` | Specifies the options to be applied to a command | Typing `name` as an option to the [`find`](#finding-contacts-find) command to specify you wish to filter the *Contact List* by name.
+`INDEX` | The index number of a contact or appointment shown in the *Contact List* or *Appointment List*. <br><br> It must be a positive number. | Typing `1` would refer to the first contact in the *Contact List* or first appointment in the *Appointment List*.
+`COMMAND` | The name of a command. | `add` or `edit` are names of commands you can use with [`help`](#viewing-help--help). See [Command Summary](#command-summary) for a full list of command names.
+`NAME`  | The name of a contact or appointment. | You can type `Betsy Crowe` as the name for a contact or `Parent Teacher Meeting` as the name for an appointment.
+`ADDRESS` | The address or location of a contact or appointment. | You can use `ABC Primary School` to represent the address of a contact or an appointment.
+`PHONE` | The contact number of a contact. <br><br> It should contain only numbers and be at least 3 digits long.| `91234567` would represent the phone number of a contact.
+`EMAIL` | The email address of a contact. <br><br> It must be a valid email.| `betsycrowe@example.com` would represent the email of a contact.
+`TAG` | The tag you want to attach to a contact. | Tag a contact with `form teacher` to associate this additional information to the contact.
+`CHILD_TAG` | The child tag you want to attach to a contact or appointment. | You can tag a contact or appointment with `Alice` to signify it is related to you child Alice.
+`KEYWORD` | A keyword you want to search for. | Typing `betsy` means you want to search for the word 'betsy'. See [`find`](#finding-contacts-find) and [`findAppt`](#finding-appointments-findappt) for more information.
+`CONTACT_INDEX` | The index number of a contact in the *Contact List*. <br><br> It must be a positive number. | Typing `1` would refer to the first contact in the *Contact List*
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -219,7 +228,7 @@ Changes the theme of ParentPal.
 
 Format: `theme o/OPTION`
 
-Currently available options for the `OPTION` field include: 
+Current available options for the `OPTION` field include: 
 
 Option  | Description
 -------- | ------------------
@@ -228,6 +237,8 @@ Option  | Description
 
 Light theme:
   ![LightTheme](images/lightTheme.png)
+
+
 Dark theme:
   ![DarkTheme](images/Ui.png)
 
@@ -254,7 +265,7 @@ Outcome:
 
 Adds a contact to the address book.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`
+Format: `add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILD_TAG]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
@@ -265,7 +276,7 @@ You can add a contact with only some of the information, you can fill in the res
 the <a href="#editing-a-contact--edit">edit</a> command.
 </div>
 
-*Example 1*
+**Example 1**
 
 Let's say you want to add a contact, but you only know his phone number.
 You can follow the steps below to add the contact with incomplete fields.
@@ -275,9 +286,10 @@ Steps:
 2. Press Enter to execute.
 
 Outcome:
-1.  
+1. The *Status Box* will show a success message.
+1. John Doe's contact will appear in the *Contact List*.
   
-*Example 2*
+**Example 2**
  
 Let's say you want to add contact of your child's math teacher, and you have all her details.
 You can follow the steps below to add the contact with complete fields.
@@ -287,7 +299,8 @@ Steps:
 2. Press Enter to execute.
  
 Outcome:
-1.
+1. The *Status Box* will show a success message.
+1. Betsy Crowe's contact will appear in the *Contact List*.
 
 #### Deleting a contact : `delete`
 
@@ -296,7 +309,7 @@ Deletes the specified contact(s) from the address book.
 Format: `delete INDEX [MORE_INDEXES]…​`
 
 * Deletes the contact at the specified `INDEX` or multiple `INDEXES`.
-* The index refers to the index number shown in the displayed contact list.
+* The index refers to the index number shown in the displayed *Contact List*.
 * Indexes **must be positive integers**: ie. 1, 2, 3, …​
 * If deleting multiple contacts by multiple indexes, the indexes *must* be separated by a whitespace and must all be valid.
 
@@ -304,45 +317,42 @@ Format: `delete INDEX [MORE_INDEXES]…​`
 Contacts that are involved with appointments cannot be deleted.
 </div>
 
-*Example 1*
+**Example 1**
 
-Let's say you want to delete the second contact in the address book.
-You can follow the steps below.
+Let's say you want to delete the fifth contact in the *Contact List*.
+You can follow the steps below to do so.
 
 Steps:
- 
-1. Type `list` the *Command Box*.
-1. Press Enter to execute. This should list all the contacts in the address book.
-1. Type `delete 2` in the *Command Box*.
+1. Type `delete 5` in the *Command Box*.
 2. Press Enter to execute.
  
 Outcome:
-1. The second contact will disappear from the address book, and the success message will appear.
+1. The *Status Box* will show a success message.
+1. The fifth contact will disappear from the *Contact List*.
 
-*Example 2*
+**Example 2**
 
-If you want to delete multiple contacts at once (for example, the first three contacts), 
-you can follow the steps below.
+Let's say you want to delete multiple contacts at once (for example, the first three contacts), 
+you can follow the steps below to do so.
 
 Steps:
-1. Type `list` in the *Command Box*.
-1. Press enter to execute. This should list all the contacts in the address book.
 1. Type `delete 1 2 3` in the *Command Box*.
 2. Press enter to execute.
 
 Outcome:
-1. The first three contacts will disappear from the address book, and the success message will appear.
-
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+1. The *Status Box* will show a success message. 
+   If any of the contacts you are trying to delete is involved in an appointment, 
+   the *Status Box* will show an error message to notify you on which contacts were successfully deleted, and which failed to delete.
+1. The successfully deleted contacts will disappear from the *Contact List*, but contacts with appointments will remain in the *Contact List*.
 
 #### Editing a contact : `edit`
 
 Edits an existing contact in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILD_TAG]…​ [t/TAG]…​`
 
 * Edits the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
+* The index refers to the index number shown in the displayed *Contact List*.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -350,40 +360,40 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​
 * You can remove all the contact’s tags by typing `t/` or `tc/` without specifying any tags after it. Note: both regular tags and child tags will be removed in both situations.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative. For cumulative addition of tags,
+When editing tags, the existing tags of the contact will be replaced i.e. adding of tags is not cumulative. For cumulative addition of tags,
 see the <a href = "#addingreplacing-tags-to-a-contact-tag">tag</a> command.
 </div>
 
 **Example 1**
 
-Let's say you want to edit the name of the first contact.
-You can follow the steps below to edit the name of the first contact. 
+Let's say you want to edit the name of the second contact.
+You can follow the steps below to do so.
 
 Steps:
-1. Type `edit 1 n/Betsy` in the *Command Box*.
+1. Type `edit 2 n/Betsy` in the *Command Box*.
 2. Press Enter to execute.
 
 Outcome:
 1. The *Status Box* will show a success message.
-2. The name of the first contact is now 'Betsy'.
+2. The name of the second contact has been replaced with 'Betsy'.
 
 **Example 2**
 
-Let's say you have added the first contact, but you did not include any email during the adding process.
+Let's say you have added the second contact, but you did not include any email during the adding process.
 You can follow the steps below to add an email to the first contact. 
 
 Steps:
-1. Type `edit 1 e/betsy@example.com` in the *Command Box*.
+1. Type `edit 2 e/betsy@example.com` in the *Command Box*.
 2. Press Enter to execute.
 
 Outcome:
 1. The *Status Box* will show a success message.
-2. The email of the first contact has been added as 'betsy@example.com'.
+2. The email of the second contact has been added as 'betsy@example.com'.
 
 **Example 3**
 
 Let's say you want to remove some fields like the email and tags of the first contact.
-You can follow the steps below.
+You can follow the steps below to do so.
 
 Steps:
 1. Type `edit 1 t/ e/` in the *Command Box*.
@@ -402,10 +412,10 @@ fields will be searched and any keyword matches in any one of the fields will di
 
 Format: `find [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 
-Currently available options for the `[OPTION]` field include:
+Current available options for the `[OPTION]` field include:
 
 Option | Description
--------- |------------------
+-------- |----------------
 `name`  | Finds by the name of the contact
 `address` | Finds by the address of the contact 
 `phone` | Finds by the phone number of the contact 
@@ -426,27 +436,44 @@ Example: <code>find o/tag t/first t/second</code>
 * If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed
   e.g. when 0 results are found, "0 Contact(s) listed!" is displayed.
 
-Examples:
-* `find John` returns `john` and `John Doe`.
-* `find alex annie` returns `Alex Yeoh`, `Annie Li` when no exact matches are found.
-* `find o/phone 9927` return contacts whose phone number contains 9927 (partial matches will also be returned).
-
 **Example 1**
 
-Let's say you want to find all the contacts in your contact list named John. You can follow the steps below
-to 
+Let's say you want to find all the contacts in your address book named John. 
+You can follow the steps below to do so.
+
+Steps:
+1. Type `find o/name John` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. All the contacts whose name contains the word 'john' will be displayed in the *Contact List*.
+
+**Example 2**
+
+Let's say you only remember that a contact has the word 'lee' in his name or email. 
+You find contacts with any of their fields containing the word 'lee' by following the steps below.
+
+Steps:
+1. Type `find lee` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. All the contacts with any of their fields containing the word 'lee' will be displayed in the *Contact List*.
+
 
 #### Listing all contacts : `list`
 
-Shows a list of all contacts in the address book.
+Display all contacts from the address book in the *Contact List*.
 
 Format: `list [o/OPTION]`
 
-Currently available options for the `[OPTION]` field include:
+Current available options for the `[OPTION]` field include:
 
 Option  | Description
 -------- | ------------------
-`fav` | Shows list of favourited contacts in the address book
+`fav` | Displays all favourited contacts in the *Contact List*
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To favourite a contact, use the <a href = "#favourite-a-contact--fav">fav</a> command.
@@ -463,51 +490,73 @@ Steps:
 
 Outcome:
 1. The *Status Box* will show a success message.
-2. All contacts are now displayed.
+2. All contacts are now displayed in the *Contact List*.
 
 **Example 2**
 
-Let's say you want to view all of your favourite commands.
-You can follow the steps below to view all 
+Let's say you want to view all of your favourite contacts.
+You can follow the steps below to view all of your favourite contacts.
 
 Steps:
-1. Type `list` in the *Command Box*.
+1. Type `list o/fav` in the *Command Box*.
 2. Press Enter to execute.
 
 Outcome:
 1. The *Status Box* will show a success message.
-2. All contacts are now displayed.
+2. All favourite contacts are now displayed in the *Contact List*.
 
 #### Adding/replacing tags to a contact: `tag` 
 
-Adds or replaces tags to the specified contact by index.
+Adds or replaces tags to the specified contact.
 
-Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`
+Format: `tag INDEX [o/OPTION] [tc/CHILD_TAG]…​ [t/TAG]…​`
 
 * Tags the contact at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed contact list. 
+* The index refers to the index number shown in the displayed *Contact List*. 
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Currently available options for the `[OPTION]` field include:
+Current available options for the `[OPTION]` field include:
 
 Option  | Description
 -------- | ------------------
 `replace` | Replaces the currently existing tags with the given new set of tags 
-  
-Examples:
-*  `tag 4 t/School t/English` Adds the tags School and English to the 4th contact.
-*  `tag 2 o/replace tc/Alexa t/English` Replaces all existing tags of the 2nd contact with the 
-   child tag Alexa and the tag English.
+
+**Example 1**
+
+Let's say that the first contact has some tags, and you would like to add more tags to the existing tags of the first contact.
+You can follow the steps below to append more tags.
+
+Steps:
+1. Type `tag 1 t/School t/English` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The tags 'School' and 'English' are now added to the existing tags of the first contact.
+
+**Example 2**
+
+Let's say that you want to replace all the tags of the first contact.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `tag 1 o/replace tc/Alexa t/English` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The child tags for the first contact have been replaced with the child tag 'Alexa'. 
+3. The tags for the first contact have been replaced with the tag 'English'.
 
 #### Favourite a contact : `fav`
 
 Format: `fav INDEX [o/OPTION]`
 
 * Favourite the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
+* The index refers to the index number shown in the displayed *Contact List*.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Currently available options for the `[OPTION]` field include:
+Current available options for the `[OPTION]` field include:
 
 Option  | Description
 -------- | ------------------
@@ -518,10 +567,31 @@ When a contact is favourited, the star next to their name will become filled.
 When a contact is unfavourited, the star will turn empty.
 </div>
 
-Examples:
-* `list` followed by `fav 2` favourites the 2nd contact in the address book.
-* `find Betsy` followed by `fav 1` favourites the 1st contact in the results of the `find` command.
-* `fav 3 o/remove` unfavourites the 3rd contact in the address book.
+**Example 1**
+
+Let's say that you want to highlight the first contact as it is an important contact, you can do this by favouriting the first contact.
+You can follow the steps below to favourite a contact.
+
+Steps:
+1. Type `fav 1` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The first contact is now favourited, and the star in the contact is filled.
+
+**Example 2**
+
+Let's say that you want to unfavourite the first contact.
+You can follow the steps below to unfavourite the contact.
+
+Steps:
+1. Type `fav 1 o/remove` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The first contact is now unfavourited and the star in the contact is not filled.
 
 #### Sorting all contacts : `sort`
 
@@ -529,7 +599,7 @@ Sorts the address book in the order based on the given option.
 
 Format: `sort o/OPTION`
 
-Currently available options for the `[OPTION]` field include:
+Current available options for the `[OPTION]` field include:
 
 Option  | Description
 -------- | ------------------
@@ -546,12 +616,31 @@ If sort is entered after executing find, a sorted found list will be displayed a
 The sort order will also be saved and the full address book will be sorted.
 </div>
 
-Examples:
-* `sort o/name` returns the contact list sorted in alphabetical order.
-* `sort o/date` returns the contact list sorted in chronological order.
-* `find Alice` followed by `sort o/name` returns the list of contacts found sorted in alphabetical order.
+**Example 1**
 
+Let's say you want to sort the address book by the date the contacts were added.
+You can follow the steps below to do so.
 
+Steps:
+1. Type `sort o/date` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The *Contact List* is now sorted by the date the contacts were added.
+
+**Example 2**
+
+Let's say you searched for contacts tagged with `teacher` and want to sort the contacts found by alphabetical order.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `sort o/name` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The *Contact List* is now in alphabetical order.
 
 #### Clearing all entries : `clear`
 
@@ -564,9 +653,32 @@ The <code>TAG</code> here does not differentiate between child tags and regular 
 This command will delete all entries that match **any** of the given tags.
 </div>
 
-Examples:
-* `clear` deletes all entries in the address book.
-* `clear t/teacher` deletes all contacts with the tag `teacher`
+**Example 1**
+
+Let's say you want to clear all contacts from ParentPal.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `clear` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The *Contact List* is now empty.
+
+**Example 2**
+
+Let's say you want to clear all contacts tagged with `teacher`.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `clear t/teacher` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. All contacts tagged with `teacher` are removed from the *Contact List* if none of them are involved in appointments.
+   Otherwise, an error message will be shown.
 
 ### Appointment Book Commands
 
@@ -574,15 +686,15 @@ Examples:
 
 Adds an appointment to the appointment book.
 
-Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACTINDEX]…​ [tc/CHILDTAG]…​`
+Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILD_TAG]…​`
 
-* Contact in the address book at the specified `CONTACTINDEX` is added to the appointment.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The contact in the *Contact List* at the specified `CONTACT_INDEX` is added to the appointment.
+* The index refers to the index number shown in the displayed *Contact List*.
+* The index **must be a positive integer** 1, 2, 3, …​ 
 * `DATE` has to be in the format "`dd/MM/yyyy` `HH:mm`".
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-An appointment with the exact same name, date, time and address as an appointment that already exists in the appointment book cannot be added.
+An appointment with the exact same name, date, time and address as an appointment that already exists in the <i>Appointment List</i> cannot be added.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -591,7 +703,7 @@ ParentPal currently does not support checking for clashing appointments. Please 
 
 **Example 1**
 
-Say you just received the details of the annual parent-teacher meeting at Alice's school.
+Let's say you just received the details of the annual parent-teacher meeting at Alice's school.
 You can follow the steps below to add the appointment to ParentPal.
 
 Steps:
@@ -600,7 +712,7 @@ Steps:
 
 Outcome:
 1. The *Status Box* will show a success message. 
-2. The appointment appears in the appointment list.
+2. The appointment appears in the *Appointment List*.
 
 #### Deleting an appointment : `deleteAppt`
 
@@ -614,7 +726,7 @@ Format: `deleteAppt INDEX`
 
 **Example 1**
 
-Say you are viewing the full list of appointments and you want to delete the 2nd appointment in the appointment list.
+Let's say you are viewing the full list of appointments, and you want to delete the 2nd appointment in the appointment list.
 You can follow the steps below to do so.
 
 Steps:
@@ -623,45 +735,54 @@ Steps:
 
 Outcome:
 1. The *Status Box* will show a success message.
-2. The 2nd appointment in the appointment list is removed.
+2. The 2nd appointment in the *Appointment List* is removed.
 
 **Example 2**
 
-Say you want to delete an appointment named 'PTM'.
-You can follow the steps below to do so.
+Let's say you want to delete an appointment named 'PTM'.
+You can follow the steps below to find all appointments named 'PTM', then delete one of them.
 
 Steps:
 1. Type `findAppt o/name ptm` in the *Command Box*.
 2. Press Enter to execute.
-3. Only appointments with 'ptm' in their name will be listed in the appointment list.
+3. Only appointments with 'ptm' in their name will be listed in the *Appointment List*.
 4. Say the first appointment is the one you want to delete. Type `deleteAppt 1` in the *Command Box*.
 5. Press Enter to execute.
 
 Outcome:
 1. The *Status Box* will show a success message.
-2. The 1st appointment in the appointment list is removed.
+2. The 1st appointment in the *Appointment List* is removed.
 
 #### Editing an appointment : `editAppt`
 
-Edits an existing appointment to the appointment book.
+Edits an existing appointment in the appointment book.
 
-Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACTINDEX]…​ [tc/CHILDTAG]…​`
+Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILD_TAG]…​`
 
-* Contacts in the address book at the specified `CONTACTINDEX` is added to the appointment.
+* Contacts in the *Contact List* at the specified `CONTACT_INDEX` is added to the appointment.
 * Edits the appointment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed appointment book.
+* The index refers to the index number shown in the displayed *Appointment Book*.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` has to be in the format "`dd/MM/yyyy` `HH:mm`".
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags and contacts, the existing tags and contacts of the contact will be removed 
   i.e the operation is not cumulative.
-  
-Examples:
 
-* `editAppt 1 n/PSG meeting a/ABC Secondary School c/1` Edits the name and address of the 1st appointment to
-be `PSG meeting` and `ABC Secondary School` respectively and replaces all related contacts with the 1st contact 
-on the contact list.
+**Example 1**
+
+Let's say you want to edit the first appointment in the full *Appointment List* so that the name and address is changed to
+`PSG meeting` and `ABC Secondary School` respectively and replace all related contacts with the 1st contact
+on the *Contact List*.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `editAppt 1 n/PSG meeting a/ABC Secondary School c/1` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. The first appointment's name, address and related contacts are updated.
 
 #### Finding appointments: `findAppt`
 
@@ -680,7 +801,7 @@ Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 * If *n* appointments can be found, message “*n* Appointment(s) listed!” will be displayed
   e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed.
   
-Currently available options for the `[OPTION]` field include:
+Current available options for the `[OPTION]` field include:
 
 Option | Description
 -------- |------------------
@@ -690,21 +811,52 @@ Option | Description
 `date` | Finds by the date of appointment
 `contact` | Finds by the name of the contacts involved in the appointment
 
+**Example 1**
 
-Examples:
-* `findAppt ptm` returns appointments with any field containing `PTM`.
-* `findAppt o/contact annie` returns appointments with at least one contact whose name contains `annie`.
+Let's say you want to search for all appointments with any fields containing 'ptm'.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `findAppt ptm` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. All appointments with 'ptm' in any of their fields will be listed in the *Appointment List*.
+
+**Example 2**
+
+Let's say you want to search for all appointments related to a contact named Annie.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `findAppt o/contact annie` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. All appointments with Annie as a related contact will be listed in the *Appointment List*.
 
 #### Listing all appointments : `listAppt`
 
-Shows a list of all appointments in the appointment book.
+Displays all appointments in the appointment book in the *Appointment List*.
 
 List of appointments is always sorted in chronological order.
 
 Format: `listAppt`
 
-Examples:
-* `listAppt` List all appointments in the appointment book.
+**Example 1**
+
+Let's say you want to view the full list of appointments.
+You can follow the steps below to do so.
+
+Steps:
+1. Type `listAppt` in the *Command Box*.
+2. Press Enter to execute.
+
+Outcome:
+1. The *Status Box* will show a success message.
+2. All the appointments will be listed in the *Appointment List*.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -744,55 +896,63 @@ Congratulations! You have successfully transferred your data to a new device.
 
 ## FAQ
 
-**Q**: What's the difference between a ChildTag and a regular Tag? <br>
+**Q**: What's the difference between a child tag and a regular tag? <br>
 **A**: ChildTags are meant to represent your children, useful especially 
-if you have multiple children. ChildTags will always appear at the front of the list of tags
+if you have multiple children. Child tags will always appear at the front of the list of tags
 for each contact and are displayed in a different color to differentiate them. Any command
-that works with regular Tags such as `find` will also work with ChildTags.
+that works with regular tags such as `find` will also work with child tags.
+
+**Q**: What's the difference between address book and contact list? What's the difference between appointment book and appointment list? <br>
+**A**: The address book refers to all the contacts currently stored by ParentPal, including what is not currently displayed in the interface. The contact list refers
+to what is currently displayed on screen. Similarly, the appointment book refers to all appointments stored by ParentPal
+while the appointment list only refers to what is currently displayed on screen, see [Interface of ParentPal](#interface-of-parentpal).
 
 **Q**: Why is your application named *ParentPal*? <br>
 **A**: It is named *ParentPal* because it aims to be a 'pal' to the busy parents who need help managing their kids' schedules and important contacts.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command Summary
+
+Action | Format | Examples
+--------|------------------ | -----
+​ | **General Commands** | 
+**Exit** | `exit` |
+**Help** | `help [COMMAND]` | `help find`
+**Theme** | `theme o/OPTION` | `theme o/light`
+​ | **Address Book Commands**
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILD_TAG]…​ [t/TAG]…​` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Delete** | `delete INDEX` | `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILD_TAG]…​ [t/TAG]…​`|`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find [o/OPTION] KEYWORD [MORE_KEYWORDS]`| `find John`
+**List** | `list [o/OPTION]`
+**Tag** | `tag INDEX [o/OPTION] [tc/CHILD_TAG]…​ [t/TAG]…​`| `tag 4 t/School t/English`
+**Favourite** | `fav INDEX [o/OPTION]` | `fav 3 o/remove`
+**Sort** | `sort o/OPTION` | `sort o/name`
+**Clear** | `clear [t/TAG]…​`
+​ | **Appointment Book Commands**
+**Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILD_TAG]…​` | `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
+**Delete** | `deleteAppt INDEX` | `deleteAppt 2`
+**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILD_TAG]…​` | `editAppt 1 n/PSG meeting a/ABC Secondary School c/1`
+**Find** | `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​` | `findAppt PTM`
+**List** | `listAppt`
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
 * **Action**: Executed command
-* **Address book**: Section of the application that stores and manages data related to contacts
+* **Address book**: Section of the application that stores and manages contact data
 * **Appointment**: Entry in the appointment book containing an appointment's information
-* **Appointment list**: List of appointments displayed
-* **Appointment book**: Section of the application that stores and manages data related to appointments
-* **Backup file**: JSON file that stores address and appointment book data in the hard disk
-* **CLI**: Application where you perform actions by typing commands in the Command Box
-* **Contact**: Entry in the address book containing a contact's contact information
-* **Contact list**: List of contacts displayed
+* **Appointment list**: List of appointments displayed, see [Interface of ParentPal](#interface-of-parentpal)
+* **Appointment book**: Section of the application that stores and manages appointment data
+* **CLI**: Application where you perform actions by typing commands into a command box
+* **Command**: The input the user enters into the *Command Box* to perform an action
+* **Contact**: Entry in the address book containing a contact's information
+* **Contact list**: List of contacts displayed, see [Interface of ParentPal](#interface-of-parentpal)
 * **GUI**: Application where you interact with it via graphical icons such as buttons
 * **Index**: Index number shown in the displayed contact/appointment list
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-​ | **General Commands**
-**Exit** | `exit`
-**Help** | `help [COMMAND]` <br> e.g., `help find`
-**Theme** | `theme o/OPTION` <br> e.g., `theme o/light`
-​ | **Address Book Commands**
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [o/OPTION] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find John`
-**List** | `list [o/OPTION]`
-**Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`
-**Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
-**Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
-**Clear** | `clear [t/TAG]…​`
-​ | **Appointment Book Commands**
-**Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACTINDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
-**Delete** | `deleteAppt INDEX` <br> e.g., `deleteAppt 2`
-**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACTINDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `editAppt 1 n/PSG meeting a/ABC Secondary School c/1`
-**Find** | `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `findAppt PTM`
-**List** | `listAppt`
