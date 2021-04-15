@@ -181,7 +181,7 @@ before proceeding.
 
 </div>
 
-## Viewing help : `help`
+## Viewing Help : `help`
 
 Displays the entire User Guide for ease of reference.
 
@@ -190,7 +190,7 @@ Displays the entire User Guide for ease of reference.
 **Format**: `help`
 
 
-## Adding a person: `add`
+## Adding a Person: `add`
 
 Adds a person to the address book.
 
@@ -214,13 +214,13 @@ Adds a person to the address book.
 | `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager`, and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.                     |
 | `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer`, and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`.         |
 
-## Listing all persons : `list`
+## Listing All Persons : `list`
 
 Lists all persons in the address book.
 
 **Format**: `list`
 
-## Editing a person : `edit`
+## Editing Persons : `edit`
 
 Edits an existing person in the address book.
 
@@ -265,9 +265,10 @@ To bulk edit, either do:
 
 </div>
 
-## Locating persons: `find`
+## Locating Persons: `find`
 
-Finds persons whose field(s) contain any of the given keywords.
+Finds person(s) whose field(s) contain any of the given keywords.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Currently Searchable fields:** Name, Email, Tag, Remark<br>
@@ -291,7 +292,7 @@ Finds persons whose field(s) contain any of the given keywords.
 
 ![Find Command UI](images/UG_Find%20Command.png)
 
-### Searching all searchable fields
+### Searching All Searchable Fields
 
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -302,7 +303,7 @@ Finds persons whose field(s) contain any of the given keywords.
 | `find Jon`        | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
 | `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. people named `Alex Yeoh`, `David Li`          |
 
-### Searching by specific fields
+### Searching by Specific Fields
 
 **Format**: `find FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
 
@@ -329,7 +330,7 @@ Finds persons whose field(s) contain any of the given keywords.
 | `find -r Manager`   | Returns people with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
 
 
-## Deleting a person : `delete`
+## Deleting Persons : `delete`
 
 Deletes the specified person(s) from the address book.
 
@@ -451,7 +452,7 @@ client is installed and configured properly.
 | `email 1 2`      | Email person at index 1 and 2             |
 
 
-## Clearing all entries : `clear`
+## Clearing All Entries : `clear`
 
 Clears all entries from the address book.
 
@@ -463,9 +464,9 @@ Clears all entries from the address book.
 
 **Format**: `clear`
 
-## Exiting the program : `exit`
+## Exiting A-Bash Book : `exit`
 
-Exits the program.
+Saves and exits A-Bash Book.
 
 **Format**: `exit`
 
@@ -557,11 +558,11 @@ Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supp
 | `add 1` | <kbd>DOWN</kbd> | `add 2` |
 | `add 2` | <kbd>UP</kbd> | `add 1` |
 
-## Aliasing commands : `alias`
+## Aliasing Commands : `alias`
 
 The alias command allows you to create shortcut command (also known as command alias) to the actual command.
 
-### Add an alias: `alias add`
+### Add an Alias: `alias add`
 
 Adds an alias to address book.
 
@@ -577,7 +578,7 @@ Adds an alias to address book.
 | `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
 | `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e f Alex Yeoh will now return contacts equals or similar to Alex Yeoh). |
 
-### Delete an alias: `alias delete`
+### Delete an Alias: `alias delete`
 
 Deletes an existing alias from address book.
 
@@ -592,14 +593,18 @@ Deletes an existing alias from address book.
 | `alias delete ls` | Removes the alias `ls` |
 | `alias delete f`  | Removes the alias `f`  |
 
-### List all aliases: `alias list`
+### List All Aliases: `alias list`
 
 Lists all alias(es) in the address book.
 
 **Format**: `alias list`
 
+<div markdown="span" class="alert alert-info">
+
 :information_source: The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
 keyboard action, the list of your aliases will disappear and show the list of existing commands again.
+
+</div>
 
 ![Alias List](images/UG_Alias%20List%20Command.png)
 
@@ -629,14 +634,14 @@ options.
 | `filter -a`    | shows the contact's name and address only.               |
 | `filter -a -p` | shows the contact's name, address and phone number only. |
 
-## Tagging persons: `tag`
+## Tagging Persons: `tag`
 
 The tag command allows you to add and delete specific tags of persons.
 
 * Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
 * Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
-### Add tags to persons: `tag add`
+### Add Tags to Persons: `tag add`
 
 Add tags to persons in address book.
 
@@ -663,7 +668,7 @@ To bulk add tag, either do:
 * `tag add shown` to add tags to all the shown persons or,
 * `tag add selected` to add tags to all the selected persons
 
-### Delete tags from persons: `tag delete`
+### Delete Tags From Persons: `tag delete`
 
 Delete tags from persons in address book.
 
@@ -690,11 +695,11 @@ To bulk delete tag, either do:
 * `tag delete shown` to delete tags to all the shown persons or,
 * `tag delete selected` to delete tags to all the selected persons
 
-## Saving the data
+## Saving the Data
 
 A-Bash Book data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-## Editing the data file
+## Editing the Data File
 
 A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users
 are welcome to update data directly by editing that data file.
@@ -710,7 +715,7 @@ If changes to the data file renders its format invalid, A-Bash Book will discard
 
 # FAQ
 
-## What is the Home Folder?
+## What Is the Home Folder?
 
 The home folder is the file system folder on your computer where A-Bash Book stores your data.
 
@@ -725,7 +730,7 @@ foldername (Home Folder)
 ├── preferences.json
 ```
 
-## How do I transfer my data to another Computer?
+## How Do I Transfer My Data to Another Computer?
 
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous A-Bash Book home folder.
 
