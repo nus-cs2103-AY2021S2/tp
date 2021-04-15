@@ -11,7 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/andrea-twl.png" width="200px">
 
-[[github](http://github.com/andrea-twl)]
+[[github](http://github.com/andrea-twl)][[Project Portfolio Page](team/andrea-twl.md)]
 
 * Role: Documentation, Testing
 * Responsibilities: Ensures quality of various project documents

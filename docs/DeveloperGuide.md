@@ -32,11 +32,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T11-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -73,11 +73,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -91,7 +91,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -99,10 +99,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
+Refer to the Sequence Diagrams in the [implementation of the delete command](#delete-feature) for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -113,22 +110,19 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the TutorsPet data.
-* stores a Person object that represents a student 
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed'.
-  * UI bounded to this list and Person object will be automatically updated when the data in the list change.
+* stores a Person object that represents a student
+* stores an ImportantDate object
+* stores a Lesson object
+  
+* exposes an unmodifiable `ObservableList<Person>`, `ObservableList<ImportantDate>` and `ObservableList<Lesson>` that can be 'observed'.
+  * UI bounded to these lists and Person, ImportantDate, Lesson objects will be automatically updated when the data in the list changes.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -136,7 +130,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -493,11 +487,12 @@ Step 7. If the sort command has been successfully executed, the success message 
 The sequence diagram below shows how the `sort` feature works:
 
 ![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
+![Activity Diagram for Execute Sort Command](images/ExecuteSortCommandSequenceDiagram.png)
 
 The activity diagram shows the workflow when a `sort` command is executed:
 
 ![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
-![Activity Diagram for Execute Sort Command](images/ExecuteSortActivityDiagram.png)
+
 
 #### Design consideration:
 
@@ -546,7 +541,7 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 The sequence diagram below shows how the `levelup` feature works:
 ![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
-![Activity Diagram for Execute LevelUp Command](images/ExecuteLevelUpActivityDiagram.png)
+![Activity Diagram for Execute LevelUp Command](images/ExecuteLevelUpCommandSequenceDiagram.png)
 
 The activity diagram shows the workflow when a `levelup` command is executed:
 ![Activity Diagram for LevelUp Command](images/LevelUpActivityDiagram.png)
@@ -602,11 +597,10 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 The sequence diagram below shows how the `leveldown` feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
-
+![Activity Diagram for Execute LevelDown Command](images/ExecuteLevelDownCommandSequenceDiagram.png)
 
 The activity diagram shows the workflow when a `leveldown` command is executed:
 ![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
-![Activity Diagram for Execute LevelDown Command](images/ExecuteLevelDownActivityDiagram.png)
 
 #### Design consideration:
 
@@ -886,7 +880,7 @@ window continues to display the correct list of lessons for each day.
 
 ### Product scope
 
-**Target user profile**: Private tuition teachers
+**Target user profile**: Private tuition teacher
 
 * has a need to manage a significant number of student contacts
 * has to plan lessons based on each student's profile
@@ -905,25 +899,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   
 | `* * *`  | user                                       | delete a student's contact      | I can remove entries that I no longer need and reduce cluttering                                  
 | `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed
-| `* *`    | user                                       | keep track of dates relevant to my students | I can plan my lessons according to their examination dates
+| `* *`    | user                                       | keep track of my students' exam dates | I can plan my lessons according to their examination dates
 | `* *`    | user                                       | find a student by name          | I can locate details of students without having to go through the entire list
 | `* *`    | user                                       | find a student by school        | I can plan my lesson/schedules according to their school’s curriculum   
 | `* *`    | user                                       | find a student by subject       | I can distinguish my students if I am teaching more than 1 subject
 | `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week     
 | `* *`    | user                                       | easily check the current education level of my students | I can prepare the correct lesson material for them
 | `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes
+| `* *`    | expert user | access my most commonly searched contacts quicker | I can save time
+| `* *`    | expert user with many new students | increase the speed of inputting my students’ detail | I can save time
 | `*`      | user                                       | mass update all student levels  | I can keep my contacts up to date at the start of a new year
 | `*`      | expert user                                | add customized subjects to contacts | I can be able to access each group of students more easily
 | `*`      | expert user                                | attach remarks to contacts      | I can remember details that might not be covered in the original program
+| `*`      | expert user                                | be able to check a student's progress | I know what materials to bring to the student's house
+| `*`      | lazy user                                  | access certain functions with shortcuts instead of typing long keywords | I can save time when trying to retrieve students information
 | `*`      | user                                       | hide private contact details    | I can minimize chance of someone else seeing them by accident                
+| `*`      | forgetful user                              | reset my password | I can retrieve my account even when I forget my password
 
-*{More to be added}*
+
+
 
 ### Use cases
 
 (For all use cases below, the **System** is the `TutorsPet` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new student contact**
+**Use case: UC01 - Add a new student contact**
 
 **MSS**
 
@@ -952,7 +952,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
      * 1c1. TutorsPet shows an error message. <br>
        Use case ends.
 
-**Use case: Editing an existing student contact**
+**Use case: UC02 - Editing an existing student contact**
 
 **MSS**
 
@@ -981,7 +981,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
        
-**Use case: Delete a student contact**
+**Use case: UC03 - Delete a student contact**
 
 **MSS**
 
@@ -1004,7 +1004,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Display a student contact details**
+**Use case: UC04 - Display a student contact details**
 
 **MSS**
 
@@ -1027,7 +1027,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 2.
 
-**Use case: Search for a student contact**
+**Use case: UC05 - Search for a student contact**
 
 **MSS**
 
@@ -1050,7 +1050,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Sort the list view**
+**Use case: UC06 - Sort the list view**
 
 **MSS**
 
@@ -1073,7 +1073,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
 
-**Use case: Increase level of all students**
+**Use case: UC07 - Increase level of all students**
 
 **MSS**
 
@@ -1096,7 +1096,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Decrease level of all students**
+**Use case: UC08 - Decrease level of all students**
 
 **MSS**
 
@@ -1119,7 +1119,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add a new important date**
+**Use case: UC09 - Add a new important date**
 
 **MSS**
 
@@ -1142,7 +1142,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Deletes an important date**
+**Use case: UC10 - Deletes an important date**
 
 **MSS**
 
@@ -1165,7 +1165,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 2.
 
-**Use case: Lists important dates**
+**Use case: UC11 - Lists important dates**
 
 **MSS**
 
@@ -1182,7 +1182,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Opens schedule window**
+**Use case: UC12 - Opens schedule window**
 
 **MSS**
 
@@ -1205,7 +1205,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-**Use case: Clears all entries contact**
+**Use case: UC13 - Clears all entries contact**
 
 **MSS**
 
@@ -1222,7 +1222,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
   
-**Use case: Exit TutorsPet**
+**Use case: UC14 - Exit TutorsPet**
 
 **MSS**
 
@@ -1266,6 +1266,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Novice**: A user that is new to using TutorsPet
+* **MSS**: Main Success Scenario
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -1474,34 +1475,36 @@ Add a student with his/her details
 ### Viewing the schedule
 
 1. Viewing the schedule while all students are being shown.
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-  1. Test case: `schedule`<br>
-     Expected: Opens up the schedule window.
-  1. Test case: `schedulexyz`<br>
-     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
-  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
-     Expected: Similar to previous.
-1. Viewing the schedule window while adding or editing student contact.
-  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
-  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800.
-     Then enter `schedule`.<br>
-     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
-  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact)
-     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
-     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Test case: `schedule`<br>
+      Expected: Opens up the schedule window. 
+   1. Test case: `schedulexyz`<br>
+      Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
+      Expected: Similar to previous.
+1. Viewing the schedule window while adding or editing student contact. 
+   1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
+   1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
+      Then enter `schedule`.<br>
+      Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
+   1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact)
+      to edit the lesson to Monday 2000. Then enter `schedule`.<br>
+      Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
 1. Viewing the schedule window while schedule window is already opened.
-  1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
-  1. Test case: `schedule` <br>
-  1. Expected: Focuses back on the schedule window.
+   1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
+   1. Test case: `schedule` <br>
+      Expected: Focuses back on the schedule window.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
+1. Dealing with missing/corrupted data files 
+   1. Make sure there are three files, namely: ./data/addressbook.json, ./data/datesbook.json and ./data/lessonbook.json. <br>
+      If not, open the app, and close the app.
+   1. Open all three files in a text editor.
+   1. Remove the ending } character of the JSON file and save the file. 
+   1. Launch the app by running java -jar tutorspet.jar in the console. <br>
+      Expected: TutorsPet opened should have no entries.
+      
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
