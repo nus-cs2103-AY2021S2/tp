@@ -60,13 +60,13 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
     * **`help`** : Opens the [Command Summary](#command-summary) in the app.
 
-    * **`list`** : Lists all contacts.
+    * **`list`** : Lists all persons.
 
-    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a contact named `John Doe` to the address book.
+    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a person named `John Doe` to the address book.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd person shown in the current list.
 
-    * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all persons.
 
     * **`exit`** : Exits the app.
 
@@ -87,7 +87,7 @@ to [Features](#features).
 
 Command Line Interface (CLI) is a text-based interface in which commands are entered. A-Bash Book is
 CLI-based and will only interpret commands that are structured properly. This is called the
-**syntax** where a specific arrangement of words and arguments form a command that A-Bash Book can
+**syntax** where a specific arrangement of words and parameters form a command that A-Bash Book can
 understand.
 
 ## Examples of Command
@@ -119,7 +119,7 @@ e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John D
 
 Square brackets `[ ]` are used around an optional parameter.
 
-If there are multiple optional parameter, each argument is enclosed in its own set of square
+If there are multiple optional parameters, each optional parameter is enclosed in its own set of square
 brackets.
 
 e.g `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe` but
@@ -136,7 +136,7 @@ as `-t family` and `-t family -t cousin -t child`.
 
 ## Mutually Exclusive Parameters
 
-Braces (`{ }`) are used around arguments where the user must choose **only one** of the items inside the braces.
+Braces (`{ }`) are used around parameters where the user must choose **only one** of the items inside the braces.
 
 Vertical bars (`|`) are used to separate the items. There can be more than two
 mutually exclusive parameters.
@@ -237,7 +237,7 @@ Edits an existing person in the address book.
 * To remove the person’s remark, type `-r ` without specifying any remark after it.
 * To remove all the person’s tags, type `-t ` without specifying any tags after it.
 * To edit all the shown person, type `edit shown`
-* To edit all the selected person, type `edit selected` followed by the arguments
+* To edit all the selected person, type `edit selected` followed by the parameters
 
 </div>
 
@@ -299,7 +299,7 @@ Finds persons whose field(s) contain any of the given keywords.
 | Example           | Description                                                                                                                                       |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `find Jon`        | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
-| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. people named `Alex Yeoh`, `David Li`          |
+| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. persons named `Alex Yeoh`, `David Li`         |
 
 ### Searching by specific fields
 
@@ -307,7 +307,7 @@ Finds persons whose field(s) contain any of the given keywords.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Refer to [Field Summary](#field-summary) for a full list prefixes.<br>
+:information_source: Refer to [Field Summary](#field-summary) for the full list of fields and their corresponding command flags.<br>
 **Currently Searchable fields:** Name, Email, Tag, Remark
 
 </div>
@@ -321,11 +321,11 @@ Finds persons whose field(s) contain any of the given keywords.
 
 **Examples**:
 
-| Example             | Description                                                                                               |
-| ------------------- | --------------------------------------------------------------------------------------------------------- |
-| `find -n Alice Ben` | Returns people named `Alicia Yen` (Similar) and `Benjamin Koh` (Partial)                                  |
-| `find -t Market`    | Returns people tagged with `Marketing` (Partial)                                                          |
-| `find -r Manager`   | Returns people with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
+| Example             | Description                                                                                                |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `find -n Alice Ben` | Returns persons named `Alicia Yen` (Similar) and `Benjamin Koh` (Partial)                                  |
+| `find -t Market`    | Returns persons tagged with `Marketing` (Partial)                                                          |
+| `find -r Manager`   | Returns persons with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
 
 
 ## Deleting a person : `delete`
@@ -572,9 +572,9 @@ Adds an alias to address book.
 
 | Example                             | Description                                                                                                                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e ls will now generate the list of all contacts).                           |
+| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e `ls` will now generate the list of all persons).                           |
 | `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
-| `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e f Alex Yeoh will now return contacts equals or similar to Alex Yeoh). |
+| `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e `f` Alex Yeoh will now return persons equals or similar to Alex Yeoh). |
 
 ### Delete an alias: `alias delete`
 
@@ -625,8 +625,8 @@ options.
 | example        | description                                              |
 | -------------- | -------------------------------------------------------- |
 | `filter`       | Shows all fields.                                         |
-| `filter -a`    | shows the contact's name and address only.               |
-| `filter -a -p` | shows the contact's name, address and phone number only. |
+| `filter -a`    | shows the person's name and address only.               |
+| `filter -a -p` | shows the person's name, address and phone number only. |
 
 ## Tagging persons: `tag`
 
@@ -676,8 +676,8 @@ Delete tags from persons in address book.
 
 **Examples**:
 
-| Example                                        | Description                                                                       |
-| ---------------------------------------------- | --------------------------------------------------------------------------------- |
+| Example                                        | Description                                                                        |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the persons shown in the UI.                          |
 | `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the persons selected.                               |
 | `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from persons at index `1`, `2` and `3`. |
@@ -695,7 +695,7 @@ A-Bash Book data is saved in the hard disk automatically after any command that 
 
 ## Editing the data file
 
-A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+A-Bash Book data is saved as a JSON file `[JAR file location]/data/abashbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">
 
@@ -751,24 +751,24 @@ Install the app in the other computer and overwrite the empty data file it creat
 
 # Field Summary
 
-| Mandatory | Field        | Command Flag | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------- | ------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Yes       | Name         | `-n`         | Names should only contain alphanumeric characters and spaces, and it should not be blank                                                                                                                                                                                                                                                                                                                              |
-| Yes       | Email        | `-e`         | Emails should be of the format local-part@domain and adhere to the following constraints:<br>1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (!#$%&'*+/=?`{|}~^.-) `.<br>2. This is followed by a '@' and then a domain name. The domain name must:<br>    - be at least 2 characters long<br>    - start and end with alphanumeric characters |
-| Yes       | Company      | `-c`         | Company can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                               |
-| Yes       | Job Title    | `-j`         | Job Title can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
-| Yes       | Address      | `-a`         | Addresses can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
-| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                    |
-| No        | Tag          | `-t`         | Tags names should be alphanumeric and contains no spaces or symbols                                                                                                                                                                                                                                                                                                                                                   |
-| No        | Remark       | `-r`         | None                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Mandatory | Field        | Command Flag | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------- | ------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Yes       | Name         | `-n`         | Names should only contain alphanumeric characters and spaces, and should not be blank                                                                                                                                                                                                                                                                                                                                       |
+| Yes       | Email        | `-e`         | Emails should be of the format local-part@domain and adhere to the following constraints:<br>1. The local-part should only contain alphanumeric characters and the following special characters enclosed in parentheses (!#$%&'*+/=?`{|}~^.-). `<br>2. This is followed by a '@' and then a domain name. The domain name must:<br>    - be at least 2 characters long<br>    - start and end with alphanumeric characters   |
+| Yes       | Company      | `-c`         | Company can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                               |
+| Yes       | Job Title    | `-j`         | Job Title can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
+| Yes       | Address      | `-a`         | Addresses can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
+| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                    |
+| No        | Tag          | `-t`         | Tags names should only alphanumeric characters, and should not contain spaces or symbols                                                                                                                                                                                                                                                                                                                                    |
+| No        | Remark       | `-r`         | Remark can contain any character                                                                                                                                                                                                                                                                                                                                                                                            |
 
 # Glossary
 
-| Term     | Explanation                                                                      |
-| -------- | -------------------------------------------------------------------------------- |
-| Bash     | The well known terminal interpreter                                              |
-| CLI      | Command Line Interface. A text-based interface in which commands can be entered. |
-| GUI      | Graphical User Interface                                                         |
-| JSON     | JavaScript Object Notation, data storage format                                  |
-| Terminal | The Command Line Interface where text-based commands are entered.                |
+| Term             | Explanation                                                                                                                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bash             | The well known terminal interpreter                                                                                                                                                                |
+| CLI              | Command Line Interface. A text-based interface in which commands can be entered.                                                                                                                   |
+| GUI              | Graphical User Interface                                                                                                                                                                           |
+| JSON             | JavaScript Object Notation, data storage format                                                                                                                                                    |
+| Terminal         | The Command Line Interface where text-based commands are entered.                                                                                                                                  |
 | Case-insensitive | Uppercase `ABC` and lowercase `abc` letters are treated as being the same. <br> - `Alex Yeoh` and `alex yeoh` are treated as the same. <br> - `Photoshop` and `photoshop` are treated as the same. | 
