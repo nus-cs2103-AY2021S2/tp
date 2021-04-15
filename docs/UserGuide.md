@@ -53,6 +53,8 @@ We have included a large set of features in CoLAB to give you the greatest flexi
 
 In [Section 2.2: Reading this Document](#22-reading-this-document), you will find useful tips on efficiently reading this document.
 
+In [Section 2.3: Glossary](#23-glossary), you will find useful descriptions and meanings of terms used in this document.
+
 In [Section 3: Quick Start](#3-quick-start), you will find a quick start guide to get you started with using CoLAB.
 
 In [Section 4: Features](#4-features), you will find documentation on all of CoLAB's commands and features.
@@ -263,6 +265,27 @@ To achieve the best possible experience, avoid adding excessively long text to C
 * Time should be a valid time (from 0000 to 2359) where:
     * The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
     * The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
+
+### **2.3 Glossary**
+
+This subsection serves to provide a summary of descriptions and definitions of terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
+
+Term | Meaning
+--------|------------------
+**Graphical User Interface (GUI)** | A GUI allows users to use graphics to interact with a device. This includes graphical objects like icons, cursors, and buttons. Using these objects, a user can use a device without having to know commands.
+**Command Line Interface (GUI)** | A CLI allows users to use commands in the form of text as input to a device. Using these text-based commands, a user can can use a device without having to interact with graphical objects.
+**Command** | An instruction typed by a user, to be executed by CoLAB.
+**Field** | A portion of a command that requires information to be entered into.
+**Parameter** | A portion of a command that the user enters information into.
+**Prefix** | An abbreviation for the name of a field that is to be entered right before a parameter of a command. Prefix's end with a slash (/).
+**Project** | A project in CoLAB contains information about todos, deadlines, events and groupmates to help you keep track of everything you need to effectively manage a project.
+**Todo** | A todo in CoLAB represents a task that has to be done. These are usually short-term tasks that have to be done in a short timeframe or have no due date.
+**Deadline** | A deadline in CoLAB represents a project deadline that has to be completed before a due date.
+**Event** | An event in CoLAB represents a project-specific event that occurs on a particular day and time.
+**Groupmate** | A Groupmate in CoLAB represents the people you work with for a particular project.
+**Role** | A role associated with a groupmate in a project, such as 'leader'.
+**Contact** | A Contact in CoLAB represents contact information about a person.
+**Tag** | A tag associated with a contact, such as 'classmate'.
 
 --------------------------------------------------------------------------------------------------------------------
 
