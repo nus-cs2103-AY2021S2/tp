@@ -13,15 +13,45 @@ navigation_title: User Guide
 
 # What is A-Bash Book?
 
-A-Bash Book (ABB) is a Command Line Interface (CLI) based Employee and Business Contact Management System.
-CLI is a text-based interface where you can enter commands to perform various functions such as adding contact details into ABB.
+A-Bash Book (ABB) is a powerful Employee and Business Contact Management System.
 
-ABB is built to address the growing demands of businesses especially in a climate where large amounts of business information are being stored in various places. As the need to centralise data and optimise workflow increases, businesses are challenging current standards of retrieving operational data to achieve minimum lead times.
+A contact management system serves as a centralised platform for organizations to store contacts important to the 
+company.
 
-ABB acts as a centralised platform where you can store the contact details of people you work with, such as your colleagues and business partners. For starters, in ABB you can add, edit, and delete contacts. As you continue reading this guide, you will find that ABB offers features such as auto-complete to ease your contact management process.
+A-Bash Book comes with features that facilitate quick access and bulk operations to super charge your organization's 
+work flow.
 
-Fun fact: Bash is a highly popular CLI-based program. ABB utilises command patterns similar to Bash, hence the name, A-Bash Book (ABB).
-With similarities to Bash, we hope to minimise the learning curve for people with existing Bash experience.
+A-Bash Book also uses a [Command Line Interface (CLI)](#glossary) and is fully operable by keyboard. Not only is the interface 
+optimized for fast typists, but intuitive and welcoming for new users.
+
+As employees come and go, their business contacts can be lost with them. Besides serving as a centralised platform, 
+A-Bash Book was built to solve this problem by ensuring all the necessary contacts still remain in the system.
+
+# User Interface
+
+![Ui](images/UG_UI%20Guide.png)
+
+A-Bash Book's user interface can be categorized into 4 components.
+- Command Box
+- Result Display
+- Command List Panel
+- Person List Panel
+
+You may begin by typing in your command in the **Command Box** and hitting <kbd>Enter</kbd> to execute the command. A status message of the command will be displayed in the **Result Display**.
+
+On the left side, you may reference the available commands in the **Command List Panel**.
+
+Lastly, all persons will be displayed on the right side in the **Person List Panel**.
+
+## Person List Panel
+
+![Person List Reference ><](images/UG_UI%20Reference.png)
+
+Each person in the **Person List Panel** can have data.
+
+This data is stored in their respective fields and can be identified by referring to the image above.
+
+For more information on fields, you may refer to the [Field Summary](#field-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -44,7 +74,7 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 # Quickstart Guide
 
-1. Ensure that **Java 11** or above is installed in your computer.
+1. Ensure that you **Java 11** or above is installed in your computer.
 
 1. Download the latest **abashbook.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
 
@@ -53,21 +83,19 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 1. Double-click the **abashbook.jar** to start the app. The program window should appear in a few seconds.
    Note that the app contains some sample data, as seen in the picture below. <br>
-   ![Ui](images/UG_UI%20Guide.png)
-   ![Person List Reference ><](images/UG_UI%20Reference.png)
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands to try:
 
     * **`help`**: Opens the [Command Summary](#command-summary) in the app.
 
-    * **`list`**: Lists all contacts.
+    * **`list`**: Lists all persons.
 
-    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a contact named `John Doe` to the address book.
+    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a person named `John Doe` to the address book.
 
-    * **`delete 3`**: Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3`: Deletes the 3rd person shown in the current list.
 
-    * **`clear`**: Deletes all contacts.
+    * **`clear`**: Deletes all persons.
 
     * **`exit`**: Exits the app.
 
@@ -79,15 +107,14 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** For seasoned CLI users, this section is intended for non-technical users to understand the CLI syntax. While A-Bash Book
-adopts Bash syntax, the implementation is not in parity with Bash's syntax. Feel free to skip
-to [Features](#features).
+**:information_source: Note:** For seasoned CLI users, this section is intended for users who are unfamiliar with CLI and the syntax.
+Feel free to skip to [Features](#features).
 
 </div>
 
 Command Line Interface (CLI) is a text-based interface in which commands are entered. A-Bash Book is
 CLI-based and will only interpret commands that are structured properly. This is called the
-**syntax** where a specific arrangement of words and arguments form a command that A-Bash Book can
+**syntax** where a specific arrangement of words and parameters form a command that A-Bash Book can
 understand.
 
 ## Examples of Command
@@ -106,12 +133,13 @@ E.g `add -n John Doe -p 94326543 -e john@doe.com -a 45 Address #06-90`
 
 Command: `add`
 
-Command flags: `-n` , `-p`, `-e`, `-a`.
+Command flags: `-n` , `-p`, `-e`, `-a`
 
+Command flags might also take an argument, for example, `-n John Doe` or `-n -a -c`.
 
 ## Uppercase Words
 
-Words in `UPPER_CASE` are the parameters to be supplied by the user.
+Words in `UPPER_CASE` are the parameters that you can specify.
 
 e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
 
@@ -119,7 +147,7 @@ e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John D
 
 Square brackets `[ ]` are used around an optional parameter.
 
-If there are multiple optional parameter, each argument is enclosed in its own set of square
+If there are multiple optional parameters, each optional parameter is enclosed in its own set of square
 brackets.
 
 e.g `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe` but
@@ -136,7 +164,7 @@ as `-t family` and `-t family -t cousin -t child`.
 
 ## Mutually Exclusive Parameters
 
-Braces (`{ }`) are used around arguments where the user must choose **only one** of the items inside the braces.
+Braces (`{ }`) are used around arguments where you must choose **only one** of the items inside the braces.
 
 Vertical bars (`|`) are used to separate the items. There can be more than two
 mutually exclusive parameters.
@@ -174,20 +202,20 @@ Invalid examples are:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** For non-technical users, please refer to the [CLI Syntax](#cli-syntax) before proceeding.
+**:information_source: Note:** If you are not familiar with CLI and the syntax, please refer to the [CLI Syntax](#cli-syntax)
+before proceeding.
 
 </div>
 
-## Viewing help : `help`
+## Viewing Help : `help`
 
-Displays the entire User Guide for ease of reference.
-
-![Help Message UI](images/helpMessage.png)
+Displays a pop up window with a summary of the commands available for use in A-Bash Book.
 
 **Format**: `help`
 
+![Help Message UI](images/helpMessage.png)
 
-## Adding a person: `add`
+## Adding a Person: `add`
 
 Adds a person to the address book.
 
@@ -211,15 +239,15 @@ Adds a person to the address book.
 | `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager`, and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.                     |
 | `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer`, and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`.         |
 
-## Listing all persons : `list`
+## Listing All Person(s) : `list`
 
 Lists all persons in the address book.
 
 **Format**: `list`
 
-## Editing a person : `edit`
+## Editing Person(s) : `edit`
 
-Edits an existing person in the address book.
+Allows you to edit one or more person in the address book.
 
 **Format**: `edit { shown | selected | INDEX... } [-n NAME] [-p PHONE] [-c COMPANY] [-j JOB_TITLE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]...`
 
@@ -235,7 +263,7 @@ Edits an existing person in the address book.
 * To remove the person’s remark, type `-r ` without specifying any remark after it.
 * To remove all the person’s tags, type `-t ` without specifying any tags after it.
 * To edit all the shown person, type `edit shown`
-* To edit all the selected person, type `edit selected` followed by the arguments
+* To edit all the selected person, type `edit selected` followed by the parameters
 
 </div>
 
@@ -260,9 +288,9 @@ Edits an existing person in the address book.
 
 </div>
 
-## Locating persons: `find`
+## Locating Persons: `find`
 
-Finds persons whose field(s) contain any of the given keywords.
+Finds person(s) whose field(s) contain any of the given keywords.
 
 <div markdown="block" class="alert alert-info">
 
@@ -282,7 +310,9 @@ Finds persons whose field(s) contain any of the given keywords.
 
 ![Find Command UI](images/UG_Find%20Command.png)
 
-### Searching all searchable fields
+### Searching All Searchable Fields
+
+The `find` command will execute for all searchable fields if no command flags are specified. 
 
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -291,16 +321,18 @@ Finds persons whose field(s) contain any of the given keywords.
 | Example           | Description                                                                                                                                       |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `find Jon`        | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
-| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. people named `Alex Yeoh`, `David Li`          |
+| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. persons named `Alex Yeoh`, `David Li`         |
 
-### Searching by specific fields
+### Searching by Specific Fields
+
+The `find` command will execute for specific fields if you specify command flags. 
 
 **Format**: `find FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**
-* Refer to [Field Summary](#field-summary) for a full list prefixes.
+* Refer to [Field Summary](#field-summary) for the full list of fields and their corresponding command flags.
 * Currently searchable fields: Name, Email, Tag, Remark
 * You can only search 1 field at a time. e.g. `find -n Alice -t HR` is an invalid command
 
@@ -308,14 +340,14 @@ Finds persons whose field(s) contain any of the given keywords.
 
 **Examples**:
 
-| Example             | Description                                                                                               |
-| ------------------- | --------------------------------------------------------------------------------------------------------- |
-| `find -n Alice Ben` | Returns people named `Alicia Yen` (Similar) and `Benjamin Koh` (Partial)                                  |
-| `find -t Market`    | Returns people tagged with `Marketing` (Partial)                                                          |
-| `find -r Manager`   | Returns people with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
+| Example             | Description                                                                                                |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `find -n Alice Ben` | Returns persons named `Alicia Yen` (Similar) and `Benjamin Koh` (Partial)                                  |
+| `find -t Market`    | Returns persons tagged with `Marketing` (Partial)                                                          |
+| `find -r Manager`   | Returns persons with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
 
 
-## Deleting a person : `delete`
+## Deleting Persons : `delete`
 
 Deletes the specified person(s) from the address book.
 
@@ -354,9 +386,9 @@ or `delete shown` to delete all the shown persons.
 
 </div>
 
-## Selecting Persons : `select`
+## Selecting Person(s) : `select`
 
-Enables user to incrementally select multiple person objects to apply actions on.
+Allows you to incrementally select multiple person objects to apply actions on.
 
 **Format**: `select { clear | shown | show | INDEX... }`
 
@@ -369,7 +401,7 @@ Sub Command Format:
 The selected person(s) will have a highlighted index number to indicate selection status.
 
 ![Select UI Example](images/UG_Select%20Indicator.png)
-![select demo](images/ug_select%20command.png)
+![select demo](images/UG_Select%20Command.png)
 
 Examples:
 
@@ -404,9 +436,9 @@ Examples:
 
 </div>
 
-## Email Persons: `email`
+## Email Person(s): `email`
 
-Email command allows user to email selected persons using the operating system's default email
+Email command allows you to email selected persons using the operating system's default email
 client. Email client must be configured to allow command separated email values.
 
 <div markdown="block" class="alert alert-info">
@@ -435,7 +467,7 @@ client is installed and configured properly.
 | `email 1 2`      | Email person at index 1 and 2             |
 
 
-## Clearing all entries : `clear`
+## Clearing All Entries : `clear`
 
 Clears all entries from the address book.
 
@@ -447,9 +479,9 @@ Clears all entries from the address book.
 
 **Format**: `clear`
 
-## Exiting the program : `exit`
+## Exiting A-Bash Book : `exit`
 
-Exits the program.
+Saves and exits A-Bash Book.
 
 **Format**: `exit`
 
@@ -535,15 +567,15 @@ Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supp
 | `edit` | <kbd>UP/DOWN</kbd> | `edit 1` |
 | `edit 1` | <kbd>DOWN</kbd> | `edit 2` |
 | `edit 2` | <kbd>UP</kbd> | `edit 1` |
-| `add` | <kbd>UP/DOWN</kbd> | `add 1` |
-| `add 1` | <kbd>DOWN</kbd> | `add 2` |
-| `add 2` | <kbd>UP</kbd> | `add 1` |
+| `delete` | <kbd>UP/DOWN</kbd> | `delete 1` |
+| `delete 1` | <kbd>DOWN</kbd> | `delete 2` |
+| `delete 2` | <kbd>UP</kbd> | `delete 1` |
 
-## Aliasing commands : `alias`
+## Aliasing Commands : `alias`
 
 The alias command allows you to create shortcut command (also known as command alias) to the actual command.
 
-### Add an alias: `alias add`
+### Add an Alias: `alias add`
 
 Adds an alias to address book.
 
@@ -555,11 +587,11 @@ Adds an alias to address book.
 
 | Example                             | Description                                                                                                                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e ls will now generate the list of all contacts).                           |
+| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e `ls` will now generate the list of all persons).                           |
 | `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
-| `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e f Alex Yeoh will now return contacts equals or similar to Alex Yeoh). |
+| `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e `f` Alex Yeoh will now return persons equals or similar to Alex Yeoh). |
 
-### Delete an alias: `alias delete`
+### Delete an Alias: `alias delete`
 
 Deletes an existing alias from address book.
 
@@ -574,51 +606,60 @@ Deletes an existing alias from address book.
 | `alias delete ls` | Removes the alias `ls` |
 | `alias delete f`  | Removes the alias `f`  |
 
-### List all aliases: `alias list`
+### List All Aliases: `alias list`
 
 Lists all alias(es) in the address book.
 
 **Format**: `alias list`
 
+<div markdown="span" class="alert alert-info">
+
 :information_source: The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
 keyboard action, the list of your aliases will disappear and show the list of existing commands again.
+
+</div>
 
 ![Alias List](images/UG_Alias%20List%20Command.png)
 
 ## Filter Field Visibility: `filter`
 
-Filter command toggles visibility of fields based on user input options.
+Filter command allows you to toggle the visibility of person fields to allow you to hide fields that
+you are not interested in.
 
-**Format**: `filter [-OPTION]...`
+**Format**: `filter [-FLAG]...`
 
 ![Filter Command UI](images/UG_Filter%20Command.png)
 
-Each option should start with a hyphen `-` e.g. `-OPTION` and be separated by a white-space. Options
-which are excluded will be hidden. Refer to [Field Summary](#field-summary) for all the available
-options.
+These are the available flags:
 
-<div markdown="span" class="alert alert-info">
+- Name : `-n`
+- Email : `-e`
+- Company : `-c`
+- Job Title : `-j`
+- Address : `-a`
+- Phone Number : `-p`
+- Tag : `-t`
+- Remark : `-r`
 
-**:information_source: Note:** Refer to [Field Summary](#field-summary) for the available options
-
-</div>
+Flags in the filter command **do not need an argument** and **flags that are indicated will be
+visible**.
 
 **Examples**:
 
 | example        | description                                              |
 | -------------- | -------------------------------------------------------- |
-| `filter`       | Shows all fields.                                         |
-| `filter -a`    | shows the contact's name and address only.               |
-| `filter -a -p` | shows the contact's name, address and phone number only. |
+| `filter`       | Shows all fields.                                        |
+| `filter -a`    | shows the person's name and address only.                |
+| `filter -a -p` | shows the person's name, address and phone number only.  |
 
-## Tagging persons: `tag`
+## Tagging Person(s): `tag`
 
 The tag command allows you to add and delete specific tags of persons.
 
 * Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
 * Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
-### Add tags to persons: `tag add`
+### Add Tags to Person(s): `tag add`
 
 Add tags to persons in address book.
 
@@ -647,7 +688,7 @@ Add tags to persons in address book.
 
 </div>
 
-### Delete tags from persons: `tag delete`
+### Delete Tags From Person(s): `tag delete`
 
 Delete tags from persons in address book.
 
@@ -661,8 +702,8 @@ Delete tags from persons in address book.
 
 **Examples**:
 
-| Example                                        | Description                                                                       |
-| ---------------------------------------------- | --------------------------------------------------------------------------------- |
+| Example                                        | Description                                                                        |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the persons shown in the UI.                          |
 | `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the persons selected.                               |
 | `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from persons at index `1`, `2` and `3`. |
@@ -678,13 +719,14 @@ You can bulk delete tag by either doing:
 
 </div>
 
-## Saving the data
+## Saving the Data
 
 A-Bash Book data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-## Editing the data file
+## Editing the Data File
 
-A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users
+are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">
 
@@ -696,7 +738,7 @@ A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.j
 
 # FAQ
 
-## What is the Home Folder?
+## What Is the Home Folder?
 
 The home folder is the file system folder on your computer where A-Bash Book stores your data.
 
@@ -711,7 +753,7 @@ foldername (Home Folder)
 ├── preferences.json
 ```
 
-## How do I transfer my data to another Computer?
+## How Do I Transfer My Data to Another Computer?
 
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous A-Bash Book home folder.
 
@@ -739,24 +781,24 @@ Install the app in the other computer and overwrite the empty data file it creat
 
 # Field Summary
 
-| Mandatory | Field        | Command Flag | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------- | ------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Yes       | Name         | `-n`         | Names should only contain alphanumeric characters and spaces, and it should not be blank                                                                                                                                                                                                                                                                                                                              |
-| Yes       | Email        | `-e`         | Emails should be of the format local-part@domain and adhere to the following constraints:<br>1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (!#$%&'*+/=?`{|}~^.-) `.<br>2. This is followed by a '@' and then a domain name. The domain name must:<br>    - be at least 2 characters long<br>    - start and end with alphanumeric characters |
-| Yes       | Company      | `-c`         | Company can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                               |
-| Yes       | Job Title    | `-j`         | Job Title can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
-| Yes       | Address      | `-a`         | Addresses can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
-| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                    |
-| No        | Tag          | `-t`         | Tags names should be alphanumeric and contains no spaces or symbols                                                                                                                                                                                                                                                                                                                                                   |
-| No        | Remark       | `-r`         | None                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Mandatory | Field        | Command Flag | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------- | ------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Yes       | Name         | `-n`         | Names should only contain alphanumeric characters and spaces, and should not be blank                                                                                                                                                                                                                                                                                                                                       |
+| Yes       | Email        | `-e`         | Emails should be of the format local-part@domain and adhere to the following constraints:<br>1. The local-part should only contain alphanumeric characters and the following special characters enclosed in parentheses (!#$%&'*+/=?`{|}~^.-). `<br>2. This is followed by a '@' and then a domain name. The domain name must:<br>    - be at least 2 characters long<br>    - start and end with alphanumeric characters   |
+| Yes       | Company      | `-c`         | Company can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                               |
+| Yes       | Job Title    | `-j`         | Job Title can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
+| Yes       | Address      | `-a`         | Addresses can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
+| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                    |
+| No        | Tag          | `-t`         | Tags names should only alphanumeric characters, and should not contain spaces or symbols                                                                                                                                                                                                                                                                                                                                    |
+| No        | Remark       | `-r`         | Remark can contain any character                                                                                                                                                                                                                                                                                                                                                                                            |
 
 # Glossary
 
-| Term     | Explanation                                                                      |
-| -------- | -------------------------------------------------------------------------------- |
-| Bash     | The well known terminal interpreter                                              |
-| CLI      | Command Line Interface. A text-based interface in which commands can be entered. |
-| GUI      | Graphical User Interface                                                         |
-| JSON     | JavaScript Object Notation, data storage format                                  |
-| Terminal | The Command Line Interface where text-based commands are entered.                |
+| Term             | Explanation                                                                                                                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bash             | The well known terminal interpreter                                                                                                                                                                |
+| CLI              | Command Line Interface. A text-based interface in which commands can be entered.                                                                                                                   |
+| GUI              | Graphical User Interface                                                                                                                                                                           |
+| JSON             | JavaScript Object Notation, data storage format                                                                                                                                                    |
+| Terminal         | The Command Line Interface where text-based commands are entered.                                                                                                                                  |
 | Case-insensitive | Uppercase `ABC` and lowercase `abc` letters are treated as being the same. <br> - `Alex Yeoh` and `alex yeoh` are treated as the same. <br> - `Photoshop` and `photoshop` are treated as the same. | 
