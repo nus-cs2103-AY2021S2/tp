@@ -42,7 +42,7 @@ You may navigate this document using the Table of Contents provided below.
 
 2. Download the latest `linkme.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for `Link.me`.
+3. Copy the file to the folder you want to use as the _home folder_ for `Link.me`. We recommend you create a new folder for this.
 
 4. Double-click the file to start `Link.me`. A window similar to the one shown below should appear in a few seconds.
    Note how Link.me already contains some sample data. You may look through the sample data to get an idea of what
@@ -188,7 +188,7 @@ You can add a client to Link.me, by specifying each of the fields below:
 
 * Birthdate
   * should be in the format `YYYY-MM-DD`
-  * should be a valid date
+  * should be a valid date (before the current date)
 
 * Tags (optional)
   * should only contain alphanumeric characters
@@ -356,10 +356,15 @@ is exactly the same. Even with a difference of 1 minute, Link.me will schedule a
  the largest flexibility when using Link.me.
 </div>
 
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** You cannot schedule meetings in the past.
+</div>
+
 Example:
 
-* `schedule 2 m/Insurance Plan @ 2020-10-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client
-  on 28th October 2020 2:30 pm.
+* `schedule 2 m/Insurance Plan @ 2023-10-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client
+  on 28th October 2023 2:30 pm.
 
 #### Removing a meeting : `unschedule`
 
@@ -373,6 +378,9 @@ Removing meetings comes in three flavors:
 * Format: `unschedule expired`
   * Removes all expired meetings in the meeting list, i.e. meetings before the present date and time.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** All expired meetings have to be manually unscheduled. This is so that you can refer old meetings when scheduling the next.
+</div>
 
 Example:
 
@@ -393,9 +401,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
   , `Bo Yang`
 
-Examples:
+Examples: (Please refer to the sample data for this.)
 
-* `find John` returns `john` and `John Doe`
+* `find John` returns `John Doe`
 * `find Alex Jeff` returns `Alex Yeoh`, `Jeff Liu`<br>
   ![result for 'find alex jeff'](images/findAlexJeffResult.png)
 
@@ -435,7 +443,9 @@ You can view a notification window containing:
 * All meetings occurring today, arranged in order of time.
 * All client birthdays within the next two weeks, arranged in order of time.
 
-These timeframes were chosen to give you ample time to prepare for upcoming meetings, or prepare gifts for upcoming client birthdays.
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** The timeframes for notifications were chosen to give you ample time to prepare for upcoming meetings, or prepare gifts for upcoming client birthdays.
+</div>
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** This notification window is also shown when starting up Link.me.
@@ -473,7 +483,7 @@ invalid inputs.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file make its format invalid, Link.me will try to discard all data and start with an empty 
 data file at the next run. However, if the damage is too excessive, Link.me may be unable to start up.
-In the case that this happens, please manually delete the data file to start the app.
+In the case that this happens, please manually delete the data file in order to start the app successfully.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
