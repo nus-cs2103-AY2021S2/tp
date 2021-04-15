@@ -48,6 +48,7 @@ The developer guide describes the team's motive for creating RemindMe, and the u
     * **[Launch](#launch)**
     * **[Testing commands](#testing-commands)**
     * **[Saving data](#saving-data)**
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -192,6 +193,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 <br><br>
 **[Back to Table Of Content](#table-of-contents)**
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **3. Implementation**
 
@@ -571,6 +573,7 @@ as a pop-up window for you.
 **[Back to Table Of Content](#table-of-contents)**
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
 
@@ -604,6 +607,7 @@ compared to AB3, and additional GUI.
 **[Back to Table Of Content](#table-of-contents)**
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -1132,6 +1136,7 @@ Use Cases:<br>
    <br> Use case ends.
 
 **[Back to Table Of Content](#table-of-contents)**
+<div style="page-break-after: always;"></div>
 
 ### Non Functional Requirements
 
@@ -1162,6 +1167,7 @@ Term | Meaning
 --------------------------------------------------------------------------------------------------------------------
 
 **[Back to Table Of Content](#table-of-contents)**
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
