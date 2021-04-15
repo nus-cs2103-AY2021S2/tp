@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
+TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorising relevant contact information and keeping track of both lesson schedules and important dates.
 
 ## How to Navigate User Guide
 * To get an overview of this user guide, head to [1. About](#1-about).
@@ -26,7 +26,7 @@ You can return to Table of Contents by clicking this button <a href="#table-of-c
 --------------------------------------------------------------------------------------------------------------------
 ## 1. About
 This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
-Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorsPet. Each section of the guide can be read independently.
+Furthermore, the guide gives information on the User Interface (UI), and the other useful features of TutorsPet. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
 It is generally advised for new users to at least read through the [Quick Start](#2-quick-start) section to familiarise themselves with TutorsPet.
@@ -193,11 +193,12 @@ Education levels and subjects available cover the usual students who are more li
 will be explored in [Coming Soon](#4-coming-soon).
 </div>
 
-<div markdown="block" class="alert alert-warning">
-
-:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
-input in the app. For more details, see the [Field Format Summary](#61-field-format-summary) below.
+input in the app. Users will have to ensure the information they enter for these fields match up accordingly,
+e.g. A student contact in ABC Primary School will probably not be in sec3, or take subjects
+like chem and bio.
+
 </div>
 
 Example:
@@ -245,14 +246,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   If `y` is entered, the contact will be edited.
   If `n` is entered, the contact would not be edited.
   
-
-<div markdown="block" class="alert alert-warning">
-
-:exclamation: **Caution:**
-TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
-input in the app. For more details, see the [Field Format Summary](#61-field-format-summary) below.
-</div>
-
 Example:
 
 `edit 1 p/91234567 e/johndoe@example.com`
@@ -352,7 +345,7 @@ Prefix | Searching Criteria
 
 * **At least one** prefix must be used.
 
-* All 3 types of prefix can be used **concurrently**.
+* All 3 types of prefixes can be used **concurrently**.
 
 * The search is case-insensitive.
 
@@ -387,7 +380,7 @@ Other examples:
 Command     | Result
 ----------- |---------------------------------------------------
 `search n/eliza s/woodlands t/math`| displays a list of students whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
-`search n/Patrick Lim` | displays a list of students whose names are `patrick lim` and `Lim Zi Ying`
+`search n/patrick lim` | displays a list of students whose names are `Patrick Lim` and `Lim Zi Ying`
 `search s/woodlands` | displays a list of students studying in `woodlands primary school` and `woodlands secondary school`
 `search s/raffles hwa` | displays a list of students studying in `Raffles Institution` and `Hwa chong institution`
 `search t/chem` | displays a list of students with the subject `chem`
@@ -559,38 +552,34 @@ Command     | Result
 
 ### 3.3 Important Date Management
 
-#### 3.3.1 Adding an important date : `add-date`
+#### 3.3.1 Listing all important dates : `list-date`
+
+Shows a list of all important dates in TutorsPet.
+
+![list-date](images/DemoListDateCommand.png)
+
+Format: `list-date`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+#### 3.3.2 Adding an important date : `add-date`
 
 Adds an important date to TutorsPet.
 
 Format: `add-date d/DESCRIPTION dt/DETAILS`
 
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
-* Dates with the **exact same description and details** will be considered a duplicate and will not be added into TutorsPet
-* To avoid confusion, dates with the same description will also not be added into TutorsPet.
+* Dates with the **exact same description** will be considered a duplicate and will not be added into TutorsPet.
 * All dates would be accepted, including past dates. e.g. `2019-01-20`
-
-</div>
 
 Example: <br>
 
-`add-date d/math exam dt/2021-11-03 0800` adds an important date with description `math exam` and details `2021-11-03 0800`
+Entering the `add-date d/math exam dt/2021-11-03 0800` command will add an important date with description `math exam` 
+and details `2021-11-03 0800`
+
+* After the above command is executed, entering the `list-date` command will show the following:  
 
 ![add-date](images/DemoAddDateCommand.png)
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-#### 3.3.2 Listing all important dates : `list-date`
-
-Shows a list of all important dates in TutorsPet.
-
-Format: `list-date`
-
-![list-date](images/DemoListDateCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -600,20 +589,15 @@ Permanently deletes the specified important date from TutorsPet.
 
 Format: `delete-date INDEX`
 
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * Deletes the important date at the specified `INDEX`.
 
 * The index refers to the index number shown in the displayed important dates list.
 
-* The index **must be a positive integer** ranging from 1 to 2147483647.
-</div>
-
 Example: <br>
 
-`list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet
+Entering the `delete-date 2` command will delete the 2nd important date in TutorsPet. 
+
+* After the above command is executed, entering the `list-date` command will show the following: 
 
 ![delete-date](images/DemoDeleteDateCommand.png)
 
@@ -625,9 +609,9 @@ Example: <br>
 
 Shows a weekly schedule that displays lessons for the week.
 
-Format: `schedule`
-
 ![schedule popup](images/scheduleWindow.png)
+
+Format: `schedule`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -641,8 +625,8 @@ TutorsPet data are saved in the hard disk automatically after any command that c
 
 TutorsPet data are saved into three different JSON files: <br>
 1. **\[JAR file location]/data/addressbook.json** for storing contact details.
-2. **\[JAR file location]/data/datesbook.json** for storing important exam dates.
-3. **\[JAR file location]/data/lessonbook.json** for storing student lesson dates.
+2. **\[JAR file location]/data/datesbook.json** for storing important dates.
+3. **\[JAR file location]/data/lessonbook.json** for storing lesson details.
 
 
 <div markdown="block" class="alert alert-warning">
@@ -650,7 +634,7 @@ TutorsPet data are saved into three different JSON files: <br>
 
 * You are strongly discouraged from editing the files due to syncing of information between the three files.
 
-* If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
+* If your changes to the data file make its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
 
 </div>
 
@@ -660,12 +644,13 @@ TutorsPet data are saved into three different JSON files: <br>
 
 ### 4.1 Add a subject to teach **[coming in v2.0]**
 
-_Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet,
-while in v2.0, more personalised subjects can be added in._
+Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available in TutorsPet,
+while in v2.0, more personalised subjects can be added in.
 
 ### 4.2 Add profile picture for each contact **[coming in v2.0]**
-_Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
-by providing the file path to the picture._
+Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index 
+by providing the file path to the picture.
+
 --------------------------------------------------------------------------------------------------------------------
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -674,9 +659,9 @@ by providing the file path to the picture._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the three empty data files named `addressbook.json`, `datesbook.json`, `lessonbook.json`
-it creates with the corresponding files that contains the data of your previous TutorsPet home folder.
+it creates with the corresponding files that contain the data of your previous TutorsPet home folder.
 
-**Q**: Do I have to connect the internet to use this application? <br>
+**Q**: Do I have to connect to the internet to use this application? <br>
 **A**: No, TutorsPet is an offline application. No internet connection is needed.
 
 **Q**: What is the optimal display setting for this application? <br>
@@ -689,7 +674,7 @@ However, if you want to personalise your window size, the optimal display resolu
 **Q**: Why is there such a length limit for the fields of a student, i.e. name has a character limit of 60, address has a character limit of 254, and so on? <br>
 **A**: Limits are set so that users can view each student detail more effectively and have a better experience with TutorsPet.
 
-**Q**: Why is all my data cleared? <br>
+**Q**: Why has all my data been cleared? <br>
 **A**: You could have edited the data files accidentally and corrupted the data.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -708,17 +693,9 @@ Email                   | `e/`   | Y        | Should be in the format of **local
 Address                 | `a/`   | Y        | Any format | 254
 Guardian's name         | `gn/`  | Y        | Contains alphanumeric characters and spaces only | 60
 Guardian's phone number | `gp/`  | Y        | Contains numbers only; at least 3 digits long | 15
-Education level         | `lv/`  | Y        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad` | N.A.
+Education level         | `lv/`  | Y        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post-Junior College: `grad` | N.A.
 Subject                 | `t/`   | Y        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.| N.A.
 Lesson                  | `le/`  | Y        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`| N.A.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
-input in the app. Users will have to ensure the information they enter for these fields match up accordingly,
-e.g. A student contact in ABC Primary School will probably not be in sec3, or take subjects
-like chem and bio.
-
-</div>
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -738,9 +715,9 @@ Action | Format, Examples
 **[List](#327-listing-all-contacts--list)** | `list`
 **[Level Up](#328-increasing-level-of-all-students--levelup)** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/3 4`
 **[Level Down](#329-decreasing-level-of-all-students--leveldown)** | `leveldown [ex/INDEX]` <br> e.g., `leveldown`, `leveldown ex/1 2`
-**[Add dates](#331-adding-an-important-date--add-date)** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
+**[List dates](#331-listing-all-important-dates--list-date)** | `list-date`
+**[Add dates](#332-adding-an-important-date--add-date)** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
 **[Delete dates](#333-deleting-an-important-date--delete-date)** | `delete-date INDEX`<br> e.g., `delete-date 3`
-**[List dates](#332-listing-all-important-dates--list-date)** | `list-date`
 **[Schedule](#341-viewing-schedule--schedule)** | `schedule`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -751,9 +728,9 @@ Action | Format, Examples
 
 **Prefix**: Expressions that signal inputs of a certain field e.g. `n/` signals name field, `gp/` signals guardian's phone.
 
-**Case sensivitity**: Case-insensitive means that a word input in upper case or lower case will be treated the same way.
-Case-sensitive means the opposite.
+**Case-sensitivity**: Case-sensitive means that character inputs in upper case or lower case will be treated differently.
+Case-insensitive means the opposite.
 
-**Character limit**: The maximum length of characters a field of a student can take in
+**Character limit**: The maximum length of characters a field of a student can take in.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
