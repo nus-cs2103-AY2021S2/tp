@@ -19,13 +19,13 @@ import javafx.stage.Stage;
 
 @ExtendWith(ApplicationExtension.class)
 public class LabelWithIconTest {
-    private static final String CORRECT_IMG_PATH = "/view.images/fail.png";
-    private static final String WRONG_IMG_PATH = "/view.images/wrong.png";
+    private static final String IMG_PLACEHOLDER_PATH = "/view.images/fail.png";
+    private static final String WRONG_IMG_PATH = "/view.images/not-exist.png";
     private LabelWithIcon labelWithIconForTest;
 
     @Start
     private void start(Stage stage) {
-        labelWithIconForTest = new LabelWithIcon(CORRECT_IMG_PATH, "wrong");
+        labelWithIconForTest = new LabelWithIcon(IMG_PLACEHOLDER_PATH, "No Label and Icon Set");
         stage.setScene(new Scene(new StackPane(labelWithIconForTest.getRoot()), 0, 0));
         stage.show();
     }

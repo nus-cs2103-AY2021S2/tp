@@ -24,6 +24,10 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_POOL = "Pool list contains duplicate pool(s).";
     public static final String MESSAGE_DUPLICATE_PASSENGER_REF = "Two or more Pool(s) reference the same passenger.";
     public static final String MESSAGE_POOL_PASSENGER_INVALID = "Pool(s) contain passenger(s) not in passenger list.";
+    public static final String MESSAGE_POOL_PASSENGER_DAY_MISMATCH =
+            "Pool(s) contain passenger(s) with mismatched trip day.";
+    public static final String MESSAGE_POOL_DRIVER_IS_PASSENGER =
+            "Pool(s) contain passenger(s) that are driving themselves.";
 
     private final List<JsonAdaptedPassenger> passengers = new ArrayList<>();
     private final List<JsonAdaptedPool> pools = new ArrayList<>();
@@ -74,6 +78,12 @@ class JsonSerializableAddressBook {
             }
             if (pool.getPassengers().stream().anyMatch(passenger -> !addressBook.hasEqualPassenger(passenger))) {
                 throw new IllegalValueException(MESSAGE_POOL_PASSENGER_INVALID);
+            }
+            if (pool.getPassengers().stream().anyMatch(pass -> !pass.getTripDay().equals(pool.getTripDay()))) {
+                throw new IllegalValueException(MESSAGE_POOL_PASSENGER_DAY_MISMATCH);
+            }
+            if (pool.getPassengers().stream().anyMatch(pass -> pass.isSamePerson(pool.getDriver()))) {
+                throw new IllegalValueException(MESSAGE_POOL_DRIVER_IS_PASSENGER);
             }
             addressBook.addPool(pool);
         }

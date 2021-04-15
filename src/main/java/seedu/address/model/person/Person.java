@@ -25,4 +25,18 @@ public abstract class Person {
     public Phone getPhone() {
         return phone;
     }
+
+    /**
+     * Returns true if both persons have the same name and phone.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone());
+    }
 }

@@ -57,6 +57,9 @@ class JsonAdaptedPool {
         this.passengers = source.getPassengers().stream()
                 .map(JsonAdaptedPassenger::new)
                 .collect(Collectors.toList());
+        this.tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
         this.driver = new JsonAdaptedDriver(source.getDriver());
     }
 

@@ -13,14 +13,14 @@ import seedu.address.model.person.passenger.exceptions.PassengerNotFoundExceptio
 
 /**
  * A list of passengers that enforces uniqueness between its elements and does not allow nulls.
- * A passenger is considered unique by comparing using {@code Passenger#isSamePassenger(Passenger)}. As such, adding and
- * updating of passenger uses Passenger#isSamePassenger(Passenger) for equality so as to ensure that the passenger being
+ * A passenger is considered unique by comparing using {@code Passenger#isSamePerson(Passenger)}. As such, adding and
+ * updating of passenger uses Passenger#isSamePerson(Passenger) for equality so as to ensure that the passenger being
  * added or updated is unique in terms of identity in the UniquePassengerList. However, the removal of a passenger uses
  * Passenger#equals(Object) so as to ensure that the passenger with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Passenger#isSamePassenger(Passenger)
+ * @see Passenger#isSamePerson(Passenger)
  */
 public class UniquePassengerList implements Iterable<Passenger> {
 
@@ -33,7 +33,7 @@ public class UniquePassengerList implements Iterable<Passenger> {
      */
     public boolean contains(Passenger toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePassenger);
+        return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
     /**
@@ -69,7 +69,7 @@ public class UniquePassengerList implements Iterable<Passenger> {
             throw new PassengerNotFoundException();
         }
 
-        if (!target.isSamePassenger(editedPassenger) && contains(editedPassenger)) {
+        if (!target.isSamePerson(editedPassenger) && contains(editedPassenger)) {
             throw new DuplicatePassengerException();
         }
 
@@ -135,7 +135,7 @@ public class UniquePassengerList implements Iterable<Passenger> {
     private boolean passengersAreUnique(List<Passenger> passengers) {
         for (int i = 0; i < passengers.size() - 1; i++) {
             for (int j = i + 1; j < passengers.size(); j++) {
-                if (passengers.get(i).isSamePassenger(passengers.get(j))) {
+                if (passengers.get(i).isSamePerson(passengers.get(j))) {
                     return false;
                 }
             }

@@ -3,8 +3,6 @@ package seedu.address.model.person.passenger;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Passenger}'s {@code Name} matches any of the keywords given.
  */
@@ -18,7 +16,12 @@ public class AddressContainsKeywordsPredicate implements Predicate<Passenger> {
     @Override
     public boolean test(Passenger passenger) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(passenger.getAddress().toString(), keyword));
+                .anyMatch(keyword -> {
+                    String passengerAddressLowerCase = passenger.getAddress().toString()
+                            .toLowerCase().replaceAll("\\s+", " ");
+
+                    return passengerAddressLowerCase.contains(keyword);
+                });
     }
 
     @Override

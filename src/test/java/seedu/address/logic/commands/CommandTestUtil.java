@@ -27,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.testutil.EditPassengerDescriptorBuilder;
+import seedu.address.testutil.TypicalPassengers;
 
 /**
  * Contains helper methods for testing commands.
@@ -34,23 +35,45 @@ import seedu.address.testutil.EditPassengerDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_AMY_LOWER_CASE = VALID_NAME_AMY.toLowerCase();
+    public static final String VALID_NAME_AMY_FIRST_NAME_MIXED_CASE = "aMy";
+    public static final String VALID_NAME_AMY_LAST_NAME_MIXED_CASE = "BeE";
+    public static final String VALID_NAME_AMY_MIXED_CASE = VALID_NAME_AMY_FIRST_NAME_MIXED_CASE + " "
+            + VALID_NAME_AMY_LAST_NAME_MIXED_CASE;
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_CASSANDRA = "Cassandra Monday";
+    public static final String VALID_NAME_CASSANDRA_LOWER_CASE = VALID_NAME_CASSANDRA.toLowerCase();
+    public static final String VALID_FIRST_NAME_ELLE = TypicalPassengers.ELLE.getName().toString()
+            .split("\\s+")[0];
+    public static final String VALID_LAST_NAME_CARL = TypicalPassengers.CARL.getName().toString()
+            .split("\\s+")[1];
+    public static final String VALID_LAST_NAME_FIONA = TypicalPassengers.FIONA.getName().toString()
+            .split("\\s+")[1];
+    public static final String VALID_FIRST_NAME_AMY = VALID_NAME_AMY.split("\\s+")[0];
+    public static final String VALID_FIRST_NAME_AMY_LOWER_CASE = VALID_NAME_AMY.split("\\s+")[0].toLowerCase();
+    public static final String VALID_FIRST_NAME_BOB = VALID_NAME_BOB.split("\\s+")[0];
+    public static final String VALID_NAME_BOB_LOWER_CASE = VALID_NAME_BOB.toLowerCase();
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
+    public static final String VALID_ADDRESS_AMY_LOWER_CASE = VALID_ADDRESS_AMY.toLowerCase();
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_STREET_QUERY = "street";
 
     public static final DayOfWeek VALID_TRIPDAY_FRIDAY = DayOfWeek.FRIDAY;
     public static final DayOfWeek VALID_TRIPDAY_MONDAY = DayOfWeek.MONDAY;
     public static final LocalTime VALID_TRIPTIME_EVENING = LocalTime.of(18, 0);
     public static final LocalTime VALID_TRIPTIME_MORNING = LocalTime.of(8, 30);
+    public static final DayOfWeek VALID_TRIPDAY_AMY = DayOfWeek.WEDNESDAY;
+    public static final String VALID_TRIPDAY_AMY_LOWER_CASE = VALID_TRIPDAY_AMY.toString().toLowerCase();
     public static final DayOfWeek VALID_TRIPDAY_BOB = DayOfWeek.THURSDAY;
+    public static final String VALID_TRIPDAY_BOB_LOWER_CASE = VALID_TRIPDAY_BOB.toString().toLowerCase();
     public static final LocalTime VALID_TRIPTIME_BOB = LocalTime.of(19, 30);
     public static final double VALID_PRICE_AMY = 1.69;
     public static final double VALID_PRICE_BOB = 6.9;
     public static final Set<Passenger> EMPTY_PASSENGER_SET = new HashSet<Passenger>();
-    public static final String VALID_TRIPDAY_STR_FRIDAY = "FRIDAY";
-    public static final String VALID_TRIPDAY_STR_MONDAY = "MONDAY";
+    public static final String VALID_TRIPDAY_STR_FRIDAY = VALID_TRIPDAY_FRIDAY.toString();
+    public static final String VALID_TRIPDAY_STR_MONDAY = VALID_TRIPDAY_MONDAY.toString();
     public static final String VALID_TRIPTIME_STR_EVENING = "1800";
     public static final String VALID_TRIPTIME_STR_MORNING = "0830";
     public static final String VALID_TRIPDAY_STR_BOB = "THURSDAY";
@@ -60,12 +83,16 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HR = "hr";
     public static final String VALID_TAG_IT = "it";
+    public static final String VALID_TAG_IT_LOWER_CASE = VALID_TAG_IT.toLowerCase();
     public static final String VALID_TAG_FEMALE = "female";
+    public static final String VALID_TAG_FEMALE_LOWER_CASE = VALID_TAG_FEMALE.toLowerCase();
 
     public static final String VALID_COMMUTER_1 = "1";
     public static final String VALID_COMMUTER_2 = "2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_AMY_FIRST_NAME = " " + PREFIX_NAME + VALID_FIRST_NAME_AMY;
+    public static final String NAME_DESC_AMY_MIXED_CASE = " " + PREFIX_NAME + VALID_NAME_AMY_MIXED_CASE;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
@@ -165,7 +192,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPassengerList().size());
 
         Passenger passenger = model.getFilteredPassengerList().get(targetIndex.getZeroBased());
-        final String[] splitName = passenger.getName().fullName.split("\\s+");
+        final String[] splitName = passenger.getName().fullName.toLowerCase().split("\\s+");
         model.updateFilteredPassengerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPassengerList().size());

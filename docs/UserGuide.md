@@ -11,10 +11,10 @@ GreenMileageEfforts (GME) is a platform that helps the HR executive of any compa
 
 # 1. Introduction
 
-## 1.1 About Green Mileage Efforts
-Green Mileage Efforts(GME) is an efficient carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These [pools](#6-glossary) of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
+## 1.1 About GreenMileageEfforts
+GreenMileageEfforts(GME) is an efficient carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These [pools](#6-glossary) of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
 
-GME is a platform that follows a [Command-Line Interface (CLI)](#6-glossary) such that power users that are familiar can efficiently navigate the program.
+GME is a platform that follows a [Command-Line Interface (CLI)](#6-glossary) such that users familiar with a CLI can efficiently navigate the program.
 
 ## 1.2 Navigating the User Guide
 For help regarding the set up of GME, refer to the [“Quick Start"](#2-quick-start-) section.
@@ -37,7 +37,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 # 2. Quick start <a name = "quickstart"></a>
 
 1. Ensure you have Java 11 or above installed in your computer.
-2. Download the latest GreenMileageEfforts.jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
+2. Download the latest [CS2103T-W10-1][GreenMileageEfforts].jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
 3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**.
 4. Double click the file to start the aplication.
 5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you could try are:
@@ -79,38 +79,45 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ## 3.1 General Purpose Features
 
-## 3.1.1 User Interface
+### 3.1.1 User Interface
 
 The various sections of the User Interface are described as in the picture below.
 ![Ui_labelled](images/Ui_labelled.png)
 
-### 3.1.1 Viewing help : `help`
+### 3.1.2 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message with a quick summary of the available commands and how to format them. Shows how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 **Format:** `help`
 
-### 3.1.2 Clearing all entries : `clear`
+### 3.1.3 Clearing all entries : `clear`
 
 Clears all entries from the passenger list and pool list.
 
 **Format:** `clear`
 
-### 3.1.3 Exiting the program : `exit`
+### 3.1.4 Exiting the program : `exit`
 
 Exits the program.
 
 **Format:** `exit`
 
-### 3.1.4 Saving the data
+### 3.1.5 Saving the data
 
 GME data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 3.1.5 Editing the data file
+### 3.1.6 Editing the data file
 
 GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
+
+* Ensure that the following constraints are met if you decide to edit the file:
+    * There are no duplicate `Passengers`
+    * There are no duplicate `Pools`
+    * Only one `Pool` can reference a `Passenger`
+    * The `Passenger` referenced in `Pool` can be found in the `Passenger` object
+    * The `Passenger` in a `Pool` must have the same Trip Day as the `Pool`
 
 <div markdown="block" class="alert alert-warning">
 
@@ -150,9 +157,9 @@ Lists the passengers currently stored in the GME terminal.
 
 **Format:** `list`
 
-### 3.2.3 Editing a person : `edit`
+### 3.2.3 Editing a passenger : `edit`
 
-Edits an existing person in the GME terminal.
+Edits an existing passenger in the GME terminal.
 
 **Format:** `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]​`
 
@@ -161,17 +168,17 @@ Edits an existing person in the GME terminal.
 **:information_source: Notes about the edit command:**<br>
 
 * [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed passenger list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the passenger at the specified `INDEX`. The index refers to the index number shown in the displayed passenger list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `tag/` without
+* When editing tags, the existing tags of the passenger will be removed i.e adding of tags is not cumulative.
+* You can remove all the passenger’s tags by typing `tag/` without
   specifying any tags after it.
 </div>
 
 **Examples:**
-* `edit 1 p/91234567` Edits the phone number of the 1st person to be `91234567` respectively.
-* `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/91234567` Edits the phone number of the 1st passenger to be `91234567` respectively.
+* `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd passenger to be `Betsy Crower` and clears all existing tags.
 
 ### 3.2.4 Locating passengers by prefixes: `find`
 
@@ -187,10 +194,12 @@ Finds passengers whose names contain any of the given keywords.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
 * Only **one type of prefix** can be specified.
 * More than 1 keyword can be specified for a single prefix.
-* Keywords separated by space will require both keywords to be matched.
-  e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`.
+* Keywords separated by space will require both keywords to be matched in whole and cannot be broken apart.
+  e.g. `Hans Yang` will only return `Gruber Hans Yang` instead of `Bo Yang` and `Hans Gruber Yang`.
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
+* Searching with prefixes such as `n/` and `a/` which are anticipated to have multiple words separated by spaces will have multiple spaces shortened to one. Refer to 4th example for clarification.
 * `all` prefix for searching across names, addresses, tags and phone numbers quickly.
+* However, if any or all of the words are invalid arguments, searching with `all` will not tell you it is invalid. It will only show that no passengers with those arguments are found.
 </div>
 
 **Examples:**
@@ -199,6 +208,8 @@ Finds passengers whose names contain any of the given keywords.
   ![result for 'find serangoon'](images/findAddress.png)
 * `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`.
   ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
+* `find n/Alex Yeoh` with multiple spaces between Alex and Yeoh
+  ![result for 'find n/alex    yeoh'](images/findAlexMultipleSpace.png)
 
 ### 3.2.5 Deleting passengers: `delete`
 
@@ -214,13 +225,13 @@ Deletes the specific passenger from the GME terminal.
 * Multiple passengers can be deleted by including additional indexes after the first. 
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `search female` followed by `delete 3` deletes the *1st* passenger in the results of `search female` command.
+* `find tag/female` followed by `delete 3` deletes the *1st* passenger in the results of `find tag/female` command.
 * Passengers with a carpool arrangement cannot be deleted, `unpool` must first be done on the pools they are in before deletion.
 </div>
 
 **Examples:**
-* `list` followed by `delete 3` deletes the *3rd* person in the passenger list.
-* `delete 1 2 5` deletes the 1st, 2nd and 5th person in the passenger list. 
+* `list` followed by `delete 3` deletes the *3rd* passenger in the passenger list.
+* `delete 1 2 5` deletes the *1st*, *2nd* and *5th* passenger in the passenger list. 
 
 
 ## 3.3 Pool features
@@ -242,11 +253,11 @@ Selects passengers from the current view in the bottom left pane of the GME term
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​.
 * The order of the passengers' index does not matter.
-* You must select at least 1 person to pool with one command.
+* You must select at least 1 passenger to pool with one command.
 </div>
 
 **Examples**:
-* `find tag/female` followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3` selects the *2nd* and *3rd* person in the
+* `find tag/female` followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3` selects the *2nd* and *3rd* passenger in the
   results of `find tag/female` command, and assigns *Alice* with number *91234567* to be the driver of the passengers specified by the indices.
 
 
@@ -298,7 +309,7 @@ Lists the pools currently stored in the GME terminal.
 
 **Q:** Where can I find the data stored by GME terminal?
 
-**A:** The json file containing the data stored is named `GMEdata.json` and can be found in the `data` folder in the same directory where `GreenMileageEfforts.jar` file is saved.
+**A:** The json file containing the data stored is named **GMEdata.json** and can be found in the **data** folder in the same directory where **[CS2103T-W10-1][GreenMileageEfforts].jar** file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -325,7 +336,8 @@ Action | Format, Examples
 
 Term used | Meaning
 --------|------------------
-Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. Passenger | An employee carpooling with at least one driver.
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. 
+Passenger | An employee carpooling with at least one driver.
 TripDay | Day of the intended carpooling trip.
 TripTime | Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.

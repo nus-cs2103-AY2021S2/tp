@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.UniquePassengerList;
 import seedu.address.model.pool.Pool;
@@ -13,7 +14,7 @@ import seedu.address.model.pool.UniquePoolList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePassenger comparison)
+ * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -136,23 +137,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a pool that contains the given {@code driver} exists in the address book.
+     */
+    public boolean hasPoolWithDriver(Person driver) {
+        return pools.containsDriver(driver);
+    }
+
+    public boolean hasPoolWithDayTimePerson(TripDay tripDay, TripTime tripTime, Person person) {
+        return pools.hasPoolWithDayTimePerson(tripDay, tripTime, person);
+    }
+
+    /**
      * Adds a passenger to the address book.
      * The passenger must not already exist in the address book.
      */
     public void addPool(Pool p) {
         pools.add(p);
-    }
-
-    /**
-     * Replaces the given passenger {@code target} in the list with {@code editedPassenger}.
-     * {@code target} must exist in the address book.
-     * The passenger identity of {@code editedPassenger} must not be the same as another existing passenger in the
-     * address book.
-     */
-    public void setPool(Pool target, Pool editedPool) {
-        requireNonNull(editedPool);
-
-        pools.setPool(target, editedPool);
     }
 
     /**
@@ -169,7 +169,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return passengers.asUnmodifiableObservableList().size() + " passengers; "
                 + pools.asUnmodifiableObservableList().size() + " pools";
-        // TODO: refine later
     }
 
     @Override

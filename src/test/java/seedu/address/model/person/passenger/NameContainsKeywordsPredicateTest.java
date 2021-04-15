@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,6 +17,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.PassengerBuilder;
 
+/*
+Keywords changed to lowercase as parser will change all keywords to lowercase for the Predicate.
+ */
 public class NameContainsKeywordsPredicateTest {
 
     @Test
@@ -47,20 +51,17 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList(VALID_NAME_AMY.split("\\s+")[0]));
+                new NameContainsKeywordsPredicate(Collections.singletonList(
+                        VALID_NAME_AMY_LOWER_CASE.split("\\s+")[0]));
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY.split("\\s")));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY_LOWER_CASE.split("\\s")));
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY.split("\\s")[0],
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY_LOWER_CASE.split("\\s")[0],
                 VALID_NAME_BOB.split("\\s")[0]));
-        assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
-
-        // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aMy", "beE"));
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
     }
 
@@ -76,7 +77,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match phone and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_ADDRESS_BOB.split("\\s+")));
-        assertFalse(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+        assertFalse(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build()));
     }
 }

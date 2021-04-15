@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
 
@@ -107,6 +108,17 @@ public class ModelManager implements Model {
     public boolean hasPoolWithPassenger(Passenger passenger) {
         requireNonNull(passenger);
         return addressBook.hasPoolWithPassenger(passenger);
+    }
+
+    @Override
+    public boolean hasPoolWithDriver(Person driver) {
+        requireNonNull(driver);
+        return addressBook.hasPoolWithDriver(driver);
+    }
+    @Override
+    public boolean hasPoolWithDayTimePerson(TripDay tripDay, TripTime tripTime, Person person) {
+        requireAllNonNull(tripDay, tripTime, person);
+        return addressBook.hasPoolWithDayTimePerson(tripDay, tripTime, person);
     }
 
     @Override

@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.exceptions.DuplicatePoolException;
 import seedu.address.model.pool.exceptions.PoolNotFoundException;
@@ -122,6 +125,16 @@ public class UniquePoolList implements Iterable<Pool> {
     }
 
     /**
+     * Returns true if a pool that contains the given {@code driver} exists.
+     */
+    public boolean containsDriver(Person driver) {
+        return internalList.stream().anyMatch(pool ->
+                pool.getPassengers().stream().anyMatch(pass -> pass.isSamePerson(driver))
+                        && pool.getDriver().isSamePerson(driver)
+        );
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Pool> asUnmodifiableObservableList() {
@@ -157,5 +170,15 @@ public class UniquePoolList implements Iterable<Pool> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if a pool with the same tripDay, tripTime, and person as Driver exists.
+     */
+    public boolean hasPoolWithDayTimePerson(TripDay tripDay, TripTime tripTime, Person person) {
+        return this.internalList.stream().anyMatch(pool -> pool.getTripDay().equals(tripDay)
+                && pool.getTripTime().equals(tripTime)
+                && pool.getDriver().isSamePerson(person)
+        );
     }
 }

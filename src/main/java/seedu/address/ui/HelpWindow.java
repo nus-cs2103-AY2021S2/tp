@@ -21,6 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+    private static final String COMMAND_SUMMARY_IMG_PATH = "/images/command_summary.png";
 
     @FXML
     private Button copyButton;

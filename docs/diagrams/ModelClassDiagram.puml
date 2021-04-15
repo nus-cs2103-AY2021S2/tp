@@ -16,12 +16,20 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Person {
+Class Person
+Package Passenger {
 Class Passenger
 Class Address
+Class Price
+Class UniquePassengerList
+}
+together {
 Class Name
 Class Phone
-Class UniquePassengerList
+}
+Package Driver {
 Class Driver
+}
 }
 
 Package Pool {
@@ -33,9 +41,11 @@ Class Driver
 Package Tag {
 Class Tag
 }
-
+together {
 Class TripDay
 Class TripTime
+}
+note bottom of Tag : The multiplicity of tag is *, hidden behind the Title
 }
 
 Class HiddenOutside #FFFFFF
@@ -52,28 +62,32 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePassengerList
 AddressBook *--> "1" UniquePoolList
 
+Passenger -up-|> Person
+Driver -up-|> Person
+
+
 UniquePassengerList o--> "*" Passenger
-Passenger *--> Name
-Passenger *--> Phone
-Passenger *--> Address
-Passenger *--> TripDay
-Passenger *--> TripTime
+Passenger *--> "1" Name
+Passenger *--> "1" Phone
+Passenger *--> "1" Address
+Passenger *--> "1" TripDay
+Passenger *--> "1" TripTime
+Passenger *--> "0..1" Price
 Passenger *--> "*" Tag
 
-Driver *--> Name
-Driver *---> Phone
+Driver *--> "1" Name
+Driver *---> "1" Phone
 
 UniquePoolList o--> "*" Pool
-Pool *--> Driver
-Pool *--> TripDay
-Pool *--> TripTime
+Pool *--> "1" Driver
+Pool *--> "1" TripDay
+Pool *--> "1" TripTime
 Pool *--> "1..*" Passenger
 Pool *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+ModelManager ---->"~* " Pool : contains filtered >
+ModelManager ---->"~* " Passenger : contains filtered >
 
-ModelManager ---->" * filtered pool" Pool
-ModelManager ---->"~* filtered passenger" Passenger
+
 
 @enduml

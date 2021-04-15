@@ -22,10 +22,12 @@ Storage -|> AddressBookStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .left.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBook
-JsonSerializableAddressBook .right.> JsonAdaptedPassenger
-JsonSerializableAddressBook .right.> JsonAdaptedPool
-JsonAdaptedPassenger .right.> JsonAdaptedTag
-JsonAdaptedPool .right.> JsonAdaptedDriver
+JsonSerializableAddressBook -right-> "*" JsonAdaptedPassenger
+JsonSerializableAddressBook -right-> "*" JsonAdaptedPool
+JsonAdaptedPassenger -right-> "*" JsonAdaptedTag
+JsonAdaptedPool -right-> "1" JsonAdaptedDriver
+JsonAdaptedPool -up-> "1..*" JsonAdaptedPassenger
+JsonAdaptedPool -up-> "*" JsonAdaptedTag
 
 JsonAdaptedPool -[hidden]up- JsonAdaptedPassenger
 JsonAdaptedPassenger -[hidden]down- JsonAdaptedPool

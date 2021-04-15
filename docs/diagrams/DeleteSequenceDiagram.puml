@@ -12,7 +12,7 @@ participant ":CommandException" as CommandException LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant "model:Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("delete 1 2")
@@ -34,6 +34,10 @@ activate DeleteCommandParser
 DeleteCommandParser -> ParserUtil : parseDeleteIndex("1 2")
 activate ParserUtil
 
+loop number of tokens split by whitespace
+    ParserUtil -> ParserUtil : parseIndex(token)
+end
+
 return indexes
 deactivate ParserUtil
 
@@ -41,56 +45,57 @@ create DeleteCommand
 DeleteCommandParser -> DeleteCommand : indexes
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser : d
+DeleteCommand --> DeleteCommandParser
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteCommandParser -[hidden]-> AddressBookParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
+AddressBookParser --> LogicManager
 deactivate AddressBookParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
-loop number of passengers
-    DeleteCommand -> Model : deletePassenger(passengerIndex)
+DeleteCommand -> Model : getFilteredPassengerList()
+activate Model
+
+Model --> DeleteCommand : lastShownList
+deactivate Model
+
+loop number of passengers in lastShownList
+    DeleteCommand -> Model : hasPoolWithPassenger(passenger)
     activate Model
 
     Model --> DeleteCommand
     deactivate Model
 end
 
-alt passenger with pools found
-    alt no other passengers deleted
-        create CommandException
-        DeleteCommand -> CommandException : MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL
-        activate CommandException
-
-        CommandException --> DeleteCommand
-        deactivate CommandException
-    else other passengers without pools deleted
-        create CommandException
-        DeleteCommand -> CommandException : MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL_OTHERS_DELETED
-        activate CommandException
-
-        CommandException --> DeleteCommand
-        deactivate CommandException
-    end
-else no passenger with pools found
-    create CommandResult
-    DeleteCommand -> CommandResult : MESSAGE_DELETE_PASSENGER_SUCCESS
-    activate CommandResult
-
-    CommandResult --> DeleteCommand
-    deactivate CommandResult
+break pools containing passenger found
+    create CommandException
+    DeleteCommand -> CommandException
 end
 
-DeleteCommand --> LogicManager : result
+loop number of passengers in lastShownList
+    DeleteCommand -> Model : deletePassenger(passenger)
+    activate Model
+    deactivate Model
+end
+
+create CommandResult
+DeleteCommand -> CommandResult : targetedPassengers
+
+CommandResult --> DeleteCommand
+
+DeleteCommand --> LogicManager
 deactivate DeleteCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommand -[hidden]-> LogicManager
+destroy DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager

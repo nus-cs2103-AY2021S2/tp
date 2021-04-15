@@ -1,6 +1,11 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_STRING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_STRING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_STRING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_STRING;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -182,6 +187,9 @@ public class ParserUtil {
         requireNonNull(indices);
         final Set<Index> indicesSet = new HashSet<>();
         for (String index : indices) {
+            if (index.isBlank() || !index.chars().allMatch(Character::isDigit)) {
+                throw new ParseException(MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+            }
             indicesSet.add(parseIndex(index));
         }
         return indicesSet;
@@ -208,5 +216,43 @@ public class ParserUtil {
         } else {
             throw new ParseException(MESSAGE_NO_ARGS);
         }
+    }
+
+    /**
+     * Parses the keywords for each of the predicates. If parsing fails, the keyword is dropped as it isn't a valid
+     * search term.
+     * @param keywords search terms to be parsed.
+     * @param prefix prefix to operate on.
+     * @return list of valid keywords to search on for corresponding prefix.
+     */
+    public static List<String> parseAttributePredicateKeywords(List<String> keywords, String prefix) {
+        List<String> outputList = new ArrayList<>();
+
+        for (String s : keywords) {
+            try {
+                switch (prefix) {
+                case PREFIX_NAME_STRING:
+                    outputList.add(ParserUtil.parseName(s).toString());
+                    break;
+                case PREFIX_ADDRESS_STRING:
+                    outputList.add(ParserUtil.parseAddress(s).toString());
+                    break;
+                case PREFIX_PHONE_STRING:
+                    outputList.add(ParserUtil.parsePhone(s).toString());
+                    break;
+                case PREFIX_TAG_STRING:
+                    outputList.add(ParserUtil.parseTag(s).toString());
+                    break;
+                default:
+                    break;
+                }
+
+            } catch (ParseException ignored) {
+                // keyword is dropped as it isn't a valid term determined by parser
+                // exception dropped as an invalid argument for 1 of the prefixes does not necessarily apply to another
+            }
+        }
+
+        return outputList;
     }
 }

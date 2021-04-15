@@ -58,6 +58,9 @@ public class PoolCommand extends Command {
             + "to a pool.";
     public static final String MESSAGE_TRIPDAY_MISMATCH = "One or more of the passengers specified "
             + "have a trip day that does not match this pool driver's trip day.";
+    public static final String MESSAGE_DRIVER_IS_PASSENGER = "Driver %s cannot pool themselves.";
+    public static final String MESSAGE_PASSENGER_ALREADY_DRIVING =
+            "One or more passengers are already driving at this time.";
 
     private final Driver driver;
     private final TripDay tripDay;
@@ -66,8 +69,14 @@ public class PoolCommand extends Command {
     private final Set<Tag> tags;
 
     /**
-     * Creates a PoolCommand that adds a pool specified by {@code Driver}, {@code TripDay}, {@code TripTime}
-     * with passengers specified.
+     * Creates a PoolCommand that adds a pool specified by {@code driver}, {@code tripDay}, {@code tripTime},
+     * {@code tags}, and with passengers specified by {@code indexes}.
+     *
+     * @param driver Driver of the pool added.
+     * @param indexes Indexes of the passengers to be added to the pool.
+     * @param tripDay Trip day of the pool added.
+     * @param tripTime Trip time of the pool added.
+     * @param tags Tags associated with the pool added.
      */
     public PoolCommand(Driver driver, Set<Index> indexes, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
         requireNonNull(driver);
@@ -122,12 +131,20 @@ public class PoolCommand extends Command {
             throw new CommandException(MESSAGE_POOLS_CONTAIN_PERSON);
         }
 
+        if (passengers.stream().anyMatch(driver::isSamePerson)) {
+            throw new CommandException(String.format(MESSAGE_DRIVER_IS_PASSENGER, driver.getName()));
+        }
+
         boolean shouldWarn = checkTimeDifference(passengers);
 
         Pool toAdd = new Pool(driver, tripDay, tripTime, passengers, tags);
 
         if (model.hasPool(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_POOL);
+        }
+
+        if (passengers.stream().anyMatch(pass -> model.hasPoolWithDayTimePerson(tripDay, tripTime, pass))) {
+            throw new CommandException(MESSAGE_PASSENGER_ALREADY_DRIVING);
         }
 
         model.addPool(toAdd);

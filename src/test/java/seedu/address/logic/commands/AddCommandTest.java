@@ -20,6 +20,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
 import seedu.address.testutil.PassengerBuilder;
@@ -147,6 +150,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPoolWithDriver(Person driver) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPoolWithDayTimePerson(TripDay tripDay, TripTime tripTime, Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePassenger(Passenger passenger) {
             throw new AssertionError("This method should not be called.");
         }
@@ -196,7 +209,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPassenger(Passenger passenger) {
             requireNonNull(passenger);
-            return this.passenger.isSamePassenger(passenger);
+            return this.passenger.isSamePerson(passenger);
         }
     }
 
@@ -209,7 +222,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPassenger(Passenger passenger) {
             requireNonNull(passenger);
-            return passengersAdded.stream().anyMatch(passenger::isSamePassenger);
+            return passengersAdded.stream().anyMatch(passenger::isSamePerson);
         }
 
         @Override

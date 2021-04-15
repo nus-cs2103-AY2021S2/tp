@@ -26,8 +26,6 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PoolBuilder {
 
-    // TODO write to build a pool from index and model stub.
-
     public static final DayOfWeek DEFAULT_TRIPDAY = VALID_TRIPDAY_MONDAY;
     public static final LocalTime DEFAULT_TRIPTIME = VALID_TRIPTIME_MORNING;
 

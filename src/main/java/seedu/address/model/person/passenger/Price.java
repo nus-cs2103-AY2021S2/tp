@@ -10,8 +10,9 @@ public class Price {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The price you are willing to pay should be entered as a positive decimal number.";
-    public static final String VALIDATION_REGEX = "\\d+(\\.\\d\\d?)?";
+            "The price you are willing to pay should be entered as a positive decimal number rounded to 2 decimal "
+                    + "places or a positive whole number no more than 3 digits long.";
+    public static final String VALIDATION_REGEX = "\\d{1,3}(\\.\\d\\d?)?";
     public final Double value;
 
     /**

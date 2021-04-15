@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -29,7 +30,10 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments to be parsed.
+     * @return The EditCommand created from parsing the arguments.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -39,10 +43,15 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
+        if (argMultimap.getPreamble().isBlank()
+                || !argMultimap.getPreamble().trim().chars().allMatch(Character::isDigit)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
         }
 
         EditPassengerDescriptor editPassengerDescriptor = new EditPassengerDescriptor();
