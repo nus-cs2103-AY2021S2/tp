@@ -21,7 +21,7 @@ company.
 A-Bash Book comes with features that facilitate quick access and bulk operations to super charge your organization's 
 work flow.
 
-A-Bash Book also uses a [Command Line Interface (CLI)](#Glossary) and is fully operable by keyboard. Not only is the interface 
+A-Bash Book also uses a [Command Line Interface (CLI)](#glossary) and is fully operable by keyboard. Not only is the interface 
 optimized for fast typists, but intuitive and welcoming for new users.
 
 As employees come and go, their business contacts can be lost with them. Besides serving as a centralised platform, 
