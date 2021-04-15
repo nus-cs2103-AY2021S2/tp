@@ -441,10 +441,10 @@ Incremental Selection and `shown`:
 
 `select` command is best used with the following commands:
 
-- [`edit` command](#editing-a-person--edit)
-- [`delete` command](#deleting-a-person--delete)
-- [`tag` command](#tag--tag)
-- [`email` command](#email--email)
+- [`edit` command](#editing-persons--edit)
+- [`delete` command](#deleting-persons--delete)
+- [`tag` command](#tagging-persons-tag)
+- [`email` command](#email-persons-email)
 
 </div>
 
