@@ -66,9 +66,9 @@ Before you continue reading the rest of the User Guide, take note of the followi
 | `Code`                                                                   | Command text                    |
 | <kbd>Keyboard</kbd>                                                | Keyboard shortcut                |
 | **Bolded Text**                                                          | Important words to take note of |
-| <div markdown="span" class="alert alert-info">:information_source: Note </div> | Useful information                           |
-| <div markdown="span" class="alert alert-warning">:bulb: Tip </div>            | Tips      |
-| <div markdown="span" class="alert alert-danger">:exclamation: Warning </div>      | Warning message                 |
+| <div markdown="span" class="alert alert-info">:information_source: **Note** </div> | Useful information.                           |
+| <div markdown="span" class="alert alert-warning">:bulb: **Tip** </div>            | Helpful information that can enhance your experience.      |
+| <div markdown="span" class="alert alert-danger">:exclamation: **Warning** </div>      | Potentially dangerous action that might cause data loss.                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -698,7 +698,7 @@ autocompletion.
 
 **:information_source: Note**<br>
 
-Autocomplete index only works for the `EDIT` and `DELETE` commands.
+Autocomplete index only works for the `Edit` and `Delete` commands.
 
 </div>
 
@@ -758,7 +758,7 @@ A-Bash Book data is saved in the hard disk automatically after any command that 
 
 ## Editing the Data File
 
-A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users
+A-Bash Book data is saved as a JSON file `[JAR file location]/data/abashbook.json`. Advanced users
 are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">
