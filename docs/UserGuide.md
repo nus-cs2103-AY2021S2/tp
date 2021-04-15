@@ -900,7 +900,7 @@ Examples:
 
 The today view contains a summary of the events and deadlines due today.
 
-![Ui](images/today.png)
+![UG Section Today](images/ug_section_today.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 The today page displays the events and deadlines on the day that you open the today page. To prevent events and deadlines from changing abruptly without notice, the user interface does not update the today page automatically when the date changes.
