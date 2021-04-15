@@ -103,6 +103,8 @@ for more information.
 1. **Phone Number**
 1. **Email**
 
+<div style="page-break-after: always;"></div>
+
 ### Appointments
 ![AppointmentCard](images/AppointmentCard.png)
 1. **Index**
@@ -197,6 +199,8 @@ Format: `help [COMMAND]`
 * If command is specified, detailed information about the command will be displayed.
 * If multiple commands are specified, only the last command will be taken.
 
+<div style="page-break-after: always;"></div>
+
 **Example 1**
  
 Let's say you are unsure about the commands that ParentPal offers.
@@ -211,7 +215,9 @@ Outcome:
 2. A help window with details of all commands will open.
 
 ![help_1](images/help_1.png)
-   
+
+<div style="page-break-after: always;"></div>   
+
 **Example 2**
 
 Let's say that you want to view more details about the `add` command.
@@ -272,6 +278,8 @@ Dark theme:
 ParentPal's theme is set to dark by default.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Example 1**
 
 Let's say you would like to try ParentPal's light theme.
@@ -305,6 +313,8 @@ You can add a contact with only some of the information, you can fill in the res
 the <a href="#editing-a-contact--edit">edit</a> command.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Example 1**
 
 Let's say you want to add a contact, but you only know his phone number.
@@ -318,7 +328,9 @@ Outcome:
 1. The *Status Box* will show a success message.
 1. John Doe's contact will appear in the *Contact List*.
 ![add_1](images/add_1.png)
-  
+   
+<div style="page-break-after: always;"></div>
+
 **Example 2**
  
 Let's say you want to add contact of your child's math teacher, and you have all her details.
@@ -350,6 +362,8 @@ Format: `delete INDEX [MORE_INDEXES]…​`
 Contacts that are involved with appointments cannot be deleted.
 </div>
 
+<br>
+
 **Example 1**
 
 Let's say you want to delete the fifth contact in the *Contact List*.
@@ -363,6 +377,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 1. The fifth contact will disappear from the *Contact List*.
 ![delete_1](images/delete_1.png)
+   
+<div style="page-break-after: always;"></div>
 
 **Example 2**
 
@@ -400,6 +416,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILD_TAG]…�
 When editing tags, the existing tags of the contact will be replaced i.e. adding of tags is not cumulative. For cumulative addition of tags,
 see the <a href = "#addingreplacing-tags-to-a-contact-tag"><code>tag</code></a> command.
 </div>
+
+<br>
 
 **Example 1**
 
@@ -477,6 +495,8 @@ Example: <code>find o/tag t/first t/second</code>
   e.g. `Alex David` will return `Alex Yeoh`, `David Li`.
 * If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed
   e.g. when 0 results are found, "0 Contact(s) listed!" is displayed.
+  
+<div style="page-break-after: always;"></div>
 
 **Example 1**
 
@@ -492,6 +512,8 @@ Outcome:
 2. All the contacts whose name contains the word 'john' will be displayed in the *Contact List*.
 ![find_1](images/find_1.png)
    
+<div style="page-break-after: always;"></div>
+
 **Example 2**
 
 Let's say you only remember that a contact has the word 'lee' in his name or email. 
@@ -524,6 +546,8 @@ Option  | Description
 To favourite a contact, use the <a href = "#favourite-a-contact--fav"><code>fav</code></a> command.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Example 1**
 
 Let's say you want to view all your contacts again, as you have just filtered the contacts by some keywords.
@@ -537,6 +561,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. All contacts are now displayed in the *Contact List*.
 ![list_1](images/list_1.png)
+   
+<div style="page-break-after: always;"></div>
 
 **Example 2**
 
@@ -569,6 +595,8 @@ Current available options for the `[OPTION]` field include:
 Option  | Description
 -------- | ------------------
 `replace` | Replaces the currently existing tags with the given new set of tags 
+
+<br>
 
 **Example 1**
 
@@ -620,6 +648,8 @@ When a contact is favourited, the star next to their name will become filled.
 When a contact is unfavourited, the star will turn empty.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Example 1**
 
 Let's say that you want to highlight the first contact as it is an important contact, you can do this by favouriting the first contact.
@@ -634,6 +664,8 @@ Outcome:
 2. The first contact is now favourited, and the star in the contact is filled.
 ![fav_1](images/fav_1.png)
    
+<div style="page-break-after: always;"></div>
+
 **Example 2**
 
 Let's say that you want to unfavourite the first contact.
@@ -673,6 +705,8 @@ If sort is entered after executing find, a sorted found list will be displayed a
 The sort order will also be saved and the full address book will be sorted.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Example 1**
 
 Let's say you want to sort the address book by the date the contacts were added.
@@ -687,6 +721,8 @@ Outcome:
 2. The *Contact List* is now sorted by the date the contacts were added.
 ![sort_1](images/sort_1.png)
    
+<div style="page-break-after: always;"></div>
+
 **Example 2**
 
 Let's say you searched for contacts tagged with 'teacher' and want to sort the contacts found by alphabetical order.
@@ -713,6 +749,8 @@ Format: `clear [t/TAG]…​`
 The <code>TAG</code> here does not differentiate between child tags and regular tags. 
 This command will delete all entries that match **any** of the given tags.
 </div>
+
+<br>
 
 **Example 1**
 
@@ -766,6 +804,8 @@ An appointment with the exact same name, date, time and address as an appointmen
 ParentPal currently does not support checking for clashing appointments. Please make sure to check your availability before adding new appointments. This can be done with the help of findAppt by date.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Example 1**
 
 Let's say you just received the details of the annual parent-teacher meeting at Alice's school.
@@ -792,6 +832,8 @@ Format: `deleteAppt INDEX`
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<br>
+  
 **Example 1**
 
 Let's say you are viewing the full list of appointments, and you want to delete the 2nd appointment in the appointment list.
@@ -805,6 +847,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The 2nd appointment in the *Appointment List* is removed.
 ![deleteAppt_1](images/deleteAppt_1.png)
+   
+<div style="page-break-after: always;"></div>
 
 **Example 2**
 
@@ -840,6 +884,8 @@ Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [t
 * Existing values will be updated to the input values.
 * When editing tags and contacts, the existing tags and contacts of the contact will be removed 
   i.e the operation is not cumulative.
+  
+<div style="page-break-after: always;"></div>
 
 **Example 1**
 
@@ -886,6 +932,8 @@ Option | Description
 `date` | Finds by the date of appointment
 `contact` | Finds by the name of the contacts involved in the appointment
 
+<div style="page-break-after: always;"></div>
+
 **Example 1**
 
 Let's say you want to search for all appointments with any fields containing 'psg'.
@@ -899,6 +947,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. All appointments with 'ptm' in any of their fields will be listed in the *Appointment List*.
 ![findAppt_1](images/findAppt_1.png)
+   
+<div style="page-break-after: always;"></div>
 
 **Example 2**
 
@@ -923,6 +973,8 @@ Displays all appointments in the appointment book in the *Appointment List*.
 List of appointments is always sorted in chronological order.
 
 Format: `listAppt`
+
+<br>
 
 **Example 1**
 
@@ -961,6 +1013,8 @@ If your changes to the data file makes its format invalid, ParentPal will discar
 Changes to the data files may cause ParentPal to behave unexpectedly, edit the files at your own risk.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Transferring your data to another device
 #### Exporting your data
 1. Locate the **data** folder on your device which can be found in the same folder as your **parentpal.jar** file. 
@@ -974,8 +1028,6 @@ Changes to the data files may cause ParentPal to behave unexpectedly, edit the f
 Congratulations! You have successfully transferred your data to a new device.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## FAQ
 
 **Q**: What's the difference between a child tag and a regular tag? <br>
@@ -994,6 +1046,7 @@ while the appointment list only refers to what is currently displayed on screen,
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
