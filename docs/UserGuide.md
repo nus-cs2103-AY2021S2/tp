@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
+TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorising relevant contact information and keeping track of both lesson schedules and important dates.
 
 ## How to Navigate User Guide
 * To get an overview of this user guide, head to [1. About](#1-about).
@@ -26,7 +26,7 @@ You can return to Table of Contents by clicking this button <a href="#table-of-c
 --------------------------------------------------------------------------------------------------------------------
 ## 1. About
 This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
-Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorsPet. Each section of the guide can be read independently.
+Furthermore, the guide gives information on the User Interface (UI), and the other useful features of TutorsPet. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
 It is generally advised for new users to at least read through the [Quick Start](#2-quick-start) section to familiarise themselves with TutorsPet.
@@ -350,7 +350,7 @@ Prefix | Searching Criteria
 
 * **At least one** prefix must be used.
 
-* All 3 types of prefix can be used **concurrently**.
+* All 3 types of prefixes can be used **concurrently**.
 
 * The search is case-insensitive.
 
@@ -383,7 +383,7 @@ Other examples:
 Command     | Result
 ----------- |---------------------------------------------------
 `search n/eliza s/woodlands t/math`| displays a list of students whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
-`search n/Patrick Lim` | displays a list of students whose names are `patrick lim` and `Lim Zi Ying`
+`search n/patrick lim` | displays a list of students whose names are `Patrick Lim` and `Lim Zi Ying`
 `search s/woodlands` | displays a list of students studying in `woodlands primary school` and `woodlands secondary school`
 `search s/raffles hwa` | displays a list of students studying in `Raffles Institution` and `Hwa chong institution`
 `search t/CHEM` <br>`search t/chem` <br>`search t/Chem` | displays a list of students with the subject `chem`
@@ -441,7 +441,7 @@ Format: `list`
 #### 3.2.8 Increasing level of all students : `levelup`
 
 Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
-This feature can be used to do a mass update all the student's levels at the start of the school year.
+This feature can be used to do a mass update of all the student's levels at the start of the school year.
 
 If only some students' levels need to be changed, [edit](#322-editing-a-contact--edit) can be used instead.
 
@@ -484,7 +484,7 @@ after entering `levelup ex/1`, it advances all students by one level, excluding 
 
 ![AfterLevelUp2](images/DemoAfterLevelUpCommand2.png)
 
-1st student in the list still remains primary 5 whereas the rest of the student advances by one level/
+1st student in the list still remains as `pri5` whereas the rest of the student have advanced by one level
 
 Other examples:
 
@@ -545,7 +545,7 @@ Other examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
-`leveldown`   | demotes all students (except `pri` students) by one level
+`leveldown`   | demotes all students (except `pri1` students) by one level
 `leveldown ex/1 2`| demotes all students by one level, excluding the 2nd and 4th student in the list (and `pri1` students)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -563,8 +563,8 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 :bulb:**Tips:** <br>
 
 * `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
-* Dates with the **exact same description and details** will be considered a duplicate and will not be added into TutorsPet
-* To avoid confusion, dates with the same description will also not be added into TutorsPet.
+* Dates with the **exact same description and details** will be considered a duplicate and will not be added to TutorsPet
+* To avoid confusion, dates with the same description will also not be added to TutorsPet.
 * All dates would be accepted, including past dates. e.g. `2019-01-20`
 
 </div>
@@ -643,7 +643,7 @@ TutorsPet data are saved into three different JSON files: <br>
 
 * You are strongly discouraged from editing the files due to syncing of information between the three files.
 
-* If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
+* If your changes to the data file make its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
 
 </div>
 
@@ -654,11 +654,11 @@ TutorsPet data are saved into three different JSON files: <br>
 ### 4.1 Add a subject to teach **[coming in v2.0]**
 
 _Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet,
-while in v2.0, more personalised subjects can be added in._
+while in v2.0, more personalised subjects can be added._
 
 ### 4.2 Add profile picture for each contact **[coming in v2.0]**
 _Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
-by providing the file path to the picture._
+by providing the file path to the picture.
 --------------------------------------------------------------------------------------------------------------------
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -667,9 +667,9 @@ by providing the file path to the picture._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the three empty data files named `addressbook.json`, `datesbook.json`, `lessonbook.json`
-it creates with the corresponding files that contains the data of your previous TutorsPet home folder.
+it creates with the corresponding files that contain the data of your previous TutorsPet home folder.
 
-**Q**: Do I have to connect the internet to use this application? <br>
+**Q**: Do I have to connect to the internet to use this application? <br>
 **A**: No, TutorsPet is an offline application. No internet connection is needed.
 
 **Q**: What is the optimal display setting for this application? <br>
@@ -682,7 +682,7 @@ However, if you want to personalise your window size, the optimal display resolu
 **Q**: Why is there such a length limit for the fields of a student, i.e. name has a character limit of 60, address has a character limit of 254, and so on? <br>
 **A**: Limits are set so that users can view each student detail more effectively and have a better experience with TutorsPet.
 
-**Q**: Why is all my data cleared? <br>
+**Q**: Why has all my data been cleared? <br>
 **A**: You could have edited the data files accidentally and corrupted the data.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -701,7 +701,7 @@ Email                   | `e/`   | Y        | Should be in the format of **local
 Address                 | `a/`   | Y        | Any format | 254
 Guardian's name         | `gn/`  | Y        | Contains alphanumeric characters and spaces only | 60
 Guardian's phone number | `gp/`  | Y        | Contains numbers only; at least 3 digits long | 15
-Education level         | `lv/`  | Y        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad` | N.A.
+Education level         | `lv/`  | Y        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post-Junior College: `grad` | N.A.
 Subject                 | `t/`   | Y        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.| N.A.
 Lesson                  | `le/`  | Y        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`| N.A.
 
@@ -744,9 +744,9 @@ Action | Format, Examples
 
 **Prefix**: Expressions that signal inputs of a certain field e.g. `n/` signals name field, `gp/` signals guardian's phone.
 
-**Case sensivitity**: Case-insensitive means that a word input in upper case or lower case will be treated the same way.
-Case-sensitive means the opposite.
+**Case-sensitivity**: Case-sensitive means that character inputs in upper case or lower case will be treated differently.
+Case-insensitive means the opposite.
 
-**Character limit**: The maximum length of characters a field of a student can take in
+**Character limit**: The maximum length of characters a field of a student can take in.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
