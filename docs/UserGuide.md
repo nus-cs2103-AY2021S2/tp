@@ -21,7 +21,6 @@ You can return to Table of Contents by clicking this button <a href="#table-of-c
 
 ## Table of Contents
 * Table of Contents 
-  
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
