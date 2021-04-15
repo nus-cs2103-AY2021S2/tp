@@ -326,7 +326,7 @@ It is split into various subsections:
 
 Each project in CoLAB contains information about todos, deadlines, events and groupmates to help you keep track of everything you need to effectively manage the project.
 
-![Ui](images/project.png)
+![App Window Sections Projects](images/app_window_section_projects.png)
 
 You may view a list of all your projects in the side panel and view a specific project in the main panel using the `project` command.
 
