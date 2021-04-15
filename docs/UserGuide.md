@@ -382,7 +382,7 @@ Sub Command Format:
 The selected person(s) will have a highlighted index number to indicate selection status.
 
 ![Select UI Example](images/UG_Select%20Indicator.png)
-![select demo](images/ug_select%20command.png)
+![select demo](images/UG_Select%20Command.png)
 
 Examples:
 
