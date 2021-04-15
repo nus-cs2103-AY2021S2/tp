@@ -275,8 +275,8 @@ Allows you to edit one or more person in the address book.
 **:bulb: Tip**<br>
 
 You can do bulk edit with:
-* `edit 1 2 3` to edit persons at indexes 1, 2 and 3 or,
-* `edit shown` to edit all the shown persons or,
+* `edit 1 2 3` to edit persons at indexes 1, 2 and 3
+* `edit shown` to edit all the shown persons
 * `edit selected` to edit all the selected persons
 
 </div>
@@ -702,7 +702,7 @@ Autocomplete index only works for the `EDIT` and `DELETE` commands.
 
 </div>
 
-Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supported commands are fully typed out.
+Index can be autocompleted by pressing the <kbd>Up/Down</kbd> keys when the supported commands are fully typed out.
 
 **Examples**
 
