@@ -20,8 +20,9 @@ Feel free to check out our [Table of Contents](#table-of-contents), to get famil
 You can return to Table of Contents by clicking this button <a href="#table-of-contents"> <button>Back to Table of Contents </button></a> below each session.
 
 ## Table of Contents
-* Table of Contents
-  {:toc}
+* Table of Contents 
+{:toc}
+
 --------------------------------------------------------------------------------------------------------------------
 ## 1. About
 This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
@@ -143,7 +144,7 @@ Format: `exit`
 
 #### 3.1.3 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the user guide and a list of commands.
 
 ![help message](images/helpMessage.png)
 
@@ -397,8 +398,7 @@ Example:
 `search n/yeoh alex s/xyz t/cn` displays a list of students who has the name `yeoh alex`, order does not matter, or with
 the school `xyz` or with subjects `cn`.
 
-![AfterSearch1](images/DemoAfterSearchCommand1.png)
-![AfterSearch2](images/DemoAfterSearchCommand2.png)
+![AfterSearch](images/DemoAfterSearchCommand.png)
 
 Other examples:
 
