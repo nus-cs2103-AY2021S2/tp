@@ -29,15 +29,16 @@ With similarities to Bash, we hope to minimise the learning curve for people wit
 
 You can use the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
 
-Before you continue reading the rest of the User Guide, take note of the following text formats and conventions which are used to place emphasis on certain texts:
+Before you continue reading the rest of the User Guide, take note of the following typographic conventions which are used to place emphasis on certain texts:
 
-| Text Format                                                              | Meaning                         |
+| Style                                                              | Description                         |
 | ------------------------------------------------------------------------ | ------------------------------- |
 | `Code`                                                                   | Command text                    |
-| <kbd>Keyboard Input</kbd>                                                | Keyboard actions                |
+| <kbd>Keyboard</kbd>                                                | Keyboard shortcut                |
 | **Bolded Text**                                                          | Important words to take note of |
-| <div markdown="span" class="alert alert-info">:information_source:</div> | Tips and useful information     |
-| <div markdown="span" class="alert alert-danger">:exclamation:</div>      | Warning message                 |
+| <div markdown="span" class="alert alert-info">:information_source: Note </div> | Useful information                           |
+| <div markdown="span" class="alert alert-warning">:bulb: Tip </div>            | Tips      |
+| <div markdown="span" class="alert alert-danger">:exclamation: Warning </div>      | Warning message                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -58,17 +59,17 @@ Before you continue reading the rest of the User Guide, take note of the followi
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands to try:
 
-    * **`help`** : Opens the [Command Summary](#command-summary) in the app.
+    * **`help`**: Opens the [Command Summary](#command-summary) in the app.
 
-    * **`list`** : Lists all contacts.
+    * **`list`**: Lists all contacts.
 
     * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a contact named `John Doe` to the address book.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete 3`**: Deletes the 3rd contact shown in the current list.
 
-    * **`clear`** : Deletes all contacts.
+    * **`clear`**: Deletes all contacts.
 
-    * **`exit`** : Exits the app.
+    * **`exit`**: Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -77,9 +78,8 @@ Before you continue reading the rest of the User Guide, take note of the followi
 # CLI Syntax
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note for seasoned CLI users:**<br>
 
-This section is intended for non-technical users to understand the CLI syntax. While A-Bash Book
+**:information_source: Note:** For seasoned CLI users, this section is intended for non-technical users to understand the CLI syntax. While A-Bash Book
 adopts Bash syntax, the implementation is not in parity with Bash's syntax. Feel free to skip
 to [Features](#features).
 
@@ -174,9 +174,7 @@ Invalid examples are:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
-
-For non-technical users, please refer to the [CLI Syntax](#cli-syntax) before proceeding.
+**:information_source: Note:** For non-technical users, please refer to the [CLI Syntax](#cli-syntax) before proceeding.
 
 </div>
 
@@ -197,7 +195,7 @@ Adds a person to the address book.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Notes on `add` command:**
+:information_source: **Note:**
 * A person can have no remark.
 * A person can have any number of tags (including 0).
 
@@ -227,7 +225,7 @@ Edits an existing person in the address book.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes on `edit` command:**<br>
+**:information_source: Note:**<br>
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer**, i.e 1, 2, 3, ...
 * At least one of the optional fields must be provided.
@@ -253,11 +251,9 @@ Edits an existing person in the address book.
 | `edit shown -r `                            | Clears any existing remark of all the displayed persons in person list.                                             |
 | `edit selected -r `                         | Clears any existing remark of all the selected persons.                                                             |
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
-**:bulb: Bulk Edit**
-
-To bulk edit, either do:
+**:bulb: Tip:** You can do bulk delete with:
 * `edit 1 2 3` to edit persons at indexes 1, 2 and 3 or,
 * `edit shown` to edit all the shown persons or,
 * `edit selected` to edit all the selected persons
@@ -267,16 +263,12 @@ To bulk edit, either do:
 ## Locating persons: `find`
 
 Finds persons whose field(s) contain any of the given keywords.
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Currently Searchable fields:** Name, Email, Tag, Remark<br>
-
-</div>
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes on `find` command:**<br>
+**:information_source: Note:**<br>
 
+* Currently searchable fields: Name, Email, Tag, Remark
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Words are partially matched. e.g `sam` will match `Samantha`
@@ -307,15 +299,10 @@ Finds persons whose field(s) contain any of the given keywords.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Refer to [Field Summary](#field-summary) for a full list prefixes.<br>
-**Currently Searchable fields:** Name, Email, Tag, Remark
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can only search 1 field at a time.<br>
-`find -n Alice -t HR` is an invalid command
+**:information_source: Note:**
+* Refer to [Field Summary](#field-summary) for a full list prefixes.
+* Currently searchable fields: Name, Email, Tag, Remark
+* You can only search 1 field at a time. e.g. `find -n Alice -t HR` is an invalid command
 
 </div>
 
@@ -336,7 +323,7 @@ Deletes the specified person(s) from the address book.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes on `delete` command:**<br>
+**:information_source: Note:**<br>
 
 * Deletes the person at the specified `INDEX`/`INDEX...` or shown person list or selected list.
 * The command **operates on the shown list** that may be modified by an earlier command.
@@ -358,11 +345,11 @@ Deletes the specified person(s) from the address book.
 | `select 1 2 3`   <br>      `delete selected` | Deletes selected entries 1, 2 and 3                                                                                   |
 | `delete shown`                               | Deletes all the displayed persons in the person list                                                                  |
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
-**:bulb: Bulk Delete**
+**:bulb: Tip:**
 
-To bulk delete, either do `delete 1 2 3` to delete indexes 1, 2 and 3
+You can do bulk delete with either `delete 1 2 3` to delete indexes 1, 2 and 3
 or `delete shown` to delete all the shown persons.
 
 </div>
@@ -396,7 +383,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Incremental Selection and `shown`:**
+**:information_source: Note:** Incremental Selection and `shown`
 
 - Incremental selection means that selected items are "stacked" together. e.g. Executing `select 1`
   followed by `select 2` will result in person with index number 1 and 2 being selected.
@@ -406,11 +393,9 @@ Examples:
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
-**:bulb: Tip:**
-
-`select` command is best used with the following commands:
+**:bulb: Tip:** `select` command is best used with the following commands:
 
 - [`edit` command](#editing-a-person--edit)
 - [`delete` command](#deleting-a-person--delete)
@@ -426,11 +411,11 @@ client. Email client must be configured to allow command separated email values.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: It is a known issue that Outlook for Windows do not have "Commas to Separate
+**:information_source: Note:** It is a known issue that Outlook for Windows do not have "Commas to Separate
 Multiple Email Recipients" feature turned on. Follow the guide here to enable
 it: <https://www.lifewire.com/commas-to-separate-email-recipients-1173680>
 
-information_source: It is not possible for A-Bash Book to detect if the email client is opened. If
+It is not possible for A-Bash Book to detect if the email client is opened. If
 executing `email` command does not trigger the email client to appear, please check that an email
 client is installed and configured properly.
 
@@ -456,7 +441,7 @@ Clears all entries from the address book.
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **This action is irreversible.** Do not run this command with actual data unless you want to delete all entries.
+**:exclamation: Warning:** This action is irreversible. Do not run this command with actual data unless you want to delete all entries.
 
 </div>
 
@@ -484,17 +469,17 @@ Typing `del` followed by <kbd>Tab</kbd> will auto complete `del` to `delete`.
 
 | Current text in command box | Key Press | Result |
 | ------------------------------ | -------------| ----|
-| `ad` | <kbd>TAB</kbd> | `add` |
-| `edi` | <kbd>TAB</kbd> | `edit` |
-| `ex` | <kbd>TAB</kbd> | `exit` |
-| `he` | <kbd>TAB</kbd> | `help` |
-| `li` | <kbd>TAB</kbd> | `list` |
-| `s` | <kbd>TAB</kbd> | `select` |
+| `ad` | <kbd>Tab</kbd> | `add` |
+| `edi` | <kbd>Tab</kbd> | `edit` |
+| `ex` | <kbd>Tab</kbd> | `exit` |
+| `he` | <kbd>Tab</kbd> | `help` |
+| `li` | <kbd>Tab</kbd> | `list` |
+| `s` | <kbd>Tab</kbd> | `select` |
 
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: In the command box, it is also possible to cycle through **Existing** commands with <kbd>Tab</kbd>.
+**:information_source: Note:** In the command box, it is also possible to cycle through **existing** commands with <kbd>Tab</kbd>.
 
 </div>
 
@@ -504,10 +489,10 @@ Command flags can be autocompleted at the end of your command text by pressing t
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note on flags:**
+**:information_source: Note:**
 
 - If your flag has no content, the next available flag will be replaced and cycled.
-- If you flag has content, the next available flag will be appended to your command text.
+- If your flag has content, the next available flag will be appended to your command text.
 
 </div>
 
@@ -518,28 +503,26 @@ Command flags can be autocompleted at the end of your command text by pressing t
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note on `add` command:** 
-
-- a space character should follow the add command for flags to begin 
+:information_source: **Note:** For `add` command, a space character should follow the add command for flags to begin 
 autocompletion.
 
 </div>
 
 | Current text in command box | Key Press | Result |
 | ------------------------------ | -------------| ----|
-| `add␣` | <kbd>TAB</kbd> | `add -n` |
-| `add -n` | <kbd>TAB</kbd> | `add -p` |
-| `add -n John Doe` | <kbd>TAB</kbd> | `add -n John Doe -p` |
+| `add␣` | <kbd>Tab</kbd> | `add -n` |
+| `add -n` | <kbd>Tab</kbd> | `add -p` |
+| `add -n John Doe` | <kbd>Tab</kbd> | `add -n John Doe -p` |
 | `add -n John Doe -p 94326543 -e john@doe.com` | <kbd>TAB</kbd> | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
-| `edit 1` | <kbd>TAB</kbd> | `edit 1 -n` |
-| `edit 1 -n` | <kbd>TAB</kbd> | `edit 1 -p` |
-| `edit 1 -n John Dow` | <kbd>TAB</kbd> | `edit 1 -n John Dow -p` |
+| `edit 1` | <kbd>Tab</kbd> | `edit 1 -n` |
+| `edit 1 -n` | <kbd>Tab</kbd> | `edit 1 -p` |
+| `edit 1 -n John Dow` | <kbd>Tab</kbd> | `edit 1 -n John Dow -p` |
 
 ### Index
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Autocomplete index only works for the `EDIT` and `DELETE` commands.
+**:information_source: Note:** Autocomplete index only works for the `EDIT` and `DELETE` commands.
 
 </div>
 
@@ -616,7 +599,7 @@ options.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Refer to [Field Summary](#field-summary) for the available options
+**:information_source: Note:** Refer to [Field Summary](#field-summary) for the available options
 
 </div>
 
@@ -655,12 +638,14 @@ Add tags to persons in address book.
 | `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the persons selected.                               |
 | `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to persons at index `1`, `2` and `3`. |
 
-**:bulb: Bulk Add Tag**
+<div markdown="block" class="alert alert-warning">
 
-To bulk add tag, either do:
+**:bulb: Tip:** You can bulk add tag by either doing:
 * `tag add 1 2 3` to add tags to persons at indexes 1, 2 and 3 or,
 * `tag add shown` to add tags to all the shown persons or,
 * `tag add selected` to add tags to all the selected persons
+
+</div>
 
 ### Delete tags from persons: `tag delete`
 
@@ -682,12 +667,16 @@ Delete tags from persons in address book.
 | `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the persons selected.                               |
 | `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from persons at index `1`, `2` and `3`. |
 
-**:bulb: Bulk Delete Tag**
+<div markdown="block" class="alert alert-warning">
 
-To bulk delete tag, either do:
+**:bulb: Tip:**
+
+You can bulk delete tag by either doing:
 * `tag delete 1 2 3` to delete tags to persons at indexes 1, 2 and 3 or,
 * `tag delete shown` to delete tags to all the shown persons or,
 * `tag delete selected` to delete tags to all the selected persons
+
+</div>
 
 ## Saving the data
 
@@ -699,9 +688,8 @@ A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.j
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Caution:**
+**:exclamation: Warning:** If changes to the data file renders its format invalid, A-Bash Book will discard all data and start with an empty data file at the next run.
 
-If changes to the data file renders its format invalid, A-Bash Book will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
