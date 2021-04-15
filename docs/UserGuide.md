@@ -43,7 +43,7 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 # Quickstart Guide
 
-1. Ensure that **Java 11** or above is installed in your computer.
+1. Ensure that you **Java 11** or above is installed in your computer.
 
 1. Download the latest **abashbook.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
 
@@ -79,7 +79,7 @@ Before you continue reading the rest of the User Guide, take note of the followi
 <div markdown="block" class="alert alert-info">
 **:information_source: Note for seasoned CLI users:**<br>
 
-This section is intended for non-technical users to understand the CLI syntax. While A-Bash Book
+This section is intended for users who are unfamiliar with CLI and the syntax. While A-Bash Book
 adopts Bash syntax, the implementation is not in parity with Bash's syntax. Feel free to skip
 to [Features](#features).
 
@@ -111,7 +111,7 @@ Command flags: `-n` , `-p`, `-e`, `-a`.
 
 ## Uppercase Words
 
-Words in `UPPER_CASE` are the parameters to be supplied by the user.
+Words in `UPPER_CASE` are the parameters that you can specify.
 
 e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
 
@@ -136,7 +136,7 @@ as `-t family` and `-t family -t cousin -t child`.
 
 ## Mutually Exclusive Parameters
 
-Braces (`{ }`) are used around arguments where the user must choose **only one** of the items inside the braces.
+Braces (`{ }`) are used around arguments where you must choose **only one** of the items inside the braces.
 
 Vertical bars (`|`) are used to separate the items. There can be more than two
 mutually exclusive parameters.
@@ -176,7 +176,8 @@ Invalid examples are:
 
 **:information_source: Notes about the command format:**<br>
 
-For non-technical users, please refer to the [CLI Syntax](#cli-syntax) before proceeding.
+If you are not familiar with CLI and the syntax, please refer to the [CLI Syntax](#cli-syntax)
+before proceeding.
 
 </div>
 
@@ -369,7 +370,7 @@ or `delete shown` to delete all the shown persons.
 
 ## Selecting Persons : `select`
 
-Enables user to incrementally select multiple person objects to apply actions on.
+Allows you to incrementally select multiple person objects to apply actions on.
 
 **Format**: `select { clear | shown | show | INDEX... }`
 
@@ -421,7 +422,7 @@ Examples:
 
 ## Email Persons: `email`
 
-Email command allows user to email selected persons using the operating system's default email
+Email command allows you to email selected persons using the operating system's default email
 client. Email client must be configured to allow command separated email values.
 
 <div markdown="block" class="alert alert-info">
@@ -604,7 +605,7 @@ keyboard action, the list of your aliases will disappear and show the list of ex
 
 ## Filter Field Visibility: `filter`
 
-Filter command toggles visibility of fields based on user input options.
+Filter command toggles visibility of fields based on your input.
 
 **Format**: `filter [-OPTION]...`
 
@@ -695,7 +696,8 @@ A-Bash Book data is saved in the hard disk automatically after any command that 
 
 ## Editing the data file
 
-A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users
+are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">
 
