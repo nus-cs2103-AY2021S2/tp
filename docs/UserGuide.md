@@ -687,7 +687,7 @@ autocompletion.
 | `add␣` | <kbd>Tab</kbd> | `add -n` |
 | `add -n` | <kbd>Tab</kbd> | `add -p` |
 | `add -n John Doe` | <kbd>Tab</kbd> | `add -n John Doe -p` |
-| `add -n John Doe -p 94326543 -e john@doe.com` | <kbd>TAB</kbd> | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
+| `add -n John Doe -p 94326543 -e john@doe.com` | <kbd>Tab</kbd> | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
 | `edit 1` | <kbd>Tab</kbd> | `edit 1 -n` |
 | `edit 1 -n` | <kbd>Tab</kbd> | `edit 1 -p` |
 | `edit 1 -n John Dow` | <kbd>Tab</kbd> | `edit 1 -n John Dow -p` |
@@ -708,12 +708,12 @@ Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supp
 
 | Current text in command box | Key Press | Result |
 | ------------------------------ | -------------| ----|
-| `edit` | <kbd>UP/DOWN</kbd> | `edit 1` |
-| `edit 1` | <kbd>DOWN</kbd> | `edit 2` |
-| `edit 2` | <kbd>UP</kbd> | `edit 1` |
-| `delete` | <kbd>UP/DOWN</kbd> | `delete 1` |
-| `delete 1` | <kbd>DOWN</kbd> | `delete 2` |
-| `delete 2` | <kbd>UP</kbd> | `delete 1` |
+| `edit` | <kbd>Up/Down</kbd> | `edit 1` |
+| `edit 1` | <kbd>Down</kbd> | `edit 2` |
+| `edit 2` | <kbd>Up</kbd> | `edit 1` |
+| `delete` | <kbd>Up/Down</kbd> | `delete 1` |
+| `delete 1` | <kbd>Down</kbd> | `delete 2` |
+| `delete 2` | <kbd>Up</kbd> | `delete 1` |
 
 ## Viewing Help : `help`
 
@@ -798,12 +798,12 @@ Install the app in the other computer and overwrite the empty data file it creat
 
 | Action           | Format, Examples                                                                                                                                                                                                                             |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**          | `add -n NAME -p PHONE_NUMBER -e EMAIL -c COMPANY -j JOB_TITLE -a ADDRESS [-r REMARK] [-t TAG]...` <br> e.g., `add -n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street -r Likes ramen -t friend -t colleague` |
+| **Add**          | `add -n NAME -p PHONE_NUMBER -e EMAIL -c COMPANY -j JOB_TITLE -a ADDRESS [-r REMARK] [-t TAG]...` <br> e.g. `add -n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street -r Likes ramen -t friend -t colleague` |
 | **Clear**        | `clear`                                                                                                                                                                                                                                      |
-| **Delete**       | `delete { shown | selected | INDEX... }` <br> e.g., `delete 3`                                                                                                                                                                               |
+| **Delete**       | `delete { shown | selected | INDEX... }` <br> e.g. `delete 3`                                                                                                                                                                               |
 | **Edit**         | `edit { shown | selected | INDEX... } [-n NAME] [-p PHONE] [-c COMPANY] [-j JOB_TITLE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]...` <br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`                                              |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                                                  |
-| **Filter**       | `filter [-OPTION]...` <br> e.g., `filter -p -a` to see only the phone number and address                                                                                                                                                     |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]` <br> e.g. `find James Jake`                                                                                                                                                                                  |
+| **Filter**       | `filter [-OPTION]...` <br> e.g. `filter -p -a` to see only the phone number and address                                                                                                                                                     |
 | **Select**       | `select { clear | shown | show | INDEX... }`                                                                                                                                                                                                 |
 | **Email**        | `email { shown | selected | INDEX... }`                                                                                                                                                                                                      |
 | **List**         | `list`                                                                                                                                                                                                                                       |
@@ -811,8 +811,8 @@ Install the app in the other computer and overwrite the empty data file it creat
 | **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                                                   |
 | **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                                                            |
 | **List Alias**   | `alias list`                                                                                                                                                                                                                                 |
-| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag add shown -t Illustrator`                                                                                                                                   |
-| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag delete 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                         |
+| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g. `tag add shown -t Illustrator`                                                                                                                                   |
+| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG...` <br> e.g. `tag delete 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                         |
 
 # Field Summary
 
