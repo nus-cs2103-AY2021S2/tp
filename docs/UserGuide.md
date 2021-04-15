@@ -49,7 +49,9 @@ for more information.
 
 1. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>![Ui](images/Ui.png)
 
-1. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
+<div style="page-break-after: always;"></div>
+
+5. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -62,9 +64,11 @@ for more information.
 
    * `exit` : Exits ParentPal.
 
-1. Refer to the [Features](#features) section for details of each command.
+6. Refer to the [Features](#features) section for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Interface of ParentPal
 ![ParentPalExplanation](images/ParentPalExplanation.png)
 
@@ -110,6 +114,8 @@ for more information.
 1. **Date and Time**
 1. **Contacts**
 
+<div style="page-break-after: always;"></div>
+
 ### Expired appointments
 ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
 
@@ -120,6 +126,8 @@ Should the appointment not appear red despite it having expired, click on the ap
 ![expiredAppt](images/expiredAppt.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Command Parameters
 
 The table below provides descriptions for all the parameters used by ParentPal commands.
@@ -139,6 +147,8 @@ Parameter | Description | Example
 `CONTACT_INDEX` | The index number of a contact in the *Contact List*. <br><br> It must be a positive number. | You can type `1` to refer to the first contact in the *Contact List*.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -171,6 +181,8 @@ This section is separated into the following sub-sections:
 * [Appointment Book Commands](#appointment-book-commands): Commands related to managing appointments
 
 The command summary table can also be accessed [here](#command-summary).
+
+<div style="page-break-after: always;"></div>
 
 ### General Commands
 
@@ -213,6 +225,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. A help window with details of the `add` command will open.
 ![help_2](images/help_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Exiting the program : **`exit`**
 
@@ -231,6 +245,8 @@ Steps:
 
 Outcome:
 1. ParentPal closes.
+
+<div style="page-break-after: always;"></div>
 
 #### Changing ParentPal's theme : **`theme`**
 
@@ -269,6 +285,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. ParentPal will change to the light theme.
 ![theme_1](images/theme_1.png)
+   
+<div style="page-break-after: always;"></div>
    
 ### Address Book Commands
 
@@ -314,6 +332,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 1. Betsy Crowe's contact will appear in the *Contact List*.
 ![add_2](images/add_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Deleting a contact : **`delete`**
 
@@ -359,7 +379,9 @@ Outcome:
    the *Status Box* will show an error message to notify you on which contacts were successfully deleted, and which failed to delete.
 1. The successfully deleted contacts will disappear from the *Contact List*, but contacts with appointments will remain in the *Contact List*.
 ![delete_2](images/delete_2.png)
-   
+
+<div style="page-break-after: always;"></div>
+
 #### Editing a contact : **`edit`**
 
 Edits an existing contact in the address book.
@@ -421,6 +443,8 @@ Outcome:
 2. The email and tags field of the first contact has been removed, and you can no longer see it in the contact details of the first contact.
 ![edit_3](images/edit_3.png)
    
+<div style="page-break-after: always;"></div>
+   
 #### Finding contacts: **`find`**
 
 Find contacts based on the given option.
@@ -481,6 +505,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. All the contacts with any of their fields containing the word 'lee' will be displayed in the *Contact List*.
 ![find_2](images/find_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Listing all contacts : **`list`**
 
@@ -525,6 +551,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. All favourite contacts are now displayed in the *Contact List*.
 ![list_2](images/list_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Adding/replacing tags to a contact: **`tag`**
 
@@ -570,6 +598,8 @@ Outcome:
 2. The child tags for the first contact have been replaced with the child tag 'Alexa'. 
 3. The tags for the first contact have been replaced with the tag 'English'.
 ![tag_2](images/tag_2.png)
+   
+<div style="page-break-after: always;"></div>
    
 #### Favourite a contact : **`fav`**
 
@@ -617,6 +647,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The first contact is now unfavourited and the star in the contact is not filled.
 ![fav_2](images/fav_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Sorting all contacts : **`sort`**
 
@@ -668,6 +700,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The *Contact List* is now in alphabetical order.
 ![sort_2](images/sort_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Clearing all entries : **`clear`**
 
@@ -708,6 +742,8 @@ Outcome:
 2. All contacts tagged with 'teacher' are removed from the *Contact List* if none of them are involved in appointments.
    Otherwise, an error message will be shown.
 ![clear_2](images/clear_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 ### Appointment Book Commands
 
@@ -743,6 +779,8 @@ Outcome:
 1. The *Status Box* will show a success message. 
 2. The appointment appears in the *Appointment List*.
 ![addAppt_1](images/addAppt_1.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Deleting an appointment : **`deleteAppt`**
 
@@ -784,6 +822,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The 1st appointment in the *Appointment List* is removed.
 ![deleteAppt_2](images/deleteAppt_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Editing an appointment : **`editAppt`**
 
@@ -816,6 +856,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The first appointment's name, address and related contacts are updated.
 ![editAppt_1](images/editAppt_1.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Finding appointments: **`findAppt`**
 
@@ -871,6 +913,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. All appointments with Annie as a related contact will be listed in the *Appointment List*.
 ![findAppt_2](images/findAppt_2.png)
+   
+<div style="page-break-after: always;"></div>
 
 #### Listing all appointments : **`listAppt`**
 
@@ -895,6 +939,7 @@ Outcome:
 ![listAppt_1](images/listAppt_1.png)
    
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Managing ParentPal Data
 
@@ -929,6 +974,7 @@ Changes to the data files may cause ParentPal to behave unexpectedly, edit the f
 Congratulations! You have successfully transferred your data to a new device.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
