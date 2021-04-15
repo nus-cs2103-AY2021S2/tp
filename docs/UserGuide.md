@@ -1054,8 +1054,8 @@ This section serves to provide a summary of descriptions and definitions of term
 
 Term | Meaning
 --------|------------------
-**Graphical User Interface (GUI)** | A GUI allows users to use graphics to interact with a device. This includes graphical objects like icons, cursors, and buttons. Using these objects, a user can use a device without having to know commands.
-**Command Line Interface (GUI)** | A CLI allows users to use commands in the form of text as input to a device. Using these text-based commands, a user can can use a device without having to interact with graphical objects.
+**Graphical User Interface (GUI)** | A GUI allows users to use graphics to interact with a device.
+**Command Line Interface (GUI)** | A CLI allows users to use commands in the form of text as input to a device.
 **Java** | Java is an application that allows applications such as CoLAB to be run on your computer.
 **Command** | An instruction typed by a user, to be executed by CoLAB.
 **Field** | A portion of a command that requires information to be entered into.
