@@ -186,6 +186,19 @@ A negative amount of debt would mean that you owe your friend the specified amou
 
 Whenever a friend is added, the debt is automatically 0. The range of this debt is from -999,999,999,999 to 999,999,999,999.
 
+### Email
+
+Your friend's email, so you can mail stuff to them. 
+
+* Emails shall have the format `local-part@labels`.
+* `local-part` can contain any characters provided that they are either
+    * Alphanumeric (A-Z, a-z, 0-9), or
+    * Any character from the set <code>.!#$%&'*+\/=?^_`{|}~-</code>.
+* This is followed by a `@` and then one or more `label`.
+* A `label` can only contain alphanumeric characters (A-Z, a-z, 0-9), and should be shorter than 64 characters.
+* Multiple `label`s are allowed, provided that they are delimited by a single period. <br>
+  Note that email does NOT conform to [RFC](https://tools.ietf.org/html/rfc5322) standards.
+
 ### Special Dates
 
 Special Dates that you would like to be reminded of yearly so that you can celebrate them whenever the date draws near.
@@ -246,7 +259,7 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
 
 See also:
-* [What is a valid email format?](#faq)
+* [Email](#email)
 
 ### Adding a special date : `add-date`
 
@@ -675,17 +688,6 @@ If the previous theme file supplied is not found or unreadable, then the default
 
 **Q**: Where can I find more themes?<br>
 **A**: Certain online tools such as [terminal.sexy](https://terminal.sexy) can be used to generate the required `json` file.
-
-**Q**: What is a valid email format?<br>
-**A**: The email allowed in FriendDex shall adhere to the following rules:
-* Emails shall have the format `local-part@labels`.
-* `local-part` can contain any characters provided that they are either
-    * Alphanumeric (A - Z, a - z, 0 - 9), or
-    * Any character from the set <code>.!#$%&'*+\/=?^_`{|}~-</code>
-* This is followed by an `@` and then one or more `label`s.
-* A `label` should be shorter than 64 characters.
-* Multiple `label`s are allowed, provided that they are delimited by a single period. <br>
-Note that email does NOT conform to [RFC](https://tools.ietf.org/html/rfc5322) standards.
 
 --------------------------------------------------------------------------------------------------------------------
 
