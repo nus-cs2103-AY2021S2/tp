@@ -205,7 +205,7 @@ Example:
 
 `add n/John Doe p/98612341`
 
-* After the command is entered
+* After the command is entered, the new student named John Doe is added to TutorsPet.
 
 ![AfterAdd](images/DemoAfterAddCommand.png)
 
