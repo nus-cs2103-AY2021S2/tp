@@ -13,7 +13,7 @@ TutorsPet is a **desktop app designed for private tutors in Singapore to manage 
 * To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-faq).
 * To learn about the field formats of a student contact, head to [6.1 Field Format Summary](#61-field-format-summary).
 * To get an overview of all our commands, head to [6.2 Command summary](#62-command-summary).
-* To understand some terms we use, head to [7 Glossary](#7-glossary).
+* To understand some terms we use, head to [7. Glossary](#7-glossary).
 
 Feel free to check out our [Table of Contents](#table-of-contents), to get familiar with TutorsPet step by step.
 
@@ -35,7 +35,7 @@ Note the following symbols and formatting used in this document:
 
 * Mark-up: `list` <br>
   Text with this formatting indicates that it can be **typed** into the command line and executed by the application or it
-  can be **results** of the command.
+  can be the **results** of the command.
 * Bolded: **important** <br>
   Text with this formatting indicates that it is important information, and should be taken note of.
 
@@ -62,8 +62,9 @@ Note the following symbols and formatting used in this document:
 
 ## 2. Quick start
 
-1. Ensure you have Java **11** or above installed in your Computer.
-
+1. Ensure you have Java **11** or above installed in your Computer. If you have not installed Java before, 
+   you can download it from [here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html).
+   
 1. Download the latest **tutorspet.jar** from [here](https://github.com/AY2021S2-CS2103T-T11-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the **home folder** for your TutorsPet.
@@ -166,16 +167,12 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 * `[s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​` are optional which can be added now with `add` command or later with `edit` command.
 
 * Education levels are represented abbreviated names. Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
 * Subjects are represented by abbreviated names. Valid names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`,
   which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
-
-* A student’s contact can have any number of subjects (including 0).
-
-* A student’s contact can have any number of lessons (including 0).
 
 * Lessons should only consist of the lesson day and time e.g. `monday 1300`
 
@@ -196,11 +193,9 @@ Education levels and subjects available cover the usual students who are more li
 will be explored in [Coming Soon](#4-coming-soon).
 </div>
 
-<div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** 
-If TutorsPet detects a conflicting lesson being added, a confirmation message will be shown. You
-will need to type in either y/n for confirmation to add conflicted schedule.
+<div markdown="block" class="alert alert-warning">
 
+:exclamation: **Caution:**
 TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
 input in the app. For more details, see the [Field Format Summary](#61-field-format-summary) below.
 </div>
@@ -208,11 +203,6 @@ input in the app. For more details, see the [Field Format Summary](#61-field-for
 Example:
 
 `add n/John Doe p/98612341`
-
-* Before `add` command is entered
-
-![BeforeAdd](images/DemoBeforeAddCommand.png)
-
 
 * After `add` command is entered
 
@@ -237,23 +227,15 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 
 * The index refers to the index number shown in the displayed student list.
 
-* The index **must be a positive integer** ranging from 1 to 2147483647.
-
 * At least one of the optional fields must be provided.
 
-* Existing values will be updated to the input values.
-
-* Optional fields which were not available when a student's contact was initially saved in TutorsPet can be added in.
-
 * Education levels are represented abbreviated names. Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
-* When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
+* When editing subjects or lessons, the existing subjects or lessons of the student will be removed, i.e. adding of subjects or lessons are not cumulative.
 
-* You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
-
-* You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
+* You can remove all the student’s subjects and lessons by typing `t/` and `le/` respectively without specifying any subject or lesson details.
 
 * Subjects are represented by abbreviated names. Valid names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`,
   which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
@@ -262,14 +244,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * If the student **name** or **lesson** to be edited already exists in TutorsPet, a warning prompting user's input will be shown.
   If `y` is entered, the contact will be edited.
   If `n` is entered, the contact would not be edited.
+  
 
-<div markdown="block" class="alert alert-primary">
-:bulb:**Tips:** <br>
-Edited information can be displayed on the Contact details panel by retyping
-`detail INDEX` command.
-</div>
+<div markdown="block" class="alert alert-warning">
 
-<div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**
 TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
 input in the app. For more details, see the [Field Format Summary](#61-field-format-summary) below.
@@ -277,7 +255,7 @@ input in the app. For more details, see the [Field Format Summary](#61-field-for
 
 Example:
 
-`edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+`edit 1 p/91234567 e/johndoe@example.com`
 
 * After [`detail 1`](#323-viewing-a-contact-details--detail) is successfully executed and all details of Alex Yeoh are displayed
 
@@ -292,7 +270,7 @@ More Examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
-`edit 2 n/Betsy Crower t/`|edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
+`edit 2 n/Betsy Crower t/` | edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
 `edit 1 le/monday 1300 le/tuesday 1400` | edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -317,11 +295,13 @@ will also be in the results display.
 
 Example: <br>
 
-During start up, the details panel could be empty
+`detail 2`
+
+* During start up, the details panel could be empty
 
 ![BeforeDetail](images/DemoBeforeDetailCommand.png)
 
-`detail 2` display the details of the 2nd student in the List.
+* After the `detail`command is entered, the details of the 2nd student in the List are displayed.
 
 ![AfterDetail](images/DemoAfterDetailCommand.png)
 
@@ -340,8 +320,6 @@ Format: `delete INDEX`
 * Deletes the contact at the specified `INDEX`.
 
 * The index refers to the index number shown in the displayed student list.
-
-* The index **must be a positive integer** ranging from 1 to 2147483647.
 
 </div>
 Example: <br>
@@ -648,11 +626,11 @@ Format: `schedule`
 
 ### 3.5 Data Management
 
-#### 3.5.1 Saving the data
+#### 3.5.1 Saving the data 
 
 TutorsPet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 3.5.2 Editing the data file
+#### 3.5.2 Editing the data files
 
 TutorsPet data are saved into three different JSON files: <br>
 1. **\[JAR file location]/data/addressbook.json** for storing contact details.
