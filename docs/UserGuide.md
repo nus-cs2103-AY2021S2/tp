@@ -73,7 +73,7 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 # Quickstart Guide
 
-1. Ensure that **Java 11** or above is installed in your computer.
+1. Ensure that you **Java 11** or above is installed in your computer.
 
 1. Download the latest **abashbook.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
 
@@ -107,7 +107,7 @@ Before you continue reading the rest of the User Guide, take note of the followi
 <div markdown="block" class="alert alert-info">
 **:information_source: Note for seasoned CLI users:**<br>
 
-This section is intended for non-technical users to understand the CLI syntax. While A-Bash Book
+This section is intended for users who are unfamiliar with CLI and the syntax. While A-Bash Book
 adopts Bash syntax, the implementation is not in parity with Bash's syntax. Feel free to skip
 to [Features](#features).
 
@@ -134,12 +134,13 @@ E.g `add -n John Doe -p 94326543 -e john@doe.com -a 45 Address #06-90`
 
 Command: `add`
 
-Command flags: `-n` , `-p`, `-e`, `-a`.
+Command flags: `-n` , `-p`, `-e`, `-a`
 
+Command flags might also take an argument, for example, `-n John Doe` or `-n -a -c`.
 
 ## Uppercase Words
 
-Words in `UPPER_CASE` are the parameters to be supplied by the user.
+Words in `UPPER_CASE` are the parameters that you can specify.
 
 e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
 
@@ -164,7 +165,7 @@ as `-t family` and `-t family -t cousin -t child`.
 
 ## Mutually Exclusive Parameters
 
-Braces (`{ }`) are used around parameters where the user must choose **only one** of the items inside the braces.
+Braces (`{ }`) are used around arguments where you must choose **only one** of the items inside the braces.
 
 Vertical bars (`|`) are used to separate the items. There can be more than two
 mutually exclusive parameters.
@@ -204,20 +205,20 @@ Invalid examples are:
 
 **:information_source: Notes about the command format:**<br>
 
-For non-technical users, please refer to the [CLI Syntax](#cli-syntax) before proceeding.
+If you are not familiar with CLI and the syntax, please refer to the [CLI Syntax](#cli-syntax)
+before proceeding.
 
 </div>
 
-## Viewing help : `help`
+## Viewing Help : `help`
 
-Displays the entire User Guide for ease of reference.
-
-![Help Message UI](images/helpMessage.png)
+Displays a pop up window with a summary of the commands available for use in A-Bash Book.
 
 **Format**: `help`
 
+![Help Message UI](images/helpMessage.png)
 
-## Adding a person: `add`
+## Adding a Person: `add`
 
 Adds a person to the address book.
 
@@ -241,15 +242,15 @@ Adds a person to the address book.
 | `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager`, and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.                     |
 | `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer`, and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`.         |
 
-## Listing all persons : `list`
+## Listing All Person(s) : `list`
 
 Lists all persons in the address book.
 
 **Format**: `list`
 
-## Editing a person : `edit`
+## Editing Person(s) : `edit`
 
-Edits an existing person in the address book.
+Allows you to edit one or more person in the address book.
 
 **Format**: `edit { shown | selected | INDEX... } [-n NAME] [-p PHONE] [-c COMPANY] [-j JOB_TITLE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]...`
 
@@ -292,9 +293,10 @@ To bulk edit, either do:
 
 </div>
 
-## Locating persons: `find`
+## Locating Persons: `find`
 
-Finds persons whose field(s) contain any of the given keywords.
+Finds person(s) whose field(s) contain any of the given keywords.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Currently Searchable fields:** Name, Email, Tag, Remark<br>
@@ -318,7 +320,7 @@ Finds persons whose field(s) contain any of the given keywords.
 
 ![Find Command UI](images/UG_Find%20Command.png)
 
-### Searching all searchable fields
+### Searching All Searchable Fields
 
 The `find` command will execute for all searchable fields if no command flags are specified. 
 
@@ -331,7 +333,7 @@ The `find` command will execute for all searchable fields if no command flags ar
 | `find Jon`        | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
 | `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. persons named `Alex Yeoh`, `David Li`         |
 
-### Searching by specific fields
+### Searching by Specific Fields
 
 The `find` command will execute for specific fields if you specify command flags. 
 
@@ -360,7 +362,7 @@ The `find` command will execute for specific fields if you specify command flags
 | `find -r Manager`   | Returns persons with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
 
 
-## Deleting a person : `delete`
+## Deleting Persons : `delete`
 
 Deletes the specified person(s) from the address book.
 
@@ -399,9 +401,9 @@ or `delete shown` to delete all the shown persons.
 
 </div>
 
-## Selecting Persons : `select`
+## Selecting Person(s) : `select`
 
-Enables user to incrementally select multiple person objects to apply actions on.
+Allows you to incrementally select multiple person objects to apply actions on.
 
 **Format**: `select { clear | shown | show | INDEX... }`
 
@@ -451,9 +453,9 @@ Examples:
 
 </div>
 
-## Email Persons: `email`
+## Email Person(s): `email`
 
-Email command allows user to email selected persons using the operating system's default email
+Email command allows you to email selected persons using the operating system's default email
 client. Email client must be configured to allow command separated email values.
 
 <div markdown="block" class="alert alert-info">
@@ -482,7 +484,7 @@ client is installed and configured properly.
 | `email 1 2`      | Email person at index 1 and 2             |
 
 
-## Clearing all entries : `clear`
+## Clearing All Entries : `clear`
 
 Clears all entries from the address book.
 
@@ -494,9 +496,9 @@ Clears all entries from the address book.
 
 **Format**: `clear`
 
-## Exiting the program : `exit`
+## Exiting A-Bash Book : `exit`
 
-Exits the program.
+Saves and exits A-Bash Book.
 
 **Format**: `exit`
 
@@ -588,11 +590,11 @@ Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supp
 | `delete 1` | <kbd>DOWN</kbd> | `delete 2` |
 | `delete 2` | <kbd>UP</kbd> | `delete 1` |
 
-## Aliasing commands : `alias`
+## Aliasing Commands : `alias`
 
 The alias command allows you to create shortcut command (also known as command alias) to the actual command.
 
-### Add an alias: `alias add`
+### Add an Alias: `alias add`
 
 Adds an alias to address book.
 
@@ -608,7 +610,7 @@ Adds an alias to address book.
 | `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
 | `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e `f` Alex Yeoh will now return persons equals or similar to Alex Yeoh). |
 
-### Delete an alias: `alias delete`
+### Delete an Alias: `alias delete`
 
 Deletes an existing alias from address book.
 
@@ -623,51 +625,60 @@ Deletes an existing alias from address book.
 | `alias delete ls` | Removes the alias `ls` |
 | `alias delete f`  | Removes the alias `f`  |
 
-### List all aliases: `alias list`
+### List All Aliases: `alias list`
 
 Lists all alias(es) in the address book.
 
 **Format**: `alias list`
 
+<div markdown="span" class="alert alert-info">
+
 :information_source: The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
 keyboard action, the list of your aliases will disappear and show the list of existing commands again.
+
+</div>
 
 ![Alias List](images/UG_Alias%20List%20Command.png)
 
 ## Filter Field Visibility: `filter`
 
-Filter command toggles visibility of fields based on user input options.
+Filter command allows you to toggle the visibility of person fields to allow you to hide fields that
+you are not interested in.
 
-**Format**: `filter [-OPTION]...`
+**Format**: `filter [-FLAG]...`
 
 ![Filter Command UI](images/UG_Filter%20Command.png)
 
-Each option should start with a hyphen `-` e.g. `-OPTION` and be separated by a white-space. Options
-which are excluded will be hidden. Refer to [Field Summary](#field-summary) for all the available
-options.
+These are the available flags:
 
-<div markdown="span" class="alert alert-info">
+- Name : `-n`
+- Email : `-e`
+- Company : `-c`
+- Job Title : `-j`
+- Address : `-a`
+- Phone Number : `-p`
+- Tag : `-t`
+- Remark : `-r`
 
-:information_source: Refer to [Field Summary](#field-summary) for the available options
-
-</div>
+Flags in the filter command **do not need an argument** and **flags that are indicated will be
+visible**.
 
 **Examples**:
 
 | example        | description                                              |
 | -------------- | -------------------------------------------------------- |
-| `filter`       | Shows all fields.                                         |
-| `filter -a`    | shows the person's name and address only.               |
-| `filter -a -p` | shows the person's name, address and phone number only. |
+| `filter`       | Shows all fields.                                        |
+| `filter -a`    | shows the person's name and address only.                |
+| `filter -a -p` | shows the person's name, address and phone number only.  |
 
-## Tagging persons: `tag`
+## Tagging Person(s): `tag`
 
 The tag command allows you to add and delete specific tags of persons.
 
 * Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
 * Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
-### Add tags to persons: `tag add`
+### Add Tags to Person(s): `tag add`
 
 Add tags to persons in address book.
 
@@ -694,7 +705,7 @@ To bulk add tag, either do:
 * `tag add shown` to add tags to all the shown persons or,
 * `tag add selected` to add tags to all the selected persons
 
-### Delete tags from persons: `tag delete`
+### Delete Tags From Person(s): `tag delete`
 
 Delete tags from persons in address book.
 
@@ -721,13 +732,14 @@ To bulk delete tag, either do:
 * `tag delete shown` to delete tags to all the shown persons or,
 * `tag delete selected` to delete tags to all the selected persons
 
-## Saving the data
+## Saving the Data
 
 A-Bash Book data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-## Editing the data file
+## Editing the Data File
 
-A-Bash Book data is saved as a JSON file `[JAR file location]/data/abashbook.json`. Advanced users are welcome to update data directly by editing that data file.
+A-Bash Book data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users
+are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">
 
@@ -740,7 +752,7 @@ If changes to the data file renders its format invalid, A-Bash Book will discard
 
 # FAQ
 
-## What is the Home Folder?
+## What Is the Home Folder?
 
 The home folder is the file system folder on your computer where A-Bash Book stores your data.
 
@@ -755,7 +767,7 @@ foldername (Home Folder)
 ├── preferences.json
 ```
 
-## How do I transfer my data to another Computer?
+## How Do I Transfer My Data to Another Computer?
 
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous A-Bash Book home folder.
 
