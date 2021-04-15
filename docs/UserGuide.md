@@ -1056,10 +1056,12 @@ Term | Meaning
 --------|------------------
 **Graphical User Interface (GUI)** | A GUI allows users to use graphics to interact with a device. This includes graphical objects like icons, cursors, and buttons. Using these objects, a user can use a device without having to know commands.
 **Command Line Interface (GUI)** | A CLI allows users to use commands in the form of text as input to a device. Using these text-based commands, a user can can use a device without having to interact with graphical objects.
+**Java** | Java is an application that allows applications such as CoLAB to be run on your computer.
 **Command** | An instruction typed by a user, to be executed by CoLAB.
 **Field** | A portion of a command that requires information to be entered into.
 **Parameter** | A portion of a command that the user enters information into.
 **Prefix** | An abbreviation for the name of a field that is to be entered right before a parameter of a command. Prefix's end with a slash (/).
+**Panel** | A page or section that contains information in the GUI.
 **Project** | A project in CoLAB contains information about todos, deadlines, events and groupmates to help you keep track of everything you need to effectively manage a project.
 **Todo** | A todo in CoLAB represents a task that has to be done. These are usually short-term tasks that have to be done in a short timeframe or have no due date.
 **Deadline** | A deadline in CoLAB represents a project deadline that has to be completed before a due date.
