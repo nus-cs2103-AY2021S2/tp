@@ -270,7 +270,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
 ## **3. Quick Start**
 
-1. Ensure you have Java `11` or above installed on your Computer.
+1. Ensure you have Java `11` or above installed on your Computer. If you do not have Java `11` installed, you may download it [here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html).
 
 1. Download the latest `CoLAB.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-2/tp/releases).
 
@@ -295,7 +295,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
     * **`exit`**: Exits the app.
 
-6. Refer to the [Features](#4-features) below for details of each command.
+1. Refer to the [Features](#4-features) below for details of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 When the sample data is no longer required, you may use the `clear` command to clear sample projects and contacts from CoLAB.
