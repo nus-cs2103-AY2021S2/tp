@@ -204,7 +204,7 @@ Example:
 
 `add n/John Doe p/98612341`
 
-* After `add` command is entered
+* After the command is entered
 
 ![AfterAdd](images/DemoAfterAddCommand.png)
 
@@ -257,7 +257,7 @@ Example:
 
 `edit 1 p/91234567 e/johndoe@example.com`
 
-* After [`detail 1`](#323-viewing-a-contact-details--detail) is successfully executed and all details of Alex Yeoh are displayed
+* After [`detail 1`](#323-viewing-a-contact-details--detail) is successfully executed, all details of Alex Yeoh are displayed.
 
 ![BeforeEdit](images/DemoBeforeEditCommand.png)
 
@@ -277,8 +277,8 @@ Command     | Result
 
 #### 3.2.3 Viewing a contact details : `detail`
 
-View the full details of the specified student's contact from TutorsPet.
-The specified student's name, phone number, school, email, address, guardian name, guardian's phone number,
+Views the full details of the specified student's contact from TutorsPet.
+The student's name, phone number, school, email, address, guardian name, guardian's phone number,
 education level and lessons will be displayed.
 
 Format: `detail INDEX`
@@ -289,19 +289,19 @@ Format: `detail INDEX`
 <div markdown="block" class="alert alert-primary">
 :bulb:**Tips:** <br>
 
-If student details are cut off, the windows can be resized to view more. Otherwise, the student's complete details
-will also be in the results display.
+If student details are cut off, the windows can be resized to view more. Furthermore, the student's complete details
+will be in the results display.
 </div>
 
 Example: <br>
 
-`detail 2`
+`detail 1`
 
-* During start up, the details panel could be empty
+* During start up, the details panel could be empty.
 
 ![BeforeDetail](images/DemoBeforeDetailCommand.png)
 
-* After the `detail`command is entered, the details of the 2nd student in the List are displayed.
+* After the `detail 1` command is entered, the details of the first student in the List are displayed.
 
 ![AfterDetail](images/DemoAfterDetailCommand.png)
 
@@ -324,7 +324,9 @@ Format: `delete INDEX`
 </div>
 Example: <br>
 
-`list` followed by `delete 7` deletes the 7th student in the list.
+`delete 7`
+
+* `list` followed by `delete 7` deletes the 7th student in the list.
 
 ![AfterDelete](images/DemoAfterDeleteCommand.png)
 
@@ -373,8 +375,10 @@ Prefix | Searching Criteria
 
 Example:
 
-`search n/yeoh alex s/xyz t/cn` displays a list of students who has the name `yeoh alex`, order does not matter, or with
-the school `xyz` or with subjects `cn`.
+`search n/yeoh alex s/xyz t/cn` 
+
+* After the `search` command is entered, a list of students whose name, school or subject contains the specified keywords
+  will be displayed.
 
 ![AfterSearch](images/DemoAfterSearchCommand.png)
 
@@ -386,13 +390,13 @@ Command     | Result
 `search n/Patrick Lim` | displays a list of students whose names are `patrick lim` and `Lim Zi Ying`
 `search s/woodlands` | displays a list of students studying in `woodlands primary school` and `woodlands secondary school`
 `search s/raffles hwa` | displays a list of students studying in `Raffles Institution` and `Hwa chong institution`
-`search t/CHEM` <br>`search t/chem` <br>`search t/Chem` | displays a list of students with the subject `chem`
+`search t/chem` | displays a list of students with the subject `chem`
 `search t/chem math` | displays a list of students with the subject `chem` or with the subject `math` or with both.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 #### 3.2.6 Sorting contacts : `sort`
-Sorts the student contacts list by name, school, subjects or lessons.
+Sorts the student contacts by name, school, subjects or lessons.
 
 Format: `sort PREFIX`
 
@@ -417,7 +421,10 @@ Prefix | Sorting Criteria | Details
 </div>
 
 Example:
-`sort t/` sorts students based on the alphabetical order of their first subject.
+
+`sort t/` 
+
+* The `sort` command sorts students based on the alphabetical order of their first subject.
 
 ![Sort Command](images/DemoSortCommand.png)
 
@@ -441,7 +448,7 @@ Format: `list`
 #### 3.2.8 Increasing level of all students : `levelup`
 
 Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
-This feature can be used to do a mass update all the student's levels at the start of the school year.
+This feature can perform a mass update on all the students' levels at the start of the school year.
 
 If only some students' levels need to be changed, [edit](#322-editing-a-contact--edit) can be used instead.
 
@@ -463,28 +470,28 @@ Format: `levelup ex/[INDEX]...`
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the advancement.
 
-* The index **must be a positive integer** ranging from 1 to 2147483647.
-
 * Multiple indexes can be taken in. Indexes must be separated by spaces.
 
 </div>
 
 Example:
 
-before `levelup ex/1` command, the first student is primary 5 whereas the 2nd student is secondary 3.
+`levelup ex/1`
+
+* Before the command, the first student is primary 5 whereas the 2nd student is secondary 3.
 
 ![BeforeLevelUp1](images/DemoBeforeLevelUpCommand1.png)
 
 ![BeforeLevelUp2](images/DemoBeforeLevelUpCommand2.png)
 
-after entering `levelup ex/1`, it advances all students by one level, excluding the 1st student in the list
-(and `grad` students).
+After entering the command, all students are advanced by one level, excluding the first student in the list
+(and the `grad` students).
 
 ![AfterLevelUp1](images/DemoAfterLevelUpCommand1.png)
 
 ![AfterLevelUp2](images/DemoAfterLevelUpCommand2.png)
 
-1st student in the list still remains primary 5 whereas the rest of the student advances by one level/
+The first student in the list still remains primary 5, whereas the rest of the students advance by one level.
 
 Other examples:
 
@@ -498,7 +505,7 @@ Command     | Result
 #### 3.2.9 Decreasing level of all students : `leveldown`
 
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
-This feature can be used to do a mass undo of `levelup` or indicate retainees.
+This feature can perform a mass undo of `levelup` or indicate retainees.
 
 If only some students' levels need to be changed, [edit](#322-editing-a-contact--edit) can be used instead.
 
@@ -508,18 +515,16 @@ Format: `leveldown ex/[INDEX]...`
 
 :bulb:**Tips:** <br>
 
-* Students who are `jc1` will automatically demote to `sec5` when `leveldown` is applied. If students
+* Students who are `jc1` will be automatically demoted to `sec5` when `leveldown` is applied. If students
   are part of the express course, `leveldown` can be applied again to demote them to `sec4`.
 
-* Students who are `pri1` will not demote any further.
+* Students who are `pri1` will not be demoted any further.
 
-* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `grad`).
+* If the `ex/` prefix is not used, all students will be demoted by one education level (unless they have `grad`).
   Once `ex/` prefix is used, the index field cannot be left blank.
 
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.
-
-* The index **must be a positive integer** ranging from 1 to 2147483647.
 
 * Multiple indexes can be taken in. Indexes must be separated by spaces.
 
@@ -527,13 +532,15 @@ Format: `leveldown ex/[INDEX]...`
 
 Example:
 
-before `leveldown ex/1` command, the first student is secondary 4 whereas the 6th student is secondary 5.
+`leveldown ex/1`
+
+Before the command, the first student is secondary 4 whereas the sixth student is secondary 5.
 
 ![BeforeLevelUp1](images/DemoBeforeLevelDownCommand1.png)
 
 ![BeforeLevelUp2](images/DemoBeforeLevelDownCommand2.png)
 
-after entering `leveldown ex/1`, it demotes all students by one level, excluding the 1st student in the list
+After entering the command, all students are demoted by one level, excluding the first student in the list
 (and `grad` students).
 
 ![AfterLevelUp1](images/DemoAfterLevelDownCommand1.png)
@@ -545,8 +552,8 @@ Other examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
-`leveldown`   | demotes all students (except `pri` students) by one level
-`leveldown ex/1 2`| demotes all students by one level, excluding the 2nd and 4th student in the list (and `pri1` students)
+`leveldown`   | demotes all students (except `pri1` students) by one level
+`leveldown ex/1 2`| demotes all students by one level, excluding the first and second student in the list (and `pri1` students)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
