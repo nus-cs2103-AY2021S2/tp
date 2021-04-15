@@ -15,6 +15,9 @@ import seedu.address.model.task.repeatable.EventWithProject;
  */
 public class TodayEventCard extends UiPart<Region> {
 
+    public static final String MESSAGE_EVENT_NON_REPEATABLE = "%s, %s, %s";
+    public static final String MESSAGE_EVENT_REPEATABLE = "Every %s, starting %s, %s";
+
     private static final String FXML = "TodayEventCard.fxml";
 
     public final EventWithProject eventWithProject;
@@ -22,36 +25,33 @@ public class TodayEventCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label id;
-    @FXML
     private Label eventDescription;
     @FXML
-    private Label day;
-    @FXML
-    private Label date;
-    @FXML
-    private Label time;
+    private Label dateTime;
     @FXML
     private Label projectName;
 
     /**
-     * Creates an {@code EventCard} with the given {@code Event} without an index to display.
+     * Creates a {@code TodayEventCard} with the given {@code EventWithProject}.
      */
     public TodayEventCard(EventWithProject eventWithProject) {
         super(FXML);
         requireNonNull(eventWithProject);
 
         this.eventWithProject = eventWithProject;
-        id.setText("");
         eventDescription.setText(eventWithProject.getDescription());
-        day.setText(DateUtil.decodeDateIntoDay(eventWithProject.getDate()));
-        time.setText(TimeUtil.decodeTime(eventWithProject.getTime()));
         projectName.setText(eventWithProject.getProjectName().toString());
 
         if (eventWithProject.getIsWeekly()) {
-            date.setText("every");
+            dateTime.setText(String.format(MESSAGE_EVENT_REPEATABLE,
+                    DateUtil.decodeDateIntoDay(eventWithProject.getDate()),
+                    DateUtil.decodeDate(eventWithProject.getDate()),
+                    TimeUtil.decodeTime(eventWithProject.getTime())));
         } else {
-            date.setText(DateUtil.decodeDate(eventWithProject.getDate()));
+            dateTime.setText(String.format(MESSAGE_EVENT_NON_REPEATABLE,
+                    DateUtil.decodeDateIntoDay(eventWithProject.getDate()),
+                    DateUtil.decodeDate(eventWithProject.getDate()),
+                    TimeUtil.decodeTime(eventWithProject.getTime())));
         }
     }
 
@@ -69,7 +69,6 @@ public class TodayEventCard extends UiPart<Region> {
 
         // state check
         TodayEventCard card = (TodayEventCard) other;
-        return id.getText().equals(card.id.getText())
-                && eventWithProject.equals(card.eventWithProject);
+        return eventWithProject.equals(card.eventWithProject);
     }
 }

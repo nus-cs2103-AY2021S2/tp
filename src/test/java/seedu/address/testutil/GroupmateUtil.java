@@ -8,7 +8,7 @@ import seedu.address.logic.commands.AddGroupmateCommand;
 import seedu.address.model.groupmate.Groupmate;
 
 /**
- * A utility class for Contact.
+ * A utility class for Groupmate.
  */
 public class GroupmateUtil {
 
@@ -21,7 +21,7 @@ public class GroupmateUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code Contact}'s details.
+     * Returns the part of command string for the given {@code Groupmate}'s details.
      */
     public static String getGroupmateDetails(Groupmate groupmate) {
         StringBuilder sb = new StringBuilder();

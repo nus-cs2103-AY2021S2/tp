@@ -140,7 +140,7 @@ public class HelpPanel extends UiPart<Region> {
                         "addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY"),
                 new CommandSyntax("updateE",
                         "updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] "
-                                + "[w/REPEATS_WEEKLY]"),
+                                + "[w/REPEAT_WEEKLY]"),
                 new CommandSyntax("deleteE", "deleteE PROJECT_INDEX i/EVENT_INDEX")
         );
     }
@@ -150,14 +150,14 @@ public class HelpPanel extends UiPart<Region> {
                 new CommandSyntax("addG", "addG PROJECT_INDEX n/NAME [r/ROLE]..."),
                 new CommandSyntax("updateG",
                         "updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]..."),
-                new CommandSyntax("deleteC", "deleteC PROJECT_INDEX i/GROUPMATE_INDEX")
+                new CommandSyntax("deleteG", "deleteG PROJECT_INDEX i/GROUPMATE_INDEX")
         );
     }
 
     private static ObservableList<CommandSyntax> getContactCommands() {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addC", "addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..."),
-                new CommandSyntax("find", "find KEYWORD [KEYWORD]..."),
+                new CommandSyntax("findC", "findC KEYWORD [KEYWORD]..."),
                 new CommandSyntax("updateC",
                         "updateC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..."),
                 new CommandSyntax("deleteC", "deleteC INDEX")

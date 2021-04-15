@@ -11,6 +11,7 @@ public class Todo extends CompletableTodo {
 
     /**
      * Constructor for Todo.
+     *
      * @param description Description of the Todo.
      */
     public Todo(String description) {
@@ -19,6 +20,7 @@ public class Todo extends CompletableTodo {
 
     /**
      * Constructor for Todo.
+     *
      * @param description Description of the Todo.
      * @param isDone Marks whether the Todo is Done.
      */
@@ -28,6 +30,7 @@ public class Todo extends CompletableTodo {
 
     /**
      * Checks if an instance of a Todo is equal to another Object.
+     *
      * @param other Object to be compared with.
      * @return True if both objects are equal. Else return false.
      */
@@ -54,7 +57,8 @@ public class Todo extends CompletableTodo {
 
     /**
      * Returns a String representation of the CompletableTodo.
-     * @return A String representation of the CompletableTodo.
+     *
+     * @return String representation of the CompletableTodo.
      */
     @Override
     public String toString() {

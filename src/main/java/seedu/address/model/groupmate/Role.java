@@ -10,8 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Role {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Role names should be alphanumeric (can have underscores and hyphens)";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_-]*$";
+            "Role names should be alphanumeric and at least 2-character long"
+            + " (can have underscores and hyphens in the middle)";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9][a-zA-Z0-9_-]*[a-zA-Z0-9]$";
 
     public final String roleName;
 

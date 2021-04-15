@@ -100,7 +100,7 @@ public class DeleteProjectCommandTest {
         // null -> returns false
         assertFalse(deleteFirstProjectCommand.equals(null));
 
-        // different contact -> returns false
+        // different groupmate -> returns false
         assertFalse(deleteFirstProjectCommand.equals(deleteSecondProjectCommand));
     }
 

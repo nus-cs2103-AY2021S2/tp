@@ -12,9 +12,9 @@ import seedu.address.model.task.CompletableDeadline;
 /**
  * An UI component that displays information of a {@code CompletableDeadline}.
  */
-public class CompletableDeadlineCard extends UiPart<Region> {
+public class DeadlineCard extends UiPart<Region> {
 
-    private static final String FXML = "CompletableDeadlineCard.fxml";
+    private static final String FXML = "DeadlineCard.fxml";
 
     public final CompletableDeadline deadline;
 
@@ -32,9 +32,9 @@ public class CompletableDeadlineCard extends UiPart<Region> {
     private Label completedLabel;
 
     /**
-     * Creates a {@code CompletableDeadlineCard} with the given {@code CompletableDeadline} and index to display.
+     * Creates a {@code DeadlineCard} with the given {@code CompletableDeadline} and index to display.
      */
-    public CompletableDeadlineCard(CompletableDeadline deadline, int displayedIndex) {
+    public DeadlineCard(CompletableDeadline deadline, int displayedIndex) {
         super(FXML);
         requireAllNonNull(deadline, displayedIndex);
 
@@ -63,12 +63,12 @@ public class CompletableDeadlineCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CompletableDeadlineCard)) {
+        if (!(other instanceof DeadlineCard)) {
             return false;
         }
 
         // state check
-        CompletableDeadlineCard card = (CompletableDeadlineCard) other;
+        DeadlineCard card = (DeadlineCard) other;
         return id.getText().equals(card.id.getText())
                 && deadline.equals(card.deadline);
     }

@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -63,7 +64,7 @@ public class UpdateContactCommandParser implements Parser<UpdateContactCommand> 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(updateContactDescriptor::setTags);
 
         if (!updateContactDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(UpdateContactCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(Messages.MESSAGE_NOT_UPDATED);
         }
 
         return new UpdateContactCommand(index, updateContactDescriptor);

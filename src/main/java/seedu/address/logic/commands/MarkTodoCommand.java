@@ -26,6 +26,8 @@ public class MarkTodoCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MARK_TASK_INDEX + " 2";
 
+    public static final String MESSAGE_ALREADY_MARKED_TODO = "This todo has already been marked as done.";
+
     private final Index projectIndex;
     private final Index targetTodoIndex;
 
@@ -50,12 +52,16 @@ public class MarkTodoCommand extends Command {
         }
 
         if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getTodos().getSortedTodos().size()) {
+                .getSortedTodos().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
         requireNonNull(projectToEdit);
+
+        if (projectToEdit.getSortedTodos().get(targetTodoIndex.getZeroBased()).getIsDone()) {
+            throw new CommandException(MESSAGE_ALREADY_MARKED_TODO);
+        }
 
         projectToEdit.markTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);

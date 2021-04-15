@@ -55,10 +55,24 @@ shadowJar {
     archiveFileName = 'CoLAB.jar'
 }
 
+// Run `test` task if `guiTests` or `nonGuiTests` is specified
+task(guiTests)
+guiTests {
+    dependsOn test
+}
+
 test {
     useJUnitPlatform()
 
     systemProperty 'testfx.setup.timeout', '60000'
+
+    doFirst {
+        boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
+
+        if (!runGuiTests) {
+            exclude 'seedu/address/ui/**'
+        }
+    }
 
     testLogging {
         events TestLogEvent.FAILED, TestLogEvent.SKIPPED

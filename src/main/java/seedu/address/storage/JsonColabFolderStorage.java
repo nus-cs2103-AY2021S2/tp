@@ -47,7 +47,7 @@ public class JsonColabFolderStorage implements ColabFolderStorage {
 
         Optional<JsonSerializableColabFolder> jsonColabFolder = JsonUtil.readJsonFile(
                 filePath, JsonSerializableColabFolder.class);
-        if (!jsonColabFolder.isPresent()) {
+        if (jsonColabFolder.isEmpty()) {
             return Optional.empty();
         }
 

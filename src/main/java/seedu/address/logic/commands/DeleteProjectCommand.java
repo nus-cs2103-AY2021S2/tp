@@ -22,7 +22,7 @@ public class DeleteProjectCommand extends Command {
             + ": Deletes the project identified by the index number used in the side panel.\n"
             + "Parameters: PROJECT_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
+    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted project: %1$s";
 
     private final Index targetIndex;
 

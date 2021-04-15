@@ -3,9 +3,9 @@
 }
 
 .commands-display-vbox {
-    -fx-alignment: center;
     -fx-background-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 10 0 0 20;
 }
 
 .scroll-pane {
@@ -23,9 +23,9 @@
 .table-view {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-min-width: 700;
-    -fx-pref-width: 700;
-    -fx-max-width: 700;
+    -fx-min-width: 800;
+    -fx-pref-width: 800;
+    -fx-max-width: 800;
 }
 
 .table-cell {
@@ -58,7 +58,6 @@
 .label-header {
     -fx-text-fill: white;
     -fx-font-size: 24;
-    -fx-text-alignment: center;
     -fx-padding: 5 0 5 0;
     -fx-border-radius: 0;
 }

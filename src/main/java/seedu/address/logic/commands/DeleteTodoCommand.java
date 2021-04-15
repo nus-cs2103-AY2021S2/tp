@@ -31,6 +31,7 @@ public class DeleteTodoCommand extends Command {
 
     /**
      * Creates a DeleteTodoCommand to delete the specified {@code Todo} from {@code Project}.
+     *
      * @param projectIndex Index of project that {@code Todo} is to be deleted from.
      * @param targetTodoIndex Index of todo that is to be deleted form {@code Project}.
      */

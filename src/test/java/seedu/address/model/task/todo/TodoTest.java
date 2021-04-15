@@ -12,6 +12,9 @@ import seedu.address.testutil.TodoBuilder;
 
 public class TodoTest {
 
+    private String invalidDescription1 = "";
+    private String invalidDescription2 = " ";
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Todo(null));
@@ -21,10 +24,9 @@ public class TodoTest {
 
     @Test
     public void constructor_invalidDescription_throwsIllegalArgumentException() {
-        String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription));
-        assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription, false));
-        String invalidDescription2 = " ";
+        assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription1));
+        assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription1, false));
+
         assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription2));
         assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription2, false));
     }
@@ -35,8 +37,8 @@ public class TodoTest {
         assertThrows(NullPointerException.class, () -> Todo.isValidDescription(null));
 
         // invalid description
-        assertFalse(Todo.isValidDescription("")); // empty string
-        assertFalse(Todo.isValidDescription(" ")); // spaces only
+        assertFalse(Todo.isValidDescription(invalidDescription1)); // empty string
+        assertFalse(Todo.isValidDescription(invalidDescription2)); // spaces only
 
         // valid description
         assertTrue(Todo.isValidDescription("Blk 456, Den Road, #01-355"));

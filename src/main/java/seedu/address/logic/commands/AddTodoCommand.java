@@ -18,7 +18,7 @@ public class AddTodoCommand extends Command {
 
     public static final String COMMAND_WORD = "addT";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Todo to CoLAB.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a todo to CoLAB.\n"
             + "Parameters: PROJECT_INDEX "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -28,7 +28,8 @@ public class AddTodoCommand extends Command {
     private final Todo toAdd;
 
     /**
-     * Creates an AddTodoCommand to add the specified {@code Task}
+     * Creates an AddTodoCommand to add the specified {@code Task}.
+     *
      * @param index index of {@code Project} to add event in the list.
      * @param todo {@code Todo} to add.
      */

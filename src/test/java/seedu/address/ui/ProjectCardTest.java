@@ -62,7 +62,7 @@ public class ProjectCardTest extends GuiUnitTest {
         // verify id is displayed correctly
         assertEquals(Integer.toString(expectedId) + ". ", projectCardHandle.getId());
 
-        // verify contact details are displayed correctly
+        // verify project details are displayed correctly
         assertCardDisplaysProject(expectedProject, projectCardHandle);
     }
 }

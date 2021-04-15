@@ -9,28 +9,28 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS" minHeight="55" prefHeight="55" maxHeight="55">
-        <columnConstraints>
-            <ColumnConstraints hgrow="ALWAYS" minWidth="10"/>
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
-            <padding>
-                <Insets top="5" right="5" bottom="5" left="15"/>
-            </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label" minWidth="-Infinity">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE"/>
-                    </minWidth>
-                </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" minWidth="-Infinity"/>
-            </HBox>
-            <HBox fx:id="roles" minWidth="-Infinity" spacing="5">
-                <padding>
-                    <Insets top="0" right="0" bottom="0" left="20"/>
-                </padding>
-            </HBox>
-        </VBox>
-    </GridPane>
+  <GridPane HBox.hgrow="ALWAYS" minHeight="55" prefHeight="55" maxHeight="55">
+    <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10"/>
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15"/>
+      </padding>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="id" styleClass="cell_big_label" minWidth="-Infinity">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE"/>
+          </minWidth>
+        </Label>
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" minWidth="-Infinity"/>
+      </HBox>
+      <HBox fx:id="roles" minWidth="-Infinity" spacing="5">
+        <padding>
+          <Insets top="0" right="0" bottom="0" left="20"/>
+        </padding>
+      </HBox>
+    </VBox>
+  </GridPane>
 </HBox>

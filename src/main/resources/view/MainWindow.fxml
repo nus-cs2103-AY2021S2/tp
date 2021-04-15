@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 
 <fx:root maxHeight="2160.0" maxWidth="3840.0" minHeight="680" minWidth="900" onCloseRequest="#handleExit" title="CoLAB"
@@ -41,13 +40,14 @@
           <VBox fx:id="infoDisplay" minHeight="100.0" HBox.hgrow="ALWAYS">
             <StackPane fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS"/>
 
-            <StackPane fx:id="resultDisplayPlaceholder" prefHeight="150" maxHeight="150" VBox.vgrow="NEVER" styleClass="pane-with-border">
+            <StackPane fx:id="resultDisplayPlaceholder" prefHeight="150" maxHeight="150" VBox.vgrow="NEVER"
+                       styleClass="pane-with-border">
               <padding>
                 <Insets bottom="10.0" top="10.0"/>
               </padding>
             </StackPane>
 
-            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER" />
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER"/>
 
             <padding>
               <Insets left="20.0" right="20.0"/>

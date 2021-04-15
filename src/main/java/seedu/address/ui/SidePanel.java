@@ -56,6 +56,7 @@ public class SidePanel extends UiPart<Region> {
         mainWindow.setFeedbackToUser(ViewContactsCommand.MESSAGE_SUCCESS);
         clearButtonStyles();
         addContactButtonStyle();
+        mainWindow.resetContactsList();
         mainWindow.displayContacts();
     }
 

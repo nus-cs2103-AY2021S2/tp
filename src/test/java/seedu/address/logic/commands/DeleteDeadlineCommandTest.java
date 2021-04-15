@@ -29,24 +29,26 @@ import seedu.address.testutil.ProjectBuilder;
 public class DeleteDeadlineCommandTest {
 
     private Model model;
+    private Deadline deadlineToDelete;
+    private Project projectToEdit;
+    private Project editedProject;
 
     @BeforeEach
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
-    }
-
-    @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Deadline deadlineToDelete = new DeadlineBuilder().build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
+        deadlineToDelete = new DeadlineBuilder().build();
+        projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addDeadline(deadlineToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
+    }
 
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
         Index firstDeadlineIndex = Index.fromOneBased(1); // deadline is added to front since list is sorted
 
         DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_FIRST, firstDeadlineIndex);
@@ -62,16 +64,6 @@ public class DeleteDeadlineCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Deadline deadlineToDelete = new DeadlineBuilder().build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addDeadline(deadlineToDelete);
-
-        model.setProject(
-                projectToEdit,
-                editedProject
-        );
-
         Index lastDeadlineIndex = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().size());
 
@@ -85,16 +77,6 @@ public class DeleteDeadlineCommandTest {
 
     @Test
     public void execute_invalidDeadlineIndex_throwsCommandException() {
-        Deadline deadlineToDelete = new DeadlineBuilder().build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addDeadline(deadlineToDelete);
-
-        model.setProject(
-                projectToEdit,
-                editedProject
-        );
-
         Index invalidDeadlineIndex = Index.fromOneBased(
                 model.getFilteredProjectList().get(
                         INDEX_FIRST.getZeroBased()).getDeadlines().getSortedDeadlineList().size() + 1);
@@ -109,16 +91,6 @@ public class DeleteDeadlineCommandTest {
 
     @Test
     public void equals() {
-        Deadline deadlineToDelete = new DeadlineBuilder().build();
-        Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addDeadline(deadlineToDelete);
-
-        model.setProject(
-                project1ToEdit,
-                editedProject1
-        );
-
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
         Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
         editedProject2.addDeadline(deadlineToDelete);

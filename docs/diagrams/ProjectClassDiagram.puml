@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam defaultFontSize 30
+
+Class ColabFolder
+Class ModelManager
+
+Package Project {
+Class Project
+Class UniqueProjectList
+Class EventList
+Class DeadlineList
+Class TodoList
+Class GroupmateList
+}
+
+Package Role {
+Class Role
+}
+
+Package Event {
+Class "{abstract}\nRepeatable" as Repeatable
+Class Event
+}
+
+Package Deadline {
+Class "{abstract}\nCompletableDeadline" as CompletableDeadline
+Class Deadline
+}
+
+Package Todo {
+Class "{abstract}\nCompletableTodo" as CompletableTodo
+Class Todo
+}
+
+Package Groupmate {
+Class Groupmate
+Class Name
+}
+
+ModelManager o--> "1" ColabFolder
+ModelManager -->"~* filtered list" Project
+ColabFolder *-right-> "1" UniqueProjectList
+
+UniqueProjectList o-down-> "*" Project
+Project *-right-> "1  " EventList
+Project *-right-> "1  " DeadlineList
+Project *-right-> "1   " TodoList
+Project *-right-> "1" GroupmateList
+
+EventList o--right--> "*" Repeatable
+Event .up.|> Repeatable
+
+DeadlineList o-right-> "*" CompletableDeadline
+Deadline .up.|> CompletableDeadline
+
+TodoList o-right-> "*" CompletableTodo
+Todo .up.|> CompletableTodo
+
+GroupmateList o-right-> "*" Groupmate
+Groupmate *-right-> "*" Role
+Groupmate *--> Name
+
+GroupmateList -[hidden]down- TodoList
+TodoList -[hidden]down- EventList
+EventList -[hidden]down- DeadlineList
+
+@enduml

@@ -36,10 +36,12 @@ public class UpdateDeadlineCommand extends Command {
             + "[" + PREFIX_DEADLINE_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INDEX + "1 "
-            + PREFIX_DESCRIPTION + "Submission deadline";
+            + PREFIX_DESCRIPTION + "Submission deadline "
+            + PREFIX_DEADLINE_DATE + "24-04-2021";
 
     public static final String MESSAGE_UPDATE_DEADLINE_SUCCESS = "Updated deadline: %1$s";
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in this project.";
+    public static final String MESSAGE_UNCHANGED_DEADLINE = "This deadline already has this description and date.";
 
     private final Index projectIndex;
     private final Index targetDeadlineIndex;
@@ -85,11 +87,15 @@ public class UpdateDeadlineCommand extends Command {
         }
 
         if (deadlineList.checkIsDone(targetDeadlineIndex.getZeroBased())) {
-            deadlineList.setDeadline(targetDeadlineIndex.getZeroBased(), updatedDeadline);
-            deadlineList.markAsDone(targetDeadlineIndex.getZeroBased());
-        } else {
-            projectToUpdate.getDeadlines().setDeadline(targetDeadlineIndex.getZeroBased(), updatedDeadline);
+            updatedDeadline.markAsDone();
         }
+
+        if (deadlineToUpdate.equals(updatedDeadline)) {
+            throw new CommandException(MESSAGE_UNCHANGED_DEADLINE);
+        }
+
+        deadlineList.setDeadline(targetDeadlineIndex.getZeroBased(), updatedDeadline);
+
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_UPDATE_DEADLINE_SUCCESS, updatedDeadline),
                 new ViewProjectAndOverviewUiCommand(projectIndex));
@@ -99,7 +105,7 @@ public class UpdateDeadlineCommand extends Command {
      * Creates and returns a {@code Deadline} with the details of {@code deadlineToUpdate}
      * edited with {@code updateDeadlineDescriptor}.
      */
-    private static CompletableDeadline createUpdatedDeadline(CompletableDeadline deadlineToUpdate,
+    public static CompletableDeadline createUpdatedDeadline(CompletableDeadline deadlineToUpdate,
                                                              UpdateDeadlineDescriptor updateDeadlineDescriptor) {
         assert deadlineToUpdate != null;
 

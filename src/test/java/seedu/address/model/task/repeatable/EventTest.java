@@ -23,6 +23,9 @@ public class EventTest {
             .withDate(LocalDate.of(2021, 01, 03)).withTime(LocalTime.of(15, 00))
             .withIsWeekly(false).build();
 
+    private String invalidDescription1 = "";
+    private String invalidDescription2 = " ";
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
@@ -44,11 +47,9 @@ public class EventTest {
         LocalTime validTime = LocalTime.of(17, 30);
         Boolean validIsWeekly = false;
 
-        String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validDate,
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription1, validDate,
                 validTime, validIsWeekly));
 
-        String invalidDescription2 = " ";
         assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validDate,
                 validTime, validIsWeekly));
     }
@@ -59,8 +60,8 @@ public class EventTest {
         assertThrows(NullPointerException.class, () -> Deadline.isValidDescription(null));
 
         // invalid description
-        assertFalse(Deadline.isValidDescription("")); // empty string
-        assertFalse(Deadline.isValidDescription(" ")); // spaces only
+        assertFalse(Deadline.isValidDescription(invalidDescription1)); // empty string
+        assertFalse(Deadline.isValidDescription(invalidDescription2)); // spaces only
 
         // valid description
         assertTrue(Deadline.isValidDescription("Tutorial, CS2106, #01-355"));

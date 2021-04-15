@@ -132,7 +132,8 @@ public class EventList {
 
         Predicate<Event> predicate = event -> {
             if (event.getIsWeekly()) {
-                return event.getDate().getDayOfWeek().equals(dateOfEvent.getDayOfWeek());
+                return event.getDate().getDayOfWeek().equals(dateOfEvent.getDayOfWeek())
+                        && !event.getDate().isAfter(dateOfEvent);
             } else {
                 return event.getDate().isEqual(dateOfEvent);
             }

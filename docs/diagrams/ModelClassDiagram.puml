@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyColabFolder <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class ColabFolder
+Class ReadOnlyColabFolder
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -17,40 +17,39 @@ Class ReadOnlyUserPrefs
 
 Package Contact {
 Class Contact
-Class Address
-Class Email
-Class Name
-Class Phone
 Class UniqueContactList
 }
 
-Package Tag {
-Class Tag
+Package Project {
+Class Project
+Class UniqueProjectList
 }
+
+note "For clarity, the design of **Contact**\nand **Project** have been omitted\nfrom this diagram. Refer to\n**Inner workings** section for\nmore details." as Note
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ColabFolder .up.|> ReadOnlyColabFolder
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" ColabFolder
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueContactList
-UniqueContactList o--> "*" Contact
-Contact *--> Name
-Contact *--> Phone
-Contact *--> Email
-Contact *--> Address
-Contact *--> "*" Tag
+ColabFolder *-> "1" UniqueContactList
+UniqueContactList o--> "  *" Contact
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ColabFolder *-> "1" UniqueProjectList
+UniqueProjectList o--> "*" Project
 
-ModelManager ----->" ~* filtered list" Contact
+ModelManager ---> "~* filtered list   " Contact
+ModelManager ---->"   ~* filtered list" Project
+
+Contact -[hidden]left- ColabFolder
+Project -[hidden]right- ColabFolder
+Project -[hidden]left- Contact
+
 @enduml

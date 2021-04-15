@@ -31,16 +31,16 @@ public class AddGroupmateCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Index expectedProjectIndex = Index.fromOneBased(1);
-        Groupmate expectedContact = new GroupmateBuilder(SYLPH).withRoles(VALID_ROLE_LEADER).build();
+        Groupmate expectedGroupmate = new GroupmateBuilder(SYLPH).withRoles(VALID_ROLE_LEADER).build();
 
         // all field appear once
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_SYLPH + ROLE_DESC_LEADER,
-                new AddGroupmateCommand(expectedProjectIndex, expectedContact)
+                new AddGroupmateCommand(expectedProjectIndex, expectedGroupmate)
         );
 
         // multiple names - last name accepted
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_ROXY + NAME_DESC_SYLPH + ROLE_DESC_LEADER,
-                new AddGroupmateCommand(expectedProjectIndex, expectedContact));
+                new AddGroupmateCommand(expectedProjectIndex, expectedGroupmate));
 
         // multiple roles - all accepted
         Groupmate expectedGroupmateMultipleTags = new GroupmateBuilder(SYLPH)

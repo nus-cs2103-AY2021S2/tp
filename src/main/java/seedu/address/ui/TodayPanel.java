@@ -35,10 +35,8 @@ public class TodayPanel extends UiPart<Region> {
 
     @FXML
     private Label date;
-
     @FXML
     private StackPane eventsListViewPlaceholder;
-
     @FXML
     private StackPane deadlinesListViewPlaceholder;
 
@@ -92,7 +90,7 @@ public class TodayPanel extends UiPart<Region> {
         }
 
         SortedList<EventWithProject> sortedEventList = new SortedList<>(observableList,
-                Comparator.comparing(EventWithProject::getDescription));
+                Comparator.comparing(EventWithProject::getTime).thenComparing(EventWithProject::getDescription));
 
         eventsListView.setItems(sortedEventList);
 

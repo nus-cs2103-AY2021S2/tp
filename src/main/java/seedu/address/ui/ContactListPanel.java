@@ -30,11 +30,12 @@ public class ContactListPanel extends UiPart<Region> {
      */
     public ContactListPanel(ObservableList<Contact> contactList) {
         super(FXML);
+        contactListView.setId("contactListView");
         contactListView.setItems(contactList);
         contactListView.setCellFactory(listView -> new ContactListViewCell());
 
         if (contactListView.getItems().isEmpty()) {
-            noContactsLabel.setText("You have no contacts!");
+            noContactsLabel.setText("No contacts to display!");
             contactListViewPlaceholder.getChildren().add(noContactsLabel);
         } else {
             contactListViewPlaceholder.getChildren().add(contactListView);
@@ -58,4 +59,7 @@ public class ContactListPanel extends UiPart<Region> {
         }
     }
 
+    public ListView<Contact> getContactListView() {
+        return contactListView;
+    }
 }

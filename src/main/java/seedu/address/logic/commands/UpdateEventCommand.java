@@ -47,6 +47,8 @@ public class UpdateEventCommand extends Command {
 
     public static final String MESSAGE_UPDATE_EVENT_SUCCESS = "Updated event: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in this project.";
+    public static final String MESSAGE_UNCHANGED_EVENT = "This event already has this description, date,"
+            + " time and repeat weekly.";
 
     private final Index projectIndex;
     private final Index targetEventIndex;
@@ -91,7 +93,12 @@ public class UpdateEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
+        if (eventToUpdate.equals(updatedEvent)) {
+            throw new CommandException(MESSAGE_UNCHANGED_EVENT);
+        }
+
         projectToUpdate.setEvent(targetEventIndex.getZeroBased(), updatedEvent);
+
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_UPDATE_EVENT_SUCCESS, updatedEvent),
                 new ViewProjectAndOverviewUiCommand(projectIndex));
@@ -101,7 +108,7 @@ public class UpdateEventCommand extends Command {
      * Creates and returns a {@code Event} with the details of {@code eventToUpdate}
      * edited with {@code updatedEventDescriptor}.
      */
-    private static Event createUpdatedEvent(Event eventToEdit, UpdateEventDescriptor updateEventDescriptor) {
+    public static Event createUpdatedEvent(Event eventToEdit, UpdateEventDescriptor updateEventDescriptor) {
         assert eventToEdit != null;
 
         String updatedDescription = updateEventDescriptor.getDescription().orElse(eventToEdit.getDescription());

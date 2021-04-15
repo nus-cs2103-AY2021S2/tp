@@ -1,46 +1,41 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Li Ruochen's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: CoLAB
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+CoLAB (Collaboration Lab) is a desktop app for university students to manage their school projects. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to manage groupmates (`addG`, `updateG`, `deleteG` commands) (Pull requests [\#82](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/82), [\#108](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/108), [\#206](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/206), [\#214](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/214)).
+  * What it does: Adds a list of groupmates to each project, allows the user to create, read, update and delete groupmates with commands.
+  * Justification: This feature is the main "colab" feature of CoLAB. It allows the user to manage group projects more easily.
+  * Credits: original [AB3](https://github.com/nus-cs2103-AY2021S2/tp) authors.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=lirc572&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=lirc572&tabRepo=AY2021S2-CS2103T-T11-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false).
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed releases `v1.1` - `v1.4` (6 releases) on GitHub.
+  * Managed deadlines and deliverables for the group, including updating the issue tracker and milestones.
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for models to increase coverage from 67.19% to 72.17% ([\#133](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/133)).
+  * Wrote tests for various commands, command parsers, etc.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the groupmate features ([\#247](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/247)).
+    * Added documentation for the mark commands ([\#257](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/257)).
+    * Did cosmetic tweaks to existing documentation of contact features `clear`, `exit` ([\#247](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/247)).
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of various update commands.
+    * Added Non-Functional Requirements ([\#26](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/26)).
+    * Updated Use Cases Section ([\#344](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/344), [\#358](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/358)).
+    * Updated Manual Testing Section ([\#350](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/350), [\#358](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/358)).
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): (some examples: [\#80](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/80#discussion_r593622958), [\#357](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/357#pullrequestreview-633037066)).
+  * Contributed to forum discussions (some examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/162#issuecomment-782030586), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/110#issuecomment-777255349)).
+  * Helped solve classmates issues in forum (some examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/109#issuecomment-772993740), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/137#issuecomment-778935883)).

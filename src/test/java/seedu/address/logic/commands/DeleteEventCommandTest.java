@@ -29,24 +29,26 @@ import seedu.address.testutil.ProjectBuilder;
 public class DeleteEventCommandTest {
 
     private Model model;
+    private Event eventToDelete;
+    private Project projectToEdit;
+    private Project editedProject;
 
     @BeforeEach
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
-    }
-
-    @Test
-    public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Event eventToDelete = new EventBuilder().build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
+        eventToDelete = new EventBuilder().build();
+        projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addEvent(eventToDelete);
 
         model.setProject(
                 projectToEdit,
                 editedProject
         );
+    }
 
+    @Test
+    public void execute_validIndexUnfilteredList_success() throws DateConversionException {
         Index firstEventIndex = Index.fromOneBased(1); // Event is first in the sorted list
 
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST, firstEventIndex);
@@ -62,16 +64,6 @@ public class DeleteEventCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Event eventToDelete = new EventBuilder().build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addEvent(eventToDelete);
-
-        model.setProject(
-                projectToEdit,
-                editedProject
-        );
-
         Index lastEventIndex = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getSortedEventList().size());
 
@@ -85,16 +77,6 @@ public class DeleteEventCommandTest {
 
     @Test
     public void execute_invalidEventIndex_throwsCommandException() {
-        Event eventToDelete = new EventBuilder().build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addEvent(eventToDelete);
-
-        model.setProject(
-                projectToEdit,
-                editedProject
-        );
-
         Index invalidEventIndex = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().size() + 1);
 
@@ -108,16 +90,6 @@ public class DeleteEventCommandTest {
 
     @Test
     public void equals() {
-        Event eventToDelete = new EventBuilder().build();
-        Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addEvent(eventToDelete);
-
-        model.setProject(
-                project1ToEdit,
-                editedProject1
-        );
-
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
         Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
         editedProject2.addEvent(eventToDelete);
