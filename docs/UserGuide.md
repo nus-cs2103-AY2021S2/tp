@@ -116,7 +116,7 @@ Although most of the buttons you see on the screen are clickable, the UI has bee
 Users can enter commands into the command box and press `ENTER` to execute them. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Most commands require all the fields (e.g. project index and deadline index when updating a deadline) so that you can run the command from anywhere within the app.
+Most commands require all the parameters (e.g. project index and deadline index when updating a deadline) so that you can run the command from anywhere within the app.
 </div>
 
 When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
@@ -181,9 +181,9 @@ To achieve the best possible experience, avoid adding excessively long text to C
     * 23.11.2021
     * 23112021
 * Date should be a valid date (dd/MM/yyyy) where:
-    * The Year Field (yyyy) should be a non-negative number between 0000 and 9999.
-    * The Month Field (MM) should be a non-negative number between 01 and 12.
-    * The Day Field (dd) should be a non-negative number between 00 and 31 (might be less than 31 depending on the number of days in the month).
+    * The Year portion (yyyy) should be a non-negative number between 0000 and 9999.
+    * The Month portion (MM) should be a non-negative number between 01 and 12.
+    * The Day portion (dd) should be a non-negative number between 00 and 31 (might be less than 31 depending on the number of days in the month).
 
 ##### `DESCRIPTION`
 
@@ -263,8 +263,8 @@ To achieve the best possible experience, avoid adding excessively long text to C
     * 1730
     * 17:30
 * Time should be a valid time (from 0000 to 2359) where:
-    * The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
-    * The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
+    * The Hour portion (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
+    * The Minute portion (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -558,7 +558,7 @@ Format: `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
 * Existing values will be updated to the input values.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-At least one of the optional fields must be provided.
+At least one of the optional parameters must be provided.
 </div>
 
 Parameters:
@@ -654,7 +654,7 @@ Format: `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME]
 * `REPEAT_WEEKLY` accepts value `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one-time event.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-At least one of the optional fields must be provided.
+At least one of the optional parameters must be provided.
 </div>
 
 Parameters:
@@ -736,7 +736,7 @@ Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 
-* At least one of the optional fields must be provided.
+* At least one of the optional parameters must be provided.
 * When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
 * You can remove all the roles of the groupmate by giving **only one** `r/` without specifying any roles after it.
 
@@ -824,7 +824,7 @@ Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 * Existing values will be updated to the input values.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
-* At least one of the optional fields must be provided.
+* At least one of the optional parameters must be provided.
 * When updating tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 * You can remove all the contact’s tags by giving **only one** `t/` without specifying any tags after it.
 </div>
@@ -1056,19 +1056,18 @@ Term | Meaning
 --------|------------------
 **Graphical User Interface (GUI)** | A GUI allows users to use graphics to interact with a device.
 **Command Line Interface (GUI)** | A CLI allows users to use commands in the form of text as input to a device.
-**Java** | Java is an application that allows applications such as CoLAB to be run on your computer.
+**Java** | Java is a runtime environment that allows applications such as CoLAB to be run on your computer.
 **Command** | An instruction typed by a user, to be executed by CoLAB.
-**Field** | A portion of a command that requires information to be entered into.
-**Parameter** | A portion of a command that the user enters information into.
-**Prefix** | An abbreviation for the name of a field that is to be entered right before a parameter of a command. Prefix's end with a slash (/).
+**Parameter** | A section of a command that requires information to be entered into.
+**Prefix** | An abbreviation for the name of a parameter that is to be entered right before the actual parameter of a command. Prefix's end with a slash (/).
 **Panel** | A page or section that contains information in the GUI.
 **Project** | A project in CoLAB contains information about todos, deadlines, events and groupmates to help you keep track of everything you need to effectively manage a project.
 **Todo** | A todo in CoLAB represents a task that has to be done. These are usually short-term tasks that have to be done in a short timeframe or have no due date.
 **Deadline** | A deadline in CoLAB represents a project deadline that has to be completed before a due date.
 **Event** | An event in CoLAB represents a project-specific event that occurs on a particular day and time.
-**Groupmate** | A Groupmate in CoLAB represents the people you work with for a particular project.
+**Groupmate** | A groupmate in CoLAB represents the people you work with for a particular project.
 **Role** | A role associated with a groupmate in a project. An example role may be 'leader'.
-**Contact** | A Contact in CoLAB represents contact information about a person.
+**Contact** | A contact in CoLAB represents contact information about a person.
 **Tag** | A tag associated with a contact. An example role may be 'classmate'.
 
 --------------------------------------------------------------------------------------------------------------------
