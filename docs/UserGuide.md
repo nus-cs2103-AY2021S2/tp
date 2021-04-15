@@ -42,14 +42,16 @@ for more information.
 
 1. Ensure you have **Java 11** or above installed on your computer. To install **Java**, you can view the guide [here](https://docs.oracle.com/en/java/javase/11/install/).
 
-1. Download the latest **parentpal.jar** from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
+2. Download the latest **parentpal.jar** from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
 
-1. Copy the **parentpal.jar** file to the folder you want to use as the **home folder** for your ParentPal.
+3. Copy the **parentpal.jar** file to the folder you want to use as the **home folder** for your ParentPal.
 
-1. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>![Ui](images/Ui.png)
-
-<div style="page-break-after: always;"></div>
-
+4. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.
+   
+    ![Ui](images/Ui.png)
+   
+    <div style="page-break-after: always;"></div>
+   
 5. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
