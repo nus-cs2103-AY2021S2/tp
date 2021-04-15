@@ -21,7 +21,7 @@ number of clients.
 
 Note the following symbols and formatting used in this guide:
 
-Symbol/ Formatting           | Meaning
+Symbol/Formatting            | Meaning
 -----------------------------|------------------------------------------------------------------------------------------
 :information_source:         |This symbol indicates important information to take note of.
 :bulb:                       |This symbol indicates a helpful tip.
@@ -53,15 +53,15 @@ You may navigate this document using the Table of Contents provided below.
    the help window.<br>
    Some example commands you can try:
 
-  * **`list`** : Lists all of your clients.
-
-  * **`add n/John Doe p/98765432 e/johnd@example.com a/123 John Street g/M b/1993-05-06`** : Adds a client named `John Doe` to Link.me.
-
-  * **`delete 3`** : Deletes the 3rd client shown in the currently displayed client list.
-
-  * **`clear`** : Deletes all of your clients. You may use this to clear the sample data.
-
-  * **`exit`** : Exits Link.me.
+      * **`list`** : Lists all of your clients.
+    
+      * **`add n/John Doe p/98765432 e/johnd@example.com a/123 John Street g/M b/1993-05-06`** : Adds a client named `John Doe` to Link.me.
+    
+      * **`delete 3`** : Deletes the 3rd client shown in the currently displayed client list.
+    
+      * **`clear`** : Deletes all of your clients. You may use this to clear the sample data.
+    
+      * **`exit`** : Exits Link.me.
 
 6. Refer to the [Features](#features) section below for details of each command.
 
@@ -109,7 +109,7 @@ Action                            | Format
 **Remove meetings**               | `unschedule INDEX` (remove specified meeting)<br> `unschedule all` (remove all meetings)<br> `unschedule expired` (remove expired meetings)
 **Schedule meetings**             | `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 **Show notifications**            | `notif`
-**View Help**                     | `help`
+**View help**                     | `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,11 +260,11 @@ Format: `plan INDEX i/PLAN_NAME $PREMIUM`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `PLAN_NAME` refers to the name of the insurance plan.
 * `PREMIUM` refers to the yearly premium amount that the client pays for this plan.
-* `PREMIUM` **must be a positive amount with up to 2 decimal places**
+* `PREMIUM` **must be a positive amount with up to 2 decimal places**.
 
 Example:
 
-* `plan 3 i/Protecc $4000` Adds a new insurance plan Protecc with a yearly premium amount of $4000 to the 3rd client.
+* `plan 3 i/Protecc $4000`<br>Adds a new insurance plan Protecc with a yearly premium amount of $4000 to the 3rd client.
 
 #### Removing an insurance plan
 
