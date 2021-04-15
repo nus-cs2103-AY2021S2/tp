@@ -111,7 +111,7 @@ Command flags: `-n` , `-p`, `-e`, `-a`.
 
 ## Uppercase Words
 
-Words in `UPPER_CASE` are the parameters to be supplied by the user. 
+Words in `UPPER_CASE` are the parameters to be supplied by the user.
 
 e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
 
