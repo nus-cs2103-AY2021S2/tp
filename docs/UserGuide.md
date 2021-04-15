@@ -14,16 +14,13 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 
 Want to get started with ParentPal? Jump right into the Quick Start guide [here](#quick-start).
 
-<div style="page-break-after: always;">
-
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 <h2> Table of Contents </h2>
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Using this Guide
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -40,7 +37,6 @@ If you see a yellow box with an exclamation mark like this, it contains a warnin
 for more information.
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## Quick start
@@ -69,8 +65,6 @@ for more information.
 1. Refer to the [Features](#features) section for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
-
 ## Interface of ParentPal
 ![ParentPalExplanation](images/ParentPalExplanation.png)
 
