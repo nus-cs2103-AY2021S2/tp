@@ -17,9 +17,11 @@ Want to get started with ParentPal? Jump right into the Quick Start guide [here]
 <div style="page-break-after: always;">
 
 --------------------------------------------------------------------------------------------------------------------
+
 <h2> Table of Contents </h2>
 * Table of Contents
 {:toc}
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Using this Guide
