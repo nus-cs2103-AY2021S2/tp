@@ -548,10 +548,10 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `schedule 1 m/Insurance Plan Talk 2032-01-02 16:30`<br>
        Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
 
-    1. Test case: `schedule 1 m/Insurance Plan Talk `<br>
+    1. Test case: `schedule 1 m/Insurance Plan Talk`<br>
        Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect schedule commands to try: `schedule`, `schedule x m/ DESCRIPTION @ DATETIME ` (where x is larger than the list size), `...`<br>
+    1. Other incorrect schedule commands to try: `schedule`, `schedule x m/ DESCRIPTION @ DATETIME` (where x is larger than the list size), `...`<br>
        Expected: Similar to previous.
 
 ### Unscheduling a meeting
@@ -575,7 +575,7 @@ testers are expected to do more *exploratory* testing.
        Meeting list panel on the right should be updated.
        Status bar should display a message indicating success.
 
-    1. Test case: `unschedule 0 `<br>
+    1. Test case: `unschedule 0`<br>
        Expected: No meeting is unscheduled. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect unschedule commands to try: `unschedule everything`, `unschedule x` (where x is negative), `...`<br>
@@ -662,9 +662,9 @@ testers are expected to do more *exploratory* testing.
        Expected: Error message "Invalid command format!" followed by instructions on how to properly use the find
        command
 
-## Filtering clients using attributes. 
+### Filtering clients using attributes
 
-* Attributes include a/ADDRESS, g/GENDER, t/TAG, age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
+* Attributes include `a/ADDRESS`, `g/GENDER`, `t/TAG`, `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]`, `i/INSURANCE_PLAN_NAME`
 
     1. Test case: `filter a/Clementi g/M t/medical i/Protecc age/23-30` <br>
        Expected: Returns a list of clients who have "Clementi" in their address, and <br>
