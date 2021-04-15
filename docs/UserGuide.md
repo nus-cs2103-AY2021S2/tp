@@ -320,6 +320,8 @@ Finds persons whose field(s) contain any of the given keywords.
 
 ### Searching all searchable fields
 
+The `find` command will execute for all searchable fields if no command flags are specified. 
+
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
 
 **Examples**:
@@ -330,6 +332,8 @@ Finds persons whose field(s) contain any of the given keywords.
 | `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. people named `Alex Yeoh`, `David Li`          |
 
 ### Searching by specific fields
+
+The `find` command will execute for specific fields if you specify command flags. 
 
 **Format**: `find FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
 
