@@ -20,7 +20,6 @@ Want to get started with ParentPal? Jump right into the Quick Start guide [here]
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
 ## Using this Guide
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -1046,8 +1045,6 @@ while the appointment list only refers to what is currently displayed on screen,
 **Q**: Why is your application named *ParentPal*? <br>
 **A**: It is named *ParentPal* because it aims to be a 'pal' to the busy parents who need help with managing their kids' schedules and important contacts.
 
-
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## Command Summary
@@ -1092,4 +1089,3 @@ Action | Format | Examples
 * **GUI**: Application where you interact with it via graphical icons such as buttons
 * **Home folder**: The folder containing all the files needed to run ParentPal
 * **Index**: Index number shown in the displayed contact/appointment list
-
