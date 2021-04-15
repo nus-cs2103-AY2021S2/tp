@@ -20,8 +20,10 @@ Feel free to check out our [Table of Contents](#table-of-contents), to get famil
 You can return to Table of Contents by clicking this button <a href="#table-of-contents"> <button>Back to Table of Contents </button></a> below each session.
 
 ## Table of Contents
-* Table of Contents
-  {:toc}
+* Table of Contents 
+  
+{:toc}
+
 --------------------------------------------------------------------------------------------------------------------
 ## 1. About
 This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
