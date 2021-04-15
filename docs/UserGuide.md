@@ -659,7 +659,7 @@ Replace these three files with the corresponding files of the same names from yo
 **Q**: Do I have to connect to the internet to use this application? <br>
 **A**: No, TutorsPet is an offline application. No internet connection is needed.
 
-**Q**: What is the optimal display settings for this application? <br>
+**Q**: What are the optimal display settings for this application? <br>
 **A**: The default settings of almost all desktops support our application perfectly.
 However, if you want to personalise your window size, the optimal display resolution is 1920 * 1080 and scaled to 150%.
 
