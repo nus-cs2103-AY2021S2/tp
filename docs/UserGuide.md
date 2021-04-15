@@ -106,8 +106,9 @@ E.g `add -n John Doe -p 94326543 -e john@doe.com -a 45 Address #06-90`
 
 Command: `add`
 
-Command flags: `-n` , `-p`, `-e`, `-a`.
+Command flags: `-n` , `-p`, `-e`, `-a`
 
+Command flags might also take an argument, for example, `-n John Doe` or `-n -a -c`.
 
 ## Uppercase Words
 
@@ -183,12 +184,11 @@ before proceeding.
 
 ## Viewing Help : `help`
 
-Displays the entire User Guide for ease of reference.
-
-![Help Message UI](images/helpMessage.png)
+Displays a pop up window with a summary of the commands available for use in A-Bash Book.
 
 **Format**: `help`
 
+![Help Message UI](images/helpMessage.png)
 
 ## Adding a Person: `add`
 
@@ -214,15 +214,15 @@ Adds a person to the address book.
 | `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager`, and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.                     |
 | `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer`, and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`.         |
 
-## Listing All Persons : `list`
+## Listing All Person(s) : `list`
 
 Lists all persons in the address book.
 
 **Format**: `list`
 
-## Editing Persons : `edit`
+## Editing Person(s) : `edit`
 
-Edits an existing person in the address book.
+Allows you to edit one or more person in the address book.
 
 **Format**: `edit { shown | selected | INDEX... } [-n NAME] [-p PHONE] [-c COMPANY] [-j JOB_TITLE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]...`
 
@@ -369,7 +369,7 @@ or `delete shown` to delete all the shown persons.
 
 </div>
 
-## Selecting Persons : `select`
+## Selecting Person(s) : `select`
 
 Allows you to incrementally select multiple person objects to apply actions on.
 
@@ -421,7 +421,7 @@ Examples:
 
 </div>
 
-## Email Persons: `email`
+## Email Person(s): `email`
 
 Email command allows you to email selected persons using the operating system's default email
 client. Email client must be configured to allow command separated email values.
@@ -610,38 +610,43 @@ keyboard action, the list of your aliases will disappear and show the list of ex
 
 ## Filter Field Visibility: `filter`
 
-Filter command toggles visibility of fields based on your input.
+Filter command allows you to toggle the visibility of person fields to allow you to hide fields that
+you are not interested in.
 
-**Format**: `filter [-OPTION]...`
+**Format**: `filter [-FLAG]...`
 
 ![Filter Command UI](images/UG_Filter%20Command.png)
 
-Each option should start with a hyphen `-` e.g. `-OPTION` and be separated by a white-space. Options
-which are excluded will be hidden. Refer to [Field Summary](#field-summary) for all the available
-options.
+These are the available flags:
 
-<div markdown="span" class="alert alert-info">
+- Name : `-n`
+- Email : `-e`
+- Company : `-c`
+- Job Title : `-j`
+- Address : `-a`
+- Phone Number : `-p`
+- Tag : `-t`
+- Remark : `-r`
 
-:information_source: Refer to [Field Summary](#field-summary) for the available options
-
-</div>
+Flags in the filter command **do not need an argument** and **flags that are indicated will be
+visible**.
 
 **Examples**:
 
 | example        | description                                              |
 | -------------- | -------------------------------------------------------- |
 | `filter`       | Shows all fields.                                         |
-| `filter -a`    | shows the contact's name and address only.               |
-| `filter -a -p` | shows the contact's name, address and phone number only. |
+| `filter -a`    | Shows the contact's name and address only.               |
+| `filter -a -p` | Shows the contact's name, address and phone number only. |
 
-## Tagging Persons: `tag`
+## Tagging Person(s): `tag`
 
 The tag command allows you to add and delete specific tags of persons.
 
 * Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
 * Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
-### Add Tags to Persons: `tag add`
+### Add Tags to Person(s): `tag add`
 
 Add tags to persons in address book.
 
@@ -668,7 +673,7 @@ To bulk add tag, either do:
 * `tag add shown` to add tags to all the shown persons or,
 * `tag add selected` to add tags to all the selected persons
 
-### Delete Tags From Persons: `tag delete`
+### Delete Tags From Person(s): `tag delete`
 
 Delete tags from persons in address book.
 
