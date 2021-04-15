@@ -107,7 +107,9 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** For seasoned CLI users, this section is intended for users who are unfamiliar with CLI and the syntax.
+**:information_source: Note**<br>
+
+For seasoned CLI users, this section is intended for users who are unfamiliar with CLI and the syntax.
 Feel free to skip to [Features](#features).
 
 </div>
@@ -202,7 +204,9 @@ Invalid examples are:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** If you are not familiar with CLI and the syntax, please refer to the [CLI Syntax](#cli-syntax)
+**:information_source: Note**<br>
+
+If you are not familiar with CLI and the syntax, please refer to the [CLI Syntax](#cli-syntax)
 before proceeding.
 
 </div>
@@ -223,7 +227,8 @@ Adds a person to the address book.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:**
+**:information_source: Note**<br>
+
 * A person can have no remark.
 * A person can have any number of tags (including 0).
 
@@ -253,7 +258,7 @@ Allows you to edit one or more person in the address book.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Note**<br>
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer**, i.e 1, 2, 3, ...
 * At least one of the optional fields must be provided.
@@ -281,7 +286,9 @@ Allows you to edit one or more person in the address book.
 
 <div markdown="block" class="alert alert-warning">
 
-**:bulb: Tip:** You can do bulk delete with:
+**:bulb: Tip**<br>
+
+You can do bulk delete with:
 * `edit 1 2 3` to edit persons at indexes 1, 2 and 3 or,
 * `edit shown` to edit all the shown persons or,
 * `edit selected` to edit all the selected persons
@@ -294,7 +301,7 @@ Finds person(s) whose field(s) contain any of the given keywords.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Note**<br>
 
 * Currently searchable fields: Name, Email, Tag, Remark
 * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -331,7 +338,8 @@ The `find` command will execute for specific fields if you specify command flags
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**
+**:information_source: Note**<br>
+
 * Refer to [Field Summary](#field-summary) for the full list of fields and their corresponding command flags.
 * Currently searchable fields: Name, Email, Tag, Remark
 * You can only search 1 field at a time. e.g. `find -n Alice -t HR` is an invalid command
@@ -355,7 +363,7 @@ Deletes the specified person(s) from the address book.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Note**<br>
 
 * Deletes the person at the specified `INDEX`/`INDEX...` or shown person list or selected list.
 * The command **operates on the shown list** that may be modified by an earlier command.
@@ -379,7 +387,7 @@ Deletes the specified person(s) from the address book.
 
 <div markdown="block" class="alert alert-warning">
 
-**:bulb: Tip:**
+**:bulb: Tip**<br>
 
 You can do bulk delete with either `delete 1 2 3` to delete indexes 1, 2 and 3
 or `delete shown` to delete all the shown persons.
@@ -415,7 +423,9 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** Incremental Selection and `shown`
+**:information_source: Note**<br>
+
+Incremental Selection and `shown`:
 
 - Incremental selection means that selected items are "stacked" together. e.g. Executing `select 1`
   followed by `select 2` will result in person with index number 1 and 2 being selected.
@@ -427,7 +437,9 @@ Examples:
 
 <div markdown="block" class="alert alert-warning">
 
-**:bulb: Tip:** `select` command is best used with the following commands:
+**:bulb: Tip**<br>
+
+`select` command is best used with the following commands:
 
 - [`edit` command](#editing-a-person--edit)
 - [`delete` command](#deleting-a-person--delete)
@@ -443,7 +455,9 @@ client. Email client must be configured to allow command separated email values.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** It is a known issue that Outlook for Windows do not have "Commas to Separate
+**:information_source: Note**<br>
+
+It is a known issue that Outlook for Windows do not have "Commas to Separate
 Multiple Email Recipients" feature turned on. Follow the guide here to enable
 it: <https://www.lifewire.com/commas-to-separate-email-recipients-1173680>
 
@@ -473,7 +487,9 @@ Clears all entries from the address book.
 
 <div markdown="span" class="alert alert-danger">
 
-**:exclamation: Warning:** This action is irreversible. Do not run this command with actual data unless you want to delete all entries.
+**:exclamation: Warning**<br>
+
+This action is irreversible. Do not run this command with actual data unless you want to delete all entries.
 
 </div>
 
@@ -511,7 +527,9 @@ Typing `del` followed by <kbd>Tab</kbd> will auto complete `del` to `delete`.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** In the command box, it is also possible to cycle through **existing** commands with <kbd>Tab</kbd>.
+**:information_source: Note**<br>
+
+In the command box, it is also possible to cycle through **existing** commands with <kbd>Tab</kbd>.
 
 </div>
 
@@ -521,7 +539,7 @@ Command flags can be autocompleted at the end of your command text by pressing t
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**
+**:information_source: Note**<br>
 
 - If your flag has no content, the next available flag will be replaced and cycled.
 - If your flag has content, the next available flag will be appended to your command text.
@@ -535,7 +553,9 @@ Command flags can be autocompleted at the end of your command text by pressing t
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:** For `add` command, a space character should follow the add command for flags to begin 
+**:information_source: Note**<br>
+
+For `add` command, a space character should follow the add command for flags to begin 
 autocompletion.
 
 </div>
@@ -554,7 +574,9 @@ autocompletion.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** Autocomplete index only works for the `EDIT` and `DELETE` commands.
+**:information_source: Note**<br>
+
+Autocomplete index only works for the `EDIT` and `DELETE` commands.
 
 </div>
 
@@ -614,7 +636,9 @@ Lists all alias(es) in the address book.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
+**:information_source: Note** <br>
+
+The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
 keyboard action, the list of your aliases will disappear and show the list of existing commands again.
 
 </div>
@@ -681,7 +705,9 @@ Add tags to persons in address book.
 
 <div markdown="block" class="alert alert-warning">
 
-**:bulb: Tip:** You can bulk add tag by either doing:
+**:bulb: Tip**<br>
+
+You can bulk add tag by either doing:
 * `tag add 1 2 3` to add tags to persons at indexes 1, 2 and 3 or,
 * `tag add shown` to add tags to all the shown persons or,
 * `tag add selected` to add tags to all the selected persons
@@ -710,7 +736,7 @@ Delete tags from persons in address book.
 
 <div markdown="block" class="alert alert-warning">
 
-**:bulb: Tip:**
+**:bulb: Tip**<br>
 
 You can bulk delete tag by either doing:
 * `tag delete 1 2 3` to delete tags to persons at indexes 1, 2 and 3 or,
@@ -730,7 +756,9 @@ are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">
 
-**:exclamation: Warning:** If changes to the data file renders its format invalid, A-Bash Book will discard all data and start with an empty data file at the next run.
+**:exclamation: Warning**<br>
+
+If changes to the data file renders its format invalid, A-Bash Book will discard all data and start with an empty data file at the next run.
 
 </div>
 
