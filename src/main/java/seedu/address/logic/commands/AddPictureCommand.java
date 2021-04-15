@@ -93,7 +93,7 @@ public class AddPictureCommand extends Command {
                     filePath, Picture.ALLOWED_FILE_EXTENSIONS_STRING));
         }
 
-        if (!Picture.isValidImage(filePath)) {
+        if (!Picture.hasImageFileSignature(filePath)) {
             throw new CommandException(String.format(MESSAGE_INVALID_FILE_SIGNATURE,
                     filePath, "Image"));
         }

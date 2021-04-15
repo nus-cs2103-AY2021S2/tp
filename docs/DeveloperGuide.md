@@ -7,6 +7,13 @@ title: Developer Guide
    <img src="images/FriendDex.png" width="200" style="margin: 0 auto" />
 </div>
 
+Our world is more connected than ever. There are numerous interactions between multiple people daily in our lives.
+As we move forward towards more of an asynchronous and remote way of living, daily interactions become more transient and harder to remember.
+FriendDex aims to act as a tool to bridge that gap so that interactions become more permanent. FriendDex will empower you to have better relationships with people around you.
+
+Welcome to the FriendDex Developer Guide. This guide helps current and future developers of FriendDex on navigating the source code of FriendDex. Let us bring the world closer together,
+and remember our core mission, **FriendDex aims to foster meaningful relationships for everyone, without any compromise**.
+
 * Table of Contents
 {:toc}
 
@@ -83,7 +90,7 @@ The sections below give more details of each component.
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
+The `UI` component uses JavaFx UI framework. The layouts of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
 the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
@@ -112,7 +119,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component](images/CommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 ### Model component
@@ -162,7 +169,7 @@ When a theme is set by the command, it and its temporary `css` file will be stor
 should be noted that `ThemeManager` is a singleton and only one instance of it will exist throughout the lifetime of
 the application. The values stored in that instance will be read by the different components of the application.
 
-FriendDex comes with several predefined theme stored in the resource folder `/themes/`. To access them, we pass the name
+FriendDex comes with several predefined themes stored in the resource folder `/themes/`. To access them, we pass the name
 of the theme prefixed with a `@` to `ThemeFactory#load`. The `ThemeFactory#load` sequence diagram can be seen here:
 
 ![Sequence diagram for `ThemeFactory#load](images/ThemeFactoryLoadSequenceDiagram.png)
@@ -229,15 +236,15 @@ as much as possible. Since streaks can be computed from the attributes of a pers
 
 #### Initialization
 
-This section will detail the steps the program takes to calculate streaks of everyone when it is started. 
+This section will detail the steps the program takes to calculate the streaks of everyone when it is started. 
 
 1. `AddressBook` receives a copy of the deserialized `AddressBook` data. It calls `setPersons` of `PersonStreaklist` with the persons found in the data.
 2. `PersonStreakList` will process this data and create a `PersonStreak` from each `Person`. A `PersonStreak` will bind a `Person` and his/her `Streak` together in a single class. 
-3. This is done by calling `PersonStreak#fromPerson()` which will use the `Streak#from()` to create a `Streak` from a Person. The streak will be calculated upon creation of the `Streak` object.
-4. Once all the `PersonStreak` are created, they will be sent back to the `PersonStreakList` and put into an internal observable list, named `internalList`. 
+3. This is done by calling `PersonStreak#fromPerson()` which will use the `Streak#from()` to create a `Streak` from a Person. The streak will be calculated upon the creation of the `Streak` object.
+4. Once all `PersonStreak` objects are created, they will be sent back to the `PersonStreakList` and put into an internal observable list, named `internalList`. 
 
-`internalList` will contain all the `PersonStreak` objects that will be used to display the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` that have an active goal set. 
-An active goal is any valid goal that is not `NONE`, refer to UG `set-goal` [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#setting-meeting-goal-set-goal) for more information.
+`internalList` will contain all `PersonStreak` objects that will be displayed on the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` objects that have an active goal set. 
+An active goal is any valid goal that is not `NONE`, refer to the user guide's `set-goal` section [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#setting-meeting-goal-set-goal) for more information.
 The filtered list will then be made unmodifiable before being exposed to UI components to consume.
 
 The sequence diagram below depicts the execution path when the program is initialized.
@@ -263,7 +270,7 @@ FriendDex allows users to add friends to a group. This section details the imple
 
 #### Implementation
 
-1. The user will supply the name of the group, and the indexes that will be added into said group.
+1. The user will supply the name of the group, and the indexes that will be added to said group.
 2. `AddGroupCommand` will then get the current filtered list of Persons to get all the persons with the associated indexes.
 3. `AddGroupCommand` will then check if the group already exists. If it does not, a new group is added.
 4. All the specified persons' names will now be inserted into the group and display the list of persons in the group.
@@ -292,8 +299,8 @@ FriendDex allows users to add/subtract debt from a friend. This section details 
 
 #### Implementation
 
-1. The user will supply the index of the user and the amount of debt to be added/subtracted.
-2. `ChangeDebtCommand` will obtain the person with the specified index and obtain their current Debt.
+1. The user will supply the index of the user and the debt to be added/subtracted.
+2. `ChangeDebtCommand` will obtain the person with the specified index and their current debt.
 3. `ChangeDebtCommand` will then obtain the changed debt depending on whether the command is adding or subtracting
 the debt.
 4.  `ChangeDebtCommand` will finally set the Person with the new changed debt.
@@ -310,12 +317,14 @@ FriendDex allows users to add a picture to their contact. This section details t
 
 1. The user will first supply the index of the contact to edit and the path to an image file.
 2. `AddPictureCommand` will take the file path and validate it.
-3. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`.
+3. If the file path is invalid, FriendDex will return an error message to the user. (Not shown in sequence diagram)
+4. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`.
    The renaming is done to avoid problems with two image files having the same file name.
-4. A `Picture` object will then be created, storing the file path of the copied image file.
-5. Lastly, it will be attached to the `Person` being edited and saved to `Model`.
+4. A `Picture` object will be created, storing the file path of the copied image file.
+5. The old `Picture` will then be deleted from `Person` (`Person#deletePicture()` will only delete the old `Picture` if it exists).  
+5. Lastly, the new `Picture` will be attached to the `Person` being edited and saved to `Model`.
 
-The sequence diagram below depicts the execution path when a `AddPictureCommand` is executed.
+The sequence diagram below depicts the execution path when an `AddPictureCommand` is executed.
 
 ![AddPictureSequenceDiagram](images/AddPictureSequenceDiagram.png)
 
@@ -337,16 +346,16 @@ The sequence diagram below depicts the execution path when a `AddPictureCommand`
 
 **Target user profile**:
 
-* is a young programmer studying in NUS Computer Science
-* prefers typing to mouse interactions
-* has difficulty maintaining personal relationships
-* cannot recall previous conversations with others
+* is a university student.
+* prefers typing to mouse interactions.
+* has difficulty maintaining personal relationships.
+* cannot recall previous conversations with others.
 * is a goal-driven individual and seeks new challenges.
 
 **Value proposition**:
 
-* makes relationship management easier for the user
-* keeps track of personal relationship with users' friends
+* makes relationship management easier for the user.
+* keeps track of personal relationship with users' friends.
 * manages relationship faster than a mouse-driven app.
 
 ### User stories
@@ -519,34 +528,59 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy it into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+    2. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location are retained.
 
 ### Autocomplete
 
 1. Type `add` into the command bar<br>
-   Expected: A list of commands with `add` in their command words show up.
-   
-2. Navigate with the up/down arrow keys and press `enter` to verify if the word selected will be entered automatically into the command bar. 
+   Expected: A list of commands with `add` in their command words shows up.
+
+2. Navigate with the up/down arrow keys and press `enter` to verify if the word selected will be entered automatically into the command bar.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Limited file system permission
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: restricting read access to data file:
 
-1. _{ more test cases …​ }_
+        1. Start FriendDex and allow it to generate sample data.
+
+        2. Exit FriendDex.
+
+        3. Remove read permission for data file
+           * (macOS/*nix OS): Execute `chmod 333 [path of friendDex.jar]/data/frienddex.json` in terminal.
+           * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove read 
+             permission.
+
+        5. Start FriendDex.
+
+        4. Expected: FriendDex is loaded with no information.
+
+    2. Test case: restricting write access to data file:
+
+       1. Start FriendDex and allow it to generate sample data.
+
+       2. Exit FriendDex.
+
+       3. Remove write permission for data file
+           * (macOS/*nix OS): Execute `chmod 555 [path of friendDex.jar]/data/frienddex.json` in terminal.
+           * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove write
+             permission.
+
+        4. Start FriendDex.
+
+        5. Expected: FriendDex loads with no issue but any attempt at modifying its data will show an error message.
+           FriendDex will not save any new data on exit.
 
 ### Adding a person: `add`
 
@@ -601,7 +635,7 @@ person on the list is born before 12-12-2020.
         
        Expected: Similar to previous
 
-2. Adding a date with boundary date values. FriendDex will only allow adding of dates that have already occured.
+2. Adding a date with boundary date values. FriendDex will only allow adding of dates that have already occurred.
 
     * These arguments should be replaced with their proper date representation.
         * `DATE_AFTER_TODAY`: a future date in the format of dd-MM-yyyy, e.g. `04-04-2099`
@@ -617,6 +651,28 @@ person on the list is born before 12-12-2020.
 
 ### Adding a friend group: `add-group`
 
+Prerequisites: List all person using the list command. There is at least 2 persons present in the list. 
+There's only one existing group with the name `Colleagues` that only has the person of index 1 inside it.
+
+1. Adding a non-existing group
+    
+    1. Test case: `add-group n/Close Friends p/1`<br>
+       Expected: A success message is shown in the status message. `Close Friends` will be selected
+       with the person who was previously index `1` being the only one shown in the Friend Panel.
+   
+    2. Test case: `add-group n/Close Friends p/0`(Invalid index)<br>
+       Expected: Group is not added. Error details will be shown in the status message. 
+       
+2. Adding an existing group
+    
+    1. Test case: `add-group n/Colleagues p/2`<br>
+       Expected: A success message is shown in the status message. Person at index 2 is added to `Colleagues`.
+       `Colleagues` will be selected, showing the two friends in the group on the Friend Panel.
+   
+    2. Test case: `add-group n/Colleagues p/2`<br>
+       Expected: A success message is shown in the status message. `Colleagues` will be selected. The
+       two friends that already exist in the `Colleagues` group will be shown in the Friend Panel.
+       
 ### Adding a meeting: `add-meeting`
 
 Prerequisites: List all person using the `list` command. There is at least a person present in the list. The first
@@ -643,11 +699,11 @@ person on the list is born before 12-12-2020.
         * `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230` <br><br>
 
     1. Adding a meeting for today <br>
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`. <br>
+       Test case: `add-meeting 1 d/TODAY_DATE t/0000 desc/sample desc`. <br>
        Expected: Meeting is added to the first contact. A success message is shown in the status message.
 
     2. Adding a meeting for today but has not occurred yet <br>
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc` <br>
+       Test case: `add-meeting 1 d/TODAY_DATE t/TIME_AFTER_NOW desc/sample desc` <br>
        Expected: No meetings added. Error details shown in the status message.
 
     3. Adding a meeting that happens in the future <br>
@@ -667,7 +723,7 @@ List all persons using the `list` command. There is at least a person present in
         * `FILE_PATH_WITH_WRONG_FILE_EXTENSION` - a valid file path that points to an actual file but is not an image (Refer to UG `add-picture` command [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#adding-a-profile-picture--add-picture) 
           for a list of valid file extensions) <br><br>
        
-    1. Test case: `add-picture 1 {PICTURE_FILE_PATH}` <br>
+    1. Test case: `add-picture 1 PICTURE_FILE_PATH` <br>
        Expected: A picture is attached to the first contact and a success message is shown in the status message. The picture added is shown in the results display beside the details of the first contact.
 
     2. Test case: `add-picture 0` <br>
@@ -675,8 +731,8 @@ List all persons using the `list` command. There is at least a person present in
 
     3. Other incorrect `add-picture` commands to try: 
        * `add-picture x` (where x is larger than the list size).
-       * `add-picture 1 {INVALID_FILE_PATH}`
-       * `add-picture 1 {FILE_PATH_WITH_WRONG_FILE_EXTENSION}`
+       * `add-picture 1 INVALID_FILE_PATH`
+       * `add-picture 1 FILE_PATH_WITH_WRONG_FILE_EXTENSION`
      
        Expected: Similar to previous
          
@@ -705,7 +761,10 @@ Prerequisites: List all persons using the `list` command. There is at least a pe
     3. Test case: `delete 0` (Invalid index) <br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) <br>
+    4. Other incorrect `delete` commands to try:
+       * `delete` (missing `INDEX` argument)
+       * `delete x` (where x is larger than the list size)
+
        Expected: Similar to previous.
 
 ### Deleting a special date: `del-date`
@@ -795,15 +854,16 @@ Prerequisites: List all person using the `list` command. There is at least a per
 Prerequisites: List all person using the `list` command. There is at least a person present in the list.
 
 1. Editing an existing person in FriendDex
+
     1. Editing a person with valid fields provided
        * `edit 1 n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends` (all fields provided)
        * `edit 1 p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends` (some fields provided, any combination of fields can be used here)
-       * `edit 1 b/01-01-1998` (one field provided, any field can be used here)
+       * `edit 1 b/01-01-1998` (one field provided, any field can be used here)<br>
 
        Expected: The first person in the friend panel is updated with the newly provided information.
-       A success message is shown in the status message.
+       A success message is shown in the status message.<br>
 
-    2. Editing a person's name to a different case
+    2. Editing a person's name to a different case<br>
        * Prerequisite: The first person's name should be `John Doe`.
        * Test case: `edit 1 n/john doe`
 
@@ -815,13 +875,14 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
        Expected: No person is edited. Error details shown in the status message.
 
-    4. Editing a person with no fields provided <br>
-       Test case: `edit 1` <br>
-       Expected: Similar to previous
+    4. Editing a person with no fields provided
+       Test case: `edit 1`
+       Expected: Similar to previous<br><br>
 
 2. Editing an existing person in FriendDex with invalid fields
+
     * These arguments should be replaced with their proper datetime representation.
-       * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
+       * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021` <br><br>
 
     1. Editing a person's name to the name of another person in FriendDex
        * Prerequisite: A person with the name `john doe` must already be in FriendDex and is not the first person.
@@ -857,42 +918,59 @@ Prerequisites: List contains the default data included in FriendDex.
 
 1. Finding contacts with naive string search
 
-    2. Test case: `find alex`<br>
+    1. Test case: `find alex`<br>
        Expected: All contact with the token `alex` will be listed. A success message is shown to the user.
 
-    3. Test case: `find yeoh li yu`<br>
+    2. Test case: `find yeoh li yu`<br>
        Expected: All contact with name containing at least one token from the set of tokens `yeoh`, `li`, `yu` will be
        listed. A success message is shown to the user.
 
-    4. Naive search with empty keyword. <br>
+    3. Naive search with empty keyword. <br>
        Test case: `find`<br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 2. Finding contacts wth pattern matching
 
-    2. Test case: `find p/`<br>
+    1. Test case: `find p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
-    3. Test case: `find .* p/`<br>
+    2. Test case: `find .* p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
-    4. Test case: `find alex p/`<br>
+    3. Test case: `find alex p/`<br>
        Expected: All contacts with names containing substring `alex` regardless of case will be listed. A success
        message is shown to the user.
 
-    5. Test case: `find ^a.*h p/`<br>
+    4. Test case: `find ^a.*h p/`<br>
        Expected: All contacts with names that starts with `a` and ends with `h` regardless of case will be listed. A
        success message is show to the user.
 
-    6. Pattern search with invalid Regex. <br>
+    5. Pattern search with invalid Regex. <br>
        Test case: `find [ p/` <br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 ### Viewing help: `help`
 
-1. Execute the `help` command. A new window will be opened with the URL to the UG guide.     
+1. Execute the `help` command. A new window will be opened with the URL to the User Guide.     
 
 ### Listing all persons: `list`
+
+Prerequisites: There is only one existing group, `Colleagues` that exist in FriendDex with some 
+friends that are already inside it.
+
+1. List all persons in FriendDex
+   
+    1. Test case: `list`<br>
+       Expected: All persons in FriendDex will be listed in the Friend Panel.
+       
+2. List persons by group.
+   
+    1. Test case: `list n/Colleagues`<br>
+       Expected: All persons in group `Colleagues` will be listed in the Friend Panel.
+       
+    2. Test case: `list n/Close Friends`<br> (Non-existing group)
+       Expected: Friend Panel will not be changed. Error details shown in the status message
+    
 
 ### Setting meeting goal: `set-goal`
 
@@ -952,6 +1030,29 @@ Prerequisites: List contains the default data included in FriendDex.
 
 ### Subtracting Debt: `subtract-debt`
 
+Prerequisites: List all person using the `list` command. There is at least 2 persons present in the list. 
+The person with index 1 has no debt. The person with index 2 has its debt as `-$999999999999.00`.
+
+1. Subtracting debt
+
+    1. Test case: `subtract-debt 1 10` <br>
+       Expected: Debt of first person will be updated to `-$10.00`.
+       
+    2. Subtracting debt beyond debt range. <br>
+       Test case: `subtract-debt 2 0.01` <br>
+       Expected: No debt is subtracted. No updates to FriendDex information. <br>
+       Error details shown in the status message.
+       
+    3. Subtracting debt with invalid amount. <br>
+       Test case: `subtract-debt 1 1.001` <br>
+       Expected: No debt is subtracted. No updates to FriendDex information. <br>
+       Error details shown in the status message.
+       
+    4. Subtracting debt with invalid index. <br>
+       Test case: `subtract-debt 0 1.01` <br>
+       Expected: No debt is subtracted. No updates to FriendDex information. <br>
+       Error details shown in the status message. 
+
 ### Styling the application: `theme`
 
 1. Applying a predefined theme
@@ -959,13 +1060,13 @@ Prerequisites: List contains the default data included in FriendDex.
     1. Test case: `theme @monokai`<br>
        Expected: Theme of the application changes. A success message will be shown.
 
-    1. Test case: `theme @asdfg` (Invalid argument)<br>
+    2. Test case: `theme @asdfg` (Invalid argument)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
-    1. Test case: `theme` (Invalid format)<br>
+    3. Test case: `theme` (Invalid format)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
-2. Applying a user defined theme
+2. Applying a user-defined theme
 
     1. Test case: `theme monokai.json`, where `monokai.json` is a valid theme file<br>
        Expected: Theme of the application changes. A success message will be shown.
@@ -985,13 +1086,13 @@ Prerequisites: List contains the default data included in FriendDex.
 
         2. Relaunch the application. Observe that the theme of the application persists.
 
-4. Automatically applying user defined theme across instances
+4. Automatically applying user-defined theme across instances
 
     1. Test case: Applying valid theme with no external modification `theme some_theme.json`.
 
         1. Close the application.
 
-        2. Reopen the application. Observe that the theme of the application persists.
+        2. Relaunch the application. Observe that the theme of the application persists.
 
     2. Test case: Applying valid theme with external modification `theme some_theme.json`.
 
@@ -1017,7 +1118,7 @@ Prerequisites: List contains the default data included in FriendDex.
        Expected: Details panel not updated. Information on the `details` command shown in the status message.
 
     4. Other incorrect `view` commands to try:
-        * `view x` (where x is not a valid `TAB`),
-        * `view` (missing `TAB` argument),
+        * `view x` (where x is not a valid `TAB`)
+        * `view` (missing `TAB` argument)
 
        Expected: Details panel not updated. Error details shown in the status message.

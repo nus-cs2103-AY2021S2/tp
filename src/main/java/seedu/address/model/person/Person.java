@@ -305,7 +305,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Debt: ")
-                .append(getDebt());
+                .append(getDebt().toUi());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

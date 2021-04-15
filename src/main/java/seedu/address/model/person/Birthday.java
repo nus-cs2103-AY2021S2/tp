@@ -59,7 +59,14 @@ public class Birthday {
             return false;
         }
 
-        return !DateUtil.afterToday(date);
+        return isValidBirthday(date);
+    }
+
+    /**
+     * Returns true if a given date is a valid birth date
+     */
+    public static boolean isValidBirthday(LocalDate birthDate) {
+        return !DateUtil.afterToday(birthDate);
     }
 
     public boolean beforeBirthdate(LocalDate date) {

@@ -22,18 +22,25 @@ public class BirthdayTest {
     }
 
     @Test
-    public void isValidBirthday() {
-        // null address
-        assertThrows(NullPointerException.class, () -> Birthday.isValidBirthday(null));
-
+    public void isValidBirthdayString() {
         // invalid birthday
         assertFalse(Birthday.isValidBirthday("")); // empty string
         assertFalse(Birthday.isValidBirthday(" ")); // spaces only
         assertFalse(Birthday.isValidBirthday("99-99-9999"));
+        assertFalse(Birthday.isValidBirthday("02-02-2099"));
 
         // valid birthday
         assertTrue(Birthday.isValidBirthday("01-01-1998"));
         assertTrue(Birthday.isValidBirthday("03-02-1998"));
         assertTrue(Birthday.isValidBirthday("02-01-2000"));
+    }
+
+    @Test
+    public void isValidBirthdayDate() {
+        LocalDate now = LocalDate.now();
+
+        assertTrue(Birthday.isValidBirthday(now));
+
+        assertFalse(Birthday.isValidBirthday(now.plusDays(1)));
     }
 }

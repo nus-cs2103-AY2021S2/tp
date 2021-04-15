@@ -1,8 +1,6 @@
 @startuml
 !include style.puml
 
-
-
 box Logic LOGIC_COLOR_T1
 participant "cmd:AddPictureCommand" as AddPictureCommand LOGIC_COLOR
 participant "<<class>>\n:FileUtil"  as FileUtil LOGIC_COLOR
@@ -19,42 +17,22 @@ end box
 [-> AddPictureCommand : execute()
 activate AddPictureCommand
 
-AddPictureCommand -> AddPictureCommand : validateFile(filePath)
-activate AddPictureCommand
-
-AddPictureCommand -> FileUtil : access helper methods
+AddPictureCommand -> FileUtil : validateFile(filepath)
 activate FileUtil
 
-FileUtil -> AddPictureCommand
+FileUtil --> AddPictureCommand : validationResult
 deactivate FileUtil
-
-AddPictureCommand -> AddPictureCommand : validation result
-deactivate AddPictureCommand
 
 AddPictureCommand -> Model : get person to edit
 activate Model
 
-Model -> AddPictureCommand : p
+Model --> AddPictureCommand : p
 deactivate Model
-
-AddPictureCommand -> Person : getPicture()
-activate Person
-
-Person -> AddPictureCommand : oldPic
-deactivate Person
-
-opt oldPic is present
-AddPictureCommand -> OldPicture : deleteFile()
-activate OldPicture
-
-OldPicture --> AddPictureCommand
-deactivate OldPicture
-end
 
 AddPictureCommand -> AddPictureCommand : generateNewFilename()
 activate AddPictureCommand
 
-AddPictureCommand -> AddPictureCommand : newFileName
+AddPictureCommand --> AddPictureCommand : newFileName
 deactivate AddPictureCommand
 
 AddPictureCommand -> FileUtil : copyFile(filepath, newFilePath)
@@ -67,13 +45,19 @@ create Picture
 AddPictureCommand -> Picture
 activate Picture
 
-Picture -> AddPictureCommand : pic
+Picture --> AddPictureCommand : picture
 deactivate Picture
 
-AddPictureCommand -> Person : withPicture(pic)
+AddPictureCommand -> Person : deletePicture()
 activate Person
 
-Person -> AddPictureCommand
+Person --> AddPictureCommand
+deactivate Person
+
+AddPictureCommand -> Person : withPicture(picture)
+activate Person
+
+Person --> AddPictureCommand
 deactivate Person
 
 AddPictureCommand -> Model : update p

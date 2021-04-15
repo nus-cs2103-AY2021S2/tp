@@ -142,7 +142,7 @@ public class PersonBuilder {
      * Parses the {@code path} into a {@code Picture} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withPicture(Path path) {
-        if (!Picture.isValidFilePath(path)) {
+        if (!Picture.isValidPicture(path)) {
             throw new TestAbortedException(String.format("%s is invalid. %s", path, Picture.MESSAGE_CONSTRAINTS));
         }
 

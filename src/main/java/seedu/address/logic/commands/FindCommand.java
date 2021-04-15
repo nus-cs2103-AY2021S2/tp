@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATTERN;
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 
 import java.util.function.Predicate;
 
@@ -35,8 +36,9 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+        model.setCurrentGroup(DEFAULT_GROUP_NAME);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_FOUND_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

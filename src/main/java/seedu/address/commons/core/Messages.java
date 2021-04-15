@@ -14,6 +14,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_ARGUMENT_FORMAT = "Invalid argument format! \n%1$s";
     public static final String MESSAGE_INVALID_INDEX_ARGUMENT = "The \"i/\" index provided is invalid";
     public static final String MESSAGE_UNKNOWN_GROUP = "The group name provided is not in the group list.";
+    public static final String MESSAGE_PERSONS_FOUND_OVERVIEW = "%1$d persons found in FriendDex!";
 
     // Date
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! \n";

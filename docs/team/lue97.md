@@ -44,6 +44,7 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added implementation details for `theme` command
         * Added instructions for manual testing for the commands: `add`, `find`, `goal`, `theme`, and `exit`.
+        * Added test for `Storage` component.
 
 * **Review contributions**:
     * PRs reviewed (with non-trivial review comments):

@@ -44,17 +44,17 @@ public class Picture {
      * @param path Path of the image to be validated.
      * @return true if image is valid otherwise false.
      */
-    public static boolean isValidFilePath(Path path) {
+    public static boolean isValidPicture(Path path) {
         return (FileUtil.isFileExists(path)
                 && FileUtil.hasExtension(path, ALLOWED_FILE_EXTENSIONS)
-                && isValidImage(path));
+                && hasImageFileSignature(path));
     }
 
     /**
      * Checks if the given @{code str} is a valid image file. Note that this check is lenient and
      * only checks the file signature, not content.
      */
-    public static boolean isValidImage(Path path) {
+    public static boolean hasImageFileSignature(Path path) {
         try {
             return FileUtil.hasMagicNumber(path, IMAGE_MAGIC_NUMBERS);
         } catch (IOException ioException) {
