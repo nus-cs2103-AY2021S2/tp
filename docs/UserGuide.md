@@ -84,7 +84,7 @@ Start scheduling a better work life with RemindMe [here](#2-quick-start)!
 
 2. Download the latest `RemindMe.jar` from our [GitHub release page](https://github.com/AY2021S2-CS2103T-W15-1/tp/releases).
 Copy the file to the folder you want to use as the home folder for your RemindMe.
-Double click the file to start the app. 
+Double-click the file to start the app. 
 <br>
 <br>
 
@@ -162,6 +162,8 @@ feature works!
     For example: `ADD` and `add` are both valid.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
 RemindMe will not accept multiple parameters if it only takes in one!<br><br>
@@ -181,7 +183,7 @@ it will not be automatically reflected on the calendar window. You would need to
 *[refresh button to refresh calendar]*
 
 [Back to Table of Contents](#table-of-contents)
-
+<div style="page-break-after: always;"></div>
 
 ### 3.1 Viewing Help: `help`
 The help function shows the URL to the user guide for RemindMe, which you are currently reading!
@@ -223,6 +225,7 @@ You can add:
 
 [Back to Table of Contents](#table-of-contents)
 <br>
+<div style="page-break-after: always;"></div>
 
 #### 3.2.1 Adding a person
 Using the add feature, you can add your friends to RemindMe and let RemindMe remind you of their birthdays. 
@@ -341,6 +344,7 @@ Result expected:
 <br>
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Editing: `edit`
 If you created an entry wrongly, you don't have to delete it! With RemindMe's edit function, you can edit anything, 
@@ -368,7 +372,8 @@ You can edit:
 * [3.3.5 Editing a general event](#335-editing-a-general-event)
 
 [Back to Table of Contents](#table-of-contents)
-    
+<div style="page-break-after: always;"></div>   
+ 
 #### 3.3.1 Editing a person
 You can update your friend's identity, either changing their name, their birthday or their tags.
 
@@ -478,6 +483,7 @@ Examples:
 <br>
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### 3.4 Finding: `find`
 As you use RemindMe, you will have more and more entries. It can become difficult to look for specific entries. 
@@ -502,6 +508,7 @@ You can find:
 * [3.4.3 Finding general events](#343-finding-general-events-g)
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 #### 3.4.1 Finding persons: `n/`
 You can search your contacts whose names contain any of the given keywords.  
@@ -571,6 +578,7 @@ Expected Result:
 <br>
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Listing all entries: `list`
 After you find your specific tasks, you now want to view all your entries. You can use RemindMe's list function to show 
@@ -609,7 +617,8 @@ Expected Result:
 <br>
 
 [Back to Table of Contents](#table-of-contents)
-  
+<div style="page-break-after: always;"></div>  
+
 ### 3.7 Deleting: `delete`
 When you do not need your entries anymore, you can delete them using RemindMe's delete function.
 
@@ -626,6 +635,7 @@ You can delete:
 * [3.7.5 Deleting a general event](#375-deleting-a-general-event)
 
 [Back to Table of Contents](#table-of-contents)    
+<div style="page-break-after: always;"></div>
 
 #### 3.7.1 Deleting a person
 You can remove a person from your RemindMe, but hopefully, you won't need to use it :)
@@ -706,6 +716,7 @@ Expected Result:
 <br>
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### 3.8 Clearing `clear`
 This section shows features that deals with the clearing of entries in the RemindMe app.  
@@ -729,6 +740,7 @@ You can clear:
 * [3.8.4 Clearing all general events](#384-clearing-all-general-events)
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 #### 3.8.1 Clearing RemindMe  
 You can start with a brand new RemindMe.
@@ -754,6 +766,7 @@ Command: `clear g/`
 The following features are more ways for you to view your tasks in RemindMe.
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### 3.9 Viewing calendar `calendar` `C`
 There are 3 ways to check out the calendar.
@@ -801,8 +814,7 @@ in the main window.
 
 
 [Back to Table of Contents](#table-of-contents)
-
-<div class="page-break-before"></div>
+<div style="page-break-after: always;"></div>
 
 ### 3.10 Saving the data
 Saving of data is automatic by the application whenever you enter a command into RemindMe.
@@ -818,6 +830,7 @@ and events in the next 3 days!
 <br>
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### 3.12 Exiting the program `exit` `E`
 There are 3 ways to exit the application. 
@@ -848,8 +861,7 @@ application to exit the program.
 *[Position of `X` on GUI window to exit the program.]*
 
 [Back to Table of Contents](#table-of-contents)
-
-<div class="page-break-before"></div>
+<div style="page-break-after: always;"></div>
 
 ## 4. FAQ
 
@@ -866,6 +878,7 @@ A: You can use the [`clear` command](#38-clearing-clear).
 A: Yes, do take note that if you close the main application, other windows will close as well.
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ## 5. Command Summary  
 <div markdown="block" class="alert alert-info">
