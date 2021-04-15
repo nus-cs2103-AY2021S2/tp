@@ -13,15 +13,45 @@ navigation_title: User Guide
 
 # What is A-Bash Book?
 
-A-Bash Book (ABB) is a Command Line Interface (CLI) based Employee and Business Contact Management System.
-CLI is a text-based interface where you can enter commands to perform various functions such as adding contact details into ABB.
+A-Bash Book (ABB) is a powerful Employee and Business Contact Management System.
 
-ABB is built to address the growing demands of businesses especially in a climate where large amounts of business information are being stored in various places. As the need to centralise data and optimise workflow increases, businesses are challenging current standards of retrieving operational data to achieve minimum lead times.
+A contact management system serves as a centralised platform for organizations to store contacts important to the 
+company.
 
-ABB acts as a centralised platform where you can store the contact details of people you work with, such as your colleagues and business partners. For starters, in ABB you can add, edit, and delete contacts. As you continue reading this guide, you will find that ABB offers features such as auto-complete to ease your contact management process.
+A-Bash Book comes with features that facilitate quick access and bulk operations to super charge your organization's 
+work flow.
 
-Fun fact: Bash is a highly popular CLI-based program. ABB utilises command patterns similar to Bash, hence the name, A-Bash Book (ABB).
-With similarities to Bash, we hope to minimise the learning curve for people with existing Bash experience.
+A-Bash Book also uses a [Command Line Interface (CLI)](#Glossary) and is fully operable by keyboard. Not only is the interface 
+optimized for fast typists, but intuitive and welcoming for new users.
+
+As employees come and go, their business contacts can be lost with them. Besides serving as a centralised platform, 
+A-Bash Book was built to solve this problem by ensuring all the necessary contacts still remain in the system.
+
+# User Interface
+
+![Ui](images/UG_UI%20Guide.png)
+
+A-Bash Book's user interface can be categorized into 4 components.
+- Command Box
+- Result Display
+- Command List Panel
+- Person List Panel
+
+You may begin by typing in your command in the **Command Box** and hitting <kbd>Enter</kbd> to execute the command. A status message of the command will be displayed in the **Result Display**.
+
+On the left side, you may reference the available commands in the **Command List Panel**.
+
+Lastly, any existing persons will be displayed on the right side in the **Person List Panel**.
+
+## Person List Panel
+
+![Person List Reference ><](images/UG_UI%20Reference.png)
+
+Each person in the **Person List Panel** can have data.
+
+This data is stored in their respective fields and can be identified by referring to the image above.
+
+For more information on fields, you may refer to the [Field Summary](#field-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -52,8 +82,6 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 1. Double-click the **abashbook.jar** to start the app. The program window should appear in a few seconds.
    Note that the app contains some sample data, as seen in the picture below. <br>
-   ![Ui](images/UG_UI%20Guide.png)
-   ![Person List Reference ><](images/UG_UI%20Reference.png)
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands to try:
@@ -552,9 +580,9 @@ Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supp
 | `edit` | <kbd>UP/DOWN</kbd> | `edit 1` |
 | `edit 1` | <kbd>DOWN</kbd> | `edit 2` |
 | `edit 2` | <kbd>UP</kbd> | `edit 1` |
-| `add` | <kbd>UP/DOWN</kbd> | `add 1` |
-| `add 1` | <kbd>DOWN</kbd> | `add 2` |
-| `add 2` | <kbd>UP</kbd> | `add 1` |
+| `delete` | <kbd>UP/DOWN</kbd> | `delete 1` |
+| `delete 1` | <kbd>DOWN</kbd> | `delete 2` |
+| `delete 2` | <kbd>UP</kbd> | `delete 1` |
 
 ## Aliasing commands : `alias`
 
