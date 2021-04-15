@@ -611,6 +611,8 @@ Outcome:
 1. The *Status Box* will show a success message.
 2. The tags 'School' and 'English' are now added to the existing tags of the first contact.
 ![tag_1](images/tag_1.png)
+   
+<div style="page-break-after: always;"></div>
 
 **Example 2**
 
@@ -1016,11 +1018,11 @@ Changes to the data files may cause ParentPal to behave unexpectedly, edit the f
 <div style="page-break-after: always;"></div>
 
 ### Transferring your data to another device
-#### Exporting your data
+<h5> Exporting your data </h5>
 1. Locate the **data** folder on your device which can be found in the same folder as your **parentpal.jar** file. 
 2. Transfer this **data** folder to your other device.
-   
-#### Importing your data
+
+<h5> Importing your data </h5>
 1. Install ParentPal on your new device and run it once, exit the program before proceeding.
 2. Copy the **data** folder from your old device to the new device to the same folder as where you installed the **parentpal.jar** file.
 3. Override the files on your new device if prompted.
