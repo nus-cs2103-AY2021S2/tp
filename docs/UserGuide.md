@@ -58,22 +58,22 @@ Please note the following symbols used in the User Guide which may serve as poin
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g., in `add n/NAME`, `NAME` is a parameter that can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter that can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g., `n/NAME [tag/TAG]` can be used as `n/John Doe tag/finance` or as `n/John Doe`.
+  e.g. `n/NAME [tag/TAG]` can be used as `n/John Doe tag/finance` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g.,`[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/finance`, `tag/finance tag/management` etc.
+  e.g.`[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/finance`, `tag/finance tag/management` etc.
 
 * Parameters can be in any order.<br>
-  e.g., if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g., if you specify `p/61234567 p/98765432`, only `p/98765432` will be taken.
+  e.g. if you specify `p/61234567 p/98765432`, only `p/98765432` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g., if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -144,8 +144,8 @@ Adds a new passenger in the GME terminal.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the add command:**<br>
-* [TripDay](#6-glossary) must be a valid day of the week. e.g., `SUNDAY` or `FRIDAY`
-* [TripTime](#6-glossary) must be in the 24-hour format. e.g., `0530` or `2359` 
+* [TripDay](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
+* [TripTime](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359` 
 * [Tag](#6-glossary) must be an alphanumeric input and can only have a maximum of 30 characters in length.
 * [Price](#6-glossary) is an optional amount that the passenger can include that describes how much they are willing to pay for a carpooling trip. It must be a positive whole number or a positive decimal number rounded to 2 decimal places.
 * The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
@@ -196,12 +196,12 @@ Finds passengers whose names contain any of the given keywords.
 
 **:information_source: Notes about the find command:**<br>
 
-* The search is case-insensitive. e.g., `hans` will match `Hans`.
-* Only full words will be matched e.g., `Han` will not match `Hans`.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Only **one type of prefix** can be specified.
 * More than 1 keyword can be specified for a single prefix.
 * Keywords separated by space will match all as a phrase rather than individual words.
-  e.g., `Hans Yang` will only return `Gruber Hans Yang` instead of `Bo Yang` and `Hans Gruber Yang`.
+  e.g. `Hans Yang` will only return `Gruber Hans Yang` instead of `Bo Yang` and `Hans Gruber Yang`.
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
 * Searching with prefixes such as `n/` and `a/` which are anticipated to have multiple words separated by spaces will have multiple spaces shortened to one. Refer to the 4th example for clarification.
 * `all` prefix for searching across names, addresses, tags and phone numbers quickly.
@@ -252,8 +252,8 @@ Selects passengers from the current view in the bottom left pane of the GME term
 
 **:information_source: Notes about the pool command:**<br>
 
-* [TripDay](#6-glossary) must be a valid day of the week. e.g., `SUNDAY` or `FRIDAY`.
-* [TripTime](#6-glossary) must be in the 24-hour format. e.g., `0530` or `2359`.
+* [TripDay](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
+* [TripTime](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359`.
 * Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
 * GME will not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed passenger list.
@@ -295,8 +295,8 @@ Filtering pools where the name of the pool's passengers contain any of the given
 
 **:information_source: Notes about the findPool command:**<br>
 
-* The search is case-insensitive. e.g., `alex` will match `Alex`.
-* Only full words will be matched e.g., `alex` will not match `Alexis`.
+* The search is case-insensitive. e.g. `alex` will match `Alex`.
+* Only full words will be matched e.g. `alex` will not match `Alexis`.
 </div>
 
 **Examples:**
@@ -324,15 +324,15 @@ Lists the pools currently stored in the GME terminal.
 Action | Format, Examples
 --------|------------------
 **help** | `help`
-**add** | `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
+**add** | `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]` <br> e.g. `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
 **list** | `list` 
-**edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
-**delete** | `delete INDEX [INDEX INDEX...]`<br> e.g., `delete 1 3`
-**pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...]`<br> e.g., `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`
+**edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]` <br> e.g. `edit 8 a/Changi Airport d/SATURDAY`
+**delete** | `delete INDEX [INDEX INDEX...]`<br> e.g. `delete 1 3`
+**pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...]`<br> e.g. `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`
 **unpool** | `unpool INDEX`<br> e.g, `unpool 3`
 **listpool** | `listPool`
-**find** | `find a/ADDRESS [a/ADDRESS a/ADDRESS ...]` or `find n/NAME [n/NAME n/NAME ...]` or `find p/PHONE NUMBER [p/PHONE NUMBER p/PHONE NUMBER ...]` or `find tag/TAG [tag/TAG tag/TAG ...]` or `find all/KEYWORD [all/KEYWORD all/KEYWORD ...]` or `find d/DAY [d/DAY d/DAY ...]` or `find t/TIME [t/TIME t/TIME ...]` <br> e.g., `find tag/female`
-**findPool** | `findPool n/PASSENGER_NAME` <br> e.g., `findpool n/Alex`
+**find** | `find a/ADDRESS [a/ADDRESS a/ADDRESS ...]` or `find n/NAME [n/NAME n/NAME ...]` or `find p/PHONE NUMBER [p/PHONE NUMBER p/PHONE NUMBER ...]` or `find tag/TAG [tag/TAG tag/TAG ...]` or `find all/KEYWORD [all/KEYWORD all/KEYWORD ...]` or `find d/DAY [d/DAY d/DAY ...]` or `find t/TIME [t/TIME t/TIME ...]` <br> e.g. `find tag/female`
+**findPool** | `findPool n/PASSENGER_NAME` <br> e.g. `findpool n/Alex`
 **clear** | `clear`
 **exit** | `exit`
 
