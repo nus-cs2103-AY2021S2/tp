@@ -211,14 +211,6 @@ before proceeding.
 
 </div>
 
-## Viewing Help : `help`
-
-Displays a pop up window with a summary of the commands available for use in A-Bash Book.
-
-**Format**: `help`
-
-![Help Message UI](images/helpMessage.png)
-
 ## Adding a Person: `add`
 
 Adds a person to the address book.
@@ -244,12 +236,6 @@ Adds a person to the address book.
 | `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager`, and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.                     |
 | `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer`, and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`.         |
 
-## Listing All Person(s) : `list`
-
-Lists all persons in the address book.
-
-**Format**: `list`
-
 ## Editing Person(s) : `edit`
 
 Allows you to edit one or more person in the address book.
@@ -265,8 +251,8 @@ Allows you to edit one or more person in the address book.
 * Existing values will be updated to the input values.
 * When editing remark, the existing remark of the person will be removed, i.e adding of remark is not cumulative.
 * When editing tags, the existing tags of the person will be removed, i.e adding of tags is not cumulative.
-* To remove the person’s remark, type `-r ` without specifying any remark after it.
-* To remove all the person’s tags, type `-t ` without specifying any tags after it.
+* To remove the person’s remark, type `-r` without specifying any remark after it.
+* To remove all the person’s tags, type `-t` without specifying any tags after it.
 * To edit all the shown person, type `edit shown`
 * To edit all the selected person, type `edit selected` followed by the parameters
 
@@ -288,72 +274,12 @@ Allows you to edit one or more person in the address book.
 
 **:bulb: Tip**<br>
 
-You can do bulk delete with:
+You can do bulk edit with:
 * `edit 1 2 3` to edit persons at indexes 1, 2 and 3 or,
 * `edit shown` to edit all the shown persons or,
 * `edit selected` to edit all the selected persons
 
 </div>
-
-## Locating Persons: `find`
-
-Finds person(s) whose field(s) contain any of the given keywords.
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-* Currently searchable fields: Name, Email, Tag, Remark
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Words are partially matched. e.g `sam` will match `Samantha`
-* Similar words are matched. e.g `Shawn` with match `Shaun`
-* Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth`
-    * `bet` in `Elizabeth` is 1 character away from `Ben`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-</div>
-
-![Find Command UI](images/UG_Find%20Command.png)
-
-### Searching All Searchable Fields
-
-The `find` command will execute for all searchable fields if no command flags are specified. 
-
-**Format**: `find KEYWORD [MORE_KEYWORDS]`
-
-**Examples**:
-
-| Example           | Description                                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `find Jon`        | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
-| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. persons named `Alex Yeoh`, `David Li`         |
-
-### Searching by Specific Fields
-
-The `find` command will execute for specific fields if you specify command flags. 
-
-**Format**: `find FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-* Refer to [Field Summary](#field-summary) for the full list of fields and their corresponding command flags.
-* Currently searchable fields: Name, Email, Tag, Remark
-* You can only search 1 field at a time. e.g. `find -n Alice -t HR` is an invalid command
-
-</div>
-
-**Examples**:
-
-| Example             | Description                                                                                                |
-| ------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `find -n Alice Ben` | Returns persons named `Alicia Yen` (Similar) and `Benjamin Koh` (Partial)                                  |
-| `find -t Market`    | Returns persons tagged with `Marketing` (Partial)                                                          |
-| `find -r Manager`   | Returns persons with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
-
 
 ## Deleting Persons : `delete`
 
@@ -393,6 +319,102 @@ You can do bulk delete with either `delete 1 2 3` to delete indexes 1, 2 and 3
 or `delete shown` to delete all the shown persons.
 
 </div>
+
+## Listing All Person(s) : `list`
+
+Lists all persons in the address book.
+
+**Format**: `list`
+
+## Locating Persons: `find`
+
+Finds person(s) whose field(s) contain any of the given keywords.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+* Currently searchable fields: Name, Email, Tag, Remark
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Words are partially matched. e.g `sam` will match `Samantha`
+* Similar words are matched. e.g `Shawn` with match `Shaun`
+* Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth`
+    * `bet` in `Elizabeth` is 1 character away from `Ben`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+</div>
+
+![Find Command UI](images/UG_Find%20Command.png)
+
+### Searching All Searchable Fields
+
+The `find` command will execute for all searchable fields if no command flags are specified.
+
+**Format**: `find KEYWORD [MORE_KEYWORDS]`
+
+**Examples**:
+
+| Example           | Description                                                                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `find Jon`        | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
+| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. persons named `Alex Yeoh`, `David Li`         |
+
+### Searching by Specific Fields
+
+The `find` command will execute for specific fields if you specify command flags.
+
+**Format**: `find FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+* Refer to [Field Summary](#field-summary) for the full list of fields and their corresponding command flags.
+* Currently searchable fields: Name, Email, Tag, Remark
+* You can only search 1 field at a time. e.g. `find -n Alice -t HR` is an invalid command
+
+</div>
+
+**Examples**:
+
+| Example             | Description                                                                                                |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `find -n Alice Ben` | Returns persons named `Alicia Yen` (Similar) and `Benjamin Koh` (Partial)                                  |
+| `find -t Market`    | Returns persons tagged with `Marketing` (Partial)                                                          |
+| `find -r Manager`   | Returns persons with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
+
+## Filter Field Visibility: `filter`
+
+Filter command allows you to toggle the visibility of person fields to allow you to hide fields that
+you are not interested in.
+
+**Format**: `filter [-FLAG]...`
+
+![Filter Command UI](images/UG_Filter%20Command.png)
+
+These are the available flags:
+
+- Name : `-n`
+- Email : `-e`
+- Company : `-c`
+- Job Title : `-j`
+- Address : `-a`
+- Phone Number : `-p`
+- Tag : `-t`
+- Remark : `-r`
+
+Flags in the filter command **do not need an argument** and **flags that are indicated will be
+visible**.
+
+**Examples**:
+
+| example        | description                                              |
+| -------------- | -------------------------------------------------------- |
+| `filter`       | Shows all fields.                                        |
+| `filter -a`    | Shows the person's name and address only.                |
+| `filter -a -p` | Shows the person's name, address and phone number only.  |
 
 ## Selecting Person(s) : `select`
 
@@ -480,202 +502,6 @@ client is installed and configured properly.
 | `email 1`        | Email person at index 1                   |
 | `email 1 2`      | Email person at index 1 and 2             |
 
-
-## Clearing All Entries : `clear`
-
-Clears all entries from the address book.
-
-<div markdown="span" class="alert alert-danger">
-
-**:exclamation: Warning**<br>
-
-This action is irreversible. Do not run this command with actual data unless you want to delete all entries.
-
-</div>
-
-**Format**: `clear`
-
-## Exiting A-Bash Book : `exit`
-
-Saves and exits A-Bash Book.
-
-**Format**: `exit`
-
-## Autocomplete
-
-### Commands
-
-![Command Autocomplete](images/UG_Autocomplete.png)
-
-Commands in the command box can be autocompleted by pressing the <kbd>Tab</kbd> key.
-
-**Examples**:
-
-To execute the command `delete`,
-
-Typing `del` followed by <kbd>Tab</kbd> will auto complete `del` to `delete`.
-
-| Current text in command box | Key Press | Result |
-| ------------------------------ | -------------| ----|
-| `ad` | <kbd>Tab</kbd> | `add` |
-| `edi` | <kbd>Tab</kbd> | `edit` |
-| `ex` | <kbd>Tab</kbd> | `exit` |
-| `he` | <kbd>Tab</kbd> | `help` |
-| `li` | <kbd>Tab</kbd> | `list` |
-| `s` | <kbd>Tab</kbd> | `select` |
-
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-In the command box, it is also possible to cycle through **existing** commands with <kbd>Tab</kbd>.
-
-</div>
-
-### Flags
-
-Command flags can be autocompleted at the end of your command text by pressing the <kbd>Tab</kbd> key.
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-- If your flag has no content, the next available flag will be replaced and cycled.
-- If your flag has content, the next available flag will be appended to your command text.
-
-</div>
-
-| Supported Commands                        | Available command flags|
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
-| `edit`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-For `add` command, a space character should follow the add command for flags to begin 
-autocompletion.
-
-</div>
-
-| Current text in command box | Key Press | Result |
-| ------------------------------ | -------------| ----|
-| `add␣` | <kbd>Tab</kbd> | `add -n` |
-| `add -n` | <kbd>Tab</kbd> | `add -p` |
-| `add -n John Doe` | <kbd>Tab</kbd> | `add -n John Doe -p` |
-| `add -n John Doe -p 94326543 -e john@doe.com` | <kbd>TAB</kbd> | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
-| `edit 1` | <kbd>Tab</kbd> | `edit 1 -n` |
-| `edit 1 -n` | <kbd>Tab</kbd> | `edit 1 -p` |
-| `edit 1 -n John Dow` | <kbd>Tab</kbd> | `edit 1 -n John Dow -p` |
-
-### Index
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-Autocomplete index only works for the `EDIT` and `DELETE` commands.
-
-</div>
-
-Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supported commands are fully typed out.
-
-**Examples**
-
-| Current text in command box | Key Press | Result |
-| ------------------------------ | -------------| ----|
-| `edit` | <kbd>UP/DOWN</kbd> | `edit 1` |
-| `edit 1` | <kbd>DOWN</kbd> | `edit 2` |
-| `edit 2` | <kbd>UP</kbd> | `edit 1` |
-| `delete` | <kbd>UP/DOWN</kbd> | `delete 1` |
-| `delete 1` | <kbd>DOWN</kbd> | `delete 2` |
-| `delete 2` | <kbd>UP</kbd> | `delete 1` |
-
-## Aliasing Commands : `alias`
-
-The alias command allows you to create shortcut command (also known as command alias) to the actual command.
-
-### Add an Alias: `alias add`
-
-Adds an alias to address book.
-
-**Format**: `alias add ALIAS COMMAND`
-
-![Alias Add](images/UG_Alias%20Add%20Command.png)
-
-**Examples**:
-
-| Example                             | Description                                                                                                                                                                                |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e `ls` will now generate the list of all persons).                           |
-| `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
-| `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e `f` Alex Yeoh will now return persons equals or similar to Alex Yeoh). |
-
-### Delete an Alias: `alias delete`
-
-Deletes an existing alias from address book.
-
-**Format**: `alias delete ALIAS`
-
-![Alias Delete](images/UG_Alias%20Delete%20Command.png)
-
-**Examples**:
-
-| Example           | Description            |
-| ----------------- | ---------------------- |
-| `alias delete ls` | Removes the alias `ls` |
-| `alias delete f`  | Removes the alias `f`  |
-
-### List All Aliases: `alias list`
-
-Lists all alias(es) in the address book.
-
-**Format**: `alias list`
-
-<div markdown="span" class="alert alert-info">
-
-**:information_source: Note** <br>
-
-The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
-keyboard action, the list of your aliases will disappear and show the list of existing commands again.
-
-</div>
-
-![Alias List](images/UG_Alias%20List%20Command.png)
-
-## Filter Field Visibility: `filter`
-
-Filter command allows you to toggle the visibility of person fields to allow you to hide fields that
-you are not interested in.
-
-**Format**: `filter [-FLAG]...`
-
-![Filter Command UI](images/UG_Filter%20Command.png)
-
-These are the available flags:
-
-- Name : `-n`
-- Email : `-e`
-- Company : `-c`
-- Job Title : `-j`
-- Address : `-a`
-- Phone Number : `-p`
-- Tag : `-t`
-- Remark : `-r`
-
-Flags in the filter command **do not need an argument** and **flags that are indicated will be
-visible**.
-
-**Examples**:
-
-| example        | description                                              |
-| -------------- | -------------------------------------------------------- |
-| `filter`       | Shows all fields.                                        |
-| `filter -a`    | Shows the person's name and address only.                |
-| `filter -a -p` | Shows the person's name, address and phone number only.  |
-
 ## Tagging Person(s): `tag`
 
 The tag command allows you to add and delete specific tags of persons.
@@ -744,6 +570,187 @@ You can bulk delete tag by either doing:
 * `tag delete selected` to delete tags to all the selected persons
 
 </div>
+
+## Aliasing Commands : `alias`
+
+The alias command allows you to create shortcut command (also known as command alias) to the actual command.
+
+### Add an Alias: `alias add`
+
+Adds an alias to address book.
+
+**Format**: `alias add ALIAS COMMAND`
+
+![Alias Add](images/UG_Alias%20Add%20Command.png)
+
+**Examples**:
+
+| Example                             | Description                                                                                                                                                                                |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e `ls` will now generate the list of all persons).                           |
+| `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
+| `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e `f Alex Yeoh` will now return persons equal to or similar to Alex Yeoh). |
+
+### Delete an Alias: `alias delete`
+
+Deletes an existing alias from address book.
+
+**Format**: `alias delete ALIAS`
+
+![Alias Delete](images/UG_Alias%20Delete%20Command.png)
+
+**Examples**:
+
+| Example           | Description            |
+| ----------------- | ---------------------- |
+| `alias delete ls` | Removes the alias `ls` |
+| `alias delete f`  | Removes the alias `f`  |
+
+### List All Aliases: `alias list`
+
+Lists all alias(es) in the address book.
+
+**Format**: `alias list`
+
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Note** <br>
+
+The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
+keyboard action, the list of your aliases will disappear and show the list of existing commands again.
+
+</div>
+
+![Alias List](images/UG_Alias%20List%20Command.png)
+
+## Autocomplete
+
+### Commands
+
+![Command Autocomplete](images/UG_Autocomplete.png)
+
+Commands in the command box can be autocompleted by pressing the <kbd>Tab</kbd> key.
+
+**Examples**:
+
+To execute the command `delete`,
+
+Typing `del` followed by <kbd>Tab</kbd> will auto complete `del` to `delete`.
+
+| Current text in command box | Key Press | Result |
+| ------------------------------ | -------------| ----|
+| `ad` | <kbd>Tab</kbd> | `add` |
+| `edi` | <kbd>Tab</kbd> | `edit` |
+| `ex` | <kbd>Tab</kbd> | `exit` |
+| `he` | <kbd>Tab</kbd> | `help` |
+| `li` | <kbd>Tab</kbd> | `list` |
+| `s` | <kbd>Tab</kbd> | `select` |
+
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+In the command box, it is also possible to cycle through **existing** commands with <kbd>Tab</kbd>.
+
+</div>
+
+### Flags
+
+Command flags can be autocompleted at the end of your command text by pressing the <kbd>Tab</kbd> key.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- If your flag has no content, the next available flag will be replaced and cycled.
+- If your flag has content, the next available flag will be appended to your command text.
+
+</div>
+
+| Supported Commands                        | Available command flags|
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
+| `edit`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+For `add` command, a space character should follow the add command for flags to begin
+autocompletion.
+
+</div>
+
+| Current text in command box | Key Press | Result |
+| ------------------------------ | -------------| ----|
+| `add␣` | <kbd>Tab</kbd> | `add -n` |
+| `add -n` | <kbd>Tab</kbd> | `add -p` |
+| `add -n John Doe` | <kbd>Tab</kbd> | `add -n John Doe -p` |
+| `add -n John Doe -p 94326543 -e john@doe.com` | <kbd>TAB</kbd> | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
+| `edit 1` | <kbd>Tab</kbd> | `edit 1 -n` |
+| `edit 1 -n` | <kbd>Tab</kbd> | `edit 1 -p` |
+| `edit 1 -n John Dow` | <kbd>Tab</kbd> | `edit 1 -n John Dow -p` |
+
+### Index
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+Autocomplete index only works for the `EDIT` and `DELETE` commands.
+
+</div>
+
+Index can be autocompleted by pressing the <kbd>UP/DOWN</kbd> keys when the supported commands are fully typed out.
+
+**Examples**
+
+| Current text in command box | Key Press | Result |
+| ------------------------------ | -------------| ----|
+| `edit` | <kbd>UP/DOWN</kbd> | `edit 1` |
+| `edit 1` | <kbd>DOWN</kbd> | `edit 2` |
+| `edit 2` | <kbd>UP</kbd> | `edit 1` |
+| `delete` | <kbd>UP/DOWN</kbd> | `delete 1` |
+| `delete 1` | <kbd>DOWN</kbd> | `delete 2` |
+| `delete 2` | <kbd>UP</kbd> | `delete 1` |
+
+## Viewing Help : `help`
+
+Displays a pop up window with a summary of the commands available for use in A-Bash Book.
+
+**Format**: `help`
+
+![Help Message UI](images/helpMessage.png)
+
+## Clearing All Entries : `clear`
+
+Clears all entries from the address book.
+
+<div markdown="span" class="alert alert-danger">
+
+**:exclamation: Warning**<br>
+
+This action is irreversible. Do not run this command with actual data unless you want to delete all entries.
+
+</div>
+
+
+
+
+
+
+
+
+
+
+**Format**: `clear`
+
+## Exiting A-Bash Book : `exit`
+
+Saves and exits A-Bash Book.
+
+**Format**: `exit`
 
 ## Saving the Data
 
