@@ -107,7 +107,7 @@ Words or sentences that appear in these highlighted boxes are being emphasized f
 
 Different sections of the application window will be referred to by the names described in the image shown below:
 
-![App Window Sections](images/app_window_sections.png)
+![App Window Sections Main](images/app_window_section_main.png)
 
 #### **2.2.3 Navigating the UI**
 
@@ -362,6 +362,8 @@ Example:
 
 Displays a panel containing an overview of the project that is currently displayed.
 
+![App Window Sections Overview](images/app_window_section_overview.png)
+
 Format: `overview`
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
@@ -371,6 +373,8 @@ This command can only be used when a project is currently being displayed.
 ##### Viewing the Todos of a Project: `todos`
 
 Displays a panel containing the todos of the project that is currently displayed.
+
+![App Window Sections Todos](images/app_window_section_todos.png)
 
 Format: `todos`
 
@@ -784,6 +788,8 @@ Each contact contains a name, phone_number, email, address and zero or more tags
 
 Displays a panel with a list of all contacts in CoLAB.
 
+![App Window Sections Contacts](images/app_window_section_contacts.png)
+
 Format: `contacts`
 
 ##### Adding a Contact: `addC`
@@ -904,6 +910,8 @@ The today page displays the events and deadlines on the day that you open the to
 
 Displays a panel containing information on Events & Deadlines that are relevant today.
 
+![App Window Sections Today](images/app_window_section_today.png)
+
 Format: `today`
 
 ### **4.4 Others**
@@ -911,6 +919,8 @@ Format: `today`
 ##### Viewing Help: `help`
 
 Displays a panel containing a summary of commands as well as a link to this user guide. The link can be copied to the system clipboard by clicking on the `Copy` button.
+
+![App Window Sections Help](images/app_window_section_help.png)
 
 Format: `help`
 
