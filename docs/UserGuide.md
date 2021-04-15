@@ -780,7 +780,7 @@ Example:
 
 Contacts are used in CoLAB to store contact information about a person, to help you keep track of people you contact frequently.
 
-![Ui](images/contacts.png)
+![UG Section Contact List](images/ug_section_contact.png)
 
 Each contact contains a name, phone_number, email, address and zero or more tags.
 
@@ -877,7 +877,7 @@ Example:
 
 * `findC alex david` displays a list containing `Alex Yeoh` and `David Li`<br>
 
-![result for 'findC alex david'](images/findAlexDavidResult.png)
+![UG Section 'findC alex david'](images/ug_section_findc.png)
 
 ##### Deleting a Contact: `deleteC`
 
