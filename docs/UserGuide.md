@@ -166,14 +166,6 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 * `[s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​` are optional which can be added now with `add` command or later with `edit` command.
 
-* Education levels are represented abbreviated names. Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
-  For more details, see the [Field Format Summary](#61-field-format-summary) below.
-
-* Subjects are represented by abbreviated names. Valid names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`,
-  which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
-  For more details, see the [Field Format Summary](#61-field-format-summary) below.
-
 * Lessons should only consist of the lesson day and time e.g. `monday 1300`
 
 * Lesson day must take on one of the values: **monday, tuesday, wednesday, thursday, friday, saturday, sunday**.
@@ -189,7 +181,15 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 <div markdown="block" class="alert alert-primary">
 
 :bulb:**Tips:** <br>
-Education levels and subjects available cover the usual students who are more likely to need private tuition. More options
+* Education levels are represented abbreviated names. Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+    `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
+    For more details, see the [Field Format Summary](#61-field-format-summary) below.
+
+* Subjects are represented by abbreviated names. Valid names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`,
+  which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+  For more details, see the [Field Format Summary](#61-field-format-summary) below.
+  
+* Education levels and subjects available cover the usual students who are more likely to need private tuition. More options
 will be explored in [Coming Soon](#4-coming-soon).
 </div>
 
@@ -209,7 +209,7 @@ Example:
 
 ![AfterAdd](images/DemoAfterAddCommand.png)
 
-More Examples:
+Other examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
@@ -226,26 +226,30 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 
 * Edits the student at the specified `INDEX`.
 
-* The index refers to the index number shown in the displayed student list.
+* `INDEX` refers to the index number shown in the list panel.
 
 * At least one of the optional fields must be provided.
-
-* Education levels are represented abbreviated names. Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
-  For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed, i.e. adding of subjects or lessons are not cumulative.
 
 * You can remove all the student’s subjects and lessons by typing `t/` and `le/` respectively without specifying any subject or lesson details.
 
-* Subjects are represented by abbreviated names. Valid names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`,
-  which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
-  For more details, see the [Field Format Summary](#61-field-format-summary) below.
-
 * If the student **name** or **lesson** to be edited already exists in TutorsPet, a warning prompting user's input will be shown.
   If `y` is entered, the contact will be edited.
   If `n` is entered, the contact would not be edited.
   
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+* Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
+  For more details, see the [Field Format Summary](#61-field-format-summary) below.
+
+* Valid subject names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`,
+  which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+  For more details, see the [Field Format Summary](#61-field-format-summary) below.
+</div>
+
 Example:
 
 `edit 1 p/91234567 e/johndoe@example.com`
@@ -259,12 +263,12 @@ Example:
 
 ![AfterEdit](images/DemoAfterEditCommand.png)
 
-More Examples:
+Other examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
 `edit 2 n/Betsy Crower t/` | edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
-`edit 1 le/monday 1300 le/tuesday 1400` | edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
+`edit 1 le/monday 1300 le/tuesday 1400` | edits the 1st student's lesson details to `monday 1300` and `tuesday 1400`.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -276,8 +280,8 @@ education level and lessons will be displayed.
 
 Format: `detail INDEX`
 
-* Student details of a searched list can be displayed using this command.
-* Contains a lesson panel on the right to view your schedule with the specified student.
+* Student details of a searched list can be displayed on the details panel using this command.
+* The details panel contains a lesson panel on the right to view your schedule with the specified student.
 
 <div markdown="block" class="alert alert-primary">
 :bulb:**Tips:** <br>
@@ -294,7 +298,7 @@ Example: <br>
 
 ![BeforeDetail](images/DemoBeforeDetailCommand.png)
 
-* After the `detail 1` command is entered, the details of the first student in the List are displayed.
+* After the `detail 1` command is entered, the details of the first student in the list panel are displayed.
 
 ![AfterDetail](images/DemoAfterDetailCommand.png)
 
@@ -312,7 +316,7 @@ Format: `delete INDEX`
 
 * Deletes the contact at the specified `INDEX`.
 
-* The index refers to the index number shown in the displayed student list.
+* `INDEX` refers to the index number shown in the list panel.
 
 </div>
 Example: <br>
@@ -360,7 +364,7 @@ Prefix | Searching Criteria
 
 :bulb:**Tips:** <br>
 
-* Available **subject** names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+* Available subject names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
@@ -379,12 +383,12 @@ Other examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
-`search n/eliza s/woodlands t/math`| displays a list of students whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
+`search n/eliza s/woodlands t/math`| displays a list of students whose name is `Eliza`, students who are studying in `woodlands primary school`, and students taking the subject `math` 
 `search n/patrick lim` | displays a list of students whose names are `Patrick Lim` and `Lim Zi Ying`
 `search s/woodlands` | displays a list of students studying in `woodlands primary school` and `woodlands secondary school`
 `search s/raffles hwa` | displays a list of students studying in `Raffles Institution` and `Hwa chong institution`
-`search t/chem` | displays a list of students with the subject `chem`
-`search t/chem math` | displays a list of students with the subject `chem` or with the subject `math` or with both.
+`search t/chem` | displays a list of students taking the subject `chem`
+`search t/chem math` | displays a list of students taking the subjects `chem` or `math` or both.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
@@ -397,12 +401,8 @@ Prefix | Sorting Criteria | Details
 ------ | -----------------|--------
 `n/`   | Name             |Alphabetical order
 `s/`   | School           |Alphabetical order
-`t/`   | Subject          |Alphabetical order of the first subjects<br>in their lists
-`le/`  | Lesson           |Chronological order of the first lessons<br>in their lists
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
+`t/`   | Subject          |Alphabetical order of the first subjects in their lists
+`le/`  | Lesson           |Chronological order of the first lessons in their lists
 
 * There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and
   `le/`. They represent sorting by name, school, subjects or lessons respectively.
@@ -411,13 +411,12 @@ Prefix | Sorting Criteria | Details
 
 * Any extra words typed will be ignored.
 
-</div>
-
 Example:
 
 `sort t/` 
 
-* The `sort` command sorts students based on the alphabetical order of their first subject.
+* After the `sort` command is entered, the list of students displayed on the list panel will be sorted based on the 
+  alphabetical order of their first subject.
 
 ![Sort Command](images/DemoSortCommand.png)
 
@@ -432,7 +431,7 @@ Command     | Result
 
 #### 3.2.7 Listing all contacts : `list`
 
-Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
+Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed on the list panel.
 
 Format: `list`
 
@@ -445,11 +444,7 @@ This feature can perform a mass update on all the students' levels at the start 
 
 If only some students' levels need to be changed, [edit](#322-editing-a-contact--edit) can be used instead.
 
-Format: `levelup ex/[INDEX]...`
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
+Format: `levelup [ex/INDEX]`
 
 * Students who are `sec4` will automatically advance to `sec5` when `levelup` is applied. If students
   are part of the express course, `levelup` can be applied again to advance them to `jc1`.
@@ -460,31 +455,32 @@ Format: `levelup ex/[INDEX]...`
 * If the `ex/` prefix is not used, all students will advance by one education level (unless they have `grad`).
   Once `ex/` prefix is used, the index field cannot be left blank.
 
-* The index refers to the index number shown in the displayed student list. Indexes are used to
+* `INDEX` refers to the index number shown in the list panel. Indexes are used to
   indicate students who are to be excluded from the advancement.
 
 * Multiple indexes can be taken in. Indexes must be separated by spaces.
-
-</div>
 
 Example:
 
 `levelup ex/1`
 
-* Before the command, the first student is primary 5 whereas the 2nd student is secondary 3.
+* Before the command, the 1st student is `pri5`.
 
 ![BeforeLevelUp1](images/DemoBeforeLevelUpCommand1.png)
 
+* While the 2nd student is `sec3`.
+
 ![BeforeLevelUp2](images/DemoBeforeLevelUpCommand2.png)
 
-After entering the command, all students are advanced by one level, excluding the first student in the list
-(and the `grad` students).
+* After entering the command, all students are advanced by one level, excluding the 1st student in the list (and the `grad` students).
+  Entering `detail 1` will show that the level did not change for the 1st student. 
 
 ![AfterLevelUp1](images/DemoAfterLevelUpCommand1.png)
 
+* Entering `detail 2` will show that the 2nd student is advanced to `sec4`.
+
 ![AfterLevelUp2](images/DemoAfterLevelUpCommand2.png)
 
-The first student in the list still remains primary 5, whereas the rest of the students advance by one level.
 
 Other examples:
 
@@ -498,15 +494,11 @@ Command     | Result
 #### 3.2.9 Decreasing level of all students : `leveldown`
 
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
-This feature can perform a mass undo of `levelup` or indicate retainees.
+This feature can perform a mass undo of `levelup` or can be applied if any of the students retain a level.
 
 If only some students' levels need to be changed, [edit](#322-editing-a-contact--edit) can be used instead.
 
-Format: `leveldown ex/[INDEX]...`
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
+Format: `leveldown [ex/INDEX]...`
 
 * Students who are `jc1` will be automatically demoted to `sec5` when `leveldown` is applied. If students
   are part of the express course, `leveldown` can be applied again to demote them to `sec4`.
@@ -516,27 +508,29 @@ Format: `leveldown ex/[INDEX]...`
 * If the `ex/` prefix is not used, all students will be demoted by one education level (unless they have `grad`).
   Once `ex/` prefix is used, the index field cannot be left blank.
 
-* The index refers to the index number shown in the displayed student list. Indexes are used to
+* `INDEX` refers to the index number shown in the list panel. Indexes are used to
   indicate students who are to be excluded from the demotion.
 
 * Multiple indexes can be taken in. Indexes must be separated by spaces.
-
-</div>
 
 Example:
 
 `leveldown ex/1`
 
-Before the command, the first student is secondary 4 whereas the sixth student is secondary 5.
+* Before the command, entering `detail 1` will show that the 1st student is `sec4`.
 
 ![BeforeLevelUp1](images/DemoBeforeLevelDownCommand1.png)
 
+* Entering `detail 6` will show that the 6th student is `sec5`.
+
 ![BeforeLevelUp2](images/DemoBeforeLevelDownCommand2.png)
 
-After entering the command, all students are demoted by one level, excluding the first student in the list
+* After entering the command, all students are demoted by one level, excluding the 1st student in the list
 (and `grad` students).
-
+  Entering `detail 1` will show that the 1st student is not demoted and remains at `sec4`.
 ![AfterLevelUp1](images/DemoAfterLevelDownCommand1.png)
+  
+* Entering `detail 6` will show that the 6th student is demoted to `sec4`.
 
 ![AfterLevelUp2](images/DemoAfterLevelDownCommand2.png)
 
@@ -574,10 +568,10 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 
 Example: <br>
 
-Entering the `add-date d/math exam dt/2021-11-03 0800` command will add an important date with description `math exam` 
-and details `2021-11-03 0800`
+`add-date d/math exam dt/2021-11-03 0800`
 
-* After the above command is executed, entering the `list-date` command will show the following:  
+* Entering the above command will add an important date with description `math exam` 
+and details `2021-11-03 0800`. Then, entering the `list-date` command will display the list of updated important dates.
 
 ![add-date](images/DemoAddDateCommand.png)
 
@@ -591,15 +585,16 @@ Format: `delete-date INDEX`
 
 * Deletes the important date at the specified `INDEX`.
 
-* The index refers to the index number shown in the displayed important dates list.
+* `INDEX` refers to the index number shown in the displayed important dates list.
 
 Example: <br>
 
-Entering the `delete-date 2` command will delete the 2nd important date in TutorsPet. 
+`delete-date 2`
 
-* After the above command is executed, entering the `list-date` command will show the following: 
-
-![delete-date](images/DemoDeleteDateCommand.png)
+* Entering the above command will delete the 2nd important date in TutorsPet.
+  Then, entering the `list-date` command will display the list of updated important dates.
+  
+  ![delete-date](images/DemoDeleteDateCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -619,11 +614,11 @@ Format: `schedule`
 
 #### 3.5.1 Saving the data 
 
-TutorsPet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TutorsPet data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### 3.5.2 Editing the data files
 
-TutorsPet data are saved into three different JSON files: <br>
+TutorsPet data is saved into three different JSON files: <br>
 1. **\[JAR file location]/data/addressbook.json** for storing contact details.
 2. **\[JAR file location]/data/datesbook.json** for storing important dates.
 3. **\[JAR file location]/data/lessonbook.json** for storing lesson details.
@@ -658,13 +653,13 @@ by providing the file path to the picture.
 ## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the three empty data files named `addressbook.json`, `datesbook.json`, `lessonbook.json`
-it creates with the corresponding files that contain the data of your previous TutorsPet home folder.
+**A**: Install the app in the other computer, and there will be three empty data files named `addressbook.json`, `datesbook.json`, `lessonbook.json`.
+Replace these three files with the corresponding files of the same names from your previous TutorsPet home folder.
 
 **Q**: Do I have to connect to the internet to use this application? <br>
 **A**: No, TutorsPet is an offline application. No internet connection is needed.
 
-**Q**: What is the optimal display setting for this application? <br>
+**Q**: What is the optimal display settings for this application? <br>
 **A**: The default settings of almost all desktops support our application perfectly.
 However, if you want to personalise your window size, the optimal display resolution is 1920 * 1080 and scaled to 150%.
 
@@ -672,7 +667,7 @@ However, if you want to personalise your window size, the optimal display resolu
 **A**: TutorsPet allows names of up to 60 characters. See [6.1 Field Format Summary](#61-field-format-summary) for more details on the specifications of the other fields.
 
 **Q**: Why is there such a length limit for the fields of a student, i.e. name has a character limit of 60, address has a character limit of 254, and so on? <br>
-**A**: Limits are set so that users can view each student detail more effectively and have a better experience with TutorsPet.
+**A**: Limits are set so that users can view each student detail more effectively and have a better user experience with TutorsPet.
 
 **Q**: Why has all my data been cleared? <br>
 **A**: You could have edited the data files accidentally and corrupted the data.
@@ -724,7 +719,7 @@ Action | Format, Examples
 
 ## 7. Glossary
 
-**Parameters:** Inputs keyed in after the command word that specify the behaviour of the command
+**Parameters:** Inputs keyed in after the command word that specify the behaviour of the command.
 
 **Prefix**: Expressions that signal inputs of a certain field e.g. `n/` signals name field, `gp/` signals guardian's phone.
 
