@@ -193,11 +193,12 @@ Education levels and subjects available cover the usual students who are more li
 will be explored in [Coming Soon](#4-coming-soon).
 </div>
 
-<div markdown="block" class="alert alert-warning">
-
-:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
-input in the app. For more details, see the [Field Format Summary](#61-field-format-summary) below.
+input in the app. Users will have to ensure the information they enter for these fields match up accordingly,
+e.g. A student contact in ABC Primary School will probably not be in sec3, or take subjects
+like chem and bio.
+
 </div>
 
 Example:
@@ -245,14 +246,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   If `y` is entered, the contact will be edited.
   If `n` is entered, the contact would not be edited.
   
-
-<div markdown="block" class="alert alert-warning">
-
-:exclamation: **Caution:**
-TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
-input in the app. For more details, see the [Field Format Summary](#61-field-format-summary) below.
-</div>
-
 Example:
 
 `edit 1 p/91234567 e/johndoe@example.com`
@@ -552,38 +545,34 @@ Command     | Result
 
 ### 3.3 Important Date Management
 
-#### 3.3.1 Adding an important date : `add-date`
+#### 3.3.1 Listing all important dates : `list-date`
+
+Shows a list of all important dates in TutorsPet.
+
+![list-date](images/DemoListDateCommand.png)
+
+Format: `list-date`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+#### 3.3.2 Adding an important date : `add-date`
 
 Adds an important date to TutorsPet.
 
 Format: `add-date d/DESCRIPTION dt/DETAILS`
 
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
-* Dates with the **exact same description and details** will be considered a duplicate and will not be added to TutorsPet
-* To avoid confusion, dates with the same description will also not be added to TutorsPet.
+* Dates with the **exact same description** will be considered a duplicate and will not be added into TutorsPet.
 * All dates would be accepted, including past dates. e.g. `2019-01-20`
-
-</div>
 
 Example: <br>
 
-`add-date d/math exam dt/2021-11-03 0800` adds an important date with description `math exam` and details `2021-11-03 0800`
+Entering the `add-date d/math exam dt/2021-11-03 0800` command will add an important date with description `math exam` 
+and details `2021-11-03 0800`
+
+* After the above command is executed, entering the `list-date` command will show the following:  
 
 ![add-date](images/DemoAddDateCommand.png)
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-#### 3.3.2 Listing all important dates : `list-date`
-
-Shows a list of all important dates in TutorsPet.
-
-Format: `list-date`
-
-![list-date](images/DemoListDateCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -593,20 +582,15 @@ Permanently deletes the specified important date from TutorsPet.
 
 Format: `delete-date INDEX`
 
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * Deletes the important date at the specified `INDEX`.
 
 * The index refers to the index number shown in the displayed important dates list.
 
-* The index **must be a positive integer** ranging from 1 to 2147483647.
-</div>
-
 Example: <br>
 
-`list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet
+Entering the `delete-date 2` command will delete the 2nd important date in TutorsPet. 
+
+* After the above command is executed, entering the `list-date` command will show the following: 
 
 ![delete-date](images/DemoDeleteDateCommand.png)
 
@@ -618,9 +602,9 @@ Example: <br>
 
 Shows a weekly schedule that displays lessons for the week.
 
-Format: `schedule`
-
 ![schedule popup](images/scheduleWindow.png)
+
+Format: `schedule`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -634,8 +618,8 @@ TutorsPet data are saved in the hard disk automatically after any command that c
 
 TutorsPet data are saved into three different JSON files: <br>
 1. **\[JAR file location]/data/addressbook.json** for storing contact details.
-2. **\[JAR file location]/data/datesbook.json** for storing important exam dates.
-3. **\[JAR file location]/data/lessonbook.json** for storing student lesson dates.
+2. **\[JAR file location]/data/datesbook.json** for storing important dates.
+3. **\[JAR file location]/data/lessonbook.json** for storing lesson details.
 
 
 <div markdown="block" class="alert alert-warning">
@@ -653,12 +637,13 @@ TutorsPet data are saved into three different JSON files: <br>
 
 ### 4.1 Add a subject to teach **[coming in v2.0]**
 
-_Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet,
-while in v2.0, more personalised subjects can be added._
+Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available in TutorsPet,
+while in v2.0, more personalised subjects can be added in.
 
 ### 4.2 Add profile picture for each contact **[coming in v2.0]**
-_Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
+Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index 
 by providing the file path to the picture.
+
 --------------------------------------------------------------------------------------------------------------------
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -705,14 +690,6 @@ Education level         | `lv/`  | Y        | Fixed format: <br>Primary School: 
 Subject                 | `t/`   | Y        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.| N.A.
 Lesson                  | `le/`  | Y        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`| N.A.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
-input in the app. Users will have to ensure the information they enter for these fields match up accordingly,
-e.g. A student contact in ABC Primary School will probably not be in sec3, or take subjects
-like chem and bio.
-
-</div>
-
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### 6.2 Command summary
@@ -731,9 +708,9 @@ Action | Format, Examples
 **[List](#327-listing-all-contacts--list)** | `list`
 **[Level Up](#328-increasing-level-of-all-students--levelup)** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/3 4`
 **[Level Down](#329-decreasing-level-of-all-students--leveldown)** | `leveldown [ex/INDEX]` <br> e.g., `leveldown`, `leveldown ex/1 2`
-**[Add dates](#331-adding-an-important-date--add-date)** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
+**[List dates](#331-listing-all-important-dates--list-date)** | `list-date`
+**[Add dates](#332-adding-an-important-date--add-date)** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
 **[Delete dates](#333-deleting-an-important-date--delete-date)** | `delete-date INDEX`<br> e.g., `delete-date 3`
-**[List dates](#332-listing-all-important-dates--list-date)** | `list-date`
 **[Schedule](#341-viewing-schedule--schedule)** | `schedule`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
