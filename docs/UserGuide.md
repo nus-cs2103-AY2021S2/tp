@@ -41,7 +41,7 @@ You may begin by typing in your command in the **Command Box** and hitting <kbd>
 
 On the left side, you may reference the available commands in the **Command List Panel**.
 
-Lastly, any existing persons will be displayed on the right side in the **Person List Panel**.
+Lastly, all persons will be displayed on the right side in the **Person List Panel**.
 
 ## Person List Panel
 
