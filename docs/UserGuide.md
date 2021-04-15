@@ -326,7 +326,7 @@ It is split into various subsections:
 
 Each project in CoLAB contains information about todos, deadlines, events and groupmates to help you keep track of everything you need to effectively manage the project.
 
-![Ui](images/project.png)
+![App Window Sections Projects](images/app_window_section_projects.png)
 
 You may view a list of all your projects in the side panel and view a specific project in the main panel using the `project` command.
 
@@ -440,7 +440,7 @@ Todos are used in CoLAB to represent a task that has to be done. These are usual
 Todos may be known as tasks in other similar applications.
 </div>
 
-![Ui](images/todos.png)
+![UG Section Todo](images/ug_section_todo.png)
 
 Todos contain a description. They can also be marked as done using the `markT` command. Todos that have been marked as done have a ✔ next to their description.
 
@@ -524,7 +524,7 @@ Example:
 
 Deadlines are used in CoLAB to represent project deadlines.
 
-![Ui](images/deadlines.png)
+![UG Section Deadline](images/ug_section_deadline.png)
 
 Deadlines contain a description and a date. They can also be marked as done using the `markD` command. Deadlines that have been marked as done have a ✔ next to their description.
 
@@ -615,7 +615,7 @@ Example:
 
 Events are used in CoLAB to represent project-specific events.
 
-![Ui](images/events.png)
+![UG Section Event](images/ug_section_event.png)
 
 Events contain a description, a date and a time. Events can be set to either occur once or repeat at the same time every week.
 
@@ -696,7 +696,7 @@ Example:
 
 Groupmates are used in CoLAB to represent the people you are working with for a particular project.
 
-![Ui](images/groupmates.png)
+![UG Section Groupmate](images/ug_section_groupmate.png)
 
 Groupmates contain a name and zero or more roles. The role serves to indicate their role in the project.
 
@@ -780,7 +780,7 @@ Example:
 
 Contacts are used in CoLAB to store contact information about a person, to help you keep track of people you contact frequently.
 
-![Ui](images/contacts.png)
+![UG Section Contact List](images/ug_section_contact.png)
 
 Each contact contains a name, phone_number, email, address and zero or more tags.
 
@@ -877,7 +877,7 @@ Example:
 
 * `findC alex david` displays a list containing `Alex Yeoh` and `David Li`<br>
 
-![result for 'findC alex david'](images/findAlexDavidResult.png)
+![UG Section 'findC alex david'](images/ug_section_findc.png)
 
 ##### Deleting a Contact: `deleteC`
 
@@ -900,7 +900,7 @@ Examples:
 
 The today view contains a summary of the events and deadlines due today.
 
-![Ui](images/today.png)
+![UG Section Today](images/ug_section_today.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 The today page displays the events and deadlines on the day that you open the today page. To prevent events and deadlines from changing abruptly without notice, the user interface does not update the today page automatically when the date changes.
