@@ -70,7 +70,7 @@ Please note the following symbols used in the User Guide which may serve as poin
   e.g., if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g., if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g., if you specify `p/61234567 p/98765432`, only `p/98765432` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
@@ -205,7 +205,7 @@ Finds passengers whose names contain any of the given keywords.
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
 * Searching with prefixes such as `n/` and `a/` which are anticipated to have multiple words separated by spaces will have multiple spaces shortened to one. Refer to the 4th example for clarification.
 * `all` prefix for searching across names, addresses, tags and phone numbers quickly.
-	* However, if any or all of the words after the `all` prefix are invalid words, GME will not inform you as such. It will instead show that no passengers with those words are found.
+	* However, if any of the words after the `all` prefix are invalid, GME will not inform you as such. It will instead show that no passengers with those words are found.
 </div>
 
 **Examples:**
