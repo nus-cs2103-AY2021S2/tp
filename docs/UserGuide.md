@@ -649,8 +649,8 @@ visible**.
 | example        | description                                              |
 | -------------- | -------------------------------------------------------- |
 | `filter`       | Shows all fields.                                        |
-| `filter -a`    | shows the person's name and address only.                |
-| `filter -a -p` | shows the person's name, address and phone number only.  |
+| `filter -a`    | Shows the person's name and address only.                |
+| `filter -a -p` | Shows the person's name, address and phone number only.  |
 
 ## Tagging Person(s): `tag`
 
