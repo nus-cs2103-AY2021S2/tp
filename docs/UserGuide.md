@@ -255,7 +255,7 @@ input in the app. For more details, see the [Field Format Summary](#61-field-for
 
 Example:
 
-`edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+`edit 1 p/91234567 e/johndoe@example.com`
 
 * After [`detail 1`](#323-viewing-a-contact-details--detail) is successfully executed and all details of Alex Yeoh are displayed
 
@@ -295,11 +295,13 @@ will also be in the results display.
 
 Example: <br>
 
+`detail 2`
+
 * During start up, the details panel could be empty
 
 ![BeforeDetail](images/DemoBeforeDetailCommand.png)
 
-* `detail 2` displays the details of the 2nd student in the List.
+* After the `detail`command is entered, the details of the 2nd student in the List are displayed.
 
 ![AfterDetail](images/DemoAfterDetailCommand.png)
 
