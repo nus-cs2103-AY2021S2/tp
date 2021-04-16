@@ -552,7 +552,7 @@ Shows a list of all important dates in TutorsPet.
 
 Format: `list-date`
 
-* After `list-date` is entered, a window that contains a list of your important dates will be opened up.
+* After `list-date` is entered, a window containing a list of your important dates will be opened.
 
 ![list-date](images/DemoListDateCommand.png)
 
