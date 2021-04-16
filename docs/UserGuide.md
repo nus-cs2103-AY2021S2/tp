@@ -143,7 +143,7 @@ Prefix: `d/`
 **:exclamation: For advanced users:** You can set the delivery date of an order that is yet to be delivered to a past date in the storage file, `cakecollate.json`. The application will not be able to warn you that you have added an invalid delivery date. As such, you are recommended to add/edit a delivery date through the application itself.
 
 ##### `INDEX`
-Each order is given a particular index so that you can easily refer to an order for certain commands. In particular, the index of an order can be found in the [orders box](#221-sections-of-the-ui).<br>
+Each order is given a particular index so that you can easily refer to an order for certain commands. In particular, the index of an order can be found beside the name of the customer in the [orders box](#221-sections-of-the-ui).<br>
 Prefix: `none`
 * It can contain positive integers greater than or equal to 1, but should not be greater than the total number of orders in 
 the orders box.<br>
