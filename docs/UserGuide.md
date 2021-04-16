@@ -61,14 +61,14 @@ Thank you for downloading RemindMe! We really appreciate that you chose to trust
 needs! RemindMe aims to help School of Computing students manage their work, assignments, submissions and exams. We want
 to help you take back control of YOUR life.
 
-RemindMe visualises the tasks of our users using a combination of a list and a calendar to help you plan your time
+RemindMe visualises the tasks of our users using a combination of a list, and a calendar to help you plan your time in
 the best way that works for you!
 
 We also use a Command-Line Interface, so that all the fast-fingered SOC students can use RemindMe quickly and
 comfortably. For those of you who prefer to use a mouse, we have also integrated GUI into our interface! We hope that 
 having this flexibility will allow you to use RemindMe in the way you are most comfortable with! 
 
-Start scheduling a better work life with RemindMe [here](#2-quick-start)!
+Start scheduling a better work-life with RemindMe [here](#2-quick-start)!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -107,7 +107,7 @@ The following windows should appear in a few seconds. Note how the app contains 
 <br>         
 
 5. Type a command in the command box and press enter on the keyboard to execute it. <br> 
-   For example typing `help` and pressing enter will open the help window.
+   For example, typing `help` and pressing enter will open the help window.
 <br>
 <br>   
 
@@ -359,7 +359,7 @@ saving you the hassle of deleting and recreating an entry just because of a tiny
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-Editing of an entry should not result in duplicates.<br><br>
+Editing an entry should not result in duplicates.<br><br>
 
 Target entries for editing MUST exist in RemindMe.
 </div>
@@ -488,7 +488,7 @@ Examples:
 ### 3.4 Finding: `find`
 As you use RemindMe, you will have more and more entries. It can become difficult to look for specific entries. 
 Luckily, RemindMe has a way to look for them. Using the find function, where RemindMe will show you entries
-those matching the keywords you provide!
+that match the keywords you provide!
 
 <div markdown="block" class="alert alert-info">
 
@@ -557,7 +557,7 @@ Expected Result:
 [Back to Table of Contents](#table-of-contents)
   
 #### 3.4.3 Finding general events: `g/`
-You can find the general events that match with your keywords too! 
+You can find the general events that match your keywords too! 
 
 <div markdown="block" class="alert alert-info">
 
@@ -822,7 +822,7 @@ Saving of data is automatic by the application whenever you enter a command into
 [Back to Table of Contents](#table-of-contents)
 
 ### 3.11 Reminder window
-A reminder will automatically pop up at the start of RemindMe, so that you are reminded of your upcoming assignments
+A reminder will automatically pop up at the start of RemindMe so that you are reminded of your upcoming assignments
 and events in the next 3 days!
 
 ![Ui](images/Ui2.png)
@@ -866,7 +866,7 @@ application to exit the program.
 ## 4. FAQ
 
 **Q: Can I add an assignment/exam first before the module?**<br>
-A: Sorry it is not allowed to add assignment/exam before the module, you will need to add a module first.
+A: Sorry it is not allowed to add an assignment/exam before the module, you will need to add a module first.
 
 **Q: Can I add multiple modules with the same name?**<br>
 A: Sorry it is not allowed to have duplicate module names, the modules must have unique names to identify them.
@@ -887,7 +887,7 @@ A: Yes, do take note that if you close the main application, other windows will 
 * The format for `BIRTHDAY` is `DD/MM/YYYY`. 
 * The format for `DATE-TIME` is `DD/MM/YYYY HHMM`.
 * Items in square brackets are optional.
-* Items in curly braces means you must choose only one of the given inputs.
+* Items in curly braces mean you must choose only one of the given inputs.
 
 </div>
 
@@ -900,7 +900,7 @@ Action | Description | Format
 **Delete**<br> | Deletes an entry from RemindMe | Delete a person <br> *`delete INDEX`* <br><br> Delete a module <br> *`delete m/MODULE`* <br><br> Delete an assignment <br> *`delete m/MODULE a/INDEX`* <br><br> Delete an exam <br> *`delete m/MODULE e/INDEX`*<br><br> Delete a general event <br> *`delete g/INDEX`*<br><br>
 **Clear**<br> | Clears entries from RemindMe | Clear RemindMe <br> *`clear`*<br><br> Clear persons <br> *`clear n/`* <br><br> Clear modules <br> *`clear m/`* <br><br> Clear general events <br> *`clear g/`*
 **Help** | Shows the URL to the User Guide | `help` 
-**Calendar** | Displays the calender | `calendar`/`C`
+**Calendar** | Displays the calendar | `calendar`/`C`
 **Exit** | Closes RemindMe | `exit`/`E` 
 
 [Back to Table of Contents](#table-of-contents)
