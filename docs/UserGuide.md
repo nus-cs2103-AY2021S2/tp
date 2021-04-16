@@ -164,10 +164,11 @@ You can add a client to Link.me, by specifying each of the fields below:
 
 * Name
   * should only contain alphanumeric characters, spaces and these special characters: (),-
-    * :bulb: **Tip:** Use `-` in place of `/` if your name has it. e.g. `Ravi s/o Veegan` --> `Ravi s-o Veegan`
   * should not be blank
   * should not be the same as an existing client
-    * :bulb: **Tip:** Link.me does not allow identical names to help you avoid confusion. If more than one of your
+  
+  :bulb: **Tip:** Use `-` in place of `/` if your name has it. e.g. `Ravi s/o Veegan` --> `Ravi s-o Veegan`
+  :bulb: **Tip:** Link.me does not allow identical names to help you avoid confusion. If more than one of your
       clients have the same name, you are encouraged to add additional information in parentheses after their name
       to help you differentiate them.
 
@@ -412,11 +413,10 @@ Supported `PREFIX/KEYWORD` pairs:
 * age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]` (Age should be a non-negative integer)
 * insurance plan name: `i/PLAN_NAME`
 
+Note:
 * The search is case-insensitive. e.g. for gender, `male` will match `Male`
-* For search keywords with i/ (prefix for insurance plan name), only clients with matching insurance plan name will be
-  listed. e.g. for insurance plan, `Protect` will not match `ProtectPlus`
-* Clients with matching attributes to all the keyword attributes will be returned (i.e. `AND` search). e.g.
-  `g/F age/40` will return all female clients that are aged 40.
+* Clients with attributes matching all of the keywords will be returned (i.e. `AND` search). e.g.
+  `g/F age/40` will return all clients that are female AND are aged 40.
 
 Example:
 
