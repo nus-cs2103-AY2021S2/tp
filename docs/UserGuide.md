@@ -597,8 +597,8 @@ If you make any changes to the data files directly which makes the format of the
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: 1. Install CakeCollate on the computer that you want to transfer your data to. <br>
-       <p>      2. You should be able to see a folder named data inside the CakeCollate home folder. </p>
-       <p>      3. Replace this folder with the data folder from your original CakeCollate home folder.</p>
+             2. You should be able to see a folder named data inside the CakeCollate home folder. <br>
+             3. Replace this folder with the data folder from your original CakeCollate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
