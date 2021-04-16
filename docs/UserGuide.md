@@ -166,11 +166,13 @@ You can add a client to Link.me, by specifying each of the fields below:
   * should only contain alphanumeric characters, spaces and these special characters: (),-
   * should not be blank
   * should not be the same as an existing client
-  
-  :bulb: **Tip:** Use `-` in place of `/` if your name has it. e.g. `Ravi s/o Veegan` --> `Ravi s-o Veegan`
+
+  <div markdown="span" class="alert alert-primary">
+  :bulb: **Tip:** Use `-` in place of `/` if your name has it. e.g. `Ravi s/o Veegan` --> `Ravi s-o Veegan` <br>
   :bulb: **Tip:** Link.me does not allow identical names to help you avoid confusion. If more than one of your
       clients have the same name, you are encouraged to add additional information in parentheses after their name
       to help you differentiate them.
+  </div>
 
 * Phone number
   * should only contain numbers
@@ -348,10 +350,6 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 </div>
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** `DESCRIPTION` can contain any characters, including "@".
-</div>
-
-<div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** Meetings with clashes will not be scheduled, but Link.me only detects clashes when the scheduled time 
 is exactly the same. Even with a difference of 1 minute, Link.me will schedule a new meeting. This is to give you
  the largest flexibility when using Link.me.
@@ -446,7 +444,7 @@ Format: `notif`
 
 ### Viewing help : `help`
 
-You can view a message explaining how to access the help page.
+You can view a message with a link to the User Guide (this page).
 
 ![help message](images/helpMessage.png)
 
