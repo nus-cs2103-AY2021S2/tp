@@ -444,8 +444,6 @@ Format: `find [n/KEYWORD_NAME]…​ [p/KEYWORD_PHONE]…​ [e/KEYWORD_EMAIL]�
   E.g. `n/Hans o/Cake` will only match orders with names that match `Hans` and order descriptions that match `Cake`.
 * `AND` searches will take priority.
 
-<div style="page-break-after: always;"></div>
-
 Examples:
 
 * `find n/John` will return all orders with names `john`, `John Doe` or `Johnathan`.
