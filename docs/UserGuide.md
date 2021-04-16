@@ -169,6 +169,8 @@ You can add a client to Link.me, by specifying each of the fields below:
 
   <div markdown="span" class="alert alert-primary">
   :bulb: **Tip:** Use `-` in place of `/` if your name has it. e.g. `Ravi s/o Veegan` --> `Ravi s-o Veegan` <br>
+  </div>
+  <div markdown="span" class="alert alert-primary">
   :bulb: **Tip:** Link.me does not allow identical names to help you avoid confusion. If more than one of your
       clients have the same name, you are encouraged to add additional information in parentheses after their name
       to help you differentiate them.
