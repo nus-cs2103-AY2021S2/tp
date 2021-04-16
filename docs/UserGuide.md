@@ -314,7 +314,7 @@ Finds all garments that matched specified keywords during search.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentB.png" alt="alt text" width="790">
 
-Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRIPTIONS]...`
+Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRIPTIONS]`
 
 <div style="page-break-after: always;"></div>
 
