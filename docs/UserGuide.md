@@ -73,7 +73,7 @@ In this section, you will learn about CakeCollate's User Interface (UI), the for
       * For orders that have the same statuses, they are then arranged according to delivery date, with the earliest date on the top of the GUI. 
 
 
-4. The **Order Items Box** is where all the different type of order items you predefined are displayed in an order items table. You can think of it as a product catalogue. 
+4. The **Order Items Box** is where all the different type of order items you have predefined are displayed in an order items table. You can think of it as a product catalogue. 
 
 <div style="page-break-after: always;"></div>
 
@@ -597,8 +597,8 @@ If you make any changes to the data files directly which makes the format of the
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: 1. Install CakeCollate on the computer that you want to transfer your data to. <br>
-       2. You should be able to see a folder named data inside the CakeCollate home folder. <br>
-       3. Replace this folder with the data folder from your original CakeCollate home folder.<br>
+           2. You should be able to see a folder named data inside the CakeCollate home folder. <br>
+           3. Replace this folder with the data folder from your original CakeCollate home folder.<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
