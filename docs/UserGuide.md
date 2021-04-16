@@ -18,7 +18,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
   * [**Learn Mode Commands**](#learn-mode-commands)
      * [Entering learn mode: `learn`](#entering-learn-mode-learn)
      * [Tagging a flashcard: `tag`](#tagging-a-flashcard-tag)
-     * [Deleting tags from a flashcard: `delete`](#deleting-tags-from-a-flashcard-deletetag)
+     * [Deleting tags from a flashcard: `deleteTag`](#deleting-tags-from-a-flashcard-deletetag)
   * [**Quiz Mode Commands**](#quiz-mode-commands)
      * [Entering quiz mode: `quiz`](#entering-quiz-mode-quiz)
      * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
