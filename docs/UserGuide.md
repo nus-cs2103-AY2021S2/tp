@@ -27,6 +27,8 @@ optimized for fast typists, but intuitive and welcoming for new users.
 As employees come and go, their business contacts can be lost with them. Besides serving as a centralised platform, 
 A-Bash Book was built to solve this problem by ensuring all the necessary contacts still remain in the system.
 
+{% include back-to-toc.html %}
+
 # User Interface
 
 ![Ui](images/UG_UI%20Guide.png)
@@ -53,6 +55,8 @@ This data is stored in their respective fields and can be identified by referrin
 
 For more information on fields, you may refer to the [Field Summary](#field-summary).
 
+{% include back-to-toc.html %}
+
 --------------------------------------------------------------------------------------------------------------------
 
 # How to Use the User Guide
@@ -69,6 +73,8 @@ Before you continue reading the rest of the User Guide, take note of the followi
 | **<div markdown="span" class="alert alert-info"> :information_source: Note </div>** | Useful information.                           |
 | **<div markdown="span" class="alert alert-warning"> :bulb: Tip </div>**            | Helpful information that can enhance your experience.      |
 | **<div markdown="span" class="alert alert-danger"> :exclamation: Warning </div>**      | Potentially dangerous action that might cause data loss.                 |
+
+{% include back-to-toc.html %}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -101,6 +107,8 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 1. Refer to the [Features](#features) below for details of each command.
 
+{% include back-to-toc.html %}
+
 --------------------------------------------------------------------------------------------------------------------
 
 # CLI Syntax
@@ -119,6 +127,8 @@ CLI-based and will only interpret commands that are structured properly. This is
 **syntax** where a specific arrangement of words and parameters form a command that A-Bash Book can
 understand.
 
+{% include back-to-toc.html %}
+
 ## Examples of Command
 
 Here are some examples of how a command is documented in A-Bash Book:
@@ -126,6 +136,8 @@ Here are some examples of how a command is documented in A-Bash Book:
 - `select { clear | shown | show | INDEX... }`
 - `edit { shown | selected | INDEX... } [-n NAME] [-r REMARK] [-t TAG]...`
 - `tag delete { shown | selected | INDEX... } -t TAG [-t TAG]...`
+
+{% include back-to-toc.html %}
 
 ## Command Flags
 
@@ -139,11 +151,15 @@ Command flags: `-n` , `-p`, `-e`, `-a`
 
 Command flags might also take an argument, for example, `-n John Doe` or `-n -a -c`.
 
+{% include back-to-toc.html %}
+
 ## Uppercase Words
 
 Words in `UPPER_CASE` are the parameters that you can specify.
 
 e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
+
+{% include back-to-toc.html %}
 
 ## Optional Parameters
 
@@ -155,6 +171,8 @@ brackets.
 e.g `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe` but
 not `-t friend`.
 
+{% include back-to-toc.html %}
+
 ## Parameters That Can Repeat
 
 Ellipsis (`...`) indicates the option to use a parameter multiple times, including zero times.
@@ -163,6 +181,8 @@ e.g. `[-t TAG]...` can be used as `""` (i.e. 0 times), `-t friend` (i.e. 1 time)
 
 e.g. `-t TAG [-t TAG]...` specifies that there must be **at least one** tag and can be used
 as `-t family` and `-t family -t cousin -t child`.
+
+{% include back-to-toc.html %}
 
 ## Mutually Exclusive Parameters
 
@@ -184,6 +204,8 @@ Invalid examples are:
 - `select clear show`
 - `select clear 1 2 3`
 
+{% include back-to-toc.html %}
+
 ## Miscellaneous Information
 
 - If a parameter is expected only once in the command, but is specified multiple times, only the
@@ -197,6 +219,8 @@ Invalid examples are:
 - `shown` is a special index that refers to all persons that are visible in the filtered person
   list. e.g. `find surname` shows 10 persons. Executing `select shown` will select all 10 of the
   persons.
+
+{% include back-to-toc.html %}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -235,6 +259,8 @@ Adds a person to the address book.
 | `add -n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street`                                              | Adds a person named `John Doe`, with phone number `91234567`, email address `johndoe@example.com`, company `Google`, job title `HR Manager`, and address `John street`.                                                                                                       |
 | `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager`, and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.                     |
 | `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer`, and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`.         |
+
+{% include back-to-toc.html %}
 
 ## Editing Person(s) : `edit`
 
@@ -281,6 +307,8 @@ You can do bulk edit with:
 
 </div>
 
+{% include back-to-toc.html %}
+
 ## Deleting Persons : `delete`
 
 Deletes the specified person(s) from the address book.
@@ -320,11 +348,15 @@ or `delete shown` to delete all the shown persons.
 
 </div>
 
+{% include back-to-toc.html %}
+
 ## Listing All Person(s) : `list`
 
 Lists all persons in the address book.
 
 **Format**: `list`
+
+{% include back-to-toc.html %}
 
 ## Locating Persons: `find`
 
@@ -348,6 +380,8 @@ Finds person(s) whose field(s) contain any of the given keywords.
 
 ![Find Command UI](images/UG_Find%20Command.png)
 
+{% include back-to-toc.html %}
+
 ### Searching All Searchable Fields
 
 The `find` command will execute for all searchable fields if no command flags are specified.
@@ -360,6 +394,8 @@ The `find` command will execute for all searchable fields if no command flags ar
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `find Jon`        | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
 | `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. persons named `Alex Yeoh`, `David Li`         |
+
+{% include back-to-toc.html %}
 
 ### Searching by Specific Fields
 
@@ -384,6 +420,8 @@ The `find` command will execute for specific fields if you specify command flags
 | `find -n Alice Ben` | Returns persons named `Alicia Yen` (Similar) and `Benjamin Koh` (Partial)                                  |
 | `find -t Market`    | Returns persons tagged with `Marketing` (Partial)                                                          |
 | `find -r Manager`   | Returns persons with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
+
+{% include back-to-toc.html %}
 
 ## Filter Field Visibility: `filter`
 
@@ -415,6 +453,8 @@ visible**.
 | `filter`       | Shows all fields.                                        |
 | `filter -a`    | Shows the person's name and address only.                |
 | `filter -a -p` | Shows the person's name, address and phone number only.  |
+
+{% include back-to-toc.html %}
 
 ## Selecting Person(s) : `select`
 
@@ -470,6 +510,8 @@ Incremental Selection and `shown`:
 
 </div>
 
+{% include back-to-toc.html %}
+
 ## Email Person(s): `email`
 
 Email command allows you to email selected persons using the operating system's default email
@@ -509,6 +551,8 @@ The tag command allows you to add and delete specific tags of persons.
 * Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
 * Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
+{% include back-to-toc.html %}
+
 ### Add Tags to Person(s): `tag add`
 
 Add tags to persons in address book.
@@ -539,6 +583,8 @@ You can bulk add tag by either doing:
 * `tag add selected` to add tags to all the selected persons
 
 </div>
+
+{% include back-to-toc.html %}
 
 ### Delete Tags From Person(s): `tag delete`
 
@@ -571,6 +617,8 @@ You can bulk delete tag by either doing:
 
 </div>
 
+{% include back-to-toc.html %}
+
 ## Aliasing Commands : `alias`
 
 The alias command allows you to create shortcut command (also known as command alias) to the actual command.
@@ -591,6 +639,8 @@ Adds an alias to address book.
 | `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
 | `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e `f Alex Yeoh` will now return persons equal to or similar to Alex Yeoh). |
 
+{% include back-to-toc.html %}
+
 ### Delete an Alias: `alias delete`
 
 Deletes an existing alias from address book.
@@ -605,6 +655,8 @@ Deletes an existing alias from address book.
 | ----------------- | ---------------------- |
 | `alias delete ls` | Removes the alias `ls` |
 | `alias delete f`  | Removes the alias `f`  |
+
+{% include back-to-toc.html %}
 
 ### List All Aliases: `alias list`
 
@@ -622,6 +674,8 @@ keyboard action, the list of your aliases will disappear and show the list of ex
 </div>
 
 ![Alias List](images/UG_Alias%20List%20Command.png)
+
+{% include back-to-toc.html %}
 
 ## Autocomplete
 
@@ -654,6 +708,8 @@ Typing `del` followed by <kbd>Tab</kbd> will auto complete `del` to `delete`.
 In the command box, it is also possible to cycle through **existing** commands with <kbd>Tab</kbd>.
 
 </div>
+
+{% include back-to-toc.html %}
 
 ### Flags
 
@@ -692,6 +748,8 @@ autocompletion.
 | `edit 1 -n` | <kbd>Tab</kbd> | `edit 1 -p` |
 | `edit 1 -n John Dow` | <kbd>Tab</kbd> | `edit 1 -n John Dow -p` |
 
+{% include back-to-toc.html %}
+
 ### Index
 
 <div markdown="block" class="alert alert-info">
@@ -715,6 +773,8 @@ Index can be autocompleted by pressing the <kbd>Up/Down</kbd> keys when the supp
 | `delete 1` | <kbd>Down</kbd> | `delete 2` |
 | `delete 2` | <kbd>Up</kbd> | `delete 1` |
 
+{% include back-to-toc.html %}
+
 ## Viewing Help : `help`
 
 Displays a pop up window with a summary of the commands available for use in A-Bash Book.
@@ -722,6 +782,8 @@ Displays a pop up window with a summary of the commands available for use in A-B
 **Format**: `help`
 
 ![Help Message UI](images/helpMessage.png)
+
+{% include back-to-toc.html %}
 
 ## Clearing All Entries : `clear`
 
@@ -736,15 +798,7 @@ This action is irreversible. Do not run this command with actual data unless you
 </div>
 
 
-
-
-
-
-
-
-
-
-**Format**: `clear`
+{% include back-to-toc.html %}
 
 ## Exiting A-Bash Book : `exit`
 
@@ -752,9 +806,13 @@ Saves and exits A-Bash Book.
 
 **Format**: `exit`
 
+{% include back-to-toc.html %}
+
 ## Saving the Data
 
 A-Bash Book data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+{% include back-to-toc.html %}
 
 ## Editing the Data File
 
@@ -768,6 +826,8 @@ are welcome to update data directly by editing that data file.
 If changes to the data file renders its format invalid, A-Bash Book will discard all data and start with an empty data file at the next run.
 
 </div>
+
+{% include back-to-toc.html %}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -788,9 +848,13 @@ foldername (Home Folder)
 ├── preferences.json
 ```
 
+{% include back-to-toc.html %}
+
 ## How Do I Transfer My Data to Another Computer?
 
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous A-Bash Book home folder.
+
+{% include back-to-toc.html %}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -814,6 +878,8 @@ Install the app in the other computer and overwrite the empty data file it creat
 | **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g. `tag add shown -t Illustrator`                                                                                                                                   |
 | **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG...` <br> e.g. `tag delete 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                         |
 
+{% include back-to-toc.html %}
+
 # Field Summary
 
 | Mandatory | Field        | Command Flag | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -827,6 +893,8 @@ Install the app in the other computer and overwrite the empty data file it creat
 | No        | Tag          | `-t`         | Tags names should only alphanumeric characters, and should not contain spaces or symbols                                                                                                                                                                                                                                                                                                                                    |
 | No        | Remark       | `-r`         | Remark can contain any character                                                                                                                                                                                                                                                                                                                                                                                            |
 
+{% include back-to-toc.html %}
+
 # Glossary
 
 | Term             | Explanation                                                                                                                                                                                        |
@@ -837,3 +905,5 @@ Install the app in the other computer and overwrite the empty data file it creat
 | JSON             | JavaScript Object Notation, data storage format                                                                                                                                                    |
 | Terminal         | The Command Line Interface where text-based commands are entered.                                                                                                                                  |
 | Case-insensitive | Uppercase `ABC` and lowercase `abc` letters are treated as being the same. <br> - `Alex Yeoh` and `alex yeoh` are treated as the same. <br> - `Photoshop` and `photoshop` are treated as the same. | 
+
+{% include back-to-toc.html %}
