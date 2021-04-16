@@ -610,6 +610,8 @@ and details `2021-11-03 0800`. Then, entering the `list-date` command will displ
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.3.3 Deleting an important date : `delete-date`
 
 Permanently deletes the specified important date from TutorsPet.
