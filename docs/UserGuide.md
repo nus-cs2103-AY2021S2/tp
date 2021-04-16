@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-GreenMileageEfforts (GME) is a platform that helps the HR executive of any company quickly arrange carpooling among its employees to lower the carbon footprint of the company.
+GreenMileageEfforts(GME) is an efficient carpooling management solution designed to help corporations reduce their carbon footprint. It designed as a platform to help Human Resources (HR) managers of any company quickly arrange carpooling among its employees, lowering the carbon footprint company's carbon footprint. GME is a platform that follows a [Command-Line Interface (CLI)](#6-glossary) such that HR employees familiar with a CLI can efficiently navigate the program.
+
 * Table of Contents
 {:toc}
 
@@ -11,10 +12,8 @@ GreenMileageEfforts (GME) is a platform that helps the HR executive of any compa
 
 # 1. Introduction
 
-## 1.1 About GreenMileageEfforts
-GreenMileageEfforts(GME) is an efficient carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These [pools](#6-glossary) of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
-
-GME is a platform that follows a [Command-Line Interface (CLI)](#6-glossary) such that users familiar with a CLI can efficiently navigate the program.
+## 1.1 Welcome to GreenMileageEfforts
+As a Human Resources(HR) manager of a large corporation, you might be in need of an efficient way of managing your corporation's carpooling initiative. The GME system is designed to do just that. GME provides you with a suite of tools to use in the creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These [pools](#6-glossary) of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, you can also find employees based on their carpooling preferences and quickly group them with drivers. The system maintains a database of both the passengers, and the arranged carpooling groups, allowing you to easily access and manage the [pools](#6-glossary) of employees.
 
 ## 1.2 Navigating the User Guide
 For help with the setup of GME, refer to the [“Quick Start"](#2-quick-start-) section.
@@ -92,7 +91,7 @@ The drivers are also displayed as cards like in this example:
 
 ### 3.1.2 Viewing help : `help`
 
-Shows a message with a quick summary of the available commands and how to format them. Shows how to access the help page.
+Shows a message with a quick summary of the available commands and how to format them. It also provides a link to the user guide for more information.
 
 ![help message](images/helpMessage.png)
 
@@ -116,7 +115,7 @@ GME data is saved in the hard disk automatically after any command that changes 
 
 ### 3.1.6 Editing the data file
 
-GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
+GME data is saved as a [JSON](#6-glossary) file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
 * Ensure that the following constraints are met if you decide to edit the file:
     * There are no duplicate `Passengers`
@@ -315,7 +314,7 @@ Lists the pools currently stored in the GME terminal.
 
 **Q:** Where can I find the data stored by GME terminal?
 
-**A:** The json file containing the data stored is named **GMEdata.json** and can be found in the **data** folder in the same directory where **[CS2103T-W10-1][GreenMileageEfforts].jar** file is saved.
+**A:** The [JSON](#6-glossary) file containing the data stored is named **GMEdata.json** and can be found in the **data** folder in the same directory where **[CS2103T-W10-1][GreenMileageEfforts].jar** file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -349,5 +348,6 @@ TripTime | Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
 Price | The amount of money a passenger is willing to pay for the carpooling trip.
 Alphanumeric | A combination of letters and numbers only.
-Home Folder | The folder where the app's data will be stored
+Home Folder | The folder where the app's data will be stored.
+JSON | A file format usually used to save data in a format that is still relatively readable and that can be opened and edited easily.
 Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist.
