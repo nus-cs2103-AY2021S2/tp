@@ -550,9 +550,12 @@ Command     | Result
 
 Shows a list of all important dates in TutorsPet.
 
+Format: `list-date`
+
+* After `list-date` is entered, a window that contains a list of your important dates will be opened up.
+
 ![list-date](images/DemoListDateCommand.png)
 
-Format: `list-date`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -604,9 +607,11 @@ Example: <br>
 
 Shows a weekly schedule that displays lessons for the week.
 
-![schedule popup](images/scheduleWindow.png)
-
 Format: `schedule`
+
+* Entering `schedule` will open up a window that displays all your lessons in this week.
+
+![schedule popup](images/scheduleWindow.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
