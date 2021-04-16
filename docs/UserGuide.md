@@ -6,7 +6,7 @@ layout: page
 </p>
 
 <p align="center">
-    #User Guide
+    # User Guide
 </p>
 
 
