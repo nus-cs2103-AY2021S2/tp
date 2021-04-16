@@ -156,7 +156,7 @@ comprised of the following components:
 #### Listing Index
 
 The listing index assigns each unique garment listed into the digital wardrobe a number: `INDEX`.
-this `INDEX` is used in various commands, e.g. `select`, `edit` and `view`.
+This `INDEX` is used in various commands, e.g. `select`, `edit` and `view`.
 
 #### Listing Details
 
@@ -168,7 +168,7 @@ condition.
 
 #### Listing Generated Image
 The listing generated Image allows for the garment to be represented in a visual form. It displays the dress-code of the
-garment (either formal, casual or active-wear), its type (either upper, lower or foot-wear) and it's colour.
+garment (either formal(F), casual(C) or active-wear(A)), its type (either upper(T-shirt), lower(Pants) or foot-wear(shoe)) and it's colour.
 
 <div style="page-break-after: always;"></div>
 
