@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-GreenMileageEfforts (GME) is a platform that helps the HR executive of any company quickly arrange carpooling among its employees in order to lower the carbon footprint of the company.
+GreenMileageEfforts (GME) is a platform that helps the HR executive of any company quickly arrange carpooling among its employees to lower the carbon footprint of the company.
 * Table of Contents
 {:toc}
 
@@ -17,7 +17,7 @@ GreenMileageEfforts(GME) is an efficient carpooling management solution designed
 GME is a platform that follows a [Command-Line Interface (CLI)](#6-glossary) such that users familiar with a CLI can efficiently navigate the program.
 
 ## 1.2 Navigating the User Guide
-For help regarding the set up of GME, refer to the [“Quick Start"](#2-quick-start-) section.
+For help with the setup of GME, refer to the [“Quick Start"](#2-quick-start-) section.
 
 For a full list and more information about GME's features and commands, use the [“Features”](#3-features-) section.
 
@@ -30,19 +30,19 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 * :information_source: : This symbol indicates noteworthy information.
 
-* :warning: : This symbol indicates information that may irrevesibly corrupt data.
+* :warning: : This symbol indicates information that may irreversibly corrupt data.
 
 --------------------------------------------------------------------------------------------------------------------
 
 # 2. Quick start <a name = "quickstart"></a>
 
-1. Ensure you have Java 11 or above installed in your computer.
+1. Ensure you have Java 11 or above installed on your computer.
 2. Download the latest [CS2103T-W10-1][GreenMileageEfforts].jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
 3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**.
-4. Double click the file to start the aplication.
+4. Double click the file to start the application.
 5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you could try are:
    * `list`: Lists all [passengers](#6-glossary) currently stored in the GME system.
-   * `pool n/Doctor Iver p/92385810 d/MONDAY t/0930 c/1 c/2 c/3`: adds the employees shown at indexes 1, 2, and 3 as passengers to a new [pool](#6-glossary) with Dr. Iver as the driver.
+   * `pool n/Doctor Iver p/92385810 d/MONDAY t/0930 c/1 c/2 c/3`: adds the employees shown at indexes 1, 2, and 3 as passengers to a new [pool](#6-glossary) with Doctor Iver as the driver.
    * `listPool`: Lists all [pools](#6-glossary) currently stored in the GME system.
    * `unpool 2`: Removes the pool at index 2.
    * `exit`: closes the GME application.
@@ -58,19 +58,19 @@ Please note the following symbols used in the User Guide which may serve as poin
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter that can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/finance` or as `n/John Doe`.
+  e.g. `n/NAME [tag/TAG]` can be used as `n/John Doe tag/finance` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/finance`, `tag/finance tag/management` etc.
+  e.g.`[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/finance`, `tag/finance tag/management` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/61234567 p/98765432`, only `p/98765432` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -81,8 +81,14 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ### 3.1.1 User Interface
 
-The various sections of the User Interface are described as in the picture below.
+The various sections of the User Interface are described in the picture below.
 ![Ui_labelled](images/Ui_labelled.png)
+
+The passengers are displayed as cards like in this example:
+![passenger_card](images/passenger_card.png)
+
+The drivers are also displayed as cards like in this example:
+![driver_card](images/driver_card.png)
 
 ### 3.1.2 Viewing help : `help`
 
@@ -138,10 +144,10 @@ Adds a new passenger in the GME terminal.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the add command:**<br>
-* [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
-* [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359` 
-* [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
-* [Price](#6-glossary) is an optional amount that the passenger can include that describes how much they are willing to pay for a carpooling trip. It is required to be a positive whole number or a positive decimal number rounded to 2 decimal places.
+* [TripDay](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
+* [TripTime](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359` 
+* [Tag](#6-glossary) must be an alphanumeric input and can only have a maximum of 30 characters in length.
+* [Price](#6-glossary) is an optional amount that the passenger can include that describes how much they are willing to pay for a carpooling trip. It must be a positive whole number or a positive decimal number rounded to 2 decimal places.
 * The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
 * As the current iteration of GME(`v1.4`) is only a minimum viable product, each passenger can only specify one day and time a week for their carpooling time.
 </div>
@@ -167,7 +173,7 @@ Edits an existing passenger in the GME terminal.
 
 **:information_source: Notes about the edit command:**<br>
 
-* [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
+* [Tag](#6-glossary) must be an alphanumeric input and can only have a maximum of 30 characters in length.
 * Edits the passenger at the specified `INDEX`. The index refers to the index number shown in the displayed passenger list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -190,16 +196,16 @@ Finds passengers whose names contain any of the given keywords.
 
 **:information_source: Notes about the find command:**<br>
 
-* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
 * Only **one type of prefix** can be specified.
 * More than 1 keyword can be specified for a single prefix.
-* Keywords separated by space will require both keywords to be matched in whole and cannot be broken apart.
+* Keywords separated by space will match all as a phrase rather than individual words.
   e.g. `Hans Yang` will only return `Gruber Hans Yang` instead of `Bo Yang` and `Hans Gruber Yang`.
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
-* Searching with prefixes such as `n/` and `a/` which are anticipated to have multiple words separated by spaces will have multiple spaces shortened to one. Refer to 4th example for clarification.
+* Searching with prefixes such as `n/` and `a/` which are anticipated to have multiple words separated by spaces will have multiple spaces shortened to one. Refer to the 4th example for clarification.
 * `all` prefix for searching across names, addresses, tags and phone numbers quickly.
-* However, if any or all of the words are invalid arguments, searching with `all` will not tell you it is invalid. It will only show that no passengers with those arguments are found.
+	* However, if any of the words after the `all` prefix are invalid, GME will not inform you as such. It will instead show that no passengers with those words are found.
 </div>
 
 **Examples:**
@@ -246,8 +252,8 @@ Selects passengers from the current view in the bottom left pane of the GME term
 
 **:information_source: Notes about the pool command:**<br>
 
-* [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
-* [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359`.
+* [TripDay](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
+* [TripTime](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359`.
 * Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
 * GME will not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed passenger list.
@@ -289,7 +295,7 @@ Filtering pools where the name of the pool's passengers contain any of the given
 
 **:information_source: Notes about the findPool command:**<br>
 
-* The search is case-insensitive. e.g `alex` will match `Alex`.
+* The search is case-insensitive. e.g. `alex` will match `Alex`.
 * Only full words will be matched e.g. `alex` will not match `Alexis`.
 </div>
 
@@ -318,15 +324,15 @@ Lists the pools currently stored in the GME terminal.
 Action | Format, Examples
 --------|------------------
 **help** | `help`
-**add** | `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
+**add** | `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]` <br> e.g. `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
 **list** | `list` 
-**edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
-**delete** | `delete INDEX [INDEX INDEX...]`<br> e.g.`delete 1 3`
-**pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...]`<br> e.g., `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`
+**edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]` <br> e.g. `edit 8 a/Changi Airport d/SATURDAY`
+**delete** | `delete INDEX [INDEX INDEX...]`<br> e.g. `delete 1 3`
+**pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...]`<br> e.g. `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`
 **unpool** | `unpool INDEX`<br> e.g, `unpool 3`
 **listpool** | `listPool`
-**find** | `find a/ADDRESS [a/ADDRESS a/ADDRESS ...]` or `find n/NAME [n/NAME n/NAME ...]` or `find p/PHONE NUMBER [p/PHONE NUMBER p/PHONE NUMBER ...]` or `find tag/TAG [tag/TAG tag/TAG ...]` or `find all/KEYWORD [all/KEYWORD all/KEYWORD ...]` or `find d/DAY [d/DAY d/DAY ...]` or `find t/TIME [t/TIME t/TIME ...]` <br> e.g., `find tag/female`
-**findPool** | `findPool n/PASSENGER_NAME` <br> eg., `findpool n/Alex`
+**find** | `find a/ADDRESS [a/ADDRESS a/ADDRESS ...]` or `find n/NAME [n/NAME n/NAME ...]` or `find p/PHONE NUMBER [p/PHONE NUMBER p/PHONE NUMBER ...]` or `find tag/TAG [tag/TAG tag/TAG ...]` or `find all/KEYWORD [all/KEYWORD all/KEYWORD ...]` or `find d/DAY [d/DAY d/DAY ...]` or `find t/TIME [t/TIME t/TIME ...]` <br> e.g. `find tag/female`
+**findPool** | `findPool n/PASSENGER_NAME` <br> e.g. `findpool n/Alex`
 **clear** | `clear`
 **exit** | `exit`
 
@@ -336,7 +342,7 @@ Action | Format, Examples
 
 Term used | Meaning
 --------|------------------
-Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. 
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specific  day and time are the same every week unless reorganised by the user. 
 Passenger | An employee carpooling with at least one driver.
 TripDay | Day of the intended carpooling trip.
 TripTime | Time of the intended carpooling trip.
