@@ -298,7 +298,7 @@ Example: <br>
 
 ![BeforeDetail](images/DemoBeforeDetailCommand.png)
 
-* After the `detail 1` command is entered, the details of the first student in the list panel are displayed.
+* After the `detail 1` command is entered, the details of the 1st student in the list panel are displayed.
 
 ![AfterDetail](images/DemoAfterDetailCommand.png)
 
@@ -540,7 +540,7 @@ Other examples:
 Command     | Result
 ----------- |---------------------------------------------------
 `leveldown`   | demotes all students (except `pri1` students) by one level
-`leveldown ex/1 2`| demotes all students by one level, excluding the first and second student in the list (and `pri1` students)
+`leveldown ex/1 2`| demotes all students by one level, excluding the 1st and 2nd student in the list (and `pri1` students)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
