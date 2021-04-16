@@ -168,7 +168,7 @@ condition.
 
 #### Listing Generated Image
 The listing generated Image allows for the garment to be represented in a visual form. It displays the dress-code of the
-garment (either formal(F), casual(C) or active-wear(A)), its type (either upper(T-shirt), lower(Pants) or foot-wear(shoe)) and it's colour.
+garment (either formal(F), casual(C) or active-wear(A)), its type (either upper(T-shirt), lower(Pants) or foot-wear(Shoe)) and it's colour.
 
 <div style="page-break-after: always;"></div>
 
