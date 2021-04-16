@@ -56,8 +56,8 @@ Please note the following symbols used in this User Guide which may serve as poi
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter that can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the [parameters](#6-glossary) to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a [parameter](#6-glossary) that can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [tag/TAG]` can be used as `n/John Doe tag/finance` or as `n/John Doe`.
@@ -65,13 +65,13 @@ Please note the following symbols used in this User Guide which may serve as poi
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g.`[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/finance`, `tag/finance tag/management` etc.
 
-* Parameters can be in any order.<br>
+* [Parameters](#6-glossary) can be in any order.<br>
   e.g. if you specify `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter is taken.<br>
+* If a [parameter](#6-glossary) is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter is taken.<br>
   e.g. if you specify `p/61234567 p/98765432`, only `p/98765432` is taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)  are ignored.<br>
+* [parameters](#6-glossary) provided to commands that do not take in [parameters](#6-glossary) (such as `help`, `list`, `exit` and `clear`)  are ignored.<br>
   e.g. if you specify `help 123`, it is interpreted as `help`.
 
 </div>
@@ -91,7 +91,7 @@ The drivers are also displayed as cards like in this example:
 
 ### 3.1.2 Viewing help : `help`
 
-Shows a message with a quick summary of the available commands and how to format them. It also provides you with a link to this user guide for more information.
+To show a message with a quick summary of the available commands and how to format them, you can enter the `help` command.  also provides you with a link to this user guide for more information.
 
 ![help message](images/helpMessage.png)
 
@@ -122,7 +122,7 @@ GME data is saved as a [JSON](#6-glossary) file `[JAR file location]/data/GMEdat
     * There are no duplicate `Pools`
     * Only one `Pool` can reference a `Passenger`
     * The `Passenger` referenced in `Pool` can be found in the `Passenger` object
-    * The `Passenger` in a `Pool` must have the same Trip Day as the `Pool`
+    * The `Passenger` in a `Pool` must have the same [TRIPDAY](#6-glossary) as the `Pool`
 
 <div markdown="block" class="alert alert-warning">
 
@@ -143,11 +143,11 @@ To add a new passenger in the GME terminal, you can enter the `add` command foll
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the add command:**<br>
-* [TripDay](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
-* [TripTime](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359` 
+* [TRIPDAY](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
+* [TRIPTIME](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359` 
 * [Tag](#6-glossary) must be an alphanumeric input and can only have a maximum of 30 characters in length.
 * [Price](#6-glossary) is an optional amount that the passenger can include that describes how much they are willing to pay for a carpooling trip. It must be a positive whole number or a positive decimal number rounded to 2 decimal places.
-* The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
+* The TRIPDAY and TRIPTIME specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
 * As the current iteration of GME(`v1.4`) is only a minimum viable product, each passenger can only specify one day and time a week for their carpooling time.
 </div>
 
@@ -210,11 +210,10 @@ To find a passenger in the GME terminal with a keyword, you can enter the `find`
 **Examples:**
 * `find n/John` returns `john` and `John Doe`.
 * `find a/serangoon` returns `Bernice Yu`, `David Li`.<br>
-  ![result for 'find serangoon'](images/findAddress.png)
 * `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`.
-  ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
-* `find n/Alex Yeoh` with multiple spaces between Alex and Yeoh
+* <code>find n/Alex&nbsp;&nbsp;&nbsp;Yeoh</code> with multiple spaces between Alex and Yeoh returns both <code>Alex&nbsp;&nbsp;&nbsp;Yeoh</code> and <code>Alex&nbsp;Yeoh</code> as shown below.
   ![result for 'find n/alex    yeoh'](images/findAlexMultipleSpace.png)
+
 
 ### 3.2.5 Deleting passengers: `delete`
 To delete a specific passenger from the GME terminal, you can enter the `delete` command following the format shown below.
@@ -230,7 +229,7 @@ To delete a specific passenger from the GME terminal, you can enter the `delete`
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `find tag/female` followed by `delete 3` deletes the *1st* passenger in the results of `find tag/female` command.
-* Passengers with a carpool arrangement cannot be deleted, `unpool` must first be done on the pools they are in before deletion.
+* Passengers assigned to a carpool cannot be deleted. The pool containing the passenger must be removed using the `unpool` first before deletion.
 </div>
 
 **Examples:**
@@ -250,9 +249,9 @@ To create a new pool with a group of passengers, you can enter the `pool` comman
 
 **:information_source: Notes about the pool command:**<br>
 
-* [TripDay](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
-* [TripTime](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359`.
-* Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
+* [TRIPDAY](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
+* [TRIPTIME](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359`.
+* The `c/` prefix here stands for [commuter](#6-glossary).
 * GME does not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​.
@@ -299,7 +298,6 @@ To find pools which contain a passenger with a certain name, you can enter the `
 
 **Examples:**
 * `findPool n/alex` returns `Alex`
-![result for `findPool n/Alex`](images/findPoolAlexResult.png)
 
 ### 3.3.4 Listing all passengers : `listPool`
 
@@ -342,10 +340,11 @@ Term used | Meaning
 --------|------------------
 Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specific  day and time are the same every week unless reorganised by the user. 
 Passenger | An employee carpooling with at least one driver.
-TripDay | Day of the intended carpooling trip.
-TripTime | Time of the intended carpooling trip.
+TRIPDAY | Day of the intended carpooling trip.
+TRIPTIME| Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
 Price | The amount of money a passenger is willing to pay for the carpooling trip.
+Parameter | Specific details of a command.
 Alphanumeric | A combination of letters and numbers only.
 Home Folder | The folder where the app's data is stored.
 JSON | A file format usually used to save data in a format that is still relatively readable and that can be opened and edited easily.
