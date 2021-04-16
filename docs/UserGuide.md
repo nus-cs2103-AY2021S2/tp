@@ -194,6 +194,7 @@ garment (either formal(F), casual(C) or active-wear(A)), its type (either upper(
   `pink`, `purple`, `red`, `white`, or `yellow`.
 * Input for `r/DRESSCODE` is case-sensitive, and is either `casual`, `CASUAL`, `formal`, `FORMAL`, `active` or `ACTIVE`.
 * Input for `t/TYPE` is case-sensitive, and is either `upper`, `lower` or `footwear`. <br><br>
+* The format listed per feature, refers to the arrangement of inputs required for the command associated with the feature to work as intended.
 NuFash is divided into two sets of features, each allowing the application to
 achieve one of its goals.
 </div>
