@@ -217,8 +217,9 @@ Invalid examples are:
 - `shown` is a special index that refers to all persons that are visible in the filtered person
   list. e.g. `find surname` shows 10 persons. Executing `select shown` will select all 10 of the
   persons.
-  
-- `selected` is a special index that refers to all persons that are selected using the [Select Command](#selecting-persons--select).
+
+- `selected` is a special index that refers to all persons that are selected using
+  the [Select Command](#selecting-persons-select).
 
 {% include back-to-toc.html %}
 
@@ -424,8 +425,9 @@ Allows you to incrementally select multiple person objects to apply actions on.
 * The selected person(s) will have a highlighted index number to indicate selection status.
 * Incremental selection means that selected items are "stacked" together. e.g. Executing `select 1`.
   followed by `select 2` will result in persons with index number 1 and 2 being selected.
-* `shown` refers to all the persons that are currently displayed in the [Person List Panel](#user-interface).
-  
+* `shown` refers to all the persons that are currently displayed in
+  the [Person List Panel](#graphical-user-interface).
+
 Sub Command Format:
 * `select show`
 * `select clear`
@@ -451,8 +453,8 @@ Sub Command Format:
 
 `select` command is best used with the following commands:
 
-- [`edit` command](#editing-persons--edit)
-- [`delete` command](#deleting-persons--delete)
+- [`edit` command](#editing-persons-edit)
+- [`delete` command](#deleting-persons-delete)
 - [`tag` command](#tagging-persons-tag)
 - [`email` command](#email-persons-email)
 
@@ -615,7 +617,7 @@ Deletes an existing alias from address book.
 
 Lists all aliases in the address book.
 
-* Your list of aliases will be displayed in the [Command List Panel](#user-interface).
+* Your list of aliases will be displayed in the [Command List Panel](#graphical-user-interface).
 * On your next keyboard action, the list of your aliases will disappear and show the list of existing commands again.
 
 **Format**: `alias list`
