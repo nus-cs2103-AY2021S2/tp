@@ -126,7 +126,7 @@ GME data is saved as a [JSON](#6-glossary) file `[JAR file location]/data/GMEdat
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: GME replaces the JSON file with a new one if it cannot read the file**<br> 
+**:warning: GME replaces the JSON file with a new one if it can not read the file**<br> 
 * You can make a backup before any changes in order to prevent unwanted data loss.
 * You may edit at your own risk.
 
@@ -229,7 +229,7 @@ To delete a specific passenger from the GME terminal, you can enter the `delete`
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `find tag/female` followed by `delete 3` deletes the *1st* passenger in the results of `find tag/female` command.
-* Passengers assigned to a carpool cannot be deleted. The pool containing the passenger must be removed using the `unpool` first before deletion.
+* Passengers assigned to a carpool can not be deleted. The pool containing the passenger must be removed using the `unpool` first before deletion.
 </div>
 
 **Examples:**
@@ -284,7 +284,7 @@ To remove an existing [pool](#6-glossary) from the GME terminal, you can enter t
 
 ### 3.3.3 Filtering pools: `findPool`
 
-To find pools which contain a passenger with a certain name, you can enter the `findPool` command following the format below.
+To find pools that contain a passenger with a certain name, you can enter the `findPool` command following the format below.
 
 **Format:** <code>findPool n/KEYWORD [<a title="These extra parameters are optional.">n/KEYWORD n/KEYWORD ...</a>]</code>
 
@@ -348,4 +348,4 @@ Parameter | Specific details of a command.
 Alphanumeric | A combination of letters and numbers only.
 Home Folder | The folder where the app's data is stored.
 JSON | A file format usually used to save data in a format that is still relatively readable and that can be opened and edited easily.
-Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist.
+Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click user interface elements exist.
