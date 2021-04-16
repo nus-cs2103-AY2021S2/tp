@@ -158,7 +158,7 @@ feature works!
 
 **Tips:**<br>
 
-* `Commnands` are case-insensitive.<br>
+* `Commands` are case-insensitive.<br>
     For example: `ADD` and `add` are both valid.
 </div>
 
@@ -244,7 +244,7 @@ Example:
 * `add n/Alice b/22/10/1999`
 * `add n/Benson b/30/09/1997 t/friends`
 
-Expected Result:<br>
+Expected Result: <br>
 ![Expected Result for Adding Persons](./images/addcommand/addpersonexpectedresult.png)<br>
 *[Result from adding Alice and Benson]*
 
