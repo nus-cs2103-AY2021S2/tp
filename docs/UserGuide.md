@@ -105,14 +105,14 @@ The interface of the application is split into distinct components:
 
  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui-labelled.png" alt="ui-labelled" width="790">
 
-### Menu Bar
+### <a name="menu-bar"></a>Menu Bar 
 
 The Menu Bar contains drop-down menus allows you to access useful functions. 
 These functions are:
 - Exit - Exits the application
 - Help - Opens the Help window
 
-### Command Box
+### <a name="command-box"></a>Command Box
 
 The command box allows you to key in your commands to control your digital wardrobe. 
 You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing
@@ -136,7 +136,7 @@ You may refer to the [NuFash Features](#nufash-features) below for details of ea
 
 <div style="page-break-after: always;"></div>
 
-### Feedback Box
+### <a name="feedback-box"></a>Feedback Box
 
 The feedback box displays the success messages when commands entered into NuFash are valid. Alternatively, it will show an
 error message if the command is invalid or can't be recognised.
@@ -144,7 +144,7 @@ error message if the command is invalid or can't be recognised.
  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/feedback-box.png" alt="feedback-box" width="790">
 
 
-### Wardrobe Box
+### <a name="wardrobe-box"></a>Wardrobe Box
 
 The Wardrobe box shows the listing of all current garments in their digital wardrobe. 
 
