@@ -91,7 +91,7 @@ The drivers are also displayed as cards like in this example:
 
 ### 3.1.2 Viewing help : `help`
 
-Shows a message with a quick summary of the available commands and how to format them. It also provides you with a link to the user guide for more information.
+Shows a message with a quick summary of the available commands and how to format them. It also provides you with a link to this user guide for more information.
 
 ![help message](images/helpMessage.png)
 
