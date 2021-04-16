@@ -17,13 +17,13 @@ https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html#1-introduction
 
 ## **1. Introduction**
 Welcome to our User Guide and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
-CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
-1. Order management which includes adding, editing and deleting orders
-2. Ability to predefine cakes that you sell regularly 
-3. Quick addition of predefined cakes to new orders
-4. Quick search functionality for your orders
-5. Reminder for undelivered orders with delivery dates approaching soon
-6. Checking the delivery status of your orders
+CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. CakeCollate allows you to:<br>
+1. Manage your orders including adding, editing and deleting orders
+2. Add cakes that you sell regularly to a predefined list
+3. Quickly select from a predefined list of cakes when adding new orders
+4. Quickly search through your existing orders
+5. Receive reminders for undelivered orders with delivery dates approaching soon
+6. Check the delivery status of your orders
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI applications.
 
