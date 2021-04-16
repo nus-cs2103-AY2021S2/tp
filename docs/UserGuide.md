@@ -66,9 +66,9 @@ Before you continue reading the rest of the User Guide, take note of the followi
 | `Code`                                                                   | Command text                    |
 | <kbd>Keyboard</kbd>                                                | Keyboard shortcut                |
 | **Bolded Text**                                                          | Important words to take note of |
-| <div markdown="span" class="alert alert-info">:information_source: **Note** </div> | Useful information.                           |
-| <div markdown="span" class="alert alert-warning">:bulb: **Tip** </div>            | Helpful information that can enhance your experience.      |
-| <div markdown="span" class="alert alert-danger">:exclamation: **Warning** </div>      | Potentially dangerous action that might cause data loss.                 |
+| **<div markdown="span" class="alert alert-info"> :information_source: Note </div>** | Useful information.                           |
+| **<div markdown="span" class="alert alert-warning"> :bulb: Tip </div>**            | Helpful information that can enhance your experience.      |
+| **<div markdown="span" class="alert alert-danger"> :exclamation: Warning </div>**      | Potentially dangerous action that might cause data loss.                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
