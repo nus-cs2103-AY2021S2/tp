@@ -19,9 +19,13 @@ Feel free to check out our [Table of Contents](#table-of-contents), to get famil
 
 You can return to Table of Contents by clicking this button <a href="#table-of-contents"> <button>Back to Table of Contents </button></a> below each session.
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 * Table of Contents 
 {:toc}
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 1. About
@@ -96,6 +100,8 @@ Note the following symbols and formatting used in this document:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
@@ -134,6 +140,8 @@ Clears all entries from TutorsPet.
 Format: `clear`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.1.2 Exiting the program : `exit`
 
@@ -217,6 +225,8 @@ Command     | Result
 `add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`| adds a new student Bob Lee's details in TutorsPet
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.2 Editing a contact : `edit`
 
@@ -303,6 +313,8 @@ Example: <br>
 ![AfterDetail](images/DemoAfterDetailCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.4 Deleting a contact : `delete`
 
@@ -391,6 +403,8 @@ Command     | Result
 `search t/chem math` | displays a list of students taking the subjects `chem` or `math` or both.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.6 Sorting contacts : `sort`
 Sorts the student contacts by name, school, subjects or lessons.
@@ -601,6 +615,8 @@ Example: <br>
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.4 Lesson Planning
 
 #### 3.4.1 Viewing schedule : `schedule`
@@ -651,9 +667,11 @@ while in v2.0, more personalised subjects can be added in.
 Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index 
 by providing the file path to the picture.
 
---------------------------------------------------------------------------------------------------------------------
-
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
 
@@ -679,6 +697,8 @@ However, if you want to personalise your window size, the optimal display resolu
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Summary
@@ -698,6 +718,8 @@ Subject                 | `t/`   | Y        | Can have any number of inputs (inc
 Lesson                  | `le/`  | Y        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`| N.A.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
 
 ### 6.2 Command summary
 
