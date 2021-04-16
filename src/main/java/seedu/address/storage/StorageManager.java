@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Link.me methods ==============================
 
     @Override
     public Path getAddressBookFilePath() {

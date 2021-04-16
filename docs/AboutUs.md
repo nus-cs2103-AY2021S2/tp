@@ -5,55 +5,44 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+## Project Team
 
-## Project team
+### Kenny Chew Pu Yang
 
-### John Doe
+<img src="images/knitidceladon23.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/KnitidCeladon23)]
+[[portfolio](team/knitidceladon23.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing
 
-### Jean Doe
+### Huang, Po-Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/georgepwhuang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/georgepwhuang)]
+[[portfolio](team/georgepwhuang.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables, IntelliJ, UI
+
+### Koh Huai Ze
+
+<img src="images/huaize.png" width="200px">
+
+[[github](http://github.com/HuaiZe)]
+[[portfolio](team/huaize.md)]
+
+* Role: Developer
+* Responsibilities: Documentation, Code Quality
+
+### Liu Shuyang
+
+<img src="images/shuyang0.png" width="200px">
+
+[[github](http://github.com/Shuyang0)]
+[[portfolio](team/shuyang0.md)]
+
+* Role: Developer
+* Responsibilities: Integration, Git/GitHub

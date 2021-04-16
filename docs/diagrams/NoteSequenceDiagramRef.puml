@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+mainframe sd execute NoteCommand
+
+box Logic LOGIC_COLOR_T1
+participant ":NoteCommand" as NoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "p:Person" as P MODEL_COLOR
+participant "q:Person" as Q MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+
+alt prefix is v/
+    create CommandResult
+    NoteCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> NoteCommand
+    deactivate CommandResult
+
+else prefix is r/
+    NoteCommand -> P : addNote(note)
+    activate P
+
+    create Q
+    P -> Q : Person()
+    activate Q
+
+    Q --> P : q
+    deactivate Q
+
+    P --> NoteCommand : q
+    deactivate P
+
+    NoteCommand -> ModelManager : setPerson(p, q)
+    activate ModelManager
+
+    ModelManager --> NoteCommand
+    deactivate ModelManager
+
+    create CommandResult
+    NoteCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> NoteCommand
+    deactivate CommandResult
+
+
+
+else prefix is c/
+
+    NoteCommand -> P : clearNotes()
+        activate P
+
+        create Q
+        P -> Q : Person()
+        activate Q
+
+        Q --> P : q
+        deactivate Q
+
+        P --> NoteCommand : q
+        deactivate P
+
+        NoteCommand -> ModelManager : setPerson(p, q)
+        activate ModelManager
+
+        ModelManager --> NoteCommand
+        deactivate ModelManager
+
+        create CommandResult
+        NoteCommand -> CommandResult
+        activate CommandResult
+
+        CommandResult --> NoteCommand
+        deactivate CommandResult
+end
+
+
+
+
+
+
+@enduml

@@ -241,10 +241,10 @@ the given commands to find exactly what happens.
 
     2.  Allow `delete` to remove more than one index at a time
 
-    3.  Save the address book in the CSV format instead
+    3.  Save Link.me in the CSV format instead
 
     4.  Add a new command
 
     5.  Add a new field to `Person`
 
-    6.  Add a new entity to the address book
+    6.  Add a new entity to Link.me

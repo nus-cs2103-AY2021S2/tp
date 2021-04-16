@@ -6,6 +6,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
+import seedu.address.model.insurance.InsurancePlan;
+import seedu.address.model.tag.Tag;
 
 /**
  * Helper functions for handling strings.
@@ -36,6 +41,38 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code tagSet} contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     * @param tagSet cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsTagIgnoreCase(Set<Tag> tagSet, String word) {
+        requireNonNull(tagSet);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        return tagSet.stream().anyMatch(tag -> tag.tagName.equalsIgnoreCase(preppedWord));
+    }
+
+    /**
+     * Returns true if the {@code plans} contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     * @param plans cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsPlansIgnoreCase(List<InsurancePlan> plans, String word) {
+        requireNonNull(plans);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        return plans.stream().anyMatch(plan -> plan.name.equalsIgnoreCase(preppedWord));
     }
 
     /**
