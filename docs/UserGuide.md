@@ -62,6 +62,8 @@ Note the following symbols and formatting used in this document:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
@@ -209,6 +211,8 @@ like chem and bio.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Example:
 
 `add n/John Doe p/98612341`
@@ -260,6 +264,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Example:
 
 `edit 1 p/91234567 e/johndoe@example.com`
@@ -272,6 +278,8 @@ Example:
 * Then `edit` command is entered. Changes are displayed immediately.
 
 ![AfterEdit](images/DemoAfterEditCommand.png)
+
+<div style="page-break-after: always;"></div>
 
 Other examples:
 
@@ -339,6 +347,8 @@ Example: <br>
 
 ![AfterDelete](images/DemoAfterDeleteCommand.png)
 
+<div style="page-break-after: always;"></div>
+
 Other examples: <br>
 
 Command     | Result
@@ -382,6 +392,8 @@ Prefix | Searching Criteria
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Example:
 
 `search n/yeoh alex s/xyz t/cn` 
@@ -402,7 +414,7 @@ Command     | Result
 `search t/chem` | displays a list of students taking the subject `chem`
 `search t/chem math` | displays a list of students taking the subjects `chem` or `math` or both.
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 <div style="page-break-after: always;"></div>
 
@@ -450,6 +462,8 @@ Shows a list of all student contacts in TutorsPet. Each student's name, phone nu
 Format: `list`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.8 Increasing level of all students : `levelup`
 
@@ -542,6 +556,7 @@ Example:
 * After entering the command, all students are demoted by one level, excluding the 1st student in the list
 (and `grad` students).
   Entering `detail 1` will show that the 1st student is not demoted and remains at `sec4`.
+  
 ![AfterLevelUp1](images/DemoAfterLevelDownCommand1.png)
   
 * Entering `detail 6` will show that the 6th student is demoted to `sec4`.
@@ -557,6 +572,8 @@ Command     | Result
 `leveldown ex/1 2`| demotes all students by one level, excluding the 1st and 2nd student in the list (and `pri1` students)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Important Date Management
 
@@ -611,7 +628,7 @@ Example: <br>
 * Entering the above command will delete the 2nd important date in TutorsPet.
   Then, entering the `list-date` command will display the list of updated important dates.
   
-  ![delete-date](images/DemoDeleteDateCommand.png)
+![delete-date](images/DemoDeleteDateCommand.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -630,6 +647,8 @@ Format: `schedule`
 ![schedule popup](images/scheduleWindow.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Data Management
 
