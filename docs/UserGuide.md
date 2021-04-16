@@ -251,7 +251,7 @@ You can use the sample data pre-loaded in the application to play around and get
 
    * **`exit`** : Closes the application.
 
-6. Refer to the [Features](#4-commands-and-features) section below to know about each command in detail.
+6. Refer to the [Commands and features](#4-commands-and-features) section below to know about each command in detail.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -530,7 +530,7 @@ This section contains information about other useful features and commands that 
 * Help can also be accessed by clicking the `help` button on the top left corner of the application or by clicking the `F1` keyboard key.
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** You can enter the command `list` to go back to the orders and order items table.<br>
-</div> <br>
+</div>
 
 Format: `help`
 
