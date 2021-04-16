@@ -362,6 +362,8 @@ Lists all persons in the address book.
 
 Finds person(s) whose field(s) contain any of the given keywords.
 
+**Format**: `find { KEYWORD... | -n NAME... | -e EMAIL... | -t TAG... | -r REMARK... }`
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note**<br>
@@ -399,9 +401,9 @@ The `find` command will execute for all searchable fields if no command flags ar
 
 ### Searching by Specific Fields
 
-The `find` command will execute for specific fields if you specify command flags.
+The `find` command will execute for specific fields if you specify the respective flags.
 
-**Format**: `find FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
+**Format**: `find {-n NAME... | -e EMAIL... | -t TAG... | -r REMARK... }`
 
 <div markdown="block" class="alert alert-info">
 
@@ -428,11 +430,11 @@ The `find` command will execute for specific fields if you specify command flags
 Filter command allows you to toggle the visibility of person fields to allow you to hide fields that
 you are not interested in.
 
-**Format**: `filter [-FLAG]...`
+**Format**: `filter [-n] [-e] [-c] [-j] [-a] [-p] [-t] [-t]`
 
 ![Filter Command UI](images/UG_Filter%20Command.png)
 
-These are the available flags:
+These are the available optional flags:
 
 - Name : `-n`
 - Email : `-e`
@@ -561,7 +563,7 @@ Add tags to persons in address book.
 * When adding a same tag to a person, the command will be executed successfully, but the same tag will not be added to the person.
 * The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are added to.
 
-**Format**: `tag add { shown | selected | INDEX ... } -t TAG...`
+**Format**: `tag add { shown | selected | INDEX ... } -t TAG [-t TAG]...`
 
 ![Tag Add](images/UG_Tag%20Add%20Command.png)
 
@@ -594,7 +596,7 @@ Delete tags from persons in address book.
 * When deleting a tag from a person without the tag, the command will be executed successfully, but no tags will be deleted from the person.
 * The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are deleted from.
 
-**Format**: `tag delete { shown | selected | INDEX... } -t TAG...`
+**Format**: `tag delete { shown | selected | INDEX... } -t TAG [-t TAG]...`
 
 ![Tag Delete](images/UG_Tag%20Delete%20Command.png)
 
@@ -797,6 +799,7 @@ This action is irreversible. Do not run this command with actual data unless you
 
 </div>
 
+**Format**: `clear`
 
 {% include back-to-toc.html %}
 
@@ -818,6 +821,8 @@ A-Bash Book data is saved in the hard disk automatically after any command that 
 
 A-Bash Book data is saved as a JSON file `[JAR file location]/data/abashbook.json`. Advanced users
 are welcome to update data directly by editing that data file.
+
+{% include back-to-toc.html %}
 
 <div markdown="span" class="alert alert-danger">
 
@@ -860,23 +865,23 @@ Install the app in the other computer and overwrite the empty data file it creat
 
 # Command Summary
 
-| Action           | Format, Examples                                                                                                                                                                                                                             |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Action           | Format, Examples                                                                                                                                                                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**          | `add -n NAME -p PHONE_NUMBER -e EMAIL -c COMPANY -j JOB_TITLE -a ADDRESS [-r REMARK] [-t TAG]...` <br> e.g. `add -n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street -r Likes ramen -t friend -t colleague` |
-| **Clear**        | `clear`                                                                                                                                                                                                                                      |
+| **Clear**        | `clear`                                                                                                                                                                                                                                     |
 | **Delete**       | `delete { shown | selected | INDEX... }` <br> e.g. `delete 3`                                                                                                                                                                               |
-| **Edit**         | `edit { shown | selected | INDEX... } [-n NAME] [-p PHONE] [-c COMPANY] [-j JOB_TITLE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]...` <br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`                                              |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]` <br> e.g. `find James Jake`                                                                                                                                                                                  |
-| **Filter**       | `filter [-OPTION]...` <br> e.g. `filter -p -a` to see only the phone number and address                                                                                                                                                     |
-| **Select**       | `select { clear | shown | show | INDEX... }`                                                                                                                                                                                                 |
-| **Email**        | `email { shown | selected | INDEX... }`                                                                                                                                                                                                      |
-| **List**         | `list`                                                                                                                                                                                                                                       |
-| **Help**         | `help`                                                                                                                                                                                                                                       |
-| **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                                                   |
-| **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                                                            |
-| **List Alias**   | `alias list`                                                                                                                                                                                                                                 |
-| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g. `tag add shown -t Illustrator`                                                                                                                                   |
-| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG...` <br> e.g. `tag delete 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                         |
+| **Edit**         | `edit { shown | selected | INDEX... } [-n NAME] [-p PHONE] [-c COMPANY] [-j JOB_TITLE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]...` <br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`                                             |
+| **Find**         | `find { KEYWORD... | -n NAME... | -e EMAIL... | -t TAG... | -r REMARK... }` <br> e.g. `find James Jake`                                                                                                                                     |
+| **Filter**       | `filter [-n] [-e] [-c] [-j] [-a] [-p] [-t] [-t]` <br> e.g. `filter -p -a` to see only the phone number and address                                                                                                                          |
+| **Select**       | `select { clear | shown | show | INDEX... }`                                                                                                                                                                                                |
+| **Email**        | `email { shown | selected | INDEX... }`                                                                                                                                                                                                     |
+| **List**         | `list`                                                                                                                                                                                                                                      |
+| **Help**         | `help`                                                                                                                                                                                                                                      |
+| **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                                                  |
+| **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                                                           |
+| **List Alias**   | `alias list`                                                                                                                                                                                                                                |
+| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG [-t TAG]...` <br> e.g. `tag add shown -t Illustrator`                                                                                                                                       |
+| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG [-t TAG]...` <br> e.g. `tag delete 1 2 3 -t Photoshop -t Illustrator`                                                                                                                    |
 
 {% include back-to-toc.html %}
 
