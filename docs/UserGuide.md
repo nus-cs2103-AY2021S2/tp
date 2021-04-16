@@ -13,7 +13,7 @@ GreenMileageEfforts (GME) is an efficient carpooling management solution designe
 # 1. Introduction
 
 ## 1.1 Welcome to GreenMileageEfforts
-As a Human Resource (HR) manager of a large company, you might be in need of an efficient way of managing your company's carpooling initiative, the GME system is designed to do just that. GME provides you with a suite of tools to use in the management of employees looking to carpool to and from their office. Through the GME system, you can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of both the passengers and the arranged carpooling groups, allowing you to easily access and manage the [pools](#6-glossary) of employees.
+As a Human Resource (HR) manager of a large company, you may be in need of an efficient way of managing your company's carpooling initiative, the GME system is designed to do just that. GME provides you with a suite of tools to use in the management of employees looking to carpool to and from their office. Through the GME system, you can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of both the passengers and the arranged carpooling groups, allowing you to easily access and manage the [pools](#6-glossary) of employees.
 
 ## 1.2 Navigating the User Guide
 For help with the setup of GME, refer to the [“Quick Start"](#2-quick-start-) section.
@@ -39,7 +39,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 2. Download the latest [CS2103T-W10-1][GreenMileageEfforts].jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
 3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**.
 4. Double click the file to start the application.
-5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you could try are:
+5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you can try are:
    * `list`: Lists all [passengers](#6-glossary) currently stored in the GME system.
    * `pool n/Doctor Iver p/92385810 d/MONDAY t/0930 c/1 c/2 c/3`: adds the employees shown at indexes 1, 2, and 3 as passengers to a new [pool](#6-glossary) with Doctor Iver as the driver.
    * `listPool`: Lists all [pools](#6-glossary) currently stored in the GME system.
@@ -68,11 +68,11 @@ Please note the following symbols used in the User Guide which may serve as poin
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/61234567 p/98765432`, only `p/98765432` will be taken.
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter is taken.<br>
+  e.g. if you specify `p/61234567 p/98765432`, only `p/98765432` is taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)  are ignored.<br>
+  e.g. if the command specifies `help 123`, it is interpreted as `help`.
 
 </div>
 
@@ -111,7 +111,7 @@ Exits the program.
 
 ### 3.1.5 Saving the data
 
-GME data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+GME data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
 ### 3.1.6 Editing the data file
 
@@ -126,9 +126,9 @@ GME data is saved as a [JSON](#6-glossary) file `[JAR file location]/data/GMEdat
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: GME will replace the JSON file with a new one if it cannot read the file**<br> 
-* You should make a backup before any changes
-* Edit at your own risk
+**:warning: GME replaces the JSON file with a new one if it cannot read the file**<br> 
+* You can make a backup before any changes in order to prevent unwanted data loss.
+* You may edit at your own risk.
 
 </div>
 
@@ -136,7 +136,7 @@ GME data is saved as a [JSON](#6-glossary) file `[JAR file location]/data/GMEdat
 
 ### 3.2.1 Adding passengers: `add`
 
-Adds a new passenger in the GME terminal.
+To add a new passenger in the GME terminal, you can enter the `add` command following the format shown below.
 
 **Format:** `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [pr/PRICE] [tag/TAG tag/TAG ...]`
 
@@ -158,13 +158,13 @@ Adds a new passenger in the GME terminal.
 
 ### 3.2.2 Listing all passengers : `list`
 
-Lists the passengers currently stored in the GME terminal.
+To list all the passengers currently stored in the GME terminal, you can enter the `list` command.
 
 **Format:** `list`
 
 ### 3.2.3 Editing a passenger : `edit`
 
-Edits an existing passenger in the GME terminal.
+To edit an existing passenger in the GME terminal, you can enter the `edit` command following the format shown below.
 
 **Format:** `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]​`
 
@@ -175,8 +175,8 @@ Edits an existing passenger in the GME terminal.
 * [Tag](#6-glossary) must be an alphanumeric input and can only have a maximum of 30 characters in length.
 * Edits the passenger at the specified `INDEX`. The index refers to the index number shown in the displayed passenger list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the passenger will be removed i.e adding of tags is not cumulative.
+* Existing values are updated to the input values.
+* When editing tags, the existing tags of the passenger are replaced.
 * You can remove all the passenger’s tags by typing `tag/` without
   specifying any tags after it.
 </div>
@@ -187,7 +187,7 @@ Edits an existing passenger in the GME terminal.
 
 ### 3.2.4 Locating passengers by prefixes: `find`
 
-Finds passengers whose names contain any of the given keywords.
+To find a passenger in the GME terminal with a keyword, you can enter the `find` command following the format shown below.
 
 **Format:** `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`, `pr`, `all`, `d`, `t`
 
@@ -195,16 +195,16 @@ Finds passengers whose names contain any of the given keywords.
 
 **:information_source: Notes about the find command:**<br>
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`.
-* Only full words will be matched e.g. `Han` will not match `Hans`.
+* The search is case-insensitive. e.g. searching with the keyword `hans` shows `Hans`.
+* Only full words are matched. e.g. searching with the keyword `Han` does not show `Hans`.
 * Only **one type of prefix** can be specified.
 * More than 1 keyword can be specified for a single prefix.
-* Keywords separated by space will match all as a phrase rather than individual words.
-  e.g. `Hans Yang` will only return `Gruber Hans Yang` instead of `Bo Yang` and `Hans Gruber Yang`.
+* Words separated by spaces counts as a single phrase instead of multiple individual words.
+  e.g. `Hans Yang` returns only `Gruber Hans Yang` and not `Bo Yang` or `Hans Gruber Yang`.
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
-* Searching with prefixes such as `n/` and `a/` which are anticipated to have multiple words separated by spaces will have multiple spaces shortened to one. Refer to the 4th example for clarification.
-* `all` prefix for searching across names, addresses, tags and phone numbers quickly.
-	* However, if any of the words after the `all` prefix are invalid, GME will not inform you as such. It will instead show that no passengers with those words are found.
+* Multiple spaces are shortened to one when searching with prefixes such as `n/` and `a/`. You may refer to the 4th example for clarification.
+* You can use the `all` prefix for searching across names, addresses, tags and phone numbers quickly.
+	* However, if any of the words after the `all` prefix are invalid, GME does not inform you as such. It instead shows that no passengers with those words are found.
 </div>
 
 **Examples:**
@@ -217,8 +217,7 @@ Finds passengers whose names contain any of the given keywords.
   ![result for 'find n/alex    yeoh'](images/findAlexMultipleSpace.png)
 
 ### 3.2.5 Deleting passengers: `delete`
-
-Deletes the specific passenger from the GME terminal.
+To delete a specific passenger from the GME terminal, you can enter the `delete` command following the format shown below.
 
 **Format:** <code>delete INDEX [<a title="These extra parameters are optional.">INDEX INDEX...</a>]</code>
 
@@ -243,7 +242,7 @@ Deletes the specific passenger from the GME terminal.
 
 ### 3.3.1 Selecting passengers to arrange a carpool: `pool`
 
-Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
+To create a new pool with a group of passengers, you can enter the `pool` command following the format shown below. 
 
 **Format:** <code>pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [<a title="These extra parameters are optional.">c/INDEX c/INDEX ...</a>] [tag/TAG]</code>
 
@@ -254,7 +253,7 @@ Selects passengers from the current view in the bottom left pane of the GME term
 * [TripDay](#6-glossary) must be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
 * [TripTime](#6-glossary) must be in the 24-hour format. e.g. `0530` or `2359`.
 * Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
-* GME will not allow you to `delete` a passenger that is assigned to a Pool.
+* GME does not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​.
 * The order of the passengers' index does not matter.
@@ -268,7 +267,7 @@ Selects passengers from the current view in the bottom left pane of the GME term
 
 ### 3.3.2 Removing pools: `unpool`
 
-Removes the [pool](#6-glossary) specified by an index from the GME terminal.
+To remove an existing [pool](#6-glossary) from the GME terminal, you can enter the `unpool` command following the format shown below.
 
 **Format:** `unpool INDEX`
 
@@ -286,7 +285,7 @@ Removes the [pool](#6-glossary) specified by an index from the GME terminal.
 
 ### 3.3.3 Filtering pools: `findPool`
 
-Filtering pools where the name of the pool's passengers contain any of the given keywords.
+To find pools which contain a passenger with a certain name, you can enter the `findPool` command following the format below.
 
 **Format:** <code>findPool n/KEYWORD [<a title="These extra parameters are optional.">n/KEYWORD n/KEYWORD ...</a>]</code>
 
@@ -294,8 +293,8 @@ Filtering pools where the name of the pool's passengers contain any of the given
 
 **:information_source: Notes about the findPool command:**<br>
 
-* The search is case-insensitive. e.g. `alex` will match `Alex`.
-* Only full words will be matched e.g. `alex` will not match `Alexis`.
+* The search is case-insensitive. e.g. searching with the keyword `alex` shows `Alex`.
+* Only full words are matched. e.g. searching with the keyword `alex` does not show `Alexis`.
 </div>
 
 **Examples:**
@@ -304,7 +303,7 @@ Filtering pools where the name of the pool's passengers contain any of the given
 
 ### 3.3.4 Listing all passengers : `listPool`
 
-Lists the pools currently stored in the GME terminal.
+To list the pools currently stored in the GME terminal, you can enter the `list` command.
 
 **Format:** `listPool`
 
@@ -348,6 +347,6 @@ TripTime | Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
 Price | The amount of money a passenger is willing to pay for the carpooling trip.
 Alphanumeric | A combination of letters and numbers only.
-Home Folder | The folder where the app's data will be stored.
+Home Folder | The folder where the app's data is stored.
 JSON | A file format usually used to save data in a format that is still relatively readable and that can be opened and edited easily.
 Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist.
