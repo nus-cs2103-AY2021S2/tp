@@ -42,29 +42,28 @@ public class MenuFindCommandParser implements Parser<MenuFindCommand> {
         List<Predicate<Dish>> predicates = new ArrayList<>();
 
         Optional<String> nameArgs = argMultimap.getValue(PREFIX_NAME);
-        Optional<String> ingredientArg = argMultimap.getValue(PREFIX_INGREDIENT);
+        Optional<String> ingredientArgs = argMultimap.getValue(PREFIX_INGREDIENT);
 
         if (nameArgs.isPresent()) {
-            List<String> keywords;
-            try {
-                keywords = ParserUtil.parseKeywords(nameArgs.get());
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        MenuFindCommand.MESSAGE_USAGE), pe);
-            }
+            List<String> keywords = getKeywords(nameArgs.get());
             predicates.add(new DishNameContainsWordsPredicate(keywords));
         }
 
-        if (ingredientArg.isPresent()) {
-            String keyword;
-            try {
-                keyword = ParserUtil.parseKeyword(ingredientArg.get());
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        MenuFindCommand.MESSAGE_USAGE), pe);
-            }
-            predicates.add(new DishContainsIngredientNamePredicate(keyword));
+        if (ingredientArgs.isPresent()) {
+            List<String> keywords = getKeywords(ingredientArgs.get());
+            predicates.add(new DishContainsIngredientNamePredicate(keywords));
         }
         return predicates;
+    }
+
+    private List<String> getKeywords(String input) throws ParseException {
+        List<String> keywords;
+        try {
+            keywords = ParserUtil.parseKeywords(input);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MenuFindCommand.MESSAGE_USAGE), pe);
+        }
+        return keywords;
     }
 }

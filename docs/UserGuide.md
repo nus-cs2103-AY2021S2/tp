@@ -233,11 +233,12 @@ component command prefix/[INPUT] -flag
         In the event that there are uncompleted orders by the customer that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
         Examples:
+        ![JJIMY Customer Pane](images/jjimy-main.png)
         ```
         customer delete 2
         ```
 
-        The above command would delete the second customer on the customer information pane.
+        The above command would delete the second customer on the customer information pane named "Bernice Yu".
 
         ```
         customer delete 2 -f
@@ -246,6 +247,8 @@ component command prefix/[INPUT] -flag
         In the event that there are pending orders that have not been fulfilled that belong to customer 2, then deletion of the customer will not be allowed since we do not want to unknowingly delete orders that are still pending.
         If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior. Orders associated with the customer will be deleted and will no longer be shown in the order list or order history.
         
+        Using the above screenshot as an example, `customer delete 2` would delete "Bernice Yu" from the customers list. However, we can see on the right that there is an outstanding order that has not been completed that belong to her.
+        Hence, if you are sure you want to delete her details, the command would be `customer delete 2 -f` instead. Upon deletion, the order that previously belonged to her will also be deleted from the application as well.
         <p>&nbsp;</p>
         
         ---
@@ -269,7 +272,7 @@ component command prefix/[INPUT] -flag
         customer edit 2 n/George Tan
         ```
 
-        The above command changes the name of the second customer on the customers pane to "George Tan".
+        The above command changes the name of the second customer on the customers pane from "Bernice Yu" to "George Tan".
 
         ```
         customer edit 2 n/George Tan p/80009999
@@ -296,6 +299,9 @@ component command prefix/[INPUT] -flag
 
         - `n/` - Finds all customers whose names contain any of the keywords (case-insensitive). Keywords are space separated.
 
+        The result list from find persists even if other commands are called and is only reset when `customer list` is called again.
+        Any index that accesses `customer` will reference from this result list.        
+      
         Example:
         ```
         customer find n/George Michael Lim
@@ -390,10 +396,13 @@ component command prefix/[INPUT] -flag
 
         In the event that there are pending orders that have not been fulfilled that contains dish id 2, then deletion
         of the dish will not be allowed since we do not want to unknowingly delete orders that are still pending.
-        If deleting any dishes that belongs to any uncompleted order is desired, then adding the `-f` at the
-        end of the command acknowledges and confirms the deletion behavior. Orders associated with the menu dish will 
+        If deleting any dishes that belongs to any uncompleted order and cancelling those orders is desired, then adding 
+        the `-f` at the end of the command acknowledges this behavior. Orders associated with the menu dish will 
         be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
         
+        For example, if there is an outstanding order that contains the dish "Burger", we will need to use `menu delete 2 -f`
+        to delete the dish. Upon deletion, the order that contained "Burger" will be marked as cancelled.
+      
         <p>&nbsp;</p>
         
         ---
@@ -415,7 +424,7 @@ component command prefix/[INPUT] -flag
         ```
         menu edit 1 p/4.20
         ```
-        
+        > Note: you cannot edit a dish if it results in the uncomplete orders being unable to be completed! For example, if there is one order for "Chicken Wings" and one serving of it requires 1 "chicken" and there is only 1 chicken left in the inventory, then editing the dish "Chicken Wings" from requiring 1 "chicken" to 2 "chicken" will not be permitted because the inventory does not have enough stock left to fulfil the order!
         <p>&nbsp;</p>
       
         ---
@@ -428,14 +437,17 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        menu find n/[KEYWORD] (MORE KEYWORDS) i/[NAME]
+        menu find n/[KEYWORD] (MORE KEYWORDS) i/[KEYWORD] (MORE KEYWORDS)
         ```
-
+      
         At least one prefix must be specified. If both are specified, both conditions will be checked.
 
         - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `i/` - Finds all dishes with ingredient names that contain this ingredient name (case-insensitive). This name can be multiple words.
-    
+        - `i/` - Finds all dishes with ingredient names that contain any of the keywords (case-insensitive). Keywords are space separated.
+
+        The result list from find persists even if other commands are called and is only reset when `menu list` is called again.
+        Any index that accesses `menu` will reference from this result list.
+
         Example:
         ```
         menu find n/burger steak i/beef
@@ -545,13 +557,16 @@ component command prefix/[INPUT] -flag
 
         Format:
         ```
-        order find n/[KEYWORD] (MORE KEYWORDS) d/[NAME]
+        order find n/[KEYWORD] (MORE KEYWORDS) d/[KEYWORD] (MORE KEYWORDS)
         ```
 
         At least one prefix must be specified. If both are specified, both conditions will be checked. 
 
         - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated.
-        - `d/` - Finds all orders with dish names that contain specified name (case-insensitive). This name can be multiple words.
+        - `d/` - Finds all orders with dish names that contain any of the keywords (case-insensitive). Keywords are space separated.
+      
+        The result list from find persists even if other commands are called and is only reset when `order list` or `order history` is called again.
+        Any index that accesses `order` will reference from this result list.
 
         Example:
         ```
@@ -741,6 +756,9 @@ component command prefix/[INPUT] -flag
 
         - `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `q/` - Finds all ingredients with less than or equals to specified quantity. Must be a non-negative whole number (>= 0).
+
+        The result list from find persists even if other commands are called and is only reset when `inventory list` is called again.
+        Any index that accesses `inventory` will reference from this result list.
 
         Example:
         ```

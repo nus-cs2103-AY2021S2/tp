@@ -20,8 +20,8 @@ public class MenuFindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds dishes. "
             + "At least one prefix must be used. \n"
             + "n/ - Look for names that contain any of the keywords (case-insensitive) \n"
-            + "i/ - Look for ingredients that contains a keyword (case-insensitive) \n"
-            + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... i/[KEYWORD]\n"
+            + "i/ - Look for ingredients that contain any of the keywords (case-insensitive) \n"
+            + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... i/[KEYWORD] (MORE_KEYWORDS)...\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " n/burger steak i/beef";
 
     private final Predicate<Dish> predicate;

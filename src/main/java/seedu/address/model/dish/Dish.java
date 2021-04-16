@@ -52,9 +52,12 @@ public class Dish implements Item {
     /**
      * Checks if dish has an ingredient with keyword, case ignored
      */
-    public boolean containsIngredientKeyword(String keyword) {
+    public boolean containsIngredientKeywords(List<String> keywords) {
         for (Pair<Ingredient, Integer> pair : getIngredientQuantityList()) {
-            if (StringUtil.containsWordIgnoreCase(pair.getKey().getName(), keyword)) {
+            boolean containsKeywords = keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(pair.getKey().getName(), keyword));
+
+            if (containsKeywords) {
                 return true;
             }
         }

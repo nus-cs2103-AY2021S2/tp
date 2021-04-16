@@ -22,7 +22,7 @@ title: Developer Guide
             - [Deletion of Dish objects](#deletion-of-dish-objects)
             - [Editiing of Dish objects](#editing-of-dish-objects)
             - [Deletion of Ingredient objects](#deletion-of-ingredient-objects)
-            - [Editing of Ingredient objects](#editing-of-ingredient-objects)  
+            - [Editing of Order objects](#editing-of-order-objects)  
             - [Logging of Order object](#logging-of-order-object)
         + [Concurrent list display](#concurrent-list-display)
         + [Data archiving](#data-archiving)
@@ -60,9 +60,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-> **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+> **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -97,11 +97,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ComponentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts, e.g. `CommandBox`, `ResultDisplay`, `ComponentListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -111,12 +111,12 @@ The `UI` component,
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
-Note: ComponentXYZCommand = CustomerAddCommand, MenuAddCommand, OrderDeleteCommand etc. 
+(Note: ComponentXYZCommand refers to a type of command within a component, such as the CustomerAddCommand, MenuAddCommand, OrderDeleteCommand, etc.)  
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `JJIMYParser` class to differentiate the user command's component and parse the arguments to respective `ComponentParser` (e.g. `MenuParser`, `OrderPaser` etc).
+1. `Logic` uses the `JJIMYParser` class to differentiate the user command's component and parse the arguments to respective `ComponentParser` (e.g. `MenuParser`, `OrderPaser`, etc).
 1. `ComponentParser` will then creates respective `ComponentXYZCommand`.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a customer).
@@ -131,7 +131,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -140,16 +140,12 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<T extends Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -319,7 +315,7 @@ and the new `Order` object is attempted to be inserted as those it were a new or
 new order can be fulfilled. In the event that this new `Order` cannot be fulfilled given the inventory, then the old
 copy of `Order` is reinserted and an error message is displayed to the user.
 
-##### Logging of Order object
+##### Logging of Order objects
 
 Data consistency extends beyond deletion. When `Order` objects are created, the `Ingredient`s and their quantities are tabulated from the `Dish`es and their respective quantities. 
 The quantity of each `Ingredient` is then decremented by the corresponding amount. 
@@ -493,9 +489,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-
 **Use case: Request help**
 
 **MSS**
@@ -528,6 +521,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. JIMMY detects duplicate
 
 	* 1a1. JIMMY shows an error message
+
+    Use case ends.
+
+* 1b. JIMMY detects that the given arguments are invalid
+
+	* 1b1. JIMMY shows an error message
 
     Use case ends.
 
@@ -569,6 +568,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       User case resumes at step 2.
 
+**Use case: Edit a customer**
+
+**MSS**
+
+1.  User requests to list customers
+2.  JJIMY shows a list of customers
+3.  User requests to edit a customer
+4.  JJIMY edits the details of the relevant customer
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. JIMMY detects that the given arguments are invalid
+
+	* 3a1. JIMMY shows an error message
+
+    Use case resumes at step 2.
+
+* 3b. The list is empty.
+
+	Use case ends.
+
 **Use case: Find a customer**
 
 **MSS**
@@ -609,6 +631,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+* 1b. JIMMY detects that the given arguments are invalid
+
+	* 1b1. JIMMY shows an error message
+
+    Use case ends.
+
 **Use case: List all menu items**
 
 **MSS**
@@ -643,11 +671,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 * 3b. The given menu item has pending orders
 
-    * 3b1. JJIMY prompts the user to append `-f` to the end of his command to confirm the cascading deletion of pending 
+    * 3b1. JJIMY prompts the user to append `-f` to the end of his command to confirm the cascading cancelation of pending 
       orders that contain the menu item
 
       User case resumes at step 2.
+
+**Use case: Edit a menu item**
+
+**MSS**
+
+1.  User requests to list menu items
+2.  JJIMY shows a list of menu items
+3.  User requests to edit a menu item
+4.  JJIMY edits the details of the relevant menu item
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. JJIMY detects that the given arguments are invalid
+
+	* 3a1. JJIMY shows an error message
+
+    Use case resumes at step 2.
+
+* 3b. The list is empty.
+
+	Use case ends.
+
+* 3c. JJIMY detects that with this change, the pending orders that contain the edited item can no longer be fulfilled with current inventory
     
+    * 3c1. JJIMY shows an error message
+    
+    Use case resumes at step 2.
+
+
 **Use case: Find a menu item**
 
 **MSS**
@@ -707,7 +765,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  JJIMY deletes the order
 
     Use case ends.
-
+    
 **Extensions**
 
 * 2a. The list is empty.
@@ -719,9 +777,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. JJIMY shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case: Complete an order**
 
+1. User requests to list orders
+2. JJIMY shows a list of orders
+3. User requests to mark a specific order as completed
+4. JJIMY moves the order from order list to order history and marks the order as completed.
 
+**Extensions**
 
+* 2a. The list is empty.
+
+  Use case ends.
+  
+* 3a. The given index is invalid.
+
+	* 3a1. JJIMY shows an error message.
+
+	Use case resumes at step 2.
+
+**Use case: Edit an order**
+
+**MSS**
+
+1.  User requests to list orders
+2.  JJIMY shows a list of orders
+3.  User requests to edit an order
+4.  JJIMY edits the details of the relevant order
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. JJIMY detects that the given arguments are invalid
+
+	* 3a1. JJIMY shows an error message
+
+    Use case resumes at step 2.
+
+* 3b. The list is empty.
+
+	Use case ends.
+
+* 3c. JJIMY detects that there are insufficient ingredients to fulfil the order given this edit
+    
+    Use case resumes at step 2.
+
+**Use case: Show order history***
+
+1. User requests to see order history
+2. History of orders is shown. Orders are either completed or cancelled.
+
+**Extensions**
+
+* 1a. The history is empty.
+
+  Use case ends.
+  
 **Use case: Find an order**
 
 **MSS**
@@ -814,6 +927,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Edit an inventory item**
+
+**MSS**
+
+1.  User requests to list inventory items
+2.  JJIMY shows a list of inventory items
+3.  User requests to edit an inventory item
+4.  JJIMY edits the details of the relevant inventory item
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. JJIMY detects that the given arguments are invalid
+
+	* 3a1. JJIMY shows an error message
+
+    Use case resumes at step 2.
+
+* 3b. The list is empty.
+
+	Use case ends.
 
 **Use case: Find a inventory item**
 
