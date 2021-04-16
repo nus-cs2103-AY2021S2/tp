@@ -413,10 +413,10 @@ Supported `PREFIX/KEYWORD` pairs:
 * insurance plan name: `i/PLAN_NAME`
 
 * The search is case-insensitive. e.g. for gender, `male` will match `Male`
-* For the insurance plan name attribute, only those that are identical will be matched. e.g. for insurance plan,
-  `Protect` will not match `ProtectPlus`
-* Clients with matching attributes to all the keyword attributes will be returned (i.e. `AND` search). e.g. `g/F age/40` will return all
-  female clients aged 40.
+* For search keywords with i/ (prefix for insurance plan name), only clients with matching insurance plan name will be
+  listed. e.g. for insurance plan, `Protect` will not match `ProtectPlus`
+* Clients with matching attributes to all the keyword attributes will be returned (i.e. `AND` search). e.g.
+  `g/F age/40` will return all female clients that are aged 40.
 
 Example:
 
