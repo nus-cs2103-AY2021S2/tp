@@ -590,15 +590,15 @@ If you make any changes to the data files directly which makes the format of the
 ## **6. FAQ**
 
 **Q**: How do I install Java?<br>
-**A**: [Click Here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) and download the appropriate Java version for your operating system.
+**A**: [Click Here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) and download the appropriate Java version for your operating system. 
 
-**Q**: Where will my data be saved?
+**Q**: Where will my data be saved? <br>
 **A**: Your data will be saved in a folder called data which you can find inside your CakeCollate home folder.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: 1. Install CakeCollate on the computer that you want to transfer your data to. <br>
-           2. You should be able to see a folder named data inside the CakeCollate home folder. <br>
-           3. Replace this folder with the data folder from your original CakeCollate home folder.<br>
+       <p>      2. You should be able to see a folder named data inside the CakeCollate home folder. </p>
+       <p>      3. Replace this folder with the data folder from your original CakeCollate home folder.</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
