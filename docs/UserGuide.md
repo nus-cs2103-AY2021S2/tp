@@ -16,13 +16,13 @@ GreenMileageEfforts (GME) is an efficient carpooling management solution designe
 As a Human Resource (HR) manager of a large company, you may be in need of an efficient way of managing your company's carpooling initiative, the GME system is designed to do just that. GME provides you with a suite of tools to use in the management of employees looking to carpool to and from their office. Through the GME system, you can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of both the passengers and the arranged carpooling groups, allowing you to easily access and manage the [pools](#6-glossary) of employees.
 
 ## 1.2 Navigating the User Guide
-For help with the setup of GME, refer to the [“Quick Start"](#2-quick-start-) section.
+For help with the setup of GME, you can refer to the [“Quick Start"](#2-quick-start-) section.
 
-For a full list and more information about GME's features and commands, use the [“Features”](#3-features-) section.
+For a full list and more information about GME's features and commands, you can refer to the [“Features”](#3-features-) section.
 
-For a quick overview of GME’s commands, refer to the [“Command Summary”](#5-command-summary-) section.
+For a quick overview of GME’s commands, you can refer to the [“Command Summary”](#5-command-summary-) section.
 
-Please note the following symbols used in the User Guide which may serve as points of interests:
+Please note the following symbols used in this User Guide which may serve as points of interests:
 
 
 * `command`: The grey highlight indicates commands that can be executed by GME.
@@ -66,13 +66,13 @@ Please note the following symbols used in the User Guide which may serve as poin
   e.g.`[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/finance`, `tag/finance tag/management` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if you specify `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter is taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter is taken.<br>
   e.g. if you specify `p/61234567 p/98765432`, only `p/98765432` is taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)  are ignored.<br>
-  e.g. if the command specifies `help 123`, it is interpreted as `help`.
+  e.g. if you specify `help 123`, it is interpreted as `help`.
 
 </div>
 
@@ -152,8 +152,8 @@ To add a new passenger in the GME terminal, you can enter the `add` command foll
 </div>
 
 **Examples:**
-* `add n/Ben Dover p/91234567 a/Geylang d/FRIDAY t/1800`
-* `add n/Jenny Talia p/98765432 a/Yishun Avenue 4 d/SATURDAY t/0830 tag/female`
+* `add n/John Dough p/91234567 a/Geylang d/FRIDAY t/1800`
+* `add n/Jane Smith p/98765432 a/Yishun Avenue 4 d/SATURDAY t/0830 tag/female`
 * `add n/Jane Wong p/97654321 a/Create Way d/MONDAY t/1200 tag/female tag/finance tag/management`
 
 ### 3.2.2 Listing all passengers : `list`
@@ -322,7 +322,7 @@ To list the pools currently stored in the GME terminal, you can enter the `list`
 Action | Format, Examples
 --------|------------------
 **help** | `help`
-**add** | `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]` <br> e.g. `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
+**add** | `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]` <br> e.g. `add n/Jane Smith p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
 **list** | `list` 
 **edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]` <br> e.g. `edit 8 a/Changi Airport d/SATURDAY`
 **delete** | `delete INDEX [INDEX INDEX...]`<br> e.g. `delete 1 3`
