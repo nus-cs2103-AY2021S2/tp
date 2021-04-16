@@ -9,6 +9,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 <summary>Table of Contents</summary>
 
 - [Quick start](#quick-start)
+- [Application Layout](#application-layout)
 - [Features](#features)
   * [`General`](#general)
     + [Access help page](#help)
@@ -62,7 +63,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 3. Copy the file to the folder you want to use as the _home folder_ for JJIMY.
 
 4. Double-click the file to start the app. The GUI[<sup>3</sup>](#glossary) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UiUG.png)
+   ![Ui](images/Ui.png)
 
 5. Type in command in the `command box` and press Enter to execute it.
 
@@ -71,9 +72,31 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 
 --------------------------------------------------------------------------------------------------------------------
 
+<a name="application-layout"></a>
+<details open>
+<summary class="dropdown-1">Application Layout</summary>
+
+In this section, you will be introduced the application layout of JJIMY to help you better understand each component
+on the application.
+
+![UiUG](images/UiUG.png)
+
+Component | Usage
+--------|-----------------
+Command Box | A text input field for you to input your commands.
+Result Display Box | The main display that shows the results of each command.
+Customer List | The list of customers you added.
+Menu List/ <br/> Order List/ <br/> Inventory List | The list of dishes/orders/ingredients you added.
+Component Tabs | An indicator of which list is currently showing in the GUI. <br/>You are also able to click on the different tab to display the respective list. 
+</details>
+
+--------------------------------------------------------------------------------------------------------------------
+
 <a name="features"></a>
 <details open>
 <summary class="dropdown-1">Features</summary>
+
+In this section, we will show you the available commands to be used in JJIMY to ease your usage.
 
 ### Usage
 
@@ -233,7 +256,6 @@ component command prefix/[INPUT] -flag
         In the event that there are uncompleted orders by the customer that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
         Examples:
-        ![JJIMY Customer Pane](images/jjimy-main.png)
         ```
         customer delete 2
         ```
@@ -246,7 +268,8 @@ component command prefix/[INPUT] -flag
 
         In the event that there are pending orders that have not been fulfilled that belong to customer 2, then deletion of the customer will not be allowed since we do not want to unknowingly delete orders that are still pending.
         If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior. Orders associated with the customer will be deleted and will no longer be shown in the order list or order history.
-        
+
+        ![JJIMY Customer Pane](images/jjimy-main.png)
         Using the above screenshot as an example, `customer delete 2` would delete "Bernice Yu" from the customers list. However, we can see on the right that there is an outstanding order that has not been completed that belong to her.
         Hence, if you are sure you want to delete her details, the command would be `customer delete 2 -f` instead. Upon deletion, the order that previously belonged to her will also be deleted from the application as well.
         <p>&nbsp;</p>
@@ -329,7 +352,7 @@ component command prefix/[INPUT] -flag
         ```
         menu list (-a)
         ```
-        To list the current available dishes only, a `-a` flag has to be added to the end of the command. The above command would list all the available/all dishes in the      right column of  the GUI[<sup>3</sup>](#glossary) in the sequence that they were added, with the most recent being at the top.
+        To list the current available dishes only, a `-a` flag has to be added to the end of the command. The above command would list all the available/all dishes in the right column of  the GUI[<sup>3</sup>](#glossary) in the sequence that they were added, with the most recent being at the top.
         Examples:
         ```
         menu list
@@ -494,12 +517,12 @@ component command prefix/[INPUT] -flag
         ```
         Example:
         ![OrderAddExample](images/order/OrderAddExample.png)
-        `Bernice Yu` has ordered a `burger` and 2 `chicken wings` on `14th Feb 2021 6:30pm`.
-        You can see on the customer list (right column) that `Bernice Yu` has an id of `2`.
+        `Bernice Yu` wants to ordered a `burger` and 2 `chicken wings` on `14th Feb 2021 6:30pm`.
+        You can see on the customer list (left column) that `Bernice Yu` has an id of `2`.
         While a `burger` has an id of `2`, `Chicken Wings` has an id of `3` on the menu list (right column).
         The command to be inputted will be:
         ```
-        order add n/2 dt/14-02-2021 18:30 d/1 q/1 d/3 q/1
+        order add n/2 dt/14-02-2021 18:30 d/2 q/1 d/3 q/2
         ```
         
         <p>&nbsp;</p>
@@ -611,7 +634,6 @@ component command prefix/[INPUT] -flag
  
         The above command displays the history of completed and cancelled orders in the right column of the GUI[<sup>3</sup>](#glossary). The list is in chronological sequence based on the order's date and time. 
         > Note: you cannot edit orders in order history. If the command `order edit [INDEX]` is called, the index in question refers to the `order list` which contains only uncompleted orders.
-
         
         <p>&nbsp;</p>
         
@@ -714,7 +736,20 @@ component command prefix/[INPUT] -flag
         If deleting any ingredient that is needed to any dishes is desired, then adding the `-f` at the
         end of the command acknowledges and confirms the deletion behavior. 
         Orders associated with the ingredient will be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
-        
+
+        ![JJIMY Inventory Pane](images/InventoryForceDelete1.png)
+        Using the above screenshot as an example, `inventory delete 1` would delete "Potato" from the inventory. 
+        However, we can see in the middle that "French Fries" uses "Potato" as ingredient.
+        At the same time, David Li has an outstanding order of "French Fries" as well.
+      
+        An error will be shown as below when `inventory delete 1` is entered.
+        ![JJIMY Inventory Pane](images/InventoryForceDelete2.png)
+        Hence, if you are sure you want to delete the ingredient, the command would be `inventory delete 2 -f` instead. 
+        Upon deletion, the dish that previously uses "Potato as ingredient" will be deleted as well as the order contains
+        that particular dish will be marked as cancelled.
+        ![JJIMY Inventory Pane](images/InventoryForceDelete3.png)
+        <p>&nbsp;</p>
+
         <p>&nbsp;</p>
         
         ---
