@@ -1,0 +1,14 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Parser <<Rectangle>>{
+Interface Parser <<interface>>
+AliasCommandParser .up.|> Parser
+AddAliasCommandParser .up.|> Parser
+DeleteAliasCommandParser .up.|> Parser
+ListAliasCommandParser .up.|> Parser
+}
+@enduml

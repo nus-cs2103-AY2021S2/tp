@@ -3,12 +3,19 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "company": "google",
+    "jobTitle": "hr manager",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "tagged": [ "photoshop" ],
+    "remark": "away from 2-3pm"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "company": "google",
+    "jobTitle": "hr manager",
+    "address": "4th street",
+    "tagged": [ "photoshop" ],
+    "remark": "away from 2-3pm"
   } ]
 }

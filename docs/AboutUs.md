@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About Us
+navigation_title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -9,51 +10,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Keng Iuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darkdestry-t.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/darkdestry-t)][[portfolio](team/darkdestry-t)]
 
-* Role: Project Advisor
+* Role: Team Leader
+* Responsibilities: Storage
 
-### Jane Doe
+### Justin Gnoh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/justgnohug.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/justgnohUG)][[portfolio](team/justgnohug.md)]
+<!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Team Lead
+* Role: Production
 * Responsibilities: UI
 
-### Johnny Doe
+### Boon Ji
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanboonji.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/tanboonji)]
+[[portfolio](team/tanboonji)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Documentation
+* Reponsibilities: Logic (excluding Commands)
 
-### Jean Doe
+### Yi Ping
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/oeiyiping.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/oeiyiping)]
+[[portfolio](team/oeiyiping)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation
+* Responsibilities: Model, Commands
 
-### James Doe
+### Yao Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yaowei-soc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/yaowei-soc)]
+[[portfolio](team/yaowei-soc)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Test

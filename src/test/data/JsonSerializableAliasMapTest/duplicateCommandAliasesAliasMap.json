@@ -1,0 +1,9 @@
+{
+  "commandAliases": [ {
+    "alias": "a",
+    "command": "add"
+  }, {
+    "alias": "a",
+    "command": "add"
+  } ]
+}

@@ -2,15 +2,17 @@ package seedu.address.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
- *     e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.<br>
- * 1. An argument's value can be an empty string e.g. the value of {@code k/} in the above example.<br>
+ *     e.g. {@code some preamble text -t 11.00 -t 12.00 -k -m July}  where prefixes are {@code -t -k -m}.<br>
+ * 1. An argument's value can be an empty string e.g. the value of {@code -k} in the above example.<br>
  * 2. Leading and trailing whitespaces of an argument value will be discarded.<br>
- * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code t/}
+ * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code -t}
  *    in the above example.<br>
  */
 public class ArgumentTokenizer {
@@ -24,8 +26,31 @@ public class ArgumentTokenizer {
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+        argsString += " ";
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    /**
+     * Gets last prefix arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
+     * respective argument values. Only the given prefixes will be recognized in the arguments string.
+     *
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixes   Prefixes to tokenize the arguments string with
+     * @return           {@code Optional<Prefix>} object that contains the last prefix in the arguments
+     */
+    public static Optional<Prefix> getLastPrefix(String argsString, Prefix... prefixes) {
+        argsString += " ";
+        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
+
+        if (positions.size() == 0) {
+            return Optional.empty();
+        }
+
+        // Sort by start position
+        positions.sort(Comparator.comparingInt(PrefixPosition::getStartPosition));
+
+        return Optional.of(positions.get(positions.size() - 1).getPrefix());
     }
 
     /**
@@ -63,14 +88,14 @@ public class ArgumentTokenizer {
      * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
      * such occurrence can be found.
      *
-     * E.g if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
+     * E.g if {@code argsString} = "-e hi-p900", {@code prefix} = "-p" and
      * {@code fromIndex} = 0, this method returns -1 as there are no valid
-     * occurrences of "p/" with whitespace before it. However, if
-     * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
+     * occurrences of "-p" with whitespace before it. However, if
+     * {@code argsString} = "-e hi -p 900", {@code prefix} = "-p" and
      * {@code fromIndex} = 0, this method returns 5.
      */
     private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
-        int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
+        int prefixIndex = argsString.indexOf(" " + prefix + " ", fromIndex);
         return prefixIndex == -1 ? -1
                 : prefixIndex + 1; // +1 as offset for whitespace
     }

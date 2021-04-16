@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,5 +36,19 @@ public class CommandParserTestUtil {
         } catch (ParseException pe) {
             assertEquals(expectedMessage, pe.getMessage());
         }
+    }
+
+    /**
+     * Asserts that the validCommandToAlias of {@code userInput} by {@code parser} is successful.
+     */
+    public static void assertValidCommandToAliasSuccess(Parser parser, String userInput) {
+        assertTrue(parser.isValidCommandToAlias(userInput));
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful.
+     */
+    public static void assertValidCommandToAliasFailure(Parser parser, String userInput) {
+        assertFalse(parser.isValidCommandToAlias(userInput));
     }
 }

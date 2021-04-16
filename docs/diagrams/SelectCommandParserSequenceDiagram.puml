@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+'participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR_T4
+participant ":SelectCommandParser" as SelectCommandParser LOGIC_COLOR_T4
+participant ":SelectIndexCommandParser" as SelectIndexCommandParser LOGIC_COLOR_T4
+participant ":SelectClearCommand" as SelectClearCommand LOGIC_COLOR
+participant ":SelectShowCommand" as SelectShowCommand LOGIC_COLOR
+
+'[-> AddressBookParser : parseCommand()
+'AddressBookParser -> SelectCommandParser : parse(arguments)
+
+[-> SelectCommandParser: parse(arguments)
+
+
+alt select INDEX or shown
+  SelectCommandParser -> SelectIndexCommandParser
+  ref over SelectIndexCommandParser
+    SelectIndexCommandParser parse logic
+  end ref
+  SelectIndexCommandParser --> SelectCommandParser
+else select clear
+  create SelectClearCommand
+  SelectCommandParser -> SelectClearCommand: new SelectClearCommand()
+  SelectClearCommand --> SelectCommandParser
+else select show
+  create SelectShowCommand
+  SelectCommandParser -> SelectShowCommand : new SelectShowCommand()
+  SelectShowCommand --> SelectCommandParser
+end
+
+[<--SelectCommandParser : SelectCommand
+'SelectCommandParser --> AddressBookParser : SelectCommand
+'[<--AddressBookParser : Command
+
+@enduml
+
+@startuml
+!include style.puml
+
+participant ":SelectIndexCommandParser" as SelectIndexCommandParser LOGIC_COLOR_T4
+participant ":SelectIndexCommand" as SelectIndexCommand LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil USER_COLOR
+
+group sd SelectIndexCommandParser parse logic
+    alt is special index: shown
+      SelectIndexCommandParser -> SelectIndexCommand : new SelectIndexCommand()
+      SelectIndexCommand --> SelectIndexCommandParser
+    else indexes supplied
+      SelectIndexCommandParser -> ParserUtil : parseIndexes(args)
+      ParserUtil --> SelectIndexCommandParser: indexes
+      SelectIndexCommandParser -> SelectIndexCommand : new SelectIndexCommand(indexes)
+      SelectIndexCommand --> SelectIndexCommandParser
+    end
+end
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":Model" as Model LOGIC_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant ":PersonListPanel" as PersonListPanel MODEL_COLOR
+participant ":PersonListView" as PersonListView MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand(text)
+'activate MainWindow
+
+MainWindow -> Logic : execute(text)
+'activate Logic
+
+Logic -> Model : updateDisplayFilter(predicate)
+'activate Model
+
+'Model --> Logic
+'deactivate Model
+
+'Logic --> MainWindow
+'deactivate Logic
+
+MainWindow -> PersonListPanel : updateDisplayFilter(predicate)
+'activate PersonListPanel
+
+PersonListPanel -> PersonListView : refresh()
+'activate PersonListView
+
+'PersonListView --> PersonListPanel
+'deactivate PersonListView
+
+'PersonListPanel --> MainWindow
+'deactivate PersonListPanel
+
+'[<--MainWindow
+'deactivate MainWindow
+@enduml

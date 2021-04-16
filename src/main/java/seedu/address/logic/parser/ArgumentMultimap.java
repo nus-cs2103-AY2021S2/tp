@@ -57,4 +57,12 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Returns the number of arguments.
+     * @return Map size
+     */
+    public int getArgumentSize() {
+        return argMultimap.size();
+    }
 }

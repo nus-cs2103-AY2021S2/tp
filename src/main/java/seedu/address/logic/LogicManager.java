@@ -1,19 +1,54 @@
 package seedu.address.logic;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AliasCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EmailCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -21,12 +56,16 @@ import seedu.address.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
+
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private boolean shouldReturnAlias = false;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -42,11 +81,14 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText, model.getAliasMap());
         commandResult = command.execute(model);
+
+        shouldReturnAlias = commandResult.isShowAlias();
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveAliasMap(model.getAliasMap());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -57,6 +99,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
+    }
+
+    @Override
+    public ReadOnlyUniqueAliasMap getAliasMap() {
+        return model.getAliasMap();
     }
 
     @Override
@@ -77,5 +124,142 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public DisplayFilterPredicate getDisplayFilter() {
+        return model.getDisplayFilter();
+    }
+
+    @Override
+    public ObservableList<String> getAutocompleteCommands(String value) {
+        List<String> commandList = new ArrayList<>();
+        commandList.add(AddCommand.COMMAND_WORD);
+        commandList.add(EmailCommand.COMMAND_WORD);
+        commandList.add(EditCommand.COMMAND_WORD);
+        commandList.add(DeleteCommand.COMMAND_WORD);
+        commandList.add(ClearCommand.COMMAND_WORD);
+        commandList.add(FindCommand.COMMAND_WORD);
+        commandList.add(ListCommand.COMMAND_WORD);
+        commandList.add(FilterCommand.COMMAND_WORD);
+        commandList.add(ExitCommand.COMMAND_WORD);
+        commandList.add(HelpCommand.COMMAND_WORD);
+        commandList.add(AliasCommand.COMMAND_WORD);
+        commandList.add(TagCommand.COMMAND_WORD);
+        commandList.add(SelectCommand.COMMAND_WORD);
+        Collections.sort(commandList);
+
+        if (shouldReturnAlias) {
+            shouldReturnAlias = false;
+            return FXCollections.observableList(getCommandAliasesStringList());
+        } else {
+            if (value == null || value.isEmpty()) {
+                return FXCollections.observableList(commandList);
+            } else {
+                assert (!value.isEmpty());
+                List<String> filteredCommandList = commandList
+                        .stream()
+                        .filter((command) -> command.startsWith(value))
+                        .collect(Collectors.toList());
+
+                return FXCollections.observableList(filteredCommandList);
+            }
+        }
+    }
+
+    @Override
+    public List<String> getAutocompleteFlags(String command) {
+        if (command.equals(AddCommand.COMMAND_WORD) || command.equals(EditCommand.COMMAND_WORD)) {
+            List<String> flagList = new ArrayList<>();
+            flagList.add(CliSyntax.PREFIX_NAME.getPrefix());
+            flagList.add(CliSyntax.PREFIX_PHONE.getPrefix());
+            flagList.add(CliSyntax.PREFIX_EMAIL.getPrefix());
+            flagList.add(CliSyntax.PREFIX_COMPANY.getPrefix());
+            flagList.add(CliSyntax.PREFIX_JOB_TITLE.getPrefix());
+            flagList.add(CliSyntax.PREFIX_ADDRESS.getPrefix());
+            flagList.add(CliSyntax.PREFIX_REMARK.getPrefix());
+            flagList.add(CliSyntax.PREFIX_TAG.getPrefix());
+
+            return flagList;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<String> filterExistingFlags(String currentStrings, String command) {
+        List<String> flags = getAutocompleteFlags(command);
+        flags.removeIf(currentStrings::contains);
+        return flags;
+    }
+
+    @Override
+    public boolean isAutocompleteFlag(String commandStrings) {
+        if (commandStrings == null) {
+            return false;
+        }
+        if (commandStrings.length() == 0) {
+            return false;
+        }
+
+        if (commandStrings.startsWith(AddCommand.COMMAND_WORD + " ")
+                || commandStrings.startsWith(EditCommand.COMMAND_WORD + " ")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public List<String> getAvailableFlags(String commandStrings) {
+        boolean isAutocompleteFlag = this.isAutocompleteFlag(commandStrings);
+
+        if (!isAutocompleteFlag) {
+            return null;
+        }
+
+        // Initialize matcher
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandStrings.trim());
+        matcher.matches();
+        String commandWord = matcher.group("commandWord");
+        String arguments = matcher.group("arguments");
+
+        // Prefixes for ADD and EDIT commands are the same
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
+
+        if (commandWord.equals(AddCommand.COMMAND_WORD) && argMultiMap.getPreamble().length() == 0) {
+            // Get possible flags for "ADD" command
+            List<String> availFlags = this.filterExistingFlags(commandStrings, AddCommand.COMMAND_WORD);
+            if (!availFlags.isEmpty()) {
+                return availFlags;
+            }
+        }
+
+        if (commandWord.equals(EditCommand.COMMAND_WORD)) {
+            try {
+
+                Integer.parseInt(argMultiMap.getPreamble());
+
+                List<String> availFlags = this.filterExistingFlags(commandStrings,
+                        EditCommand.COMMAND_WORD);
+                if (!availFlags.isEmpty()) {
+                    return availFlags;
+                }
+            } catch (NumberFormatException e) {
+                logger.info("Edit Command does not have an index. Autocomplete flags failed...");
+            }
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public Predicate<Person> getSelectedPersonPredicate() {
+        return model.getSelectedPersonPredicate();
+    }
+
+    @Override
+    public List<String> getCommandAliasesStringList() {
+        return model.getCommandAliasesStringList();
     }
 }

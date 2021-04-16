@@ -1,10 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +87,81 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns the alias map */
+    ReadOnlyUniqueAliasMap getAliasMap();
+
+    /**
+     * Adds the given command alias.
+     * {@code commandAlias} must not already exist in the alias map.
+     */
+    void addAlias(CommandAlias commandAlias);
+
+    /**
+     * Deletes the given alias.
+     * The alias must exist in the alias map.
+     */
+    void deleteAlias(Alias alias);
+
+    /**
+     * Returns true if an alias with the same identity as {@code alias} exists in the alias map.
+     */
+    boolean hasAlias(Alias alias);
+
+    /**
+     * Returns true if a command alias with the same identity as {@code commandAlias} exists in the alias map.
+     */
+    boolean hasCommandAlias(CommandAlias commandAlias);
+
+    /**
+     * Returns command alias of the alias in alias map.
+     * If alias is not found, null is returned.
+     */
+    CommandAlias getCommandAlias(Alias alias);
+
+    /**
+     * Returns the number of command aliases.
+     */
+    int getNumOfCommandAlias();
+
+    /**
+     * Updates display filter that determines PersonCard control visibility.
+     * @param displayFilterPredicate that returns true if prefix linked control should be shown.
+     */
+    void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate);
+
+    /**
+     * Returns display filter that determines field control visibility.
+     * @return predicate that returns true if prefix linked control should be shown.
+     */
+    DisplayFilterPredicate getDisplayFilter();
+
+    /**
+     * Updates the select person list by appending to the existing selection.
+     * Does not apply the filter on the person list.
+     * @param selectedPersonList appends selected person list
+     * @throws NullPointerException if {@code selectedPersonList} is null.
+     */
+    void updateSelectedPersonList(List<Person> selectedPersonList);
+
+    /**
+     * Clears the selected person list and lists all persons.
+     */
+    void clearSelectedPersonList();
+
+    /**
+     * Applies and update the filter of the filtered person list to show only selected.
+     */
+    void applySelectedPredicate();
+
+    /**
+     * Returns predicate that determines a Person objects selected state.
+     * @return predicate that is true if Person object is selected
+     */
+    Predicate<Person> getSelectedPersonPredicate();
+
+    /**
+     * Returns a list of command aliases in String.
+     */
+    List<String> getCommandAliasesStringList();
 }

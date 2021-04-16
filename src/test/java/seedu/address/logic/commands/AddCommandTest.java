@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,9 +18,13 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -145,6 +150,76 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyUniqueAliasMap getAliasMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(CommandAlias commandAlias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCommandAlias(CommandAlias commandAlias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CommandAlias getCommandAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DisplayFilterPredicate getDisplayFilter() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedPersonList(List<Person> selectedPersonList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumOfCommandAlias() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearSelectedPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void applySelectedPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Predicate<Person> getSelectedPersonPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<String> getCommandAliasesStringList() {
             throw new AssertionError("This method should not be called.");
         }
     }

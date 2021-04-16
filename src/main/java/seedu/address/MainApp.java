@@ -19,11 +19,15 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UniqueAliasMap;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.AliasMapStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonAliasMapStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -36,15 +40,26 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 4, 0, false);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
+    private static Application applicationInstance;
 
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
+
+    /**
+     * Exposes an instance of JavaFX Application.
+     *
+     * @return {@code Application} instance
+     */
+    public static Application getInstance() {
+        return applicationInstance;
+    }
 
     @Override
     public void init() throws Exception {
@@ -57,7 +72,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AliasMapStorage aliasMapStorage = new JsonAliasMapStorage(userPrefs.getAliasMapFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, aliasMapStorage);
 
         initLogging(config);
 
@@ -66,31 +82,52 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+        applicationInstance = this;
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book, {@code storage}'s alias map and
+     * {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * An empty alias map will be used instead if {@code storage}'s alias map is not found or if errors occur when
+     * reading {@code storage}'s alias map.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        ReadOnlyAddressBook initialAddressBookData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialAddressBookData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialAddressBookData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialAddressBookData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyUniqueAliasMap> aliasMapOptional;
+        ReadOnlyUniqueAliasMap initialAliasMapData;
+        try {
+            aliasMapOptional = storage.readAliasMap();
+            if (aliasMapOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with an empty AliasMap");
+            }
+            initialAliasMapData = aliasMapOptional.orElse(new UniqueAliasMap());
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty AliasMap");
+            initialAliasMapData = new UniqueAliasMap();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty AliasMap");
+            initialAliasMapData = new UniqueAliasMap();
+        }
+
+        return new ModelManager(initialAddressBookData, userPrefs, initialAliasMapData);
     }
 
     private void initLogging(Config config) {

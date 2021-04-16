@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+
 /**
  * Helper functions for handling strings.
  */
@@ -64,5 +66,23 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Returns the similarity ratio of case insensitive fuzzy search using partial ratio if query is shorter and
+     * using simple ratio if data is shorter.
+     * e.g. query: Sam, data: samantha
+     * Will return {@code FuzzySearch.partialRatio("sam", "samantha")}
+     * e.g. query: Recruiter, data: IT
+     * will return {@code FuzzySearch.ratio("recruiter", "it")}
+     * @param query query string to be matched with
+     * @param data data string to be matched against
+     * @return percentage similarity between query string and data string according to described matching method
+     */
+    public static int oneWayPartialFuzzyMatch(String query, String data) {
+        if (data.length() < query.length()) {
+            return FuzzySearch.ratio(query, data, String::toLowerCase);
+        }
+        return FuzzySearch.partialRatio(query, data, String::toLowerCase);
     }
 }

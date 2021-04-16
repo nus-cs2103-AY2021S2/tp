@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,8 +35,15 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private AutocompleteListPanel autocompleteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBox;
+
+    private String lastFlag = "";
+    private List<String> currentList = new ArrayList<>();
+    private boolean toggleable = true;
+    private boolean showAlias = false;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane autocompleteListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,6 +79,107 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            switch (event.getCode()) {
+            case ENTER:
+                currentList.clear();
+                break;
+            case TAB:
+                if (toggleable) {
+                    processKeyTabPress(logic, event);
+                }
+                break;
+            case UP:
+                processKeyUpPress();
+                break;
+            case DOWN:
+                processKeyDownPress();
+                break;
+            default:
+                break;
+            }
+
+        });
+    }
+
+    private void processKeyDownPress() {
+        personListPanel.selectNext((value) -> {
+            commandBox.setAndAppendIndex(value);
+        });
+    }
+
+    private void processKeyUpPress() {
+        personListPanel.selectPrev((value) -> {
+            commandBox.setAndAppendIndex(value);
+        });
+    }
+
+    private void processKeyTabPress(Logic logic, KeyEvent event) {
+        String currentlyInBox = commandBox.getTextFieldText();
+
+        if (currentlyInBox == null) {
+            return;
+        }
+
+        List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
+
+        if (availFlags != null) {
+            lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
+
+            // Check if lastFlag has content
+            if ((lastFlag.split(" ").length > 1
+                    || lastFlag.startsWith(AddCommand.COMMAND_WORD + " "))
+                    && !availFlags.isEmpty()) {
+
+                commandBox.setAndAppendFlag(availFlags.get(0) + " ");
+
+                // Removes flag content
+                lastFlag = lastFlag.split(" ")[0];
+
+                if (currentList.isEmpty()) {
+                    return;
+                }
+                currentList = availFlags;
+                currentList.remove(availFlags.get(0));
+            } else {
+                // Cycling through Flags
+
+                if (!logic.getAutocompleteFlags(AddCommand.COMMAND_WORD)
+                        .contains(("-" + lastFlag).trim())) {
+                    return;
+                }
+
+                // Populate currentList
+                if (currentList.isEmpty()) {
+                    currentList = availFlags;
+                }
+                String addBack = "-" + lastFlag;
+
+                // String without current flag
+                String rollBackString = currentlyInBox.split(addBack)[0];
+
+                // Updated text if flags available
+                if (!availFlags.isEmpty()) {
+                    commandBox.setTextValue(rollBackString + currentList.get(0) + " ");
+                }
+
+                currentList.remove(0);
+
+                if (!currentList.contains(addBack + " ")) {
+                    currentList.add(addBack.trim());
+                }
+            }
+        } else {
+            autocompleteListPanel.processTabKey((value) -> {
+                if (value == null) {
+                    commandBox.setTextValue(commandBox.getTextFieldText());
+                } else {
+                    commandBox.setTextValue(value);
+                }
+            });
+            event.consume();
+        }
     }
 
     public Stage getPrimaryStage() {
@@ -110,8 +224,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(),
+                logic.getDisplayFilter(), logic.getSelectedPersonPredicate());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        autocompleteListPanel = new AutocompleteListPanel();
+        autocompleteListPanelPlaceholder.getChildren().add(autocompleteListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -119,7 +237,20 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
+        // Pre-populates list
+        autocompleteListPanel.updateList(logic.getAutocompleteCommands(""));
+        commandBox.setKeyUpCallback((value) -> {
+            // Update autocomplete list on keyup
+            autocompleteListPanel.updateList(logic.getAutocompleteCommands(value));
+
+            if (showAlias) {
+                toggleable = false;
+                showAlias = false;
+            } else {
+                toggleable = true;
+            }
+        });
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -140,10 +271,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
+        if (helpWindow.isShowing()) {
             helpWindow.focus();
+        } else {
+            helpWindow.show();
         }
     }
 
@@ -185,6 +316,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            if (commandResult.isShowAlias()) {
+                showAlias = commandResult.isShowAlias();
+            }
+
+            personListPanel.updateDisplayFilter(logic.getDisplayFilter());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

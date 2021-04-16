@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 public class ArgumentTokenizerTest {
@@ -53,6 +55,14 @@ public class ArgumentTokenizerTest {
         assertFalse(argMultimap.getValue(prefix).isPresent());
     }
 
+    private void assertOptionalPrefixEmpty(Optional<Prefix> optionalPrefix) {
+        assertTrue(optionalPrefix.isEmpty());
+    }
+
+    private void assertOptionalPrefixPresent(Optional<Prefix> optionalPrefix) {
+        assertTrue(optionalPrefix.isPresent());
+    }
+
     @Test
     public void tokenize_noPrefixes_allTakenAsPreamble() {
         String argsString = "  some random string /t tag with leading and trailing spaces ";
@@ -82,7 +92,7 @@ public class ArgumentTokenizerTest {
     @Test
     public void tokenize_multipleArguments() {
         // Only two arguments are present
-        String argsString = "SomePreambleString -t dashT-Value p/pSlash value";
+        String argsString = "SomePreambleString -t dashT-Value p/ pSlash value";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreamblePresent(argMultimap, "SomePreambleString");
         assertArgumentPresent(argMultimap, pSlash, "pSlash value");
@@ -90,7 +100,7 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, hatQ);
 
         // All three arguments are present
-        argsString = "Different Preamble String ^Q111 -t dashT-Value p/pSlash value";
+        argsString = "Different Preamble String ^Q 111 -t dashT-Value p/ pSlash value";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreamblePresent(argMultimap, "Different Preamble String");
         assertArgumentPresent(argMultimap, pSlash, "pSlash value");
@@ -128,12 +138,41 @@ public class ArgumentTokenizerTest {
 
     @Test
     public void tokenize_multipleArgumentsJoined() {
-        String argsString = "SomePreambleStringp/ pSlash joined-tjoined -t not joined^Qjoined";
+        String argsString = "SomePreambleStringp/ pSlash joined-tjoined -t not joined ^Qjoined joined^Q joined";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreamblePresent(argMultimap, "SomePreambleStringp/ pSlash joined-tjoined");
         assertArgumentAbsent(argMultimap, pSlash);
-        assertArgumentPresent(argMultimap, dashT, "not joined^Qjoined");
+        assertArgumentPresent(argMultimap, dashT, "not joined ^Qjoined joined^Q joined");
         assertArgumentAbsent(argMultimap, hatQ);
+    }
+
+    @Test
+    public void getLastPrefix_noArguments_returnsEmptyOptionalPrefix() {
+        String argsString = "";
+        Optional<Prefix> optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
+        assertOptionalPrefixEmpty(optionalPrefix);
+    }
+
+    @Test
+    public void getLastPrefix_oneArgument_returnsPresentOptionalPrefix() {
+        String argsString = "SomePreambleString p/ pSlash not joined";
+        Optional<Prefix> optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
+        assertOptionalPrefixPresent(optionalPrefix);
+
+        argsString = "SomePreambleString -t not joined";
+        optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
+        assertOptionalPrefixPresent(optionalPrefix);
+
+        argsString = "SomePreambleString ^Q not joined";
+        optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
+        assertOptionalPrefixPresent(optionalPrefix);
+    }
+
+    @Test
+    public void getLastPrefix_multipleArguments_returnsPresentOptionalPrefix() {
+        String argsString = "SomePreambleString p/ pSlash not joined -t not joined -t not joined ^Q not joined";
+        Optional<Prefix> optionalPrefix = ArgumentTokenizer.getLastPrefix(argsString, pSlash, dashT, hatQ);
+        assertEquals(hatQ, optionalPrefix.get());
     }
 
     @Test

@@ -1,0 +1,6 @@
+{
+  "commandAliases": [ {
+    "alias": "z",
+    "command": "zzz"
+  } ]
+}

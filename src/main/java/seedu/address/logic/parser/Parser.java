@@ -13,4 +13,10 @@ public interface Parser<T extends Command> {
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     T parse(String userInput) throws ParseException;
+
+    /**
+     * Returns true if {@code userInput} is a valid command to be aliased.
+     */
+    boolean isValidCommandToAlias(String userInput);
+
 }
