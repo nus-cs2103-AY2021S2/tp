@@ -113,7 +113,7 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 # Understanding Command Syntax
 
-A-Bash Book utilises the Command Line Interface (CLI) which is a text-based interface for users to enter commands. In order to interpret commands correctly, these commands have to be structured properly. This is known as the **syntax** where a specific arrangement of words and parameters form a command that A-Bash Book can understand.
+A-Bash Book utilises the [Command Line Interface (CLI)](#glossary) which is a text-based interface for users to enter commands. In order to interpret commands correctly, these commands have to be structured properly. This is known as the **syntax** where a specific arrangement of words and parameters form a command that A-Bash Book can understand.
 
 <div markdown="block" class="alert alert-info">
 
@@ -353,7 +353,7 @@ Finds persons whose fields contain any of the given keywords.
 * Words are partially matched. e.g. `sam` will match `Samantha`.
 * Similar words are matched. e.g. `Shawn` with match `Shaun`.
 * Partially similar words will also be matched as a result of the above. e.g. `Ben` will match `Elizabeth` as `bet` in `Elizabeth` is 1 character away from `Ben`.
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* Persons matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber` and `Bo Yang`.
 
 ![Find Command UI](images/UG_Find%20Command.png)
 
@@ -755,7 +755,7 @@ A-Bash Book data is saved in the hard disk automatically after any command that 
 
 ## Editing the Data File
 
-A-Bash Book data is saved as a JSON file `[JAR file location]/data/abashbook.json`. Advanced users
+A-Bash Book data is saved as a [JSON](#glossary) file `[JAR file location]/data/abashbook.json`. Advanced users
 are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">
@@ -841,7 +841,6 @@ Install the app in the other computer and overwrite the empty data file it creat
 | CLI              | Command Line Interface. A text-based interface in which commands can be entered.                                                                                                                   |
 | GUI              | Graphical User Interface. Interactive visual components of an application.                                                                                                                         |
 | JSON             | JavaScript Object Notation. A data storage format.                                                                                                                                                 |
-| Terminal         | The Command Line Interface where text-based commands are entered.                                                                                                                                  |
 | Case-insensitive | Uppercase `ABC` and lowercase `abc` letters are treated as being the same. <br> - `Alex Yeoh` and `alex yeoh` are treated as the same. <br> - `Photoshop` and `photoshop` are treated as the same. | 
 
 {% include back-to-toc.html %}
