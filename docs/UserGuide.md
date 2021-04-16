@@ -13,7 +13,7 @@ GreenMileageEfforts (GME) is an efficient carpooling management solution designe
 # 1. Introduction
 
 ## 1.1 Welcome to GreenMileageEfforts
-As a Human Resource (HR) manager of a large company, you might be in need of an efficient way of managing your company's carpooling initiative, the GME system is designed to do just that. GME provides you with a suite of tools to use in the creation and management of groups of employees who are looking to carpool to and from their office. Through the GME system, you can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of both the passengers, and the arranged carpooling groups, allowing you to easily access and manage the [pools](#6-glossary) of employees.
+As a Human Resource (HR) manager of a large company, you might be in need of an efficient way of managing your company's carpooling initiative, the GME system is designed to do just that. GME provides you with a suite of tools to use in the creation and management of employees looking to carpool to and from their office. Through the GME system, you can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of both the passengers, and the arranged carpooling groups, allowing you to easily access and manage the [pools](#6-glossary) of employees.
 
 ## 1.2 Navigating the User Guide
 For help with the setup of GME, refer to the [“Quick Start"](#2-quick-start-) section.
@@ -91,7 +91,7 @@ The drivers are also displayed as cards like in this example:
 
 ### 3.1.2 Viewing help : `help`
 
-Shows a message with a quick summary of the available commands and how to format them. It also provides a link to the user guide for more information.
+Shows a message with a quick summary of the available commands and how to format them. It also provides you with a link to the user guide for more information.
 
 ![help message](images/helpMessage.png)
 
@@ -314,7 +314,7 @@ Lists the pools currently stored in the GME terminal.
 
 **Q:** Where can I find the data stored by GME terminal?
 
-**A:** The [JSON](#6-glossary) file containing the data stored is named **GMEdata.json** and can be found in the **data** folder in the same directory where **[CS2103T-W10-1][GreenMileageEfforts].jar** file is saved.
+**A:** The [JSON](#6-glossary) file containing the data stored is named **GMEdata.json** and you can find it in the **data** folder in the same folder where **[CS2103T-W10-1][GreenMileageEfforts].jar** file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
