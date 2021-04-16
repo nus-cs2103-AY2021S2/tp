@@ -29,11 +29,11 @@ A-Bash Book was built to solve this problem by ensuring all the necessary contac
 
 {% include back-to-toc.html %}
 
-# User Interface
+# Graphical User Interface
 
 ![Ui](images/UG_UI%20Guide.png)
 
-A-Bash Book's user interface can be categorized into 4 components.
+A-Bash Book's [graphical user interface](#glossary) can be categorized into 4 components.
 - Command Box
 - Result Display
 - Command List Panel
@@ -111,21 +111,19 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 --------------------------------------------------------------------------------------------------------------------
 
-# CLI Syntax
+# Understanding Command Syntax
+
+A-Bash Book utilises the Command Line Interface (CLI) which is a text-based interface for users to enter commands. In order to interpret commands correctly, these commands have to be structured properly. This is known as the **syntax** where a specific arrangement of words and parameters form a command that A-Bash Book can
+understand.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note**<br>
 
-For seasoned CLI users, this section is intended for users who are unfamiliar with CLI and the syntax.
-Feel free to skip to [Features](#features).
+For seasoned CLI users, A-Bash Book uses command syntax which are similar to your typical command line.
+If you are already familiar with the command syntax, feel free to skip to [Features](#features).
 
 </div>
-
-Command Line Interface (CLI) is a text-based interface in which commands are entered. A-Bash Book is
-CLI-based and will only interpret commands that are structured properly. This is called the
-**syntax** where a specific arrangement of words and parameters form a command that A-Bash Book can
-understand.
 
 {% include back-to-toc.html %}
 
@@ -206,7 +204,7 @@ Invalid examples are:
 
 {% include back-to-toc.html %}
 
-## Miscellaneous Information
+## Additional Information
 
 - If a parameter is expected only once in the command, but is specified multiple times, only the
   last occurrence of the parameter will be taken.<br>
@@ -219,6 +217,8 @@ Invalid examples are:
 - `shown` is a special index that refers to all persons that are visible in the filtered person
   list. e.g. `find surname` shows 10 persons. Executing `select shown` will select all 10 of the
   persons.
+  
+- `selected` is a special index that refers to all persons that are selected using the [Select Command](#selecting-persons--select).
 
 {% include back-to-toc.html %}
 
@@ -230,8 +230,7 @@ Invalid examples are:
 
 **:information_source: Note**<br>
 
-If you are not familiar with CLI and the syntax, please refer to the [CLI Syntax](#cli-syntax)
-before proceeding.
+If you are not familiar with the command syntax, please refer to the [Command Syntax](#understanding-command-syntax) before proceeding.
 
 </div>
 
@@ -241,14 +240,8 @@ Adds a person to the address book.
 
 **Format**: `add -n NAME -p PHONE_NUMBER -e EMAIL -c COMPANY -j JOB_TITLE -a ADDRESS [-r REMARK] [-t TAG]...`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
 * A person can have no remark.
-* A person can have any number of tags (including 0).
-
-</div>
+* A person can have zero or more tags.
 
 ![Add Command UI](images/UG_Add%20Command.png)
 
@@ -262,27 +255,21 @@ Adds a person to the address book.
 
 {% include back-to-toc.html %}
 
-## Editing Person(s) : `edit`
+## Editing Persons: `edit`
 
-Allows you to edit one or more person in the address book.
+Edits the specified persons in the address book.
 
 **Format**: `edit { shown | selected | INDEX... } [-n NAME] [-p PHONE] [-c COMPANY] [-j JOB_TITLE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]...`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer**, i.e 1, 2, 3, ...
+* Edits the person at the specified `INDEX`, `INDEX...`, shown or selected persons. The index refers to the index number shown in the displayed person list. The index **must be a positive integer**, i.e 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing remark, the existing remark of the person will be removed, i.e adding of remark is not cumulative.
 * When editing tags, the existing tags of the person will be removed, i.e adding of tags is not cumulative.
 * To remove the person’s remark, type `-r` without specifying any remark after it.
 * To remove all the person’s tags, type `-t` without specifying any tags after it.
-* To edit all the shown person, type `edit shown`
-* To edit all the selected person, type `edit selected` followed by the parameters
-
-</div>
+* To edit all the shown persons, type `edit shown`.
+* To edit all the selected persons, type `edit selected` followed by the parameters.
 
 ![Edit Command UI](images/UG_Edit%20Command.png)
 
@@ -300,7 +287,7 @@ Allows you to edit one or more person in the address book.
 
 **:bulb: Tip**<br>
 
-You can do bulk edit with:
+You can bulk edit persons with:
 * `edit 1 2 3` to edit persons at indexes 1, 2 and 3
 * `edit shown` to edit all the shown persons
 * `edit selected` to edit all the selected persons
@@ -309,24 +296,18 @@ You can do bulk edit with:
 
 {% include back-to-toc.html %}
 
-## Deleting Persons : `delete`
+## Deleting Persons: `delete`
 
-Deletes the specified person(s) from the address book.
+Deletes the specified persons in the address book.
 
 **Format**: `delete { shown | selected | INDEX... }`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-* Deletes the person at the specified `INDEX`/`INDEX...` or shown person list or selected list.
+* Deletes the person at the specified `INDEX`, `INDEX...`, shown or selected persons.
 * The command **operates on the shown list** that may be modified by an earlier command.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer**, i.e 1, 2, 3, ...
-* To delete all the shown person, type `delete shown`
-* To delete all the selected person, type `delete selected`
-
-</div>
+* To delete all the shown persons, type `delete shown`.
+* To delete all the selected persons, type `delete selected`.
 
 ![Delete Command UI](images/UG_Delete%20Command.png)
 
@@ -343,14 +324,16 @@ Deletes the specified person(s) from the address book.
 
 **:bulb: Tip**<br>
 
-You can do bulk delete with either `delete 1 2 3` to delete indexes 1, 2 and 3
-or `delete shown` to delete all the shown persons.
+You can bulk delete persons with:
+* `delete 1 2 3` to delete persons at indexes 1, 2 and 3
+* `delete shown` to delete all the shown persons
+* `delete selected` to delete all the selected persons
 
 </div>
 
 {% include back-to-toc.html %}
 
-## Listing All Person(s) : `list`
+## Listing All Persons: `list`
 
 Lists all persons in the address book.
 
@@ -360,25 +343,17 @@ Lists all persons in the address book.
 
 ## Locating Persons: `find`
 
-Finds person(s) whose field(s) contain any of the given keywords.
+Finds persons whose fields contain any of the given keywords.
 
 **Format**: `find { KEYWORD... | -n NAME... | -e EMAIL... | -t TAG... | -r REMARK... }`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-* Currently searchable fields: Name, Email, Tag, Remark
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Words are partially matched. e.g `sam` will match `Samantha`
-* Similar words are matched. e.g `Shawn` with match `Shaun`
-* Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth`
-    * `bet` in `Elizabeth` is 1 character away from `Ben`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-</div>
+* Currently searchable fields: Name, Email, Tag, Remark.
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* Words are partially matched. e.g `sam` will match `Samantha`.
+* Similar words are matched. e.g `Shawn` with match `Shaun`.
+* Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth` as `bet` in `Elizabeth` is 1 character away from `Ben`.
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 ![Find Command UI](images/UG_Find%20Command.png)
 
@@ -405,15 +380,8 @@ The `find` command will execute for specific fields if you specify the respectiv
 
 **Format**: `find {-n NAME... | -e EMAIL... | -t TAG... | -r REMARK... }`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-* Refer to [Field Summary](#field-summary) for the full list of fields and their corresponding command flags.
-* Currently searchable fields: Name, Email, Tag, Remark
-* You can only search 1 field at a time. e.g. `find -n Alice -t HR` is an invalid command
-
-</div>
+* Currently searchable fields: Name, Email, Tag, Remark.
+* You can only search 1 field at a time. e.g. `find -n Alice -t HR` is an invalid command.
 
 **Examples**:
 
@@ -427,26 +395,15 @@ The `find` command will execute for specific fields if you specify the respectiv
 
 ## Filter Field Visibility: `filter`
 
-Filter command allows you to toggle the visibility of person fields to allow you to hide fields that
-you are not interested in.
+Toggle the visibility of person fields to allow you to hide fields that you are not interested in.
 
 **Format**: `filter [-n] [-e] [-c] [-j] [-a] [-p] [-t] [-t]`
 
+* Flags in the filter command **do not need an argument**.
+* Only **flags that are indicated will be visible**.
+* Refer to the [Command Flags](#command-flags) section for all available command flags.
+
 ![Filter Command UI](images/UG_Filter%20Command.png)
-
-These are the available optional flags:
-
-- Name : `-n`
-- Email : `-e`
-- Company : `-c`
-- Job Title : `-j`
-- Address : `-a`
-- Phone Number : `-p`
-- Tag : `-t`
-- Remark : `-r`
-
-Flags in the filter command **do not need an argument** and **flags that are indicated will be
-visible**.
 
 **Examples**:
 
@@ -458,24 +415,27 @@ visible**.
 
 {% include back-to-toc.html %}
 
-## Selecting Person(s) : `select`
+## Selecting Persons: `select`
 
 Allows you to incrementally select multiple person objects to apply actions on.
 
 **Format**: `select { clear | shown | show | INDEX... }`
 
+* The selected person(s) will have a highlighted index number to indicate selection status.
+* Incremental selection means that selected items are "stacked" together. e.g. Executing `select 1`.
+  followed by `select 2` will result in persons with index number 1 and 2 being selected.
+* `shown` refers to all the persons that are currently displayed in the [Person List Panel](#user-interface).
+  
 Sub Command Format:
 * `select show`
 * `select clear`
 * `select shown`
 * `select INDEX...`
 
-The selected person(s) will have a highlighted index number to indicate selection status.
-
 ![Select UI Example](images/UG_Select%20Indicator.png)
 ![select demo](images/UG_Select%20Command.png)
 
-Examples:
+**Examples**:
 
 | Example        | Description                                                                                                                        |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -484,20 +444,6 @@ Examples:
 | `select clear` | Clears the current selection                                                                                                       |
 | `select 1`     | Select the person with index 1 (incremental selection)                                                                             |
 | `select 1 2`   | Select persons with index 1 and 2 (incremental selection)                                                                          |
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-Incremental Selection and `shown`:
-
-- Incremental selection means that selected items are "stacked" together. e.g. Executing `select 1`
-  followed by `select 2` will result in person with index number 1 and 2 being selected.
-
-- `shown` refers to all the person objects in the current visible person list (visible person list
-  refers to the list of persons that are currently displayed).
-
-</div>
 
 <div markdown="block" class="alert alert-warning">
 
@@ -514,10 +460,10 @@ Incremental Selection and `shown`:
 
 {% include back-to-toc.html %}
 
-## Email Person(s): `email`
+## Email Persons: `email`
 
-Email command allows you to email selected persons using the operating system's default email
-client. Email client must be configured to allow command separated email values.
+Email one or more persons using the operating system's default email client. 
+Email client must be configured to allow comma separated email values.
 
 <div markdown="block" class="alert alert-info">
 
@@ -546,16 +492,16 @@ client is installed and configured properly.
 | `email 1`        | Email person at index 1                   |
 | `email 1 2`      | Email person at index 1 and 2             |
 
-## Tagging Person(s): `tag`
+## Tagging Persons: `tag`
 
-The tag command allows you to add and delete specific tags of persons.
+Add and delete specific tags of persons.
 
 * Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
 * Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
 {% include back-to-toc.html %}
 
-### Add Tags to Person(s): `tag add`
+### Add Tags to Persons: `tag add`
 
 Add tags to persons in address book.
 
@@ -579,16 +525,16 @@ Add tags to persons in address book.
 
 **:bulb: Tip**<br>
 
-You can bulk add tag by either doing:
-* `tag add 1 2 3` to add tags to persons at indexes 1, 2 and 3 or,
-* `tag add shown` to add tags to all the shown persons or,
+You can bulk add tags to persons with:
+* `tag add 1 2 3` to add tags to persons at indexes 1, 2 and 3
+* `tag add shown` to add tags to all the shown persons
 * `tag add selected` to add tags to all the selected persons
 
 </div>
 
 {% include back-to-toc.html %}
 
-### Delete Tags From Person(s): `tag delete`
+### Delete Tags From Persons: `tag delete`
 
 Delete tags from persons in address book.
 
@@ -612,9 +558,9 @@ Delete tags from persons in address book.
 
 **:bulb: Tip**<br>
 
-You can bulk delete tag by either doing:
-* `tag delete 1 2 3` to delete tags to persons at indexes 1, 2 and 3 or,
-* `tag delete shown` to delete tags to all the shown persons or,
+You can bulk delete tags from persons with:
+* `tag delete 1 2 3` to delete tags to persons at indexes 1, 2 and 3
+* `tag delete shown` to delete tags to all the shown persons
 * `tag delete selected` to delete tags to all the selected persons
 
 </div>
@@ -630,6 +576,9 @@ The alias command allows you to create shortcut command (also known as command a
 Adds an alias to address book.
 
 **Format**: `alias add ALIAS COMMAND`
+
+* `ALIAS` cannot be an existing command. e.g. `add` and `edit` are existing commands and will not be accepted.
+* `COMMAND` must be a valid existing command. e.g. `add` and `edit` are existing commands and will be accepted.
 
 ![Alias Add](images/UG_Alias%20Add%20Command.png)
 
@@ -649,6 +598,8 @@ Deletes an existing alias from address book.
 
 **Format**: `alias delete ALIAS`
 
+* `ALIAS` must be an existing alias in the address book.
+
 ![Alias Delete](images/UG_Alias%20Delete%20Command.png)
 
 **Examples**:
@@ -662,18 +613,12 @@ Deletes an existing alias from address book.
 
 ### List All Aliases: `alias list`
 
-Lists all alias(es) in the address book.
+Lists all aliases in the address book.
+
+* Your list of aliases will be displayed in the [Command List Panel](#user-interface).
+* On your next keyboard action, the list of your aliases will disappear and show the list of existing commands again.
 
 **Format**: `alias list`
-
-<div markdown="span" class="alert alert-info">
-
-**:information_source: Note** <br>
-
-The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
-keyboard action, the list of your aliases will disappear and show the list of existing commands again.
-
-</div>
 
 ![Alias List](images/UG_Alias%20List%20Command.png)
 
@@ -703,11 +648,11 @@ Typing `del` followed by <kbd>Tab</kbd> will auto complete `del` to `delete`.
 | `s` | <kbd>Tab</kbd> | `select` |
 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
-**:information_source: Note**<br>
+**:bulb: Tip**<br>
 
-In the command box, it is also possible to cycle through **existing** commands with <kbd>Tab</kbd>.
+In the command box, it is also possible to cycle through **existing** commands with <kbd>Tab</kbd> when you have not typed anything.
 
 </div>
 
@@ -717,28 +662,15 @@ In the command box, it is also possible to cycle through **existing** commands w
 
 Command flags can be autocompleted at the end of your command text by pressing the <kbd>Tab</kbd> key.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-- If your flag has no content, the next available flag will be replaced and cycled.
-- If your flag has content, the next available flag will be appended to your command text.
-
-</div>
+* If your flag has no content, the next available flag will be replaced and cycled.
+* If your flag has content, the next available flag will be appended to your command text.
 
 | Supported Commands                        | Available command flags|
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `add`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
 | `edit`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-For `add` command, a space character should follow the add command for flags to begin
-autocompletion.
-
-</div>
+**Examples**:
 
 | Current text in command box | Key Press | Result |
 | ------------------------------ | -------------| ----|
@@ -750,21 +682,24 @@ autocompletion.
 | `edit 1 -n` | <kbd>Tab</kbd> | `edit 1 -p` |
 | `edit 1 -n John Dow` | <kbd>Tab</kbd> | `edit 1 -n John Dow -p` |
 
-{% include back-to-toc.html %}
-
-### Index
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note**<br>
 
-Autocomplete index only works for the `Edit` and `Delete` commands.
+For `add` command, a space character should follow the add command for flags to begin
+autocompletion.
 
 </div>
 
+{% include back-to-toc.html %}
+
+### Index
+
 Index can be autocompleted by pressing the <kbd>Up/Down</kbd> keys when the supported commands are fully typed out.
 
-**Examples**
+* Autocomplete index only works for the `edit` and `delete` commands.
+
+**Examples**:
 
 | Current text in command box | Key Press | Result |
 | ------------------------------ | -------------| ----|
@@ -821,8 +756,6 @@ A-Bash Book data is saved in the hard disk automatically after any command that 
 
 A-Bash Book data is saved as a JSON file `[JAR file location]/data/abashbook.json`. Advanced users
 are welcome to update data directly by editing that data file.
-
-{% include back-to-toc.html %}
 
 <div markdown="span" class="alert alert-danger">
 
@@ -887,16 +820,16 @@ Install the app in the other computer and overwrite the empty data file it creat
 
 # Field Summary
 
-| Mandatory | Field        | Command Flag | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                |
-| --------- | ------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Yes       | Name         | `-n`         | Names should only contain alphanumeric characters and spaces, and should not be blank                                                                                                                                                                                                                                                                                                                                       |
-| Yes       | Email        | `-e`         | Emails should be of the format local-part@domain and adhere to the following constraints:<br>1. The local-part should only contain alphanumeric characters and the following special characters enclosed in parentheses (`!#$%&'*+/=?``{|}~^.-`). <br>2. This is followed by a '@' and then a domain name. The domain name must:<br>    - be at least 2 characters long<br>    - start and end with alphanumeric characters   |
-| Yes       | Company      | `-c`         | Company can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                               |
-| Yes       | Job Title    | `-j`         | Job Title can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
-| Yes       | Address      | `-a`         | Addresses can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
-| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                    |
-| No        | Tag          | `-t`         | Tags names should only alphanumeric characters, and should not contain spaces or symbols                                                                                                                                                                                                                                                                                                                                    |
-| No        | Remark       | `-r`         | Remark can contain any character                                                                                                                                                                                                                                                                                                                                                                                            |
+| Field        | Command Flag | Mandatory | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------ | ------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name         | `-n`         | Yes       | Names should only contain alphanumeric characters and spaces, and should not be blank                                                                                                                                                                                                                                                                                                                                       |
+| Email        | `-e`         | Yes       | Emails should be of the format local-part@domain and adhere to the following constraints:<br>1. The local-part should only contain alphanumeric characters and the following special characters enclosed in parentheses (`!#$%&'*+/=?``{|}~^.-`). <br>2. This is followed by a '@' and then a domain name. The domain name must:<br>    - be at least 2 characters long<br>    - start and end with alphanumeric characters |
+| Company      | `-c`         | Yes       | Company can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                               |
+| Job Title    | `-j`         | Yes       | Job Title can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
+| Address      | `-a`         | Yes       | Addresses can contain any character, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
+| Phone Number | `-p`         | Yes       | Phone numbers should only contain numbers, and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                    |
+| Tag          | `-t`         | No        | Tags names should only alphanumeric characters, and should not contain spaces or symbols                                                                                                                                                                                                                                                                                                                                    |
+| Remark       | `-r`         | No        | Remark can contain any character                                                                                                                                                                                                                                                                                                                                                                                            |
 
 {% include back-to-toc.html %}
 
@@ -904,10 +837,9 @@ Install the app in the other computer and overwrite the empty data file it creat
 
 | Term             | Explanation                                                                                                                                                                                        |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Bash             | The well known terminal interpreter                                                                                                                                                                |
 | CLI              | Command Line Interface. A text-based interface in which commands can be entered.                                                                                                                   |
-| GUI              | Graphical User Interface                                                                                                                                                                           |
-| JSON             | JavaScript Object Notation, data storage format                                                                                                                                                    |
+| GUI              | Graphical User Interface. Interactive visual components of an application.                                                                                                                         |
+| JSON             | JavaScript Object Notation. A data storage format.                                                                                                                                                 |
 | Terminal         | The Command Line Interface where text-based commands are entered.                                                                                                                                  |
 | Case-insensitive | Uppercase `ABC` and lowercase `abc` letters are treated as being the same. <br> - `Alex Yeoh` and `alex yeoh` are treated as the same. <br> - `Photoshop` and `photoshop` are treated as the same. | 
 
