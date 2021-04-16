@@ -298,7 +298,7 @@ Example: <br>
 
 ![BeforeDetail](images/DemoBeforeDetailCommand.png)
 
-* After the `detail 1` command is entered, the details of the first student in the list panel are displayed.
+* After the `detail 1` command is entered, the details of the 1st student in the list panel are displayed.
 
 ![AfterDetail](images/DemoAfterDetailCommand.png)
 
@@ -540,7 +540,7 @@ Other examples:
 Command     | Result
 ----------- |---------------------------------------------------
 `leveldown`   | demotes all students (except `pri1` students) by one level
-`leveldown ex/1 2`| demotes all students by one level, excluding the first and second student in the list (and `pri1` students)
+`leveldown ex/1 2`| demotes all students by one level, excluding the 1st and 2nd student in the list (and `pri1` students)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -550,9 +550,12 @@ Command     | Result
 
 Shows a list of all important dates in TutorsPet.
 
+Format: `list-date`
+
+* After `list-date` is entered, a window that contains a list of your important dates will be opened up.
+
 ![list-date](images/DemoListDateCommand.png)
 
-Format: `list-date`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -604,9 +607,11 @@ Example: <br>
 
 Shows a weekly schedule that displays lessons for the week.
 
-![schedule popup](images/scheduleWindow.png)
-
 Format: `schedule`
+
+* Entering `schedule` will open up a window that displays all your lessons in this week.
+
+![schedule popup](images/scheduleWindow.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
