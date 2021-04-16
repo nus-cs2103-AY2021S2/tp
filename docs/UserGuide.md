@@ -17,7 +17,7 @@ TutorsPet is a **desktop app designed for private tutors in Singapore to manage 
 
 Feel free to check out our [Table of Contents](#table-of-contents), to get familiar with TutorsPet step by step.
 
-You can return to Table of Contents by clicking this button <a href="#table-of-contents"> <button>Back to Table of Contents </button></a> below each session.
+You can return to Table of Contents by clicking this button <a href="#table-of-contents"> <button>Back to Table of Contents </button></a> below each section.
 
 <div style="page-break-after: always;"></div>
 
@@ -274,12 +274,11 @@ Example:
 
 ![BeforeEdit](images/DemoBeforeEditCommand.png)
 
+<div style="page-break-after: always;"></div>
 
 * Then `edit` command is entered. Changes are displayed immediately.
 
 ![AfterEdit](images/DemoAfterEditCommand.png)
-
-<div style="page-break-after: always;"></div>
 
 Other examples:
 
@@ -289,6 +288,8 @@ Command     | Result
 `edit 1 le/monday 1300 le/tuesday 1400` | edits the 1st student's lesson details to `monday 1300` and `tuesday 1400`.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.3 Viewing a contact details : `detail`
 
@@ -416,8 +417,6 @@ Command     | Result
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-<div style="page-break-after: always;"></div>
-
 #### 3.2.6 Sorting contacts : `sort`
 Sorts the student contacts by name, school, subjects or lessons.
 
@@ -509,6 +508,7 @@ Example:
 
 ![AfterLevelUp2](images/DemoAfterLevelUpCommand2.png)
 
+<div style="page-break-after: always;"></div>
 
 Other examples:
 
@@ -563,6 +563,7 @@ Example:
 
 ![AfterLevelUp2](images/DemoAfterLevelDownCommand2.png)
 
+<div style="page-break-after: always;"></div>
 
 Other examples:
 
@@ -572,8 +573,6 @@ Command     | Result
 `leveldown ex/1 2`| demotes all students by one level, excluding the 1st and 2nd student in the list (and `pri1` students)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-<div style="page-break-after: always;"></div>
 
 ### 3.3 Important Date Management
 
@@ -682,13 +681,13 @@ TutorsPet data is saved into three different JSON files: <br>
 Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available in TutorsPet,
 while in v2.0, more personalised subjects can be added in.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2 Add profile picture for each contact **[coming in v2.0]**
 Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index 
 by providing the file path to the picture.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
