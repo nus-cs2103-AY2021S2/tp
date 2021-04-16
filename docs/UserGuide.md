@@ -13,7 +13,7 @@ GreenMileageEfforts (GME) is an efficient carpooling management solution designe
 # 1. Introduction
 
 ## 1.1 Welcome to GreenMileageEfforts
-As a Human Resources(HR) manager of a large company, you might be in need of an efficient way of managing your corporation's carpooling initiative, the GME system is designed to do just that. GME provides you with a suite of tools to use in the creation and management of weekly carpooling groups of employees who are looking to carpool to and from their office. Through the GME system, you can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of both the passengers, and the arranged carpooling groups, allowing you to easily access and manage the [pools](#6-glossary) of employees.
+As a Human Resource (HR) manager of a large company, you might be in need of an efficient way of managing your company's carpooling initiative, the GME system is designed to do just that. GME provides you with a suite of tools to use in the creation and management of weekly carpooling groups of employees who are looking to carpool to and from their office. Through the GME system, you can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of both the passengers, and the arranged carpooling groups, allowing you to easily access and manage the [pools](#6-glossary) of employees.
 
 ## 1.2 Navigating the User Guide
 For help with the setup of GME, refer to the [“Quick Start"](#2-quick-start-) section.
