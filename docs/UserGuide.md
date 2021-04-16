@@ -126,7 +126,7 @@ GME data is saved as a [JSON](#6-glossary) file `[JAR file location]/data/GMEdat
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: GME replaces the JSON file with a new one if it can not read the file**<br> 
+**:warning: GME replaces the JSON file with a new one if it cannot read the file**<br> 
 * You can make a backup before any changes in order to prevent unwanted data loss.
 * You may edit at your own risk.
 
@@ -229,7 +229,7 @@ To delete a specific passenger from the GME terminal, you can enter the `delete`
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `find tag/female` followed by `delete 3` deletes the *1st* passenger in the results of `find tag/female` command.
-* Passengers assigned to a carpool can not be deleted. The pool containing the passenger must be removed using the `unpool` first before deletion.
+* Passengers assigned to a carpool cannot be deleted. The pool containing the passenger must be removed using the `unpool` first before deletion.
 </div>
 
 **Examples:**
