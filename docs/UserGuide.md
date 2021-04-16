@@ -298,7 +298,7 @@ Examples:
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]…​ [t/TAG]…​`
 
-* The difference here compared to the previous format is that you can omit the `ORDER_DESCRIPTION` parameter, but you need to include an `ORDER_ITEM_INDEXES` parameter.
+* The difference here compared to the previous format is that you can omit the `ORDER_DESCRIPTION` input, but you need to include an `ORDER_ITEM_INDEXES` input.
 
 * This alternative format is aimed at saving you some typing. If an order description you want to specify already exists in the [order items box](#221-sections-of-the-ui), you can specify its index instead of typing its entire name out.
 
@@ -580,9 +580,9 @@ If your changes to the data files make their format invalid, CakeCollate will di
 
 #### Keyboard shortcuts
 
-* Click the `Up` arrow in the keyboard to traverse up the previously inputted commands if they exist. 
-* Click the `Down` arrow in the keyboard to traverse down the previously inputted commands if they exist. 
-* Click the `Shift`Button followed by the `Backspace` button on the keyboard to delete all the text in the command box in one go. 
+* Press the `Up` arrow in the keyboard to traverse up the previously inputted commands if they exist. 
+* Press the `Down` arrow in the keyboard to traverse down the previously inputted commands if they exist. 
+* Press the `Shift`Button followed by the `Backspace` button on the keyboard to delete all the text in the command box in one go. 
 
 --------------------------------------------------------------------------------------------------------------------
 
