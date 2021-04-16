@@ -45,7 +45,7 @@ the User Guide seamlessly.
 
 In [Section 3: Getting started](#3-getting-started), you can find instructions on how to install and set up CakeCollate.
 
-In [Section 4: Features](#4-commands-and-features), you can find instructions on the existing features and commands in CakeCollate
+In [Section 4: Commands and features](#4-commands-and-features), you can find instructions on the existing features and commands in CakeCollate
 as well as how you can use them to suit your needs.
 
 In [Section 5: Glossary](#5-glossary), you can find some terms that have been frequently used in our User Guide and their definitions.
@@ -597,8 +597,8 @@ If you make any changes to the data files directly which makes the format of the
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: 1. Install CakeCollate on the computer that you want to transfer your data to. <br>
-2. You should be able to see a folder named data inside the CakeCollate home folder. <br>
-3. Replace this folder with the data folder from your original CakeCollate home folder.<br>
+       2. You should be able to see a folder named data inside the CakeCollate home folder. <br>
+       3. Replace this folder with the data folder from your original CakeCollate home folder.<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
