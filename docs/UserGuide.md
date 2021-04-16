@@ -231,7 +231,8 @@ component command prefix/[INPUT] -flag
 
         Example:
          ```
-         customer add n/Alan Tan p/81236789 e/alantan@nus.edu.sg a/21 Lower Kent Ridge Road, Singapore 119077 t/Gluten Allergy
+         customer add n/Alan Tan p/81236789 e/alantan@nus.edu.sg 
+         a/21 Lower Kent Ridge Road, Singapore 119077 t/Gluten Allergy
          ```
 
         The above command would add a new customer named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
@@ -744,6 +745,7 @@ component command prefix/[INPUT] -flag
       
         An error will be shown as below when `inventory delete 1` is entered.
         ![JJIMY Inventory Pane](images/InventoryForceDelete2.png)
+      
         Hence, if you are sure you want to delete the ingredient, the command would be `inventory delete 2 -f` instead. 
         Upon deletion, the dish that previously uses "Potato as ingredient" will be deleted as well as the order contains
         that particular dish will be marked as cancelled.
