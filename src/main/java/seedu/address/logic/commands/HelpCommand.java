@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.io.BufferedReader;
@@ -71,8 +72,6 @@ public class HelpCommand extends Command {
         String plainCommandInfo = "";
 
         try {
-            // String projectDir = System.getProperty("user.dir");
-            // BufferedReader reader = new BufferedReader(new FileReader(projectDir + "/docs/UserGuide.md"));
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     HelpCommand.class.getClassLoader().getResourceAsStream("UserGuideCopy.md")));
 
@@ -109,7 +108,7 @@ public class HelpCommand extends Command {
 
             reader.close();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e);
+            throw new CommandException(MESSAGE_INVALID_FILE);
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -117,10 +116,8 @@ public class HelpCommand extends Command {
         return new CommandResult(SHOWING_HELP_MESSAGE, plainCommandTitle, plainCommandInfo, true, false);
     }
 
-    private CommandResult executeNonSpecific() {
+    private CommandResult executeNonSpecific() throws CommandException {
         try {
-            // String projectDir = System.getProperty("user.dir");
-            // BufferedReader reader = new BufferedReader(new FileReader(projectDir + "/docs/UserGuide.md"));
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     HelpCommand.class.getClassLoader().getResourceAsStream("UserGuideCopy.md")));
 
@@ -135,18 +132,15 @@ public class HelpCommand extends Command {
                 currLine = reader.readLine();
             }
 
-            helpMessage.replaceAll("…\u200B", "…");
-
             reader.close();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e);
+            throw new CommandException(MESSAGE_INVALID_FILE);
         }
 
         return new CommandResult(SHOWING_HELP_MESSAGE, HELP_TITLE, helpMessage, true, false);
     }
 
     private String commandSummaryParser(String info) {
-        // if (!info.startsWith("\u200B |")) {
         if (!info.contains("| **")) {
             String[] separatedInfo = info.split("\\|");
             String[] commandName = separatedInfo[0].split("\\*");

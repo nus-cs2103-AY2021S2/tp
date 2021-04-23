@@ -45,7 +45,7 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_NAME + "Parent Support Group Meeting "
             + PREFIX_DATE + "22/01/2021 10:00";
 
-    public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
+    public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;

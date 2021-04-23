@@ -8,7 +8,10 @@ title: ParentPal
 
 ![Ui](images/Ui.png)
 
-**ParentPal is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+
+ParentPal is a **desktop app for managing your children's contacts and their related appointments,
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a
+Graphical User Interface (GUI).
 
 * If you are interested in using ParentPal, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing ParentPal, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

@@ -26,9 +26,9 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_CONTACT_SUCCESS = "Deleted Contacts(s): %1$s";
+    public static final String MESSAGE_DELETE_CONTACT_SUCCESS = "Deleted Contacts(s): \n%1$s";
     public static final String MESSAGE_DELETE_CONTACT_APPOINTMENT_FAILURE =
-            "Failed to delete the following Contact(s) as they are involved in appointments: %1$s";
+            "Failed to delete the following Contact(s) as they are involved in appointments: \n%1$s";
 
     private final List<Index> targetIndexList;
 

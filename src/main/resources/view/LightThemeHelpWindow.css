@@ -1,10 +1,18 @@
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(gainsboro, 25%);
     background-color: #383838; /* Used in the default.html file */
 }
 
 .label {
-	-fx-font-size: 10pt;
+	-fx-font-size: 11pt;
 	-fx-font-family: "Segoe UI Semilight";
     -fx-text-fill: black;
     -fx-opacity: 1;
@@ -18,11 +26,53 @@
 }
 
 .pane-with-border {
+    -fx-background-color: derive(gainsboro, 25%);
 }
 
+/*
+ * Metro style Push Button (adapted for light theme)
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
 .button {
+	-fx-background-color: white;
 	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-	-fx-font-size: 10pt;
+	-fx-font-size: 11pt;
 	-fx-text-fill: black;
 	-fx-padding: 5 22 5 22;
+}
+
+.button:hover {
+    -fx-background-color: derive(gainsboro, 25%);
+}
+
+.button:pressed, .button:default:hover:pressed {
+  -fx-background-color: black;
+  -fx-text-fill: gainsboro;
+}
+
+.button:focused {
+    -fx-border-color: black, black;
+    -fx-border-width: 1, 1;
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: gainsboro;
+    -fx-text-fill: black;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: black;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color, 30%);
+}
+
+.scroll-bar {
+    -fx-background-color: derive(lightgrey, 60%);
 }

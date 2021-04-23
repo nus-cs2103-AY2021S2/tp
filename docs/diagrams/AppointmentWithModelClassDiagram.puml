@@ -5,7 +5,8 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyHeliBook <<Interface>>
+Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyAppointmentBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
@@ -18,22 +19,23 @@ Class ReadOnlyUserPrefs
 Package Contact {
 Class Contact
 Class UniqueContactList
+'Class Phone
+'Class Email
 }
 
-Class Address
-Class Name
-note "Name and Address, classes previously in Contact package" as N1
-Name .. N1
-Address .. N1
+'Package Tag {
+'Class Tag
+'Class ChildTag
+'}
 
-note "Previously known as\nReadOnlyAddressBook" as N2
-ReadOnlyHeliBook .up. N2
+'Class Address
+'Class Name
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .right|> ReadOnlyHeliBook
-AppointmentBook .left|> ReadOnlyHeliBook
+AddressBook .up.|> ReadOnlyAddressBook
+AppointmentBook .up.|> ReadOnlyAppointmentBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
@@ -44,32 +46,33 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueContactList
 UniqueContactList o--> "*" Contact
 
-Contact ---> Name
-Contact ---> Address
+ModelManager ----->"~* filtered list" Contact
 
-ModelManager --->"filtered list ~*" Contact
-
-ModelManager o---> "1" AppointmentBook
+ModelManager o--> "1" AppointmentBook
 
 Package Appointment {
 Class Appointment
 Class UniqueAppointmentList
-Class DateTime
+'Class DateTime
 }
 
 AppointmentBook *--> "1" UniqueAppointmentList
 UniqueAppointmentList o--> "*" Appointment
 
-Appointment ---> "name 1" Name
-Appointment --> "*" Address
-Appointment --> "*" DateTime
+'Tag <|- ChildTag
 
-ModelManager -->"filtered list *" Appointment
-note "Possible design considerations for ModelManager:\n- 2 subclass, one for Contact and one for Appointment\n- As an implementation of the Model interface,\n  ModelManager can handle both" as N3
+'Contact ----> "1" Name
+'Contact ----> Address
+'Contact ----> Email
+'Contact ----> Phone
+'Contact ----> "~*" Tag
+'
+'Appointment ----> "1" Name
+'Appointment ----> "*" Address
+'Appointment --> "*" DateTime
+'Appointment ---> "~*" Contact
+'Appointment --> "~*" Tag
 
-note "Extra: Tag functions" as N4
-N4 .left. Appointment
-
-Appointment ---> "~* contact" Contact
+ModelManager ----> "filtered list *" Appointment
 
 @enduml

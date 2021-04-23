@@ -7,6 +7,17 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+ParentPal is a desktop application designed for parents to manage their children-related contacts and appointments. 
+It is named ParentPal because it aims to be a 'pal' to the busy parents who need help managing their kids' schedules and important contacts.
+ParentPal is built for use via a Command Line Interface (CLI), the Graphical User Interface (GUI) is primarily meant
+for displaying key information. 
+
+ParentPal is largely built with Java. GUI related functionality is powered by JavaFX and CSS.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -14,6 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+The following section provides details of the architecture and a few selected functionalities of the application.
 
 ### Architecture
 
@@ -23,11 +35,12 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W13-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -47,7 +60,7 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/AppointmentWithLogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
@@ -59,14 +72,14 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/AppointmentWithUIClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -75,12 +88,12 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/AppointmentWithLogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ParentPalParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -95,37 +108,40 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/AppointmentWithModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Contact>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the appointment book data.
+* exposes unmodifiable `ObservableList<Contact>` and `Observable<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Contact` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Contact` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
 </div>
 
+![More detailed structure of Model Component](images/AppointmentAndContact.png)
+* Some attributes have their own class, like `Name`, `DateTime`, and they contain methods to check for the validity of the value given by the user.
+* `Name` and `Address` classes are referenced by both `Contact` and `Appointment` class and are hence not within the `Contact` or `Appointment` package.
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/AppointmentWithStorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* can save the appointment book date in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -141,15 +157,13 @@ The `tag` command allows for the appending of tags to an existing
 `Contact` without having to replace existing tags as offered by `edit` and is facilitated by 
 the `TagCommand` and `TagCommandParser` classes.
 
-[Placeholder: Class Diagram of Tag and related classes here... ]
+![Tag Class Diagram](images/TagCommandClassDiagram.png)
 
 As part of the `Model` component, other components interact with tags through the `Model.java` API.
 As `Contact` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
 involve creating a new `Contact` and replacing the original `Contact` through `Model#setPerson()`.
 
 Given below is an example usage scenario of the `tag` command and how the application behaves through its execution.
-
-[Placeholder: screenshot of initial AddressBook before operation]
 
 Step 1. The user executes `tag 1 tc/Adam t/formteacher` to add tags to a previous contact they have added.
 
@@ -169,24 +183,30 @@ and subsequently `LogicManager`.
 Step 6. `LogicManager` then calls the `execute` method of the newly created `TagCommand`.
 
 Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Contact` object 
-though the `createTaggedPerson` method which will have its tags appended withe the new `Set<Tag>` defined by the command.
+though the `createTaggedPerson` method which will have its tags appended with the new `Set<Tag>` defined by the command.
 
 Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Contact` and a `CommandResult`
 representing success is returned to the `LogicManager`.
 
 Shown below is the sequence diagram that visualises the above operations of a `tag` command.
 
-[Placeholder: Sequence diagram describing the program in the above steps]
+![Tag Sequence Diagram](images/TagSequenceDiagram.png)
 
 When displaying the tags in the UI as a `PersonCard`, a customised `TagComparator` that implements
 `Comparator<Tag>` is used to sort the tags such that `ChildTag` will be placed first before regular
 `Tag`. During the generation of the `Label` for the each `Tag` a different background color is then set
-for `ChildTag` resulting in the UI view shown below.
-
-[Placeholder: UI screenshot of AddressBook after operation]
+for `ChildTag`.
 
 
-#### \[Proposed\] Potential Improvements
+#### Design considerations
+
+The decision to implement `ChildTag` as its own class rather than a boolean in the `Tag` class was to allow for the 
+future extensibility of the program in being able to create more types of Tags in the future. 
+
+This also allows for `ChildTag` to store its own seperate information from regular `Tag` if needed 
+such as other details of the child itself. Extending `ChildTag` from the original `Tag` class allows for them to be 
+stored within the same data structure allowing for easier manipulation by other commands that may deal with tags such
+as `find`.
 
 ### Help feature
 
@@ -208,13 +228,19 @@ Given below are 2 example usage scenarios and how the help mechanism behaves in 
 
 Scenario 1: User enters `help` without specifying commands.
 
-1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, which is an empty string in this case. The empty string is passed to `HelpCommandParser#parse()`.
-2. A new `HelpCommand()` is returned.
-3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeNonSpecific()`.
-4. The command summary table in the user guide is parsed so that each row is displayed as "commandName: description" in the `helpMessage` with the help of `HelpCommand#commandSummaryParser()`.
-5. The `helpMessage` is returned via a `CommandResult`. A default `helpTitle` is also returned via the `CommandResult`.
-6. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage` via `HelpWindow#setHelpText()`.
-7. The help window is display.
+Step 1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, which is an empty string in this case. The empty string is passed to `HelpCommandParser#parse()`.
+
+Step 2. A new `HelpCommand()` is returned.
+
+Step 3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeNonSpecific()`.
+
+Step 4. The command summary table in the user guide is parsed so that each row is displayed as "commandName: description" in the `helpMessage` with the help of `HelpCommand#commandSummaryParser()`.
+
+Step 5. The `helpMessage` is returned via a `CommandResult`. A default `helpTitle` is also returned via the `CommandResult`.
+
+Step 6. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage` via `HelpWindow#setHelpText()`.
+
+Step 7. The help window is displayed.
 
 The following sequence diagram shows how the 'help' operation works in this scenario:
 
@@ -222,15 +248,23 @@ The following sequence diagram shows how the 'help' operation works in this scen
 
 Scenario 2: User enters `help find`.
 
-1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, `find`. `find` is passed to `HelpCommandParser#parse(find)`.
-2. A new `HelpCommand(find)` is returned.
-3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeSpecific()`.
-4. The user guide is searched for the section containing information on `find`.
-5. The information under the `find` section is parsed and appended to `helpMessage`.
-6. The `find` section heading is parsed and assigned to `helpTitle`. 
-7. The `helpMessage` and `helpTitle` are returned via a `CommandResult`.
-8. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand()`, which sets the help window header to `helpTitle` and the content to `helpMessage`.
-9. The help window is display.
+Step 1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, `find`. `find` is passed to `HelpCommandParser#parse(find)`.
+
+Step 2. A new `HelpCommand(find)` is returned.
+
+Step 3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeSpecific()`.
+
+Step 4. The user guide is searched for the section containing information on `find`.
+
+Step 5. The information under the `find` section is parsed and appended to `helpMessage`.
+
+Step 6. The `find` section heading is parsed and assigned to `helpTitle`. 
+
+Step 7. The `helpMessage` and `helpTitle` are returned via a `CommandResult`.
+
+Step 8. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand()`, which sets the help window header to `helpTitle` and the content to `helpMessage`.
+
+Step 9. The help window is displayed.
 
 The following sequence diagram shows how the 'help' operation works in this scenario:
 
@@ -240,7 +274,7 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations
 
 ##### Aspect: Where the information displayed in the help window is retrieved from
 
@@ -272,28 +306,158 @@ The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 * `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList`
   and updating the `model` accordingly.
 
-Sorting by name is done by comparing `Contact` objects, which implement `Comparable<Contact>`.
+Sorting by name is done using the `NameComparator`,by comparing `Contact` objects, which implement `Comparable<Contact>`.
 
 Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Contact` objects.
 
-Given below is an example usage scenario and how the sort mechanism behaves at each step.
+The comparator is saved in `AddressBookSettings` so that the list stays sorted in the chosen order.
 
-Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
-The `Contact` objects created will be timestamped with the `TimeAdded` attribute.
+Given below are some example usage scenario and how the sort mechanism behaves at each step.
+
+Scenario 1: The user executes `sort o/name` after executing `list`.
+
+Note: The `Contact` objects have been timestamped with the `TimeAdded` attribute.
 By default, they will be displayed on in the order in which they were added.
 
-[comment]: <> (add UML diagram)
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `o/name`.
+`o/name` is passed to `SortCommandParser#parse(o/name)`.
 
-Step 2. The user executes `sort o/name`.
+Step 2. `SortCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The option field `name` is parsed out. A new `SortCommand("name")` is returned.
 
-(Add more steps)
+Step 3. `LogicManager#execute()` calls `SortCommand#execute()`.
+The `model` is sorted accordingly using the `sortContactList` method,
+which will use the `NameComparator` on `setAddressBookComparator`.
 
-[comment]: <> (add UML diagram)
+Step 4. The success message is returned to `LogicManager` via a `CommandResult`.
+The displayed list would be sorted in alphabetical order.
 
 The following sequence diagram shows how the sort operation works:
-
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
-Note: Style of diagram to be updated.
+
+Scenario 2: The user executes `sort o/date` after executing `find john`, followed by `list`.
+
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `o/date`.
+`o/date` is passed to `SortCommandParser#parse(o/date)`.
+
+Step 2. `SortCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The option field `date` is parsed out. A new `SortCommand("date")` is returned.
+
+Step 3. `LogicManager#execute()` calls `SortCommand#execute()`.
+The `model` is sorted accordingly using the `sortContactList` method, 
+which will use the `DateComparator` on `setAddressBookComparator`.
+
+Step 4. The success message is returned to `LogicManager` via a `CommandResult`.
+The displayed found list would be sorted in chronological order.
+
+Step 5. When the user executes `list`, the displayed list will still be in chronological order as the `DateComparator` 
+is stored in `AddressBookSettings`.
+
+### Favourite feature
+
+#### Implementation
+
+The favourite mechanism is facilitated by `FavouriteCommand` and `FavouriteCommandParser`.
+
+`FavouriteCommandParser` implements the following operation:
+* `FavouriteCommandParser#parse(String args)` — Parses the arguments using `ArgumentTokenizer#tokenize`
+  and checks for `option`.
+* If there are no options specified in `args`, it means the user is simply favouriting a contact, so `isFav` is set to true.
+* If the `remove` option specified in `args`, it means the user is unfavouriting a contact, so `isFav` is set to false.
+
+`FavouriteCommand` extends `Command`, and implements the following operation:
+* `FavouriteCommand#execute(Model model)` — Executes the favourite command by creating an edited contact and 
+  setting the `favourite` attribute using `EditCommand.EditContactDescriptor` based on `isFav`. 
+  The `model` is then updated accordingly.
+
+Given below are some example usage scenario and how the favourite mechanism behaves at each step.
+
+Scenario 1: User enters `fav 3` after entering the `list` command.
+
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`, 
+   which then parses the input into the command word and arguments, `3`. 
+   `3` is passed to `FavouriteCommandParser#parse(3)`.
+
+Step 2. `FavouriteCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+   The `index` of `3` and option fields are parsed out. Since no option is used in this scenario,
+   the `isFav` variable is set to `true`. A new `FavouriteCommand(3, true)` is returned.
+
+Step 3. `LogicManager#execute()` calls `FavouriteCommand#execute()`.
+   This creates an `EditContactDescriptor`, which is used to set the `favourite` attribute of the contact to `true`.
+   A new favourited `Contact` is created. The `model` is updated accordingly.
+
+Step 4. The success message and favourited `Contact` are returned to `LogicManager` via a `CommandResult`.
+
+The following sequence diagram shows how the favourite operation works:
+![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
+
+Scenario 2: User enters `fav 3 o/remove` after entering the `list` command.
+
+Step 1. `LogicManager#execute(userInput)` calls `ParentPalParser#parseCommand(userInput)`,
+which then parses the input into the command word and arguments, `4 o/remove`.
+`4` is passed to `FavouriteCommandParser#parse(4 o/remove)`.
+
+Step 2. `FavouriteCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`.
+The `index` of `4` and option field `remove` are parsed out. Since the `remove` option is used in this scenario,
+the `isFav` variable is set to `false`. A new `FavouriteCommand(4, false)` is returned.
+
+Step 3. `LogicManager#execute()` calls `FavouriteCommand#execute()`.
+This creates an `EditContactDescriptor`, which is used to set the `favourite` attribute of the contact to `false`.
+A new unfavourited `Contact` is created. The `model` is updated accordingly.
+
+Step 4. The success message and unfavourited `Contact` are returned to `LogicManager` via a `CommandResult`.
+
+The following activity diagram shows how the favourite operation works:
+![FavouriteActivityDiagram](images/FavouriteActivityDiagram.png)
+
+#### Design considerations
+
+##### Aspect: How to implement the favourite feature
+
+* **Alternative 1 (current choice):** Favouriting contacts is done using its own `FavouriteCommand`.
+    * Pros: Most intuitive from a user's point of view. 
+      In a clickable GUI, users would typically click on a star button to star the contacts.
+      For a CLI, having a favourite command would be the most similar to that.
+    * Cons: This involves editing the contact, which means it should use some implementation of the `EditCommand`.
+
+* **Alternative 2:** Favouriting contacts is done as a subset of `EditCommand`.
+    * Pros: Makes sense because we are essentially editing a field of the contact.
+    * Cons: Does not look intuitive from the perspective of a user. 
+      In a clickable GUI, users would not go to the edit contacts page just to favourite a contact.
+      The editing is usually only for fields directly related to the details of the contact, 
+      such as their name, phone or email.
+
+* **Alternative 2:** Favouriting contacts is done as a subset of `TagCommand`.
+    * Pros: Makes sense if we add favourite as a tag.
+    * Cons: This could add clutter to the interface as there are already a lot of tags, and there are also child tags.
+
+Alternative 1 was eventually chosen as being user-centric is a key aspect of software engineering.
+Making the app intuitive to users is important, and in this case, it does not sacrifice too much in terms of implementation.
+As such, that is the alternative that was chosen.
+
+##### Aspect: How to save the favourite
+
+* **Alternative 1 (current choice):** Create a `Favourite` class, each contact has a `favourite` attribute 
+  and favourited contacts have a star icon next to their name.
+    * Pros: Standardised with other fields that the contacts have.
+    * Cons: More troublesome to implement.
+
+* **Alternative 2:** Favourite is saved and shown as a special tag.
+    * Pros: Standardised style as the child tag, can be implemented the same way.
+    * Cons: Might add unnecessary clutter when we have the word "favourite", as it could be easily represented by an icon.
+    This is in contrast to tags which are best represented as text.
+
+* **Alternative 3:** Favourite is saved as a boolean value under each contact,
+  and favourited contacts have a star icon next to their name.
+    * Pros: Simple to implement.
+    * Cons: Not standardised with other contact fields, 
+      might not be as readable to have a random boolean variable appear.
+
+Alternative 1 was eventually chosen as it was the most standardised way 
+and minimises the amount of clutter displayed to the user.
+As such, that is the alternative that was chosen.
 
 ### Add feature
 
@@ -313,69 +477,40 @@ The add mechanism is facilitated by `AddCommand` and `AddCommandParser`.
   
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-Step 1. The user executes `add n/David `. Since only the `n/` arg is specified, 
-'NIL' will be used for the remaining args.
+Step 1. The user enters `add n/David `. 
 
-[comment]: <> (add UML diagram)
+Step 2. LogicManager#execute(userInput) calls ParentPalParser#parseCommand(userInput), which then parses 
+the input into the command word and arguments, ` n/David` . `n/David` is then passed to 
+`AddCommandParser#parse(" n/David")`
+
+Step 3. `AddCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()` into the 
+various fields for the `Contact`. A new `Contact` is created with these fields. Since only the `n/` arg is 
+specified for this example, the string 'NIL' will be used for the remaining args.
+
+Step 5. A new `AddCommand` is created using the new `Contact` and returned to `AddressBookParser`
+and subsequently `LogicManager`.
+
+Step 6. `LogicManager#execute()` calls `AddCommand#execute()`.
+
+Step 7. The `Model#addContact()` method is used to add the new `Contact` into the model. The success message 
+is returned to `LogicManager` via a `CommandResult`.
 
 The following sequence diagram shows how the add operation works:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-[Add sequence diagram]
-
-Note: Style of diagram to be updated.
-
-### Appointment feature
-
-#### Implementation
-
-An appointment feature will be implemented in the next version of this application. It is a useful feature for parents to track any important appointments
-related to their children. For example, a parent teacher meeting or a birthday party at the house of their child's friend. 
-
-##### UI Component
-
-![AppointmentWithUIClassDiagram](images/AppointmentWithUIClassDiagram.png)
-
-The appointment will be added as a column beside the current address column.
-
-##### Model Component
-
-![AppointmentWithModelClassDiagram](images/AppointmentWithModelClassDiagram.png)
-
-As shown in the diagram above, the proposed appointment feature is facilitated by `AppointmentBook`. It is similar to `AddressBook`, with similar methods
-that are related to appointment instead. `AppointmentBook` contains `UniqueAppointmentList` that stores `Appointment` objects by
-implementing `Iterable<Appointment>`. `AppointmentBook` implements the interface `ReadOnlyAppointmentBook`.
-
-A filtered list of `Appointment` objects is maintained by `ModelManager`. 
-
-![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
-
-Attributes of the `Appointment` class:
-* Name of appointment, which is a String object
-* Location of appointment, which is a String object
-* Date of appointment, which is a DateTime object
-* Contacts that parents might need to contact about the appointment. This is an ArrayList of Contact objects.
-
-##### Logic Component
-
-![AppointmentWithLogicClassDiagram](images/AppointmentWithLogicClassDiagram.png)
-
-`ParentPalParser` looks at the user command and determines which command it is. After determing the correct command, it creates a parser
-for that particularly command.  
-
-![AppointmentCommandClassDiagram](images/AppointmentCommandClassDiagram.png)
-
-The main methods for the appointment feature include `AddAppointmentCommand`, `EditAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
-to similar methods for AddressBook. 
-* For `AddAppointmentCommand`, adding of appointments is handled by `AppointmentBook#addAppointment()`, similar to how adding of contacts is handled by `AddressBook#addContact()`. 
-* For `EditAppointmentCommand`, editing of appointments is handled by `AppointmentBook#setAppointment()`, similar to how editing of contacts is handled by `AddressBook#setContact()`.
-* For `FindAppointmentCommand`, a predicate defined by given keywords is fed to the filtered list of `Appointment` handled by `ModelManager`, and this filters the `Appointment` objects.
-* For `DeleteAppointmentCommand`, `Appointment` is selected to be deleted by the given `index`.
-
-##### Storage Component
-
-![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagramUpdated.png)
-
-The storage component now saves and reads back appointment book data on top of address book and user preference data. The implementation of the appointment book storage is similar to that of the address book storage.
+#### Design considerations
+##### Aspect: How to allow incomplete contacts to be added
+* **Alternative 1 (current choice):** Setting a placeholder string when fields not specified
+    * Pros: Lesser code refactoring, more uniform data in model so lesser need to check if a field is null.
+    * Cons: Might affect future extensions if logic is applied on the placeholder.
+    
+* **Alternative 1:** Setting a placeholder class. 
+    * Pros: Slightly more extendable 
+    * Cons: More code refactoring leading to more bugs
+    
+Alternative 1 was eventually chosen due to ease of refactoring and low chance of future extensions being affected 
+by the placeholder since it is a String and only one single use case of placeholders being use throughout the entire
+project hence it would be unnecessary abstraction.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -442,7 +577,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations
 
 ##### Aspect: How undo & redo executes
 
@@ -455,19 +590,13 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
+  * See also: [Intructions for manual testing](#appendix-instructions-for-manual-testing)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
@@ -544,15 +673,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `ParentPal` and the **Actor** is the `user`, unless specified otherwise)
+For our product, we have two different entities `Contact` and `Appointment`. Across the two entities,
+some implementations are rather similar.
+Therefore, for those implementations, we will use `ENTITY` to generalise the different entities and then provide use
+cases for the general entity. If any of the features have a different implementation, we will provide the alternative use case below.
 
-**UC1: Edit a contact**
+
+**UC1: Edit a `ENTITY`**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  ParentPal shows a list of contacts
-3.  User requests to edit a specific contact's detail in the list
-4.  ParentPal edits the contact's details accordingly
+1.  User requests for a list of `ENTITY`
+2.  ParentPal shows a list of `ENTITY`
+3.  User requests to edit a specific `ENTITY` details in the list
+4.  ParentPal edits the `ENTITY` details accordingly
 
     Use case ends.
 
@@ -569,14 +703,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
     
     
-**UC2: Delete a contact**
+**UC2: Delete a `ENTITY`**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  ParentPal shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  ParentPal deletes the contact
+1.  User requests for a list of `ENTITY`
+2.  ParentPal shows a list of `ENTITY`
+3.  User requests to delete a specific `ENTITY` in the list
+4.  ParentPal deletes the `ENTITY`
 
     Use case ends.
 
@@ -619,33 +753,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**UC4: Find an Existing `ENTITY` from the respective list**
+
+**MSS**
+
+1. User requests to find a `ENTITY`.
+2. ParentPal shows the `ENTITY` details that match the attributes that the user has keyed in.  
+   Use case ends
+
+**Extensions**
+
+* 1a. User enters an invalid input.
+    * 1a1. ParentPal shows an error message.  
+      Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 contacts and appointments without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should work on both 32-bit and 64-bit environments.
 5.  A user who is new to the app should be able to familiarise themselves with it within a few uses.
 6.  All commands should be explained in the user guide, including the format of the command and examples of how it is used.
-7.  Should be able to restore address book with up to 1000 contacts from backup file within seconds if app crashes and in-app data is lost.
+7.  Should be able to restore app with up to 1000 contacts and appointments from backup file within seconds if app crashes and in-app data is lost.
 8.  Should be able to locate local backup file easily.
 9.  App UI should look uniform across different OSes to ensure that usage of application is similar regardless of OS.
 10. Should be able to view all data with or without app window maximised.
 11. Should be able to customise colour scheme of app for comfortable viewing without having to search up hexadecimal codes.
 12. Project is expected to adhere to a schedule that delivers a feature set every two weeks.
 
-*{More to be added}*
-
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Contact/Contact**: Entry in the address book containing a contact's contact information
-* **Index**: Index number shown in the displayed contact list
-* **Backup file**: JSON file that stores address book data in the hard disk
 * **Action**: Executed command
-* **List**: Currently displayed list of contacts
+* **Address book**: Section of the application that stores and manages data related to contacts
+* **Appointment**: Entry in the appointment book containing an appointment's information
+* **Appointment list**: List of appointments displayed
+* **Appointment book**: Section of the application that stores and manages data related to appointments
+* **Backup file**: JSON file that stores address and appointment book data in the hard disk
+* **Contact**: Entry in the address book containing a contact's contact information
+* **Contact list**: List of contacts displayed
+* **Index**: Index number shown in the displayed contact/appointment list
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -662,40 +812,418 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file or run `java -jar parentpal.jar`. <br> 
+      Expected: Shows the GUI with a set of sample contacts and appointments. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Subsequent launch    
+   
+    1. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+       Expected: Shows the GUI with data loaded from the json files.
 
-### Deleting a contact
 
+### Testing General Features
+
+#### Help 
+1. Retrieving a full list of available commands
+   
+    1. Test case: `help`\
+        Expected: Help window is opened and full list of available general, address book and appointment book commands are displayed in it.
+       
+1. Retrieving information about a specific command
+   
+    1. Test case: `help find`\
+        Expected: Help window is opened and information about the `find` command is displayed in it.
+   
+    1. Test case: `help find add`\
+        Expected: Help window is opened and information about the `add` command is displayed in it.
+       
+    1. Test case: `help invalid`\
+        Expected: Help window is not opened. Error details shown in the status message.
+
+#### Change ParentPal's theme
+1. Changing theme to light theme when dark theme
+   
+    1. Prerequisites: Set theme to dark by `theme o/dark`.
+       
+    1. Test case: `theme o/light` \
+       Expected: Theme will change to the light theme.
+       Success message is shown in the status message.
+       
+    1. Test case: `theme o/dark` \
+       Expected: Theme will remain in dark theme.
+       Success message is shown in the status message.
+       
+    1. Test case: `theme` \
+       Expected: No change to theme.
+       Invalid command format error details shown in the status message.
+       
+    1. Other incorrect sort commands to try: `theme   `, `theme 1`, `theme aaa`, `theme o/lol` \
+       Expected: Similar to previous.
+       
+    1. Test case: `theme o/dark o/light` \
+       Expected: Theme will change to the light theme as last parameter will be taken.
+
+2. Change theme to dark theme when light theme
+   
+    1. Prerequisites: Set theme to light by `theme o/light`.
+       
+    1. Test case: `theme o/dark` \
+       Expected: Theme will change to dark theme.
+       Success message is shown in the message.
+       
+    1. Test case: `theme o/dark` \
+       Expected: Theme will remain in dark theme.
+       Success message is shown in the status message.
+
+3. Check that theme is saved successfully after changing theme.
+   
+    1. Prerequisites: Set theme to light by `theme o/light`.
+       
+    2. Exit the application.
+       
+    3. Open the application again.
+       
+    4. Expected: Theme is still light.
+    
+4. Check that help window has same theme as main window.
+   
+    1. Prerequisites: Set theme to light by `theme o/light`.
+       
+    1. Open help window with `help` command.
+       
+    1. Expected: Theme of help window is also the light theme.
+    
+  
+### Testing Address Book Features
+
+#### Add a contact
+1. Add a contact while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+    
+    1. Test case: `add n/Alice` \
+       Expected: Contact with name 'Alice' will be added. Should only see name in the Contact card for Alice in scrolling list.
+
+    1. Test case: `add n/Alice p/99091109 e/apple@gmail.com` \
+       Expected: Contact with name 'Alice', phone number '99091109' and email 'apple@gmail.com' will be added.
+    
+    1. Test case: `add n/Alice p/99091109 e/apple@gmail.com tc/Anna tc/Bob t/math` \
+       Expected: Contact with name 'Alice', phone number '99091109' and email 'apple@gmail.com', child tags 'Anna' and 'Bob' and tag 'math' will be added.     
+
+#### Tag a contact
+1. Append tags to a contact
+   
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+       
+    2. Input `tag 2 tc/alice t/kovanSecSch` into the command box and press enter.
+       Expected: The tags of the second contact (*Charlotte Oliveiro*) should now include a red ChildTag `alice` and
+       the tag `kovanSecSch` as seen below.
+       
+![Append tags example](images/AppendTagExample.png)
+
+2. Replace tags of a contact
+   
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+    
+    2. Input `tag 2 o/replace tc/alice` into the command box and press enter.<br>
+       Expected: The tags of the second contact (*Charlotte Oliveiro*) should be entirely replaced with only a red
+       ChildTag `alice` as seen below.
+       
+![Replace tags example](images/ReplaceTagExample.png)
+
+#### Clear contacts
+1. Clear all contacts while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+    
+    1. Test case: `clear` \
+       Expected: All contacts are cleared.
+    
+#### Clear by tags
+1. Clearing contacts by tag
+   
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+    
+    2. Input `clear t/psg` into the command box and press enter.<br>
+       Expected: The contacts with a psg tag, *'Charlotte Oliveiro'* and *'Annie Li'* are deleted from the address book.
+
+#### Delete a contact
 1. Deleting a contact while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list, with some contacts tagged in appointments.
+    
+    1. Test case: `delete 1` (where the 1st contact is not tagged in any appointment) \
+       Expected: 1st contact is deleted from the list. Details of the deleted contact are shown in the status message.
+    
+    1. Test case: `delete 0` \
+       Expected: No contact is deleted. Error details shown in the status message.
+    
+    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size). \
+       Expected: Similar to the previous.
+    
+    1. Test case: `delete y` (where the contact at index y is tagged in an appointment) \
+       Expected: Contact is not deleted. Error message is shown in status message.
 
-   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+#### Delete multiple contacts
+1. Deleting multiple contacts while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list, with some contacts tagged in appointments.
+       
+    1. Test case: `delete 1 2` (where the 1st, 2nd contact is not tagged in any appointment) \
+       Expected: 1st, 2nd contact is deleted from the list. Details of the deleted contacts are shown in the status message.
+    
+#### Edit a contact
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Editing optional fields of a contact while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list.
+       Some contacts have optional fields not yet filled in (e.g. `phone`, `email`, `address`),
+       and some have optional fields already filled in.
+       
+    1. Test case: `edit x e/johndoe@example.com` 
+       (where contact at index x does not have optional email filled in yet) \
+       Expected: Contact at index x is edited to have email `johndoe@example.com`. 
+       Details of edited contact is shown in status message.
+       
+    1. Test case: `edit y p/`
+       (where contact at index y already has optional phone filled in) \
+       Expected: Contact at index x is edited to have its optional phone field removed.
+       Details of edited contact is shown in status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+2. Editing name of a contact involved in an appointment.
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       Second contact is tagged in at least one appointment.
+       
+    1. Test case: `edit 2 n/Annie` \
+       Expected: Second contact in the list is edited to have name `Annie`.
+       Details of edited contact is shown in status message.
+       Appointments that have been tagged with the second contact will have their respective contact tags updated to `Annie`.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### Find contacts
+1. Find contacts with given option
+   
+    1. Prerequisites: There is at least an existing contact that fit the search criteria.
+       
+    1. Test case: `find Alice Bob`\
+       Expected: Returns all contacts which contains 'Alice' or 'Bob' in any of its fields
+    
+    1. Test case: `find o/name Alice`\
+       Expected: Returns all contacts whose name contains 'Alice'.
+       
+    1. Test case: `find o/phone 123`\
+       Expected: Returns all contacts whose phone number contains '123'.
+       
 
-1. _{ more test cases …​ }_
+#### Sort contacts
+1. Sorting contacts while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command. 
+       Multiple contacts in the list.
+       
+    1. Test case: `sort o/name` \
+       Expected: List of contacts get sorted in alphabetical order. 
+       Success message is shown in the status message.
+       
+    1. Test case: `sort o/date` \
+       Expected: List of contacts get sorted in chronological order. 
+       Success message is shown in the status message.
+       
+    1. Test case: `sort` \
+       Expected: List does not get sorted. 
+       Invalid command format error details shown in the status message.
+       
+    1. Other incorrect sort commands to try: `sort   `, `sort 1`, `sort aaa` \
+       Expected: Similar to previous.
+       
+    1. Test case: `sort o/jskdnks` \
+       Expected: List does not get sorted. 
+       Invalid option error details shown in the status message.
+
+2. Sorting contacts on a found list
+   
+    1. Prerequisites: Multiple contacts in the list sharing a keyword.
+       Find contacts related to keyword using the `find` command.
+       
+    1. Test case: `sort o/name` \
+       Expected: Found list of contacts get sorted in alphabetical order.
+       Executing the `list` command after this should show the full contact list in alphabetical order.
+    
+    1. Test case: `sort o/date` \
+       Expected: Found list of contacts get sorted in chronological order.
+       Executing the `list` command after this should show the full contact list in chronological order.
+
+#### Favourite a contact
+1. Favourite a contact while all contacts are being shown
+   
+    1. Prerequisites: List all contacts using the `list` command.
+       
+    1. Test case: `fav 1` \
+       Expected: First contact in the list is favourited. 
+       Details of favourited contact is shown in status message.
+       The star next to the first contact's name becomes filled.
+       
+    1. Test case: `fav 1 o/remove` \
+       Expected: First contact in the list is unfavourited. 
+       Details of unfavourited contact is shown in status message.
+       The star next to the first contact's name becomes empty.
+       
+    1. Test case: `fav` \
+       Expected: Invalid command format error details shown in the status message.
+       
+    1. Other incorrect sort commands to try: `fav   ` \
+       Expected: Similar to previous.
+       
+    1. Test case: `fav aaa`
+       Expected: Invalid index error details shown in the status message.
+       
+    1. Other incorrect sort commands to try: `fav x` (where x is larger than list size) \
+       Expected: Similar to previous.
+       
+    1. Test case: `fav 1 o/jskdnks` \
+       Expected: Invalid option error details shown in the status message.
+       
+2. Favourite a contact while a found list is being shown
+   
+    1. Prerequisites: Multiple contacts in the list sharing a keyword.
+       Find contacts related to keyword using the `find` command.
+       
+    1. Test case: `fav 2` \
+       Expected: Second contact in the list is favourited.
+       Details of favourited contact is shown in status message.
+       The star next to the second contact's name becomes filled.
+       
+    1. Test case: `fav 1 o/remove` \
+       Expected: First contact in the list is unfavourited.
+       Details of unfavourited contact is shown in status message.
+       The star next to the first contact's name becomes empty.
+
+#### List all contacts
+1. List all contacts
+   
+    1. Prerequisites: Multiple contacts in the list.
+       
+    1. Test case: `list`
+       Expected: Full list of contacts will be displayed.
+       Success message is shown in the status message.
+       
+    1. Test case: `list ajkndskjn`
+       Expected: Invalid command format error details shown in the status message.
+       
+2. List favourited contacts
+    1. Prerequisites: Multiple contacts in the list, some being favourited contacts.
+       
+    1. Test case: `list o/fav`
+       Expected: List of favourited contacts will be displayed.
+       Success message is shown in the status message.
+       
+    1. Test case: `list o/random`
+       Expected: Invalid option error details shown in the status message.
+
+### Testing Appointment Book Features
+
+#### Add an appointment
+
+1. Adding an appointment
+    
+    1. Test case: `addAppt n/PTM a/ABC Pri Sch d/21/05/2021 10:00 tc/alice`, where an appointment named "PTM" does not already exist \
+       Expected: A new appointment named "PTM" is created. The date of the appointment is 21/05/2021 10:00, the address is "ABC Pri Sch" and the appointment is tagged with the child tag "alice". 
+
+    1. Test case: `addAppt n/PTM a/ABC Pri Sch d/21/05/2021 10:00 tc/alice`, where an appointment named "PTM" that occurs on 21/05/2021 10:00 at ABC Pri Sch already exists \
+       Expected: No appointment is added. Error details shown in the status message.
+
+    1. Test case: `addAppt n/PTM` \
+       Expected: No appointment is added. Error details shown in the status message.
+
+#### Delete an appointment
+1. Deleting a appointment while all contacts are being shown
+   
+    1. Prerequisites: List all appointments using the `listAppt` command.
+       Multiple appointments in the list.
+       
+    1. Test case: `delete 1`\
+       Expected: 1st appointment is deleted from the list. Details of the deleted appointment are shown in the status message.
+    
+    1. Test case: `delete 0` \
+       Expected: No appointment is deleted. Error details shown in the status message.
+   
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size). \
+       Expected: Similar to the previous.
+       
+#### Find appointments
+1. Find appointments with given option
+   
+    1. Prerequisites: There is at least an existing appointment that fit the search criteria.
+    
+    1. Test case: `findAppt Alice meeting`\
+       Expected: Returns all appointments which contains 'Alice' or 'meeting' in any of its fields
+    
+    1. Test case: `findAppt o/name meeting`\
+       Expected: Returns all appointments with name containing 'meeting'.
+    
+    1. Test case: `findAppt o/address jurong`\
+       Expected: Returns all appointments with address containing 'jurong'.
+
+#### Edit an appointment
+1. Edit all fields
+   
+    1. Prerequisites: There is an existing appointment and existing contact in ParentPal.
+    
+    2. Input `editAppt 1 n/Math Tuition a/Sunshine Tuition Center d/20/10/2021 13:00 c/1 tc/alice` and press enter.<br>
+       Expected: The first appointment is edited to the fields specified.
+       
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+A reordering of the appointment list may occur.
+</div>
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
+   
+    1. Prerequisites: some commands that triggers saving data have been performed.
+       
+    2. Delete the `addressbook.json` and `appointmentbook.json` files found in the directory 
+      `[JAR file location]/data`.
+      
+    3. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+        Expected: The app launches with the sample contacts and appointments.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. Dealing with corrupted address book data
+   
+    1. Prerequisites: some commands that triggers saving data have been performed.
+    
+    2. Open the `addressbook.json` file with a text editor found at `[JAR file location]/data/addressbook.json`.
+    
+    3. Make some changes to corrupt the file such as deleting a line or adding a nonsense line such as `aaaaaaaa`
+    to the middle of the file.
+       
+    4. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+        Expected: The app launches with the appointments loading correctly, and an empty contacts list.
+
+
+3. Dealing with corrupted appointment book data
+   
+    1. Prerequisites: some commands that triggers saving data have been performed.
+
+    2. Open the `appointmentbook.json` file with a text editor found at `[JAR file location]/data/appointmentbook.json`.
+
+    3. Make some changes to corrupt the file such as deleting a line or adding a nonsense line such as `aaaaaaaa`
+       to the middle of the file.
+
+    4. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+       Expected: The app launches with the contacts loading correctly, and an empty appointments list.
+    
+

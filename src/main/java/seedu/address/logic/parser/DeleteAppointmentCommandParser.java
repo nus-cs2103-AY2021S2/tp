@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_USAGE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
@@ -17,6 +19,13 @@ public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentC
      */
     @Override
     public DeleteAppointmentCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteAppointmentCommand(index);
@@ -24,8 +33,7 @@ public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentC
             if (pe.getMessage().equals(MESSAGE_INVALID_INDEX)) {
                 throw new ParseException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX, pe);
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        DeleteAppointmentCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
             }
         }
     }
