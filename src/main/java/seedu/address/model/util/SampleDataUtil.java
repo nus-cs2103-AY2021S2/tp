@@ -98,7 +98,7 @@ public class SampleDataUtil {
                     getChildTagSet("denise")),
             new Appointment(new Name("Play date with Carol and Ellie"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    new DateTime("17/04/2021 11:00"), getContactSet("2", "3"),
+                    new DateTime("17/12/2021 11:00"), getContactSet("2", "3"),
                     getChildTagSet("alice")),
             new Appointment(new Name("PSG meeting"), new Address("Bishan Primary School"),
                     new DateTime("15/04/2021 14:00"), getContactSet("3", "2"),
