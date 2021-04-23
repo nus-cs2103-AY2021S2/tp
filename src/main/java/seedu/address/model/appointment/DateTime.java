@@ -34,7 +34,6 @@ public class DateTime {
         checkArgument(isNotBlank(dateTimeStr), MESSAGE_BLANK);
         checkArgument(isValidFormat(dateTimeStr), MESSAGE_INVALID_FORMAT);
         checkArgument(isValidDateTime(dateTimeStr), MESSAGE_INVALID_DATETIME);
-        checkArgument(isFutureDateTime(dateTimeStr), MESSAGE_PAST_CURRENT);
         dateTime = dateTimeStr;
     }
 
