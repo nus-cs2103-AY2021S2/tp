@@ -35,6 +35,8 @@ public class GroupListPanel extends UiPart<Region> {
             groupListView.getSelectionModel().select(DEFAULT_GROUP_NAME);
         });
 
+        //@@author Assyarul-reused
+        //Reused from https://stackoverflow.com/a/20632983 with minor modifications
         //Prevent mouse selection
         groupListView.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
@@ -43,6 +45,7 @@ public class GroupListPanel extends UiPart<Region> {
             }
         });
 
+        //adapted from https://stackoverflow.com/a/29403453
         groupListView.getItems().addAll(groupMap.keySet());
         groupMap.addListener((MapChangeListener<Name, Group>) change -> {
             if (change.wasAdded()) {
