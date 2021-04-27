@@ -21,8 +21,10 @@ import seedu.address.ui.UiPart;
  * Represents a GUI to show the upcoming events for a day in the calendar.
  */
 public class UpcomingSchedule extends UiPart<Region> implements EventHandler<MouseEvent> {
-    //Solution adapted from
-    // https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/main/java/seedu/address/ui/schedule
+    //@@author banchiang-reused
+    //Reused from
+    //https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/main/java/seedu/address/ui/schedule
+    //with major modifications
 
     private static final String FXML = "schedule/UpcomingSchedule.fxml";
     private static Logger logger = LogsCenter.getLogger(UpcomingSchedule.class);

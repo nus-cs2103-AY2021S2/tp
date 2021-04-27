@@ -23,8 +23,11 @@ import seedu.address.ui.calendar.schedule.UpcomingSchedule;
  * Represents the calendar window for the GUI.
  */
 public class CalendarWindow extends UiPart<Stage> {
-    //Solution below adapted from
+    //@@author banchiang-reused
+    //Reused from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
+    // with major modifications
+
     private static final Logger logger = LogsCenter.getLogger(CalendarWindow.class);
     private static final String FXML = "CalendarWindow.fxml";
     private static final int FIRST_ROW = 0;
