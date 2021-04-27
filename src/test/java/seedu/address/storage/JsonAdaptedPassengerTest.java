@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -96,7 +97,7 @@ public class JsonAdaptedPassengerTest {
         assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
     }
 
-
+    //@@author JoelHo
     @Test
     public void toModelType_invalidTripDay_throwsIllegalValueException() {
         JsonAdaptedPassenger passenger =
@@ -132,7 +133,7 @@ public class JsonAdaptedPassengerTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TripTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, passenger::toModelType);
     }
-
+    //@@author ZechariahTan
     @Test
     public void toModelType_invalidPrice_throwsIllegalValueException() {
         JsonAdaptedPassenger passenger =

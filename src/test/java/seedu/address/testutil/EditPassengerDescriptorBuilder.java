@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.testutil;
 
 import java.time.DayOfWeek;
@@ -67,7 +68,7 @@ public class EditPassengerDescriptorBuilder {
         descriptor.setAddress(new Address(address));
         return this;
     }
-
+    //@@author ZechariahTan
     /**
      * Sets the {@code TripDay} of the {@code EditPassengerDescriptor} that we are building.
      */
@@ -83,7 +84,7 @@ public class EditPassengerDescriptorBuilder {
         descriptor.setTripTime(new TripTime(tripTime));
         return this;
     }
-
+    //@@author chewterence
     /**
      * Sets the {@code Price} of the {@code EditPassengerDescriptor} that we are building.
      */
@@ -91,7 +92,7 @@ public class EditPassengerDescriptorBuilder {
         descriptor.setPrice(new Price(price));
         return this;
     }
-
+    //@@author
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPassengerDescriptor}
      * that we are building.
