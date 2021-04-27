@@ -21,9 +21,8 @@ If this is your first time using/contributing to **SunRez**, check out our guide
 
 ## Acknowledgements
 
-* This project is based on the [AddressBook-Level3 project](https://se-education.org/addressbook-level3/),
-  and inspired by the [AddressBook-Level4 project](https://se-education.org/addressbook-level4/);
-  both were created by the [SE-EDU initiative](https://se-education.org).
+* This project is based on the [AddressBook-Level3 project](https://se-education.org/addressbook-level3/), 
+  and inspired by the [AddressBook-Level4 project](https://se-education.org/addressbook-level4/) and NUS' [University Hostel Management System](https://uhms.nus.edu.sg/).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 * Logo designed using [FreeLogoDesign](https://www.freelogodesign.org/).
 
