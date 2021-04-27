@@ -1,0 +1,23 @@
+{
+  "students": [ {
+    "name" : "May Pauline",
+    "matriculationNumber" : "A0987643T",
+    "faculty" : "COM",
+    "phone" : "9876234",
+    "email" : "may@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "vaccinationStatus" : "unvaccinated",
+    "medicalDetails" : "lactose intolerant",
+    "schoolResidence" : "RVRC"
+  } ],
+  "appointments": [{
+    "matriculationNumber" : "A0987643T",
+    "date" : "2021-12-13",
+    "startTime" : "13:00"
+  },
+    {
+      "matriculationNumber" : "A0987643T",
+      "date" : "2021-12-11",
+      "startTime" : "13:00"
+    }]
+}
