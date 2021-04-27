@@ -19,6 +19,8 @@ public class Email {
             + "A label must only contain alphanumeric characters and be shorter than 64 characters. \n"
             + "3. Multiple labels are allowed, provided that they are delimited by a single period. \n"
             + "Example: JohnDoe@example.com.sg";
+
+    // Reused from https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address with minor modifications
     private static final String VALIDATION_REGEX = "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@"
             + "[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?"
             + "(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
