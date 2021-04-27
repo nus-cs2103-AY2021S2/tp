@@ -3,6 +3,7 @@ package seedu.booking.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
+//@@author
 /**
  * Represents a venueTag in the booking system.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
