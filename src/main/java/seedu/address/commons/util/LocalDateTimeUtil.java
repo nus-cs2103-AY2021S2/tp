@@ -11,7 +11,8 @@ import java.time.format.ResolverStyle;
 public class LocalDateTimeUtil {
     // @@author Hzxin-reused
     // Reused from
-    // https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/main/java/seedu/address/commons/util/DateTimeUtil.java
+    // https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/main/java/seedu
+    // /address/commons/util/DateTimeUtil.java
     // with minor modifications.
 
     public static final String DATE_TIME_CONSTRAINTS =
