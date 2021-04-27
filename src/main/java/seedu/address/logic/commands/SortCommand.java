@@ -12,6 +12,9 @@ import seedu.address.model.task.Task;
 /**
  * Sorts the meetings using the specified comparator.
  */
+
+//Solution below adapted and modified from SortMeetingCommand in
+//https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/logic/commands/meetingcommands
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
