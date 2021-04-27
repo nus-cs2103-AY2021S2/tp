@@ -19,4 +19,6 @@ title: FlashBack
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
-* Some codes were adopted from the AddressBook-Level4 project created by the [SE-EDU initiative](https://github.com/se-edu/addressbook-level4).
+* The undo and redo features were adopted AddressBook-Level4 project created by the [SE-EDU initiative](https://github.com/se-edu/addressbook-level4).
+* The sort, review and stats features were adopted from SWEe! created by team [AY2021S1-CS2103T-T17-2](https://github.com/AY2021S1-CS2103T-T17-2/tp).
+* The alias feature was adopted from the extensions in [IP](https://nus-cs2103-ay2021s2.github.io/website/se-book-adapted/projectDuke/index.html#c-friendliersyntax).
