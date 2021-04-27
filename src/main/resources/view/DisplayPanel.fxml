@@ -7,6 +7,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<!--
+//@@author CS2103T-T12-3
+//Reused from https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/main/resources/view/panel/DisplayPanel.fxml with minor modifications
+-->
+
 <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
       <Tab fx:id="modules" closable="false" text="Modules">

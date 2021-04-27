@@ -1,3 +1,6 @@
+/*@@author CS2103T-T12-3
+  Reused from https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/main/resources/view/ColorfulTheme.css with minor modifications
+*/
 .root {
     -fx-focus-color: transparent;
 }
@@ -339,5 +342,8 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+/* @@author
+*/
 
 
