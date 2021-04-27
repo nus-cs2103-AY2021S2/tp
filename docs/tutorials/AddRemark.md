@@ -2,6 +2,7 @@
 layout: page
 title: "Tutorial: Adding a command"
 ---
+<!-- @@author  -->
 
 Let's walk you through the implementation of a new command — `remark`.
 

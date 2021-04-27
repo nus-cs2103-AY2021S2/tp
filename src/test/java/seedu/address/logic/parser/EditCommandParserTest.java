@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -162,7 +163,7 @@ public class EditCommandParserTest {
         descriptor = new EditPassengerDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-
+        //@@author chewterence
         // tripDay
         userInput = targetIndex.getOneBased() + TRIPDAY_DESC_FRIDAY;
         descriptor = new EditPassengerDescriptorBuilder().withTripDay(VALID_TRIPDAY_FRIDAY).build();
@@ -187,7 +188,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
+    //@@author
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST;

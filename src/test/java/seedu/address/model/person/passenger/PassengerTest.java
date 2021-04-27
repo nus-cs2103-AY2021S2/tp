@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.model.person.passenger;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -83,7 +84,7 @@ public class PassengerTest {
         // different address -> returns false
         editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-
+        //@@author ZechariahTan
         // different tripday -> returns false
         editedAlice = new PassengerBuilder(ALICE).withTripDay(VALID_TRIPDAY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -95,7 +96,7 @@ public class PassengerTest {
         // different price -> returns false
         editedAlice = new PassengerBuilder(ALICE).withPrice(VALID_PRICE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-
+        //@@author
         // different tags -> returns false
         editedAlice = new PassengerBuilder(ALICE).withTags(VALID_TAG_HR).build();
         assertFalse(ALICE.equals(editedAlice));

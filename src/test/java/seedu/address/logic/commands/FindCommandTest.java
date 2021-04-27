@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -87,7 +88,7 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPassengerList());
     }
-
+    //@@author lyueyang
     @Test
     public void execute_multipleNameKeywords_multiplePassengersFound() {
         String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 3);

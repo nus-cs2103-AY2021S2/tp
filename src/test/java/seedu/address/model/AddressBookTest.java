@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -85,7 +86,7 @@ public class AddressBookTest {
                 .build();
         assertTrue(addressBook.hasPassenger(editedAlice));
     }
-
+    //@@author JoelHo
     @Test
     public void hasPassenger_nullPassengerEqual_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasEqualPassenger(null));
@@ -109,12 +110,12 @@ public class AddressBookTest {
                 .build();
         assertFalse(addressBook.hasEqualPassenger(editedAlice));
     }
-
+    //@@author
     @Test
     public void getPassengerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPassengerList().remove(0));
     }
-
+    //@@author JoelHo
     @Test
     public void resetData_withDuplicatePool_throwsDuplicatePoolException() {
         // Two pools with the same identity fields
@@ -201,6 +202,7 @@ public class AddressBookTest {
             assertFalse(addressBook.hasPoolWithPassenger(newPassenger));
         }
     }
+    //@@author
 
     /**
      * A stub ReadOnlyAddressBook whose passengers list can violate interface constraints.

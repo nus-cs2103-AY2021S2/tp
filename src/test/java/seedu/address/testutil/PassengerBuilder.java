@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.testutil;
 
 import java.time.DayOfWeek;
@@ -92,7 +93,7 @@ public class PassengerBuilder {
         this.phone = new Phone(phone);
         return this;
     }
-
+    //@@author ZechariahTan
     /**
      * Sets the {@code TripDay} of the {@code Passenger} that we are building.
      */

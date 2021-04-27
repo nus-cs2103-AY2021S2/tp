@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.model.person.passenger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

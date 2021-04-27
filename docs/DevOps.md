@@ -2,7 +2,7 @@
 layout: page
 title: DevOps guide
 ---
-
+<!-- @@author  -->
 * Table of Contents
 {:toc}
 
