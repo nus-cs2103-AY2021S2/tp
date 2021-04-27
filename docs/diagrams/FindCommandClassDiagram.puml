@@ -1,22 +1,25 @@
+//Diagram adapted from Modulo, AY19/20 Sem 1
+
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
-skinparam classBackgroundColor LOGIC_COLOR
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
 
 package Logic {
-    package Command {
-        Class "{abstract}\nCommand" as Command
-        Class FindCommand
-    }
     package Parser {
         Interface Parser <<Interface>>
         Class FindCommandParser
     }
+
+    package Command {
+        Class "{abstract}\n Command" as Command
+        Class FindCommand
+    }
 }
 
-FindCommand -up-|>Command
-FindCommandParser .up.|> Parser
-FindCommandParser .right.> FindCommand
+FindCommandParser ..|> Parser
+FindCommandParser ..> FindCommand
+FindCommand --|>Command
 
 @enduml

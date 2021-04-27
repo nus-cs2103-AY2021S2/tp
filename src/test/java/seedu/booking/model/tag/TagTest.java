@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.booking.model.Tag;
 
+//@@author
 public class TagTest {
 
     @Test
