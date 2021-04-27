@@ -34,7 +34,7 @@ public class GroupListPanel extends UiPart<Region> {
         Platform.runLater(() -> {
             groupListView.getSelectionModel().select(DEFAULT_GROUP_NAME);
         });
-    
+
         //@@author Assyarul-reused
         //Reused from https://stackoverflow.com/a/20632983 with minor modifications
         //Prevent mouse selection
