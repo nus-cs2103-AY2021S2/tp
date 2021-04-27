@@ -34,8 +34,9 @@ public class GroupListPanel extends UiPart<Region> {
         Platform.runLater(() -> {
             groupListView.getSelectionModel().select(DEFAULT_GROUP_NAME);
         });
-
-        //adapted from https://docs.oracle.com/javafx/2/events/filters.htm Example 3-1
+    
+        //@@author Assyarul-reused
+        //Reused from https://stackoverflow.com/a/20632983 with minor modifications
         //Prevent mouse selection
         groupListView.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
