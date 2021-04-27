@@ -13,6 +13,9 @@ import seedu.address.model.task.TaskDateComparator;
 /**
  * Parses input arguments and creates a new SortMeetingCommand object
  */
+
+//Solution below adapted and modified from SortMeetingCommandParser in
+//https://github.com/AY2021S1-CS2103-W14-1/tp/tree/master/src/main/java/seedu/address/logic/parser/meetingparser
 public class SortCommandParser implements Parser<SortCommand> {
 
     /**
