@@ -9,6 +9,12 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 public class LocalDateTimeUtil {
+    // @@author Hzxin-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/main/java/seedu
+    // /address/commons/util/DateTimeUtil.java
+    // with minor modifications.
+
     public static final String DATE_TIME_CONSTRAINTS =
             "DateTime should be a valid date and time in the format of dd/MM/yyyy HH:mm. e.g. 29/11/2020 23:59";
 
@@ -49,6 +55,8 @@ public class LocalDateTimeUtil {
         }
         return true;
     }
+
+    //@@author
 
 
 }

@@ -14,7 +14,10 @@ import seedu.address.ui.UiPart;
  * A ui for the status bar that is displayed at the header of the application.
  */
 public class DisplayPanel extends UiPart<Region> {
-
+    // @@author Hzxin-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/main/java/seedu/address/ui/panel/DisplayPanel.java
+    // with minor modifications.
     private static final String FXML = "DisplayPanel.fxml";
 
     private Logic logic;
@@ -79,6 +82,8 @@ public class DisplayPanel extends UiPart<Region> {
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
     }
+
+    //@@author
 
     public TabPane getTabPane() {
         return tabPane;
