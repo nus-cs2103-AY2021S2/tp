@@ -17,6 +17,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
+<!--
+@@author banchiang-reused
+Reused from
+https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+with major modifications
+-->
 <Stage resizable="false" title="Calendar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/logo.png" />
@@ -85,3 +91,4 @@
       </Scene>
    </scene>
 </Stage>
+<!-- @@ author -->
