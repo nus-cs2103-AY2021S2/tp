@@ -62,10 +62,14 @@ public class FindVenueCommand extends Command {
                 && predicateList.equals(((FindVenueCommand) other).predicateList)); // state check
     }
 
+    //@@author vvan-essa-reused
+    //Referred to the code logic from project Hall-y from CS2103T AY2021S1
     /**
      * Returns a composition of the predicates in the given venue predicate list.
      */
     private static Predicate<Venue> combineVenuePredicates(List<Predicate<Venue>> predicateList) {
         return predicateList.stream().reduce(Predicate::and).orElse(PREDICATE_SHOW_ALL_VENUES);
     }
+    //@@author
+
 }

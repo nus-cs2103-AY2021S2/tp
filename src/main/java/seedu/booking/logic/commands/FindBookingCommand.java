@@ -63,11 +63,15 @@ public class FindBookingCommand extends Command {
                 && predicateList.equals(((FindBookingCommand) other).predicateList)); // state check
     }
 
+    //@@author vvan-essa-reused
+    //Referred to the code logic from project Hall-y from CS2103T AY2021S1
     /**
      * Returns a composition of the predicates in the given booking predicate list.
      */
     private static Predicate<Booking> combineBookingPredicates(List<Predicate<Booking>> predicateList) {
         return predicateList.stream().reduce(Predicate::and).orElse(PREDICATE_SHOW_ALL_BOOKINGS);
     }
+    //@@author
+
 }
 
