@@ -62,11 +62,14 @@ public class FindPersonCommand extends Command {
                 && predicateList.equals(((FindPersonCommand) other).predicateList)); // state check
     }
 
+    //@@author vvan-essa-reused
+    //Referred to the code logic from project Hall-y from CS2103T AY2021S1
     /**
      * Returns a composition of the predicates in the given person predicate list.
      */
     private static Predicate<Person> combinePersonPredicates(List<Predicate<Person>> predicateList) {
         return predicateList.stream().reduce(Predicate::and).orElse(PREDICATE_SHOW_ALL_PERSONS);
     }
+    //@@author
 
 }
