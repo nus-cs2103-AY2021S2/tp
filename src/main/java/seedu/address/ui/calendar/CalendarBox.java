@@ -23,6 +23,7 @@ import seedu.address.ui.calendar.schedule.UpcomingSchedule;
  * Represents a box for a date in the calendar, where the calendar is on the right side of the {@code CalendarWindow}.
  */
 public class CalendarBox extends UiPart<Region> {
+
     private static final String FXML = "CalendarBox.fxml";
     private static final Color RED = Color.RED;
 
@@ -73,10 +74,16 @@ public class CalendarBox extends UiPart<Region> {
         loadEventsCount();
     }
 
+    // @@author Hzxin-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-T12-3/tp/blob/master/src/
+    // main/java/seedu/address/ui/panel/CalendarDayPanel.java
+    // with minor modification
     private void loadDate() {
         date.setText(dateTime.getMonth().toString().substring(0, 3)
                 + " " + dateTime.getDayOfMonth() + " " + dateTime.getYear());
     }
+
 
     private void loadEventsCount() {
         int assignmentCount = 0;
@@ -105,6 +112,8 @@ public class CalendarBox extends UiPart<Region> {
         setEventText(generalEventCount);
     }
 
+    //@@author
+
     private void setBirthdayText(int birthdayCount) {
         if (birthdayCount > 0) {
             birthday.setTextFill(RED);
@@ -132,4 +141,6 @@ public class CalendarBox extends UiPart<Region> {
         }
         event.setText(eventCount + " Event(s)");
     }
+
+
 }
