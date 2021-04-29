@@ -39,6 +39,7 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Creates wrapping ability for cells in TableView.
      */
+    // Variable below adapted from https://jluger.de/blog/20160731_javafx_text_rendering_in_tableview.html
     private static final Callback<TableColumn<CommandHelper, String>, TableCell<CommandHelper, String>>
             WRAPPING_CELL_FACTORY = new Callback<TableColumn<CommandHelper, String>,
             TableCell<CommandHelper, String>>() {
@@ -97,6 +98,8 @@ public class HelpWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
+    // Help window code format is partially adapted from
+    // https://github.com/AY2021S2-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/address/ui/HelpPanel.java
     public HelpWindow(Stage root, Logic logic) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
