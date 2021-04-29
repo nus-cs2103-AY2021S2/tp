@@ -1,0 +1,37 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "studyLevel" : "Sec 2",
+    "guardianPhone" : "82813844",
+    "relationship" : "Mother",
+    "sessions": [
+      {
+        "type" : "JsonAdaptedSession",
+        "sessionDate": "2020-01-07T12:00",
+        "duration": "100",
+        "subject": "COMPUTING",
+        "fee": "40.0"
+      }
+    ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "address": "4th street",
+    "studyLevel" : "Sec 2",
+    "guardianPhone" : "82813844",
+    "relationship" : "Mother",
+    "sessions": [
+      {
+        "type" : "JsonAdaptedSession",
+        "sessionDate": "2020-01-07T12:00",
+        "duration": "100",
+        "subject": "COMPUTING",
+        "fee": "40.0"
+      }
+    ]
+  } ]
+}

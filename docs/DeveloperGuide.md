@@ -7,6 +7,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -23,27 +25,27 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T11-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At application launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the application consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of the application.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Model`**](#model-component): Holds the data of the application in memory.
+* [**`Storage`**](#storage-component): Reads and writes data to the hard disk.
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -51,22 +53,22 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues with any command.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/shion/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
 
 ### UI component
-
+Figure 4: Class Diagram of UI Component
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,147 +80,434 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_student 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_student 1` Command](images/enhao/DeleteStudentSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
-
+ 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
+* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* consists of two main packages:
+    * the `Student` package contains classes that represents a student.
+    * the `Session` package contains classes that represents a tuition session for each particular student.
 
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* has the ability to save `UserPref` objects in JSON format and parse it back to an object after.
+* has the ability to save `Student` objects in JSON format, nested with its associated list of `Session` or `RecurringSession` objects, and parse it back after.
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### General
+#### List Feature
+The list feature displays a list of existing students, and a list of sessions of those students in the TutorBuddy application.
 
-#### Proposed Implementation
+##### Implementation
+This feature is facilitated by `ListCommand` which extends `Command`.
+The method `ListCommand#execute` updates the filtered student list, and the filtered session list by calling the method
+`Model#updateFilteredStudentList` exposed in the `Model` interface.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Given below is an example of how the list student
+1. The user executes the list command with the input `list`.
+2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
+3. `AddressBookParser` identifies the correct command and creates a new `ListCommand`.
+4. `AddressBookParser` returns the new `ListCommand` to `LogicManager`.
+5. `LogicManager` executes the `ListCommand`.
+6. `ListCommand` now calls `Model` to update the `filteredStudents` and  to show all students.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The following sequence diagram shows the interactions when user executes the `list` command:
+![ListSequenceDiagram](images/choonwei/ListSequenceDiagram.png)
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+The following activity diagram summarizes what happens when a user executes the `list` command.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![ListActivityDiagram](images/choonwei/ListActivityDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+### Students
+Students in TutorBuddy is facilitated by the `Student` class which stores specific details of
+a `student` within one `student` object. Students are not allowed to have duplicated names.
 
+#### Add Student Feature
+The add student feature allows user to add a student to the TutorBuddy Application.
+
+##### Implementation
+This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`.
+
+Given below is an example of how the add student mechanism runs:
+1. The user executes the add student command with the command word `add_student` and include all the information required.
+2. `LogicManager` starts executing and parses the command using `AddressBookParser`.
+3. `AddressBookParser` recognises the command and runs the `AddStudentCommandParser` class.
+4. `AddStudentCommandParser` then validates the information, and creates a new `Student` object.
+5. `AddStudentCommandParser` also creates a new `AddStudentCommand` with the previously created `Student` object as parameter.
+6. The command is returned to `LogicManager` which then executes the command.
+7. `ModelManager` adds the student to the `AddressBook`.
+8. `ModelManager` adds the student to the `filteredStudents` list.
+9. `Logic` saves the `AddressBook` data in the `Storage`.
+
+The following activity diagram summarizes what happens when a user executes the `add_student` command.
+
+![AddStudentActivityDiagram](images/enhao/AddStudentActivityDiagram.png)
+
+The following sequence diagram summarizes what happens when a user executes the `add_student` command:
+![AddStudentSequenceDiagram](images/enhao/AddStudentSequenceDiagram.png)
+
+#### Delete Student Feature
+The delete student feature allows user to delete a student from the TutorBuddy Application.
+
+##### Implementation
+The delete student feature is implemented similarly to the add student feature. However, it makes use of the
+`DeleteStudentCommandParser` and `DeleteStudentCommand` instead to delete the student from the `AddressBook`. 
+The command word to use is `delete_student`. In step 4, TutorBuddy validates the information. In step 7 and 8,
+the student is removed from the `UniqueStudentList` list instead.
+
+#### Edit Student Feature
+The edit student feature allows user to edit a student profile from the TutorBuddy Application.
+
+##### Implementation
+The edit student feature is implemented similarly to the add student feature. However, it makes use of the
+`EditStudentCommandParser` and `EditStudentCommand` instead to edit the student from the `AddressBook`.
+The command word to use is `edit_student`. In step 4, TutorBuddy validates the information, determine the fields to be edited.
+In step 7 and 8, the student is edited and updated to the `UnqiueStudentList` list instead.
+
+#### Find Student Feature
+The find student feature allows user to specific keywords in relation to the student's name in the application.
+TutorBuddy will then filter the student list based on given keyword.
+
+##### Implementation
+The find student feature is implemented similarly to the add student feature. However, it makes use of the
+`FindStudentCommandParser` and `FindStudentCommand` instead to update the `filteredStudent` list to only display students with the matching keyword.
+The command word to use is `find_student`. In step 4, TutorBuddy validates the information and determine the keywords. 
+In step 7 and 8, the `filteredStudents` list is updated based on the given keywords.
+
+#### List Students' Email Feature
+The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
+a semi-colon `;`. This allows for quick copying and pasting to e-mail applications, such as Microsoft Outlook, for broadcasting
+message purposes (e.g. newsletter).
+
+##### Implementation
+This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
+`Model#getFilteredStudentList()`.
+
+Below is an example of how the list students' email mechanism works:
+1. The user executes the list students' emails command with the command `emails`
+2. `LogicManager` receives the command, and hands off the parsing of command to `AddressBookParser`
+3. `AddressBookParser` recognises the command and creates a new `EmailCommand`
+4. `EmailCommand` is returned back to `LogicManager`, which then executes the command through `EmailCommand#execute()`
+5. Upon `EmailCommand#execute()`, a list of `Student` are retrieved through `Model#getFilteredStudentList()`
+6. The list of `Student` emails are then concatenated with ';' into a `String`
+7. The concatenated `String` is then returned to `LogicManager` as a new `CommandResult`
+8. The `CommandResult` containing the concatenated email is then displayed to the user through `ResultDisplay`
+
+The following activity diagram summarizes what happens when a user executes the `emails` command:
+![EmailCommandActivityDiagram.png](images/sam/EmailCommandActivityDiagram.png)
+
+The following sequence diagram summarizes what happens when a user executes the `emails` command:
+![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
+
+### Session
+Sessions in TutorBuddy is facilitated by the `Session` class which stores specific details of
+a tuition session with one student. Each session is composed within a `Student`,
+and a `Student` can have multiple `Session`s.
+
+#### Add Session Feature
+The add session feature allows users to add individual tuition sessions with specific details of each session.
+
+This section explains the implementation of the `add_session` mechanism and highlights the design considerations taken into account when implementing this feature.
+
+##### Implementation
+The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
+`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
+before adding the session.
+
+The following sequence diagram shows the interactions between the Model and Logic components during the execution of
+an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
+
+![AddSessionSequenceDiagram](images/junwei/AddSessionSequenceDiagram.png)
+
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to `AddressBookParser`.
+3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
+4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
+   `addSession(name, sessionToAdd)` which adds the session to the specific student.
+5. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the Ui.
+
+Aspect 1: Model for `Session` class
+* **Alternative 1(current choice)**: Maintaining a list of session in the `Student` class.
+    * Pros:
+        * Easy and straightforward implementation
+    * Cons:
+        * Could potentially hinder performance if there is too much data
+
+* **Alternative 2**: Maintain a two separate lists and have `UniqueStudentList` and `UniqueSessionList`.
+    * Pros:
+        * Smooth performance when there is a lot of data
+    * Cons:
+        * Harder to implement due to the need for a Universally Unique Identifier(UUID)
+    
+Alternative 1 was chosen because TutorBuddy is meant to be an application for independent tutors with few students.
+However, for future iterations, alternative 2 would be strongly considered.
+
+Aspect 2: Type of input for `AddSessionCommand`
+* **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
+    * Pros:
+        * Easier for user to add sessions without constantly having to refer to the application for student id
+    * Cons:
+        * Slows down user since name takes longer to type than index.
+
+* **Alternative 2**: Using student index to identify the student to add the session to.
+    * Pros:
+        * Allows fast entering of input.
+    * Cons:
+        * User has to constantly refer to the application for student index id.
+
+Alternative 1 was chosen because the cons of implementing alternative 2 outweighs the benefits derived from it. Student index may change when
+a user adds a new student into the AddressBook. If the AddressBook contains many students, it may take some time for the user to find the
+updated student index. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
+which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
+to alternative 2.
+
+#### Delete Session Feature
+The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
+which calls `AddressBook#removeSession(studentName, sessionIndex)` and
+`UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
+
+The following sequence diagram shows how deleting a session works:
+![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
+
+It shares the same design considerations as what is mentioned in Add Session Feature.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+This feature applies to the deletion of an entire recurring session, mentioned below, as well. 
 </div>
 
-The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+### Recurring Session
+Recurring Session is facilitated by the `RecurringSession` class which stores specific details of
+a tuition session with one student, that recurs. Similar to `Session` each recurring session is composed within a `Student`'s list of sessions,
+and a `Student` can have multiple `RecurringSession`s. <br>
+The class `RecurringSession` inherits from `Session`, albeit with additional properties `Interval` and `LastSessionDate`.
+This is because a recurring session can be defined a session that recurs, by given intervals, and up till a last date of session. <br>
+![SessionAndRecurringSessionClassDiagram](images/shion/SessionAndRecurringClassDiagram.png) 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+Note that:
+- `SessionDate` property inherited from `Session`, now serves to represent the date and time of the first occuring session in `RecurringSession`
+- Creation of a `RecurringSession` with zero recurrence is not allowed by the user. <br>
+  i.e. The first and last dates cannot be the same.<br>
+  This is so that from the perspective of the user, the notion of a `Session` and `RecurringSession` will not overlap; 
+  a recurring session must strictly recur once or more.
+- `delete_session` as mentioned [above](#delete-session-feature) applies on subclass recurring sessions as well, to delete the entire
+recurring session.
+
+#### Add Recurring Session Feature
+The add recurring session feature allows users to add tuition sessions that recur by a given interval, at least once.
+
+##### Implementation
+![AddRecurringSessionSequenceDiagram](images/shion/AddRecurringSessionSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+This is a partial sequence diagram; `AddressBookParser` at the left edge is omitted for brevity <br>
+The lifeline for `AddRecurringSessionCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+The process of creating a recurring session and the addition of it to the model component follows the sequence diagram above,
+and is described in the following:
+1. User input previously parsed is directed to `AddRecurringSessionParser` for further parsing with `#parse(input)`. <br>
+After multiple validity checks in the `#parse(input)` method, `AddSessionCommandParser` creates 
+   an instance of an `AddRecurringSessionCommand`.
+2. `#execute` called on this `AddRecurringSessionCommand` instance calls `hasName(name)`, 
+   `hasSession(name, reccuringSessionToAdd)` and `hasOverlappingSession(recurringSessionToAdd)` methods of `Model`
+   to ensure that the addition of the recurring session will be valid. 
+3. `addSession(name, recurringSessionToAdd)` then adds the recurring session to the specific student in the model component.
+4. The result of the command execution is encapsulated as a `CommandResult` object.
+
+The multiple validity checks in `AddRecurringSessionParser#parse(input)` as mentioned in 1. ensures users are guided to
+add the compatible recurring session. Determining that a desired recurring session is compatible, and, suggesting a 
+compatible recurring session otherwise, is handled through `AddRecurringSessionParser#parse(input)`, with key checks
+depicted below.
+![AddRecurringSessionCommandParserActivityDiagram](images/shion/AddRecurringSessionCommandParserActivityDiagram.png)
+
+##### Design Considerations
+Aspect 1: Use of Inheritance for RecurringSession and related classes
+* **Alternative 1 (current choice)**: Both `RecurringSession` and `RecurringSessionCommand` classes extends 
+  `Session` and `SessionCommand` classes
+    * Pros:
+        * Abides by the "don't repeat yourself" principle, given that the `RecurringSession` is a proper subtype of superclass `Session`.
+          Enhancements to recurring session is only additive to superclass `Session`.
+        * Reduced complexity. Abstract classes/interfaces are not required with the simple inheritance.
+    * Cons:
+        * Uses subclass coupling; coupling is increased. Reduces expansion and maintainability, in the possible event
+    of redefining recurring session and session relationship.
+          
+* **Alternative 2**: Creating a `Session (interface)` to be implemented by `Single-Session` class and `RecurringSession`.
+    * Pros:
+        * Eliminates subclass coupling.
+    * Cons:
+        * Additional lines of code will be required. At current implementation where `RecurringSession` shares the same logical domain as
+    `Session` and is a proper subtype of `Session`, there will comparatively be more repeated code upon abstracting out an interface.
+          
+Alternative 1 was chosen for the practical consideration that less code was necessary for the forseeable requirements
+given the current set of use cases. Though increasing coupling, the inheritance relationship is simple and sufficient,
+as methods to `RecurringSession` is strictly only additive to those is `Session`. The increased coupling does not
+complicated testing as well, due to the fact that every test on `Session` applies to `RecurringSession`.
+
+
+Aspect 2: Brute vs. mathematical implementation for overlap checks involving recurring sessions in isOverlapping()
+* **Alternative 1 (current choice)**: Brute-force approach to checking for overlap with recurring sessions.
+    * Pros:
+        * Logically simple, hence easy to implement, test, review.
+    * Cons:
+        * Worst case scenario has no bounds.
+
+* **Alternative 2**: Mathematical approach to checking for overlap with recurring session, using ideas of GCD
+  and extended euclid algorithm
+    * Pros:
+        * Fixed upper bound to amount of computation; better (bounded) worst case.
+    * Cons:
+        * Not straightforward, may require domain-specific knowledge, i.e. Math
+    
+Alternative 1 was chosen as a worst case scenario that harms is effectively non-existent.
+Realistic, practical user inputs will involve recurrence intervals that can be perceived by the human brain of the
+user; this will not cause computations that give significant run-time, even when approach is burte.
+Alternative 2 would require formal verification, which can be time-consuming.
+
+#### Delete Recurring Session Feature
+The delete recurring session feature allows users to remove a single session from an existing recurring session.
+
+This section explains the implementation of the `delete_rec_session` command and highlights the design considerations
+taken into account when implementing this feature.
+
+##### Implementation
+
+The deletion of a single session in an existing recurring session is facilitated by the `DeleteRecurringSessionCommand` and it extends `Command`.
+The method `DeleteRecurringSessionCommand#execute()` performs a validity check on the student name, target index, and session date to be deleted
+before deleting the single session.
+
+The following sequence diagram shows the interactions between the Model and Logic components during the execution of a `DeleteRecurringSessionCommand`
+with user input `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE`:
+![DeleteSessionSequenceDiagram](images/choonwei/DeleteRecurringSessionSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteRecurringSessionCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. A new instance of a `DeleteRecurringSessionCommand` would be created by the `DeleteRecurringSessionCommandParser` and returned to `AddressBookParser`.
+3. `AddressBookParser` encapsulates the `DeleteRecurringSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
+4. The execution calls `hasName(studentName)` to validate an existing student in TutorBuddy, and `hasSessionOnDate(sessionDate)` to validate
+   the session date belongs to a recurring session.
+5. It also calls `getStudentWithName(studentName)` to get the student name before calling `deleteSessionInRecurringSession(studentName, targetIndex, sessionDate)`
+which splits the recurring session into two recurring session(s)/session(s), one exclusively before the session date, and another exclusively after the session date.
+6. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the Ui to display the updated list of sessions.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+The following activity diagram summarizes what happens when a user executes the `delete_rec_session` command.
+![ListActivityDiagram](images/choonwei/DeleteRecurringSessionActivityDiagram.png)
 
-</div>
+##### Design Considerations
+Aspect 1: Exclusion of the single session from the recurring session
+* **Alternative 1 (current choice)**: Splits the recurring session into two recurring session(s)/session(s), one
+  exclusively before the session date, and another exclusively after the session date.
+    * Pros:
+        * Easier for user to keep track of their sessions since they only need to read the start and end date of the recurring sessions.
+        * Easier to handle session entries when displaying recurring sessions in `Calendar`, `Reminders`, and `Fees` components.
+    * Cons:
+        * More work required for TutorBuddy to execute the splitting of sessions.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+* **Alternative 2**: Store a `List<SessionDate>` inside of each `Session` for excluded sessions.
+    * Pros:
+        * Allows quick exclusion of session dates since we only need to store the session date in the session.
+    * Cons:
+        * Requires a lot of book-keeping when displaying recurring sessions in `Calendar`, `Reminders`, and `Fees` components.
+        * Tedious for user to keep track of their sessions by regularly checking if the date is excluded.
+    
+Alternative 1 was chosen because of the pros of implementing alternative 1 outweighs the cons that comes along with it.
+Although it requires TutorBuddy to do more of the processing work to split the recurring session, it makes it easier to
+display recurring sessions in the Calendar view, display upcoming recurring sessions in reminders, and calculation of fees.
+It also makes it more intuitive and convenient for the user to see if a recurring session occurs on a certain date without
+having to check if the date is excluded when they refer to the `Tuition` page.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+### Monthly Fees
+Monthly Fees in TutorBuddy is calculated based on the session `fee`. It makes uses of the FeeUtil static method
+to perform the calculation.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+#### Calculating Monthly Fee Feature
+The monthly `fee` feature allows user to quickly calculate the amount of money they should have received
+from a particular student in a given month and year.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+This section explains the implementation of the `fee` command and highlights the design considerations taken into account when implementing this feature.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+##### Implementation
+The calculation of the fees is facilitated by the `GetMonthlyFeeCommand` and it extends `Command`. The method,
+`GetMonthlyFeeCommand#execute()`, performs a validity check on student name input to ensure that the student name exists in the application.
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+The following sequence diagram shows the interactions between the Model, Logic and FeeUtil components during the execution of
+an `GetMonthlyFeeCommand` with user input `fee n/STUDENT_NAME m/MONTH y/YEAR`:
 
-#### Design consideration:
+![GetMonthlyFeeSequenceDiagram](images/enhao/GetMonthlyFeeSequenceDiagram.png)
 
-##### Aspect: How undo & redo executes
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. A new instance of an `GetMonthlyFeeCommand` would be created by the `GetMonthlyFeeCommandParser` and returned to `AddressBookParser`.
+3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
+4. The command execution calls `hasStudent(name)` to validate the inputs.
+5. The command execution the calls the `getFeePerStudent(student, startPeriod, endPeriod)` static method in `FeeUtil` and perform the calculation.  
+6. The calculation result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+#### Design Considerations
+Aspect 1: Calculation for the fees
+* **Alternative 1 (current choice)**: Abstracting out the calculation to a common file such as `FeeUtil`.
+    * Pros:
+        * Ensures the "don't repeat yourself" software development principle by allowing both this command, and the 3 monthly fee feature to make use of the same methods in `FeeUtil`.
+        * Potentially easier to be maintained by further developer.
+    * Cons:
+        * Increases coupling.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2**: Performing the calculation inside `GetMonthlyFeeCommand`.
+    * Pros:
+        * Reduces coupling.
+    * Cons:
+        * Repeated code and increased difficult for maintenance when there is a need to update the calculation algorithm.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+Alternative 1 was chosen because the pros of implementing alternative 1 outweighs the cons derived from it. By having
+an abstracted `FeeUtil` method, we will only need to update the methods in `FeeUtil` which will have a rippling effect
+to the rest of the features that uses this method. This allows the UI to make use of the `FeeUtil` methods when calculating the 
+3 months fees as well. Although this results in increased coupling, with proper testing in place, we could mitigate the risk 
+as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour of the other feature.
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -229,80 +518,343 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: An independent tutor
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* has a need to manage a significant number of student contacts (100 - 200)
+* prefers desktop apps over other types
+* can type fast (80 _WPM_ and above)
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:
+* All in one platform to manage their students’ contacts
+* Provide a quick overview of scheduled tuition sessions
+* Handle monthly tuition fees calculation
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                 | I want to …​                                   | So that I can…​                                           |
+| -------- | ------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------ |
+| `* * *`  | user                                       | create a student's profile                        | keep track of my student's information                       |
+| `* * *`  | user                                       | see the profile of a particular student           | get their information                                        |
+| `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
+| `* * *`  | user                                       | edit the details of a student                     | keep track of up-to-date information                         |
+| `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
+| `* * *`  | busy user                                  | add recurring tuition sessions                    | save time by creating multiple sessions in one command       |
+| `* * *`  | user                                       | delete a non-recurring tuition session            | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete the entire recurring session               | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete a single session from a recurring session  | update cancelled tuition session                             |
+| `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
+| `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
+| `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
+| `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my finance better              |
+| `* * *`  | forgetful user                             | see a list of upcoming sessions                   | be aware of my teaching schedule for the next few days       |
+| `* * *`  | user teaching many lessons                 | see my schedule in a calendar view                | have an overview of my hectic schedules at a glance          |
+| `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
+| `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
+| `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
+| `* *`    | user                                       | exit the application                              |                                                              |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+*(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: Delete a person**
+#### UC01 - Create a student profile
 
-**MSS**
+**MSS:**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters the `add_student` command, together with the student details.
+2. TutorBuddy creates the profile in the background.
+3. TutorBuddy displays the success message.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
-* 2a. The list is empty.
+* 1a. TutorBuddy detects an error in the entered data.
+    * 1a1. TutorBuddy displays an error message.
+
+    Use case ends.
+
+#### UC02 - Find a student’s profile
+
+**MSS:**
+
+1. User enters the `find_student` command, along with a keyword from the student’s name.
+2. TutorBuddy displays all students’ profiles matching the keyword if any.
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. TutorBuddy detects empty keyword field
+    * 1a1. TutorBuddy displays an error message for no keyword specified.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+#### UC03 - Delete a student profile
 
-    * 3a1. AddressBook shows an error message.
+**MSS:**
 
-      Use case resumes at step 2.
+1. User enters the `delete_student` command, along with the student’s name.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy displays a success message.
 
-*{More to be added}*
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+#### UC04 - Edit student details
+
+**MSS:**
+
+1. User enters the `edit_student` command with the appropriate input.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy edits the student information.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+    
+  Use case ends.
+
+#### UC05 - Create a session
+
+**MSS:**
+
+1. User enters the `add_session` command, together with the session details.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy creates the session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+* 2b. TutorBuddy detects another overlapping session that the user has in the same timeframe.
+    * 2b1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+#### UC06 - Create a recurring session
+
+**MSS:**
+
+1. User enters the `add_rec_session` command, together with the session details.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy creates the recurring session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+* 2b. TutorBuddy detects another overlapping session that the user has in the same timeframe.
+    * 2b1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+#### UC07 - Delete a session or the entire recurring session
+
+**MSS:**
+
+1. User enters the `delete_session` command with the appropriate inputs.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy deletes the session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+#### UC08 - Delete a single session from a recurring session
+
+**MSS:**
+
+1. User enters the `delete_rec_session` command with the appropriate inputs.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy deletes the single session and splits up the remaining session into 2 recurring sessions (Before and After).
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+#### UC09 - List all students and sessions
+
+**MSS:**
+
+1. User enters the `list` command.
+2. TutorBuddy shows all the students and sessions information on the `tuition` tab.
+
+   Use case ends.
+
+#### UC10 -  Getting the emails from the application
+
+**MSS:**
+
+1. User enters the command to get the email from TutorBuddy.
+2. TutorBuddy returns a list of all the email addresses to the user.
+3. User copies the email address given.
+
+   Use case ends.
+
+#### UC11 - Calculate fee for a student of a particular month and year
+
+**MSS:**
+
+1. User enters the `fee` commands with the appropriate inputs.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy shows the calculated fees to the user.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+#### UC12 - View 3 months monthly fee
+
+**MSS:**
+
+1. User toggles to the `Home` tab.
+2. TutorBuddy shows the monthly fee that the user would have received for the past 3 months based on current sessions in the application.
+
+   Use case ends.
+
+#### UC13 - Reminders for upcoming sessions
+
+**MSS:**
+
+1. User toggles to the `Home` tab.
+2. TutorBuddy shows a list of upcoming sessions that would happen, within the next 3 days.
+
+   Use case ends.
+
+#### UC14 - Calendar View
+
+**MSS:**
+
+1. User toggles to the `Calendar` tab.
+2. TutorBuddy shows a calendar representation of the sessions, showing the schedule of the current week.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User can toggle between the different weeks using the left and right button in the Calendar page.
+    * 2a1. User can view this week's schedule again by clicking on the `Today` button.
+
+  Use case ends.
+
+#### UC15 - Show help
+
+**MSS:**
+
+1. User enters the `help` command.
+2. TutorBuddy displays a help window that contains a list of commands available on the application, and a link to our user guide.
+
+   Use case ends.
+
+#### UC16 - Sample data for new users
+
+**MSS:**
+
+1. A new user opens up the application.
+2. TutorBuddy detects that the user does not have a .json file in the data folder.
+3. TutorBuddy is populated with sample students and sessions data.
+
+   Use case ends.
+
+#### UC17 - Clear data
+
+**MSS:**
+
+1. User enters the `clear` command.
+2. TutorBuddy deletes all the current data from the application.
+
+   Use case ends.
+
+#### UC18 - Exit application
+
+**MSS:**
+
+1. User enters the `exit` command.
+2. TutorBuddy closes.
+
+   Use case ends.
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+* Technical requirements:
+    * TutorBuddy should work on both 32-bit and 64-bit environments.
+    * TutorBuddy should work on any _mainstream OS_ with Java `11` or above installed.
+    * The user should have enough memory on their computer to ensure that data will be stored in the application without errors.
+* Performance requirements:
+    * TutorBuddy should be able to hold up to _500 students_ or _500 sessions_ without a noticeable dip in performance for typical usage.
+    * Response time from any command should be within 1 second.
+* Constraints:
+    * TutorBuddy should be backward compatible with data produced by earlier versions of the system.
+* Quality requirements:
+    * The user should take no longer than 1 hour to learn the different functionalities of TutorBuddy from the user guide.
+* Process requirements:
+    * TutorBuddy should be completed before AY20/21 Week 13
+* Any other noteworthy points:
+    * A user with above average typing speed (80 _WPM_ and above) for regular English text (i.e. not code, not system admin commands) should be able to use most of the functionalities in TutorBuddy faster using commands rather than using the mouse.
 
 ### Glossary
 
+* **Session**: Tuition session for a particular student
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command Line Interface where users can interact with their OS system.
+* **MSS**: Main Success Scenario
+* **WPM**: Words Per Minute
+* **JavaFx**: Java framework to create user interfaces
+* **UI**: User interface
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -310,47 +862,112 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
-### Launch and shutdown
 
-1. Initial launch
+### General
 
-   1. Download the jar file and copy into an empty folder
+#### Launching TutorBuddy
+1. Download the jar file and copy into an empty folder
+1. Double-click the jar file<br>
+   Expected: Shows the GUI with sample students and tuition sessions. The window size may not be optimum.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+#### Saving Window Preferences
+1. Resize the window to an optimum size (Note that TutorBuddy has a resolution size limit). Move the window to a different location. 
+   Close the window.
+1. Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
 
-1. Saving window preferences
+#### Clearing all data
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+<div markdown="span" class="alert alert-info">
+:information_source: **WARNING:** Do not clear all data if you have important information in TutorBuddy!
+</div>
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+1. Prerequisites: None.
+1. Test case: `clear`<br>
+   Expected: Student list view and Session list view becomes empty.
+1. To get back the sample data in TutorBuddy, simply delete the data folder in the home folder and restart TutorBuddy.
 
-1. _{ more test cases …​ }_
+#### Listing all students and sessions
+1. Prerequisites: None.
+1. Test case: `list`<br>
+   Expected: On the Tuition tab, all students and sessions will be displayed in the Student list view and Session list view respectively.
 
-### Deleting a person
+### Managing Students
 
-1. Deleting a person while all persons are being shown
+#### Adding a student
+1. Prerequisites: None.
+1. Test case: `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`<br>
+   Expected: The student with the fields entered should be added into the Student view list on the Tuition tab.
+1. Incorrect commands to try: `add_student n/John Doe`, `add_student n/John Doe p/28765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/9542 r/Mother`<br>
+   Expected: No student is added. Error details shown in the status message.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+#### Finding a student
+1. Prerequisites: There must be at least 1 student with the name `Alex` currently displayed on the Student view list.
+1. Test case: `find_student alex`<br>
+   Expected: Displays all students that has name matching to the keyword `alex` (case-insensitive).
+1. Test case: `find_student alex yu`<br>
+   Expected: Displays all students that has name matching to the keyword `alex` or `yu` (case-insensitive).
+1. Incorrect command to try: `find_student`<br>
+   Expected: Student view list does not get updated. Error details shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### Editing a student
+1. Prerequisites: There must be at least 1 student currently displayed on the Student view list.
+1. Test case: `edit_student 1 p/99999999`<br>
+   Expected: The first student displayed in the Student view list his/her `Phone` field changed to `99999999`.
+1. Incorrect commands to try: `edit_student` or `edit_student x` (where x is larger than the size of the student list) <br>
+   Expected: No student is edited. Error details shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+#### Deleting a student
+1. Prerequisites: There must be at least 1 student currently displayed on the Student view list.
+1. Test case: `delete_student 1`<br>
+   Expected: First student deleted from the list. Details of the deleted student shown in the status message.
+1. Incorrect commands to try: `delete_student 0` or `delete_student x` (where x is larger than the size of the student list) <br>
+   Expected: No student is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Managing Sessions
 
-1. _{ more test cases …​ }_
+#### Adding a session
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
+1. Test case: `add_session n/Alex Yeoh d/2021-04-10 t/12:00 k/120 s/Math f/100`<br>
+   Expected: The session with the fields will be added to the Session list view under the Student's name. The session will have a light blue "I" labelled
+   at the bottom right of the session card. If this session falls within 3 days from the current day (today, tomorrow, day after tomorrow),
+   this session will be displayed in the reminder list view on the Home tab.
+1. Incorrect commands to try: `add_session` or `add_session n/Alex Yeoh d/10-04-2021 t/12:00 k/120 s/Math f/100` <br>
+   Expected: No session is added. Error details shown in the status message.
 
-### Saving data
+#### Adding a recurring session
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
+1. Test case: `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-06-26 b/7 t/12:00 k/120 s/Math f/100`<br>
+   Expected: The session with the fields will be added to the Session list view under the Student's name. The session will have a orange "R" labelled
+   at the bottom right of the session card. If there is a session that falls within 3 days from the current day (today, tomorrow, day after tomorrow),
+   this session will be displayed in the reminder list view on the Home tab.
+1. Incorrect commands to try: `add_rec_session` or `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-06-28 b/7 t/12:00 k/120 s/Math f/100` <br>
+   Expected: No recurring session is added. Error details shown in the status message.
 
-1. Dealing with missing/corrupted data files
+#### Deleting a session or recurring session
+1. Prerequisites: There must be at least 1 session or recurring session for the student named `Alex Yeoh`.
+1. Test case: `delete_session n/Alex Yeoh i/1`<br>
+   Expected: First session from Alex Yeoh will be deleted from the list. Details of the deleted session shown in the status message.
+1. Incorrect commands to try: `delete_session n/anonymous i/1` (name does not exist in the student list) or
+   `delete_session n/Alex Yeoh i/x` (where x is larger than the size of the session list for `Alex Yeoh`) <br>
+   Expected: No session is deleted. Error details shown in the status message.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+#### Deleting a single session from a recurring session
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
+1. Test case: Firstly, add the recurring session with this command: `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-04-15 b/1 t/10:00 k/60 s/Math f/100`.
+   Next, delete the single session with this command: `delete_rec_session n/John Doe i/x d/2021-04-12`(where x is the index of the recurring session).<br>
+   Expected: Two recurring sessions will be displayed on the Session list view for `Alex Yeoh` with the first session that starts on `2021-04-10` that ends on `2021-04-11`
+   and the second session that starts on `2021-04-13` that ends on `2021-04-15`.
+1. Incorrect commands to try: `delete_rec_session` or `delete_rec_session n/anonymous` (name does not exist in the student list)<br>
+   Expected: No single session is deleted. Error details shown in the status message.
 
-1. _{ more test cases …​ }_
+### Managing Fees
+
+#### Checking a monthly fee
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
+1. Test case: `fee n/John Doe m/4 y/2021`<br>
+   Expected: Displays 2021 April's fee on the status message
+1. Incorrect commands to try: `fee` or `fee n/anonymous m/4 y/2021` (name does not exist in the student list) <br>
+   Expected: No fee is shown. Error details shown in the status message.

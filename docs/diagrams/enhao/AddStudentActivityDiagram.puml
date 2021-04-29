@@ -1,0 +1,27 @@
+@startuml
+start
+:User executes add student command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([all prefixes are present])
+    : Parse all student's arguments;
+    if () then ([all arguments are valid])
+        :Logic executes the command;
+        if () then ([no duplicate student name])
+                : Model adds the student to the address book;
+                : UI shows the updated student list;
+                : Logic saves the address book to the storage;
+                : UI shows that the add student command is successful;
+            else ([else])
+                :Ui show error message;
+        endif
+    else ([else])
+        :Ui show error message;
+    endif
+else ([else])
+    :Ui show error message;
+endif
+stop
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GetMonthlyFeeCommand" as GetMonthlyFeeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Common COMMON_COLOR_T1
+participant ":FeeUtil" as FeeUtil COMMON_COLOR
+end box
+
+[-> LogicManager : execute("fee")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("fee")
+activate AddressBookParser
+
+create GetMonthlyFeeCommand
+AddressBookParser -> GetMonthlyFeeCommand
+activate GetMonthlyFeeCommand
+
+GetMonthlyFeeCommand --> AddressBookParser :
+deactivate GetMonthlyFeeCommand
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+LogicManager -> GetMonthlyFeeCommand : execute()
+activate GetMonthlyFeeCommand
+
+GetMonthlyFeeCommand -> Model : hasName(name)
+activate Model
+deactivate Model
+
+GetMonthlyFeeCommand -> FeeUtil : getFeePerStudent(student, startPeriod, endPeriod)
+activate FeeUtil
+deactivate FeeUtil
+
+create CommandResult
+GetMonthlyFeeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GetMonthlyFeeCommand
+deactivate CommandResult
+
+GetMonthlyFeeCommand --> LogicManager : result
+deactivate GetMonthlyFeeCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GetMonthlyFeeCommand -[hidden]-> AddressBookParser
+destroy GetMonthlyFeeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

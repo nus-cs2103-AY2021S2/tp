@@ -1,0 +1,11 @@
+{
+  "students": [ {
+    "name": "Student with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "studyLevel" : "Secondary 4",
+    "guardianPhone" : "82813844",
+    "relationship" : "Mother"
+  } ]
+}

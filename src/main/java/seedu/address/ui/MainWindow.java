@@ -1,15 +1,23 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -24,6 +32,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final double WINDOW_HEIGHT = 768;
+    private static final double WINDOW_WIDTH = 1100;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,9 +41,13 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
+    private TuitionListPanel tuitionListPanel;
+    private UpcomingTuitionListPanel upcomingTuitionListPanel;
+    private MonthlyFeeListPanel monthlyFeeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarView calendarView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +56,28 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
+
+    @FXML
+    private StackPane tuitionListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane upcomingTuitionListPanelPlaceholder;
+
+    @FXML
+    private StackPane monthlyFeePanelPlaceholder;
+
+    @FXML
+    private StackPane calendarViewPlaceholder;
+
+    @FXML
+    private Tab time;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -60,12 +89,18 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
-        // Configure the UI
+        // configure UI
+        primaryStage.setMaxHeight(WINDOW_HEIGHT);
+        primaryStage.setMaxWidth(WINDOW_WIDTH);
         setWindowDefaultSize(logic.getGuiSettings());
+
+
+        primaryStage.setTitle("TutorBuddy");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/tutorbuddy_icon.png")));
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -110,8 +145,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        upcomingTuitionListPanel = new UpcomingTuitionListPanel(logic.getFullStudentList());
+        upcomingTuitionListPanelPlaceholder.getChildren().add(upcomingTuitionListPanel.getRoot());
+
+        monthlyFeeListPanel = new MonthlyFeeListPanel(logic.getFullStudentList());
+        monthlyFeePanelPlaceholder.getChildren().add(monthlyFeeListPanel.getRoot());
+
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        tuitionListPanel = new TuitionListPanel(logic.getFilteredStudentList());
+        tuitionListPanelPlaceholder.getChildren().add(tuitionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,6 +165,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        calendarView = new CalendarView(logic.getFullStudentList());
+        calendarViewPlaceholder.getChildren().add(calendarView.getRoot());
+
+        displayDateAndTime();
     }
 
     /**
@@ -163,8 +212,32 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Displays and refreshes date time display on TutorBuddy every 1 second
+     */
+    private void displayDateAndTime() {
+        final Timeline timeline = new Timeline(
+                new KeyFrame(
+                    Duration.millis(1000),
+                    event -> {
+                        time.setText(
+                            LocalDateTime.now().toLocalDate()
+                            .format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + "     "
+                            + LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+
+                    }
+                )
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
+    }
+
+    public TuitionListPanel getTuitionListPanel() {
+        return tuitionListPanel;
     }
 
     /**

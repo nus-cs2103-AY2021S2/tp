@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "ResultDisplay.fxml";
+    private String feedbackToUser;
 
     @FXML
     private TextArea resultDisplay;
@@ -21,6 +22,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
+        this.feedbackToUser = feedbackToUser;
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
     }

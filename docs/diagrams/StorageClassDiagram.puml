@@ -4,6 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
+package Storage {
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
 Interface AddressBookStorage <<Interface>>
@@ -11,6 +12,20 @@ Interface AddressBookStorage <<Interface>>
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonAddressBookStorage
+Class JsonSerializableAddressBook
+Class JsonAdaptedStudent
+Class JsonAdaptedSession
+Class JsonAdaptedRecurringSession
+}
+
+package Student {
+Class HiddenModel #FFFFFF
+}
+
+package Session {
+Class Session
+Class RecurringSession
+}
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
@@ -22,6 +37,17 @@ Storage -|> AddressBookStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .left.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBook
-JsonSerializableAddressBook .right.> JsonAdaptedPerson
-JsonAdaptedPerson .right.> JsonAdaptedTag
+JsonSerializableAddressBook .right.> JsonAdaptedStudent
+JsonAdaptedStudent *--> JsonAdaptedSession
+
+JsonAdaptedSession <|-- JsonAdaptedRecurringSession
+
+JsonAdaptedStudent ..> Student
+
+/' session and recurringsession '/
+Session <|- RecurringSession
+JsonAdaptedSession ..> Session
+JsonAdaptedRecurringSession ..> RecurringSession
+
+Student *--> Session
 @enduml

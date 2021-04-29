@@ -1,0 +1,19 @@
+@startuml
+start
+: user enters an add_recurring_session command\n in the command box;
+if () then ([else])
+    : throws ParseException \n with command usage direction;
+else ([all prefixes are present]))
+: Parse arguments of the command;
+if () then ([session ends on next day])
+  : throws ParseException \n with session constraints;
+elseif () then ([last session date is consistent with the first date and interval])
+  : throws ParseException \n suggesting a suitable last date;
+elseif () then ([first and last sessions are on same dates])
+  : throws ParseException \n requesting for \n one or more recurrence by interval;
+else ()
+  : Command to \n add Recurring Session \n is created \n and ready to be executed;
+endif
+endif
+stop
+@enduml
