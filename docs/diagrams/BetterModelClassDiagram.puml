@@ -4,18 +4,35 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
+AddressBook *-right-> "1" UniquePassengerList
 AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+AddressBook *-up-> "1" UniquePoolList
+UniqueTagList -[hidden]down- UniquePassengerList
+UniqueTagList -[hidden]up- UniquePassengerList
+UniquePoolList -[hidden]up- UniqueTagList
+UniquePoolList -[hidden]up- UniqueTagList
 
 UniqueTagList *-right-> "*" Tag
-UniquePersonList o-right-> Person
+UniquePassengerList o-right-> Passenger
 
-Person -up-> "*" Tag
+UniquePoolList -[hidden]right-> Pool
+UniquePoolList -[hidden]right-> Pool
+UniquePoolList o-right-> Pool
+UniquePoolList -[hidden]right-> Pool
+UniquePoolList -[hidden]right-> Pool
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Passenger -up-> "*" Tag
+
+Pool -right-> "*" Tag
+Pool -right-> "*" Passenger
+Pool *-right-> "1" TripDay
+Pool *-right-> "1" TripTime
+
+Passenger *--> "1" Name
+Passenger *--> "1" Phone
+Passenger *--> "1" Address
+Passenger *--> "1" TripDay
+Passenger *--> "1" TripTime
+Passenger *--> "0..1" Price
+
 @enduml

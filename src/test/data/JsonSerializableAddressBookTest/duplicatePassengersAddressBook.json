@@ -1,0 +1,19 @@
+{
+  "passengers": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "marketing" ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1400",
+    "priceStr" : ""
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "address": "4th street",
+    "tripDayStr" : "WEDNESDAY",
+    "tripTimeStr" : "2130",
+    "priceStr" : ""
+  } ],
+  "pools" : [ ]
+}

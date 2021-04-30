@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +20,26 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PASSENGER = "Passengers list contains duplicate passenger(s).";
+    public static final String MESSAGE_DUPLICATE_POOL = "Pool list contains duplicate pool(s).";
+    public static final String MESSAGE_DUPLICATE_PASSENGER_REF = "Two or more Pool(s) reference the same passenger.";
+    public static final String MESSAGE_POOL_PASSENGER_INVALID = "Pool(s) contain passenger(s) not in passenger list.";
+    public static final String MESSAGE_POOL_PASSENGER_DAY_MISMATCH =
+            "Pool(s) contain passenger(s) with mismatched trip day.";
+    public static final String MESSAGE_POOL_DRIVER_IS_PASSENGER =
+            "Pool(s) contain passenger(s) that are driving themselves.";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPassenger> passengers = new ArrayList<>();
+    private final List<JsonAdaptedPool> pools = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given passengers.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("passengers") List<JsonAdaptedPassenger> passengers,
+                                       @JsonProperty("pools") List<JsonAdaptedPool> pools) {
+        this.passengers.addAll(passengers);
+        this.pools.addAll(pools);
     }
 
     /**
@@ -37,7 +48,10 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        this.passengers.addAll(source.getPassengerList().stream().map(JsonAdaptedPassenger::new)
+                .collect(Collectors.toList()));
+        this.pools.addAll(source.getPoolList().stream().map(JsonAdaptedPool::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,13 +61,33 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedPassenger jsonAdaptedPassenger : passengers) {
+            Passenger passenger = jsonAdaptedPassenger.toModelType();
+            if (addressBook.hasPassenger(passenger)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PASSENGER);
             }
-            addressBook.addPerson(person);
+            addressBook.addPassenger(passenger);
         }
+        for (JsonAdaptedPool jsonAdaptedPool : pools) {
+            Pool pool = jsonAdaptedPool.toModelType();
+            if (addressBook.hasPool(pool)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_POOL);
+            }
+            if (pool.getPassengers().stream().anyMatch(addressBook::hasPoolWithPassenger)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PASSENGER_REF);
+            }
+            if (pool.getPassengers().stream().anyMatch(passenger -> !addressBook.hasEqualPassenger(passenger))) {
+                throw new IllegalValueException(MESSAGE_POOL_PASSENGER_INVALID);
+            }
+            if (pool.getPassengers().stream().anyMatch(pass -> !pass.getTripDay().equals(pool.getTripDay()))) {
+                throw new IllegalValueException(MESSAGE_POOL_PASSENGER_DAY_MISMATCH);
+            }
+            if (pool.getPassengers().stream().anyMatch(pass -> pass.isSamePerson(pool.getDriver()))) {
+                throw new IllegalValueException(MESSAGE_POOL_DRIVER_IS_PASSENGER);
+            }
+            addressBook.addPool(pool);
+        }
+
         return addressBook;
     }
 

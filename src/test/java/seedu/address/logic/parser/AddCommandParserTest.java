@@ -3,83 +3,91 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRIPDAY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRIPTIME;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_FRIDAY;
+import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_EVENING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPassengers.AMY;
+import static seedu.address.testutil.TypicalPassengers.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PassengerBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Passenger expectedPassenger = new PassengerBuilder(BOB)
+                .withTags(VALID_TAG_IT).withPrice(VALID_PRICE_BOB).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedPassenger));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedPassenger));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedPassenger));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY
+                + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedPassenger));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+        Passenger expectedPassengerMultipleTags = new PassengerBuilder(BOB)
+                .withTags(VALID_TAG_IT, VALID_TAG_HR).withPrice(VALID_PRICE_BOB).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
+                + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
+                + TAG_DESC_GOLF + TAG_DESC_FRIEND, new AddCommand(expectedPassengerMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+        Passenger expectedPassenger = new PassengerBuilder(AMY).withTags().withPrice().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY + TRIPDAY_DESC_FRIDAY
+                        + TRIPTIME_DESC_EVENING,
+                new AddCommand(expectedPassenger));
     }
 
     @Test
@@ -87,55 +95,85 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                        + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB, expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + ADDRESS_DESC_BOB
+                        + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB, expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_ADDRESS_BOB
+                        + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB, expectedMessage);
+
+        // missing tripDay prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                        + VALID_TRIPDAY_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB, expectedMessage);
+
+        // missing tripTime prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                + TRIPDAY_DESC_FRIDAY + VALID_TRIPTIME_EVENING + PRICE_DESC_BOB, expectedMessage);
+
+        // missing price prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                + TRIPDAY_DESC_FRIDAY + VALID_TRIPTIME_EVENING + VALID_PRICE_BOB, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_ADDRESS_BOB
+                        + VALID_TRIPDAY_FRIDAY + VALID_TRIPTIME_EVENING + VALID_PRICE_BOB, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
+
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
+                + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
+                + TAG_DESC_GOLF + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
-
-        // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
+                + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
+                + TAG_DESC_GOLF + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_ADDRESS_DESC + TRIPDAY_DESC_FRIDAY
+                + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
+                + TAG_DESC_GOLF + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+
+        // invalid tripDay
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + INVALID_TRIPDAY
+                + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
+                + TAG_DESC_GOLF + TAG_DESC_FRIEND, TripDay.MESSAGE_CONSTRAINTS);
+
+        // invalid tripTime
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
+                + INVALID_TRIPTIME + PRICE_DESC_BOB
+                + TAG_DESC_GOLF + TAG_DESC_FRIEND, TripTime.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
+                + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
+                + INVALID_TAG_DESC + VALID_TAG_IT, Tag.MESSAGE_CONSTRAINTS);
 
-        // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
+        // two invalid values, only first invalid value reported (Name)
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_ADDRESS_DESC
+                        + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
+        // two invalid values, only first invalid value reported (Address)
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_ADDRESS_DESC
+                        + INVALID_TRIPDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB,
+                Address.MESSAGE_CONSTRAINTS);
+
+        // two invalid values, only first invalid value reported (TripDay)
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                        + INVALID_TRIPDAY + INVALID_TRIPTIME + PRICE_DESC_BOB,
+                TripDay.MESSAGE_CONSTRAINTS);
+
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + TAG_DESC_GOLF + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

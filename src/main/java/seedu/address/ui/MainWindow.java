@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -31,7 +32,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FilteredPassengerListPanel filteredPassengerListPanel;
+    private PoolListPanel poolListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +44,22 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane filteredPassengerListPanelPlaceholder;
+
+    @FXML
+    private StackPane poolListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox passengerList;
+
+    @FXML
+    private VBox poolList;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,8 +121,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        filteredPassengerListPanel = new FilteredPassengerListPanel(logic.getFilteredPassengerList());
+        filteredPassengerListPanelPlaceholder.getChildren().add(filteredPassengerListPanel.getRoot());
+
+        poolListPanel = new PoolListPanel(logic.getFilteredPoolList());
+        poolListPanelPlaceholder.getChildren().add(poolListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +177,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public FilteredPassengerListPanel getFreePassengerListPanel() {
+        return filteredPassengerListPanel;
+    }
+
+    public PoolListPanel getPoolListPanel() {
+        return poolListPanel;
     }
 
     /**

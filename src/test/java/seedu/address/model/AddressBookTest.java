@@ -1,14 +1,19 @@
+//@@author
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPassengers.ALICE;
+import static seedu.address.testutil.TypicalPools.HOMEPOOL;
+import static seedu.address.testutil.TypicalPools.HOMEPOOL_PASSENGERS;
+import static seedu.address.testutil.TypicalPools.OFFICEPOOL_PASSENGERS;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,9 +23,13 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.exceptions.DuplicatePassengerException;
+import seedu.address.model.pool.Pool;
+import seedu.address.model.pool.exceptions.DuplicatePoolException;
+import seedu.address.testutil.PassengerBuilder;
+import seedu.address.testutil.PoolBuilder;
+import seedu.address.testutil.TypicalAddressBook;
 
 public class AddressBookTest {
 
@@ -28,7 +37,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getPassengerList());
     }
 
     @Test
@@ -38,64 +47,183 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AddressBook newData = TypicalAddressBook.getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicatePassengers_throwsDuplicatePassengerException() {
+        // Two passengers with the same identity fields
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Passenger> newPassengers = Arrays.asList(ALICE, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newPassengers, new ArrayList<>());
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePassengerException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasPassenger_nullPassenger_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPassenger(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPassenger_passengerNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPassenger(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPassenger_passengerInAddressBook_returnsTrue() {
+        addressBook.addPassenger(ALICE);
+        assertTrue(addressBook.hasPassenger(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasPassenger_passengerWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addPassenger(ALICE);
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasPassenger(editedAlice));
+    }
+    //@@author JoelHo
+    @Test
+    public void hasPassenger_nullPassengerEqual_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasEqualPassenger(null));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void hasPassenger_passengerEqualNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasEqualPassenger(ALICE));
     }
+
+    @Test
+    public void hasPassenger_passengerEqualInAddressBook_returnsTrue() {
+        addressBook.addPassenger(ALICE);
+        assertTrue(addressBook.hasEqualPassenger(ALICE));
+    }
+
+    @Test
+    public void hasPassenger_passengerEqualWithSameIdentityFieldsInAddressBook_returnsFalse() {
+        addressBook.addPassenger(ALICE);
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
+                .build();
+        assertFalse(addressBook.hasEqualPassenger(editedAlice));
+    }
+    //@@author
+    @Test
+    public void getPassengerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPassengerList().remove(0));
+    }
+    //@@author JoelHo
+    @Test
+    public void resetData_withDuplicatePool_throwsDuplicatePoolException() {
+        // Two pools with the same identity fields
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(OFFICEPOOL_PASSENGERS)
+                .withTags(VALID_TAG_IT)
+                .build();
+
+        List<Pool> newPools = Arrays.asList(HOMEPOOL, editedHomePool);
+        AddressBookStub newData = new AddressBookStub(new ArrayList<>(), newPools);
+
+        assertThrows(DuplicatePoolException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void hasPool_nullPool_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPool(null));
+    }
+
+    @Test
+    public void hasPool_poolNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPool(HOMEPOOL));
+    }
+
+    @Test
+    public void hasPool_poolInAddressBook_returnsTrue() {
+        addressBook.addPool(HOMEPOOL);
+        assertTrue(addressBook.hasPool(HOMEPOOL));
+    }
+
+    @Test
+    public void hasPool_poolWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addPool(HOMEPOOL);
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(OFFICEPOOL_PASSENGERS)
+                .withTags(VALID_TAG_IT)
+                .build();
+        assertTrue(addressBook.hasPool(editedHomePool));
+    }
+
+    @Test
+    public void getPoolList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPoolList().remove(0));
+    }
+
+    @Test
+    public void hasPool_hasPoolWithPassenger_returnsTrue() {
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(HOMEPOOL_PASSENGERS)
+                .build();
+        addressBook.addPool(editedHomePool);
+
+        for (Passenger passenger : HOMEPOOL_PASSENGERS) {
+            assertTrue(addressBook.hasPoolWithPassenger(passenger));
+        }
+    }
+
+
+    @Test
+    public void hasPool_hasPoolWithoutPassenger_returnsFalse() {
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(HOMEPOOL_PASSENGERS)
+                .build();
+        addressBook.addPool(editedHomePool);
+
+        for (Passenger passenger : OFFICEPOOL_PASSENGERS) {
+            assertFalse(addressBook.hasPoolWithPassenger(passenger));
+        }
+    }
+
+
+    @Test
+    public void hasPool_hasPoolWithPassengerSameIdentity_returnsFalse() {
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(HOMEPOOL_PASSENGERS)
+                .build();
+        addressBook.addPool(editedHomePool);
+
+        for (Passenger passenger : HOMEPOOL_PASSENGERS) {
+            Passenger newPassenger = new PassengerBuilder(passenger)
+                    .withAddress(VALID_ADDRESS_BOB)
+                    .withTags(VALID_TAG_HR)
+                    .build();
+            assertFalse(addressBook.hasPoolWithPassenger(newPassenger));
+        }
+    }
+    //@@author
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose passengers list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Passenger> passengers = FXCollections.observableArrayList();
+        private final ObservableList<Pool> pools = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Passenger> passengers, Collection<Pool> pools) {
+            this.passengers.setAll(passengers);
+            this.pools.setAll(pools);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Passenger> getPassengerList() {
+            return passengers;
+        }
+
+        @Override
+        public ObservableList<Pool> getPoolList() {
+            return pools;
         }
     }
 

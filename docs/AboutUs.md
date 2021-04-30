@@ -5,55 +5,51 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `chewterence@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Yue Yang Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lyueyang.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[Homepage](https://www.lyueyang.space) | [Github](https://github.com/lyueyang) | [Portfolio](team/lyueyang.md)
 
-* Role: Project Advisor
+* Role: Integration
+* Responsibilities: In charge of CRD commands
 
-### Jane Doe
+### Joel Ho
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joelho.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[Homepage](https://www.joels.space) | [Github](http://github.com/joelho) | [Portfolio](team/joelho.md)
+
+* Role: Code Quality
+* Responsibilities: In charge of UI
+
+### Zechariah Tan
+
+<img src="images/zechariahtan.png" width="200px">
+
+[Homepage](https://www.zechariahtan.com) | [Github](http://github.com/zechariahtan) | [Portfolio](team/zechariahtan.md)
+
+* Role: Testing
+* Responsibilities: In charge of Storage
+
+### Terence Chew
+
+<img src="images/chewterence.png" width="200px">
+
+[Homepage](https://www.chewterence.com) | [Github](http://github.com/chewterence) | [Portfolio](team/chewterence.md)
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: In charge of Model
 
-### Johnny Doe
+### Mark Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/markmcwong.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[Github](http://github.com/markmcwong) | [Portfolio](team/markmcwong.md)
 
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: In charge of Logic

@@ -1,0 +1,11 @@
+{
+  "passengers": [ {
+    "name": "Passenger with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "address": "4th street",
+    "tripDayStr" : "FUNDAY",
+    "tripTimeStr" : "21032103",
+    "priceStr" : ""
+  } ],
+  "pools" : [ ]
+}

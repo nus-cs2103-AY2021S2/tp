@@ -15,11 +15,13 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-1.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "For more information on how to use the GreenMileageEfforts terminal,"
+            + " please refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+    private static final String COMMAND_SUMMARY_IMG_PATH = "/images/command_summary.png";
 
     @FXML
     private Button copyButton;

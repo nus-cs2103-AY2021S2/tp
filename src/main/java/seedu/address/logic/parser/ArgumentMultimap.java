@@ -57,4 +57,19 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Returns true if only one of the prefixes are provided.
+     */
+    public static boolean checkOnePrefixProvided(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return findPresentPrefixes(argumentMultimap, prefixes).size() == 1;
+    }
+
+    /**
+     * Returns the prefixes that have values
+     */
+    public static List<Prefix> findPresentPrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return java.util.stream.Stream.of(prefixes).filter(prefix ->
+                argumentMultimap.getValue(prefix).isPresent()).collect(java.util.stream.Collectors.toList());
+    }
 }

@@ -5,28 +5,28 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Avenir";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-font-family: "Avenir";
+    -fx-text-fill: grey;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Avenir Light";
+    -fx-text-fill: grey;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Avenir";
 }
 
 .tab-pane {
@@ -56,18 +56,14 @@
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+    -fx-border-color: transparent transparent derive(-fx-base, 80%) transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Avenir Light";
+    -fx-text-fill: grey;
     -fx-alignment: center-left;
     -fx-opacity: 1;
 }
@@ -94,63 +90,100 @@
 }
 
 .list-cell {
+    -fx-background-radius: 15px;
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
+    -fx-padding: 15 10 20 10;
+    -fx-border-insets: 0 0 0 0;
+    -fx-background-insets: 10 10 10 10;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #fff2f1;
+    /*-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #fff7f7, #fccdc3);*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #e3f2f6;
+    /*-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ffffff, #e3f2f6);*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+}
+
+
+.list-cell:filled #cardPane {
+    -fx-background-color: transparent;
+    -fx-padding: -20 0 -20 0;
+    -fx-background-insets: -40 0 -40 0;
+    -fx-border-insets: 20 0 20 0;
+    -fx-border-width: 0 0 0 4;
+}
+
+.list-cell:filled:even #cardPane {
+    -fx-border-color: #f6997c;
+}
+
+.list-cell:filled:odd #cardPane {
+    -fx-border-color: #0eb4e3;
+}
+
+.list-cell:filled:even:selected {
+    -fx-border-color: #e0643c;
+}
+
+.list-cell:filled:odd:selected {
+    -fx-border-color: #1368cf;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-border-width: 1.5;
 }
 
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-}
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #535151;
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Avenir";
+    -fx-font-size: 20px;
+    -fx-padding: 0 0 10 0;
+    -fx-text-fill: #000 !important;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Avenir Light";
     -fx-font-size: 13px;
+    -fx-padding: 0 0 0 0;
     -fx-text-fill: #010504;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
+}
+
+.pane-with-shadow {
+    -fx-background-insets: 25 20 25 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
+    -fx-background-color: derive(#ffffff, 20%);
+    -fx-background-radius: 10px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#ffffff, 30%);
 }
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Avenir Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: grey;
 }
 
 .result-display .label {
@@ -158,20 +191,20 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Avenir Light";
+    -fx-text-fill: grey;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(#ffffff, 30%);
+    -fx-border-color: derive(#ffffff, 25%);
     -fx-border-width: 1px;
 }
 
 .status-bar-with-border .label {
-    -fx-text-fill: white;
+    -fx-text-fill: grey;
 }
 
 .grid-pane {
@@ -189,7 +222,7 @@
 }
 
 .context-menu .label {
-    -fx-text-fill: white;
+    -fx-text-fill: grey;
 }
 
 .menu-bar {
@@ -198,8 +231,8 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Avenir Light";
+    -fx-text-fill: grey;
     -fx-opacity: 0.9;
 }
 
@@ -218,7 +251,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Avenir", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -229,12 +262,12 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: grey;
+    -fx-text-fill: #ffffff;
 }
 
 .button:focused {
-    -fx-border-color: white, white;
+    -fx-border-color: grey, grey;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
@@ -243,8 +276,8 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: grey;
 }
 
 .button:default {
@@ -267,7 +300,7 @@
 .dialog-pane > *.label.content {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
+    -fx-text-fill: grey;
 }
 
 .dialog-pane:header *.header-panel {
@@ -277,8 +310,8 @@
 .dialog-pane:header *.header-panel *.label {
     -fx-font-size: 18px;
     -fx-font-style: italic;
-    -fx-fill: white;
-    -fx-text-fill: white;
+    -fx-fill: grey;
+    -fx-text-fill: grey;
 }
 
 .scroll-bar {
@@ -307,11 +340,6 @@
     -fx-padding: 8 1 8 1;
 }
 
-#cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-}
-
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
@@ -323,12 +351,12 @@
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Avenir Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: grey;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #passengerListPanel, #passengerWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -349,4 +377,28 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#driverCardPane {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-border-color: #989898;
+    -fx-background-radius: 10;
+}
+
+#driverCardPane .cell_small_label {
+    -fx-padding: 3 0 3 10;
+}
+
+.panel_tab_bar {
+    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-alignment: bottom-center;
+    -fx-border-color: derive(#1d1d1d, 20%);
+}
+
+.panel_tab_label {
+    -fx-font-family: "Avenir";
+    -fx-font-size: 20px;
+    -fx-padding: 5 0 5 0;
+    -fx-text-fill: #fff !important;
 }

@@ -1,0 +1,16 @@
+@startuml
+skinparam conditionStyle diamond
+start
+repeat
+  :User adds a passenger;
+repeatwhile ([there are more passengers to add])
+:User list all passengers;
+if () then ([not able to find desired passengers to pool])
+    :User filters the list using find command;
+    :Filtered passenger list is updated and displayed;
+else ([able to find desired passengers to pool])
+endif
+:User uses pool command;
+:Indexes of passengers on currently displayed list is pooled;
+stop
+@enduml

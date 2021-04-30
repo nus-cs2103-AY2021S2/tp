@@ -1,0 +1,11 @@
+{
+  "passengers": [ {
+    "name": "Hans Muster",
+    "phone": "94",
+    "address": "4th street",
+    "tripDayStr" : "FUNDAY",
+    "tripTimeStr" : "21032103",
+    "priceStr" : ""
+  } ],
+  "pools" : [ ]
+}

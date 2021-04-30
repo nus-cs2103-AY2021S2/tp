@@ -13,6 +13,11 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
+     * Prevents StringUtil from being instantiated.
+     */
+    private StringUtil() {}
+
+    /**
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
      *   <br>examples:<pre>
@@ -31,10 +36,9 @@ public class StringUtil {
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] wordsInSentence = sentence.split("\\s+");
 
-        return Arrays.stream(wordsInPreppedSentence)
+        return Arrays.stream(wordsInSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 

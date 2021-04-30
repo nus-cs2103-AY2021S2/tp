@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UnpoolCommandParser" as UnpoolCommandParser LOGIC_COLOR
+participant "u:UnpoolCommand" as UnpoolCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unpool 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("unpool 1")
+activate AddressBookParser
+
+create UnpoolCommandParser
+AddressBookParser -> UnpoolCommandParser
+activate UnpoolCommandParser
+
+UnpoolCommandParser --> AddressBookParser
+deactivate UnpoolCommandParser
+
+AddressBookParser -> UnpoolCommandParser : parse("1")
+activate UnpoolCommandParser
+
+create UnpoolCommand
+UnpoolCommandParser -> UnpoolCommand
+activate UnpoolCommand
+
+UnpoolCommand --> UnpoolCommandParser : u
+deactivate UnpoolCommand
+
+UnpoolCommandParser --> AddressBookParser : u
+deactivate UnpoolCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnpoolCommandParser -[hidden]-> AddressBookParser
+destroy UnpoolCommandParser
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -> UnpoolCommand : execute(model)
+activate UnpoolCommand
+
+UnpoolCommand -> Model : deletePool(1)
+activate Model
+
+Model --> UnpoolCommand
+deactivate Model
+
+create CommandResult
+UnpoolCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UnpoolCommand
+deactivate CommandResult
+
+UnpoolCommand --> LogicManager : result
+deactivate UnpoolCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
