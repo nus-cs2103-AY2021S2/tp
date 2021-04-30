@@ -35,13 +35,17 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
         comLog = FXCollections.observableArrayList();
         comLogIndicator = 0;
         addListener();
     }
+
+    //@@author eksinyue-reused
+    //@@author deyixtan-reused
+    //Reused from https://github.com/eksinyue/BudgetBaby/blob/master/src/main/java/seedu/budgetbaby/ui/CommandBox.java
+    //with minor modifications
 
     private void addListener() {
         commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
