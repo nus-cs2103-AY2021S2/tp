@@ -54,6 +54,7 @@ public class Status implements Attribute {
         return value;
     }
 
+    //@@author AB3-reuse
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -66,6 +67,7 @@ public class Status implements Attribute {
         return value.hashCode();
     }
 
+    //@@author maxxng
     public boolean isDone() {
         return value.equals(DONE_STATE);
     }

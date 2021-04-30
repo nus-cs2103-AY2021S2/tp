@@ -128,6 +128,7 @@ public class SnoozeCommand extends Command {
         return task.getTitle().fullTitle;
     }
 
+    //@@author AB3-reused
     @Override
     public boolean equals(Object otherCommand) {
         if (otherCommand == this) {

@@ -103,6 +103,7 @@ public class DoneCommand extends Command {
                 previousDescription, doneStatus, previousTags);
     }
 
+    //@@author AB3-reuse
     @Override
     public boolean equals(Object otherCommand) {
         if (otherCommand == this) {
