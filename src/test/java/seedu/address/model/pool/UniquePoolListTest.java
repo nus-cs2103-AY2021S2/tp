@@ -1,3 +1,5 @@
+//@@author JoelHo-reused
+//Adapted from UniquePassengerListTest in model/person/passenger
 package seedu.address.model.pool;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -170,3 +172,4 @@ public class UniquePoolListTest {
             -> uniquePoolList.asUnmodifiableObservableList().remove(0));
     }
 }
+//@@author

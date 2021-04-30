@@ -76,6 +76,7 @@ public class PoolTest {
         assertThrows(UnsupportedOperationException.class, () -> pool.getTags().remove(0));
     }
 
+    // adapted from PassengerTest and used for Pool
     @Test
     public void isSamePool() {
         // same object -> returns true

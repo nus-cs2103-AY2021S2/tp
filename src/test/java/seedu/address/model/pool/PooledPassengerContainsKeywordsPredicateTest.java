@@ -1,3 +1,4 @@
+//Solution below adapted from our team's NameContainsKeywordsPredicateTest
 package seedu.address.model.pool;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -88,3 +89,4 @@ public class PooledPassengerContainsKeywordsPredicateTest {
         assertFalse(predicate.test(OFFICEPOOL));
     }
 }
+

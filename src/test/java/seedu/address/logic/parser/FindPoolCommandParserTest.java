@@ -24,11 +24,14 @@ import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 public class FindPoolCommandParserTest {
     private FindPoolCommandParser parser = new FindPoolCommandParser();
 
+    //@@author lyueyang-reused
+    //Reusued from FindCommandParserTest
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPoolCommand.MESSAGE_USAGE));
     }
+    //@@author
 
     @Test
     public void parse_wrongPrefix_throwsParseException() {
@@ -38,17 +41,21 @@ public class FindPoolCommandParserTest {
                         FindPoolCommand.MESSAGE_USAGE));
     }
 
+    //@@author lyueyang-reused
+    //Reusued from FindCommandParserTest
     @Test
     public void parse_namePrefixEmptyArg_throwsParseException() {
         assertParseFailure(parser, " " + PREFIX_NAME + "     ", Name.MESSAGE_CONSTRAINTS);
     }
+    //@@author
 
     @Test
     public void parse_invalidNameArgs_throwsParseException() {
         assertParseFailure(parser, " " + PREFIX_NAME + INVALID_NAME_NO_PREFIX, Name.MESSAGE_CONSTRAINTS);
     }
 
-
+    //@@author lyueyang-reused
+    //Reusued from FindCommandParserTest
     @Test
     public void parse_validNameArgs_returnsFindCommand() {
         // one keyword, no leading and trailing whitespaces
@@ -75,6 +82,7 @@ public class FindPoolCommandParserTest {
         assertParseSuccess(parser, " \n " + PREFIX_NAME + VALID_FIRST_NAME_AMY + " "
                 + PREFIX_NAME + VALID_FIRST_NAME_BOB + "\n \t", expectedFindPoolCommand);
     }
+    //@@author
 
     @Test
     public void parse_validNameArgWithWhitespace_returnsFindCommand() {
