@@ -29,7 +29,6 @@ public class JsonSerializableColabFolderTest {
                 JsonSerializableColabFolder.class).get();
         ColabFolder colabFolderFromFile = dataFromFile.toModelType();
         ColabFolder typicalContactsColabFolder = getTypicalColabFolder();
-        boolean a = colabFolderFromFile.equals(typicalContactsColabFolder);
         assertEquals(colabFolderFromFile, typicalContactsColabFolder);
     }
 
