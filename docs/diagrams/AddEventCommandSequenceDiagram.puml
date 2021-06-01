@@ -1,0 +1,102 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ColabParser" as ColabParser LOGIC_COLOR
+participant ":AddEventCommandParser" as AddEventCommandParser LOGIC_COLOR
+participant "a:AddEventCommand" as AddEventCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "l:List<Project>" as lastShownList MODEL_COLOR
+participant ":Project" as Project MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addE ...")
+activate LogicManager
+
+LogicManager -> ColabParser : parseCommand(addE)
+activate ColabParser
+
+create AddEventCommandParser
+ColabParser -> AddEventCommandParser
+activate AddEventCommandParser
+
+AddEventCommandParser --> ColabParser
+deactivate AddEventCommandParser
+
+ColabParser -> AddEventCommandParser : parse(arguments)
+activate AddEventCommandParser
+
+create AddEventCommand
+AddEventCommandParser -> AddEventCommand
+activate AddEventCommand
+
+AddEventCommand --> AddEventCommandParser : a
+deactivate AddEventCommand
+
+AddEventCommandParser --> ColabParser : a
+deactivate AddEventCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddEventCommandParser -[hidden]-> ColabParser
+destroy AddEventCommandParser
+
+ColabParser --> LogicManager : a
+deactivate ColabParser
+
+LogicManager -> AddEventCommand : execute()
+activate AddEventCommand
+
+AddEventCommand -> Model : getFilteredProjectList()
+activate Model
+
+create lastShownList
+Model -> lastShownList
+activate lastShownList
+
+lastShownList --> Model : l
+deactivate lastShownList
+
+Model --> AddEventCommand : l
+deactivate Model
+
+AddEventCommand -> lastShownList : get(index)
+activate lastShownList
+
+lastShownList -> Project
+activate Project
+
+Project --> lastShownList : p
+deactivate Project
+
+lastShownList --> AddEventCommand : p
+deactivate lastShownList
+
+lastShownList -[hidden]-> AddEventCommand
+destroy lastShownList
+
+AddEventCommand -> Project : addEvent(event)
+activate Project
+
+Project -> Project : internally adding Event
+Project --> AddEventCommand
+deactivate Project
+
+AddEventCommand -> Model : updateFilteredProjectList(...)
+activate Model
+
+Model --> AddEventCommand
+deactivate Model
+
+AddEventCommand --> LogicManager : commandResult
+deactivate AddEventCommand
+
+AddEventCommand -[hidden]-> LogicManager
+destroy AddEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

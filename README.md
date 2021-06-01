@@ -1,14 +1,30 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+# CoLAB
+
+[![Java CI](https://github.com/AY2021S2-CS2103T-T11-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-T11-2/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T11-2/tp/branch/master/graph/badge.svg?token=2NR2SMZ01E)](https://codecov.io/gh/AY2021S2-CS2103T-T11-2/tp)
+
+<div align="center">
+  <img alt="logo" src="docs/images/logo.png">
+</div>
+
+CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+
+What are you waiting for? Start tracking your university life now!
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+## Site Map
+
+- **[User Guide](https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html)**
+- **[Developer Guide](https://ay2021s2-cs2103t-t11-2.github.io/tp/DeveloperGuide.html)**
+- **[About Us](https://ay2021s2-cs2103t-t11-2.github.io/tp/AboutUs.html)**
+
+## Acknowledgements
+
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Some code for integrating automated GUI tests was referenced from the AddressBook-Level4 [codebase](https://github.com/se-edu/addressbook-level4).
+- Libraries used:
+  - [JavaFX](https://openjfx.io/)
+  - [Jackson](https://github.com/FasterXML/jackson)
+  - [JUnit5](https://github.com/junit-team/junit5)
+  - [TestFX](https://github.com/TestFX/TestFX)

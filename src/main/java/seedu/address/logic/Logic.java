@@ -1,14 +1,17 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyColabFolder;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.project.Project;
 
 /**
  * API of the Logic component
@@ -24,19 +27,30 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ColabFolder.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getColabFolder()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyColabFolder getColabFolder();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of contacts */
+    ObservableList<Contact> getFilteredContactList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CoLAB folder file path.
      */
-    Path getAddressBookFilePath();
+    Path getColabFolderFilePath();
+
+
+    /** Returns an unmodifiable view of the filtered list of projects */
+    ObservableList<Project> getFilteredProjectsList();
+
+    /**
+     * Updates the filtered contact list with the new {@code Predicate<Contact>}.
+     *
+     * @param predicate The {@code Predicate<Contact>} to update the filtered contact list with.
+     */
+    void updateFilteredContactList(Predicate<Contact> predicate);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +61,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Commits the current {@code ColabFolder} state to {@code ColabFolderHistory}.
+     */
+    void commitState(CommandResult commandResult);
 }

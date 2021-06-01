@@ -124,6 +124,7 @@
 .page-content {
   padding: $spacing-unit 0;
   flex: 1 0 auto;
+  text-align: justify;
 }
 
 .page-heading {
@@ -260,4 +261,11 @@
   .one-half {
     width: calc(50% - (#{$spacing-unit} / 2));
   }
+}
+
+/**
+  * Table of Content without bullet points
+  */
+.toc-no-bullet-points ul {
+  list-style-type: none;
 }

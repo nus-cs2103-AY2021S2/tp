@@ -1,0 +1,80 @@
+.help-panel {
+    -fx-background-color: -DP_1_ELEVATION;
+}
+
+.commands-display-vbox {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 10 0 0 20;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-min-width: 800;
+    -fx-pref-width: 800;
+    -fx-max-width: 800;
+}
+
+.table-cell {
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-radius: 0;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+.table-view .column-header-background {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+}
+
+.label-header {
+    -fx-text-fill: white;
+    -fx-font-size: 24;
+    -fx-padding: 5 0 5 0;
+    -fx-border-radius: 0;
+}
+
+#helpMessage {
+    -fx-padding: 20 10;
+    -fx-text-fill: white;
+}
+
+#copyButton {
+    -fx-background-color: -DP_1_ELEVATION;
+    -fx-padding: 20 10;
+    -fx-background-insets: 10 0;
+    -fx-text-fill: white;
+}
+
+#copyButton:pressed, #copyButton:default:hover:pressed {
+    -fx-background-color: -DP_2_ELEVATION;
+    -fx-text-fill: white;
+}

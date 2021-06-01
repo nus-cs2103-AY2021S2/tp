@@ -5,6 +5,8 @@ package seedu.address.commons.exceptions;
  */
 public class IllegalValueException extends Exception {
     /**
+     * Constructs an {@code IllegalValueException} object with a {@code message}.
+     *
      * @param message should contain relevant information on the failed constraint(s)
      */
     public IllegalValueException(String message) {
@@ -12,6 +14,8 @@ public class IllegalValueException extends Exception {
     }
 
     /**
+     * Constructs an {@code IllegalValueException} object with a {@code message} and a {@code cause}.
+     *
      * @param message should contain relevant information on the failed constraint(s)
      * @param cause of the main exception
      */

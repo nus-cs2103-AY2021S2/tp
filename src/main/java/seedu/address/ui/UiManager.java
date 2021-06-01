@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
+import java.awt.Taskbar;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -20,7 +24,7 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/colab_icon_500.png";
 
     private Logic logic;
     private MainWindow mainWindow;
@@ -37,14 +41,24 @@ public class UiManager implements Ui {
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
 
-        //Set the application icon.
+        // Set the application icon
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
+        // Set taskbar icon for macOS
+        if (Taskbar.isTaskbarSupported()) {
+            BufferedImage applicationIcon = getBufferedImage(ICON_APPLICATION);
+            Taskbar taskbar = Taskbar.getTaskbar();
+            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE) && applicationIcon != null) {
+                Taskbar.getTaskbar().setIconImage(applicationIcon);
+            }
+        }
+
+        // Set up main window
         try {
             mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
+            mainWindow.show(); // This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
+            mainWindow.displayToday(); // Display today panel
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -53,6 +67,16 @@ public class UiManager implements Ui {
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
+    }
+
+    private BufferedImage getBufferedImage(String imagePath) {
+        try {
+            BufferedImage iconApplication = ImageIO.read(getClass().getResource(imagePath));
+            return iconApplication;
+        } catch (IOException e) {
+            logger.warning(StringUtil.getDetails(e));
+            return null;
+        }
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DevOps guide
+title: DevOps Guide
 ---
 
 * Table of Contents
@@ -8,7 +8,7 @@ title: DevOps guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Build automation
+## Build Automation
 
 This project uses Gradle for **build automation and dependency management**. **You are recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
 
@@ -19,7 +19,7 @@ Given below are how to use Gradle for some important project tasks.
 * **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).<br>
   e.g. `./gradlew clean`
 
-* **`shadowJar`**: Uses the ShadowJar plugin to creat a fat JAR file in the `build/lib` folder, *if the current file is outdated*.<br>
+* **`shadowJar`**: Uses the ShadowJar plugin to create a fat JAR file in the `build/libs` folder, *if the current file is outdated*.<br>
   e.g. `./gradlew shadowJar`.
 
 * **`run`**: Builds and runs the application.<br>
@@ -32,13 +32,17 @@ Given below are how to use Gradle for some important project tasks.
   * `./gradlew test` — Runs all tests
   * `./gradlew clean test` — Cleans the project and runs tests
 
+* **`headless`**: Runs in headless mode (exclude GUI tests).<
+  * `./gradlew headless test` — Runs all non-GUI tests
+  * `./gradlew clean headless test` — Cleans the project and runs non-GUI tests
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Continuous integration (CI)
+## Continuous Integration (CI)
 
 This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files (in the `.github/workflows` folder). No further setting up required.
 
-### Code coverage
+### Code Coverage
 
 As part of CI, this project uses Codecov to generate coverage reports. Here are the steps to set up CodeCov for a fork of this repository.
 
@@ -46,13 +50,13 @@ As part of CI, this project uses Codecov to generate coverage reports. Here are 
 1. Once you are inside Codecov web app, add your fork to CodeCov.
 1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3) in that page reflects the coverage of your project.
 
-### Repository-wide checks
+### Repository-Wide Checks
 
 In addition to running Gradle checks, CI includes some repository-wide checks. Unlike the Gradle checks which only cover files used in the build process, these repository-wide checks cover all files in the repository. They check for repository rules which are hard to enforce on development machines such as line ending requirements.
 
 These checks are implemented as POSIX shell scripts, and thus can only be run on POSIX-compliant operating systems such as macOS and Linux. To run all checks locally on these operating systems, execute the following in the repository root directory:
 
-`./config/travis/run-checks.sh`
+`./.github/run-checks.sh`
 
 Any warnings or errors will be printed out to the console.
 
@@ -69,11 +73,11 @@ Any warnings or errors will be printed out to the console.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Making a release
+## Making a Release
 
 Here are the steps to create a new release.
 
-1. Update the version number in [`MainApp.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java).
-1. Generate a fat JAR file using Gradle (i.e., `gradlew shadow`).
+1. Update the version number in [`MainApp.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/address/MainApp.java).
+1. Generate a fat JAR file using Gradle (i.e., `gradlew shadowJar`).
 1. Tag the repo with the version number. e.g. `v0.1`
 1. [Create a new release using GitHub](https://help.github.com/articles/creating-releases/). Upload the JAR file you created.
