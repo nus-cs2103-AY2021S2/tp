@@ -163,7 +163,7 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 <div style="text-align: left">
 
-**Step 1.** The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
+**Step 1.** The user issues the command `project 1` to display a panel containing information about the first project in the project list.
 
 **Step 2.** A `CommandResult` object is created (see the section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
 
@@ -198,12 +198,12 @@ Given below is an example usage scenario and how the mechanism behaves at each s
         * No need for extra classes.
     * Cons:
         * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
-    
+
 </div>
 
 ### Add Event Feature
 
-This section explains the mechanism used to add an `Event` to a `Project`. The mechanism for adding `Project`s, `Deadline`s, `Todos`s and `Contacts`s are similar.
+This section explains the mechanism used to add an `Event` to a `Project`. The mechanism for adding `Project`s, `Deadline`s, `Todo`s and `Contact`s are similar.
 
 The `AddEventCommand` results in the specified event being added to the application. This command requires a compulsory field Project Index to specify which project the event is to be added to.
 
@@ -249,7 +249,7 @@ Below is a sequence diagram and explanation of how the `AddEventCommand` is exec
     * Pros:
         * If the implementation of `EventList` becomes immutable, this implementation still works.
     * Cons:
-        * This implementation requires more time and space (for the creation of new 'Project` and `EventList` objects).
+        * This implementation requires more time and space (for the creation of new `Project` and `EventList` objects).
 
 </div>
 
@@ -332,7 +332,7 @@ For a better understanding, take a look at the Logic Class Diagram in the [Logic
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
-The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`. 
+The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`.
 
 Depicted below is another sequence diagram that shows the interaction between `StorageManager`, `ModelManager`, `LogicManager` and `DeleteTodoCommand`, when `DeleteTodoCommand#execute` is called.
 
@@ -415,7 +415,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | University Student | delete a groupmate from a project| remove groupmates that I no longer need |
 | `* * *` | University Student | edit a groupmate's details | update the groupmate's details when there is a change |
 | `* * *` | University Student | add roles to a groupmate | easily keep track of the groupmate's roles |
-| `* * *` | University Student | add a new contact| keep track of details from peers I have crossed paths with |            
+| `* * *` | University Student | add a new contact| keep track of details from peers I have crossed paths with |
 | `* * *` | University Student | edit a contact's details | update the contact's details when there is a change |
 | `* * *` | University Student | delete a contact | remove contacts that I no longer need |
 | `* * *` | University Student | find a contact by name | locate details of contacts without having to go through an entire list |
