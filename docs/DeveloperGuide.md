@@ -198,7 +198,7 @@ Given below is an example usage scenario and how the mechanism behaves at each s
         * No need for extra classes.
     * Cons:
         * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
-    
+
 </div>
 
 ### Add Event Feature
@@ -332,7 +332,7 @@ For a better understanding, take a look at the Logic Class Diagram in the [Logic
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTodoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
-The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`. 
+The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`.
 
 Depicted below is another sequence diagram that shows the interaction between `StorageManager`, `ModelManager`, `LogicManager` and `DeleteTodoCommand`, when `DeleteTodoCommand#execute` is called.
 
@@ -415,7 +415,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | University Student | delete a groupmate from a project| remove groupmates that I no longer need |
 | `* * *` | University Student | edit a groupmate's details | update the groupmate's details when there is a change |
 | `* * *` | University Student | add roles to a groupmate | easily keep track of the groupmate's roles |
-| `* * *` | University Student | add a new contact| keep track of details from peers I have crossed paths with |            
+| `* * *` | University Student | add a new contact| keep track of details from peers I have crossed paths with |
 | `* * *` | University Student | edit a contact's details | update the contact's details when there is a change |
 | `* * *` | University Student | delete a contact | remove contacts that I no longer need |
 | `* * *` | University Student | find a contact by name | locate details of contacts without having to go through an entire list |
