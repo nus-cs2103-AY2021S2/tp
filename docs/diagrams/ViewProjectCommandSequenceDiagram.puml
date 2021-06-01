@@ -12,7 +12,7 @@ Participant "result:CommandResult" as commandResult LOGIC_COLOR_T2
 -> mainWindow
 activate mainWindow UI_COLOR
 
-mainWindow -[UI_COLOR]> logic : execute("viewP 1")
+mainWindow -[UI_COLOR]> logic : execute("project 1")
 activate logic LOGIC_COLOR_T4
 
 logic -[LOGIC_COLOR_T4]> command : command.execute(model)

@@ -1038,10 +1038,10 @@ Action | Format, Examples
 Action | Format, Examples
 --------|------------------
 **View Contacts** | `contacts`
-**Add Contact** | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addC n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete Contact** | `deleteC CONTACT_INDEX`<br> e.g., `deleteC 3`
-**Update Contact** | `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`updateC 2 n/James Lee e/jameslee@example.com`
-**Find Contact** | `findC KEYWORD [KEYWORD]…​`<br> e.g., `findC James Jake`
+**Add Contact** | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Delete Contact** | `deleteC CONTACT_INDEX`
+**Update Contact** | `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Find Contact** | `findC KEYWORD [KEYWORD]…​`
 
 ### Today View and Other Commands
 

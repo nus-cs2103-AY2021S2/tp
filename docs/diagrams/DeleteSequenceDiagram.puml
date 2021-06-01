@@ -64,7 +64,7 @@ UiCommand --> DeleteProjectCommand
 deactivate UiCommand
 
 create CommandResult
-DeleteProjectCommand -> CommandResult : new CommandResult(..., uiCommand)
+DeleteProjectCommand -> CommandResult :CommandResult(..., uiCommand)
 activate CommandResult
 
 CommandResult --> DeleteProjectCommand
