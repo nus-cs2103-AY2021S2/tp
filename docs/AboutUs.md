@@ -11,7 +11,7 @@ You can reach us at the email `jdlian505@gmail.com`, `juhaeradittya2000@gmail.co
 
 ### Lian Jiade
 
-<img src="images/csjiade.png" width="200px">
+
 
 [[github](https://github.com/CSjiade)]
 [[portfolio](team/csjiade.md)]
